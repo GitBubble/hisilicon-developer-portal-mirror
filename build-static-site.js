@@ -16,7 +16,7 @@ const MANUAL_REPO_OVERRIDES = new Map([
         repoId: 'shadow-cann/minicpm-v-0.5B',
         useMirrorForRemoteDownloads: true,
         preferRepoUrlForDownloads: true,
-        downloadTargetUrl: 'https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/blob/main/README.md',
+        downloadTargetUrl: 'https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/tree/main',
     }],
 ]);
 
