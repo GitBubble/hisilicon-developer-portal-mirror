@@ -252,17 +252,6 @@
             min-width: 0;
         }
 
-        .download-counter {
-            color: #667085;
-            font-size: 12px;
-        }
-
-        .primary-download-counter {
-            margin-top: 10px;
-            color: #667085;
-            font-size: 13px;
-        }
-
         .download-source {
             flex-shrink: 0;
             color: #666;
@@ -454,6 +443,10 @@
                             <span>🌐</span>
                             <span id="modelRepoId">HF Repo</span>
                         </div>
+                        <div class="detail-meta-item">
+                            <span>📈</span>
+                            <span id="modelPageCounter">已浏览 0 次</span>
+                        </div>
                     </div>
                     <div id="frameworkTags" class="detail-pills"></div>
                     <div id="osTags" class="detail-pills"></div>
@@ -466,7 +459,6 @@
                     <button class="btn btn-secondary">☆ 收藏</button>
                     <button class="btn btn-secondary">分享</button>
                 </div>
-                <div id="primaryDownloadCounter" class="primary-download-counter" style="display: none;">已下载 0 次</div>
 
                 <div id="detailParamsSection" class="detail-section">
                     <h2>模型参数</h2>

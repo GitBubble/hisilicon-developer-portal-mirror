@@ -19,17 +19,9 @@ function escapeHtml(value) {
     }[char]));
 }
 
-function buildDownloadKey(modelId, item) {
-    return `${modelId}::${item.title || ''}::${item.href || ''}`;
-}
-
-function getDownloadCount(downloadKey) {
+function getPageViewCount() {
     const counterValue = document.getElementById('busuanzi_value_page_pv');
     return Number(counterValue ? counterValue.textContent || 0 : 0);
-}
-
-function formatDownloadCount(count) {
-    return `已下载 ${count} 次`;
 }
 
 function renderList(containerId, values, className) {
@@ -150,33 +142,12 @@ function groupDownloads(downloads) {
     return [...grouped.entries()];
 }
 
-function updateDownloadCounterElements(downloadKey, count) {
-    document.querySelectorAll(`[data-counter-key="${CSS.escape(downloadKey)}"]`).forEach((element) => {
-        element.textContent = formatDownloadCount(count);
-    });
-}
-
 function syncBusuanziCounters(model) {
-    const count = getDownloadCount();
-    const primaryDownload = (model.downloads || []).find((item) => item.href === model.primaryDownloadUrl && item.title === model.primaryDownloadLabel)
-        || (model.downloads || []).find((item) => item.href === model.primaryDownloadUrl)
-        || null;
-    const primaryCounter = document.getElementById('primaryDownloadCounter');
-    if (primaryCounter) {
-        if (primaryDownload && model.primaryDownloadUrl) {
-            const downloadKey = buildDownloadKey(model.id, primaryDownload);
-            primaryCounter.dataset.counterKey = downloadKey;
-            primaryCounter.textContent = formatDownloadCount(count);
-            primaryCounter.style.display = 'block';
-        } else {
-            primaryCounter.style.display = 'none';
-        }
+    const count = getPageViewCount();
+    const pageCounter = document.getElementById('modelPageCounter');
+    if (pageCounter) {
+        pageCounter.textContent = `已浏览 ${count} 次`;
     }
-
-    (model.downloads || []).forEach((item) => {
-        const downloadKey = buildDownloadKey(model.id, item);
-        updateDownloadCounterElements(downloadKey, count);
-    });
 }
 
 function attachBusuanziObserver(model) {
@@ -258,15 +229,12 @@ function renderModelDetail() {
                 <h3>${escapeHtml(group)}</h3>
                 <ul class="download-list">
                     ${items.map(item => {
-                        const downloadKey = buildDownloadKey(model.id, item);
-                        const countLabel = formatDownloadCount(getDownloadCount(downloadKey));
                         return `
                         <li class="download-item ${item.available ? '' : 'is-unavailable'}">
                             <div class="download-main">
                                 ${item.available
                                     ? `<a href="${escapeHtml(item.href)}" class="download-link" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a>`
                                     : `<span class="download-link">${escapeHtml(item.title)}</span>`}
-                                <span class="download-counter" data-counter-key="${escapeHtml(downloadKey)}">${escapeHtml(countLabel)}</span>
                             </div>
                             <span class="download-source">${escapeHtml(item.sourceLabel)}</span>
                         </li>
@@ -289,15 +257,10 @@ function renderModelDetail() {
     const downloadLink = document.getElementById('downloadLink');
     if (downloadLink) {
         if (model.primaryDownloadUrl) {
-            const primaryDownload = (model.downloads || []).find((item) => item.href === model.primaryDownloadUrl && item.title === model.primaryDownloadLabel)
-                || (model.downloads || []).find((item) => item.href === model.primaryDownloadUrl)
-                || { title: model.primaryDownloadLabel || '下载模型', href: model.primaryDownloadUrl };
-            const downloadKey = buildDownloadKey(model.id, primaryDownload);
             downloadLink.href = model.primaryDownloadUrl;
             downloadLink.textContent = model.primaryDownloadLabel || '下载模型';
             downloadLink.target = '_blank';
             downloadLink.rel = 'noreferrer';
-            downloadLink.dataset.counterKey = downloadKey;
         } else {
             downloadLink.removeAttribute('href');
             downloadLink.textContent = '暂无可用下载';
