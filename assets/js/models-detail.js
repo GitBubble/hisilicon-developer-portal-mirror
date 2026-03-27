@@ -252,18 +252,10 @@ function renderModelDetail() {
     const tagsContainer = document.getElementById('modelTags');
     tagsContainer.innerHTML = model.tags.map(tag => `<span class="detail-tag">${tag}</span>`).join('');
     
-    // Setup download button
-    const downloadBtn = document.getElementById('downloadBtn');
-    if (downloadBtn && model.downloadUrl) {
-        downloadBtn.onclick = function() {
-            // Create download link
-            const link = document.createElement('a');
-            link.href = model.downloadUrl;
-            link.download = model.name + '.om';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        };
+    // Setup download link
+    const downloadLink = document.getElementById('downloadLink');
+    if (downloadLink && model.downloadUrl) {
+        downloadLink.href = model.downloadUrl;
     }
     
     // Update page title
