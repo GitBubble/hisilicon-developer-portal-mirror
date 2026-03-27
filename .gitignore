@@ -1,0 +1,6 @@
+node_modules/
+.hf-upload-staging/
+cookies.json
+*.log
+test-results/
+.DS_Store

@@ -7,12 +7,13 @@
 本项目是华为海思开发者门户的静态镜像，主要实现了以下功能：
 
 - **首页** - 开发者门户欢迎页面
-- **ModelZoo** - AI模型库，包含47个预训练模型
+- **ModelZoo** - AI模型库，包含48个模型条目与本地化下载映射
 
 ## 页面
 
 - `index.html` - 开发者门户首页
 - `modelzoo.html` - ModelZoo模型市场页面
+- `model-detail.html` - 模型详情与下载清单页面
 
 ## 部署
 
@@ -28,6 +29,9 @@ cd hisilicon-developer-portal-mirror
 
 # 使用 Python 启动本地服务器
 python3 -m http.server 8000
+
+# 根据最新抓取结果重建静态站点数据
+node build-static-site.js
 
 # 访问 http://localhost:8000
 ```

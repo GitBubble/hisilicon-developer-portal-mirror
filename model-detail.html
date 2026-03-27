@@ -18,6 +18,35 @@
             padding: 24px;
             margin-bottom: 24px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 24px;
+        }
+
+        .detail-hero-image {
+            width: 100%;
+            min-height: 220px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #0a2463 0%, #1e3a8a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .detail-hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .detail-placeholder {
+            font-size: 72px;
+            color: white;
+        }
+
+        .detail-header-main {
+            min-width: 0;
         }
         
         .detail-header h1 {
@@ -41,6 +70,21 @@
             flex-wrap: wrap;
             gap: 8px;
             margin-top: 16px;
+        }
+
+        .detail-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .detail-pill {
+            padding: 6px 12px;
+            background: #f6f8fc;
+            color: #42526e;
+            border-radius: 999px;
+            font-size: 13px;
         }
         
         .detail-tag {
@@ -77,8 +121,9 @@
         }
         
         .detail-meta {
-            display: flex;
-            gap: 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
             padding: 16px;
             background: #f9f9f9;
             border-radius: 4px;
@@ -114,6 +159,7 @@
             display: flex;
             gap: 12px;
             margin-top: 24px;
+            flex-wrap: wrap;
         }
         
         .btn {
@@ -133,6 +179,11 @@
         .btn-primary:hover {
             background: #0078d4;
         }
+
+        .btn-primary.is-disabled {
+            background: #b8c4d4;
+            pointer-events: none;
+        }
         
         .btn-secondary {
             background: #f0f0f0;
@@ -141,6 +192,170 @@
         
         .btn-secondary:hover {
             background: #e0e0e0;
+        }
+
+        .resource-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #0a58ca;
+            font-size: 14px;
+        }
+
+        .download-group {
+            margin-bottom: 20px;
+        }
+
+        .download-group h3 {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #1a1a2e;
+        }
+
+        .download-list {
+            list-style: none;
+            display: grid;
+            gap: 10px;
+        }
+
+        .download-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 12px 14px;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            background: #fafbfd;
+        }
+
+        .download-item.is-unavailable {
+            opacity: 0.7;
+        }
+
+        .download-link {
+            color: #0a58ca;
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .download-source {
+            flex-shrink: 0;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .detail-note {
+            margin-top: 16px;
+            padding: 12px 14px;
+            border-radius: 8px;
+            background: #fff7e6;
+            color: #8a5a00;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .detail-params-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .detail-param-card {
+            padding: 14px;
+            border: 1px solid #e8edf4;
+            border-radius: 10px;
+            background: #fafcff;
+        }
+
+        .detail-param-name {
+            color: #667085;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .detail-param-value {
+            color: #111827;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .origin-table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow: hidden;
+            border-radius: 10px;
+            border: 1px solid #e8edf4;
+        }
+
+        .origin-table th,
+        .origin-table td {
+            text-align: left;
+            padding: 12px 14px;
+            border-bottom: 1px solid #e8edf4;
+            font-size: 14px;
+        }
+
+        .origin-table th {
+            background: #f8fafc;
+            color: #344054;
+        }
+
+        .origin-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .readme-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .readme-block {
+            margin-bottom: 18px;
+        }
+
+        .readme-label {
+            display: inline-flex;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: #eef4ff;
+            color: #2457c5;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .readme-pre {
+            margin: 0;
+            padding: 16px;
+            border-radius: 10px;
+            background: #0f172a;
+            color: #e2e8f0;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+            line-height: 1.6;
+            font-size: 13px;
+        }
+
+        .muted,
+        .empty-state {
+            color: #667085;
+            font-size: 14px;
+        }
+
+        @media (max-width: 900px) {
+            .detail-header {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -173,9 +388,20 @@
             <a href="modelzoo.html" class="back-btn">← 返回模型市场</a>
             
             <div class="detail-header">
-                <h1 id="modelName">模型名称</h1>
-                <span id="modelBadge" class="detail-badge" style="display: none;"></span>
-                <div id="modelTags" class="detail-tags"></div>
+                <div id="modelImage" class="detail-hero-image"></div>
+                <div class="detail-header-main">
+                    <h1 id="modelName">模型名称</h1>
+                    <span id="modelBadge" class="detail-badge" style="display: none;"></span>
+                    <div id="modelTags" class="detail-tags"></div>
+                    <div class="resource-links">
+                        <a id="hfRepoLink" class="resource-link" href="#" target="_blank" rel="noreferrer">HF 镜像仓库</a>
+                        <a id="hfReadmeLink" class="resource-link" href="#" target="_blank" rel="noreferrer">HF README</a>
+                        <a id="quickStartLink" class="resource-link" href="#" target="_blank" rel="noreferrer">快速开始</a>
+                        <a id="repositoryLink" class="resource-link" href="#" target="_blank" rel="noreferrer">代码仓库</a>
+                        <a id="licenseLink" class="resource-link" href="#" target="_blank" rel="noreferrer">许可证</a>
+                    </div>
+                    <div id="betaNote" class="detail-note" style="display: none;"></div>
+                </div>
             </div>
             
             <div class="detail-content">
@@ -192,21 +418,59 @@
                             <span id="modelDate">更新时间</span>
                         </div>
                         <div class="detail-meta-item">
+                            <span>🕒</span>
+                            <span id="modelUpdatedAt">最近更新</span>
+                        </div>
+                        <div class="detail-meta-item">
                             <span>🏷️</span>
                             <span id="modelCategory">任务类型</span>
                         </div>
+                        <div class="detail-meta-item">
+                            <span>📦</span>
+                            <span id="modelCount">0 个可用文件</span>
+                        </div>
+                        <div class="detail-meta-item">
+                            <span>🌐</span>
+                            <span id="modelRepoId">HF Repo</span>
+                        </div>
                     </div>
+                    <div id="frameworkTags" class="detail-pills"></div>
+                    <div id="osTags" class="detail-pills"></div>
+                    <div id="computeTags" class="detail-pills"></div>
                 </div>
                 
                 <div class="action-buttons">
                     <a id="downloadLink" class="btn btn-primary">下载模型</a>
+                    <a id="repoActionLink" class="btn btn-secondary" href="#" target="_blank" rel="noreferrer">打开 HF 镜像仓库</a>
                     <button class="btn btn-secondary">☆ 收藏</button>
                     <button class="btn btn-secondary">分享</button>
+                </div>
+
+                <div id="detailParamsSection" class="detail-section">
+                    <h2>模型参数</h2>
+                    <div id="detailParamsList" class="detail-params-grid"></div>
+                </div>
+
+                <div class="detail-section">
+                    <h2>下载清单</h2>
+                    <div id="downloadSections"></div>
+                </div>
+
+                <div id="originModelsSection" class="detail-section" style="display: none;">
+                    <h2>原始模型链接</h2>
+                    <div id="originModelsTable"></div>
+                </div>
+
+                <div id="readmeSection" class="detail-section" style="display: none;">
+                    <h2>README / 快速开始</h2>
+                    <div id="readmeLinks" class="readme-links"></div>
+                    <div id="readmeSections"></div>
                 </div>
             </div>
         </div>
     </div>
 
+    <script src="assets/js/models.js"></script>
     <script src="assets/js/models-detail.js"></script>
 </body>
 </html>
