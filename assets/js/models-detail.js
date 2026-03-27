@@ -19,38 +19,61 @@ function escapeHtml(value) {
     }[char]));
 }
 
-const DOWNLOAD_COUNTER_STORAGE_KEY = 'hisilicon-download-counters';
-
-function readDownloadCounters() {
-    try {
-        return JSON.parse(window.localStorage.getItem(DOWNLOAD_COUNTER_STORAGE_KEY) || '{}');
-    } catch (error) {
-        return {};
-    }
-}
-
-function writeDownloadCounters(counters) {
-    try {
-        window.localStorage.setItem(DOWNLOAD_COUNTER_STORAGE_KEY, JSON.stringify(counters));
-    } catch (error) {
-        // Ignore storage failures so downloads still work.
-    }
-}
+const DOWNLOAD_COUNTER_NAMESPACE = 'hisilicon-developer-portal-mirror';
+const DOWNLOAD_COUNTER_API = 'https://api.countapi.xyz';
+const downloadCounterCache = new Map();
 
 function buildDownloadKey(modelId, item) {
     return `${modelId}::${item.title || ''}::${item.href || ''}`;
 }
 
 function getDownloadCount(downloadKey) {
-    const counters = readDownloadCounters();
-    return Number(counters[downloadKey] || 0);
+    return Number(downloadCounterCache.get(downloadKey) || 0);
 }
 
-function incrementDownloadCount(downloadKey) {
-    const counters = readDownloadCounters();
-    counters[downloadKey] = Number(counters[downloadKey] || 0) + 1;
-    writeDownloadCounters(counters);
-    return counters[downloadKey];
+function normalizeCounterKey(downloadKey) {
+    return encodeURIComponent(downloadKey);
+}
+
+async function fetchDownloadCount(downloadKey) {
+    if (downloadCounterCache.has(downloadKey)) {
+        return getDownloadCount(downloadKey);
+    }
+
+    try {
+        const response = await fetch(`${DOWNLOAD_COUNTER_API}/get/${DOWNLOAD_COUNTER_NAMESPACE}/${normalizeCounterKey(downloadKey)}`);
+        if (!response.ok) {
+            downloadCounterCache.set(downloadKey, 0);
+            return 0;
+        }
+        const data = await response.json();
+        const count = Number(data.value || 0);
+        downloadCounterCache.set(downloadKey, count);
+        return count;
+    } catch (error) {
+        downloadCounterCache.set(downloadKey, getDownloadCount(downloadKey));
+        return getDownloadCount(downloadKey);
+    }
+}
+
+async function incrementDownloadCount(downloadKey) {
+    const optimisticCount = getDownloadCount(downloadKey) + 1;
+    downloadCounterCache.set(downloadKey, optimisticCount);
+    updateDownloadCounterElements(downloadKey, optimisticCount);
+
+    try {
+        const response = await fetch(`${DOWNLOAD_COUNTER_API}/hit/${DOWNLOAD_COUNTER_NAMESPACE}/${normalizeCounterKey(downloadKey)}`);
+        if (!response.ok) {
+            throw new Error(`Counter increment failed with status ${response.status}`);
+        }
+        const data = await response.json();
+        const count = Number(data.value || optimisticCount);
+        downloadCounterCache.set(downloadKey, count);
+        updateDownloadCounterElements(downloadKey, count);
+        return count;
+    } catch (error) {
+        return optimisticCount;
+    }
 }
 
 function formatDownloadCount(count) {
@@ -181,12 +204,31 @@ function updateDownloadCounterElements(downloadKey, count) {
     });
 }
 
+async function hydrateDownloadCounters(model) {
+    const counterKeys = new Set();
+
+    (model.downloads || []).forEach((item) => {
+        counterKeys.add(buildDownloadKey(model.id, item));
+    });
+
+    if (model.primaryDownloadUrl) {
+        const primaryDownload = (model.downloads || []).find((item) => item.href === model.primaryDownloadUrl && item.title === model.primaryDownloadLabel)
+            || (model.downloads || []).find((item) => item.href === model.primaryDownloadUrl)
+            || { title: model.primaryDownloadLabel || '下载模型', href: model.primaryDownloadUrl };
+        counterKeys.add(buildDownloadKey(model.id, primaryDownload));
+    }
+
+    await Promise.all([...counterKeys].map(async (downloadKey) => {
+        const count = await fetchDownloadCount(downloadKey);
+        updateDownloadCounterElements(downloadKey, count);
+    }));
+}
+
 function attachDownloadTracking(model) {
     document.querySelectorAll('[data-download-key]').forEach((link) => {
         link.addEventListener('click', () => {
             const downloadKey = link.dataset.downloadKey;
-            const nextCount = incrementDownloadCount(downloadKey);
-            updateDownloadCounterElements(downloadKey, nextCount);
+            incrementDownloadCount(downloadKey);
         });
     });
 
@@ -331,6 +373,7 @@ function renderModelDetail() {
     }
 
     attachDownloadTracking(model);
+    hydrateDownloadCounters(model);
     
     // Update page title
     document.title = `${model.name} - 华为海思开发者门户`;
