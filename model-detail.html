@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模型详情 - 华为海思开发者门户</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        
+        .detail-header {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .detail-header h1 {
+            font-size: 28px;
+            margin-bottom: 12px;
+            color: #1a1a2e;
+        }
+        
+        .detail-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #fff7e6;
+            color: #fa8c16;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-left: 12px;
+        }
+        
+        .detail-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        
+        .detail-tag {
+            padding: 6px 12px;
+            background: #f0f5ff;
+            color: #00a0e9;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .detail-content {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .detail-section {
+            margin-bottom: 24px;
+        }
+        
+        .detail-section h2 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #1a1a2e;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        
+        .detail-section p {
+            line-height: 1.8;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .detail-meta {
+            display: flex;
+            gap: 24px;
+            padding: 16px;
+            background: #f9f9f9;
+            border-radius: 4px;
+            margin-top: 16px;
+        }
+        
+        .detail-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: #00a0e9;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+        
+        .back-btn:hover {
+            background: #0078d4;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        
+        .btn {
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: #00a0e9;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #0078d4;
+        }
+        
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'%3E%3Crect fill='%230078d4' width='120' height='40' rx='4'/%3E%3Ctext x='60' y='25' fill='white' text-anchor='middle' font-size='14' font-weight='bold'%3E华为海思%3C/text%3E%3C/svg%3E" alt="Logo" class="logo">
+            <div class="header-nav">
+                <a href="#/" class="nav-item">首页</a>
+                <a href="#/CICD" class="nav-item">CICD</a>
+                <a href="#/test" class="nav-item">测试</a>
+                <a href="#/board" class="nav-item">开发板</a>
+                <a href="#/ModelZoo" class="nav-item">ModelZoo</a>
+                <a href="#/dashboard" class="nav-item">看板</a>
+                <a href="#/config" class="nav-item">配置</a>
+            </div>
+        </div>
+        <div class="header-right">
+            <a href="#" class="contact-link">联系我们</a>
+            <div class="team-menu">
+                <span>我的团队</span>
+                <span class="arrow">▾</span>
+            </div>
+            <div class="user-avatar">D</div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="detail-container">
+            <a href="modelzoo.html" class="back-btn">← 返回模型市场</a>
+            
+            <div class="detail-header">
+                <h1 id="modelName">模型名称</h1>
+                <span id="modelBadge" class="detail-badge" style="display: none;"></span>
+                <div id="modelTags" class="detail-tags"></div>
+            </div>
+            
+            <div class="detail-content">
+                <div class="detail-section">
+                    <h2>模型描述</h2>
+                    <p id="modelDescription">模型描述内容...</p>
+                </div>
+                
+                <div class="detail-section">
+                    <h2>基本信息</h2>
+                    <div class="detail-meta">
+                        <div class="detail-meta-item">
+                            <span>📅</span>
+                            <span id="modelDate">更新时间</span>
+                        </div>
+                        <div class="detail-meta-item">
+                            <span>🏷️</span>
+                            <span id="modelCategory">任务类型</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-primary">下载模型</button>
+                    <button class="btn btn-secondary">☆ 收藏</button>
+                    <button class="btn btn-secondary">分享</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/models-detail.js"></script>
+</body>
+</html>

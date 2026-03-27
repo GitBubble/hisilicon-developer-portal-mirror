@@ -520,3 +520,10 @@ body {
         display: none;
     }
 }
+
+/* Model card link */
+.model-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
