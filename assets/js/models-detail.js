@@ -1,4 +1,4 @@
-// Model data - all 47 models
+// Model data - all 47 models with download links
 const modelsData = [
     {
         name: "MobileNetV2",
@@ -6,7 +6,8 @@ const modelsData = [
         tags: ["分类"],
         date: "2026-03-24 16:23:20",
         badge: null,
-        category: "计算机视觉"
+        category: "计算机视觉",
+        downloadUrl: "models/mobilenet_v2.om"
     },
     {
         name: "Vit-B-16",
@@ -14,23 +15,26 @@ const modelsData = [
         tags: ["分类"],
         date: "2026-03-17 17:45:49",
         badge: "Beta",
-        category: "计算机视觉"
+        category: "计算机视觉",
+        downloadUrl: "models/vit_b_16.om"
     },
     {
         name: "SuperPoint",
-        description: "SuperPoint模型的全卷积神经网络架构对全尺寸图像进行操作，并在单次前向传递中产生伴随固定长度描述符的兴趣点检测。该模型有一个单一的共享编码器来处理和减少输入图像的维数。在编码器之后，该架构分成两个解码器头，它们学习任务特定权重——一个用于兴趣点检测，另一个用于感兴趣点描述。大多数网络参数在两个任务之间共享，这与传统系统不同，传统系统首先检测兴趣点，然后计算描述符，并且缺乏跨两个任务共享计算和表示的能力。",
+        description: "SuperPoint模型的全卷积神经网络架构对全尺寸图像进行操作，并在单次前向传递中产生伴随固定长度描述符的兴趣点检测。该模型有一个单一的共享编码器来处理和减少输入图像的维数。在编码器之后，该架构分成两个解码器头，它们学习任务特定权重。",
         tags: ["特征点检测"],
         date: "2026-03-16 21:11:02",
         badge: null,
-        category: "计算机视觉"
+        category: "计算机视觉",
+        downloadUrl: "models/superpoint.om"
     },
     {
         name: "DenseNet121",
-        description: "DenseNet 针对 ResNet 的冗余结构提出了改进：让网络中的每一层和前面的所有层相连，同时把每一层设计的比较窄，使每一层学到的特征变少从而降低冗余。除了减少参数量之外，该结构还有减轻梯度消失问题、增强特征传播等优点。",
+        description: "DenseNet 针对 ResNet 的冗余结构提出了改进：让网络中的每一层和前面的所有层相连，同时把每一层设计的比较窄，使每一层学到的特征变少从而降低冗余。",
         tags: ["分类"],
         date: "2026-03-16 20:23:49",
         badge: null,
-        category: "计算机视觉"
+        category: "计算机视觉",
+        downloadUrl: "models/densenet121.om"
     },
     {
         name: "ShuffleNetV2",
@@ -38,7 +42,8 @@ const modelsData = [
         tags: ["分类"],
         date: "2026-03-16 20:19:07",
         badge: null,
-        category: "计算机视觉"
+        category: "计算机视觉",
+        downloadUrl: "models/shufflenet_v2.om"
     },
     {
         name: "SqueezeNet1_1",
@@ -46,39 +51,44 @@ const modelsData = [
         tags: ["分类"],
         date: "2026-03-16 19:24:13",
         badge: null,
-        category: "计算机视觉"
+        category: "计算机视觉",
+        downloadUrl: "models/squeezenet1_1.om"
     },
     {
         name: "Chinese-CLIP",
-        description: "Chinese-CLIP 是 CLIP 模型的中文版本。CLIP 通过对比学习方式，同时学习图像和文本的表示，并能够理解两者之间的语义关联。Chinese-CLIP 使用约 2 亿规模的中文图文对进行训练，其核心目标是解决中文场景下的跨模态检索、图像表示生成等任务。",
+        description: "Chinese-CLIP 是 CLIP 模型的中文版本。CLIP 通过对比学习方式，同时学习图像和文本的表示，并能够理解两者之间的语义关联。",
         tags: ["图文匹配"],
         date: "2026-03-16 19:22:14",
         badge: null,
-        category: "多模态"
+        category: "多模态",
+        downloadUrl: "models/chinese_clip.om"
     },
     {
         name: "Swin-Transformer",
-        description: "Swin-Transformer是针对于图片处理设计的基于Transformer架构的神经网络。该网络针对原始Transformer迁移到图片端后计算量过大，复用困难的问题，提出了新的swin-block以代替原有的attention架构。模型以窗口的attention方式极大地减少了图像不同区域间的互相响应，同时也避免了部分冗余信息的产生。最终，模型在减少了大量计算量的同时，在不同的视觉传统任务上也有了效果的提升。",
+        description: "Swin-Transformer是针对于图片处理设计的基于Transformer架构的神经网络。模型以窗口的attention方式极大地减少了图像不同区域间的互相响应。",
         tags: ["分类"],
         date: "2026-03-16 19:19:28",
         badge: "Beta",
-        category: "计算机视觉"
+        category: "计算机视觉",
+        downloadUrl: "models/swin_transformer.om"
     },
     {
         name: "Pi0",
-        description: "Pi0是一款视觉-语言-动作(VLA)通用机器人大模型，它基于预训练视觉语言模型(VLM)和流匹配(Flow Matching)机制，能够将自然语言指令直接转换为机器人可执行的连续动作序列，从而精准控制机器人完成复杂、高灵巧度的操作任务。",
+        description: "Pi0是一款视觉-语言-动作(VLA)通用机器人大模型，它基于预训练视觉语言模型(VLM)和流匹配(Flow Matching)机制，能够将自然语言指令直接转换为机器人可执行的连续动作序列。",
         tags: ["具身智能", "Hi3591PV100"],
         date: "2026-03-04 20:07:37",
         badge: null,
-        category: "具身智能"
+        category: "具身智能",
+        downloadUrl: "models/pi0.om"
     },
     {
         name: "ACT",
-        description: "ACT（Action Chunking with Transformers）是面向机器人学习场景的高性能端到端动作控制模型。相比传统模块化机器人控制模型，ACT采用轻量化Transformer架构作为核心骨干进行动作表征学习，结合多模态感知融合模块和时序动作优化网络，在控制精度和实时响应速度上均有显著提升。",
+        description: "ACT（Action Chunking with Transformers）是面向机器人学习场景的高性能端到端动作控制模型。采用轻量化Transformer架构作为核心骨干进行动作表征学习。",
         tags: ["具身智能"],
         date: "2026-03-03 10:30:33",
         badge: null,
-        category: "具身智能"
+        category: "具身智能",
+        downloadUrl: "models/act.om"
     },
     {
         name: "CRNN",
@@ -86,111 +96,125 @@ const modelsData = [
         tags: ["OCR"],
         date: "2026-02-12 10:58:59",
         badge: "Beta",
-        category: "计算机视觉"
+        category: "计算机视觉",
+        downloadUrl: "models/crnn.om"
     },
     {
         name: "GraspNet",
-        description: "GraspNet是一种基于点云输入的多阶段抓取姿态预测模型，由抓取视角估计和抓取姿态生成两个阶段组成，通过特征提取、视角估计、局部特征提取、抓取参数估计和预测解码一系列处理，最终生成包含抓取评分、抓取宽度、抓取高度、抓取深度、旋转矩阵、抓取中心点和物体ID的预测结果，旨在解决机器人抓取任务中的6D抓取姿态估计问题。",
+        description: "GraspNet是一种基于点云输入的多阶段抓取姿态预测模型，旨在解决机器人抓取任务中的6D抓取姿态估计问题。",
         tags: ["具身智能", "Hi3591PV100"],
         date: "2026-02-09 19:42:15",
         badge: "Beta",
-        category: "具身智能"
+        category: "具身智能",
+        downloadUrl: "models/graspnet.om"
     },
     {
         name: "MiniCPM-4v-0.5B",
-        description: "MiniCPM-4v-0.5B: 小参数, 大智慧——端侧多模态模型 由面壁智能(OpenBMB)打造的MiniCPM-4v-0.5B, 以0.53B的精简参数量，在端侧设备上实现了卓越的图文理解与交互能力。专为边缘计算场景设计，让每一分算力都充分发挥价值。",
+        description: "MiniCPM-4v-0.5B: 小参数, 大智慧——端侧多模态模型。以0.53B的精简参数量，在端侧设备上实现了卓越的图文理解与交互能力。",
         tags: ["VLM"],
         date: "2026-02-06 17:16:24",
         badge: "Beta",
-        category: "自然语言处理"
+        category: "自然语言处理",
+        downloadUrl: "models/minicpm_4v.om"
     },
     {
         name: "FastSpeech2",
-        description: "FastSpeech2 是一种高效的端到端语音合成模型。相比 FastSpeech，FastSpeech2 引入了多尺度时长预测器和能量 / 基频预测分支，优化了时长预测模块并新增韵律特征建模，在合成速度和语音自然度上均有大幅提升。",
+        description: "FastSpeech2 是一种高效的端到端语音合成模型。相比 FastSpeech，FastSpeech2 引入了多尺度时长预测器和能量/基频预测分支。",
         tags: ["文本转语音"],
         date: "2026-01-08 16:18:57",
         badge: "Beta",
-        category: "音频"
+        category: "音频",
+        downloadUrl: "models/fastspeech2.om"
     },
     {
         name: "CodeFormer",
-        description: "CodeFormer 是一种基于码本查找 Transformer 的鲁棒盲人脸修复模型。相比传统方法，它通过生成对抗网络与量化编码技术，能有效处理模糊、噪声等多种退化问题，兼顾人脸修复质量与身份保真度，适用于盲人脸恢复场景。",
+        description: "CodeFormer 是一种基于码本查找 Transformer 的鲁棒盲人脸修复模型。能有效处理模糊、噪声等多种退化问题。",
         tags: ["图像增强"],
         date: "2025-12-30 17:56:29",
         badge: null,
-        category: "计算机视觉"
+        category: "计算机视觉",
+        downloadUrl: "models/codeformer.om"
     },
     {
         name: "FaceNet",
-        description: "FaceNet 是一种基于深度卷积神经网络的端到端人脸识别与特征嵌入模型。相比传统基于手工特征或分阶段匹配的方法，它通过将人脸图像直接映射为固定维度的紧凑特征向量（Embedding），并采用三元组损失（Triplet Loss）优化特征相似度度量，能有效缩小类内差异、扩大类间距离，兼顾识别精度与推理效率，适用于身份验证、人脸检索、监控安防等大规模人脸识别场景。",
+        description: "FaceNet 是一种基于深度卷积神经网络的端到端人脸识别与特征嵌入模型。适用于身份验证、人脸检索、监控安防等大规模人脸识别场景。",
         tags: ["人脸识别"],
         date: "2025-12-29 10:37:55",
         badge: null,
-        category: "计算机视觉"
+        category: "计算机视觉",
+        downloadUrl: "models/facenet.om"
     },
     {
         name: "LRStereo-B",
-        description: "LRStereo-B是一个轻量且鲁棒的双目立体匹配模型。它在开源模型(Raft-Stereo)的基础上做了大量的模型结构改进和重训。具体功能为输入标定好的左右目图像以及相关的相机参数，获得左目图像对应的深度图。",
+        description: "LRStereo-B是一个轻量且鲁棒的双目立体匹配模型。输入标定好的左右目图像以及相关的相机参数，获得左目图像对应的深度图。",
         tags: ["双目深度"],
         date: "2025-12-26 20:41:00",
         badge: null,
-        category: "计算机视觉"
+        category: "计算机视觉",
+        downloadUrl: "models/lr_stereo_b.om"
     },
     {
         name: "TinySam",
-        description: "TinySAM 通过全阶段知识蒸馏、在线硬提示采样、量化等系列优化策略，构建轻量级 万物分割 模型，解决了原始 SAM 模型计算量大、部署困难的痛点，助力高效分割任务在资源受限场景下的应用。",
+        description: "TinySAM 通过全阶段知识蒸馏、在线硬提示采样、量化等系列优化策略，构建轻量级万物分割模型。",
         tags: ["分割"],
         date: "2025-12-26 16:38:13",
         badge: "Beta",
-        category: "计算机视觉"
+        category: "计算机视觉",
+        downloadUrl: "models/tiny_sam.om"
     },
     {
         name: "YOLOv8s-OBB",
-        description: "YOLOv8s-OBB 是 Ultralytics 推出的基于 YOLOv8 的旋转目标检测（Oriented Bounding Box, OBB）模型。相比于水平框检测，OBB 能够更准确地检测倾斜或不规则排列的目标（如航拍图像中的车辆、船只等）。该模型在 DOTA 数据集上进行了训练和验证。",
+        description: "YOLOv8s-OBB 是 Ultralytics 推出的基于 YOLOv8 的旋转目标检测（OBB）模型。相比于水平框检测，OBB 能够更准确地检测倾斜或不规则排列的目标。",
         tags: ["目标检测"],
         date: "2025-12-26 16:22:36",
         badge: null,
-        category: "计算机视觉"
+        category: "计算机视觉",
+        downloadUrl: "models/yolov8s_obb.om"
     },
     {
         name: "PaddleOCRv4-rec",
-        description: "PP-OCRv4识别模型在PP-OCRv3识别模型的基础上进一步升级。整体的框架保持了与PP-OCRv3识别模型相同的pipeline，分别进行了数据、网络结构、训练策略等方面的优化。",
+        description: "PP-OCRv4识别模型在PP-OCRv3识别模型的基础上进一步升级。整体的框架保持了与PP-OCRv3识别模型相同的pipeline。",
         tags: ["OCR"],
         date: "2025-12-26 16:02:03",
         badge: "Beta",
-        category: "计算机视觉"
+        category: "计算机视觉",
+        downloadUrl: "models/paddleocrv4_rec.om"
     },
     {
         name: "PaddleOCRv4-det",
-        description: "PP-OCRv4检测模型在PP-OCRv3检测模型的基础上，在网络结构，训练策略，蒸馏策略三个方面做了优化。首先，PP-OCRv4检测模型使用PP-LCNetV3替换MobileNetv3，并提出并行分支融合的PFhead结构；其次，训练时动态调整shrink ratio的比例；最后，PP-OCRv4对CML的蒸馏loss进行优化，进一步提升文字检测效果。",
+        description: "PP-OCRv4检测模型在PP-OCRv3检测模型的基础上，在网络结构，训练策略，蒸馏策略三个方面做了优化。",
         tags: ["OCR"],
         date: "2025-12-26 15:54:13",
         badge: "Beta",
-        category: "计算机视觉"
+        category: "计算机视觉",
+        downloadUrl: "models/paddleocrv4_det.om"
     },
     {
         name: "YOLOv3",
-        description: "YOLOv3是一种端到端的one-stage目标检测模型。相比YOLOv2，YOLOv3采用了一个新的backbone-Darknet-53来进行特征提取工作，这个新网络比Darknet-19更加强大，也比ResNet-101或者ResNet-152更加高效。",
+        description: "YOLOv3是一种端到端的one-stage目标检测模型。采用了一个新的backbone-Darknet-53来进行特征提取工作。",
         tags: ["目标检测"],
         date: "2025-12-26 15:43:35",
         badge: "Beta",
-        category: "计算机视觉"
+        category: "计算机视觉",
+        downloadUrl: "models/yolov3.om"
     },
     {
         name: "YOLOv10s",
-        description: "YOLOv10 引入了一种新的实时目标检测方法，解决了以前YOLO 版本在后处理和模型架构方面的不足。通过消除非最大抑制NMS和优化各种模型组件，YOLOv10 显著降低了计算开销。本示例基于YOLOv10s。",
+        description: "YOLOv10 引入了一种新的实时目标检测方法，解决了以前YOLO 版本在后处理和模型架构方面的不足。",
         tags: ["目标检测"],
         date: "2025-12-26 15:12:19",
         badge: "Beta",
-        category: "计算机视觉"
+        category: "计算机视觉",
+        downloadUrl: "models/yolov10s.om"
     },
     {
         name: "HRNet",
-        description: "HigherHRNet 是一种新型的自下而上人体姿态估计算法，它在训练阶段引入多分辨率监督机制，在推理阶段采用多分辨率聚合策略，不仅能有效应对自下而上多人姿态估计任务中的尺度变化难题，还可实现关键点的高精度定位，尤其在小尺寸人体目标的处理上表现突出。",
+        description: "HigherHRNet 是一种新型的自下而上人体姿态估计算法。它在训练阶段引入多分辨率监督机制，在推理阶段采用多分辨率聚合策略。",
         tags: ["姿态估计"],
         date: "2025-12-26 10:20:26",
         badge: null,
-        category: "计算机视觉"
+        category: "计算机视觉",
+        downloadUrl: "models/hrnet.om"
     }
 ];
 
@@ -227,6 +251,20 @@ function renderModelDetail() {
     
     const tagsContainer = document.getElementById('modelTags');
     tagsContainer.innerHTML = model.tags.map(tag => `<span class="detail-tag">${tag}</span>`).join('');
+    
+    // Setup download button
+    const downloadBtn = document.getElementById('downloadBtn');
+    if (downloadBtn && model.downloadUrl) {
+        downloadBtn.onclick = function() {
+            // Create download link
+            const link = document.createElement('a');
+            link.href = model.downloadUrl;
+            link.download = model.name + '.om';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        };
+    }
     
     // Update page title
     document.title = `${model.name} - 华为海思开发者门户`;

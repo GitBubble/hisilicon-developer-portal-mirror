@@ -3,303 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>华为海思开发者门户 - Hisilicon Developer Portal</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            min-height: 100vh;
-        }
-        
-        .header {
-            background: rgba(0,0,0,0.3);
-            padding: 16px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(10px);
-        }
-        
-        .header .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .header .logo img {
-            height: 36px;
-        }
-        
-        .header .logo span {
-            color: white;
-            font-size: 18px;
-            font-weight: 600;
-        }
-        
-        .header .user-info {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            color: white;
-        }
-        
-        .header .user-info .avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: #0078d4;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-        }
-        
-        .main-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 40px;
-        }
-        
-        .welcome-section {
-            background: white;
-            border-radius: 16px;
-            padding: 40px;
-            margin-bottom: 24px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        
-        .welcome-section h1 {
-            color: #1a1a2e;
-            font-size: 28px;
-            margin-bottom: 12px;
-        }
-        
-        .welcome-section p {
-            color: #666;
-            font-size: 16px;
-            line-height: 1.6;
-        }
-        
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-        }
-        
-        .card {
-            background: white;
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        
-        .card h3 {
-            color: #1a1a2e;
-            font-size: 18px;
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        .card .stat {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid #f5f5f5;
-        }
-        
-        .card .stat:last-child {
-            border-bottom: none;
-        }
-        
-        .card .stat .label {
-            color: #666;
-        }
-        
-        .card .stat .value {
-            color: #1a1a2e;
-            font-weight: 600;
-        }
-        
-        .card .stat .value.success {
-            color: #52c41a;
-        }
-        
-        .card .stat .value.warning {
-            color: #faad14;
-        }
-        
-        .quick-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-top: 24px;
-        }
-        
-        .quick-link {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            text-decoration: none;
-            color: #0078d4;
-            font-weight: 500;
-            transition: all 0.3s;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        
-        .quick-link:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-        
-        .quick-link .icon {
-            font-size: 32px;
-            margin-bottom: 8px;
-        }
-        
-        .footer {
-            text-align: center;
-            padding: 24px;
-            color: rgba(255,255,255,0.6);
-            font-size: 14px;
-        }
-        
-        .footer a {
-            color: white;
-            text-decoration: none;
-        }
-        
-        .footer a:hover {
-            text-decoration: underline;
-        }
-        
-        @media (max-width: 768px) {
-            .header {
-                padding: 12px 20px;
-            }
-            
-            .main-content {
-                padding: 20px;
-            }
-            
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>华为海思开发者门户 - ModelZoo</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <header class="header">
-        <div class="logo">
-            <span>🌐 华为海思开发者门户</span>
+    <div class="header">
+        <div class="header-left">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'%3E%3Crect fill='%230078d4' width='120' height='40' rx='4'/%3E%3Ctext x='60' y='25' fill='white' text-anchor='middle' font-size='14' font-weight='bold'%3E华为海思%3C/text%3E%3C/svg%3E" alt="Logo" class="logo">
+            <div class="header-nav">
+                <a href="#/" class="nav-item">
+                    <img src="" alt="">
+                    <span>首页</span>
+                </a>
+                <a href="#/CICD" class="nav-item">
+                    <img src="" alt="">
+                    <span>CICD</span>
+                </a>
+                <a href="#/test" class="nav-item">
+                    <img src="" alt="">
+                    <span>测试</span>
+                </a>
+                <a href="#/board" class="nav-item">
+                    <img src="" alt="">
+                    <span>开发板</span>
+                </a>
+                <a href="#/ModelZoo" class="nav-item active">
+                    <img src="" alt="">
+                    <span>ModelZoo</span>
+                </a>
+                <a href="#/dashboard" class="nav-item">
+                    <img src="" alt="">
+                    <span>看板</span>
+                </a>
+                <a href="#/config" class="nav-item">
+                    <img src="" alt="">
+                    <span>配置</span>
+                </a>
+            </div>
         </div>
-        <div class="user-info">
-            <span>开发者</span>
-            <div class="avatar">D</div>
+        <div class="header-right">
+            <a href="#" class="contact-link">联系我们</a>
+            <div class="team-menu">
+                <span>我的团队</span>
+                <span class="arrow">▾</span>
+            </div>
+            <div class="user-avatar">D</div>
         </div>
-    </header>
-    
-    <main class="main-content">
-        <div class="welcome-section">
-            <h1>👋 欢迎回来！</h1>
-            <p>您已成功登录华为海思开发者门户。在这里您可以访问海思芯片开发资源、SDK、文档和工具。</p>
-        </div>
-        
-        <div class="dashboard-grid">
-            <div class="card">
-                <h3>📊 我的资源</h3>
-                <div class="stat">
-                    <span class="label">API 调用次数</span>
-                    <span class="value success">1,234</span>
-                </div>
-                <div class="stat">
-                    <span class="label">项目数量</span>
-                    <span class="value">5</span>
-                </div>
-                <div class="stat">
-                    <span class="label">存储空间</span>
-                    <span class="value warning">8.5 GB / 10 GB</span>
-                </div>
-                <div class="stat">
-                    <span class="label">账户类型</span>
-                    <span class="value success">开发者</span>
-                </div>
+    </div>
+
+    <div class="main-container">
+        <div class="filter-sidebar">
+            <div class="filter-header">
+                <span>筛选条件</span>
+                <a href="#" class="clear-filter">清除全部</a>
             </div>
             
-            <div class="card">
-                <h3>🔧 开发工具</h3>
-                <div class="stat">
-                    <span class="label">SDK 下载</span>
-                    <span class="value">12</span>
+            <div class="filter-section">
+                <div class="filter-title">
+                    <span>任务</span>
+                    <span class="expand-icon">▾</span>
                 </div>
-                <div class="stat">
-                    <span class="label">文档访问</span>
-                    <span class="value">89</span>
+                <div class="filter-content">
+                    <div class="filter-category">
+                        <span class="category-icon">▾</span>
+                        <span>计算机视觉</span>
+                    </div>
+                    <div class="filter-tags">
+                        <span class="filter-tag">人群计数</span>
+                        <span class="filter-tag">单目深度估计</span>
+                        <span class="filter-tag">关键点检测</span>
+                        <span class="filter-tag">特征点检测</span>
+                        <span class="filter-tag">图像分类</span>
+                        <span class="filter-tag">单目深度</span>
+                        <span class="filter-tag">检测</span>
+                        <span class="filter-tag">分割</span>
+                        <span class="filter-tag">目标检测</span>
+                        <span class="filter-tag">姿态估计</span>
+                        <span class="filter-tag">图像增强</span>
+                        <span class="filter-tag">文字检测</span>
+                        <span class="filter-tag">双目深度</span>
+                        <span class="filter-tag">图像分割</span>
+                        <span class="filter-tag">文字识别</span>
+                        <span class="filter-tag">具身智能</span>
+                        <span class="filter-tag">人脸识别</span>
+                        <span class="filter-tag">多目标跟踪</span>
+                        <span class="filter-tag">多目深度估计</span>
+                        <span class="filter-tag">图像超分</span>
+                        <span class="filter-tag">分类</span>
+                        <span class="filter-tag">OCR</span>
+                    </div>
                 </div>
-                <div class="stat">
-                    <span class="label">社区提问</span>
-                    <span class="value">23</span>
+                <div class="filter-content">
+                    <div class="filter-category">
+                        <span class="category-icon">▾</span>
+                        <span>自然语言处理</span>
+                    </div>
+                    <div class="filter-tags">
+                        <span class="filter-tag">VLM</span>
+                        <span class="filter-tag">大型语言模型</span>
+                    </div>
                 </div>
-                <div class="stat">
-                    <span class="label">技术支援</span>
-                    <span class="value">5</span>
+                <div class="filter-content">
+                    <div class="filter-category">
+                        <span class="category-icon">▾</span>
+                        <span>多模态</span>
+                    </div>
+                    <div class="filter-tags">
+                        <span class="filter-tag">具身智能</span>
+                        <span class="filter-tag">图片分类</span>
+                        <span class="filter-tag">图文匹配</span>
+                    </div>
                 </div>
+                <div class="filter-content">
+                    <div class="filter-category">
+                        <span class="category-icon">▾</span>
+                        <span>音频</span>
+                    </div>
+                    <div class="filter-tags">
+                        <span class="filter-tag">文本转语音</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-title">
+                    <span>框架</span>
+                    <span class="expand-icon">▾</span>
+                </div>
+                <div class="filter-content">
+                    <div class="filter-tags">
+                        <span class="filter-tag">PyTorch</span>
+                        <span class="filter-tag">TensorFlow</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-title">
+                    <span>操作系统</span>
+                    <span class="expand-icon">▾</span>
+                </div>
+                <div class="filter-content">
+                    <div class="filter-tags">
+                        <span class="filter-tag">OpenHarmony</span>
+                        <span class="filter-tag">OpenEuler</span>
+                        <span class="filter-tag">Linux</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-title">
+                    <span>算力引擎</span>
+                    <span class="expand-icon">▾</span>
+                </div>
+                <div class="filter-content">
+                    <div class="filter-tags">
+                        <span class="filter-tag">Hi3403V100 SVP_NNN</span>
+                        <span class="filter-tag">Hi3403V100 NNN</span>
+                        <span class="filter-tag">Hi3591PV100</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="user-menu">
+                <a href="#" class="menu-item">
+                    <span class="menu-icon">★</span>
+                    <span>我的收藏</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <span class="menu-icon">📁</span>
+                    <span>我的模型库</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <span class="menu-icon">⚡</span>
+                    <span>算力引擎管理</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <span class="menu-icon">📋</span>
+                    <span>我的待办</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div class="search-bar">
+                <input type="text" placeholder="搜索模型名称" class="search-input">
+                <button class="search-btn">🔍</button>
             </div>
             
-            <div class="card">
-                <h3>📅 最近活动</h3>
-                <div class="stat">
-                    <span class="label">最后登录</span>
-                    <span class="value">2026-03-27</span>
-                </div>
-                <div class="stat">
-                    <span class="label">最近项目</span>
-                    <span>Hi3516CV610 开发</span>
-                </div>
-                <div class="stat">
-                    <span class="label">SDK 版本</span>
-                    <span class="value">V3.5.2</span>
-                </div>
-                <div class="stat">
-                    <span class="label">积分</span>
-                    <span class="value success">2,580</span>
-                </div>
+            <div class="sort-bar">
+                <select class="sort-select">
+                    <option>默认排序</option>
+                </select>
+            </div>
+
+            <div class="model-grid" id="modelGrid">
+                <!-- Models will be populated by JavaScript -->
+            </div>
+
+            <div class="pagination">
+                <span>共47条</span>
+                <span>每页</span>
+                <select class="page-size-select">
+                    <option>12</option>
+                </select>
+                <span>条</span>
+                <button class="page-btn" disabled>‹</button>
+                <ul class="page-numbers">
+                    <li class="active">1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+                <button class="page-btn">›</button>
+                <span>前往</span>
+                <input type="text" class="page-input" value="1">
+                <span>页</span>
             </div>
         </div>
-        
-        <div class="quick-links">
-            <a href="#" class="quick-link">
-                <div class="icon">📚</div>
-                <div>开发文档</div>
-            </a>
-            <a href="#" class="quick-link">
-                <div class="icon">🛠️</div>
-                <div>SDK 下载</div>
-            </a>
-            <a href="#" class="quick-link">
-                <div class="icon">💻</div>
-                <div>在线开发</div>
-            </a>
-            <a href="#" class="quick-link">
-                <div class="icon">🎮</div>
-                <div>模型市场</div>
-            </a>
-            <a href="#" class="quick-link">
-                <div class="icon">💬</div>
-                <div>技术社区</div>
-            </a>
-            <a href="#" class="quick-link">
-                <div class="icon">🎫</div>
-                <div>工单支持</div>
-            </a>
-        </div>
-    </main>
-    
-    <footer class="footer">
-        <p>© 2026 华为海思开发者门户 | <a href="#">使用条款</a> | <a href="#">隐私政策</a></p>
-    </footer>
+    </div>
+
+    <div class="cookie-banner">
+        <span>我们使用cookie来确保您的高速浏览体验。继续浏览本站，即表示您同意我们使用cookie。</span>
+        <a href="#">详情</a>
+        <button class="close-btn">×</button>
+    </div>
+
+    <script src="assets/js/models.js"></script>
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
