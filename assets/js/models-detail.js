@@ -24,6 +24,65 @@ function getPageViewCount() {
     return Number(counterValue ? counterValue.textContent || 0 : 0);
 }
 
+function buildVirtualCounterUrl(modelId) {
+    const currentUrl = new URL(window.location.href);
+    const currentPath = currentUrl.pathname;
+    const basePath = currentPath.endsWith('model-detail.html')
+        ? currentPath.slice(0, -'model-detail.html'.length)
+        : `${currentPath.replace(/\/?$/, '/')}`;
+    return `${currentUrl.origin}${basePath}model-counter/${encodeURIComponent(modelId || 'unknown')}`;
+}
+
+function fetchModelPageCounter(modelId) {
+    const originalUrl = window.location.href;
+    const virtualUrl = buildVirtualCounterUrl(modelId);
+    const callbackName = `BusuanziModelCounter_${Date.now()}_${Math.floor(Math.random() * 100000)}`;
+
+    return new Promise((resolve) => {
+        let settled = false;
+        const scriptTag = document.createElement('script');
+
+        const cleanup = () => {
+            if (scriptTag.parentNode) {
+                scriptTag.parentNode.removeChild(scriptTag);
+            }
+            delete window[callbackName];
+            try {
+                window.history.replaceState(window.history.state, '', originalUrl);
+            } catch (error) {
+                // Ignore restore failures.
+            }
+        };
+
+        const finish = (count) => {
+            if (settled) return;
+            settled = true;
+            cleanup();
+            resolve(Number(count || 0));
+        };
+
+        window[callbackName] = (payload) => {
+            finish(payload && payload.page_pv ? payload.page_pv : 0);
+        };
+
+        scriptTag.async = true;
+        scriptTag.defer = true;
+        scriptTag.referrerPolicy = 'no-referrer-when-downgrade';
+        scriptTag.src = `https://busuanzi.ibruce.info/busuanzi?jsonpCallback=${callbackName}`;
+        scriptTag.onerror = () => finish(0);
+
+        try {
+            window.history.replaceState(window.history.state, '', virtualUrl);
+        } catch (error) {
+            finish(0);
+            return;
+        }
+
+        document.head.appendChild(scriptTag);
+        window.setTimeout(() => finish(0), 5000);
+    });
+}
+
 function renderList(containerId, values, className) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -142,24 +201,21 @@ function groupDownloads(downloads) {
     return [...grouped.entries()];
 }
 
-function syncBusuanziCounters(model) {
-    const count = getPageViewCount();
+function syncBusuanziCounters(count) {
     const pageCounter = document.getElementById('modelPageCounter');
     if (pageCounter) {
         pageCounter.textContent = `已浏览 ${count} 次`;
     }
 }
 
-function attachBusuanziObserver(model) {
-    const counterValue = document.getElementById('busuanzi_value_page_pv');
-    if (!counterValue) return;
+async function attachBusuanziObserver(model) {
+    const cachedCount = getPageViewCount();
+    if (cachedCount) {
+        syncBusuanziCounters(cachedCount);
+    }
 
-    syncBusuanziCounters(model);
-
-    const observer = new MutationObserver(() => {
-        syncBusuanziCounters(model);
-    });
-    observer.observe(counterValue, { childList: true, characterData: true, subtree: true });
+    const count = await fetchModelPageCounter(model.id);
+    syncBusuanziCounters(count);
 }
 
 // Render model detail
