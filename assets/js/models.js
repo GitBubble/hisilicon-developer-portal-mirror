@@ -1949,12 +1949,12 @@ const modelsData = [
         "hfRepoId": "shadow-cann/minicpm-v-0.5B",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/blob/main/README.md",
         "primaryDownloadLabel": "OM 文件 2.zip",
         "downloads": [
             {
                 "title": "OM 文件 2.zip",
-                "href": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B",
+                "href": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/blob/main/README.md",
                 "available": true,
                 "source": "api-all",
                 "sourceLabel": "附加资源",

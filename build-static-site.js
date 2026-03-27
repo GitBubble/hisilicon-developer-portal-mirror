@@ -16,6 +16,7 @@ const MANUAL_REPO_OVERRIDES = new Map([
         repoId: 'shadow-cann/minicpm-v-0.5B',
         useMirrorForRemoteDownloads: true,
         preferRepoUrlForDownloads: true,
+        downloadTargetUrl: 'https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/blob/main/README.md',
     }],
 ]);
 
@@ -174,6 +175,7 @@ function buildRepoInfo(model, hasLocalFiles) {
             resolveBase: `${HF_MIRROR_BASE}/${manualOverride.repoId}/resolve/main`,
             useMirrorForRemoteDownloads: Boolean(manualOverride.useMirrorForRemoteDownloads),
             preferRepoUrlForDownloads: Boolean(manualOverride.preferRepoUrlForDownloads),
+            downloadTargetUrl: manualOverride.downloadTargetUrl || null,
         };
     }
 
@@ -187,6 +189,7 @@ function buildRepoInfo(model, hasLocalFiles) {
         resolveBase: `${HF_MIRROR_BASE}/${repoId}/resolve/main`,
         useMirrorForRemoteDownloads: false,
         preferRepoUrlForDownloads: false,
+        downloadTargetUrl: null,
     };
 }
 
@@ -233,7 +236,7 @@ function buildDownloads(detailEntry, modelFiles, repoInfo) {
             href = repoInfo ? `${repoInfo.resolveBase}/${encodeRepoFile(localFile)}` : null;
         } else if (repoInfo && repoInfo.useMirrorForRemoteDownloads && title && title !== '未命名文件') {
             href = repoInfo.preferRepoUrlForDownloads
-                ? repoInfo.repoUrl
+                ? (repoInfo.downloadTargetUrl || repoInfo.repoUrl)
                 : `${repoInfo.resolveBase}/${encodeRepoFile(title)}`;
         } else if (item.url && /^https?:\/\//.test(item.url)) {
             href = item.url;
