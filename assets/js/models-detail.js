@@ -19,6 +19,44 @@ function escapeHtml(value) {
     }[char]));
 }
 
+const DOWNLOAD_COUNTER_STORAGE_KEY = 'hisilicon-download-counters';
+
+function readDownloadCounters() {
+    try {
+        return JSON.parse(window.localStorage.getItem(DOWNLOAD_COUNTER_STORAGE_KEY) || '{}');
+    } catch (error) {
+        return {};
+    }
+}
+
+function writeDownloadCounters(counters) {
+    try {
+        window.localStorage.setItem(DOWNLOAD_COUNTER_STORAGE_KEY, JSON.stringify(counters));
+    } catch (error) {
+        // Ignore storage failures so downloads still work.
+    }
+}
+
+function buildDownloadKey(modelId, item) {
+    return `${modelId}::${item.title || ''}::${item.href || ''}`;
+}
+
+function getDownloadCount(downloadKey) {
+    const counters = readDownloadCounters();
+    return Number(counters[downloadKey] || 0);
+}
+
+function incrementDownloadCount(downloadKey) {
+    const counters = readDownloadCounters();
+    counters[downloadKey] = Number(counters[downloadKey] || 0) + 1;
+    writeDownloadCounters(counters);
+    return counters[downloadKey];
+}
+
+function formatDownloadCount(count) {
+    return `已下载 ${count} 次`;
+}
+
 function renderList(containerId, values, className) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -137,6 +175,37 @@ function groupDownloads(downloads) {
     return [...grouped.entries()];
 }
 
+function updateDownloadCounterElements(downloadKey, count) {
+    document.querySelectorAll(`[data-counter-key="${CSS.escape(downloadKey)}"]`).forEach((element) => {
+        element.textContent = formatDownloadCount(count);
+    });
+}
+
+function attachDownloadTracking(model) {
+    document.querySelectorAll('[data-download-key]').forEach((link) => {
+        link.addEventListener('click', () => {
+            const downloadKey = link.dataset.downloadKey;
+            const nextCount = incrementDownloadCount(downloadKey);
+            updateDownloadCounterElements(downloadKey, nextCount);
+        });
+    });
+
+    const primaryDownload = (model.downloads || []).find((item) => item.href === model.primaryDownloadUrl && item.title === model.primaryDownloadLabel)
+        || (model.downloads || []).find((item) => item.href === model.primaryDownloadUrl)
+        || null;
+    const primaryCounter = document.getElementById('primaryDownloadCounter');
+    if (primaryCounter) {
+        if (primaryDownload && model.primaryDownloadUrl) {
+            const downloadKey = buildDownloadKey(model.id, primaryDownload);
+            primaryCounter.dataset.counterKey = downloadKey;
+            primaryCounter.textContent = formatDownloadCount(getDownloadCount(downloadKey));
+            primaryCounter.style.display = 'block';
+        } else {
+            primaryCounter.style.display = 'none';
+        }
+    }
+}
+
 // Render model detail
 function renderModelDetail() {
     const modelId = getModelIdFromURL();
@@ -203,14 +272,21 @@ function renderModelDetail() {
             <div class="download-group">
                 <h3>${escapeHtml(group)}</h3>
                 <ul class="download-list">
-                    ${items.map(item => `
+                    ${items.map(item => {
+                        const downloadKey = buildDownloadKey(model.id, item);
+                        const countLabel = formatDownloadCount(getDownloadCount(downloadKey));
+                        return `
                         <li class="download-item ${item.available ? '' : 'is-unavailable'}">
-                            ${item.available
-                                ? `<a href="${escapeHtml(item.href)}" class="download-link" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a>`
-                                : `<span class="download-link">${escapeHtml(item.title)}</span>`}
+                            <div class="download-main">
+                                ${item.available
+                                    ? `<a href="${escapeHtml(item.href)}" class="download-link" target="_blank" rel="noreferrer" data-download-key="${escapeHtml(downloadKey)}">${escapeHtml(item.title)}</a>`
+                                    : `<span class="download-link">${escapeHtml(item.title)}</span>`}
+                                <span class="download-counter" data-counter-key="${escapeHtml(downloadKey)}">${escapeHtml(countLabel)}</span>
+                            </div>
                             <span class="download-source">${escapeHtml(item.sourceLabel)}</span>
                         </li>
-                    `).join('')}
+                    `;
+                    }).join('')}
                 </ul>
             </div>
         `).join('');
@@ -228,10 +304,15 @@ function renderModelDetail() {
     const downloadLink = document.getElementById('downloadLink');
     if (downloadLink) {
         if (model.primaryDownloadUrl) {
+            const primaryDownload = (model.downloads || []).find((item) => item.href === model.primaryDownloadUrl && item.title === model.primaryDownloadLabel)
+                || (model.downloads || []).find((item) => item.href === model.primaryDownloadUrl)
+                || { title: model.primaryDownloadLabel || '下载模型', href: model.primaryDownloadUrl };
+            const downloadKey = buildDownloadKey(model.id, primaryDownload);
             downloadLink.href = model.primaryDownloadUrl;
             downloadLink.textContent = model.primaryDownloadLabel || '下载模型';
             downloadLink.target = '_blank';
             downloadLink.rel = 'noreferrer';
+            downloadLink.dataset.downloadKey = downloadKey;
         } else {
             downloadLink.removeAttribute('href');
             downloadLink.textContent = '暂无可用下载';
@@ -248,6 +329,8 @@ function renderModelDetail() {
             repoActionLink.style.display = 'none';
         }
     }
+
+    attachDownloadTracking(model);
     
     // Update page title
     document.title = `${model.name} - 华为海思开发者门户`;
