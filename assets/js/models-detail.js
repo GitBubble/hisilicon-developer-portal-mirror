@@ -7,7 +7,7 @@ const modelsData = [
         date: "2026-03-24 16:23:20",
         badge: null,
         category: "计算机视觉",
-        downloadUrl: "models/mobilenet_v2.om"
+        downloadUrl: "models/mobilenet_v2.pth"
     },
     {
         name: "Vit-B-16",
@@ -16,7 +16,7 @@ const modelsData = [
         date: "2026-03-17 17:45:49",
         badge: "Beta",
         category: "计算机视觉",
-        downloadUrl: "models/vit_b_16.om"
+        downloadUrl: "models/vit_base_patch16_224.pt"
     },
     {
         name: "SuperPoint",
