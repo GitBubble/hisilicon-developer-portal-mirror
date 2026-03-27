@@ -651,14 +651,14 @@ const modelsData = [
                 "localFile": "superpoint_bs1.om"
             },
             {
-                "title": "link?target=http%3A%2F%2Ficvl.ee.ic.ac.uk%2Fvbalnt%2Fhpatches%2Fhpatches-sequences-release.tar.gz",
-                "href": "https://gitee.com/link?target=http%3A%2F%2Ficvl.ee.ic.ac.uk%2Fvbalnt%2Fhpatches%2Fhpatches-sequences-release.tar.gz",
+                "title": "link",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-superpoint/resolve/main/link",
                 "available": true,
                 "source": "api-all",
                 "sourceLabel": "附加资源",
                 "group": "附加资源",
                 "note": "",
-                "localFile": null
+                "localFile": "link"
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -1946,15 +1946,15 @@ const modelsData = [
             }
         ],
         "originModels": [],
-        "hfRepoId": null,
-        "hfRepoUrl": null,
-        "hfReadmeUrl": null,
-        "primaryDownloadUrl": "https://mb-data-backup.obs.cn-north-4.myhuaweicloud.com/user/jiachao/OM%20%E6%96%87%E4%BB%B6%202.zip",
-        "primaryDownloadLabel": "OM%20%E6%96%87%E4%BB%B6%202.zip",
+        "hfRepoId": "shadow-cann/minicpm-v-0.5B",
+        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B",
+        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/blob/main/README.md",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/resolve/main/OM%20%E6%96%87%E4%BB%B6%202.zip",
+        "primaryDownloadLabel": "OM 文件 2.zip",
         "downloads": [
             {
-                "title": "OM%20%E6%96%87%E4%BB%B6%202.zip",
-                "href": "https://mb-data-backup.obs.cn-north-4.myhuaweicloud.com/user/jiachao/OM%20%E6%96%87%E4%BB%B6%202.zip",
+                "title": "OM 文件 2.zip",
+                "href": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/resolve/main/OM%20%E6%96%87%E4%BB%B6%202.zip",
                 "available": true,
                 "source": "api-all",
                 "sourceLabel": "附加资源",

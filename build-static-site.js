@@ -11,6 +11,12 @@ const HF_NAMESPACE = process.env.HF_NAMESPACE || 'shadow-cann';
 const HF_MIRROR_BASE = 'https://hf-mirror.com';
 const HF_REPO_PREFIX = 'hispark-modelzoo-';
 const HF_UPLOAD_SKIPS = new Set(['Pi0', 'MiniCPM-4v-0.5B']);
+const MANUAL_REPO_OVERRIDES = new Map([
+    ['MiniCPM-4v-0.5B', {
+        repoId: 'shadow-cann/minicpm-v-0.5B',
+        useMirrorForRemoteDownloads: true,
+    }],
+]);
 
 function readJson(filePath) {
     return JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -36,6 +42,17 @@ function encodeLocalFile(fileName, prefix) {
 
 function encodeRepoFile(fileName) {
     return encodeURIComponent(fileName).replace(/%2F/g, '/');
+}
+
+function fileNameFromUrl(fileUrl) {
+    if (!fileUrl) return '';
+
+    try {
+        const parsed = new URL(fileUrl);
+        return decodeURIComponent(path.basename(parsed.pathname));
+    } catch (error) {
+        return decodeURIComponent(path.basename(String(fileUrl)));
+    }
 }
 
 function formatBytes(value) {
@@ -147,6 +164,17 @@ function resolveLocalModelFile(name, modelFiles) {
 }
 
 function buildRepoInfo(model, hasLocalFiles) {
+    const manualOverride = MANUAL_REPO_OVERRIDES.get(model.name);
+    if (manualOverride) {
+        return {
+            repoId: manualOverride.repoId,
+            repoUrl: `${HF_MIRROR_BASE}/${manualOverride.repoId}`,
+            readmeUrl: `${HF_MIRROR_BASE}/${manualOverride.repoId}/blob/main/README.md`,
+            resolveBase: `${HF_MIRROR_BASE}/${manualOverride.repoId}/resolve/main`,
+            useMirrorForRemoteDownloads: Boolean(manualOverride.useMirrorForRemoteDownloads),
+        };
+    }
+
     if (!hasLocalFiles || HF_UPLOAD_SKIPS.has(model.name)) return null;
     const repoName = `${HF_REPO_PREFIX}${slugify(model.name)}`;
     const repoId = `${HF_NAMESPACE}/${repoName}`;
@@ -155,6 +183,7 @@ function buildRepoInfo(model, hasLocalFiles) {
         repoUrl: `${HF_MIRROR_BASE}/${repoId}`,
         readmeUrl: `${HF_MIRROR_BASE}/${repoId}/blob/main/README.md`,
         resolveBase: `${HF_MIRROR_BASE}/${repoId}/resolve/main`,
+        useMirrorForRemoteDownloads: false,
     };
 }
 
@@ -194,11 +223,16 @@ function buildDownloads(detailEntry, modelFiles, repoInfo) {
 
     const downloads = [];
     for (const item of detailEntry.downloadUrls || []) {
-        const title = item.name || (item.url ? path.basename(item.url) : item.fileId) || '未命名文件';
+        const title = item.name || (item.url ? fileNameFromUrl(item.url) : item.fileId) || '未命名文件';
         const localFile = resolveLocalModelFile(title, modelFiles);
-        const href = localFile
-            ? (repoInfo ? `${repoInfo.resolveBase}/${encodeRepoFile(localFile)}` : null)
-            : (item.url && /^https?:\/\//.test(item.url) ? item.url : null);
+        let href = null;
+        if (localFile) {
+            href = repoInfo ? `${repoInfo.resolveBase}/${encodeRepoFile(localFile)}` : null;
+        } else if (repoInfo && repoInfo.useMirrorForRemoteDownloads && title && title !== '未命名文件') {
+            href = `${repoInfo.resolveBase}/${encodeRepoFile(title)}`;
+        } else if (item.url && /^https?:\/\//.test(item.url)) {
+            href = item.url;
+        }
 
         downloads.push({
             title,
