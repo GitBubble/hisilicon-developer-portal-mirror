@@ -19,61 +19,13 @@ function escapeHtml(value) {
     }[char]));
 }
 
-const DOWNLOAD_COUNTER_NAMESPACE = 'hisilicon-developer-portal-mirror';
-const DOWNLOAD_COUNTER_API = 'https://api.countapi.xyz';
-const downloadCounterCache = new Map();
-
 function buildDownloadKey(modelId, item) {
     return `${modelId}::${item.title || ''}::${item.href || ''}`;
 }
 
 function getDownloadCount(downloadKey) {
-    return Number(downloadCounterCache.get(downloadKey) || 0);
-}
-
-function normalizeCounterKey(downloadKey) {
-    return encodeURIComponent(downloadKey);
-}
-
-async function fetchDownloadCount(downloadKey) {
-    if (downloadCounterCache.has(downloadKey)) {
-        return getDownloadCount(downloadKey);
-    }
-
-    try {
-        const response = await fetch(`${DOWNLOAD_COUNTER_API}/get/${DOWNLOAD_COUNTER_NAMESPACE}/${normalizeCounterKey(downloadKey)}`);
-        if (!response.ok) {
-            downloadCounterCache.set(downloadKey, 0);
-            return 0;
-        }
-        const data = await response.json();
-        const count = Number(data.value || 0);
-        downloadCounterCache.set(downloadKey, count);
-        return count;
-    } catch (error) {
-        downloadCounterCache.set(downloadKey, getDownloadCount(downloadKey));
-        return getDownloadCount(downloadKey);
-    }
-}
-
-async function incrementDownloadCount(downloadKey) {
-    const optimisticCount = getDownloadCount(downloadKey) + 1;
-    downloadCounterCache.set(downloadKey, optimisticCount);
-    updateDownloadCounterElements(downloadKey, optimisticCount);
-
-    try {
-        const response = await fetch(`${DOWNLOAD_COUNTER_API}/hit/${DOWNLOAD_COUNTER_NAMESPACE}/${normalizeCounterKey(downloadKey)}`);
-        if (!response.ok) {
-            throw new Error(`Counter increment failed with status ${response.status}`);
-        }
-        const data = await response.json();
-        const count = Number(data.value || optimisticCount);
-        downloadCounterCache.set(downloadKey, count);
-        updateDownloadCounterElements(downloadKey, count);
-        return count;
-    } catch (error) {
-        return optimisticCount;
-    }
+    const counterValue = document.getElementById('busuanzi_value_page_pv');
+    return Number(counterValue ? counterValue.textContent || 0 : 0);
 }
 
 function formatDownloadCount(count) {
@@ -204,34 +156,8 @@ function updateDownloadCounterElements(downloadKey, count) {
     });
 }
 
-async function hydrateDownloadCounters(model) {
-    const counterKeys = new Set();
-
-    (model.downloads || []).forEach((item) => {
-        counterKeys.add(buildDownloadKey(model.id, item));
-    });
-
-    if (model.primaryDownloadUrl) {
-        const primaryDownload = (model.downloads || []).find((item) => item.href === model.primaryDownloadUrl && item.title === model.primaryDownloadLabel)
-            || (model.downloads || []).find((item) => item.href === model.primaryDownloadUrl)
-            || { title: model.primaryDownloadLabel || '下载模型', href: model.primaryDownloadUrl };
-        counterKeys.add(buildDownloadKey(model.id, primaryDownload));
-    }
-
-    await Promise.all([...counterKeys].map(async (downloadKey) => {
-        const count = await fetchDownloadCount(downloadKey);
-        updateDownloadCounterElements(downloadKey, count);
-    }));
-}
-
-function attachDownloadTracking(model) {
-    document.querySelectorAll('[data-download-key]').forEach((link) => {
-        link.addEventListener('click', () => {
-            const downloadKey = link.dataset.downloadKey;
-            incrementDownloadCount(downloadKey);
-        });
-    });
-
+function syncBusuanziCounters(model) {
+    const count = getDownloadCount();
     const primaryDownload = (model.downloads || []).find((item) => item.href === model.primaryDownloadUrl && item.title === model.primaryDownloadLabel)
         || (model.downloads || []).find((item) => item.href === model.primaryDownloadUrl)
         || null;
@@ -240,12 +166,29 @@ function attachDownloadTracking(model) {
         if (primaryDownload && model.primaryDownloadUrl) {
             const downloadKey = buildDownloadKey(model.id, primaryDownload);
             primaryCounter.dataset.counterKey = downloadKey;
-            primaryCounter.textContent = formatDownloadCount(getDownloadCount(downloadKey));
+            primaryCounter.textContent = formatDownloadCount(count);
             primaryCounter.style.display = 'block';
         } else {
             primaryCounter.style.display = 'none';
         }
     }
+
+    (model.downloads || []).forEach((item) => {
+        const downloadKey = buildDownloadKey(model.id, item);
+        updateDownloadCounterElements(downloadKey, count);
+    });
+}
+
+function attachBusuanziObserver(model) {
+    const counterValue = document.getElementById('busuanzi_value_page_pv');
+    if (!counterValue) return;
+
+    syncBusuanziCounters(model);
+
+    const observer = new MutationObserver(() => {
+        syncBusuanziCounters(model);
+    });
+    observer.observe(counterValue, { childList: true, characterData: true, subtree: true });
 }
 
 // Render model detail
@@ -321,7 +264,7 @@ function renderModelDetail() {
                         <li class="download-item ${item.available ? '' : 'is-unavailable'}">
                             <div class="download-main">
                                 ${item.available
-                                    ? `<a href="${escapeHtml(item.href)}" class="download-link" target="_blank" rel="noreferrer" data-download-key="${escapeHtml(downloadKey)}">${escapeHtml(item.title)}</a>`
+                                    ? `<a href="${escapeHtml(item.href)}" class="download-link" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a>`
                                     : `<span class="download-link">${escapeHtml(item.title)}</span>`}
                                 <span class="download-counter" data-counter-key="${escapeHtml(downloadKey)}">${escapeHtml(countLabel)}</span>
                             </div>
@@ -354,7 +297,7 @@ function renderModelDetail() {
             downloadLink.textContent = model.primaryDownloadLabel || '下载模型';
             downloadLink.target = '_blank';
             downloadLink.rel = 'noreferrer';
-            downloadLink.dataset.downloadKey = downloadKey;
+            downloadLink.dataset.counterKey = downloadKey;
         } else {
             downloadLink.removeAttribute('href');
             downloadLink.textContent = '暂无可用下载';
@@ -372,8 +315,7 @@ function renderModelDetail() {
         }
     }
 
-    attachDownloadTracking(model);
-    hydrateDownloadCounters(model);
+    attachBusuanziObserver(model);
     
     // Update page title
     document.title = `${model.name} - 华为海思开发者门户`;
