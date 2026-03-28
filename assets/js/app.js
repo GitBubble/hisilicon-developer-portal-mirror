@@ -92,6 +92,14 @@ function formatCount(count, noun) {
     return `${count} ${noun}`;
 }
 
+function formatCurrentDate() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
 function getTaskValues(model) {
     return unique([
         model.category,
@@ -229,18 +237,20 @@ function matchesFilters(model, filters = state.filters, excludedGroup = null) {
     });
 }
 
-function getDailyQuote() {
-    const now = new Date();
-    const seed = Math.floor(new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime() / 86400000);
-    return dailyQuotes[seed % dailyQuotes.length];
+function getRandomQuote() {
+    return dailyQuotes[Math.floor(Math.random() * dailyQuotes.length)];
 }
 
 function initDailyQuote() {
+    const dateText = document.getElementById('headerDateText');
     const quoteText = document.getElementById('dailyQuoteText');
     const quoteAuthor = document.getElementById('dailyQuoteAuthor');
+    if (dateText) {
+        dateText.textContent = `日期：${formatCurrentDate()}`;
+    }
     if (!quoteText || !quoteAuthor) return;
 
-    const quote = getDailyQuote();
+    const quote = getRandomQuote();
     quoteText.textContent = quote.text;
     quoteAuthor.textContent = `- ${quote.author}`;
 }
