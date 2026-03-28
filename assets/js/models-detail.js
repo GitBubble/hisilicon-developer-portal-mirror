@@ -19,6 +19,53 @@ function escapeHtml(value) {
     }[char]));
 }
 
+const dailyQuotes = [
+    {
+        text: '真正的工程能力，不是避免复杂，而是把复杂拆解到可以持续交付。',
+        author: 'Linus Torvalds'
+    },
+    {
+        text: 'Stay hungry. Stay foolish.',
+        author: 'Steve Jobs'
+    },
+    {
+        text: 'Simplicity is prerequisite for reliability.',
+        author: 'Edsger W. Dijkstra'
+    },
+    {
+        text: 'Talk is cheap. Show me the code.',
+        author: 'Linus Torvalds'
+    },
+    {
+        text: '程序必须先让人读懂，顺带再让机器执行。',
+        author: 'Harold Abelson'
+    },
+    {
+        text: 'The best way to predict the future is to invent it.',
+        author: 'Alan Kay'
+    },
+    {
+        text: '细节不是细枝末节，细节决定系统是否可靠。',
+        author: '工程实践箴言'
+    }
+];
+
+function getDailyQuote() {
+    const now = new Date();
+    const seed = Math.floor(new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime() / 86400000);
+    return dailyQuotes[seed % dailyQuotes.length];
+}
+
+function initDailyQuote() {
+    const quoteText = document.getElementById('dailyQuoteText');
+    const quoteAuthor = document.getElementById('dailyQuoteAuthor');
+    if (!quoteText || !quoteAuthor) return;
+
+    const quote = getDailyQuote();
+    quoteText.textContent = quote.text;
+    quoteAuthor.textContent = `- ${quote.author}`;
+}
+
 function getPageViewCount() {
     const counterValue = document.getElementById('busuanzi_value_page_pv');
     return Number(counterValue ? counterValue.textContent || 0 : 0);
@@ -208,6 +255,58 @@ function syncBusuanziCounters(count) {
     }
 }
 
+async function shareModelLink(model) {
+    const shareUrl = window.location.href;
+    const shareData = {
+        title: `${model.name} - ModelZoo镜像站`,
+        text: `查看模型 ${model.name}`,
+        url: shareUrl,
+    };
+
+    if (navigator.share) {
+        try {
+            await navigator.share(shareData);
+            return true;
+        } catch (error) {
+            if (error && error.name === 'AbortError') {
+                return false;
+            }
+        }
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(shareUrl);
+        return true;
+    }
+
+    const tempInput = document.createElement('input');
+    tempInput.value = shareUrl;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempInput);
+    return true;
+}
+
+function initShareAction(model) {
+    const shareButton = document.getElementById('shareLinkButton');
+    if (!shareButton) return;
+
+    shareButton.addEventListener('click', async () => {
+        const originalText = shareButton.textContent;
+        try {
+            const shared = await shareModelLink(model);
+            shareButton.textContent = shared ? '链接已复制' : originalText;
+        } catch (error) {
+            shareButton.textContent = '复制失败';
+        }
+
+        window.setTimeout(() => {
+            shareButton.textContent = originalText;
+        }, 1800);
+    });
+}
+
 async function attachBusuanziObserver(model) {
     const cachedCount = getPageViewCount();
     if (cachedCount) {
@@ -334,11 +433,16 @@ function renderModelDetail() {
         }
     }
 
+    initShareAction(model);
+
     attachBusuanziObserver(model);
     
     // Update page title
-    document.title = `${model.name} - 华为海思开发者门户`;
+    document.title = `${model.name} - ModelZoo镜像站`;
 }
 
 // Initialize
-document.addEventListener('DOMContentLoaded', renderModelDetail);
+document.addEventListener('DOMContentLoaded', () => {
+    initDailyQuote();
+    renderModelDetail();
+});

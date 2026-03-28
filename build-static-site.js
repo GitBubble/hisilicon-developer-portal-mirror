@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
 const ROOT = __dirname;
 const MODELS_JSON = path.join(ROOT, 'api_all_models.json');
@@ -7,9 +8,14 @@ const DETAILS_JSON = path.join(ROOT, 'api_all_details.json');
 const IMAGES_DIR = path.join(ROOT, 'assets', 'images');
 const MODELS_DIR = path.join(ROOT, 'models');
 const OUTPUT = path.join(ROOT, 'assets', 'js', 'models.js');
+const SITE_HTML_FILES = [
+    path.join(ROOT, 'index.html'),
+    path.join(ROOT, 'model-detail.html'),
+];
 const HF_NAMESPACE = process.env.HF_NAMESPACE || 'shadow-cann';
 const HF_MIRROR_BASE = 'https://hf-mirror.com';
 const HF_REPO_PREFIX = 'hispark-modelzoo-';
+const SITE_LAST_COMMIT_TIME_TOKEN = '{{SITE_LAST_COMMIT_TIME}}';
 const HF_UPLOAD_SKIPS = new Set(['Pi0', 'MiniCPM-4v-0.5B']);
 const MANUAL_REPO_OVERRIDES = new Map([
     ['Pi0', {
@@ -378,17 +384,59 @@ function buildModelRecord(model, detailEntry, imageFiles, modelFiles) {
     };
 }
 
+function getLatestCommitTime() {
+    try {
+        return execSync("git log -1 --date=format:'%Y-%m-%d %H:%M:%S' --format=%cd", {
+            cwd: ROOT,
+            encoding: 'utf8',
+            stdio: ['ignore', 'pipe', 'ignore'],
+        }).trim();
+    } catch (error) {
+        return new Date().toISOString().slice(0, 19).replace('T', ' ');
+    }
+}
+
+function injectSiteMetadata(latestCommitTime) {
+    let updatedFiles = 0;
+
+    for (const htmlFile of SITE_HTML_FILES) {
+        if (!fs.existsSync(htmlFile)) continue;
+
+        const template = fs.readFileSync(htmlFile, 'utf8');
+        const updated = template.replaceAll(SITE_LAST_COMMIT_TIME_TOKEN, latestCommitTime);
+
+        if (updated !== template) {
+            fs.writeFileSync(htmlFile, updated);
+            updatedFiles += 1;
+            continue;
+        }
+
+        const normalized = template.replace(/自动同步时间：[\s\S]*?<\/span>/, `自动同步时间：${latestCommitTime}</span>`)
+            .replace(/由开发者自行维护，更新时间：[\s\S]*?<\/span>/, `由开发者自行维护，更新时间：${latestCommitTime}</span>`);
+
+        if (normalized !== template) {
+            fs.writeFileSync(htmlFile, normalized);
+            updatedFiles += 1;
+        }
+    }
+
+    return updatedFiles;
+}
+
 function main() {
     const allModels = readJson(MODELS_JSON);
     const details = readJson(DETAILS_JSON);
     const imageFiles = fs.existsSync(IMAGES_DIR) ? fs.readdirSync(IMAGES_DIR).filter(file => !file.startsWith('.')) : [];
     const modelFiles = fs.existsSync(MODELS_DIR) ? fs.readdirSync(MODELS_DIR).filter(file => !file.startsWith('.')) : [];
     const detailByName = new Map(details.map(item => [item.name, item]));
+    const latestCommitTime = getLatestCommitTime();
 
     const modelsData = allModels.map(model => buildModelRecord(model, detailByName.get(model.name), imageFiles, modelFiles));
     const content = `// Generated from api_all_models.json and api_all_details.json\nconst modelsData = ${JSON.stringify(modelsData, null, 4)};\n\nif (typeof window !== 'undefined') {\n    window.modelsData = modelsData;\n}\n\nif (typeof module !== 'undefined' && module.exports) {\n    module.exports = { modelsData };\n}\n`;
     fs.writeFileSync(OUTPUT, content);
+    const updatedFiles = injectSiteMetadata(latestCommitTime);
     console.log(`Generated ${OUTPUT} with ${modelsData.length} models.`);
+    console.log(`Injected latest commit time into ${updatedFiles} site files: ${latestCommitTime}`);
 }
 
 main();
