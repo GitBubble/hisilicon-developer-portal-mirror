@@ -12,11 +12,37 @@ const HF_MIRROR_BASE = 'https://hf-mirror.com';
 const HF_REPO_PREFIX = 'hispark-modelzoo-';
 const HF_UPLOAD_SKIPS = new Set(['Pi0', 'MiniCPM-4v-0.5B']);
 const MANUAL_REPO_OVERRIDES = new Map([
+    ['Pi0', {
+        repoId: 'shadow-cann/pi0',
+        useMirrorForRemoteDownloads: false,
+        preferRepoUrlForDownloads: false,
+        downloadTargetUrl: null,
+    }],
     ['MiniCPM-4v-0.5B', {
         repoId: 'shadow-cann/minicpm-v-0.5B',
         useMirrorForRemoteDownloads: true,
         preferRepoUrlForDownloads: true,
         downloadTargetUrl: 'https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/tree/main',
+    }],
+]);
+const MANUAL_MODEL_DATA = new Map([
+    ['Pi0', {
+        downloads: [
+            {
+                name: 'pi0.om',
+                source: 'om-FP16',
+            },
+            {
+                name: 'pi0.onnx',
+                source: 'source-model',
+            },
+        ],
+        originModels: [
+            {
+                name: 'pi0.onnx',
+                size: 25893080,
+            },
+        ],
     }],
 ]);
 
@@ -224,7 +250,21 @@ function buildOriginModels(detail, modelFiles, repoInfo) {
     });
 }
 
+function buildManualOriginModels(modelName, repoInfo) {
+    const manualData = MANUAL_MODEL_DATA.get(modelName);
+    if (!manualData || !repoInfo) return [];
+
+    return (manualData.originModels || []).map((item) => ({
+        name: item.name,
+        size: formatBytes(item.size),
+        href: `${repoInfo.resolveBase}/${encodeRepoFile(item.name)}`,
+        available: true,
+        localFile: item.name,
+    }));
+}
+
 function buildDownloads(detailEntry, modelFiles, repoInfo) {
+    const manualData = detailEntry ? null : null;
     if (!detailEntry) return [];
 
     const downloads = [];
@@ -266,11 +306,31 @@ function buildDownloads(detailEntry, modelFiles, repoInfo) {
     return deduped;
 }
 
+function buildManualDownloads(modelName, repoInfo) {
+    const manualData = MANUAL_MODEL_DATA.get(modelName);
+    if (!manualData || !repoInfo) return [];
+
+    return (manualData.downloads || []).map((item) => ({
+        title: item.name,
+        href: `${repoInfo.resolveBase}/${encodeRepoFile(item.name)}`,
+        available: true,
+        source: item.source || 'unknown',
+        sourceLabel: sourceLabel(item.source),
+        group: sourceGroup(item.source),
+        note: item.note || '',
+        localFile: item.name,
+    }));
+}
+
 function buildModelRecord(model, detailEntry, imageFiles, modelFiles) {
     const detail = detailEntry?.apiDetail || {};
-    const hasLocalFiles = (detailEntry?.downloadUrls || []).some((item) => resolveLocalModelFile(item.name, modelFiles));
+    const manualData = MANUAL_MODEL_DATA.get(model.name);
+    const hasLocalFiles = (detailEntry?.downloadUrls || []).some((item) => resolveLocalModelFile(item.name, modelFiles))
+        || Boolean(manualData);
     const repoInfo = buildRepoInfo(model, hasLocalFiles);
-    const downloads = buildDownloads(detailEntry, modelFiles, repoInfo);
+    const downloads = detailEntry
+        ? buildDownloads(detailEntry, modelFiles, repoInfo)
+        : buildManualDownloads(model.name, repoInfo);
     const tags = unique([
         ...(model.computerVersion || []),
         ...(model.naturalLanguageProcess || []),
@@ -306,7 +366,9 @@ function buildModelRecord(model, detailEntry, imageFiles, modelFiles) {
         quickStartMarkdownUrl: quickStart.markdownUrl,
         quickStartReadmes: quickStart.sections,
         detailParams: (detail.detailParams || []).filter(item => item && item.name && item.value),
-        originModels: buildOriginModels(detail, modelFiles, repoInfo),
+        originModels: detailEntry
+            ? buildOriginModels(detail, modelFiles, repoInfo)
+            : buildManualOriginModels(model.name, repoInfo),
         hfRepoId: repoInfo ? repoInfo.repoId : null,
         hfRepoUrl: repoInfo ? repoInfo.repoUrl : null,
         hfReadmeUrl: repoInfo ? repoInfo.readmeUrl : null,

@@ -1559,13 +1559,42 @@ const modelsData = [
         "quickStartMarkdownUrl": null,
         "quickStartReadmes": [],
         "detailParams": [],
-        "originModels": [],
-        "hfRepoId": null,
-        "hfRepoUrl": null,
-        "hfReadmeUrl": null,
-        "primaryDownloadUrl": null,
-        "primaryDownloadLabel": null,
-        "downloads": []
+        "originModels": [
+            {
+                "name": "pi0.onnx",
+                "size": "24.7 MB",
+                "href": "https://hf-mirror.com/shadow-cann/pi0/resolve/main/pi0.onnx",
+                "available": true,
+                "localFile": "pi0.onnx"
+            }
+        ],
+        "hfRepoId": "shadow-cann/pi0",
+        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/pi0",
+        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/pi0/blob/main/README.md",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/pi0/resolve/main/pi0.om",
+        "primaryDownloadLabel": "pi0.om",
+        "downloads": [
+            {
+                "title": "pi0.om",
+                "href": "https://hf-mirror.com/shadow-cann/pi0/resolve/main/pi0.om",
+                "available": true,
+                "source": "om-FP16",
+                "sourceLabel": "FP16",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "pi0.om"
+            },
+            {
+                "title": "pi0.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/pi0/resolve/main/pi0.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "pi0.onnx"
+            }
+        ]
     },
     {
         "id": "ivcifqkd0400",
