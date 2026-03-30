@@ -19,59 +19,18 @@ function escapeHtml(value) {
     }[char]));
 }
 
-const dailyQuotes = [
-    {
-        text: '真正的工程能力，不是避免复杂，而是把复杂拆解到可以持续交付。',
-        author: 'Linus Torvalds'
-    },
-    {
-        text: 'Stay hungry. Stay foolish.',
-        author: 'Steve Jobs'
-    },
-    {
-        text: 'Simplicity is prerequisite for reliability.',
-        author: 'Edsger W. Dijkstra'
-    },
-    {
-        text: 'Talk is cheap. Show me the code.',
-        author: 'Linus Torvalds'
-    },
-    {
-        text: '程序必须先让人读懂，顺带再让机器执行。',
-        author: 'Harold Abelson'
-    },
-    {
-        text: 'The best way to predict the future is to invent it.',
-        author: 'Alan Kay'
-    },
-    {
-        text: '细节不是细枝末节，细节决定系统是否可靠。',
-        author: '工程实践箴言'
-    }
-];
-
-function formatCurrentDate() {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const day = String(now.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-}
-
-function getRandomQuote() {
-    return dailyQuotes[Math.floor(Math.random() * dailyQuotes.length)];
-}
+const i18n = window.siteI18n;
 
 function initDailyQuote() {
     const dateText = document.getElementById('headerDateText');
     const quoteText = document.getElementById('dailyQuoteText');
     const quoteAuthor = document.getElementById('dailyQuoteAuthor');
-    if (dateText) {
-        dateText.textContent = `日期：${formatCurrentDate()}`;
+    if (dateText && i18n) {
+        dateText.textContent = i18n.formatCurrentDateLabel();
     }
     if (!quoteText || !quoteAuthor) return;
 
-    const quote = getRandomQuote();
+    const quote = i18n ? i18n.getCurrentQuote() : { text: '', author: '' };
     quoteText.textContent = quote.text;
     quoteAuthor.textContent = `- ${quote.author}`;
 }
@@ -143,7 +102,7 @@ function fetchModelPageCounter(modelId) {
 function renderList(containerId, values, className) {
     const container = document.getElementById(containerId);
     if (!container) return;
-    container.innerHTML = (values || []).map(value => `<span class="${className}">${escapeHtml(value)}</span>`).join('');
+    container.innerHTML = (values || []).map(value => `<span class="${className}">${escapeHtml(i18n ? i18n.translateValue(value) : value)}</span>`).join('');
 }
 
 function setSectionVisible(sectionId, visible) {
@@ -197,9 +156,9 @@ function renderOriginModels(items) {
         <table class="origin-table">
             <thead>
                 <tr>
-                    <th>模型文件</th>
-                    <th>大小</th>
-                    <th>链接</th>
+                    <th>${escapeHtml(i18n ? i18n.t('detail.modelFile') : '模型文件')}</th>
+                    <th>${escapeHtml(i18n ? i18n.t('detail.size') : '大小')}</th>
+                    <th>${escapeHtml(i18n ? i18n.t('detail.link') : '链接')}</th>
                 </tr>
             </thead>
             <tbody>
@@ -209,8 +168,8 @@ function renderOriginModels(items) {
                         <td>${escapeHtml(item.size || '-')}</td>
                         <td>
                             ${item.available
-                                ? `<a href="${escapeHtml(item.href)}" target="_blank" rel="noreferrer">${escapeHtml(item.localFile ? 'HF Mirror' : '原始链接')}</a>`
-                                : '<span class="muted">暂无链接</span>'}
+                                ? `<a href="${escapeHtml(item.href)}" target="_blank" rel="noreferrer">${escapeHtml(i18n ? i18n.translateValue(item.localFile ? 'HF Mirror' : '原始链接') : (item.localFile ? 'HF Mirror' : '原始链接'))}</a>`
+                                : `<span class="muted">${escapeHtml(i18n ? i18n.t('common.unavailable') : '暂无链接')}</span>`}
                         </td>
                     </tr>
                 `).join('')}
@@ -227,22 +186,25 @@ function renderReadmes(items, links) {
     if (!container || !linksContainer) return;
 
     const availableLinks = [
-        links.quickStartUrl ? `<a class="resource-link" href="${escapeHtml(links.quickStartUrl)}" target="_blank" rel="noreferrer">快速开始原始链接</a>` : '',
-        links.quickStartMarkdownUrl ? `<a class="resource-link" href="${escapeHtml(links.quickStartMarkdownUrl)}" target="_blank" rel="noreferrer">Markdown 文档</a>` : '',
+        links.quickStartUrl ? `<a class="resource-link" href="${escapeHtml(links.quickStartUrl)}" target="_blank" rel="noreferrer">${escapeHtml(i18n ? i18n.translateValue('快速开始原始链接') : '快速开始原始链接')}</a>` : '',
+        links.quickStartMarkdownUrl ? `<a class="resource-link" href="${escapeHtml(links.quickStartMarkdownUrl)}" target="_blank" rel="noreferrer">${escapeHtml(i18n ? i18n.translateValue('Markdown 文档') : 'Markdown 文档')}</a>` : '',
         links.hfReadmeUrl ? `<a class="resource-link" href="${escapeHtml(links.hfReadmeUrl)}" target="_blank" rel="noreferrer">HF README</a>` : ''
     ].filter(Boolean);
 
     linksContainer.innerHTML = availableLinks.join('');
 
     if (!(items || []).length) {
-        container.innerHTML = '<div class="empty-state">暂无 README / 快速开始内容</div>';
+        container.innerHTML = `<div class="empty-state">${escapeHtml(i18n ? i18n.t('detail.noReadme') : '暂无 README / 快速开始内容')}</div>`;
         setSectionVisible('readmeSection', availableLinks.length > 0);
         return;
     }
 
     container.innerHTML = items.map((item) => `
         <div class="readme-block">
-            <div class="readme-label">${escapeHtml(item.language || 'Text')}</div>
+            <div class="readme-label">${escapeHtml(item.language || (i18n ? i18n.t('detail.textLabel') : 'Text'))}</div>
+            ${item.summaryEn && i18n && i18n.getLanguage() === 'en'
+                ? `<p class="readme-summary">${escapeHtml(item.summaryEn)}</p>`
+                : ''}
             <pre class="readme-pre">${escapeHtml(item.content || '')}</pre>
         </div>
     `).join('');
@@ -261,15 +223,15 @@ function groupDownloads(downloads) {
 function syncBusuanziCounters(count) {
     const pageCounter = document.getElementById('modelPageCounter');
     if (pageCounter) {
-        pageCounter.textContent = `已浏览 ${count} 次`;
+        pageCounter.textContent = i18n ? i18n.formatPageViews(count) : `已浏览 ${count} 次`;
     }
 }
 
 async function shareModelLink(model) {
     const shareUrl = window.location.href;
     const shareData = {
-        title: `${model.name} - ModelZoo镜像站`,
-        text: `查看模型 ${model.name}`,
+        title: `${model.name} - ${i18n ? i18n.t('header.brandTitle') : 'ModelZoo镜像站'}`,
+        text: i18n && i18n.getLanguage() === 'en' ? `View model ${model.name}` : `查看模型 ${model.name}`,
         url: shareUrl,
     };
 
@@ -303,12 +265,12 @@ function initShareAction(model) {
     if (!shareButton) return;
 
     shareButton.addEventListener('click', async () => {
-        const originalText = shareButton.textContent;
+        const originalText = i18n ? i18n.t('detail.shareLink') : shareButton.textContent;
         try {
             const shared = await shareModelLink(model);
-            shareButton.textContent = shared ? '链接已复制' : originalText;
+            shareButton.textContent = shared ? (i18n ? i18n.t('detail.linkCopied') : '链接已复制') : originalText;
         } catch (error) {
-            shareButton.textContent = '复制失败';
+            shareButton.textContent = i18n ? i18n.t('detail.copyFailed') : '复制失败';
         }
 
         window.setTimeout(() => {
@@ -332,23 +294,27 @@ function renderModelDetail() {
     const modelId = getModelIdFromURL();
     const modelName = getModelNameFromURL();
     if (!modelId && !modelName) {
-        document.getElementById('modelName').textContent = '未找到模型';
+        document.getElementById('modelName').textContent = i18n ? i18n.t('detail.notFound') : '未找到模型';
+        document.title = i18n ? i18n.t('page.modelNotFoundTitle') : '未找到模型 - ModelZoo镜像站';
         return;
     }
     
     const model = modelsData.find(m => m.id === modelId) || modelsData.find(m => m.name === modelName);
     if (!model) {
-        document.getElementById('modelName').textContent = '未找到模型';
+        document.getElementById('modelName').textContent = i18n ? i18n.t('detail.notFound') : '未找到模型';
+        document.title = i18n ? i18n.t('page.modelNotFoundTitle') : '未找到模型 - ModelZoo镜像站';
         return;
     }
     
     document.getElementById('modelName').textContent = model.name;
-    document.getElementById('modelDescription').textContent = model.description;
+    document.getElementById('modelDescription').textContent = i18n && i18n.getLanguage() === 'en'
+        ? (model.descriptionEn || model.description)
+        : (model.descriptionZh || model.description);
     document.getElementById('modelDate').textContent = model.date;
     document.getElementById('modelUpdatedAt').textContent = model.updatedAt || model.date || '-';
-    document.getElementById('modelCategory').textContent = model.category || (model.tags || [])[0] || '模型';
-    document.getElementById('modelCount').textContent = `${(model.downloads || []).filter(item => item.available).length} 个可用文件`;
-    document.getElementById('modelRepoId').textContent = model.hfRepoId || '未上传';
+    document.getElementById('modelCategory').textContent = i18n ? i18n.translateValue(model.category || (model.tags || [])[0] || '模型') : (model.category || (model.tags || [])[0] || '模型');
+    document.getElementById('modelCount').textContent = i18n ? i18n.formatAvailableFilesCount((model.downloads || []).filter(item => item.available).length) : `${(model.downloads || []).filter(item => item.available).length} 个可用文件`;
+    document.getElementById('modelRepoId').textContent = model.hfRepoId || (i18n ? i18n.translateValue('未上传') : '未上传');
 
     const betaNote = document.getElementById('betaNote');
     if (betaNote) {
@@ -391,7 +357,7 @@ function renderModelDetail() {
         const groups = groupDownloads(model.downloads || []);
         downloadsContainer.innerHTML = groups.map(([group, items]) => `
             <div class="download-group">
-                <h3>${escapeHtml(group)}</h3>
+                <h3>${escapeHtml(i18n ? i18n.translateValue(group) : group)}</h3>
                 <ul class="download-list">
                     ${items.map(item => {
                         return `
@@ -401,7 +367,7 @@ function renderModelDetail() {
                                     ? `<a href="${escapeHtml(item.href)}" class="download-link" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a>`
                                     : `<span class="download-link">${escapeHtml(item.title)}</span>`}
                             </div>
-                            <span class="download-source">${escapeHtml(item.sourceLabel)}</span>
+                            <span class="download-source">${escapeHtml(i18n ? i18n.translateValue(item.sourceLabel) : item.sourceLabel)}</span>
                         </li>
                     `;
                     }).join('')}
@@ -428,7 +394,7 @@ function renderModelDetail() {
             downloadLink.rel = 'noreferrer';
         } else {
             downloadLink.removeAttribute('href');
-            downloadLink.textContent = '暂无可用下载';
+            downloadLink.textContent = i18n ? i18n.t('detail.downloadUnavailable') : '暂无可用下载';
             downloadLink.classList.add('is-disabled');
         }
     }
@@ -448,11 +414,16 @@ function renderModelDetail() {
     attachBusuanziObserver(model);
     
     // Update page title
-    document.title = `${model.name} - ModelZoo镜像站`;
+    document.title = `${model.name} - ${i18n ? i18n.t('header.brandTitle') : 'ModelZoo镜像站'}`;
 }
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+    initDailyQuote();
+    renderModelDetail();
+});
+
+document.addEventListener('site-language-change', () => {
     initDailyQuote();
     renderModelDetail();
 });

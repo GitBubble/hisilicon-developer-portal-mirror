@@ -27,13 +27,6 @@ const state = {
     },
 };
 
-const filterGroupMap = {
-    '任务': 'tasks',
-    '框架': 'framework',
-    '操作系统': 'supportOs',
-    '算力引擎': 'computingPower',
-};
-
 const taskCategoryOrder = ['计算机视觉', '自然语言处理', '多模态', '音频', '视频', '模型'];
 
 const filterValueGetters = {
@@ -43,36 +36,7 @@ const filterValueGetters = {
     computingPower: (model) => model.computingPower || [],
 };
 
-const dailyQuotes = [
-    {
-        text: '真正的工程能力，不是避免复杂，而是把复杂拆解到可以持续交付。',
-        author: 'Linus Torvalds'
-    },
-    {
-        text: 'Stay hungry. Stay foolish.',
-        author: 'Steve Jobs'
-    },
-    {
-        text: 'Simplicity is prerequisite for reliability.',
-        author: 'Edsger W. Dijkstra'
-    },
-    {
-        text: 'Talk is cheap. Show me the code.',
-        author: 'Linus Torvalds'
-    },
-    {
-        text: '程序必须先让人读懂，顺带再让机器执行。',
-        author: 'Harold Abelson'
-    },
-    {
-        text: 'The best way to predict the future is to invent it.',
-        author: 'Alan Kay'
-    },
-    {
-        text: '细节不是细枝末节，细节决定系统是否可靠。',
-        author: '工程实践箴言'
-    }
-];
+const i18n = window.siteI18n;
 
 function escapeHtml(value) {
     return String(value || '').replace(/[&<>"']/g, (char) => ({
@@ -88,16 +52,8 @@ function unique(values) {
     return [...new Set((values || []).filter(Boolean))];
 }
 
-function formatCount(count, noun) {
-    return `${count} ${noun}`;
-}
-
-function formatCurrentDate() {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const day = String(now.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
+function getSortLocale() {
+    return i18n && i18n.getLanguage() === 'en' ? 'en' : 'zh-CN';
 }
 
 function getTaskValues(model) {
@@ -115,7 +71,7 @@ function incrementCount(counter, key) {
 function sortFilterEntries(entries) {
     return entries.slice().sort((left, right) => {
         if (right[1] !== left[1]) return right[1] - left[1];
-        return left[0].localeCompare(right[0], 'zh-CN');
+        return left[0].localeCompare(right[0], getSortLocale());
     });
 }
 
@@ -128,7 +84,7 @@ function sortTaskGroups(entries) {
 
         if (leftRank !== rightRank) return leftRank - rightRank;
         if (right[1].count !== left[1].count) return right[1].count - left[1].count;
-        return left[0].localeCompare(right[0], 'zh-CN');
+        return left[0].localeCompare(right[0], getSortLocale());
     });
 }
 
@@ -170,7 +126,8 @@ function buildFilterCatalog() {
 
 function renderFilterTag(groupKey, value, count, taskCategory = '') {
     const taskCategoryAttr = taskCategory ? ` data-task-category="${escapeHtml(taskCategory)}"` : '';
-    return `<span class="filter-tag" data-filter-group="${escapeHtml(groupKey)}" data-filter-value="${escapeHtml(value)}"${taskCategoryAttr}><span class="filter-tag-label">${escapeHtml(value)}</span><span class="filter-tag-count">${count}</span></span>`;
+    const translatedValue = i18n ? i18n.translateValue(value) : value;
+    return `<span class="filter-tag" data-filter-group="${escapeHtml(groupKey)}" data-filter-value="${escapeHtml(value)}"${taskCategoryAttr}><span class="filter-tag-label">${escapeHtml(translatedValue)}</span><span class="filter-tag-count">${count}</span></span>`;
 }
 
 function renderFilterSidebar() {
@@ -185,7 +142,7 @@ function renderFilterSidebar() {
             <div class="filter-content" data-task-category="${escapeHtml(group.name)}">
                 <div class="filter-category">
                     <span class="category-icon">▾</span>
-                    <span class="filter-category-label">${escapeHtml(group.name)}</span>
+                    <span class="filter-category-label">${escapeHtml(i18n ? i18n.translateValue(group.name) : group.name)}</span>
                     <span class="filter-category-count">${group.count}</span>
                 </div>
                 <div class="filter-tags">
@@ -220,6 +177,7 @@ function matchesSearch(model, query = state.search) {
     const haystack = [
         model.name,
         model.description,
+        model.descriptionEn,
         model.category,
         ...(model.tags || []),
         ...(model.framework || []),
@@ -237,20 +195,16 @@ function matchesFilters(model, filters = state.filters, excludedGroup = null) {
     });
 }
 
-function getRandomQuote() {
-    return dailyQuotes[Math.floor(Math.random() * dailyQuotes.length)];
-}
-
 function initDailyQuote() {
     const dateText = document.getElementById('headerDateText');
     const quoteText = document.getElementById('dailyQuoteText');
     const quoteAuthor = document.getElementById('dailyQuoteAuthor');
-    if (dateText) {
-        dateText.textContent = `日期：${formatCurrentDate()}`;
+    if (dateText && i18n) {
+        dateText.textContent = i18n.formatCurrentDateLabel();
     }
     if (!quoteText || !quoteAuthor) return;
 
-    const quote = getRandomQuote();
+    const quote = i18n ? i18n.getCurrentQuote() : { text: '', author: '' };
     quoteText.textContent = quote.text;
     quoteAuthor.textContent = `- ${quote.author}`;
 }
@@ -263,7 +217,7 @@ function getVisibleModels() {
 
     filtered = filtered.slice().sort((left, right) => {
         if (state.sort === 'name') {
-            return left.name.localeCompare(right.name, 'zh-CN');
+            return left.name.localeCompare(right.name, getSortLocale());
         }
         const leftDate = new Date(left.updatedAt || left.date || 0).getTime();
         const rightDate = new Date(right.updatedAt || right.date || 0).getTime();
@@ -280,8 +234,8 @@ function renderModels(models) {
     if (models.length === 0) {
         grid.innerHTML = `
             <div class="empty-state">
-                <strong>没有匹配的模型</strong>
-                <p>请调整左侧筛选条件或搜索关键词。</p>
+                <strong>${escapeHtml(i18n ? i18n.t('home.emptyTitle') : '没有匹配的模型')}</strong>
+                <p>${escapeHtml(i18n ? i18n.t('home.emptyBody') : '请调整左侧筛选条件或搜索关键词。')}</p>
             </div>
         `;
         return;
@@ -296,13 +250,13 @@ function renderModels(models) {
             </div>
             <div class="model-name">${model.name}</div>
             ${model.badge ? `<span class="model-badge">${model.badge}</span>` : ''}
-            <div class="model-description">${model.description}</div>
+            <div class="model-description">${escapeHtml(i18n && i18n.getLanguage() === 'en' ? (model.descriptionEn || model.description) : (model.descriptionZh || model.description))}</div>
             <div class="model-tags">
-                ${model.tags.map(tag => `<span class="model-tag">${tag}</span>`).join('')}
+                ${model.tags.map(tag => `<span class="model-tag">${escapeHtml(i18n ? i18n.translateValue(tag) : tag)}</span>`).join('')}
             </div>
             <div class="model-meta">
                 <span class="model-date">📅 ${model.date}</span>
-                <span class="model-action">${formatCount((model.downloads || []).filter(item => item.available).length, '文件')}</span>
+                <span class="model-action">${escapeHtml(i18n ? i18n.formatCardFileCount((model.downloads || []).filter(item => item.available).length) : `${(model.downloads || []).filter(item => item.available).length} 文件`)}</span>
             </div>
         </a>
     `).join('');
@@ -318,7 +272,7 @@ function renderPagination() {
 
     const summary = document.querySelector('.pagination span');
     if (summary) {
-        summary.textContent = `共${visibleModels.length}条`;
+        summary.textContent = i18n ? i18n.formatPaginationTotal(visibleModels.length) : `共${visibleModels.length}条`;
     }
     
     let html = '';
@@ -457,11 +411,6 @@ function clearAllFilters() {
     updatePage();
 }
 
-function getSectionGroupKey(section) {
-    const title = section.querySelector('.filter-title span');
-    return filterGroupMap[title ? title.textContent.trim() : ''] || null;
-}
-
 function initFilterCollapsing() {
     document.querySelectorAll('.filter-section').forEach((section) => {
         const title = section.querySelector('.filter-title');
@@ -495,10 +444,13 @@ function initFilters() {
 
     const clearBtn = document.querySelector('.clear-filter');
     if (clearBtn) {
-        clearBtn.addEventListener('click', (event) => {
-            event.preventDefault();
-            clearAllFilters();
-        });
+        if (clearBtn.dataset.bound !== 'true') {
+            clearBtn.dataset.bound = 'true';
+            clearBtn.addEventListener('click', (event) => {
+                event.preventDefault();
+                clearAllFilters();
+            });
+        }
     }
 
     initFilterCollapsing();
@@ -506,10 +458,22 @@ function initFilters() {
     updateFilterCounts();
 }
 
+function renderSortOptions() {
+    const sortSelect = document.querySelector('.sort-select');
+    if (!sortSelect) return;
+
+    sortSelect.innerHTML = [
+        `<option value="updated">${escapeHtml(i18n ? i18n.t('home.sortUpdated') : '最近更新')}</option>`,
+        `<option value="name">${escapeHtml(i18n ? i18n.t('home.sortName') : '名称排序')}</option>`
+    ].join('');
+    sortSelect.value = state.sort;
+}
+
 // Cookie banner close
 function initCookieBanner() {
     const closeBtn = document.querySelector('.cookie-banner .close-btn');
-    if (closeBtn) {
+    if (closeBtn && closeBtn.dataset.bound !== 'true') {
+        closeBtn.dataset.bound = 'true';
         closeBtn.addEventListener('click', function() {
             document.querySelector('.cookie-banner').style.display = 'none';
         });
@@ -523,29 +487,41 @@ function initSearch() {
     const sortSelect = document.querySelector('.sort-select');
     
     if (searchInput && searchBtn) {
-        const performSearch = () => {
-            state.search = searchInput.value;
-            state.currentPage = 1;
-            updatePage();
-        };
-        
-        searchBtn.addEventListener('click', performSearch);
-        searchInput.addEventListener('keyup', (e) => {
-            if (e.key === 'Enter') performSearch();
-        });
+        if (searchBtn.dataset.bound !== 'true') {
+            const performSearch = () => {
+                state.search = searchInput.value;
+                state.currentPage = 1;
+                updatePage();
+            };
+
+            searchBtn.dataset.bound = 'true';
+            searchInput.dataset.bound = 'true';
+            searchBtn.addEventListener('click', performSearch);
+            searchInput.addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') performSearch();
+            });
+        }
     }
 
     if (sortSelect) {
-        sortSelect.innerHTML = [
-            '<option value="updated">最近更新</option>',
-            '<option value="name">名称排序</option>'
-        ].join('');
-        sortSelect.addEventListener('change', () => {
-            state.sort = sortSelect.value;
-            state.currentPage = 1;
-            updatePage();
-        });
+        renderSortOptions();
+        if (sortSelect.dataset.bound !== 'true') {
+            sortSelect.dataset.bound = 'true';
+            sortSelect.addEventListener('change', () => {
+                state.sort = sortSelect.value;
+                state.currentPage = 1;
+                updatePage();
+            });
+        }
     }
+}
+
+function rerenderForLanguage() {
+    initDailyQuote();
+    renderFilterSidebar();
+    initFilters();
+    renderSortOptions();
+    updatePage();
 }
 
 // Initialize
@@ -556,4 +532,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initFilters();
     initCookieBanner();
     initSearch();
+});
+
+document.addEventListener('site-language-change', () => {
+    rerenderForLanguage();
 });

@@ -10,6 +10,7 @@ const MODELS_DIR = path.join(ROOT, 'models');
 const OUTPUT = path.join(ROOT, 'assets', 'js', 'models.js');
 const SITE_HTML_FILES = [
     path.join(ROOT, 'index.html'),
+    path.join(ROOT, 'modelzoo.html'),
     path.join(ROOT, 'model-detail.html'),
 ];
 const HF_NAMESPACE = process.env.HF_NAMESPACE || 'shadow-cann';
@@ -51,6 +52,97 @@ const MANUAL_MODEL_DATA = new Map([
         ],
     }],
 ]);
+
+const VALUE_TRANSLATIONS = new Map([
+    ['计算机视觉', 'computer vision'],
+    ['自然语言处理', 'natural language processing'],
+    ['多模态', 'multimodal'],
+    ['音频', 'audio'],
+    ['视频', 'video'],
+    ['模型', 'model'],
+    ['人群计数', 'crowd counting'],
+    ['单目深度估计', 'monocular depth estimation'],
+    ['关键点检测', 'keypoint detection'],
+    ['特征点检测', 'feature point detection'],
+    ['图像分类', 'image classification'],
+    ['单目深度', 'monocular depth'],
+    ['检测', 'detection'],
+    ['分割', 'segmentation'],
+    ['目标检测', 'object detection'],
+    ['姿态估计', 'pose estimation'],
+    ['图像增强', 'image enhancement'],
+    ['文字检测', 'text detection'],
+    ['双目深度', 'stereo depth'],
+    ['图像分割', 'image segmentation'],
+    ['文字识别', 'text recognition'],
+    ['具身智能', 'embodied AI'],
+    ['人脸识别', 'face recognition'],
+    ['多目标跟踪', 'multi-object tracking'],
+    ['多目深度估计', 'multi-view depth estimation'],
+    ['图像超分', 'image super-resolution'],
+    ['分类', 'classification'],
+    ['OCR', 'OCR'],
+    ['大型语言模型', 'large language model'],
+    ['图片分类', 'image classification'],
+    ['图文匹配', 'image-text matching'],
+    ['文本转语音', 'text-to-speech'],
+    ['编译模型', 'compiled models'],
+    ['源模型', 'source models'],
+    ['工具链', 'toolchain'],
+    ['附加资源', 'extra resources'],
+    ['OM 元数据', 'OM metadata'],
+    ['源模型下载', 'source model download'],
+    ['源模型元数据', 'source model metadata'],
+    ['自动下载', 'automatic download'],
+    ['工具链', 'toolchain'],
+    ['附加资源', 'extra resources'],
+]);
+
+const PHRASE_TRANSLATIONS = [
+    ['是一种', 'is a'],
+    ['是对', 'is an improved version of'],
+    ['的改进', 'improved variant'],
+    ['轻量级的神经网络', 'lightweight neural network'],
+    ['轻量级神经网络', 'lightweight neural network'],
+    ['多目标跟踪方法', 'multi-object tracking method'],
+    ['多目标跟踪', 'multi-object tracking'],
+    ['简单有效', 'simple and effective'],
+    ['提高了', 'improves'],
+    ['性能', 'performance'],
+    ['能够在', 'can'],
+    ['仍能进行有效的跟踪', 'still maintain effective tracking'],
+    ['保留了', 'retains'],
+    ['增加了', 'adds'],
+    ['线性瓶颈', 'linear bottlenecks'],
+    ['倒残差', 'inverted residual blocks'],
+    ['该方法', 'This method'],
+    ['该框架', 'This framework'],
+    ['该模型', 'This model'],
+    ['本模型', 'This model'],
+    ['能够', 'can'],
+    ['实现', 'deliver'],
+    ['较快帧率', 'high frame rates'],
+    ['较高精度的识别', 'high recognition accuracy'],
+    ['提高了分拣性能', 'improves association performance'],
+    ['外观信息', 'appearance information'],
+    ['离线预训练阶段', 'offline pretraining stage'],
+    ['在线应用阶段', 'online deployment stage'],
+    ['最近邻查询', 'nearest-neighbor queries'],
+    ['视觉外观空间', 'visual appearance space'],
+    ['进行有效的跟踪', 'perform effective tracking'],
+    ['模型可以通过以下代码完成快速推理', 'The following code demonstrates quick inference for the model'],
+    ['可以通过以下代码完成快速推理', 'The following code demonstrates quick inference'],
+    ['该代码仅展示主要流程，完整实现参考', 'The snippet shows the main flow only. For the full implementation, refer to'],
+    ['备注：', 'Notes: '],
+    ['头文件和动态库位于', 'Headers and shared libraries are available in'],
+    ['目录下', 'directory'],
+    ['编译配置参考文件', 'Build configuration is documented in'],
+    ['模型文件路径', 'model file path'],
+    ['输入图片路径', 'input image path'],
+    ['快速推理', 'quick inference'],
+    ['推理', 'inference'],
+    ['模型描述', 'model description'],
+];
 
 function readJson(filePath) {
     return JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -108,6 +200,126 @@ function normalizeText(value) {
         .replace(/\u00a0/g, ' ')
         .replace(/\r\n/g, '\n')
         .replace(/\r/g, '\n');
+}
+
+function escapeRegExp(value) {
+    return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function translateValue(value) {
+    return VALUE_TRANSLATIONS.get(value) || value;
+}
+
+function formatEnglishList(values) {
+    const items = unique(values).filter(Boolean);
+    if (items.length === 0) return '';
+    if (items.length === 1) return items[0];
+    if (items.length === 2) return `${items[0]} and ${items[1]}`;
+    return `${items.slice(0, -1).join(', ')}, and ${items[items.length - 1]}`;
+}
+
+function humanizeText(rawText) {
+    return normalizeText(rawText)
+        .replace(/\s+/g, ' ')
+        .replace(/\s+([,.;:])/g, '$1')
+        .replace(/([,.;:])(\S)/g, '$1 $2')
+        .replace(/\s{2,}/g, ' ')
+        .trim();
+}
+
+function textLooksEnglish(text) {
+    const normalized = String(text || '').trim();
+    if (!normalized) return false;
+    const latinChars = (normalized.match(/[A-Za-z]/g) || []).length;
+    const cjkChars = (normalized.match(/[\u4e00-\u9fff]/g) || []).length;
+    if (cjkChars === 0) return latinChars > 0;
+    return latinChars > 0 && latinChars >= cjkChars * 3;
+}
+
+function translateChineseText(text) {
+    let translated = normalizeText(text || '');
+    for (const [source, target] of PHRASE_TRANSLATIONS) {
+        translated = translated.replace(new RegExp(escapeRegExp(source), 'g'), target);
+    }
+
+    for (const [source, target] of VALUE_TRANSLATIONS.entries()) {
+        translated = translated.replace(new RegExp(escapeRegExp(source), 'g'), target);
+    }
+
+    return humanizeText(translated);
+}
+
+function buildEnglishDescription(model, detail, downloads) {
+    const originalDescription = detail.description || model.description || '';
+    const taskTags = unique([
+        ...(model.computerVersion || []),
+        ...(model.naturalLanguageProcess || []),
+        ...(model.multimodal || []),
+        ...(model.video || []),
+    ]).map(translateValue);
+    const category = translateValue(deriveCategory(model));
+    const frameworks = unique(model.framework || []);
+    const operatingSystems = unique(model.supportOs || []);
+    const computeTargets = unique(model.computingPower || []);
+    const availableDownloads = (downloads || []).filter((item) => item.available).length;
+    const sentences = [];
+
+    if (textLooksEnglish(originalDescription)) {
+        const cleanedLead = humanizeText(originalDescription);
+        if (cleanedLead) {
+            sentences.push(cleanedLead.replace(/([^.])$/, '$1.'));
+        }
+    } else {
+        const taskText = taskTags.length ? ` for ${formatEnglishList(taskTags)}` : '';
+        sentences.push(`${model.name} is a ${category} model${taskText}.`);
+        if (originalDescription) {
+            sentences.push('The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing.');
+        }
+    }
+
+    const capabilityParts = [];
+    if (frameworks.length) capabilityParts.push(`Framework: ${formatEnglishList(frameworks)}`);
+    if (operatingSystems.length) capabilityParts.push(`OS: ${formatEnglishList(operatingSystems)}`);
+    if (computeTargets.length) capabilityParts.push(`Compute targets: ${formatEnglishList(computeTargets)}`);
+    if (capabilityParts.length) {
+        sentences.push(`${capabilityParts.join('. ')}.`);
+    }
+
+    if (availableDownloads > 0) {
+        sentences.push(`The mirror currently exposes ${availableDownloads} downloadable artifact${availableDownloads === 1 ? '' : 's'}, along with quick-start resources when available.`);
+    }
+
+    return humanizeText(sentences.join(' '));
+}
+
+function extractQuickStartSignals(content) {
+    const normalized = normalizeText(content || '');
+    return {
+        hasInit: /(DevInit|EnvInit|初始化|device init|初始化 NPU)/i.test(normalized),
+        hasLoad: /(Load\(|load model|加载模型)/i.test(normalized),
+        hasInfer: /(Infer\(|推理|inference)/i.test(normalized),
+        hasConfig: /(config|json|配置)/i.test(normalized),
+        hasBuild: /(CMakeLists|编译|build|make|cmake)/i.test(normalized),
+        hasCommonLibs: /(samples\/common|动态库|头文件|shared librar|headers?)/i.test(normalized),
+    };
+}
+
+function buildReadmeSummary(entry, modelName) {
+    const content = entry.content || '';
+    const signals = extractQuickStartSignals(content);
+    const capabilities = [];
+
+    if (signals.hasInit) capabilities.push('runtime initialization');
+    if (signals.hasLoad) capabilities.push('model loading');
+    if (signals.hasInfer) capabilities.push('inference execution');
+    if (signals.hasConfig) capabilities.push('configuration handling');
+    if (signals.hasBuild) capabilities.push('build instructions');
+    if (signals.hasCommonLibs) capabilities.push('references to shared runtime libraries');
+
+    const baseSummary = `${entry.language || 'Text'} quick-start notes for ${modelName}.`;
+
+    if (capabilities.length === 0) return baseSummary;
+    return `${baseSummary} Covers ${formatEnglishList(capabilities)}.`;
 }
 
 function deltaToText(serializedDelta) {
@@ -350,11 +562,19 @@ function buildModelRecord(model, detailEntry, imageFiles, modelFiles) {
 
     const quickStart = buildQuickStart(detail);
     const localImage = findLocalImage(model.coverImageId, imageFiles);
+    const description = detail.description || model.description || '';
+    const enrichedQuickStartSections = quickStart.sections.map((entry) => ({
+        ...entry,
+        summary: entry.content.split(/\n+/).map((line) => line.trim()).find(Boolean) || '',
+        summaryEn: buildReadmeSummary(entry, model.name),
+    }));
 
     return {
         id: model.id,
         name: model.name,
-        description: detail.description || model.description || '',
+        description,
+        descriptionZh: description,
+        descriptionEn: buildEnglishDescription(model, detail, downloads),
         date: model.creationDate,
         updatedAt: model.lastUpdateDate,
         badge: model.isBeta ? 'Beta' : null,
@@ -370,7 +590,7 @@ function buildModelRecord(model, detailEntry, imageFiles, modelFiles) {
         licenseUrl: detail.modelLicense || null,
         quickStartUrl: quickStart.url,
         quickStartMarkdownUrl: quickStart.markdownUrl,
-        quickStartReadmes: quickStart.sections,
+        quickStartReadmes: enrichedQuickStartSections,
         detailParams: (detail.detailParams || []).filter(item => item && item.name && item.value),
         originModels: detailEntry
             ? buildOriginModels(detail, modelFiles, repoInfo)
@@ -385,6 +605,10 @@ function buildModelRecord(model, detailEntry, imageFiles, modelFiles) {
 }
 
 function getLatestCommitTime() {
+    if (process.env.SITE_LAST_COMMIT_TIME) {
+        return process.env.SITE_LAST_COMMIT_TIME.trim();
+    }
+
     try {
         return execSync("git log -1 --date=format:'%Y-%m-%d %H:%M:%S' --format=%cd", {
             cwd: ROOT,

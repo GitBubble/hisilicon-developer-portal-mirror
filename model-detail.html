@@ -6,29 +6,33 @@
     <title>模型详情 - ModelZoo镜像站</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body data-title-key="page.detailTitle">
     <div class="header">
         <div class="header-left">
-            <a href="index.html" class="site-brand" aria-label="ModelZoo镜像站">
+            <a href="index.html" class="site-brand" data-i18n-aria-label="header.brandAria">
                 <div class="brand-badge">MZ</div>
                 <div class="brand-copy">
                     <span class="brand-subtitle" id="headerDateText">日期：2026-03-28</span>
-                    <strong class="brand-title">ModelZoo镜像站</strong>
+                    <strong class="brand-title" data-i18n="header.brandTitle">ModelZoo镜像站</strong>
                 </div>
             </a>
             <div class="header-nav">
-                <a href="index.html" class="nav-item active">ModelZoo</a>
+                <a href="index.html" class="nav-item active" data-i18n="header.navModelZoo">ModelZoo</a>
             </div>
             <div class="daily-quote" aria-live="polite">
                 <p class="quote-text" id="dailyQuoteText">技术的价值，在于让复杂的事情变得可控。</p>
                 <span class="quote-author" id="dailyQuoteAuthor">- 随机一言</span>
+            </div>
+            <div class="language-switcher" data-i18n-aria-label="header.languageSwitcher">
+                <button type="button" class="language-btn" data-lang-option="zh">中</button>
+                <button type="button" class="language-btn" data-lang-option="en">EN</button>
             </div>
         </div>
     </div>
 
     <div class="main-container">
         <div class="detail-container">
-            <a href="index.html" class="back-btn">← 返回模型市场</a>
+            <a href="index.html" class="back-btn" data-i18n="detail.backToMarket">← 返回模型市场</a>
             
             <div class="detail-header">
                 <div id="modelImage" class="detail-hero-image"></div>
@@ -37,11 +41,11 @@
                     <span id="modelBadge" class="detail-badge" style="display: none;"></span>
                     <div id="modelTags" class="detail-tags"></div>
                     <div class="resource-links">
-                        <a id="hfRepoLink" class="resource-link" href="#" target="_blank" rel="noreferrer">HF 镜像仓库</a>
+                        <a id="hfRepoLink" class="resource-link" href="#" target="_blank" rel="noreferrer" data-i18n="detail.hfRepo">HF 镜像仓库</a>
                         <a id="hfReadmeLink" class="resource-link" href="#" target="_blank" rel="noreferrer">HF README</a>
-                        <a id="quickStartLink" class="resource-link" href="#" target="_blank" rel="noreferrer">快速开始</a>
-                        <a id="repositoryLink" class="resource-link" href="#" target="_blank" rel="noreferrer">代码仓库</a>
-                        <a id="licenseLink" class="resource-link" href="#" target="_blank" rel="noreferrer">许可证</a>
+                        <a id="quickStartLink" class="resource-link" href="#" target="_blank" rel="noreferrer" data-i18n="detail.quickStart">快速开始</a>
+                        <a id="repositoryLink" class="resource-link" href="#" target="_blank" rel="noreferrer" data-i18n="detail.repository">代码仓库</a>
+                        <a id="licenseLink" class="resource-link" href="#" target="_blank" rel="noreferrer" data-i18n="detail.license">许可证</a>
                     </div>
                     <div id="betaNote" class="detail-note" style="display: none;"></div>
                 </div>
@@ -49,36 +53,54 @@
             
             <div class="detail-content">
                 <div class="detail-section">
-                    <h2>模型描述</h2>
+                    <h2 data-i18n="detail.modelDescription">模型描述</h2>
                     <p id="modelDescription">模型描述内容...</p>
                 </div>
                 
                 <div class="detail-section">
-                    <h2>基本信息</h2>
+                    <h2 data-i18n="detail.basicInfo">基本信息</h2>
                     <div class="detail-meta">
                         <div class="detail-meta-item">
                             <span>📅</span>
-                            <span id="modelDate">更新时间</span>
+                            <div class="detail-meta-copy">
+                                <span class="detail-meta-label" data-i18n="detail.updatedDateLabel">发布时间</span>
+                                <span id="modelDate" class="detail-meta-value">更新时间</span>
+                            </div>
                         </div>
                         <div class="detail-meta-item">
                             <span>🕒</span>
-                            <span id="modelUpdatedAt">最近更新</span>
+                            <div class="detail-meta-copy">
+                                <span class="detail-meta-label" data-i18n="detail.lastUpdatedLabel">最近更新</span>
+                                <span id="modelUpdatedAt" class="detail-meta-value">最近更新</span>
+                            </div>
                         </div>
                         <div class="detail-meta-item">
                             <span>🏷️</span>
-                            <span id="modelCategory">任务类型</span>
+                            <div class="detail-meta-copy">
+                                <span class="detail-meta-label" data-i18n="detail.taskTypeLabel">任务类型</span>
+                                <span id="modelCategory" class="detail-meta-value">任务类型</span>
+                            </div>
                         </div>
                         <div class="detail-meta-item">
                             <span>📦</span>
-                            <span id="modelCount">0 个可用文件</span>
+                            <div class="detail-meta-copy">
+                                <span class="detail-meta-label" data-i18n="detail.availableFilesLabel">可用文件</span>
+                                <span id="modelCount" class="detail-meta-value">0 个可用文件</span>
+                            </div>
                         </div>
                         <div class="detail-meta-item">
                             <span>🌐</span>
-                            <span id="modelRepoId">HF Repo</span>
+                            <div class="detail-meta-copy">
+                                <span class="detail-meta-label" data-i18n="detail.hfRepoLabel">HF Repo</span>
+                                <span id="modelRepoId" class="detail-meta-value">HF Repo</span>
+                            </div>
                         </div>
                         <div class="detail-meta-item">
                             <span>📈</span>
-                            <span id="modelPageCounter">已浏览 0 次</span>
+                            <div class="detail-meta-copy">
+                                <span class="detail-meta-label" data-i18n="detail.pageViewsLabel">页面浏览</span>
+                                <span id="modelPageCounter" class="detail-meta-value">已浏览 0 次</span>
+                            </div>
                         </div>
                     </div>
                     <div id="frameworkTags" class="detail-pills"></div>
@@ -87,28 +109,28 @@
                 </div>
                 
                 <div class="action-buttons">
-                    <a id="downloadLink" class="btn btn-primary">下载模型</a>
-                    <a id="repoActionLink" class="btn btn-secondary" href="#" target="_blank" rel="noreferrer">打开 HF 镜像仓库</a>
-                    <button id="shareLinkButton" class="btn btn-secondary" type="button">分享链接</button>
+                    <a id="downloadLink" class="btn btn-primary" data-i18n="detail.downloadModel">下载模型</a>
+                    <a id="repoActionLink" class="btn btn-secondary" href="#" target="_blank" rel="noreferrer" data-i18n="detail.openRepo">打开 HF 镜像仓库</a>
+                    <button id="shareLinkButton" class="btn btn-secondary" type="button" data-i18n="detail.shareLink">分享链接</button>
                 </div>
 
                 <div id="detailParamsSection" class="detail-section">
-                    <h2>模型参数</h2>
+                    <h2 data-i18n="detail.modelParams">模型参数</h2>
                     <div id="detailParamsList" class="detail-params-grid"></div>
                 </div>
 
                 <div class="detail-section">
-                    <h2>下载清单</h2>
+                    <h2 data-i18n="detail.downloadList">下载清单</h2>
                     <div id="downloadSections"></div>
                 </div>
 
                 <div id="originModelsSection" class="detail-section" style="display: none;">
-                    <h2>原始模型链接</h2>
+                    <h2 data-i18n="detail.originModelLinks">原始模型链接</h2>
                     <div id="originModelsTable"></div>
                 </div>
 
                 <div id="readmeSection" class="detail-section" style="display: none;">
-                    <h2>README / 快速开始</h2>
+                    <h2 data-i18n="detail.readmeQuickStart">README / 快速开始</h2>
                     <div id="readmeLinks" class="readme-links"></div>
                     <div id="readmeSections"></div>
                 </div>
@@ -117,10 +139,11 @@
     </div>
 
     <footer class="site-footer detail-footer">
-        <span>由开发者自行维护，更新时间：2026-03-28 08:07:58</span>
+        <span data-updated-at="2026-03-28 08:07:58">由开发者自行维护，更新时间：2026-03-28 18:11:12</span>
     </footer>
 
     <script src="assets/js/models.js"></script>
+    <script src="assets/js/i18n.js"></script>
     <script src="assets/js/models-detail.js"></script>
 </body>
 </html>

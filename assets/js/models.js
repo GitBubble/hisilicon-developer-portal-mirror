@@ -4,6 +4,8 @@ const modelsData = [
         "id": "j6v87p1oi000",
         "name": "DeepSort",
         "description": "DeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。",
+        "descriptionZh": "DeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。",
+        "descriptionEn": "DeepSort is a computer vision model for multi-object tracking. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 13 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-26 23:59:38",
         "updatedAt": "2026-03-27 19:43:15",
         "badge": null,
@@ -32,7 +34,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n  Infer::DevDeInit();\n  return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/tracking/deepsort/CMakeLists.txt)。"
+                "content": "模型可以通过以下代码完成快速推理\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n  Infer::DevDeInit();\n  return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/tracking/deepsort/CMakeLists.txt)。",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for DeepSort. Covers runtime initialization, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -207,6 +211,8 @@ const modelsData = [
         "id": "j67cjvq5vs00",
         "name": "MobileNetV2",
         "description": "MobileNetV2是对MobileNetV1的改进，是一种轻量级的神经网络。MobileNetV2保留了V1版本的深度可分离卷积，增加了线性瓶颈（Linear Bottleneck）和倒残差（Inverted Residual）。",
+        "descriptionZh": "MobileNetV2是对MobileNetV1的改进，是一种轻量级的神经网络。MobileNetV2保留了V1版本的深度可分离卷积，增加了线性瓶颈（Linear Bottleneck）和倒残差（Inverted Residual）。",
+        "descriptionEn": "MobileNetV2 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-24 16:23:20",
         "updatedAt": "2026-03-26 09:35:37",
         "badge": null,
@@ -235,7 +241,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "MobileNetV2可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // MobileNetV2 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::MobileNetV2) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/MobileNetV2/src/CMakeLists.txt)"
+                "content": "MobileNetV2可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // MobileNetV2 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::MobileNetV2) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/MobileNetV2/src/CMakeLists.txt)",
+                "summary": "MobileNetV2可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme",
+                "summaryEn": "C++ quick-start notes for MobileNetV2. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -360,6 +368,8 @@ const modelsData = [
         "id": "j3vsc0jtvs00",
         "name": "Vit-B-16",
         "description": "`Transformer` 架构已广泛应用于自然语言处理领域。Vision Transformer（ViT）模型在计算机视觉领域中对CNN的依赖不是必需的，直接将其应用于图像块序列来进行图像分类时，也能得到和目前卷积网络相媲美的准确率。",
+        "descriptionZh": "`Transformer` 架构已广泛应用于自然语言处理领域。Vision Transformer（ViT）模型在计算机视觉领域中对CNN的依赖不是必需的，直接将其应用于图像块序列来进行图像分类时，也能得到和目前卷积网络相媲美的准确率。",
+        "descriptionEn": "Vit-B-16 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 8 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-17 17:45:49",
         "updatedAt": "2026-03-26 09:35:38",
         "badge": "Beta",
@@ -388,7 +398,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "Vit-B-16模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n  EnvInit();\n  std::string omModelPath = \"/path/to/model.om\"; // Vit-B-16模型文件路径 \n  std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(omModelPath, ModelType::ResNet50) != 0) {\n    LOG(ERROR) << \"fail to load model\";\n    return -1;\n  }\n  auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n  if (ret.size() == 0) {\n    LOG(ERROR) << \"fail to infer model\";\n    model->Unload();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    LOG(ERROR) << \"fail to unload model\";\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/Vit-B-16/src/CMakeLists.txt)。"
+                "content": "Vit-B-16模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n  EnvInit();\n  std::string omModelPath = \"/path/to/model.om\"; // Vit-B-16模型文件路径 \n  std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(omModelPath, ModelType::ResNet50) != 0) {\n    LOG(ERROR) << \"fail to load model\";\n    return -1;\n  }\n  auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n  if (ret.size() == 0) {\n    LOG(ERROR) << \"fail to infer model\";\n    model->Unload();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    LOG(ERROR) << \"fail to unload model\";\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/Vit-B-16/src/CMakeLists.txt)。",
+                "summary": "Vit-B-16模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for Vit-B-16. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -513,6 +525,8 @@ const modelsData = [
         "id": "j3n1o7csso00",
         "name": "SuperPoint",
         "description": "SuperPoint模型的全卷积神经网络架构对全尺寸图像进行操作，并在单次前向传递中产生伴随固定长度描述符的兴趣点检测。该模型有一个单一的共享编码器来处理和减少输入图像的维数。在编码器之后，该架构分成两个解码器“头”，它们学习任务特定权重——一个用于兴趣点检测，另一个用于感兴趣点描述。大多数网络参数在两个任务之间共享，这与传统系统不同，传统系统首先检测兴趣点，然后计算描述符，并且缺乏跨两个任务共享计算和表示的能力。",
+        "descriptionZh": "SuperPoint模型的全卷积神经网络架构对全尺寸图像进行操作，并在单次前向传递中产生伴随固定长度描述符的兴趣点检测。该模型有一个单一的共享编码器来处理和减少输入图像的维数。在编码器之后，该架构分成两个解码器“头”，它们学习任务特定权重——一个用于兴趣点检测，另一个用于感兴趣点描述。大多数网络参数在两个任务之间共享，这与传统系统不同，传统系统首先检测兴趣点，然后计算描述符，并且缺乏跨两个任务共享计算和表示的能力。",
+        "descriptionEn": "SuperPoint is a computer vision model for feature point detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 8 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-16 21:11:02",
         "updatedAt": "2026-03-26 09:35:38",
         "badge": null,
@@ -541,7 +555,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n    std::string filePath= \"/path/to/file_list.json\"; // 输入文本文件路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::SuperPoint) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(filePath, FileType::JsonFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码仅展示了主要流程，详细实现请参考SuperPoint (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/point/SuperPoint)。"
+                "content": "模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n    std::string filePath= \"/path/to/file_list.json\"; // 输入文本文件路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::SuperPoint) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(filePath, FileType::JsonFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码仅展示了主要流程，详细实现请参考SuperPoint (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/point/SuperPoint)。",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for SuperPoint. Covers runtime initialization, model loading, inference execution, configuration handling, and build instructions."
             }
         ],
         "detailParams": [
@@ -676,6 +692,8 @@ const modelsData = [
         "id": "j3mmucroso00",
         "name": "DenseNet121",
         "description": "DenseNet 针对 ResNet 的冗余结构提出了改进：让网络中的每一层和前面的所有层相连，同时把每一层设计的比较窄，使每一层学到的特征变少从而降低冗余。除了减少参数量之外，该结构还有减轻梯度消失问题、增强特征传播等优点。",
+        "descriptionZh": "DenseNet 针对 ResNet 的冗余结构提出了改进：让网络中的每一层和前面的所有层相连，同时把每一层设计的比较窄，使每一层学到的特征变少从而降低冗余。除了减少参数量之外，该结构还有减轻梯度消失问题、增强特征传播等优点。",
+        "descriptionEn": "DenseNet121 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 8 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-16 20:23:49",
         "updatedAt": "2026-03-26 09:35:38",
         "badge": null,
@@ -704,7 +722,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "DenseNet121可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // DenseNet121 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::DenseNet121) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/DenseNet121/src/CMakeLists.txt)"
+                "content": "DenseNet121可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // DenseNet121 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::DenseNet121) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/DenseNet121/src/CMakeLists.txt)",
+                "summary": "DenseNet121可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme",
+                "summaryEn": "C++ quick-start notes for DenseNet121. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -839,6 +859,8 @@ const modelsData = [
         "id": "j3mlrvvlvs00",
         "name": "ShuffleNetV2",
         "description": "ShuffleNetV2是Shufflenet的升级版本，作为轻量级网络，通过遵循降低网络的碎片程度、减少element-wise等设计准则，在保证精度的前提下进一步追求高性能。",
+        "descriptionZh": "ShuffleNetV2是Shufflenet的升级版本，作为轻量级网络，通过遵循降低网络的碎片程度、减少element-wise等设计准则，在保证精度的前提下进一步追求高性能。",
+        "descriptionEn": "ShuffleNetV2 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-16 20:19:07",
         "updatedAt": "2026-03-26 09:35:38",
         "badge": null,
@@ -867,7 +889,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "ShuffleNetV2可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // ShuffleNetV2 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::ShuffleNetV2) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/ShuffleNetV2/src/CMakeLists.txt)"
+                "content": "ShuffleNetV2可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // ShuffleNetV2 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::ShuffleNetV2) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/ShuffleNetV2/src/CMakeLists.txt)",
+                "summary": "ShuffleNetV2可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme",
+                "summaryEn": "C++ quick-start notes for ShuffleNetV2. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -1002,6 +1026,8 @@ const modelsData = [
         "id": "j3m99qggso00",
         "name": "SqueezeNet1_1",
         "description": "Squeezenet的设计采用了卷积替换、减少卷积通道数和降采样操作后置等策略，旨在在不大幅降低模型精度的前提下，最大程度的提高运算速度。",
+        "descriptionZh": "Squeezenet的设计采用了卷积替换、减少卷积通道数和降采样操作后置等策略，旨在在不大幅降低模型精度的前提下，最大程度的提高运算速度。",
+        "descriptionEn": "SqueezeNet1_1 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 8 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-16 19:24:13",
         "updatedAt": "2026-03-26 09:35:38",
         "badge": null,
@@ -1030,7 +1056,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // SqueezeNet1_1 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::SqueezeNet1_1) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/ResNet50/src/CMakeLists.txt)"
+                "content": "可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // SqueezeNet1_1 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::SqueezeNet1_1) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/ResNet50/src/CMakeLists.txt)",
+                "summary": "可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme",
+                "summaryEn": "C++ quick-start notes for SqueezeNet1_1. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -1155,6 +1183,8 @@ const modelsData = [
         "id": "j3m8r949vs00",
         "name": "Chinese-CLIP",
         "description": "Chinese-CLIP 是 CLIP 模型的中文版本。CLIP 通过对比学习方式，同时学习图像和文本的表示，并能够理解两者之间的语义关联。Chinese-CLIP 使用约 2 亿规模的中文图文对进行训练，其核心目标是解决中文场景下的跨模态检索、图像表示生成等任务。",
+        "descriptionZh": "Chinese-CLIP 是 CLIP 模型的中文版本。CLIP 通过对比学习方式，同时学习图像和文本的表示，并能够理解两者之间的语义关联。Chinese-CLIP 使用约 2 亿规模的中文图文对进行训练，其核心目标是解决中文场景下的跨模态检索、图像表示生成等任务。",
+        "descriptionEn": "Chinese-CLIP is a multimodal model for image-text matching. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 11 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-16 19:22:14",
         "updatedAt": "2026-03-26 09:35:38",
         "badge": null,
@@ -1182,7 +1212,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "Chinese-CLIP模型可以通过以下代码完成快速推理\n\nusing namespace Infer;\n\nint main(int argc, char* argv[])\n{\n    ClipInfer model;\n    if (!model.ExecuteParams(argc, argv)) {\n        LOG(ERROR) << \"Fail to parse cmd!\";\n        return -1;\n    }\n    EnvInit(model.acl_path_);\n    model.LoadModel();\n    std::vector<std::vector<float>> zeroshotWeights = model.InferTxt();\n    for (size_t i = 0; i < model.imgFileList_.size(); ++i)\n    {\n        std::vector<float> imgResult = model.InferImageSingle(model.imgFileList_[i][0]);\n        std::vector<float> tmp = model.ComputeModelLogits(imgResult, zeroshotWeights, 512, model.txtFileList_.size(), model.imgFileList_[i][0]);\n    }\n    model.UnLoadModel();\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码仅展示了主要流程，详细实现请参考Chinese-CLIP (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/Chinese-CLIP)。"
+                "content": "Chinese-CLIP模型可以通过以下代码完成快速推理\n\nusing namespace Infer;\n\nint main(int argc, char* argv[])\n{\n    ClipInfer model;\n    if (!model.ExecuteParams(argc, argv)) {\n        LOG(ERROR) << \"Fail to parse cmd!\";\n        return -1;\n    }\n    EnvInit(model.acl_path_);\n    model.LoadModel();\n    std::vector<std::vector<float>> zeroshotWeights = model.InferTxt();\n    for (size_t i = 0; i < model.imgFileList_.size(); ++i)\n    {\n        std::vector<float> imgResult = model.InferImageSingle(model.imgFileList_[i][0]);\n        std::vector<float> tmp = model.ComputeModelLogits(imgResult, zeroshotWeights, 512, model.txtFileList_.size(), model.imgFileList_[i][0]);\n    }\n    model.UnLoadModel();\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码仅展示了主要流程，详细实现请参考Chinese-CLIP (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/Chinese-CLIP)。",
+                "summary": "Chinese-CLIP模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for Chinese-CLIP. Covers runtime initialization and inference execution."
             }
         ],
         "detailParams": [
@@ -1344,6 +1376,8 @@ const modelsData = [
         "id": "j3m873lcso00",
         "name": "Swin-Transformer",
         "description": "Swin-Transformer是针对于图片处理设计的基于Transformer架构的神经网络。该网络针对原始Transformer迁移到图片端后计算量过大，复用困难的问题，提出了新的swin-block以代替原有的attention架构。模型以窗口的attention方式极大地减少了图像不同区域间的互相响应，同时也避免了部分冗余信息的产生。最终，模型在减少了大量计算量的同时，在不同的视觉传统任务上也有了效果的提升。",
+        "descriptionZh": "Swin-Transformer是针对于图片处理设计的基于Transformer架构的神经网络。该网络针对原始Transformer迁移到图片端后计算量过大，复用困难的问题，提出了新的swin-block以代替原有的attention架构。模型以窗口的attention方式极大地减少了图像不同区域间的互相响应，同时也避免了部分冗余信息的产生。最终，模型在减少了大量计算量的同时，在不同的视觉传统任务上也有了效果的提升。",
+        "descriptionEn": "Swin-Transformer is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 10 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-16 19:19:28",
         "updatedAt": "2026-03-26 09:35:38",
         "badge": "Beta",
@@ -1372,7 +1406,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "Swin-Transformer可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // Swin-Transformer 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::SwinT) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/Swin-Transformer/src/CMakeLists.txt)"
+                "content": "Swin-Transformer可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // Swin-Transformer 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::SwinT) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/Swin-Transformer/src/CMakeLists.txt)",
+                "summary": "Swin-Transformer可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme",
+                "summaryEn": "C++ quick-start notes for Swin-Transformer. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -1534,6 +1570,8 @@ const modelsData = [
         "id": "ivr055ncp400",
         "name": "Pi0",
         "description": "Pi0是一款视觉-语言-动作(VLA)通用机器人大模型，它基于预训练视觉语言模型(VLM)和流匹配(Flow Matching)机制，能够将自然语言指令直接转换为机器人可执行的连续动作序列，从而精准控制机器人完成复杂、高灵巧度的操作任务。",
+        "descriptionZh": "Pi0是一款视觉-语言-动作(VLA)通用机器人大模型，它基于预训练视觉语言模型(VLM)和流匹配(Flow Matching)机制，能够将自然语言指令直接转换为机器人可执行的连续动作序列，从而精准控制机器人完成复杂、高灵巧度的操作任务。",
+        "descriptionEn": "Pi0 is a computer vision model for embodied AI. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenEuler. Compute targets: Hi3591PV100. The mirror currently exposes 2 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-04 20:07:37",
         "updatedAt": "2026-03-06 17:34:59",
         "badge": null,
@@ -1600,6 +1638,8 @@ const modelsData = [
         "id": "ivcifqkd0400",
         "name": "ACT",
         "description": "ACT（Action Chunking with Transformers）是面向机器人学习场景的高性能端到端动作控制模型。相比传统模块化机器人控制模型，ACT采用轻量化Transformer架构作为核心骨干进行动作表征学习，结合多模态感知融合模块和时序动作优化网络，在控制精度和实时响应速度上均有显著提升。",
+        "descriptionZh": "ACT（Action Chunking with Transformers）是面向机器人学习场景的高性能端到端动作控制模型。相比传统模块化机器人控制模型，ACT采用轻量化Transformer架构作为核心骨干进行动作表征学习，结合多模态感知融合模块和时序动作优化网络，在控制精度和实时响应速度上均有显著提升。",
+        "descriptionEn": "ACT is a multimodal model for embodied AI. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenEuler. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-03 10:30:33",
         "updatedAt": "2026-03-04 16:06:22",
         "badge": null,
@@ -1626,7 +1666,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "模型可以通过以下代码生成可执行文件，并开放接口由python调用执行推理，以 SVP_NNN 推理引擎为例。\n#include <fstream>\n#include <iostream>\n#include \"sample_process.h\"\n#include \"utils.h\"\n#include <vector>\n#include <string>\nusing namespace std;\n\nint main() {\n    // 初始化推理环境（只执行一次）\n    SampleProcess sample;\n    if (sample.InitResource() != SUCCESS) {\n        cerr << \"Init resource failed\" << endl;\n        return -1;\n    }\n\n    // 加载模型（只执行一次）\n    if (sample.LoadModel() != SUCCESS) {\n        cerr << \"Load model failed\" << endl;\n        sample.DestroyResource();\n        return -1;\n    }\n\n    // 循环处理多次输入\n    while (true) {\n        vector<const void*> input_datas;\n        vector<size_t> input_sizes;\n        const int INPUT_COUNT = 3;\n\n        // 读取输入数据（保持原有逻辑）\n        bool readSuccess = true;\n        for (int i = 0; i < INPUT_COUNT; ++i) {\n            uint32_t data_size;\n            cin.read(reinterpret_cast<char*>(&data_size), sizeof(data_size));\n            if (!cin.good()) {\n                cerr << \"Read input \" << i << \" size failed\" << endl;\n                readSuccess = false;\n                break;\n            }\n\n            void* data = nullptr;\n            svp_acl_error ret = svp_acl_rt_malloc(&data, data_size, SVP_ACL_MEM_MALLOC_NORMAL_ONLY);\n            if (ret != SVP_ACL_SUCCESS || data == nullptr) {\n                cerr << \"Malloc buffer for input \" << i << \" failed\" << endl;\n                readSuccess = false;\n                break;\n            }\n\n            cin.read(reinterpret_cast<char*>(data), data_size);\n            if (!cin.good()) {\n                cerr << \"Read input \" << i << \" data failed\" << endl;\n                svp_acl_rt_free(data);\n                readSuccess = false;\n                break;\n            }\n\n            input_datas.push_back(data);\n            input_sizes.push_back(data_size);\n        }\n\n        // 检查是否读取失败（比如到达输入末尾）\n        if (!readSuccess) {\n            // 释放已分配的内存\n            for (auto ptr : input_datas) svp_acl_rt_free(ptr);\n            break;\n        }\n\n        // 设置输入并执行推理\n        sample.SetInputDatas(input_datas, input_sizes);\n        if (sample.Process() != SUCCESS) {\n            cerr << \"Inference failed\" << endl;\n        } else {\n            cout << \"3-input inference success\" << endl;  // 注意这里修正了原代码的数字错误（5->3）\n        }\n\n        // 释放当前批次的输入内存\n        for (auto data : input_datas) svp_acl_rt_free(data);\n    }\n\n    // 最后释放所有资源\n    sample.DestroyResource();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于samples/contribute/ACT/SVP_NNN/src (https://gitee.com/HiSpark/modelzoo/tree/master/samples/contribute/ACT/SVP_NNN/src)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/contribute/ACT/SVP_NNN/src/CMakeLists.txt)。"
+                "content": "模型可以通过以下代码生成可执行文件，并开放接口由python调用执行推理，以 SVP_NNN 推理引擎为例。\n#include <fstream>\n#include <iostream>\n#include \"sample_process.h\"\n#include \"utils.h\"\n#include <vector>\n#include <string>\nusing namespace std;\n\nint main() {\n    // 初始化推理环境（只执行一次）\n    SampleProcess sample;\n    if (sample.InitResource() != SUCCESS) {\n        cerr << \"Init resource failed\" << endl;\n        return -1;\n    }\n\n    // 加载模型（只执行一次）\n    if (sample.LoadModel() != SUCCESS) {\n        cerr << \"Load model failed\" << endl;\n        sample.DestroyResource();\n        return -1;\n    }\n\n    // 循环处理多次输入\n    while (true) {\n        vector<const void*> input_datas;\n        vector<size_t> input_sizes;\n        const int INPUT_COUNT = 3;\n\n        // 读取输入数据（保持原有逻辑）\n        bool readSuccess = true;\n        for (int i = 0; i < INPUT_COUNT; ++i) {\n            uint32_t data_size;\n            cin.read(reinterpret_cast<char*>(&data_size), sizeof(data_size));\n            if (!cin.good()) {\n                cerr << \"Read input \" << i << \" size failed\" << endl;\n                readSuccess = false;\n                break;\n            }\n\n            void* data = nullptr;\n            svp_acl_error ret = svp_acl_rt_malloc(&data, data_size, SVP_ACL_MEM_MALLOC_NORMAL_ONLY);\n            if (ret != SVP_ACL_SUCCESS || data == nullptr) {\n                cerr << \"Malloc buffer for input \" << i << \" failed\" << endl;\n                readSuccess = false;\n                break;\n            }\n\n            cin.read(reinterpret_cast<char*>(data), data_size);\n            if (!cin.good()) {\n                cerr << \"Read input \" << i << \" data failed\" << endl;\n                svp_acl_rt_free(data);\n                readSuccess = false;\n                break;\n            }\n\n            input_datas.push_back(data);\n            input_sizes.push_back(data_size);\n        }\n\n        // 检查是否读取失败（比如到达输入末尾）\n        if (!readSuccess) {\n            // 释放已分配的内存\n            for (auto ptr : input_datas) svp_acl_rt_free(ptr);\n            break;\n        }\n\n        // 设置输入并执行推理\n        sample.SetInputDatas(input_datas, input_sizes);\n        if (sample.Process() != SUCCESS) {\n            cerr << \"Inference failed\" << endl;\n        } else {\n            cout << \"3-input inference success\" << endl;  // 注意这里修正了原代码的数字错误（5->3）\n        }\n\n        // 释放当前批次的输入内存\n        for (auto data : input_datas) svp_acl_rt_free(data);\n    }\n\n    // 最后释放所有资源\n    sample.DestroyResource();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于samples/contribute/ACT/SVP_NNN/src (https://gitee.com/HiSpark/modelzoo/tree/master/samples/contribute/ACT/SVP_NNN/src)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/contribute/ACT/SVP_NNN/src/CMakeLists.txt)。",
+                "summary": "模型可以通过以下代码生成可执行文件，并开放接口由python调用执行推理，以 SVP_NNN 推理引擎为例。",
+                "summaryEn": "C++ quick-start notes for ACT. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -1704,6 +1746,8 @@ const modelsData = [
         "id": "ip92pbfkp400",
         "name": "CRNN",
         "description": "CRNN是卷积循环网络，本模型是一个基于其的中文 OCR 模型。",
+        "descriptionZh": "CRNN是卷积循环网络，本模型是一个基于其的中文 OCR 模型。",
+        "descriptionEn": "CRNN is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-02-12 10:58:59",
         "updatedAt": "2026-03-04 16:06:24",
         "badge": "Beta",
@@ -1732,7 +1776,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "CRNN模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // CRNN模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::CRNN) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考 文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/ocr/CRNN/src/CMakeLists.txt)"
+                "content": "CRNN模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // CRNN模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::CRNN) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考 文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/ocr/CRNN/src/CMakeLists.txt)",
+                "summary": "CRNN模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for CRNN. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -1837,6 +1883,8 @@ const modelsData = [
         "id": "iodtp8ht0400",
         "name": "GraspNet",
         "description": "GraspNet是一种基于点云输入的多阶段抓取姿态预测模型，由抓取视角估计和抓取姿态生成两个阶段组成，通过特征提取、视角估计、局部特征提取、抓取参数估计和预测解码一系列处理，最终生成包含抓取评分、抓取宽度、抓取高度、抓取深度、旋转矩阵、抓取中心点和物体ID的预测结果，旨在解决机器人抓取任务中的6D抓取姿态估计问题。",
+        "descriptionZh": "GraspNet是一种基于点云输入的多阶段抓取姿态预测模型，由抓取视角估计和抓取姿态生成两个阶段组成，通过特征提取、视角估计、局部特征提取、抓取参数估计和预测解码一系列处理，最终生成包含抓取评分、抓取宽度、抓取高度、抓取深度、旋转矩阵、抓取中心点和物体ID的预测结果，旨在解决机器人抓取任务中的6D抓取姿态估计问题。",
+        "descriptionEn": "GraspNet is a computer vision model for embodied AI. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenEuler. Compute targets: Hi3591PV100. The mirror currently exposes 2 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-02-09 19:42:15",
         "updatedAt": "2026-02-12 11:24:22",
         "badge": "Beta",
@@ -1863,7 +1911,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n    std::string filePath= \"/path/to/file_list_1.json\"; // 输入文本文件路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::GraspNet) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(filePath, FileType::JsonFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/embodied_intelligence/GraspNet/src/CMakeLists.txt)。"
+                "content": "模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n    std::string filePath= \"/path/to/file_list_1.json\"; // 输入文本文件路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::GraspNet) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(filePath, FileType::JsonFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/embodied_intelligence/GraspNet/src/CMakeLists.txt)。",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for GraspNet. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -1931,6 +1981,8 @@ const modelsData = [
         "id": "indvkfmcp400",
         "name": "MiniCPM-4v-0.5B",
         "description": "MiniCPM-4v-0.5B: 小参数, 大智慧——端侧多模态模型\n\n由面壁智能(OpenBMB)打造的MiniCPM-4v-0.5B, 以0.53B的精简参数量，在端侧设备上实现了卓越的图文理解与交互能力。专为边缘计算场景设计，让每一分算力都充分发挥价值。\n\n三大核心优势：\n    1. 创新架构，轻装上阵\n通过创新的稀疏感知训练和视觉压缩技术，实现 16:1 视觉特征压缩比，在保证高精度的同时，极大降低了推理算力消耗与内存占用。\n    2. 高能数据，以小博大\n依托高密度数据体系，数据准备成本下降90%。通过汇聚全球高质量语料进行精细化对齐，用优质的数据训练模型，实现越级性能表现。\n    3. 高效训练，成本锐减\n采用原创 WSD 调度策略与“模型风洞”技术，相比传统方案，搜索算力节省超99%，整体训练成本节省约60%，为端侧模型的持续迭代提供高效路径。\n\n海思平台技术支撑：\n现已适配 Hi3403V100 平台，持续生成速度达 21 tokens/s，为边缘侧设备提供流程、敏捷的智能视觉体验。",
+        "descriptionZh": "MiniCPM-4v-0.5B: 小参数, 大智慧——端侧多模态模型\n\n由面壁智能(OpenBMB)打造的MiniCPM-4v-0.5B, 以0.53B的精简参数量，在端侧设备上实现了卓越的图文理解与交互能力。专为边缘计算场景设计，让每一分算力都充分发挥价值。\n\n三大核心优势：\n    1. 创新架构，轻装上阵\n通过创新的稀疏感知训练和视觉压缩技术，实现 16:1 视觉特征压缩比，在保证高精度的同时，极大降低了推理算力消耗与内存占用。\n    2. 高能数据，以小博大\n依托高密度数据体系，数据准备成本下降90%。通过汇聚全球高质量语料进行精细化对齐，用优质的数据训练模型，实现越级性能表现。\n    3. 高效训练，成本锐减\n采用原创 WSD 调度策略与“模型风洞”技术，相比传统方案，搜索算力节省超99%，整体训练成本节省约60%，为端侧模型的持续迭代提供高效路径。\n\n海思平台技术支撑：\n现已适配 Hi3403V100 平台，持续生成速度达 21 tokens/s，为边缘侧设备提供流程、敏捷的智能视觉体验。",
+        "descriptionEn": "MiniCPM-4v-0. 5B is a natural language processing model for VLM. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 1 downloadable artifact, along with quick-start resources when available.",
         "date": "2026-02-06 17:16:24",
         "updatedAt": "2026-03-26 09:35:38",
         "badge": "Beta",
@@ -1957,7 +2009,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "MiniCPM模型可以通过以下代码完成快速推理\n#include \"log.h\"\n#include \"MiniCpmInfer.h\"\n\nint main()\n{\n    EnvInit();\n    string result;\n    MiniCpmInfer model;\n    auto imagePath = \"../datasets/demo.png\"; // 图片地址\n    auto text = \"翻译\";      // 文本描述内容\n    LOG(INFO) << \"\\n Current question: \\n Text: \" << text << \"\\n Image path: \" << imagePath;\n    result = model.InferSingle(imagePath, text);\n    LOG(INFO) << \"\\nMiniCPM infer result: \\n\" << result;\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于目录 /samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)下，编译相关配置参考 CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/vlm/MiniCPM/src/CMakeLists.txt)。"
+                "content": "MiniCPM模型可以通过以下代码完成快速推理\n#include \"log.h\"\n#include \"MiniCpmInfer.h\"\n\nint main()\n{\n    EnvInit();\n    string result;\n    MiniCpmInfer model;\n    auto imagePath = \"../datasets/demo.png\"; // 图片地址\n    auto text = \"翻译\";      // 文本描述内容\n    LOG(INFO) << \"\\n Current question: \\n Text: \" << text << \"\\n Image path: \" << imagePath;\n    result = model.InferSingle(imagePath, text);\n    LOG(INFO) << \"\\nMiniCPM infer result: \\n\" << result;\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于目录 /samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)下，编译相关配置参考 CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/vlm/MiniCPM/src/CMakeLists.txt)。",
+                "summary": "MiniCPM模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for MiniCPM-4v-0.5B. Covers runtime initialization, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -1997,6 +2051,8 @@ const modelsData = [
         "id": "ie2sc9g1qk00",
         "name": "FastSpeech2",
         "description": "FastSpeech2 是一种高效的端到端语音合成模型。相比 FastSpeech，FastSpeech2 引入了多尺度时长预测器和能量 / 基频预测分支，优化了时长预测模块并新增韵律特征建模，在合成速度和语音自然度上均有大幅提升。",
+        "descriptionZh": "FastSpeech2 是一种高效的端到端语音合成模型。相比 FastSpeech，FastSpeech2 引入了多尺度时长预测器和能量 / 基频预测分支，优化了时长预测模块并新增韵律特征建模，在合成速度和语音自然度上均有大幅提升。",
+        "descriptionEn": "FastSpeech2 is a audio model for text-to-speech. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-01-08 16:18:57",
         "updatedAt": "2026-01-09 15:08:50",
         "badge": "Beta",
@@ -2024,7 +2080,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n    std::string filePath= \"/path/to/file_list.json\"; // 输入文本文件路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::FastSpeech2) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(filePath, FileType::JsonFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/audio/FastSpeech2/src/CMakeLists.txt)。"
+                "content": "模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n    std::string filePath= \"/path/to/file_list.json\"; // 输入文本文件路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::FastSpeech2) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(filePath, FileType::JsonFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/audio/FastSpeech2/src/CMakeLists.txt)。",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for FastSpeech2. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -2092,6 +2150,8 @@ const modelsData = [
         "id": "ib6scq68vs00",
         "name": "CodeFormer",
         "description": "CodeFormer 是一种基于码本查找 Transformer 的鲁棒盲人脸修复模型。相比传统方法，它通过生成对抗网络与量化编码技术，能有效处理模糊、噪声等多种退化问题，兼顾人脸修复质量与身份保真度，适用于盲人脸恢复场景。",
+        "descriptionZh": "CodeFormer 是一种基于码本查找 Transformer 的鲁棒盲人脸修复模型。相比传统方法，它通过生成对抗网络与量化编码技术，能有效处理模糊、噪声等多种退化问题，兼顾人脸修复质量与身份保真度，适用于盲人脸恢复场景。",
+        "descriptionEn": "CodeFormer is a computer vision model for image enhancement. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-30 17:56:29",
         "updatedAt": "2025-12-30 20:02:18",
         "badge": null,
@@ -2120,7 +2180,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "CodeFormer模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // CodeFormer模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::CodeFormer) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/super_resolution/CodeFormer/src/CMakeLists.txt)"
+                "content": "CodeFormer模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // CodeFormer模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::CodeFormer) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/super_resolution/CodeFormer/src/CMakeLists.txt)",
+                "summary": "CodeFormer模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for CodeFormer. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -2198,6 +2260,8 @@ const modelsData = [
         "id": "iapedo790s00",
         "name": "FaceNet",
         "description": "FaceNet 是一种基于深度卷积神经网络的端到端人脸识别与特征嵌入模型。相比传统基于手工特征或分阶段匹配的方法，它通过将人脸图像直接映射为固定维度的紧凑特征向量（Embedding），并采用三元组损失（Triplet Loss）优化特征相似度度量，能有效缩小类内差异、扩大类间距离，兼顾识别精度与推理效率，适用于身份验证、人脸检索、监控安防等大规模人脸识别场景。",
+        "descriptionZh": "FaceNet 是一种基于深度卷积神经网络的端到端人脸识别与特征嵌入模型。相比传统基于手工特征或分阶段匹配的方法，它通过将人脸图像直接映射为固定维度的紧凑特征向量（Embedding），并采用三元组损失（Triplet Loss）优化特征相似度度量，能有效缩小类内差异、扩大类间距离，兼顾识别精度与推理效率，适用于身份验证、人脸检索、监控安防等大规模人脸识别场景。",
+        "descriptionEn": "FaceNet is a computer vision model for face recognition. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-29 10:37:55",
         "updatedAt": "2025-12-30 20:02:17",
         "badge": null,
@@ -2226,7 +2290,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::FaceNet) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/recognition/FaceNet/src/CMakeLists.txt)。"
+                "content": "模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::FaceNet) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/recognition/FaceNet/src/CMakeLists.txt)。",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for FaceNet. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -2324,6 +2390,8 @@ const modelsData = [
         "id": "i9urm5td6k00",
         "name": "LRStereo-B",
         "description": "LRStereo-B是一个轻量且鲁棒的双目立体匹配模型。它在开源模型(Raft-Stereo)的基础上做了大量的模型结构改进和重训。具体功能为输入标定好的左右目图像以及相关的相机参数，获得左目图像对应的深度图。",
+        "descriptionZh": "LRStereo-B是一个轻量且鲁棒的双目立体匹配模型。它在开源模型(Raft-Stereo)的基础上做了大量的模型结构改进和重训。具体功能为输入标定好的左右目图像以及相关的相机参数，获得左目图像对应的深度图。",
+        "descriptionEn": "LRStereo-B is a computer vision model for stereo depth. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 20:41:00",
         "updatedAt": "2025-12-30 20:02:17",
         "badge": null,
@@ -2351,7 +2419,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n  EnvInit();\n  std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n  std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n  std::string omModelDisPath = \"/path/to/model.om\"; // 视差转距离模型文件路径 \n  bool type = std::stoi(cfg[\"type\"]) == 1; // 是否使用视差转距离模型\n  std::unique_ptr<Model> modelStereo = std::make_unique<Model>();\n  modelStereo->Load(omModelPath, LRStereo)\n  std::unique_ptr<Model> modelDis = std::make_unique<Model>();\n  if (type && modelDis->Load(dis_path, LRStereoDis) != 0) {\n    LOG(ERROR) << \"fail to load Dis model\";\n    return 0;\n  }\n  std::vector<std::vector<std::string>> fileLists = ParseFileList(imagePath);\n  std::vector<std::vector<Tensor>> ret;\n  std::vector<Tensor> result;\n  for (size_t i = 0; i < fileLists.size(); ++i) {\n    std::string inputString = BuildInputString(fileLists[i]);\n    ret = modelStereo->Infer(inputString, FileType::SingelImageFile);\n    if (type) {\n      result = modelDis->Infer(ret[0], inputString);\n    }\n  }\n  ret.clear();\n  ret.shrink_to_fit();\n  modelStereo->Unload()\n  if (type) {\n    result.clear();\n    result.shrink_to_fit();\n    modelDis->Unload() != 0\n  }\n  EnvDeinit();\n  return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于[/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)]目录下，编译相关配置参考[CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/depth/LiteAndRobustStereo/src/CMakeLists.txt)]"
+                "content": "模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n  EnvInit();\n  std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n  std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n  std::string omModelDisPath = \"/path/to/model.om\"; // 视差转距离模型文件路径 \n  bool type = std::stoi(cfg[\"type\"]) == 1; // 是否使用视差转距离模型\n  std::unique_ptr<Model> modelStereo = std::make_unique<Model>();\n  modelStereo->Load(omModelPath, LRStereo)\n  std::unique_ptr<Model> modelDis = std::make_unique<Model>();\n  if (type && modelDis->Load(dis_path, LRStereoDis) != 0) {\n    LOG(ERROR) << \"fail to load Dis model\";\n    return 0;\n  }\n  std::vector<std::vector<std::string>> fileLists = ParseFileList(imagePath);\n  std::vector<std::vector<Tensor>> ret;\n  std::vector<Tensor> result;\n  for (size_t i = 0; i < fileLists.size(); ++i) {\n    std::string inputString = BuildInputString(fileLists[i]);\n    ret = modelStereo->Infer(inputString, FileType::SingelImageFile);\n    if (type) {\n      result = modelDis->Infer(ret[0], inputString);\n    }\n  }\n  ret.clear();\n  ret.shrink_to_fit();\n  modelStereo->Unload()\n  if (type) {\n    result.clear();\n    result.shrink_to_fit();\n    modelDis->Unload() != 0\n  }\n  EnvDeinit();\n  return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于[/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)]目录下，编译相关配置参考[CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/depth/LiteAndRobustStereo/src/CMakeLists.txt)]",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for LRStereo-B. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -2429,6 +2499,8 @@ const modelsData = [
         "id": "i9t43v4pec00",
         "name": "TinySam",
         "description": "TinySAM 通过全阶段知识蒸馏、在线硬提示采样、量化等系列优化策略，构建轻量级 “万物分割” 模型，解决了原始 SAM 模型计算量大、部署困难的痛点，助力高效分割任务在资源受限场景下的应用。",
+        "descriptionZh": "TinySAM 通过全阶段知识蒸馏、在线硬提示采样、量化等系列优化策略，构建轻量级 “万物分割” 模型，解决了原始 SAM 模型计算量大、部署困难的痛点，助力高效分割任务在资源受限场景下的应用。",
+        "descriptionEn": "TinySam is a computer vision model for segmentation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 9 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 16:38:13",
         "updatedAt": "2025-12-30 20:02:17",
         "badge": "Beta",
@@ -2456,7 +2528,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "TinySam模型可以通过以下代码完成快速推理\n#include \"sam_predictor.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    SAMBoxPredictor predictor;\n    predictor.loadModel(modelPaths);\n    predictor.setImage(image); // 编码图像数据\n    predictor.predict(boxes);  // 设置检测框进行分割模型掩码解码\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/segmentation/TinySam/src/CMakeLists.txt)。"
+                "content": "TinySam模型可以通过以下代码完成快速推理\n#include \"sam_predictor.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    SAMBoxPredictor predictor;\n    predictor.loadModel(modelPaths);\n    predictor.setImage(image); // 编码图像数据\n    predictor.predict(boxes);  // 设置检测框进行分割模型掩码解码\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/segmentation/TinySam/src/CMakeLists.txt)。",
+                "summary": "TinySam模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for TinySam. Covers runtime initialization, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -2615,6 +2689,8 @@ const modelsData = [
         "id": "i9t0hkf56k00",
         "name": "YOLOv8s-OBB",
         "description": "YOLOv8s-OBB 是 Ultralytics 推出的基于 YOLOv8 的旋转目标检测（Oriented Bounding Box, OBB）模型。相比于水平框检测，OBB 能够更准确地检测倾斜或不规则排列的目标（如航拍图像中的车辆、船只等）。该模型在 DOTA 数据集上进行了训练和验证。",
+        "descriptionZh": "YOLOv8s-OBB 是 Ultralytics 推出的基于 YOLOv8 的旋转目标检测（Oriented Bounding Box, OBB）模型。相比于水平框检测，OBB 能够更准确地检测倾斜或不规则排列的目标（如航拍图像中的车辆、船只等）。该模型在 DOTA 数据集上进行了训练和验证。",
+        "descriptionEn": "YOLOv8s-OBB is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 16:22:36",
         "updatedAt": "2025-12-30 20:02:17",
         "badge": null,
@@ -2643,7 +2719,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\nusing namespace Infer;\nint main()\n{\n  EnvInit();\n  std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n  std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(omModelPath, ModelType::Yolov8sObb) != 0) {\n    LOG(ERROR) << \"fail to load model\";\n    return -1;\n  }\n  auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n  if (ret.size() == 0) {\n    LOG(ERROR) << \"fail to infer model\";\n    model->Unload();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    LOG(ERROR) << \"fail to unload model\";\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于[/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)]目录下，编译相关配置参考[CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov8s-obb/src/CMakeLists.txt)]"
+                "content": "模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\nusing namespace Infer;\nint main()\n{\n  EnvInit();\n  std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n  std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(omModelPath, ModelType::Yolov8sObb) != 0) {\n    LOG(ERROR) << \"fail to load model\";\n    return -1;\n  }\n  auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n  if (ret.size() == 0) {\n    LOG(ERROR) << \"fail to infer model\";\n    model->Unload();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    LOG(ERROR) << \"fail to unload model\";\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于[/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)]目录下，编译相关配置参考[CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov8s-obb/src/CMakeLists.txt)]",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for YOLOv8s-OBB. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -2741,6 +2819,8 @@ const modelsData = [
         "id": "i9srr6dd6k00",
         "name": "PaddleOCRv4-rec",
         "description": "PP-OCRv4识别模型在PP-OCRv3的基础上进一步升级。整体的框架保持了与PP-OCRv3识别模型相同的pipeline，分别进行了数据、网络结构、训练策略等方面的优化。",
+        "descriptionZh": "PP-OCRv4识别模型在PP-OCRv3的基础上进一步升级。整体的框架保持了与PP-OCRv3识别模型相同的pipeline，分别进行了数据、网络结构、训练策略等方面的优化。",
+        "descriptionEn": "PaddleOCRv4-rec is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 16:02:03",
         "updatedAt": "2025-12-30 20:02:17",
         "badge": "Beta",
@@ -2768,7 +2848,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "PaddleOCRv4-rec模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n  EnvInit();\n  std::string omModelPath = \"/path/to/model.om\"; // PaddleOCRv4-rec模型文件路径 \n  std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(omModelPath, ModelType::PaddleOCR_Rec) != 0) {\n    LOG(ERROR) << \"fail to load model\";\n    return -1;\n  }\n  auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n  if (ret.size() == 0) {\n    LOG(ERROR) << \"fail to infer model\";\n    model->Unload();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    LOG(ERROR) << \"fail to unload model\";\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于[/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)]目录下，编译相关配置参考[CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/ocr/PaddleOCRv4-rec/src/CMakeLists.txt)]。"
+                "content": "PaddleOCRv4-rec模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n  EnvInit();\n  std::string omModelPath = \"/path/to/model.om\"; // PaddleOCRv4-rec模型文件路径 \n  std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(omModelPath, ModelType::PaddleOCR_Rec) != 0) {\n    LOG(ERROR) << \"fail to load model\";\n    return -1;\n  }\n  auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n  if (ret.size() == 0) {\n    LOG(ERROR) << \"fail to infer model\";\n    model->Unload();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    LOG(ERROR) << \"fail to unload model\";\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于[/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)]目录下，编译相关配置参考[CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/ocr/PaddleOCRv4-rec/src/CMakeLists.txt)]。",
+                "summary": "PaddleOCRv4-rec模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for PaddleOCRv4-rec. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -2873,6 +2955,8 @@ const modelsData = [
         "id": "i9sq1n0lec00",
         "name": "PaddleOCRv4-det",
         "description": "PP-OCRv4检测模型在PP-OCRv3检测模型的基础上，在网络结构，训练策略，蒸馏策略三个方面做了优化。首先，PP-OCRv4检测模型使用PP-LCNetV3替换MobileNetv3，并提出并行分支融合的PFhead结构；其次，训练时动态调整shrink ratio的比例；最后，PP-OCRv4对CML的蒸馏loss进行优化，进一步提升文字检测效果。",
+        "descriptionZh": "PP-OCRv4检测模型在PP-OCRv3检测模型的基础上，在网络结构，训练策略，蒸馏策略三个方面做了优化。首先，PP-OCRv4检测模型使用PP-LCNetV3替换MobileNetv3，并提出并行分支融合的PFhead结构；其次，训练时动态调整shrink ratio的比例；最后，PP-OCRv4对CML的蒸馏loss进行优化，进一步提升文字检测效果。",
+        "descriptionEn": "PaddleOCRv4-det is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 15:54:13",
         "updatedAt": "2025-12-30 20:02:17",
         "badge": "Beta",
@@ -2901,7 +2985,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "PaddleOCRv4-det模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // PaddleOCRv4-det模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::PaddleOCR_Det) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于[/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)]目录下，编译相关配置参考[CMakeLists.txt (https://gitee.com/HiSpark/modelzoo-dev/tree/master/samples/samples_GPL/built-in/yolov3/src/CMakeLists.txt)]。"
+                "content": "PaddleOCRv4-det模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // PaddleOCRv4-det模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::PaddleOCR_Det) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于[/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)]目录下，编译相关配置参考[CMakeLists.txt (https://gitee.com/HiSpark/modelzoo-dev/tree/master/samples/samples_GPL/built-in/yolov3/src/CMakeLists.txt)]。",
+                "summary": "PaddleOCRv4-det模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for PaddleOCRv4-det. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -3006,6 +3092,8 @@ const modelsData = [
         "id": "i9snjr85ec00",
         "name": "YOLOv3",
         "description": "YOLOv3是一种端到端的one-stage目标检测模型。相比YOLOv2，YOLOv3采用了一个新的backbone-Darknet-53来进行特征提取工作，这个新网络比Darknet-19更加强大，也比ResNet-101或者ResNet-152更加高效。",
+        "descriptionZh": "YOLOv3是一种端到端的one-stage目标检测模型。相比YOLOv2，YOLOv3采用了一个新的backbone-Darknet-53来进行特征提取工作，这个新网络比Darknet-19更加强大，也比ResNet-101或者ResNet-152更加高效。",
+        "descriptionEn": "YOLOv3 is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 15:43:35",
         "updatedAt": "2025-12-30 20:02:17",
         "badge": "Beta",
@@ -3034,7 +3122,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n  EnvInit();\n  std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n  std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(omModelPath, ModelType::Yolov3) != 0) {\n    LOG(ERROR) << \"fail to load model\";\n    return -1;\n  }\n  auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n  if (ret.size() == 0) {\n    LOG(ERROR) << \"fail to infer model\";\n    model->Unload();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    LOG(ERROR) << \"fail to unload model\";\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于[/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)]目录下，编译相关配置参考[CMakeLists.txt (https://gitee.com/HiSpark/modelzoo-dev/tree/master/samples/samples_GPL/built-in/yolov3/src/CMakeLists.txt)]。"
+                "content": "模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n  EnvInit();\n  std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n  std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(omModelPath, ModelType::Yolov3) != 0) {\n    LOG(ERROR) << \"fail to load model\";\n    return -1;\n  }\n  auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n  if (ret.size() == 0) {\n    LOG(ERROR) << \"fail to infer model\";\n    model->Unload();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    LOG(ERROR) << \"fail to unload model\";\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于[/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)]目录下，编译相关配置参考[CMakeLists.txt (https://gitee.com/HiSpark/modelzoo-dev/tree/master/samples/samples_GPL/built-in/yolov3/src/CMakeLists.txt)]。",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for YOLOv3. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -3166,6 +3256,8 @@ const modelsData = [
         "id": "i9sgeqqt6k00",
         "name": "YOLOv10s",
         "description": "YOLOv10 引入了一种新的实时目标检测方法，解决了以前YOLO 版本在后处理和模型架构方面的不足。通过消除非最大抑制NMS和优化各种模型组件，YOLOv10 显著降低了计算开销。本示例基于YOLOv10s。",
+        "descriptionZh": "YOLOv10 引入了一种新的实时目标检测方法，解决了以前YOLO 版本在后处理和模型架构方面的不足。通过消除非最大抑制NMS和优化各种模型组件，YOLOv10 显著降低了计算开销。本示例基于YOLOv10s。",
+        "descriptionEn": "YOLOv10s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 15:12:19",
         "updatedAt": "2025-12-30 20:02:17",
         "badge": "Beta",
@@ -3193,7 +3285,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "YOLOv10s模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n  EnvInit();\n  std::string omModelPath = \"/path/to/model.om\"; // YOLOv10s模型文件路径 \n  std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(omModelPath, ModelType::Yolov10s) != 0) {\n    LOG(ERROR) << \"fail to load model\";\n    return -1;\n  }\n  auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n  if (ret.size() == 0) {\n    LOG(ERROR) << \"fail to infer model\";\n    model->Unload();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    LOG(ERROR) << \"fail to unload model\";\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于[/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)]目录下，编译相关配置参考[CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov10s/src/CMakeLists.txt)]。"
+                "content": "YOLOv10s模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n  EnvInit();\n  std::string omModelPath = \"/path/to/model.om\"; // YOLOv10s模型文件路径 \n  std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(omModelPath, ModelType::Yolov10s) != 0) {\n    LOG(ERROR) << \"fail to load model\";\n    return -1;\n  }\n  auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n  if (ret.size() == 0) {\n    LOG(ERROR) << \"fail to infer model\";\n    model->Unload();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    LOG(ERROR) << \"fail to unload model\";\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于[/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)]目录下，编译相关配置参考[CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov10s/src/CMakeLists.txt)]。",
+                "summary": "YOLOv10s模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for YOLOv10s. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -3298,6 +3392,8 @@ const modelsData = [
         "id": "i9qdl2hh6k00",
         "name": "HRNet",
         "description": "HigherHRNet 是一种新型的自下而上人体姿态估计算法，它在训练阶段引入多分辨率监督机制，在推理阶段采用多分辨率聚合策略，不仅能有效应对自下而上多人姿态估计任务中的尺度变化难题，还可实现关键点的高精度定位，尤其在小尺寸人体目标的处理上表现突出。",
+        "descriptionZh": "HigherHRNet 是一种新型的自下而上人体姿态估计算法，它在训练阶段引入多分辨率监督机制，在推理阶段采用多分辨率聚合策略，不仅能有效应对自下而上多人姿态估计任务中的尺度变化难题，还可实现关键点的高精度定位，尤其在小尺寸人体目标的处理上表现突出。",
+        "descriptionEn": "HRNet is a computer vision model for pose estimation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 10:20:26",
         "updatedAt": "2025-12-30 20:02:17",
         "badge": null,
@@ -3326,7 +3422,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "HRNet模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // HRNet模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::HRNet) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common) 目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/pose/HRNet/src/CMakeLists.txt) 。"
+                "content": "HRNet模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // HRNet模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::HRNet) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common) 目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/pose/HRNet/src/CMakeLists.txt) 。",
+                "summary": "HRNet模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for HRNet. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -3431,6 +3529,8 @@ const modelsData = [
         "id": "i9q7jrn16k00",
         "name": "YOLO11s",
         "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率",
+        "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率",
+        "descriptionEn": "YOLO11s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 09:54:03",
         "updatedAt": "2025-12-30 20:02:18",
         "badge": null,
@@ -3459,7 +3559,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main(int argc, char *argv[])\n{\n    InferParam inferParam;\n    ParseCmd(argc, argv, inferParam)\n    DevInit(inferParam.aclConfigPath);\n    ModelInfer(inferParam);\n    Infer::DevDeInit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo11s/src/CMakeLists.txt)"
+                "content": "模型可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main(int argc, char *argv[])\n{\n    InferParam inferParam;\n    ParseCmd(argc, argv, inferParam)\n    DevInit(inferParam.aclConfigPath);\n    ModelInfer(inferParam);\n    Infer::DevDeInit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo11s/src/CMakeLists.txt)",
+                "summary": "模型可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme",
+                "summaryEn": "C++ quick-start notes for YOLO11s. Covers runtime initialization, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -3564,6 +3666,8 @@ const modelsData = [
         "id": "i9q65e4hec00",
         "name": "YOLOv8s",
         "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv8在之前的YOLO版本的基础上进行了改进，在继承了原有YOLO网络模型优点的基础上，引入了新的特效和优化，具有更高的检测精度。",
+        "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv8在之前的YOLO版本的基础上进行了改进，在继承了原有YOLO网络模型优点的基础上，引入了新的特效和优化，具有更高的检测精度。",
+        "descriptionEn": "YOLOv8s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 09:47:43",
         "updatedAt": "2025-12-30 20:02:17",
         "badge": null,
@@ -3592,7 +3696,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "模型 可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main(int argc, char *argv[])\n{\n    InferParam inferParam;\n    ParseCmd(argc, argv, inferParam)\n    DevInit(inferParam.aclConfigPath);\n    ModelInfer(inferParam);\n    Infer::DevDeInit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov8s/src/CMakeLists.txt)"
+                "content": "模型 可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main(int argc, char *argv[])\n{\n    InferParam inferParam;\n    ParseCmd(argc, argv, inferParam)\n    DevInit(inferParam.aclConfigPath);\n    ModelInfer(inferParam);\n    Infer::DevDeInit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov8s/src/CMakeLists.txt)",
+                "summary": "模型 可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme",
+                "summaryEn": "C++ quick-start notes for YOLOv8s. Covers runtime initialization, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -3697,6 +3803,8 @@ const modelsData = [
         "id": "i9kll1a96k00",
         "name": "VDSR",
         "description": "VDSR（Very Deep Super-Resolution Network）是一种20层深度卷积神经网络，通过残差学习实现图像超分辨率重建。",
+        "descriptionZh": "VDSR（Very Deep Super-Resolution Network）是一种20层深度卷积神经网络，通过残差学习实现图像超分辨率重建。",
+        "descriptionEn": "VDSR is a computer vision model for image super-resolution. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 20:56:31",
         "updatedAt": "2025-12-30 20:02:18",
         "badge": null,
@@ -3725,7 +3833,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "VDSR模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // VDSR模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::VDSR) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/super_resolution/VDSR/src/CMakeLists.txt)"
+                "content": "VDSR模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // VDSR模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::VDSR) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/super_resolution/VDSR/src/CMakeLists.txt)",
+                "summary": "VDSR模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for VDSR. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -3803,6 +3913,8 @@ const modelsData = [
         "id": "i9kei1td6k00",
         "name": "Siamese Network",
         "description": "Siamese Network(孪生神经网络)是一种通过共享权重的两个相同子网络来度量两个输入样本相似性的深度学习框架，广泛应用于人脸识别、签名验证等任务。",
+        "descriptionZh": "Siamese Network(孪生神经网络)是一种通过共享权重的两个相同子网络来度量两个输入样本相似性的深度学习框架，广泛应用于人脸识别、签名验证等任务。",
+        "descriptionEn": "Siamese Network is a computer vision model for face recognition. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 20:25:32",
         "updatedAt": null,
         "badge": "Beta",
@@ -3831,7 +3943,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // SiameseNetwork模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::SiameseNetwork) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/recognition/SiameseNetwork/src/CMakeLists.txt)"
+                "content": "模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // SiameseNetwork模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::SiameseNetwork) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/recognition/SiameseNetwork/src/CMakeLists.txt)",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for Siamese Network. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -3909,6 +4023,8 @@ const modelsData = [
         "id": "i9j5c2fl6k00",
         "name": "YOLO11s-seg",
         "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-seg作为实例分割的模型，比检测模型更进一步，包括识别图像中的各个对象并将它们与图像的其余部分分割开来。",
+        "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-seg作为实例分割的模型，比检测模型更进一步，包括识别图像中的各个对象并将它们与图像的其余部分分割开来。",
+        "descriptionEn": "YOLO11s-seg is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 17:25:35",
         "updatedAt": "2025-12-30 20:02:18",
         "badge": null,
@@ -3937,7 +4053,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolo11s-seg模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::Yolo11s-seg) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo11s-seg/src/CMakeLists.txt)。"
+                "content": "模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolo11s-seg模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::Yolo11s-seg) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo11s-seg/src/CMakeLists.txt)。",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for YOLO11s-seg. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -4052,6 +4170,8 @@ const modelsData = [
         "id": "i9j3k8rpec00",
         "name": "YOLO11s-pose",
         "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。",
+        "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。",
+        "descriptionEn": "YOLO11s-pose is a computer vision model for pose estimation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 17:17:58",
         "updatedAt": "2025-12-30 20:02:18",
         "badge": null,
@@ -4080,7 +4200,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolo11s-pose模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::Yolo11s-pose) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo11s-pose/src/CMakeLists.txt)。"
+                "content": "模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolo11s-pose模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::Yolo11s-pose) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo11s-pose/src/CMakeLists.txt)。",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for YOLO11s-pose. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -4195,6 +4317,8 @@ const modelsData = [
         "id": "i9j2lpl16k00",
         "name": "YOLOv6s",
         "description": "YOLOv6s 是一种轻量高效的 one-stage 目标检测模型。相比前代 YOLO 模型，YOLOv6s 采用了 EfficientRep 作为 backbone 和 Rep-PAN 作为颈部网络，兼顾了检测精度与推理速度，更适用于边缘计算场景。",
+        "descriptionZh": "YOLOv6s 是一种轻量高效的 one-stage 目标检测模型。相比前代 YOLO 模型，YOLOv6s 采用了 EfficientRep 作为 backbone 和 Rep-PAN 作为颈部网络，兼顾了检测精度与推理速度，更适用于边缘计算场景。",
+        "descriptionEn": "YOLOv6s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 17:13:48",
         "updatedAt": "2025-12-30 20:02:18",
         "badge": null,
@@ -4223,7 +4347,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolov6s模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, Infer::Yolov6s) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov6s/src/CMakeLists.txt)。"
+                "content": "模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolov6s模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, Infer::Yolov6s) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov6s/src/CMakeLists.txt)。",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for YOLOv6s. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -4338,6 +4464,8 @@ const modelsData = [
         "id": "i9j1qkj1ec00",
         "name": "PFLD",
         "description": "PFLD全称A Practical Facial Landmark Detector是一个精度高，速度快，模型小的人脸关键点检测模型。",
+        "descriptionZh": "PFLD全称A Practical Facial Landmark Detector是一个精度高，速度快，模型小的人脸关键点检测模型。",
+        "descriptionEn": "PFLD is a computer vision model for keypoint detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 17:10:06",
         "updatedAt": "2025-12-30 20:02:18",
         "badge": null,
@@ -4366,7 +4494,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "PFLD模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n     std::string aclConfigPath = \"/path/to/acl.cfg\"; // 输入acl的配置路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    ret = Infer::DevInit(aclConfigPath);\n    std::shared_ptr<Infer::MdlBase> model = Infer::MdlCreate();\n    ret = model->LoadModel(omModelPath);\n    std::vector<std::string> imglists;\n    ret = ReadImglistFile(imagePath, imglists);\n    std::vector<Infer::TensorBuf> inBufs, outBufs;\n    std::vector<Infer::TensorDesc> inDescs, outDescs;\n    Infer::TensorDesc desc;\n    size_t inputNum = model->GetInTensorNum();\n    size_t  outputNum = model->GetOutTensorNum();\n    for (size_t i = 0; i < inputNum; i++) {\n        model->GetInTensorDescByIdx(i, desc);\n        inDescs.push_back(desc);\n        inBufs.emplace_back(desc.defaultSize, desc.defaultStride);\n    }\n    for (size_t i = 0; i < outputNum; i++) {\n        model->GetOutTensorDescByIdx(i, desc);\n        outDescs.push_back(desc);\n        outBufs.emplace_back(desc.defaultSize, desc.defaultStride);\n    }\n    model->GetInTensorDescByIdx(0, desc);\n    for (size_t i = 0; i < imglists.size(); ++i) {\n        ret = ReadImgFileToBuf(imglists[i], desc, inBufs[0]);\n        for (size_t j = 0; j < loop; j++) {\n            ret = model->Execute(inBufs, outBufs);\n        }\n        (void)PostProcess(outBufs, outDescs, imglists[i]);\n    }\n    model->UnLoadModel();\n    Infer::DevDeInit();\n    return 0;\n}\n备注：上述C++代码仅展示了主要流程，详细实现请参考PFLD (https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/detection/PFLD)。"
+                "content": "PFLD模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n     std::string aclConfigPath = \"/path/to/acl.cfg\"; // 输入acl的配置路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    ret = Infer::DevInit(aclConfigPath);\n    std::shared_ptr<Infer::MdlBase> model = Infer::MdlCreate();\n    ret = model->LoadModel(omModelPath);\n    std::vector<std::string> imglists;\n    ret = ReadImglistFile(imagePath, imglists);\n    std::vector<Infer::TensorBuf> inBufs, outBufs;\n    std::vector<Infer::TensorDesc> inDescs, outDescs;\n    Infer::TensorDesc desc;\n    size_t inputNum = model->GetInTensorNum();\n    size_t  outputNum = model->GetOutTensorNum();\n    for (size_t i = 0; i < inputNum; i++) {\n        model->GetInTensorDescByIdx(i, desc);\n        inDescs.push_back(desc);\n        inBufs.emplace_back(desc.defaultSize, desc.defaultStride);\n    }\n    for (size_t i = 0; i < outputNum; i++) {\n        model->GetOutTensorDescByIdx(i, desc);\n        outDescs.push_back(desc);\n        outBufs.emplace_back(desc.defaultSize, desc.defaultStride);\n    }\n    model->GetInTensorDescByIdx(0, desc);\n    for (size_t i = 0; i < imglists.size(); ++i) {\n        ret = ReadImgFileToBuf(imglists[i], desc, inBufs[0]);\n        for (size_t j = 0; j < loop; j++) {\n            ret = model->Execute(inBufs, outBufs);\n        }\n        (void)PostProcess(outBufs, outDescs, imglists[i]);\n    }\n    model->UnLoadModel();\n    Infer::DevDeInit();\n    return 0;\n}\n备注：上述C++代码仅展示了主要流程，详细实现请参考PFLD (https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/detection/PFLD)。",
+                "summary": "PFLD模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for PFLD. Covers runtime initialization, inference execution, configuration handling, and build instructions."
             }
         ],
         "detailParams": [
@@ -4454,6 +4584,8 @@ const modelsData = [
         "id": "i9ivuh3hec00",
         "name": "YOLOv4",
         "description": "YOLOv4 是一种高性能的 one-stage 目标检测模型。相比 YOLOv3，YOLOv4 采用了 CSPDarknet53 作为 backbone 进行特征提取，该网络结合了跨金字塔池化结构和路径聚合网络，在精度和速度上均有显著提升。",
+        "descriptionZh": "YOLOv4 是一种高性能的 one-stage 目标检测模型。相比 YOLOv3，YOLOv4 采用了 CSPDarknet53 作为 backbone 进行特征提取，该网络结合了跨金字塔池化结构和路径聚合网络，在精度和速度上均有显著提升。",
+        "descriptionEn": "YOLOv4 is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 17:01:53",
         "updatedAt": "2025-12-30 21:27:13",
         "badge": "Beta",
@@ -4482,7 +4614,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolov4模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::yolov4) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/detection/yolov4/src/CMakeLists.txt)"
+                "content": "模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolov4模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::yolov4) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/detection/yolov4/src/CMakeLists.txt)",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for YOLOv4. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -4597,6 +4731,8 @@ const modelsData = [
         "id": "i9iei09pec00",
         "name": "YOLOv8s-seg",
         "description": "YOLOv8s-seg 是一种轻量高效的 one-stage 实例分割模型。相比前代 YOLO 模型，YOLOv8s-seg 采用 C2f 作为 backbone 和 PAFPN 作为颈部网络，结合 “原型掩码 + 掩码系数” 的分割头设计，在保证实时推理速度的同时实现像素级实例分割，适用于轻量化边缘部署场景。",
+        "descriptionZh": "YOLOv8s-seg 是一种轻量高效的 one-stage 实例分割模型。相比前代 YOLO 模型，YOLOv8s-seg 采用 C2f 作为 backbone 和 PAFPN 作为颈部网络，结合 “原型掩码 + 掩码系数” 的分割头设计，在保证实时推理速度的同时实现像素级实例分割，适用于轻量化边缘部署场景。",
+        "descriptionEn": "YOLOv8s-seg is a computer vision model for segmentation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 15:45:54",
         "updatedAt": "2025-12-30 21:27:16",
         "badge": null,
@@ -4625,7 +4761,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::Yolov8sSeg) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov8s-seg/src/CMakeLists.txt)。"
+                "content": "模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::Yolov8sSeg) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov8s-seg/src/CMakeLists.txt)。",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for YOLOv8s-seg. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -4713,6 +4851,8 @@ const modelsData = [
         "id": "i9i4tr9hec00",
         "name": "CrowdCount",
         "description": "CrowdCount是一种基于多尺度卷积神经网络（MSCNN）的高精度人群计数模型。相比传统多列 / 多网络方法，它通过单列网络中的多尺度特征块（MSB）与尺度自适应密度图回归技术，能有效应对透视畸变导致的人物尺度差异问题，兼顾计数精度与模型轻量化，适用于监控图像、公共场所等密集人群计数场景。",
+        "descriptionZh": "CrowdCount是一种基于多尺度卷积神经网络（MSCNN）的高精度人群计数模型。相比传统多列 / 多网络方法，它通过单列网络中的多尺度特征块（MSB）与尺度自适应密度图回归技术，能有效应对透视畸变导致的人物尺度差异问题，兼顾计数精度与模型轻量化，适用于监控图像、公共场所等密集人群计数场景。",
+        "descriptionEn": "CrowdCount is a computer vision model for crowd counting. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 15:03:50",
         "updatedAt": "2025-12-30 21:27:21",
         "badge": null,
@@ -4741,7 +4881,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::CrowdCount) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/count/CrowdCount/src/CMakeLists.txt)。"
+                "content": "模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::CrowdCount) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/count/CrowdCount/src/CMakeLists.txt)。",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for CrowdCount. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -4829,6 +4971,8 @@ const modelsData = [
         "id": "i16b4pv8rc00",
         "name": "UNet",
         "description": "UNet是由FCN改进而来的图像分割模型，其网络结构像U型，分为特征提取部分和上采样特征融合部分。",
+        "descriptionZh": "UNet是由FCN改进而来的图像分割模型，其网络结构像U型，分为特征提取部分和上采样特征融合部分。",
+        "descriptionEn": "UNet is a computer vision model for segmentation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-11-29 15:01:53",
         "updatedAt": "2025-11-29 18:03:49",
         "badge": null,
@@ -4857,7 +5001,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "UNet模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // UNet模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::Unet) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/UNet/src/CMakeLists.txt)。"
+                "content": "UNet模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // UNet模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::Unet) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/UNet/src/CMakeLists.txt)。",
+                "summary": "UNet模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for UNet. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -4989,6 +5135,8 @@ const modelsData = [
         "id": "ht96f9b50o00",
         "name": "VGG16",
         "description": "VGGNet是牛津大学计算机视觉组（Visual Geometry Group）和Google DeepMind公司的研究员一起研发的深度卷积神经网络，它探索了卷积神经网络的深度与其性能之间的关系，通过反复堆叠3*3的小型卷积核和2*2的最大池化层，成功地构筑了16~19层深的卷积神经网络。VGGNet相比之前state-of-the-art的网络结构，错误率大幅下降，VGGNet论文中全部使用了3*3的小型卷积核和2*2的最大池化核，通过不断加深网络结构来提升性能。",
+        "descriptionZh": "VGGNet是牛津大学计算机视觉组（Visual Geometry Group）和Google DeepMind公司的研究员一起研发的深度卷积神经网络，它探索了卷积神经网络的深度与其性能之间的关系，通过反复堆叠3*3的小型卷积核和2*2的最大池化层，成功地构筑了16~19层深的卷积神经网络。VGGNet相比之前state-of-the-art的网络结构，错误率大幅下降，VGGNet论文中全部使用了3*3的小型卷积核和2*2的最大池化核，通过不断加深网络结构来提升性能。",
+        "descriptionEn": "VGG16 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-11-17 11:25:12",
         "updatedAt": "2025-11-29 14:49:58",
         "badge": null,
@@ -5017,7 +5165,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "VGG16模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // VGG16模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::VGG16) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/VGG16/src/CMakeLists.txt)。"
+                "content": "VGG16模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // VGG16模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::VGG16) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/VGG16/src/CMakeLists.txt)。",
+                "summary": "VGG16模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for VGG16. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -5122,6 +5272,8 @@ const modelsData = [
         "id": "hsd8o65p5c00",
         "name": "SE-ResNet50",
         "description": "SE-ResNet50是一种基于ResNet50架构的改进卷积神经网络，通过引入SE（Squeeze-and-Excitation）注意力模块，自适应校准通道特征响应，显著提升模型表达能力。",
+        "descriptionZh": "SE-ResNet50是一种基于ResNet50架构的改进卷积神经网络，通过引入SE（Squeeze-and-Excitation）注意力模块，自适应校准通道特征响应，显著提升模型表达能力。",
+        "descriptionEn": "SE-ResNet50 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-11-14 18:20:28",
         "updatedAt": "2025-11-29 14:49:58",
         "badge": "Beta",
@@ -5150,7 +5302,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "SEResnet50模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // SEResnet50模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::SEResnet50) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/SEResnet50/src/CMakeLists.txt)"
+                "content": "SEResnet50模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // SEResnet50模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::SEResnet50) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/SEResnet50/src/CMakeLists.txt)",
+                "summary": "SEResnet50模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for SE-ResNet50. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -5255,6 +5409,8 @@ const modelsData = [
         "id": "hsd646tl0o00",
         "name": "InceptionV3",
         "description": "InceptionV3 是为图像分类任务设计的高效卷积神经网络，其核心创新是使用模块化的 Inception 结构（如分解卷积、辅助分类器）来在保持计算效率的同时提升特征提取能力，并在 ImageNet 等数据集上取得优异性能。",
+        "descriptionZh": "InceptionV3 是为图像分类任务设计的高效卷积神经网络，其核心创新是使用模块化的 Inception 结构（如分解卷积、辅助分类器）来在保持计算效率的同时提升特征提取能力，并在 ImageNet 等数据集上取得优异性能。",
+        "descriptionEn": "InceptionV3 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-11-14 18:09:00",
         "updatedAt": "2025-11-29 14:49:57",
         "badge": null,
@@ -5283,7 +5439,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // InceptionV3模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::InceptionV3) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/InceptionV3/src/CMakeLists.txt)"
+                "content": "模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // InceptionV3模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::InceptionV3) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/InceptionV3/src/CMakeLists.txt)",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for InceptionV3. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -5388,6 +5546,8 @@ const modelsData = [
         "id": "hs9rrefl5c00",
         "name": "YOLOv7",
         "description": "YOLOv7在速度与精度方面均超越现有已知目标检测器：在5-160 FPS范围内表现最优，并在GPU V100上以30+ FPS实现56.8% AP的最高精度。其YOLOv7-E6模型在V100上达到56 FPS和55.9% AP，相比基于Transformer的SWIN-L Cascade-Mask R-CNN（A100 9.2 FPS，53.9% AP）速度提升509%且精度提高2%；相较基于卷积的ConvNeXt-XL Cascade-Mask R-CNN（A100 8.6 FPS，55.2% AP）速度提升551%且精度提高0.7%。此外，YOLOv7在速度与精度上均优于YOLOR、YOLOX、YOLOv5等主流检测器，且仅使用MS COCO数据集从头训练，未借助任何预训练权重。",
+        "descriptionZh": "YOLOv7在速度与精度方面均超越现有已知目标检测器：在5-160 FPS范围内表现最优，并在GPU V100上以30+ FPS实现56.8% AP的最高精度。其YOLOv7-E6模型在V100上达到56 FPS和55.9% AP，相比基于Transformer的SWIN-L Cascade-Mask R-CNN（A100 9.2 FPS，53.9% AP）速度提升509%且精度提高2%；相较基于卷积的ConvNeXt-XL Cascade-Mask R-CNN（A100 8.6 FPS，55.2% AP）速度提升551%且精度提高0.7%。此外，YOLOv7在速度与精度上均优于YOLOR、YOLOX、YOLOv5等主流检测器，且仅使用MS COCO数据集从头训练，未借助任何预训练权重。",
+        "descriptionEn": "YOLOv7 is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-11-14 10:24:41",
         "updatedAt": "2025-11-29 14:49:58",
         "badge": null,
@@ -5416,7 +5576,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // YOLOV7模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::YOLOV7) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov7/src/CMakeLists.txt)"
+                "content": "模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // YOLOV7模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::YOLOV7) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov7/src/CMakeLists.txt)",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for YOLOv7. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -5521,6 +5683,8 @@ const modelsData = [
         "id": "hs4fr0150o00",
         "name": "EfficientNetV2",
         "description": "EfficientNetV2是一系列图像分类模型，与现有技术相比，其实现了更好的参数效率和更快的训练速度。基于EfficientNetV1，Efficient NetV2模型使用神经架构搜索（NAS）来联合优化模型大小和训练速度，并以更快的训练和推理速度进行扩展。",
+        "descriptionZh": "EfficientNetV2是一系列图像分类模型，与现有技术相比，其实现了更好的参数效率和更快的训练速度。基于EfficientNetV1，Efficient NetV2模型使用神经架构搜索（NAS）来联合优化模型大小和训练速度，并以更快的训练和推理速度进行扩展。",
+        "descriptionEn": "EfficientNetV2 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-11-13 21:53:09",
         "updatedAt": "2025-11-29 14:49:58",
         "badge": "Beta",
@@ -5549,7 +5713,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "EfficientNetV2模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // EfficientNetV2模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::EfficientNet) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/EfficientNetV2/src/CMakeLists.txt)。"
+                "content": "EfficientNetV2模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // EfficientNetV2模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::EfficientNet) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/EfficientNetV2/src/CMakeLists.txt)。",
+                "summary": "EfficientNetV2模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for EfficientNetV2. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -5664,6 +5830,8 @@ const modelsData = [
         "id": "hbcci1q1oc00",
         "name": "ResNet50",
         "description": "ResNet是残差网络(Residual Network)的缩写,该系列网络广泛用于目标分类等领域以及作为计算机视觉任务主干经典神经网络的一部分，典型的网络有ResNet50, ResNet101等。ResNet证明网络能够向更深（包含更多隐藏层）的方向发展。",
+        "descriptionZh": "ResNet是残差网络(Residual Network)的缩写,该系列网络广泛用于目标分类等领域以及作为计算机视觉任务主干经典神经网络的一部分，典型的网络有ResNet50, ResNet101等。ResNet证明网络能够向更深（包含更多隐藏层）的方向发展。",
+        "descriptionEn": "ResNet50 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-09-22 20:40:35",
         "updatedAt": null,
         "badge": null,
@@ -5692,7 +5860,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "ResNet50模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // ResNet50模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::ResNet50) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/ResNet50/src/CMakeLists.txt)。"
+                "content": "ResNet50模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // ResNet50模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::ResNet50) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/ResNet50/src/CMakeLists.txt)。",
+                "summary": "ResNet50模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for ResNet50. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -5797,6 +5967,8 @@ const modelsData = [
         "id": "h9k2a5agkk00",
         "name": "ResNet18",
         "description": "ResNet是残差网络(Residual Network)的缩写,该系列网络广泛用于目标分类等领域以及作为计算机视觉任务主干经典神经网络的一部分，典型的网络有ResNet18, ResNet101等。ResNet证明网络能够向更深（包含更多隐藏层）的方向发展。",
+        "descriptionZh": "ResNet是残差网络(Residual Network)的缩写,该系列网络广泛用于目标分类等领域以及作为计算机视觉任务主干经典神经网络的一部分，典型的网络有ResNet18, ResNet101等。ResNet证明网络能够向更深（包含更多隐藏层）的方向发展。",
+        "descriptionEn": "ResNet18 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-09-17 09:26:27",
         "updatedAt": null,
         "badge": null,
@@ -5824,7 +5996,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "ResNet18模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // ResNet18模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::ResNet18) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/ResNet18/src/CMakeLists.txt)。"
+                "content": "ResNet18模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // ResNet18模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::ResNet18) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/ResNet18/src/CMakeLists.txt)。",
+                "summary": "ResNet18模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for ResNet18. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -5929,6 +6103,8 @@ const modelsData = [
         "id": "h94sd5f0v800",
         "name": "YOLOv8l",
         "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv8l在之前的YOLO版本的基础上进行了改进，在继承了原有YOLO网络模型优点的基础上，引入了新的特效和优化，具有更高的检测精度。",
+        "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv8l在之前的YOLO版本的基础上进行了改进，在继承了原有YOLO网络模型优点的基础上，引入了新的特效和优化，具有更高的检测精度。",
+        "descriptionEn": "YOLOv8l is a computer vision model for detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-09-15 22:03:30",
         "updatedAt": null,
         "badge": null,
@@ -5956,7 +6132,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "yolov8l 可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main(int argc, char *argv[])\n{\n    InferParam inferParam;\n    ParseCmd(argc, argv, inferParam)\n    DevInit(inferParam.aclConfigPath);\n    ModelInfer(inferParam);\n    Infer::DevDeInit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov8l/src/CMakeLists.txt)"
+                "content": "yolov8l 可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main(int argc, char *argv[])\n{\n    InferParam inferParam;\n    ParseCmd(argc, argv, inferParam)\n    DevInit(inferParam.aclConfigPath);\n    ModelInfer(inferParam);\n    Infer::DevDeInit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov8l/src/CMakeLists.txt)",
+                "summary": "yolov8l 可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme",
+                "summaryEn": "C++ quick-start notes for YOLOv8l. Covers runtime initialization, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -6061,6 +6239,8 @@ const modelsData = [
         "id": "h8eivmf56c00",
         "name": "ResNet101",
         "description": "ResNet是ImageNet竞赛中分类问题效果较好的网络，它引入了残差学习的概念，通过增加直连通道来保护信息的完整性，解决信息丢失、梯度消失、梯度爆炸等问题，让很深的网络也得以训练。ResNet有不同的网络层数，常用的有18-layer、34-layer、50-layer、101-layer、152-layer。",
+        "descriptionZh": "ResNet是ImageNet竞赛中分类问题效果较好的网络，它引入了残差学习的概念，通过增加直连通道来保护信息的完整性，解决信息丢失、梯度消失、梯度爆炸等问题，让很深的网络也得以训练。ResNet有不同的网络层数，常用的有18-layer、34-layer、50-layer、101-layer、152-layer。",
+        "descriptionEn": "ResNet101 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-09-13 18:06:31",
         "updatedAt": null,
         "badge": null,
@@ -6089,7 +6269,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "ResNet101模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // ResNet101模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::ResNet101) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/ResNet101/src/CMakeLists.txt)。"
+                "content": "ResNet101模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // ResNet101模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::ResNet101) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/ResNet101/src/CMakeLists.txt)。",
+                "summary": "ResNet101模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for ResNet101. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [
@@ -6194,6 +6376,8 @@ const modelsData = [
         "id": "h819tsfh6c00",
         "name": "Depth-Anything-v2",
         "description": "Depth Anything V2在细节和鲁棒性方面显著优于 [V1](https://github.com/LiheYoung/Depth-Anything)。与基于 SD 的模型相比，它具有更快的推理速度、更少的参数和更高的深度精度。本示例使用的是Depth-Anything-V2-Small",
+        "descriptionZh": "Depth Anything V2在细节和鲁棒性方面显著优于 [V1](https://github.com/LiheYoung/Depth-Anything)。与基于 SD 的模型相比，它具有更快的推理速度、更少的参数和更高的深度精度。本示例使用的是Depth-Anything-V2-Small",
+        "descriptionEn": "Depth-Anything-v2 is a computer vision model for monocular depth. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-09-12 11:09:24",
         "updatedAt": null,
         "badge": null,
@@ -6221,7 +6405,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "Depth-Anything-v2模型可以通过以下代码完成快速推理\n\nusing namespace Infer;\n\nint main()\n{\n    std::string modelPath = \"/path/to/imgModel.om\"; // 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::string aclConfigPath = \"/path/to/acl.cfg\"; // 输入acl的配置路径\n    int ret;\n    ret = Infer::DevInit(aclConfigPath);\n    std::shared_ptr<Infer::MdlBase> model = Infer::MdlCreate();\n    ret = model->LoadModel(modelPath);\n    std::vector<std::string> imglists;\n    ret = ReadImglistFile(imagePath, imglists);\n    std::vector<Infer::TensorBuf> inBufs, outBufs;\n    std::vector<Infer::TensorDesc> inDescs, outDescs;\n    Infer::TensorDesc desc;\n    size_t inputNum = model->GetInTensorNum();\n    size_t  outputNum = model->GetOutTensorNum();\n    for (size_t i = 0; i < inputNum; i++) {\n        model->GetInTensorDescByIdx(i, desc);\n        inDescs.push_back(desc);\n        inBufs.emplace_back(desc.defaultSize, desc.defaultStride);\n    }\n    for (size_t i = 0; i < outputNum; i++) {\n        model->GetOutTensorDescByIdx(i, desc);\n        outDescs.push_back(desc);\n        outBufs.emplace_back(desc.defaultSize, desc.defaultStride);\n    }\n    model->GetInTensorDescByIdx(0, desc);\n    for (size_t i = 0; i < imglists.size(); ++i) {\n        ret = ReadImgFileToBuf(imglists[i], desc, inBufs[0]);\n        ret = model->Execute(inBufs, outBufs);\n        (void)PostProcess(outBufs, outDescs, imglists[i]);\n    }\n    model->UnLoadModel();\n    Infer::DevDeInit();\n    return 0;\n}\n备注：上述C++代码仅展示了主要流程，详细实现请参考Depth-Anything-v2 (https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/depth/Depth-Anything-v2)。"
+                "content": "Depth-Anything-v2模型可以通过以下代码完成快速推理\n\nusing namespace Infer;\n\nint main()\n{\n    std::string modelPath = \"/path/to/imgModel.om\"; // 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::string aclConfigPath = \"/path/to/acl.cfg\"; // 输入acl的配置路径\n    int ret;\n    ret = Infer::DevInit(aclConfigPath);\n    std::shared_ptr<Infer::MdlBase> model = Infer::MdlCreate();\n    ret = model->LoadModel(modelPath);\n    std::vector<std::string> imglists;\n    ret = ReadImglistFile(imagePath, imglists);\n    std::vector<Infer::TensorBuf> inBufs, outBufs;\n    std::vector<Infer::TensorDesc> inDescs, outDescs;\n    Infer::TensorDesc desc;\n    size_t inputNum = model->GetInTensorNum();\n    size_t  outputNum = model->GetOutTensorNum();\n    for (size_t i = 0; i < inputNum; i++) {\n        model->GetInTensorDescByIdx(i, desc);\n        inDescs.push_back(desc);\n        inBufs.emplace_back(desc.defaultSize, desc.defaultStride);\n    }\n    for (size_t i = 0; i < outputNum; i++) {\n        model->GetOutTensorDescByIdx(i, desc);\n        outDescs.push_back(desc);\n        outBufs.emplace_back(desc.defaultSize, desc.defaultStride);\n    }\n    model->GetInTensorDescByIdx(0, desc);\n    for (size_t i = 0; i < imglists.size(); ++i) {\n        ret = ReadImgFileToBuf(imglists[i], desc, inBufs[0]);\n        ret = model->Execute(inBufs, outBufs);\n        (void)PostProcess(outBufs, outDescs, imglists[i]);\n    }\n    model->UnLoadModel();\n    Infer::DevDeInit();\n    return 0;\n}\n备注：上述C++代码仅展示了主要流程，详细实现请参考Depth-Anything-v2 (https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/depth/Depth-Anything-v2)。",
+                "summary": "Depth-Anything-v2模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for Depth-Anything-v2. Covers runtime initialization, inference execution, and configuration handling."
             }
         ],
         "detailParams": [
@@ -6326,6 +6512,8 @@ const modelsData = [
         "id": "h6s908ugto00",
         "name": "YOLOv5s",
         "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv5网络模型在继承了原有YOLO网络模型优点的基础上，具有更优的检测精度和更快的推理速度。本示例使用YOLOv5s。",
+        "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv5网络模型在继承了原有YOLO网络模型优点的基础上，具有更优的检测精度和更快的推理速度。本示例使用YOLOv5s。",
+        "descriptionEn": "YOLOv5s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-09-08 20:52:23",
         "updatedAt": null,
         "badge": null,
@@ -6354,7 +6542,9 @@ const modelsData = [
         "quickStartReadmes": [
             {
                 "language": "C++",
-                "content": "yolov5模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolov5模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::Yolov5) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov5/src/CMakeLists.txt)。"
+                "content": "yolov5模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolov5模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::Yolov5) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov5/src/CMakeLists.txt)。",
+                "summary": "yolov5模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for YOLOv5s. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
             }
         ],
         "detailParams": [

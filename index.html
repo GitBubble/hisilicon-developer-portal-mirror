@@ -6,24 +6,28 @@
     <title>ModelZoo镜像站</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body data-title-key="page.homeTitle">
     <div class="header">
         <div class="header-left">
-            <a href="index.html" class="site-brand" aria-label="ModelZoo镜像站">
+            <a href="index.html" class="site-brand" data-i18n-aria-label="header.brandAria">
                 <div class="brand-badge">MZ</div>
                 <div class="brand-copy">
                     <span class="brand-subtitle" id="headerDateText">日期：2026-03-28</span>
-                    <strong class="brand-title">ModelZoo镜像站</strong>
+                    <strong class="brand-title" data-i18n="header.brandTitle">ModelZoo镜像站</strong>
                 </div>
             </a>
             <div class="header-nav">
                 <a href="index.html" class="nav-item active">
-                    <span>ModelZoo</span>
+                    <span data-i18n="header.navModelZoo">ModelZoo</span>
                 </a>
             </div>
             <div class="daily-quote" aria-live="polite">
                 <p class="quote-text" id="dailyQuoteText">技术的价值，在于让复杂的事情变得可控。</p>
                 <span class="quote-author" id="dailyQuoteAuthor">- 随机一言</span>
+            </div>
+            <div class="language-switcher" data-i18n-aria-label="header.languageSwitcher">
+                <button type="button" class="language-btn" data-lang-option="zh">中</button>
+                <button type="button" class="language-btn" data-lang-option="en">EN</button>
             </div>
         </div>
     </div>
@@ -31,13 +35,13 @@
     <div class="main-container">
         <div class="filter-sidebar">
             <div class="filter-header">
-                <span>筛选条件</span>
-                <a href="#" class="clear-filter">清除全部</a>
+                <span data-i18n="home.filterTitle">筛选条件</span>
+                <a href="#" class="clear-filter" data-i18n="home.clearAll">清除全部</a>
             </div>
             
             <div class="filter-section">
                 <div class="filter-title">
-                    <span>任务</span>
+                    <span data-i18n="home.sectionTask">任务</span>
                     <span class="expand-icon">▾</span>
                 </div>
                 <div id="taskFilterGroups"></div>
@@ -45,7 +49,7 @@
 
             <div class="filter-section">
                 <div class="filter-title">
-                    <span>框架</span>
+                    <span data-i18n="home.sectionFramework">框架</span>
                     <span class="expand-icon">▾</span>
                 </div>
                 <div class="filter-content">
@@ -55,7 +59,7 @@
 
             <div class="filter-section">
                 <div class="filter-title">
-                    <span>操作系统</span>
+                    <span data-i18n="home.sectionOs">操作系统</span>
                     <span class="expand-icon">▾</span>
                 </div>
                 <div class="filter-content">
@@ -65,7 +69,7 @@
 
             <div class="filter-section">
                 <div class="filter-title">
-                    <span>算力引擎</span>
+                    <span data-i18n="home.sectionCompute">算力引擎</span>
                     <span class="expand-icon">▾</span>
                 </div>
                 <div class="filter-content">
@@ -75,23 +79,23 @@
 
             <div class="friendly-links">
                 <div class="filter-title">
-                    <span>友情链接</span>
+                    <span data-i18n="home.sectionLinks">友情链接</span>
                 </div>
                 <a href="https://developers.hisilicon.com/forum/01101205484609485006" class="friendly-link" target="_blank" rel="noreferrer">
                     <span class="friendly-link-icon">↗</span>
-                    <span>Hispark论坛</span>
+                    <span data-i18n="home.hisparkForum">Hispark论坛</span>
                 </a>
                 <a href="https://www.hisilicon.com/cn/products/smart-vision" class="friendly-link" target="_blank" rel="noreferrer">
                     <span class="friendly-link-icon">↗</span>
-                    <span>海思AIoT</span>
+                    <span data-i18n="home.hisiliconAiot">海思AIoT</span>
                 </a>
             </div>
         </div>
 
         <div class="content-area">
             <div class="search-bar">
-                <input type="text" placeholder="搜索模型名称" class="search-input">
-                <button class="search-btn">🔍</button>
+                <input type="text" placeholder="搜索模型名称" class="search-input" data-i18n-placeholder="home.searchPlaceholder">
+                <button class="search-btn" data-i18n-aria-label="home.searchAria">🔍</button>
             </div>
             
             <div class="sort-bar">
@@ -106,11 +110,11 @@
 
             <div class="pagination">
                 <span>共47条</span>
-                <span>每页</span>
+                <span data-i18n="home.paginationPerPage">每页</span>
                 <select class="page-size-select">
                     <option>12</option>
                 </select>
-                <span>条</span>
+                <span data-i18n="home.paginationItems">条</span>
                 <button class="page-btn" disabled>‹</button>
                 <ul class="page-numbers">
                     <li class="active">1</li>
@@ -119,24 +123,25 @@
                     <li>4</li>
                 </ul>
                 <button class="page-btn">›</button>
-                <span>前往</span>
+                <span data-i18n="home.paginationGoTo">前往</span>
                 <input type="text" class="page-input" value="1">
-                <span>页</span>
+                <span data-i18n="home.paginationPage">页</span>
             </div>
         </div>
     </div>
 
     <footer class="site-footer">
-        <span>由开发者自行维护，更新时间：2026-03-28 08:07:58</span>
+        <span data-updated-at="2026-03-28 08:07:58">由开发者自行维护，更新时间：2026-03-28 18:11:12</span>
     </footer>
 
     <div class="cookie-banner">
-        <span>我们使用cookie来确保您的高速浏览体验。继续浏览本站，即表示您同意我们使用cookie。</span>
-        <a href="#">详情</a>
+        <span data-i18n="cookie.message">我们使用cookie来确保您的高速浏览体验。继续浏览本站，即表示您同意我们使用cookie。</span>
+        <a href="#" data-i18n="cookie.details">详情</a>
         <button class="close-btn">×</button>
     </div>
 
     <script src="assets/js/models.js"></script>
+    <script src="assets/js/i18n.js"></script>
     <script src="assets/js/app.js"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 node_modules/
 .hf-upload-staging/
+sync-logs/
 cookies.json
 *.log
 test-results/

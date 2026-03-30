@@ -1,0 +1,24 @@
+{
+  "name": "hisilicon-developer-portal-mirror",
+  "version": "1.0.0",
+  "description": "华为海思开发者门户 GitHub Pages 镜像项目",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GitBubble/hisilicon-developer-portal-mirror.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/issues"
+  },
+  "homepage": "https://github.com/GitBubble/hisilicon-developer-portal-mirror#readme",
+  "dependencies": {
+    "playwright": "^1.58.2"
+  }
+}
