@@ -1,6 +1,1600 @@
 // Generated from api_all_models.json and api_all_details.json
 const modelsData = [
     {
+        "id": "j9brj6ooi000",
+        "name": "YOLOv9s",
+        "description": "YOLOv9s 是 Ultralytics 推出的目标检测模型，采用了 GELAN 架构和 PGI 训练策略。相比于之前的版本，YOLOv9 在保持高效推理的同时，通过可编程梯度信息（PGI）进一步提升了检测精度。该模型在 COCO 数据集上进行了训练和验证。",
+        "descriptionZh": "YOLOv9s 是 Ultralytics 推出的目标检测模型，采用了 GELAN 架构和 PGI 训练策略。相比于之前的版本，YOLOv9 在保持高效推理的同时，通过可编程梯度信息（PGI）进一步提升了检测精度。该模型在 COCO 数据集上进行了训练和验证。",
+        "descriptionEn": "YOLOv9s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 10 downloadable artifacts, along with quick-start resources when available.",
+        "date": "2026-04-03 10:29:46",
+        "updatedAt": "2026-04-08 16:07:07",
+        "badge": null,
+        "betaVersionDesc": "",
+        "category": "计算机视觉",
+        "tags": [
+            "目标检测"
+        ],
+        "image": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1737486946598914%2F202103071025384.jpg",
+        "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1737486946598914%2F202103071025384.jpg",
+        "framework": [
+            "PyTorch"
+        ],
+        "supportOs": [
+            "OpenHarmony",
+            "Linux"
+        ],
+        "computingPower": [
+            "Hi3403V100 SVP_NNN",
+            "Hi3403V100 NNN"
+        ],
+        "repositoryUrl": "https://gitee.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov9s",
+        "licenseUrl": "https://github.com/ultralytics/ultralytics/blob/master/LICENSE",
+        "quickStartUrl": "https://gitee.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov9s",
+        "quickStartMarkdownUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov9s/README.md",
+        "quickStartReadmes": [
+            {
+                "language": "C++",
+                "content": "#include <memory>\n#include \"model.h\"\n#include \"log.h\"\n#include \"utils.h\"\n\nusing namespace Infer;\n\nint main(int argc, char *argv[])\n{\n    InferParam inferParam;\n    if (!ParseParamFromCmd(argc, argv, inferParam)) {\n        LOG(ERROR) << \"fail to parse cmd\";\n        return -1;\n    }\n    EnvInit(inferParam.aclConfigPath);\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(inferParam.omModelPath, Infer::Yolov9s) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(inferParam.imglistPath);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        EnvDeinit();\n        return -1;\n    }\n    ret.clear();\n    ret.shrink_to_fit();\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        EnvDeinit();\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}",
+                "summary": "#include <memory>",
+                "summaryEn": "C++ quick-start notes for YOLOv9s. Covers runtime initialization, model loading, inference execution, configuration handling, and build instructions."
+            }
+        ],
+        "detailParams": [
+            {
+                "name": "计算量",
+                "value": "29.526 GFLOPs"
+            },
+            {
+                "name": "输入",
+                "value": "640x640"
+            },
+            {
+                "name": "参数量",
+                "value": "7.240 M"
+            }
+        ],
+        "originModels": [
+            {
+                "name": "yolov9s.pt",
+                "size": "14.7 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov9s/resolve/main/yolov9s.pt",
+                "available": true,
+                "localFile": "yolov9s.pt"
+            },
+            {
+                "name": "yolov9s.onnx",
+                "size": "27.8 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov9s/resolve/main/yolov9s.onnx",
+                "available": true,
+                "localFile": "yolov9s.onnx"
+            }
+        ],
+        "hfRepoId": "shadow-cann/hispark-modelzoo-yolov9s",
+        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov9s",
+        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov9s/blob/main/README.md",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov9s/resolve/main/yolov9s.om",
+        "primaryDownloadLabel": "yolov9s.om",
+        "downloads": [
+            {
+                "title": "yolov9s.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov9s/resolve/main/yolov9s.om",
+                "available": true,
+                "source": "om-A16W8",
+                "sourceLabel": "A16W8",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "yolov9s.om"
+            },
+            {
+                "title": "yolov9s_om-FP16.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov9s/resolve/main/yolov9s_om-FP16.om",
+                "available": true,
+                "source": "om-FP16",
+                "sourceLabel": "FP16",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "yolov9s_om-FP16.om"
+            },
+            {
+                "title": "yolov9s.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov9s/resolve/main/yolov9s.pt",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov9s.pt"
+            },
+            {
+                "title": "yolov9s.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov9s/resolve/main/yolov9s.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov9s.onnx"
+            },
+            {
+                "title": "yolov9s.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov9s/resolve/main/yolov9s.pt",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov9s.pt"
+            },
+            {
+                "title": "yolov9s.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov9s/resolve/main/yolov9s.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov9s.onnx"
+            },
+            {
+                "title": "yolov9s.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov9s/resolve/main/yolov9s.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "note": "A16W8",
+                "localFile": "yolov9s.om"
+            },
+            {
+                "title": "CANN工具",
+                "href": "https://hispark-obs.obs.cn-east-3.myhuaweicloud.com/SVP_NNN_PC_V1.0.6.0.tgz",
+                "available": true,
+                "source": "toolkit",
+                "sourceLabel": "工具链",
+                "group": "工具链",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "toolkit",
+                "sourceLabel": "工具链",
+                "group": "工具链",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "toolkit",
+                "sourceLabel": "工具链",
+                "group": "工具链",
+                "note": "",
+                "localFile": null
+            }
+        ]
+    },
+    {
+        "id": "j93dspootk00",
+        "name": "Yolov8s-World",
+        "description": "Yolov8s-World 是 Ultralytics 推出的一种基于 YOLO-World 架构的轻量级目标检测模型，它通过视觉-语言预训练实现了无需针对特定类别进行训练即可识别任意物体的 “开放词汇” (Open-Vocabulary) 实时检测功能。",
+        "descriptionZh": "Yolov8s-World 是 Ultralytics 推出的一种基于 YOLO-World 架构的轻量级目标检测模型，它通过视觉-语言预训练实现了无需针对特定类别进行训练即可识别任意物体的 “开放词汇” (Open-Vocabulary) 实时检测功能。",
+        "descriptionEn": "Yolov8s-World is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 9 downloadable artifacts, along with quick-start resources when available.",
+        "date": "2026-04-02 14:51:26",
+        "updatedAt": "2026-04-08 16:07:07",
+        "badge": null,
+        "betaVersionDesc": "",
+        "category": "计算机视觉",
+        "tags": [
+            "目标检测"
+        ],
+        "image": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1737338061389827%2F6.png",
+        "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1737338061389827%2F6.png",
+        "framework": [
+            "PyTorch"
+        ],
+        "supportOs": [
+            "OpenHarmony",
+            "Linux"
+        ],
+        "computingPower": [
+            "Hi3403V100 SVP_NNN",
+            "Hi3403V100 NNN"
+        ],
+        "repositoryUrl": "https://gitee.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov8s-world",
+        "licenseUrl": "https://github.com/ultralytics/ultralytics/blob/master/LICENSE",
+        "quickStartUrl": "https://gitee.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov8s-world",
+        "quickStartMarkdownUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov8s-world/doc/快速开始.md",
+        "quickStartReadmes": [
+            {
+                "language": "C++",
+                "content": "yolov8s-world 可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolov8s-world模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::Yolov8sWorld) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov8s-world/src/CMakeLists.txt)",
+                "summary": "yolov8s-world 可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme",
+                "summaryEn": "C++ quick-start notes for Yolov8s-World. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
+            }
+        ],
+        "detailParams": [
+            {
+                "name": "计算量",
+                "value": "34.636 GFLOPs"
+            },
+            {
+                "name": "输入",
+                "value": "640x640"
+            },
+            {
+                "name": "参数量",
+                "value": "12.746 M"
+            }
+        ],
+        "originModels": [
+            {
+                "name": "yolov8s-worldv2_svp_nnn.onnx",
+                "size": "12.4 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv2_svp_nnn.onnx",
+                "available": true,
+                "localFile": "yolov8s-worldv2_svp_nnn.onnx"
+            },
+            {
+                "name": "yolov8s-worldv2.pt",
+                "size": "24.7 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv2.pt",
+                "available": true,
+                "localFile": "yolov8s-worldv2.pt"
+            },
+            {
+                "name": "yolov8s-worldv20_nnn.onnx",
+                "size": "49.0 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv20_nnn.onnx",
+                "available": true,
+                "localFile": "yolov8s-worldv20_nnn.onnx"
+            }
+        ],
+        "hfRepoId": "shadow-cann/hispark-modelzoo-yolov8s-world",
+        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world",
+        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/blob/main/README.md",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv2.om",
+        "primaryDownloadLabel": "yolov8s-worldv2.om",
+        "downloads": [
+            {
+                "title": "yolov8s-worldv2.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv2.om",
+                "available": true,
+                "source": "om-A8W8",
+                "sourceLabel": "A8W8",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "yolov8s-worldv2.om"
+            },
+            {
+                "title": "yolov8s-worldv2_om-FP16.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv2_om-FP16.om",
+                "available": true,
+                "source": "om-FP16",
+                "sourceLabel": "FP16",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "yolov8s-worldv2_om-FP16.om"
+            },
+            {
+                "title": "yolov8s-worldv2_svp_nnn.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv2_svp_nnn.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov8s-worldv2_svp_nnn.onnx"
+            },
+            {
+                "title": "yolov8s-worldv2.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv2.pt",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov8s-worldv2.pt"
+            },
+            {
+                "title": "yolov8s-worldv20_nnn.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv20_nnn.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov8s-worldv20_nnn.onnx"
+            },
+            {
+                "title": "yolov8s-worldv2_svp_nnn.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv2_svp_nnn.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov8s-worldv2_svp_nnn.onnx"
+            },
+            {
+                "title": "yolov8s-worldv2.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv2.pt",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov8s-worldv2.pt"
+            },
+            {
+                "title": "yolov8s-worldv20_nnn.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv20_nnn.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov8s-worldv20_nnn.onnx"
+            },
+            {
+                "title": "yolov8s-worldv2.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv2.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "note": "A8W8",
+                "localFile": "yolov8s-worldv2.om"
+            }
+        ]
+    },
+    {
+        "id": "j918qkd0tk00",
+        "name": "PaddleOCRv4-rec",
+        "description": "PP-OCRv4识别模型在PP-OCRv3的基础上进一步升级。整体的框架保持了与PP-OCRv3识别模型相同的pipeline，分别进行了数据、网络结构、训练策略等方面的优化。",
+        "descriptionZh": "PP-OCRv4识别模型在PP-OCRv3的基础上进一步升级。整体的框架保持了与PP-OCRv3识别模型相同的pipeline，分别进行了数据、网络结构、训练策略等方面的优化。",
+        "descriptionEn": "PaddleOCRv4-rec is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 8 downloadable artifacts, along with quick-start resources when available.",
+        "date": "2026-04-02 09:49:40",
+        "updatedAt": "2026-04-08 16:07:07",
+        "badge": "Beta",
+        "betaVersionDesc": "Hi3403V100 SVP_NNN引擎上模型性能待优化",
+        "category": "计算机视觉",
+        "tags": [
+            "OCR"
+        ],
+        "image": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1719966200037379%2F%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20251227174303.png",
+        "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1719966200037379%2F%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20251227174303.png",
+        "framework": [
+            "PyTorch"
+        ],
+        "supportOs": [
+            "OpenHarmony",
+            "Linux"
+        ],
+        "computingPower": [
+            "Hi3403V100 SVP_NNN",
+            "Hi3403V100 NNN"
+        ],
+        "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/ocr/PaddleOCRv4-rec",
+        "licenseUrl": "https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.10/LICENSE",
+        "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/ocr/PaddleOCRv4-rec/",
+        "quickStartMarkdownUrl": null,
+        "quickStartReadmes": [
+            {
+                "language": "C++",
+                "content": "PaddleOCRv4-rec模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n  EnvInit();\n  std::string omModelPath = \"/path/to/model.om\"; // PaddleOCRv4-rec模型文件路径 \n  std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(omModelPath, ModelType::PaddleOCR_Rec) != 0) {\n    LOG(ERROR) << \"fail to load model\";\n    return -1;\n  }\n  auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n  if (ret.size() == 0) {\n    LOG(ERROR) << \"fail to infer model\";\n    model->Unload();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    LOG(ERROR) << \"fail to unload model\";\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于[/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)]目录下，编译相关配置参考[CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/ocr/PaddleOCRv4-rec/src/CMakeLists.txt)]。",
+                "summary": "PaddleOCRv4-rec模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for PaddleOCRv4-rec. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
+            }
+        ],
+        "detailParams": [
+            {
+                "name": "输入",
+                "value": "960x960"
+            },
+            {
+                "name": "参数量",
+                "value": "3.476M"
+            },
+            {
+                "name": "计算量",
+                "value": "24.83GFLOPs"
+            }
+        ],
+        "originModels": [
+            {
+                "name": "ch_ptocr_v4_rec_infer.pth",
+                "size": "25.7 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/ch_ptocr_v4_rec_infer.pth",
+                "available": true,
+                "localFile": "ch_ptocr_v4_rec_infer.pth"
+            },
+            {
+                "name": "ch_ptocr_v4_rec_simplified.onnx",
+                "size": "25.2 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/ch_ptocr_v4_rec_simplified.onnx",
+                "available": true,
+                "localFile": "ch_ptocr_v4_rec_simplified.onnx"
+            }
+        ],
+        "hfRepoId": "shadow-cann/hispark-modelzoo-paddleocrv4-rec",
+        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec",
+        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/blob/main/README.md",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/rec.om",
+        "primaryDownloadLabel": "rec.om",
+        "downloads": [
+            {
+                "title": "rec.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/rec.om",
+                "available": true,
+                "source": "om-A8W8",
+                "sourceLabel": "A8W8",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "rec.om"
+            },
+            {
+                "title": "rec_om-FP16.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/rec_om-FP16.om",
+                "available": true,
+                "source": "om-FP16",
+                "sourceLabel": "FP16",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "rec_om-FP16.om"
+            },
+            {
+                "title": "ch_ptocr_v4_rec_infer_source-model.pth",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/ch_ptocr_v4_rec_infer_source-model.pth",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "ch_ptocr_v4_rec_infer_source-model.pth"
+            },
+            {
+                "title": "ch_ptocr_v4_rec_simplified_source-model.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/ch_ptocr_v4_rec_simplified_source-model.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "ch_ptocr_v4_rec_simplified_source-model.onnx"
+            },
+            {
+                "title": "ch_ptocr_v4_rec_infer.pth",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/ch_ptocr_v4_rec_infer.pth",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "ch_ptocr_v4_rec_infer.pth"
+            },
+            {
+                "title": "ch_ptocr_v4_rec_simplified.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/ch_ptocr_v4_rec_simplified.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "ch_ptocr_v4_rec_simplified.onnx"
+            },
+            {
+                "title": "rec.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/rec.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "note": "A8W8",
+                "localFile": "rec.om"
+            },
+            {
+                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/SVP_NNN_PC_V1.0.6.0.tgz",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "note": "",
+                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            }
+        ]
+    },
+    {
+        "id": "j8pr351otk00",
+        "name": "YOLOv5s",
+        "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv5网络模型在继承了原有YOLO网络模型优点的基础上，具有更优的检测精度和更快的推理速度。本示例使用YOLOv5s。",
+        "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv5网络模型在继承了原有YOLO网络模型优点的基础上，具有更优的检测精度和更快的推理速度。本示例使用YOLOv5s。",
+        "descriptionEn": "YOLOv5s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "date": "2026-04-01 16:31:00",
+        "updatedAt": "2026-04-08 16:07:07",
+        "badge": null,
+        "betaVersionDesc": "",
+        "category": "计算机视觉",
+        "tags": [
+            "目标检测"
+        ],
+        "image": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1701484647481346%2Fyolov5s.jpg",
+        "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1701484647481346%2Fyolov5s.jpg",
+        "framework": [
+            "PyTorch"
+        ],
+        "supportOs": [
+            "OpenHarmony",
+            "Linux"
+        ],
+        "computingPower": [
+            "Hi3403V100 SVP_NNN",
+            "Hi3403V100 NNN"
+        ],
+        "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov5",
+        "licenseUrl": "https://github.com/ultralytics/yolov5/blob/master/LICENSE",
+        "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov5",
+        "quickStartMarkdownUrl": null,
+        "quickStartReadmes": [
+            {
+                "language": "C++",
+                "content": "yolov5模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolov5模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::Yolov5) != 0) {\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov5/src/CMakeLists.txt)。",
+                "summary": "yolov5模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for YOLOv5s. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
+            }
+        ],
+        "detailParams": [
+            {
+                "name": "输入",
+                "value": "640x640"
+            },
+            {
+                "name": "参数量",
+                "value": "7.226M"
+            },
+            {
+                "name": "计算量",
+                "value": "18.066GFLOPs"
+            }
+        ],
+        "originModels": [
+            {
+                "name": "yolov5s.pt",
+                "size": "14.1 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s.pt",
+                "available": true,
+                "localFile": "yolov5s.pt"
+            },
+            {
+                "name": "yolov5s.onnx",
+                "size": "27.6 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s.onnx",
+                "available": true,
+                "localFile": "yolov5s.onnx"
+            }
+        ],
+        "hfRepoId": "shadow-cann/hispark-modelzoo-yolov5s",
+        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s",
+        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/blob/main/README.md",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s.om",
+        "primaryDownloadLabel": "yolov5s.om",
+        "downloads": [
+            {
+                "title": "yolov5s.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s.om",
+                "available": true,
+                "source": "om-A8W8",
+                "sourceLabel": "A8W8",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "yolov5s.om"
+            },
+            {
+                "title": "yolov5s_source-model.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s_source-model.pt",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov5s_source-model.pt"
+            },
+            {
+                "title": "yolov5s.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov5s.onnx"
+            },
+            {
+                "title": "yolov5s.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s.pt",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov5s.pt"
+            },
+            {
+                "title": "yolov5s.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov5s.onnx"
+            },
+            {
+                "title": "yolov5s.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "note": "A8W8",
+                "localFile": "yolov5s.om"
+            },
+            {
+                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/SVP_NNN_PC_V1.0.6.0.tgz",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "note": "",
+                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            }
+        ]
+    },
+    {
+        "id": "j8pkk8lctk00",
+        "name": "YOLOv3",
+        "description": "YOLOv3是一种端到端的one-stage目标检测模型。相比YOLOv2，YOLOv3采用了一个新的backbone-Darknet-53来进行特征提取工作，这个新网络比Darknet-19更加强大，也比ResNet-101或者ResNet-152更加高效。",
+        "descriptionZh": "YOLOv3是一种端到端的one-stage目标检测模型。相比YOLOv2，YOLOv3采用了一个新的backbone-Darknet-53来进行特征提取工作，这个新网络比Darknet-19更加强大，也比ResNet-101或者ResNet-152更加高效。",
+        "descriptionEn": "YOLOv3 is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 10 downloadable artifacts, along with quick-start resources when available.",
+        "date": "2026-04-01 16:02:45",
+        "updatedAt": "2026-04-08 16:07:07",
+        "badge": null,
+        "betaVersionDesc": "",
+        "category": "计算机视觉",
+        "tags": [
+            "目标检测"
+        ],
+        "image": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1712022653894659%2Fom.jpg",
+        "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1712022653894659%2Fom.jpg",
+        "framework": [
+            "PyTorch"
+        ],
+        "supportOs": [
+            "OpenHarmony",
+            "Linux"
+        ],
+        "computingPower": [
+            "Hi3403V100 SVP_NNN",
+            "Hi3403V100 NNN"
+        ],
+        "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov3",
+        "licenseUrl": "https://github.com/ultralytics/yolov3/blob/master/LICENSE",
+        "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov3/",
+        "quickStartMarkdownUrl": null,
+        "quickStartReadmes": [
+            {
+                "language": "C++",
+                "content": "模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n  EnvInit();\n  std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n  std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(omModelPath, ModelType::Yolov3) != 0) {\n    LOG(ERROR) << \"fail to load model\";\n    return -1;\n  }\n  auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n  if (ret.size() == 0) {\n    LOG(ERROR) << \"fail to infer model\";\n    model->Unload();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    LOG(ERROR) << \"fail to unload model\";\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于[/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)]目录下，编译相关配置参考[CMakeLists.txt (https://gitee.com/HiSpark/modelzoo-dev/tree/master/samples/samples_GPL/built-in/yolov3/src/CMakeLists.txt)]。",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for YOLOv3. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
+            }
+        ],
+        "detailParams": [
+            {
+                "name": "输入",
+                "value": "640x640"
+            },
+            {
+                "name": "参数量",
+                "value": "61.923M"
+            },
+            {
+                "name": "计算量",
+                "value": "3.002GFLOPs"
+            }
+        ],
+        "originModels": [
+            {
+                "name": "yolov3.pt",
+                "size": "119 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3.pt",
+                "available": true,
+                "localFile": "yolov3.pt"
+            },
+            {
+                "name": "yolov3_sim.onnx",
+                "size": "236 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3_sim.onnx",
+                "available": true,
+                "localFile": "yolov3_sim.onnx"
+            },
+            {
+                "name": "yolov3.onnx",
+                "size": "236 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3.onnx",
+                "available": true,
+                "localFile": "yolov3.onnx"
+            }
+        ],
+        "hfRepoId": "shadow-cann/hispark-modelzoo-yolov3",
+        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3",
+        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/blob/main/README.md",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3.om",
+        "primaryDownloadLabel": "yolov3.om",
+        "downloads": [
+            {
+                "title": "yolov3.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3.om",
+                "available": true,
+                "source": "om-A8W8",
+                "sourceLabel": "A8W8",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "yolov3.om"
+            },
+            {
+                "title": "yolov3_om-FP16.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3_om-FP16.om",
+                "available": true,
+                "source": "om-FP16",
+                "sourceLabel": "FP16",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "yolov3_om-FP16.om"
+            },
+            {
+                "title": "yolov3_source-model.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3_source-model.pt",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov3_source-model.pt"
+            },
+            {
+                "title": "yolov3_sim_source-model.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3_sim_source-model.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov3_sim_source-model.onnx"
+            },
+            {
+                "title": "yolov3_source-model.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3_source-model.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov3_source-model.onnx"
+            },
+            {
+                "title": "yolov3.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3.pt",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov3.pt"
+            },
+            {
+                "title": "yolov3_sim.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3_sim.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov3_sim.onnx"
+            },
+            {
+                "title": "yolov3.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov3.onnx"
+            },
+            {
+                "title": "yolov3.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "note": "A8W8",
+                "localFile": "yolov3.om"
+            },
+            {
+                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/SVP_NNN_PC_V1.0.6.0.tgz",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "note": "",
+                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            }
+        ]
+    },
+    {
+        "id": "j8pjtko0i000",
+        "name": "YOLOv10s",
+        "description": "YOLOv10 引入了一种新的实时目标检测方法，解决了以前YOLO 版本在后处理和模型架构方面的不足。通过消除非最大抑制NMS和优化各种模型组件，YOLOv10 显著降低了计算开销。本示例基于YOLOv10s。",
+        "descriptionZh": "YOLOv10 引入了一种新的实时目标检测方法，解决了以前YOLO 版本在后处理和模型架构方面的不足。通过消除非最大抑制NMS和优化各种模型组件，YOLOv10 显著降低了计算开销。本示例基于YOLOv10s。",
+        "descriptionEn": "YOLOv10s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "date": "2026-04-01 15:59:40",
+        "updatedAt": "2026-04-08 16:07:06",
+        "badge": null,
+        "betaVersionDesc": "",
+        "category": "计算机视觉",
+        "tags": [
+            "目标检测"
+        ],
+        "image": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1719767893344257%2F%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20251226152658.png",
+        "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1719767893344257%2F%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20251226152658.png",
+        "framework": [
+            "PyTorch"
+        ],
+        "supportOs": [
+            "OpenHarmony",
+            "Linux"
+        ],
+        "computingPower": [
+            "Hi3403V100 SVP_NNN"
+        ],
+        "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov10s",
+        "licenseUrl": "https://github.com/THU-MIG/yolov10/blob/v1.1/LICENSE",
+        "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov10s",
+        "quickStartMarkdownUrl": null,
+        "quickStartReadmes": [
+            {
+                "language": "C++",
+                "content": "YOLOv10s模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n  EnvInit();\n  std::string omModelPath = \"/path/to/model.om\"; // YOLOv10s模型文件路径 \n  std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(omModelPath, ModelType::Yolov10s) != 0) {\n    LOG(ERROR) << \"fail to load model\";\n    return -1;\n  }\n  auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n  if (ret.size() == 0) {\n    LOG(ERROR) << \"fail to infer model\";\n    model->Unload();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    LOG(ERROR) << \"fail to unload model\";\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于[/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)]目录下，编译相关配置参考[CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov10s/src/CMakeLists.txt)]。",
+                "summary": "YOLOv10s模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for YOLOv10s. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
+            }
+        ],
+        "detailParams": [
+            {
+                "name": "输入",
+                "value": "640x640"
+            },
+            {
+                "name": "参数量",
+                "value": "7.291M"
+            },
+            {
+                "name": "计算量",
+                "value": "24.073GFLOPs"
+            }
+        ],
+        "originModels": [
+            {
+                "name": "yolov10s.onnx",
+                "size": "27.8 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/yolov10s.onnx",
+                "available": true,
+                "localFile": "yolov10s.onnx"
+            },
+            {
+                "name": "yolov10s.pt",
+                "size": "31.4 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/yolov10s.pt",
+                "available": true,
+                "localFile": "yolov10s.pt"
+            }
+        ],
+        "hfRepoId": "shadow-cann/hispark-modelzoo-yolov10s",
+        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s",
+        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/blob/main/README.md",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/yolov10s.om",
+        "primaryDownloadLabel": "yolov10s.om",
+        "downloads": [
+            {
+                "title": "yolov10s.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/yolov10s.om",
+                "available": true,
+                "source": "om-A16W8",
+                "sourceLabel": "A16W8",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "yolov10s.om"
+            },
+            {
+                "title": "yolov10s_source-model.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/yolov10s_source-model.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov10s_source-model.onnx"
+            },
+            {
+                "title": "yolov10s_source-model.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/yolov10s_source-model.pt",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov10s_source-model.pt"
+            },
+            {
+                "title": "yolov10s.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/yolov10s.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov10s.onnx"
+            },
+            {
+                "title": "yolov10s.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/yolov10s.pt",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov10s.pt"
+            },
+            {
+                "title": "yolov10s.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/yolov10s.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "note": "A16W8",
+                "localFile": "yolov10s.om"
+            },
+            {
+                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/SVP_NNN_PC_V1.0.6.0.tgz",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "note": "",
+                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            }
+        ]
+    },
+    {
+        "id": "j8pj2ts0i000",
+        "name": "PaddleOCRv4-det",
+        "description": "PP-OCRv4检测模型在PP-OCRv3检测模型的基础上，在网络结构，训练策略，蒸馏策略三个方面做了优化。首先，PP-OCRv4检测模型使用PP-LCNetV3替换MobileNetv3，并提出并行分支融合的PFhead结构；其次，训练时动态调整shrink ratio的比例；最后，PP-OCRv4对CML的蒸馏loss进行优化，进一步提升文字检测效果。",
+        "descriptionZh": "PP-OCRv4检测模型在PP-OCRv3检测模型的基础上，在网络结构，训练策略，蒸馏策略三个方面做了优化。首先，PP-OCRv4检测模型使用PP-LCNetV3替换MobileNetv3，并提出并行分支融合的PFhead结构；其次，训练时动态调整shrink ratio的比例；最后，PP-OCRv4对CML的蒸馏loss进行优化，进一步提升文字检测效果。",
+        "descriptionEn": "PaddleOCRv4-det is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "date": "2026-04-01 15:56:01",
+        "updatedAt": "2026-04-08 16:07:07",
+        "badge": null,
+        "betaVersionDesc": "",
+        "category": "计算机视觉",
+        "tags": [
+            "OCR"
+        ],
+        "image": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1719770449772547%2Focr.jpg",
+        "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1719770449772547%2Focr.jpg",
+        "framework": [
+            "PyTorch"
+        ],
+        "supportOs": [
+            "OpenHarmony",
+            "Linux"
+        ],
+        "computingPower": [
+            "Hi3403V100 SVP_NNN",
+            "Hi3403V100 NNN"
+        ],
+        "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/ocr/PaddleOCRv4-det",
+        "licenseUrl": "https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.10/LICENSE",
+        "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/ocr/PaddleOCRv4-det",
+        "quickStartMarkdownUrl": null,
+        "quickStartReadmes": [
+            {
+                "language": "C++",
+                "content": "PaddleOCRv4-det模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // PaddleOCRv4-det模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::PaddleOCR_Det) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于[/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)]目录下，编译相关配置参考[CMakeLists.txt (https://gitee.com/HiSpark/modelzoo-dev/tree/master/samples/samples_GPL/built-in/yolov3/src/CMakeLists.txt)]。",
+                "summary": "PaddleOCRv4-det模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for PaddleOCRv4-det. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
+            }
+        ],
+        "detailParams": [
+            {
+                "name": "输入",
+                "value": "960x960"
+            },
+            {
+                "name": "参数量",
+                "value": "3.476M"
+            },
+            {
+                "name": "计算量",
+                "value": "24.83GFLOPs"
+            }
+        ],
+        "originModels": [
+            {
+                "name": "ch_ptocr_v4_det_infer.pth",
+                "size": "13.8 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/ch_ptocr_v4_det_infer.pth",
+                "available": true,
+                "localFile": "ch_ptocr_v4_det_infer.pth"
+            },
+            {
+                "name": "ch_ptocr_v4_det_simplified.onnx",
+                "size": "13.3 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/ch_ptocr_v4_det_simplified.onnx",
+                "available": true,
+                "localFile": "ch_ptocr_v4_det_simplified.onnx"
+            }
+        ],
+        "hfRepoId": "shadow-cann/hispark-modelzoo-paddleocrv4-det",
+        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det",
+        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/blob/main/README.md",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/det.om",
+        "primaryDownloadLabel": "det.om",
+        "downloads": [
+            {
+                "title": "det.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/det.om",
+                "available": true,
+                "source": "om-A8W8",
+                "sourceLabel": "A8W8",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "det.om"
+            },
+            {
+                "title": "det_om-FP16.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/det_om-FP16.om",
+                "available": true,
+                "source": "om-FP16",
+                "sourceLabel": "FP16",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "det_om-FP16.om"
+            },
+            {
+                "title": "ch_ptocr_v4_det_infer_source-model.pth",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/ch_ptocr_v4_det_infer_source-model.pth",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "ch_ptocr_v4_det_infer_source-model.pth"
+            },
+            {
+                "title": "ch_ptocr_v4_det_simplified_source-model.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/ch_ptocr_v4_det_simplified_source-model.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "ch_ptocr_v4_det_simplified_source-model.onnx"
+            },
+            {
+                "title": "ch_ptocr_v4_det_infer.pth",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/ch_ptocr_v4_det_infer.pth",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "ch_ptocr_v4_det_infer.pth"
+            },
+            {
+                "title": "ch_ptocr_v4_det_simplified.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/ch_ptocr_v4_det_simplified.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "ch_ptocr_v4_det_simplified.onnx"
+            },
+            {
+                "title": "det.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/det.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "note": "A8W8",
+                "localFile": "det.om"
+            }
+        ]
+    },
+    {
+        "id": "j8pfkrsgtk00",
+        "name": "Depth-Anything-v2",
+        "description": "Depth Anything V2在细节和鲁棒性方面显著优于 V1。与基于 SD 的模型相比，它具有更快的推理速度、更少的参数和更高的深度精度。本示例使用的是Depth-Anything-V2-Small。",
+        "descriptionZh": "Depth Anything V2在细节和鲁棒性方面显著优于 V1。与基于 SD 的模型相比，它具有更快的推理速度、更少的参数和更高的深度精度。本示例使用的是Depth-Anything-V2-Small。",
+        "descriptionEn": "Depth-Anything-v2 is a computer vision model for monocular depth. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 9 downloadable artifacts, along with quick-start resources when available.",
+        "date": "2026-04-01 15:40:59",
+        "updatedAt": "2026-04-08 16:07:07",
+        "badge": "Beta",
+        "betaVersionDesc": "Hi3403V100 NNN引擎上模型性能待进一步优化",
+        "category": "计算机视觉",
+        "tags": [
+            "单目深度"
+        ],
+        "image": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1700942867267585%2Fdepth.png",
+        "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1700942867267585%2Fdepth.png",
+        "framework": [
+            "PyTorch"
+        ],
+        "supportOs": [
+            "OpenHarmony",
+            "Linux"
+        ],
+        "computingPower": [
+            "Hi3403V100 SVP_NNN",
+            "Hi3403V100 NNN"
+        ],
+        "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/depth/Depth-Anything-v2",
+        "licenseUrl": "https://github.com/DepthAnything/Depth-Anything-V2/blob/main/LICENSE",
+        "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/depth/Depth-Anything-v2",
+        "quickStartMarkdownUrl": null,
+        "quickStartReadmes": [
+            {
+                "language": "C++",
+                "content": "Depth-Anything-v2模型可以通过以下代码完成快速推理\n\nusing namespace Infer;\n\nint main()\n{\n    std::string modelPath = \"/path/to/imgModel.om\"; // 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::string aclConfigPath = \"/path/to/acl.cfg\"; // 输入acl的配置路径\n    int ret;\n    ret = Infer::DevInit(aclConfigPath);\n    std::shared_ptr<Infer::MdlBase> model = Infer::MdlCreate();\n    ret = model->LoadModel(modelPath);\n    std::vector<std::string> imglists;\n    ret = ReadImglistFile(imagePath, imglists);\n    std::vector<Infer::TensorBuf> inBufs, outBufs;\n    std::vector<Infer::TensorDesc> inDescs, outDescs;\n    Infer::TensorDesc desc;\n    size_t inputNum = model->GetInTensorNum();\n    size_t  outputNum = model->GetOutTensorNum();\n    for (size_t i = 0; i < inputNum; i++) {\n        model->GetInTensorDescByIdx(i, desc);\n        inDescs.push_back(desc);\n        inBufs.emplace_back(desc.defaultSize, desc.defaultStride);\n    }\n    for (size_t i = 0; i < outputNum; i++) {\n        model->GetOutTensorDescByIdx(i, desc);\n        outDescs.push_back(desc);\n        outBufs.emplace_back(desc.defaultSize, desc.defaultStride);\n    }\n    model->GetInTensorDescByIdx(0, desc);\n    for (size_t i = 0; i < imglists.size(); ++i) {\n        ret = ReadImgFileToBuf(imglists[i], desc, inBufs[0]);\n        ret = model->Execute(inBufs, outBufs);\n        (void)PostProcess(outBufs, outDescs, imglists[i]);\n    }\n    model->UnLoadModel();\n    Infer::DevDeInit();\n    return 0;\n}\n备注：上述C++代码仅展示了主要流程，详细实现请参考Depth-Anything-v2 (https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/depth/Depth-Anything-v2)。",
+                "summary": "Depth-Anything-v2模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for Depth-Anything-v2. Covers runtime initialization, inference execution, and configuration handling."
+            }
+        ],
+        "detailParams": [
+            {
+                "name": "输入",
+                "value": "518x518"
+            },
+            {
+                "name": "参数量",
+                "value": "24.184M"
+            },
+            {
+                "name": "计算量",
+                "value": "127.785GFLOPs"
+            }
+        ],
+        "originModels": [
+            {
+                "name": "depth_anything_v2_vits.pth",
+                "size": "94.6 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits.pth",
+                "available": true,
+                "localFile": "depth_anything_v2_vits.pth"
+            },
+            {
+                "name": "depth_anything_v2_vits_nnn.onnx",
+                "size": "94.4 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits_nnn.onnx",
+                "available": true,
+                "localFile": "depth_anything_v2_vits_nnn.onnx"
+            },
+            {
+                "name": "depth_anything_v2_vits_svp_nnn.onnx",
+                "size": "94.4 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits_svp_nnn.onnx",
+                "available": true,
+                "localFile": "depth_anything_v2_vits_svp_nnn.onnx"
+            }
+        ],
+        "hfRepoId": "shadow-cann/hispark-modelzoo-depth-anything-v2",
+        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2",
+        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/blob/main/README.md",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depthanything.om",
+        "primaryDownloadLabel": "depthanything.om",
+        "downloads": [
+            {
+                "title": "depthanything.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depthanything.om",
+                "available": true,
+                "source": "om-A16W8",
+                "sourceLabel": "A16W8",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "depthanything.om"
+            },
+            {
+                "title": "depthanything_om-FP16.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depthanything_om-FP16.om",
+                "available": true,
+                "source": "om-FP16",
+                "sourceLabel": "FP16",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "depthanything_om-FP16.om"
+            },
+            {
+                "title": "depth_anything_v2_vits_source-model.pth",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits_source-model.pth",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "depth_anything_v2_vits_source-model.pth"
+            },
+            {
+                "title": "depth_anything_v2_vits_nnn.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits_nnn.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "depth_anything_v2_vits_nnn.onnx"
+            },
+            {
+                "title": "depth_anything_v2_vits_svp_nnn.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits_svp_nnn.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "depth_anything_v2_vits_svp_nnn.onnx"
+            },
+            {
+                "title": "depth_anything_v2_vits.pth",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits.pth",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "depth_anything_v2_vits.pth"
+            },
+            {
+                "title": "depth_anything_v2_vits_nnn.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits_nnn.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "depth_anything_v2_vits_nnn.onnx"
+            },
+            {
+                "title": "depth_anything_v2_vits_svp_nnn.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits_svp_nnn.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "depth_anything_v2_vits_svp_nnn.onnx"
+            },
+            {
+                "title": "depth_anything.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "note": "A16W8",
+                "localFile": null
+            },
+            {
+                "title": "depth_anything_v2.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "note": "FP16",
+                "localFile": null
+            },
+            {
+                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/SVP_NNN_PC_V1.0.6.0.tgz",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "note": "",
+                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            }
+        ]
+    },
+    {
+        "id": "j8hn2954tk00",
+        "name": "Chinese-CLIP",
+        "description": "Chinese-CLIP 是 CLIP 模型的中文版本。CLIP 通过对比学习方式，同时学习图像和文本的表示，并能够理解两者之间的语义关联。Chinese-CLIP 使用约 2 亿规模的中文图文对进行训练，其核心目标是解决中文场景下的跨模态检索、图像表示生成等任务。",
+        "descriptionZh": "Chinese-CLIP 是 CLIP 模型的中文版本。CLIP 通过对比学习方式，同时学习图像和文本的表示，并能够理解两者之间的语义关联。Chinese-CLIP 使用约 2 亿规模的中文图文对进行训练，其核心目标是解决中文场景下的跨模态检索、图像表示生成等任务。",
+        "descriptionEn": "Chinese-CLIP is a multimodal model for image-text matching. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 17 downloadable artifacts, along with quick-start resources when available.",
+        "date": "2026-03-31 21:34:55",
+        "updatedAt": "2026-04-08 16:07:07",
+        "badge": "Beta",
+        "betaVersionDesc": "Hi3403V100 NNN引擎上模型精度和性能待进一步优化。",
+        "category": "多模态",
+        "tags": [
+            "图文匹配"
+        ],
+        "image": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1734291744751619%2Fclip.png",
+        "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1734291744751619%2Fclip.png",
+        "framework": [
+            "PyTorch"
+        ],
+        "supportOs": [
+            "OpenHarmony",
+            "Linux"
+        ],
+        "computingPower": [
+            "Hi3403V100 SVP_NNN",
+            "Hi3403V100 NNN"
+        ],
+        "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/classification/Chinese-CLIP",
+        "licenseUrl": "https://github.com/OFA-Sys/Chinese-CLIP/blob/master/MIT-LICENSE.txt",
+        "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/classification/Chinese-CLIP",
+        "quickStartMarkdownUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/classification/Chinese-CLIP/doc/快速开始.md",
+        "quickStartReadmes": [
+            {
+                "language": "C++",
+                "content": "Chinese-CLIP模型可以通过以下代码完成快速推理\n\nusing namespace Infer;\n\nint main(int argc, char* argv[])\n{\n    ClipInfer model;\n    if (!model.ExecuteParams(argc, argv)) {\n        LOG(ERROR) << \"Fail to parse cmd!\";\n        return -1;\n    }\n    EnvInit(model.acl_path_);\n    model.LoadModel();\n    std::vector<std::vector<float>> zeroshotWeights = model.InferTxt();\n    for (size_t i = 0; i < model.imgFileList_.size(); ++i)\n    {\n        std::vector<float> imgResult = model.InferImageSingle(model.imgFileList_[i][0]);\n        std::vector<float> tmp = model.ComputeModelLogits(imgResult, zeroshotWeights, 512, model.txtFileList_.size(), model.imgFileList_[i][0]);\n    }\n    model.UnLoadModel();\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码仅展示了主要流程，详细实现请参考Chinese-CLIP (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/Chinese-CLIP)。",
+                "summary": "Chinese-CLIP模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for Chinese-CLIP. Covers runtime initialization and inference execution."
+            }
+        ],
+        "detailParams": [
+            {
+                "name": "输入",
+                "value": "224x224"
+            },
+            {
+                "name": "参数量",
+                "value": "86.193M"
+            },
+            {
+                "name": "计算量",
+                "value": "36.381GFLOPs"
+            }
+        ],
+        "originModels": [
+            {
+                "name": "vit-b-16_img_sim_NNN.onnx",
+                "size": "332 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_img_sim_NNN.onnx",
+                "available": true,
+                "localFile": "vit-b-16_img_sim_NNN.onnx"
+            },
+            {
+                "name": "vit-b-16_txt_sim_NNN.onnx",
+                "size": "394 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_txt_sim_NNN.onnx",
+                "available": true,
+                "localFile": "vit-b-16_txt_sim_NNN.onnx"
+            },
+            {
+                "name": "vit-b-16_img_sim_SVP_NNN.onnx",
+                "size": "332 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_img_sim_SVP_NNN.onnx",
+                "available": true,
+                "localFile": "vit-b-16_img_sim_SVP_NNN.onnx"
+            },
+            {
+                "name": "vit-b-16_txt_sim_SVP_NNN.onnx",
+                "size": "394 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_txt_sim_SVP_NNN.onnx",
+                "available": true,
+                "localFile": "vit-b-16_txt_sim_SVP_NNN.onnx"
+            },
+            {
+                "name": "clip_cn_vit-b-16.pt",
+                "size": "718 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_cn_vit-b-16.pt",
+                "available": true,
+                "localFile": "clip_cn_vit-b-16.pt"
+            }
+        ],
+        "hfRepoId": "shadow-cann/hispark-modelzoo-chinese-clip",
+        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip",
+        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/blob/main/README.md",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_img.om",
+        "primaryDownloadLabel": "clip_img.om",
+        "downloads": [
+            {
+                "title": "clip_img.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_img.om",
+                "available": true,
+                "source": "om-A16W8",
+                "sourceLabel": "A16W8",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "clip_img.om"
+            },
+            {
+                "title": "clip_text.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_text.om",
+                "available": true,
+                "source": "om-A16W8",
+                "sourceLabel": "A16W8",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "clip_text.om"
+            },
+            {
+                "title": "clip_img_om-FP16.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_img_om-FP16.om",
+                "available": true,
+                "source": "om-FP16",
+                "sourceLabel": "FP16",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "clip_img_om-FP16.om"
+            },
+            {
+                "title": "clip_text_om-FP16.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_text_om-FP16.om",
+                "available": true,
+                "source": "om-FP16",
+                "sourceLabel": "FP16",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "clip_text_om-FP16.om"
+            },
+            {
+                "title": "vit-b-16_img_sim_NNN.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_img_sim_NNN.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "vit-b-16_img_sim_NNN.onnx"
+            },
+            {
+                "title": "vit-b-16_txt_sim_NNN.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_txt_sim_NNN.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "vit-b-16_txt_sim_NNN.onnx"
+            },
+            {
+                "title": "vit-b-16_img_sim_SVP_NNN.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_img_sim_SVP_NNN.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "vit-b-16_img_sim_SVP_NNN.onnx"
+            },
+            {
+                "title": "vit-b-16_txt_sim_SVP_NNN.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_txt_sim_SVP_NNN.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "vit-b-16_txt_sim_SVP_NNN.onnx"
+            },
+            {
+                "title": "clip_cn_vit-b-16.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_cn_vit-b-16.pt",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "clip_cn_vit-b-16.pt"
+            },
+            {
+                "title": "vit-b-16_img_sim_NNN.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_img_sim_NNN.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "vit-b-16_img_sim_NNN.onnx"
+            },
+            {
+                "title": "vit-b-16_txt_sim_NNN.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_txt_sim_NNN.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "vit-b-16_txt_sim_NNN.onnx"
+            },
+            {
+                "title": "vit-b-16_img_sim_SVP_NNN.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_img_sim_SVP_NNN.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "vit-b-16_img_sim_SVP_NNN.onnx"
+            },
+            {
+                "title": "vit-b-16_txt_sim_SVP_NNN.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_txt_sim_SVP_NNN.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "vit-b-16_txt_sim_SVP_NNN.onnx"
+            },
+            {
+                "title": "clip_cn_vit-b-16.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_cn_vit-b-16.pt",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "note": "",
+                "localFile": "clip_cn_vit-b-16.pt"
+            },
+            {
+                "title": "clip_img.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_img.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "note": "A16W8",
+                "localFile": "clip_img.om"
+            },
+            {
+                "title": "clip_text.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_text.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "note": "A16W8",
+                "localFile": "clip_text.om"
+            },
+            {
+                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/SVP_NNN_PC_V1.0.6.0.tgz",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "note": "",
+                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            }
+        ]
+    },
+    {
         "id": "j6v87p1oi000",
         "name": "DeepSort",
         "description": "DeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。",
@@ -526,9 +2120,9 @@ const modelsData = [
         "name": "SuperPoint",
         "description": "SuperPoint模型的全卷积神经网络架构对全尺寸图像进行操作，并在单次前向传递中产生伴随固定长度描述符的兴趣点检测。该模型有一个单一的共享编码器来处理和减少输入图像的维数。在编码器之后，该架构分成两个解码器“头”，它们学习任务特定权重——一个用于兴趣点检测，另一个用于感兴趣点描述。大多数网络参数在两个任务之间共享，这与传统系统不同，传统系统首先检测兴趣点，然后计算描述符，并且缺乏跨两个任务共享计算和表示的能力。",
         "descriptionZh": "SuperPoint模型的全卷积神经网络架构对全尺寸图像进行操作，并在单次前向传递中产生伴随固定长度描述符的兴趣点检测。该模型有一个单一的共享编码器来处理和减少输入图像的维数。在编码器之后，该架构分成两个解码器“头”，它们学习任务特定权重——一个用于兴趣点检测，另一个用于感兴趣点描述。大多数网络参数在两个任务之间共享，这与传统系统不同，传统系统首先检测兴趣点，然后计算描述符，并且缺乏跨两个任务共享计算和表示的能力。",
-        "descriptionEn": "SuperPoint is a computer vision model for feature point detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 8 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "SuperPoint is a computer vision model for feature point detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-16 21:11:02",
-        "updatedAt": "2026-03-26 09:35:38",
+        "updatedAt": null,
         "badge": null,
         "betaVersionDesc": "",
         "category": "计算机视觉",
@@ -593,25 +2187,15 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-superpoint",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-superpoint",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-superpoint/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-superpoint/resolve/main/superpoint_bs1_om-A8W8.om",
-        "primaryDownloadLabel": "superpoint_bs1_om-A8W8.om",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-superpoint/resolve/main/superpoint_bs1.om",
+        "primaryDownloadLabel": "superpoint_bs1.om",
         "downloads": [
-            {
-                "title": "superpoint_bs1_om-A8W8.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-superpoint/resolve/main/superpoint_bs1_om-A8W8.om",
-                "available": true,
-                "source": "om-A8W8",
-                "sourceLabel": "A8W8",
-                "group": "编译模型",
-                "note": "",
-                "localFile": "superpoint_bs1_om-A8W8.om"
-            },
             {
                 "title": "superpoint_bs1.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-superpoint/resolve/main/superpoint_bs1.om",
                 "available": true,
-                "source": "om-FP16",
-                "sourceLabel": "FP16",
+                "source": "om-A8W8",
+                "sourceLabel": "A8W8",
                 "group": "编译模型",
                 "note": "",
                 "localFile": "superpoint_bs1.om"
@@ -1170,199 +2754,6 @@ const modelsData = [
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-squeezenet1-1/resolve/main/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "api-all",
-                "sourceLabel": "附加资源",
-                "group": "附加资源",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            }
-        ]
-    },
-    {
-        "id": "j3m8r949vs00",
-        "name": "Chinese-CLIP",
-        "description": "Chinese-CLIP 是 CLIP 模型的中文版本。CLIP 通过对比学习方式，同时学习图像和文本的表示，并能够理解两者之间的语义关联。Chinese-CLIP 使用约 2 亿规模的中文图文对进行训练，其核心目标是解决中文场景下的跨模态检索、图像表示生成等任务。",
-        "descriptionZh": "Chinese-CLIP 是 CLIP 模型的中文版本。CLIP 通过对比学习方式，同时学习图像和文本的表示，并能够理解两者之间的语义关联。Chinese-CLIP 使用约 2 亿规模的中文图文对进行训练，其核心目标是解决中文场景下的跨模态检索、图像表示生成等任务。",
-        "descriptionEn": "Chinese-CLIP is a multimodal model for image-text matching. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 11 downloadable artifacts, along with quick-start resources when available.",
-        "date": "2026-03-16 19:22:14",
-        "updatedAt": "2026-03-26 09:35:38",
-        "badge": null,
-        "betaVersionDesc": "",
-        "category": "多模态",
-        "tags": [
-            "图文匹配"
-        ],
-        "image": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1734291744751619%2Fclip.png",
-        "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1734291744751619%2Fclip.png",
-        "framework": [
-            "PyTorch"
-        ],
-        "supportOs": [
-            "OpenHarmony",
-            "Linux"
-        ],
-        "computingPower": [
-            "Hi3403V100 SVP_NNN"
-        ],
-        "repositoryUrl": "https://gitee.com/HiSpark/modelzoov/tree/master/samples/built-in/classification/Chinese-CLIP",
-        "licenseUrl": "https://github.com/OFA-Sys/Chinese-CLIP/blob/master/MIT-LICENSE.txt",
-        "quickStartUrl": "https://gitee.com/HiSpark/modelzoov/tree/master/samples/built-in/classification/Chinese-CLIP",
-        "quickStartMarkdownUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/classification/Chinese-CLIP/doc/快速开始.md",
-        "quickStartReadmes": [
-            {
-                "language": "C++",
-                "content": "Chinese-CLIP模型可以通过以下代码完成快速推理\n\nusing namespace Infer;\n\nint main(int argc, char* argv[])\n{\n    ClipInfer model;\n    if (!model.ExecuteParams(argc, argv)) {\n        LOG(ERROR) << \"Fail to parse cmd!\";\n        return -1;\n    }\n    EnvInit(model.acl_path_);\n    model.LoadModel();\n    std::vector<std::vector<float>> zeroshotWeights = model.InferTxt();\n    for (size_t i = 0; i < model.imgFileList_.size(); ++i)\n    {\n        std::vector<float> imgResult = model.InferImageSingle(model.imgFileList_[i][0]);\n        std::vector<float> tmp = model.ComputeModelLogits(imgResult, zeroshotWeights, 512, model.txtFileList_.size(), model.imgFileList_[i][0]);\n    }\n    model.UnLoadModel();\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码仅展示了主要流程，详细实现请参考Chinese-CLIP (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/Chinese-CLIP)。",
-                "summary": "Chinese-CLIP模型可以通过以下代码完成快速推理",
-                "summaryEn": "C++ quick-start notes for Chinese-CLIP. Covers runtime initialization and inference execution."
-            }
-        ],
-        "detailParams": [
-            {
-                "name": "输入",
-                "value": "224x224"
-            },
-            {
-                "name": "参数量",
-                "value": "86.193M"
-            },
-            {
-                "name": "计算量",
-                "value": "36.381GFLOPs"
-            }
-        ],
-        "originModels": [
-            {
-                "name": "vit-b-16_img_sim.onnx",
-                "size": "332 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_img_sim.onnx",
-                "available": true,
-                "localFile": "vit-b-16_img_sim.onnx"
-            },
-            {
-                "name": "vit-b-16_txt_sim.onnx",
-                "size": "394 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_txt_sim.onnx",
-                "available": true,
-                "localFile": "vit-b-16_txt_sim.onnx"
-            },
-            {
-                "name": "clip_cn_vit-b-16.pt",
-                "size": "718 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_cn_vit-b-16.pt",
-                "available": true,
-                "localFile": "clip_cn_vit-b-16.pt"
-            }
-        ],
-        "hfRepoId": "shadow-cann/hispark-modelzoo-chinese-clip",
-        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip",
-        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_img_om-A16W8.om",
-        "primaryDownloadLabel": "clip_img_om-A16W8.om",
-        "downloads": [
-            {
-                "title": "clip_img_om-A16W8.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_img_om-A16W8.om",
-                "available": true,
-                "source": "om-A16W8",
-                "sourceLabel": "A16W8",
-                "group": "编译模型",
-                "note": "",
-                "localFile": "clip_img_om-A16W8.om"
-            },
-            {
-                "title": "clip_text_om-A16W8.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_text_om-A16W8.om",
-                "available": true,
-                "source": "om-A16W8",
-                "sourceLabel": "A16W8",
-                "group": "编译模型",
-                "note": "",
-                "localFile": "clip_text_om-A16W8.om"
-            },
-            {
-                "title": "vit-b-16_img_sim.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_img_sim.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "vit-b-16_img_sim.onnx"
-            },
-            {
-                "title": "vit-b-16_txt_sim.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_txt_sim.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "vit-b-16_txt_sim.onnx"
-            },
-            {
-                "title": "clip_cn_vit-b-16.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_cn_vit-b-16.pt",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "clip_cn_vit-b-16.pt"
-            },
-            {
-                "title": "vit-b-16_img_sim.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_img_sim.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "vit-b-16_img_sim.onnx"
-            },
-            {
-                "title": "vit-b-16_txt_sim.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_txt_sim.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "vit-b-16_txt_sim.onnx"
-            },
-            {
-                "title": "clip_cn_vit-b-16.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_cn_vit-b-16.pt",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "clip_cn_vit-b-16.pt"
-            },
-            {
-                "title": "clip_img.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_img.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "A16W8",
-                "localFile": "clip_img.om"
-            },
-            {
-                "title": "clip_text.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_text.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "A16W8",
-                "localFile": "clip_text.om"
-            },
-            {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
                 "sourceLabel": "附加资源",
@@ -2806,579 +4197,6 @@ const modelsData = [
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-obb/resolve/main/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "api-all",
-                "sourceLabel": "附加资源",
-                "group": "附加资源",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            }
-        ]
-    },
-    {
-        "id": "i9srr6dd6k00",
-        "name": "PaddleOCRv4-rec",
-        "description": "PP-OCRv4识别模型在PP-OCRv3的基础上进一步升级。整体的框架保持了与PP-OCRv3识别模型相同的pipeline，分别进行了数据、网络结构、训练策略等方面的优化。",
-        "descriptionZh": "PP-OCRv4识别模型在PP-OCRv3的基础上进一步升级。整体的框架保持了与PP-OCRv3识别模型相同的pipeline，分别进行了数据、网络结构、训练策略等方面的优化。",
-        "descriptionEn": "PaddleOCRv4-rec is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
-        "date": "2025-12-26 16:02:03",
-        "updatedAt": "2025-12-30 20:02:17",
-        "badge": "Beta",
-        "betaVersionDesc": "Hi3403V100 SVP_NNN引擎上模型性能待优化",
-        "category": "计算机视觉",
-        "tags": [
-            "OCR"
-        ],
-        "image": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1719966200037379%2F%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20251227174303.png",
-        "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1719966200037379%2F%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20251227174303.png",
-        "framework": [
-            "PyTorch"
-        ],
-        "supportOs": [
-            "OpenHarmony",
-            "Linux"
-        ],
-        "computingPower": [
-            "Hi3403V100 SVP_NNN"
-        ],
-        "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/ocr/PaddleOCRv4-rec",
-        "licenseUrl": "https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.10/LICENSE",
-        "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/ocr/PaddleOCRv4-rec/",
-        "quickStartMarkdownUrl": null,
-        "quickStartReadmes": [
-            {
-                "language": "C++",
-                "content": "PaddleOCRv4-rec模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n  EnvInit();\n  std::string omModelPath = \"/path/to/model.om\"; // PaddleOCRv4-rec模型文件路径 \n  std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(omModelPath, ModelType::PaddleOCR_Rec) != 0) {\n    LOG(ERROR) << \"fail to load model\";\n    return -1;\n  }\n  auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n  if (ret.size() == 0) {\n    LOG(ERROR) << \"fail to infer model\";\n    model->Unload();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    LOG(ERROR) << \"fail to unload model\";\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于[/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)]目录下，编译相关配置参考[CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/ocr/PaddleOCRv4-rec/src/CMakeLists.txt)]。",
-                "summary": "PaddleOCRv4-rec模型可以通过以下代码完成快速推理",
-                "summaryEn": "C++ quick-start notes for PaddleOCRv4-rec. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
-            }
-        ],
-        "detailParams": [
-            {
-                "name": "输入",
-                "value": "960x960"
-            },
-            {
-                "name": "参数量",
-                "value": "3.476M"
-            },
-            {
-                "name": "计算量",
-                "value": "24.83GFLOPs"
-            }
-        ],
-        "originModels": [
-            {
-                "name": "ch_ptocr_v4_rec_infer.pth",
-                "size": "25.7 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/ch_ptocr_v4_rec_infer.pth",
-                "available": true,
-                "localFile": "ch_ptocr_v4_rec_infer.pth"
-            },
-            {
-                "name": "ch_ptocr_v4_rec_simplified.onnx",
-                "size": "25.2 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/ch_ptocr_v4_rec_simplified.onnx",
-                "available": true,
-                "localFile": "ch_ptocr_v4_rec_simplified.onnx"
-            }
-        ],
-        "hfRepoId": "shadow-cann/hispark-modelzoo-paddleocrv4-rec",
-        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec",
-        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/ch_ptocr_v4_rec_infer.pth",
-        "primaryDownloadLabel": "ch_ptocr_v4_rec_infer.pth",
-        "downloads": [
-            {
-                "title": "ch_ptocr_v4_rec_infer.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/ch_ptocr_v4_rec_infer.pth",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "ch_ptocr_v4_rec_infer.pth"
-            },
-            {
-                "title": "ch_ptocr_v4_rec_simplified.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/ch_ptocr_v4_rec_simplified.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "ch_ptocr_v4_rec_simplified.onnx"
-            },
-            {
-                "title": "ch_ptocr_v4_rec_infer.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/ch_ptocr_v4_rec_infer.pth",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "ch_ptocr_v4_rec_infer.pth"
-            },
-            {
-                "title": "ch_ptocr_v4_rec_simplified.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/ch_ptocr_v4_rec_simplified.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "ch_ptocr_v4_rec_simplified.onnx"
-            },
-            {
-                "title": "rec.om",
-                "href": null,
-                "available": false,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "a8w8",
-                "localFile": null
-            },
-            {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "api-all",
-                "sourceLabel": "附加资源",
-                "group": "附加资源",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            }
-        ]
-    },
-    {
-        "id": "i9sq1n0lec00",
-        "name": "PaddleOCRv4-det",
-        "description": "PP-OCRv4检测模型在PP-OCRv3检测模型的基础上，在网络结构，训练策略，蒸馏策略三个方面做了优化。首先，PP-OCRv4检测模型使用PP-LCNetV3替换MobileNetv3，并提出并行分支融合的PFhead结构；其次，训练时动态调整shrink ratio的比例；最后，PP-OCRv4对CML的蒸馏loss进行优化，进一步提升文字检测效果。",
-        "descriptionZh": "PP-OCRv4检测模型在PP-OCRv3检测模型的基础上，在网络结构，训练策略，蒸馏策略三个方面做了优化。首先，PP-OCRv4检测模型使用PP-LCNetV3替换MobileNetv3，并提出并行分支融合的PFhead结构；其次，训练时动态调整shrink ratio的比例；最后，PP-OCRv4对CML的蒸馏loss进行优化，进一步提升文字检测效果。",
-        "descriptionEn": "PaddleOCRv4-det is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
-        "date": "2025-12-26 15:54:13",
-        "updatedAt": "2025-12-30 20:02:17",
-        "badge": "Beta",
-        "betaVersionDesc": "Hi3403V100 SVP_NNN引擎上模型性能待优化",
-        "category": "计算机视觉",
-        "tags": [
-            "OCR"
-        ],
-        "image": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1719770449772547%2Focr.jpg",
-        "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1719770449772547%2Focr.jpg",
-        "framework": [
-            "PyTorch"
-        ],
-        "supportOs": [
-            "OpenHarmony",
-            "Linux"
-        ],
-        "computingPower": [
-            "Hi3403V100 SVP_NNN",
-            "Hi3403V100 NNN"
-        ],
-        "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/ocr/PaddleOCRv4-det",
-        "licenseUrl": "https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.10/LICENSE",
-        "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/ocr/PaddleOCRv4-det",
-        "quickStartMarkdownUrl": null,
-        "quickStartReadmes": [
-            {
-                "language": "C++",
-                "content": "PaddleOCRv4-det模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // PaddleOCRv4-det模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::PaddleOCR_Det) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于[/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)]目录下，编译相关配置参考[CMakeLists.txt (https://gitee.com/HiSpark/modelzoo-dev/tree/master/samples/samples_GPL/built-in/yolov3/src/CMakeLists.txt)]。",
-                "summary": "PaddleOCRv4-det模型可以通过以下代码完成快速推理",
-                "summaryEn": "C++ quick-start notes for PaddleOCRv4-det. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
-            }
-        ],
-        "detailParams": [
-            {
-                "name": "输入",
-                "value": "960x960"
-            },
-            {
-                "name": "参数量",
-                "value": "3.476M"
-            },
-            {
-                "name": "计算量",
-                "value": "24.83GFLOPs"
-            }
-        ],
-        "originModels": [
-            {
-                "name": "ch_ptocr_v4_det_infer.pth",
-                "size": "13.8 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/ch_ptocr_v4_det_infer.pth",
-                "available": true,
-                "localFile": "ch_ptocr_v4_det_infer.pth"
-            },
-            {
-                "name": "ch_ptocr_v4_det_simplified.onnx",
-                "size": "13.3 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/ch_ptocr_v4_det_simplified.onnx",
-                "available": true,
-                "localFile": "ch_ptocr_v4_det_simplified.onnx"
-            }
-        ],
-        "hfRepoId": "shadow-cann/hispark-modelzoo-paddleocrv4-det",
-        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det",
-        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/ch_ptocr_v4_det_infer.pth",
-        "primaryDownloadLabel": "ch_ptocr_v4_det_infer.pth",
-        "downloads": [
-            {
-                "title": "ch_ptocr_v4_det_infer.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/ch_ptocr_v4_det_infer.pth",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "ch_ptocr_v4_det_infer.pth"
-            },
-            {
-                "title": "ch_ptocr_v4_det_simplified.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/ch_ptocr_v4_det_simplified.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "ch_ptocr_v4_det_simplified.onnx"
-            },
-            {
-                "title": "ch_ptocr_v4_det_infer.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/ch_ptocr_v4_det_infer.pth",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "ch_ptocr_v4_det_infer.pth"
-            },
-            {
-                "title": "ch_ptocr_v4_det_simplified.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/ch_ptocr_v4_det_simplified.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "ch_ptocr_v4_det_simplified.onnx"
-            },
-            {
-                "title": "det.om",
-                "href": null,
-                "available": false,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "a8w8",
-                "localFile": null
-            },
-            {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "api-all",
-                "sourceLabel": "附加资源",
-                "group": "附加资源",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            }
-        ]
-    },
-    {
-        "id": "i9snjr85ec00",
-        "name": "YOLOv3",
-        "description": "YOLOv3是一种端到端的one-stage目标检测模型。相比YOLOv2，YOLOv3采用了一个新的backbone-Darknet-53来进行特征提取工作，这个新网络比Darknet-19更加强大，也比ResNet-101或者ResNet-152更加高效。",
-        "descriptionZh": "YOLOv3是一种端到端的one-stage目标检测模型。相比YOLOv2，YOLOv3采用了一个新的backbone-Darknet-53来进行特征提取工作，这个新网络比Darknet-19更加强大，也比ResNet-101或者ResNet-152更加高效。",
-        "descriptionEn": "YOLOv3 is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
-        "date": "2025-12-26 15:43:35",
-        "updatedAt": "2025-12-30 20:02:17",
-        "badge": "Beta",
-        "betaVersionDesc": "Hi3403V100 SVP_NNN引擎上模型性能待进一步优化",
-        "category": "计算机视觉",
-        "tags": [
-            "目标检测"
-        ],
-        "image": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1712022653894659%2Fom.jpg",
-        "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1712022653894659%2Fom.jpg",
-        "framework": [
-            "PyTorch"
-        ],
-        "supportOs": [
-            "OpenHarmony",
-            "Linux"
-        ],
-        "computingPower": [
-            "Hi3403V100 SVP_NNN",
-            "Hi3403V100 NNN"
-        ],
-        "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov3",
-        "licenseUrl": "https://github.com/ultralytics/yolov3/blob/master/LICENSE",
-        "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov3/",
-        "quickStartMarkdownUrl": null,
-        "quickStartReadmes": [
-            {
-                "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n  EnvInit();\n  std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n  std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(omModelPath, ModelType::Yolov3) != 0) {\n    LOG(ERROR) << \"fail to load model\";\n    return -1;\n  }\n  auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n  if (ret.size() == 0) {\n    LOG(ERROR) << \"fail to infer model\";\n    model->Unload();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    LOG(ERROR) << \"fail to unload model\";\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于[/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)]目录下，编译相关配置参考[CMakeLists.txt (https://gitee.com/HiSpark/modelzoo-dev/tree/master/samples/samples_GPL/built-in/yolov3/src/CMakeLists.txt)]。",
-                "summary": "模型可以通过以下代码完成快速推理",
-                "summaryEn": "C++ quick-start notes for YOLOv3. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
-            }
-        ],
-        "detailParams": [
-            {
-                "name": "输入",
-                "value": "640x640"
-            },
-            {
-                "name": "参数量",
-                "value": "61.923M"
-            },
-            {
-                "name": "计算量",
-                "value": "3.002GFLOPs"
-            }
-        ],
-        "originModels": [
-            {
-                "name": "yolov3.pt",
-                "size": "119 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3.pt",
-                "available": true,
-                "localFile": "yolov3.pt"
-            },
-            {
-                "name": "yolov3_sim.onnx",
-                "size": "236 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3_sim.onnx",
-                "available": true,
-                "localFile": "yolov3_sim.onnx"
-            },
-            {
-                "name": "yolov3.onnx",
-                "size": "236 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3.onnx",
-                "available": true,
-                "localFile": "yolov3.onnx"
-            }
-        ],
-        "hfRepoId": "shadow-cann/hispark-modelzoo-yolov3",
-        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3",
-        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3.pt",
-        "primaryDownloadLabel": "yolov3.pt",
-        "downloads": [
-            {
-                "title": "yolov3.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3.pt",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov3.pt"
-            },
-            {
-                "title": "yolov3_sim.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3_sim.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov3_sim.onnx"
-            },
-            {
-                "title": "yolov3.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov3.onnx"
-            },
-            {
-                "title": "yolov3.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3.pt",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov3.pt"
-            },
-            {
-                "title": "yolov3_sim.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3_sim.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov3_sim.onnx"
-            },
-            {
-                "title": "yolov3.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov3.onnx"
-            },
-            {
-                "title": "yolov3.om",
-                "href": null,
-                "available": false,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "a8w8",
-                "localFile": null
-            },
-            {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "api-all",
-                "sourceLabel": "附加资源",
-                "group": "附加资源",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            }
-        ]
-    },
-    {
-        "id": "i9sgeqqt6k00",
-        "name": "YOLOv10s",
-        "description": "YOLOv10 引入了一种新的实时目标检测方法，解决了以前YOLO 版本在后处理和模型架构方面的不足。通过消除非最大抑制NMS和优化各种模型组件，YOLOv10 显著降低了计算开销。本示例基于YOLOv10s。",
-        "descriptionZh": "YOLOv10 引入了一种新的实时目标检测方法，解决了以前YOLO 版本在后处理和模型架构方面的不足。通过消除非最大抑制NMS和优化各种模型组件，YOLOv10 显著降低了计算开销。本示例基于YOLOv10s。",
-        "descriptionEn": "YOLOv10s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
-        "date": "2025-12-26 15:12:19",
-        "updatedAt": "2025-12-30 20:02:17",
-        "badge": "Beta",
-        "betaVersionDesc": "Hi3403V100 SVP_NNN引擎上模型性能进一步优化中",
-        "category": "计算机视觉",
-        "tags": [
-            "目标检测"
-        ],
-        "image": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1719767893344257%2F%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20251226152658.png",
-        "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1719767893344257%2F%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20251226152658.png",
-        "framework": [
-            "PyTorch"
-        ],
-        "supportOs": [
-            "OpenHarmony",
-            "Linux"
-        ],
-        "computingPower": [
-            "Hi3403V100 SVP_NNN"
-        ],
-        "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov10s",
-        "licenseUrl": "https://github.com/THU-MIG/yolov10/blob/v1.1/LICENSE",
-        "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov10s",
-        "quickStartMarkdownUrl": null,
-        "quickStartReadmes": [
-            {
-                "language": "C++",
-                "content": "YOLOv10s模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n  EnvInit();\n  std::string omModelPath = \"/path/to/model.om\"; // YOLOv10s模型文件路径 \n  std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(omModelPath, ModelType::Yolov10s) != 0) {\n    LOG(ERROR) << \"fail to load model\";\n    return -1;\n  }\n  auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n  if (ret.size() == 0) {\n    LOG(ERROR) << \"fail to infer model\";\n    model->Unload();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    LOG(ERROR) << \"fail to unload model\";\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于[/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)]目录下，编译相关配置参考[CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov10s/src/CMakeLists.txt)]。",
-                "summary": "YOLOv10s模型可以通过以下代码完成快速推理",
-                "summaryEn": "C++ quick-start notes for YOLOv10s. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
-            }
-        ],
-        "detailParams": [
-            {
-                "name": "输入",
-                "value": "640x640"
-            },
-            {
-                "name": "参数量",
-                "value": "7.291M"
-            },
-            {
-                "name": "计算量",
-                "value": "24.073GFLOPs"
-            }
-        ],
-        "originModels": [
-            {
-                "name": "yolov10s.onnx",
-                "size": "27.8 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/yolov10s.onnx",
-                "available": true,
-                "localFile": "yolov10s.onnx"
-            },
-            {
-                "name": "yolov10s.pt",
-                "size": "31.4 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/yolov10s.pt",
-                "available": true,
-                "localFile": "yolov10s.pt"
-            }
-        ],
-        "hfRepoId": "shadow-cann/hispark-modelzoo-yolov10s",
-        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s",
-        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/yolov10s.onnx",
-        "primaryDownloadLabel": "yolov10s.onnx",
-        "downloads": [
-            {
-                "title": "yolov10s.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/yolov10s.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov10s.onnx"
-            },
-            {
-                "title": "yolov10s.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/yolov10s.pt",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov10s.pt"
-            },
-            {
-                "title": "yolov10s.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/yolov10s.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov10s.onnx"
-            },
-            {
-                "title": "yolov10s.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/yolov10s.pt",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov10s.pt"
-            },
-            {
-                "title": "yolov10s.om",
-                "href": null,
-                "available": false,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "a16w8",
-                "localFile": null
-            },
-            {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
                 "sourceLabel": "附加资源",
@@ -6363,279 +7181,6 @@ const modelsData = [
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet101/resolve/main/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "api-all",
-                "sourceLabel": "附加资源",
-                "group": "附加资源",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            }
-        ]
-    },
-    {
-        "id": "h819tsfh6c00",
-        "name": "Depth-Anything-v2",
-        "description": "Depth Anything V2在细节和鲁棒性方面显著优于 [V1](https://github.com/LiheYoung/Depth-Anything)。与基于 SD 的模型相比，它具有更快的推理速度、更少的参数和更高的深度精度。本示例使用的是Depth-Anything-V2-Small",
-        "descriptionZh": "Depth Anything V2在细节和鲁棒性方面显著优于 [V1](https://github.com/LiheYoung/Depth-Anything)。与基于 SD 的模型相比，它具有更快的推理速度、更少的参数和更高的深度精度。本示例使用的是Depth-Anything-V2-Small",
-        "descriptionEn": "Depth-Anything-v2 is a computer vision model for monocular depth. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
-        "date": "2025-09-12 11:09:24",
-        "updatedAt": null,
-        "badge": null,
-        "betaVersionDesc": "",
-        "category": "计算机视觉",
-        "tags": [
-            "单目深度"
-        ],
-        "image": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1700942867267585%2Fdepth.png",
-        "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1700942867267585%2Fdepth.png",
-        "framework": [
-            "PyTorch"
-        ],
-        "supportOs": [
-            "OpenHarmony",
-            "Linux"
-        ],
-        "computingPower": [
-            "Hi3403V100 SVP_NNN"
-        ],
-        "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/depth/Depth-Anything-v2",
-        "licenseUrl": "https://github.com/DepthAnything/Depth-Anything-V2/blob/main/LICENSE",
-        "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/depth/Depth-Anything-v2",
-        "quickStartMarkdownUrl": null,
-        "quickStartReadmes": [
-            {
-                "language": "C++",
-                "content": "Depth-Anything-v2模型可以通过以下代码完成快速推理\n\nusing namespace Infer;\n\nint main()\n{\n    std::string modelPath = \"/path/to/imgModel.om\"; // 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::string aclConfigPath = \"/path/to/acl.cfg\"; // 输入acl的配置路径\n    int ret;\n    ret = Infer::DevInit(aclConfigPath);\n    std::shared_ptr<Infer::MdlBase> model = Infer::MdlCreate();\n    ret = model->LoadModel(modelPath);\n    std::vector<std::string> imglists;\n    ret = ReadImglistFile(imagePath, imglists);\n    std::vector<Infer::TensorBuf> inBufs, outBufs;\n    std::vector<Infer::TensorDesc> inDescs, outDescs;\n    Infer::TensorDesc desc;\n    size_t inputNum = model->GetInTensorNum();\n    size_t  outputNum = model->GetOutTensorNum();\n    for (size_t i = 0; i < inputNum; i++) {\n        model->GetInTensorDescByIdx(i, desc);\n        inDescs.push_back(desc);\n        inBufs.emplace_back(desc.defaultSize, desc.defaultStride);\n    }\n    for (size_t i = 0; i < outputNum; i++) {\n        model->GetOutTensorDescByIdx(i, desc);\n        outDescs.push_back(desc);\n        outBufs.emplace_back(desc.defaultSize, desc.defaultStride);\n    }\n    model->GetInTensorDescByIdx(0, desc);\n    for (size_t i = 0; i < imglists.size(); ++i) {\n        ret = ReadImgFileToBuf(imglists[i], desc, inBufs[0]);\n        ret = model->Execute(inBufs, outBufs);\n        (void)PostProcess(outBufs, outDescs, imglists[i]);\n    }\n    model->UnLoadModel();\n    Infer::DevDeInit();\n    return 0;\n}\n备注：上述C++代码仅展示了主要流程，详细实现请参考Depth-Anything-v2 (https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/depth/Depth-Anything-v2)。",
-                "summary": "Depth-Anything-v2模型可以通过以下代码完成快速推理",
-                "summaryEn": "C++ quick-start notes for Depth-Anything-v2. Covers runtime initialization, inference execution, and configuration handling."
-            }
-        ],
-        "detailParams": [
-            {
-                "name": "输入",
-                "value": "518x518"
-            },
-            {
-                "name": "参数量",
-                "value": "24.184M"
-            },
-            {
-                "name": "计算量",
-                "value": "127.785GFLOPs"
-            }
-        ],
-        "originModels": [
-            {
-                "name": "depth_anything_v2_vits.onnx",
-                "size": "94.4 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits.onnx",
-                "available": true,
-                "localFile": "depth_anything_v2_vits.onnx"
-            },
-            {
-                "name": "depth_anything_v2_vits.pth",
-                "size": "94.6 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits.pth",
-                "available": true,
-                "localFile": "depth_anything_v2_vits.pth"
-            }
-        ],
-        "hfRepoId": "shadow-cann/hispark-modelzoo-depth-anything-v2",
-        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2",
-        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits.onnx",
-        "primaryDownloadLabel": "depth_anything_v2_vits.onnx",
-        "downloads": [
-            {
-                "title": "depth_anything_v2_vits.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "depth_anything_v2_vits.onnx"
-            },
-            {
-                "title": "depth_anything_v2_vits.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits.pth",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "depth_anything_v2_vits.pth"
-            },
-            {
-                "title": "depth_anything_v2_vits.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "depth_anything_v2_vits.onnx"
-            },
-            {
-                "title": "depth_anything_v2_vits.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits.pth",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "depth_anything_v2_vits.pth"
-            },
-            {
-                "title": "depth_anything.om",
-                "href": null,
-                "available": false,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "a16w8",
-                "localFile": null
-            },
-            {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "api-all",
-                "sourceLabel": "附加资源",
-                "group": "附加资源",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            }
-        ]
-    },
-    {
-        "id": "h6s908ugto00",
-        "name": "YOLOv5s",
-        "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv5网络模型在继承了原有YOLO网络模型优点的基础上，具有更优的检测精度和更快的推理速度。本示例使用YOLOv5s。",
-        "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv5网络模型在继承了原有YOLO网络模型优点的基础上，具有更优的检测精度和更快的推理速度。本示例使用YOLOv5s。",
-        "descriptionEn": "YOLOv5s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
-        "date": "2025-09-08 20:52:23",
-        "updatedAt": null,
-        "badge": null,
-        "betaVersionDesc": "",
-        "category": "计算机视觉",
-        "tags": [
-            "目标检测"
-        ],
-        "image": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1701484647481346%2Fyolov5s.jpg",
-        "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1701484647481346%2Fyolov5s.jpg",
-        "framework": [
-            "PyTorch"
-        ],
-        "supportOs": [
-            "OpenHarmony",
-            "Linux"
-        ],
-        "computingPower": [
-            "Hi3403V100 SVP_NNN",
-            "Hi3403V100 NNN"
-        ],
-        "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov5",
-        "licenseUrl": "https://github.com/ultralytics/yolov5/blob/master/LICENSE",
-        "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov5",
-        "quickStartMarkdownUrl": null,
-        "quickStartReadmes": [
-            {
-                "language": "C++",
-                "content": "yolov5模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolov5模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::Yolov5) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov5/src/CMakeLists.txt)。",
-                "summary": "yolov5模型可以通过以下代码完成快速推理",
-                "summaryEn": "C++ quick-start notes for YOLOv5s. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
-            }
-        ],
-        "detailParams": [
-            {
-                "name": "输入",
-                "value": "640x640"
-            },
-            {
-                "name": "参数量",
-                "value": "7.226M"
-            },
-            {
-                "name": "计算量",
-                "value": "18.066GFLOPs"
-            }
-        ],
-        "originModels": [
-            {
-                "name": "yolov5s.pt",
-                "size": "14.1 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s.pt",
-                "available": true,
-                "localFile": "yolov5s.pt"
-            },
-            {
-                "name": "yolov5s.onnx",
-                "size": "27.6 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s.onnx",
-                "available": true,
-                "localFile": "yolov5s.onnx"
-            }
-        ],
-        "hfRepoId": "shadow-cann/hispark-modelzoo-yolov5s",
-        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s",
-        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s.om",
-        "primaryDownloadLabel": "yolov5s.om",
-        "downloads": [
-            {
-                "title": "yolov5s.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s.pt",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov5s.pt"
-            },
-            {
-                "title": "yolov5s.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov5s.onnx"
-            },
-            {
-                "title": "yolov5s.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s.pt",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov5s.pt"
-            },
-            {
-                "title": "yolov5s.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov5s.onnx"
-            },
-            {
-                "title": "yolov5s.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "a8w8",
-                "localFile": "yolov5s.om"
-            },
-            {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
                 "sourceLabel": "附加资源",

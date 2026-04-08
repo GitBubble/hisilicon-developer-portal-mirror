@@ -1,5 +1,319 @@
 [
   {
+    "id": "j9brj6ooi000",
+    "name": "YOLOv9s",
+    "coverImageId": 1737486946598914,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1737486946598914%2F202103071025384.jpg",
+    "isBeta": 0,
+    "betaVersionDesc": "",
+    "createdBy": 140453576036644,
+    "creationDate": "2026-04-03 10:29:46",
+    "creationUserCN": "gideon",
+    "lastUpdateDate": "2026-04-08 16:07:07",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "YOLOv9s 是 Ultralytics 推出的目标检测模型，采用了 GELAN 架构和 PGI 训练策略。相比于之前的版本，YOLOv9 在保持高效推理的同时，通过可编程梯度信息（PGI）进一步提升了检测精度。该模型在 COCO 数据集上进行了训练和验证。",
+    "computerVersion": [
+      "目标检测"
+    ],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "OpenHarmony",
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3403V100 SVP_NNN",
+      "Hi3403V100 NNN"
+    ],
+    "isCollect": 0,
+    "downloadNum": 0,
+    "collectCount": 0
+  },
+  {
+    "id": "j93dspootk00",
+    "name": "Yolov8s-World",
+    "coverImageId": 1737338061389827,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1737338061389827%2F6.png",
+    "isBeta": 0,
+    "betaVersionDesc": "",
+    "createdBy": 137441035408492,
+    "creationDate": "2026-04-02 14:51:26",
+    "creationUserCN": "0e900d99dee8461b8",
+    "lastUpdateDate": "2026-04-08 16:07:07",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "Yolov8s-World 是 Ultralytics 推出的一种基于 YOLO-World 架构的轻量级目标检测模型，它通过视觉-语言预训练实现了无需针对特定类别进行训练即可识别任意物体的 “开放词汇” (Open-Vocabulary) 实时检测功能。",
+    "computerVersion": [
+      "目标检测"
+    ],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "OpenHarmony",
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3403V100 SVP_NNN",
+      "Hi3403V100 NNN"
+    ],
+    "isCollect": 0,
+    "downloadNum": 2,
+    "collectCount": 0
+  },
+  {
+    "id": "j918qkd0tk00",
+    "name": "PaddleOCRv4-rec",
+    "coverImageId": 1719966200037379,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1719966200037379%2F%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20251227174303.png",
+    "isBeta": 1,
+    "betaVersionDesc": "Hi3403V100 SVP_NNN引擎上模型性能待优化",
+    "createdBy": 137441035408492,
+    "creationDate": "2026-04-02 09:49:40",
+    "creationUserCN": "0e900d99dee8461b8",
+    "lastUpdateDate": "2026-04-08 16:07:07",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "PP-OCRv4识别模型在PP-OCRv3的基础上进一步升级。整体的框架保持了与PP-OCRv3识别模型相同的pipeline，分别进行了数据、网络结构、训练策略等方面的优化。",
+    "computerVersion": [
+      "OCR"
+    ],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "OpenHarmony",
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3403V100 SVP_NNN",
+      "Hi3403V100 NNN"
+    ],
+    "isCollect": 0,
+    "downloadNum": 1,
+    "collectCount": 0
+  },
+  {
+    "id": "j8pr351otk00",
+    "name": "YOLOv5s",
+    "coverImageId": 1701484647481346,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1701484647481346%2Fyolov5s.jpg",
+    "isBeta": 0,
+    "betaVersionDesc": "",
+    "createdBy": 137441035408492,
+    "creationDate": "2026-04-01 16:31:00",
+    "creationUserCN": "0e900d99dee8461b8",
+    "lastUpdateDate": "2026-04-08 16:07:07",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv5网络模型在继承了原有YOLO网络模型优点的基础上，具有更优的检测精度和更快的推理速度。本示例使用YOLOv5s。",
+    "computerVersion": [
+      "目标检测"
+    ],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "OpenHarmony",
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3403V100 SVP_NNN",
+      "Hi3403V100 NNN"
+    ],
+    "isCollect": 0,
+    "downloadNum": 1,
+    "collectCount": 0
+  },
+  {
+    "id": "j8pkk8lctk00",
+    "name": "YOLOv3",
+    "coverImageId": 1712022653894659,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1712022653894659%2Fom.jpg",
+    "isBeta": 0,
+    "betaVersionDesc": "",
+    "createdBy": 137441035408492,
+    "creationDate": "2026-04-01 16:02:45",
+    "creationUserCN": "0e900d99dee8461b8",
+    "lastUpdateDate": "2026-04-08 16:07:07",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "YOLOv3是一种端到端的one-stage目标检测模型。相比YOLOv2，YOLOv3采用了一个新的backbone-Darknet-53来进行特征提取工作，这个新网络比Darknet-19更加强大，也比ResNet-101或者ResNet-152更加高效。",
+    "computerVersion": [
+      "目标检测"
+    ],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "OpenHarmony",
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3403V100 SVP_NNN",
+      "Hi3403V100 NNN"
+    ],
+    "isCollect": 0,
+    "downloadNum": 0,
+    "collectCount": 0
+  },
+  {
+    "id": "j8pjtko0i000",
+    "name": "YOLOv10s",
+    "coverImageId": 1719767893344257,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1719767893344257%2F%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20251226152658.png",
+    "isBeta": 0,
+    "betaVersionDesc": "",
+    "createdBy": 137441035408492,
+    "creationDate": "2026-04-01 15:59:40",
+    "creationUserCN": "0e900d99dee8461b8",
+    "lastUpdateDate": "2026-04-08 16:07:06",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "YOLOv10 引入了一种新的实时目标检测方法，解决了以前YOLO 版本在后处理和模型架构方面的不足。通过消除非最大抑制NMS和优化各种模型组件，YOLOv10 显著降低了计算开销。本示例基于YOLOv10s。",
+    "computerVersion": [
+      "目标检测"
+    ],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "OpenHarmony",
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3403V100 SVP_NNN"
+    ],
+    "isCollect": 0,
+    "downloadNum": 0,
+    "collectCount": 0
+  },
+  {
+    "id": "j8pj2ts0i000",
+    "name": "PaddleOCRv4-det",
+    "coverImageId": 1719770449772547,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1719770449772547%2Focr.jpg",
+    "isBeta": 0,
+    "betaVersionDesc": "",
+    "createdBy": 137441035408492,
+    "creationDate": "2026-04-01 15:56:01",
+    "creationUserCN": "0e900d99dee8461b8",
+    "lastUpdateDate": "2026-04-08 16:07:07",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "PP-OCRv4检测模型在PP-OCRv3检测模型的基础上，在网络结构，训练策略，蒸馏策略三个方面做了优化。首先，PP-OCRv4检测模型使用PP-LCNetV3替换MobileNetv3，并提出并行分支融合的PFhead结构；其次，训练时动态调整shrink ratio的比例；最后，PP-OCRv4对CML的蒸馏loss进行优化，进一步提升文字检测效果。",
+    "computerVersion": [
+      "OCR"
+    ],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "OpenHarmony",
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3403V100 SVP_NNN",
+      "Hi3403V100 NNN"
+    ],
+    "isCollect": 0,
+    "downloadNum": 0,
+    "collectCount": 0
+  },
+  {
+    "id": "j8pfkrsgtk00",
+    "name": "Depth-Anything-v2",
+    "coverImageId": 1700942867267585,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1700942867267585%2Fdepth.png",
+    "isBeta": 1,
+    "betaVersionDesc": "Hi3403V100 NNN引擎上模型性能待进一步优化",
+    "createdBy": 137441035408492,
+    "creationDate": "2026-04-01 15:40:59",
+    "creationUserCN": "0e900d99dee8461b8",
+    "lastUpdateDate": "2026-04-08 16:07:07",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "Depth Anything V2在细节和鲁棒性方面显著优于 V1。与基于 SD 的模型相比，它具有更快的推理速度、更少的参数和更高的深度精度。本示例使用的是Depth-Anything-V2-Small。",
+    "computerVersion": [
+      "单目深度"
+    ],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "OpenHarmony",
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3403V100 SVP_NNN",
+      "Hi3403V100 NNN"
+    ],
+    "isCollect": 0,
+    "downloadNum": 0,
+    "collectCount": 0
+  },
+  {
+    "id": "j8hn2954tk00",
+    "name": "Chinese-CLIP",
+    "coverImageId": 1734291744751619,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1734291744751619%2Fclip.png",
+    "isBeta": 1,
+    "betaVersionDesc": "Hi3403V100 NNN引擎上模型精度和性能待进一步优化。",
+    "createdBy": 139761718403620,
+    "creationDate": "2026-03-31 21:34:55",
+    "creationUserCN": "bazinga",
+    "lastUpdateDate": "2026-04-08 16:07:07",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "Chinese-CLIP 是 CLIP 模型的中文版本。CLIP 通过对比学习方式，同时学习图像和文本的表示，并能够理解两者之间的语义关联。Chinese-CLIP 使用约 2 亿规模的中文图文对进行训练，其核心目标是解决中文场景下的跨模态检索、图像表示生成等任务。",
+    "computerVersion": [],
+    "naturalLanguageProcess": [],
+    "multimodal": [
+      "图文匹配"
+    ],
+    "video": [],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "OpenHarmony",
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3403V100 SVP_NNN",
+      "Hi3403V100 NNN"
+    ],
+    "isCollect": 0,
+    "downloadNum": 5,
+    "collectCount": 0
+  },
+  {
     "id": "j6v87p1oi000",
     "name": "DeepSort",
     "coverImageId": 1736139606130691,
@@ -31,7 +345,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 82,
+    "downloadNum": 86,
     "collectCount": 0
   },
   {
@@ -114,7 +428,7 @@
     "createdBy": 137441035408492,
     "creationDate": "2026-03-16 21:11:02",
     "creationUserCN": "0e900d99dee8461b8",
-    "lastUpdateDate": "2026-03-26 09:35:38",
+    "lastUpdateDate": null,
     "currentHandler": "",
     "currentHandlerName": "",
     "description": "SuperPoint模型的全卷积神经网络架构对全尺寸图像进行操作，并在单次前向传递中产生伴随固定长度描述符的兴趣点检测。该模型有一个单一的共享编码器来处理和减少输入图像的维数。在编码器之后，该架构分成两个解码器“头”，它们学习任务特定权重——一个用于兴趣点检测，另一个用于感兴趣点描述。大多数网络参数在两个任务之间共享，这与传统系统不同，传统系统首先检测兴趣点，然后计算描述符，并且缺乏跨两个任务共享计算和表示的能力。",
@@ -136,7 +450,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 17,
+    "downloadNum": 18,
     "collectCount": 0
   },
   {
@@ -245,40 +559,6 @@
     "collectCount": 0
   },
   {
-    "id": "j3m8r949vs00",
-    "name": "Chinese-CLIP",
-    "coverImageId": 1734291744751619,
-    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1734291744751619%2Fclip.png",
-    "isBeta": 0,
-    "betaVersionDesc": "",
-    "createdBy": 137441035408492,
-    "creationDate": "2026-03-16 19:22:14",
-    "creationUserCN": "0e900d99dee8461b8",
-    "lastUpdateDate": "2026-03-26 09:35:38",
-    "currentHandler": "",
-    "currentHandlerName": "",
-    "description": "Chinese-CLIP 是 CLIP 模型的中文版本。CLIP 通过对比学习方式，同时学习图像和文本的表示，并能够理解两者之间的语义关联。Chinese-CLIP 使用约 2 亿规模的中文图文对进行训练，其核心目标是解决中文场景下的跨模态检索、图像表示生成等任务。",
-    "computerVersion": [],
-    "naturalLanguageProcess": [],
-    "multimodal": [
-      "图文匹配"
-    ],
-    "video": [],
-    "framework": [
-      "PyTorch"
-    ],
-    "supportOs": [
-      "OpenHarmony",
-      "Linux"
-    ],
-    "computingPower": [
-      "Hi3403V100 SVP_NNN"
-    ],
-    "isCollect": 0,
-    "downloadNum": 18,
-    "collectCount": 0
-  },
-  {
     "id": "j3m873lcso00",
     "name": "Swin-Transformer",
     "coverImageId": 1701485580845059,
@@ -343,7 +623,7 @@
       "Hi3591PV100"
     ],
     "isCollect": 0,
-    "downloadNum": 25,
+    "downloadNum": 27,
     "collectCount": 0
   },
   {
@@ -477,7 +757,7 @@
       "Hi3403V100 SVP_NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 25,
+    "downloadNum": 26,
     "collectCount": 0
   },
   {
@@ -511,7 +791,7 @@
       "Hi3403V100 SVP_NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 23,
+    "downloadNum": 25,
     "collectCount": 0
   },
   {
@@ -581,7 +861,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 39,
+    "downloadNum": 40,
     "collectCount": 1
   },
   {
@@ -615,7 +895,7 @@
       "Hi3403V100 SVP_NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 74,
+    "downloadNum": 75,
     "collectCount": 0
   },
   {
@@ -688,144 +968,6 @@
     "collectCount": 0
   },
   {
-    "id": "i9srr6dd6k00",
-    "name": "PaddleOCRv4-rec",
-    "coverImageId": 1719966200037379,
-    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1719966200037379%2F%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20251227174303.png",
-    "isBeta": 1,
-    "betaVersionDesc": "Hi3403V100 SVP_NNN引擎上模型性能待优化",
-    "createdBy": 137441035408492,
-    "creationDate": "2025-12-26 16:02:03",
-    "creationUserCN": "0e900d99dee8461b8",
-    "lastUpdateDate": "2025-12-30 20:02:17",
-    "currentHandler": "",
-    "currentHandlerName": "",
-    "description": "PP-OCRv4识别模型在PP-OCRv3的基础上进一步升级。整体的框架保持了与PP-OCRv3识别模型相同的pipeline，分别进行了数据、网络结构、训练策略等方面的优化。",
-    "computerVersion": [
-      "OCR"
-    ],
-    "naturalLanguageProcess": [],
-    "multimodal": [],
-    "video": [],
-    "framework": [
-      "PyTorch"
-    ],
-    "supportOs": [
-      "OpenHarmony",
-      "Linux"
-    ],
-    "computingPower": [
-      "Hi3403V100 SVP_NNN"
-    ],
-    "isCollect": 0,
-    "downloadNum": 23,
-    "collectCount": 0
-  },
-  {
-    "id": "i9sq1n0lec00",
-    "name": "PaddleOCRv4-det",
-    "coverImageId": 1719770449772547,
-    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1719770449772547%2Focr.jpg",
-    "isBeta": 1,
-    "betaVersionDesc": "Hi3403V100 SVP_NNN引擎上模型性能待优化",
-    "createdBy": 137441035408492,
-    "creationDate": "2025-12-26 15:54:13",
-    "creationUserCN": "0e900d99dee8461b8",
-    "lastUpdateDate": "2025-12-30 20:02:17",
-    "currentHandler": "",
-    "currentHandlerName": "",
-    "description": "PP-OCRv4检测模型在PP-OCRv3检测模型的基础上，在网络结构，训练策略，蒸馏策略三个方面做了优化。首先，PP-OCRv4检测模型使用PP-LCNetV3替换MobileNetv3，并提出并行分支融合的PFhead结构；其次，训练时动态调整shrink ratio的比例；最后，PP-OCRv4对CML的蒸馏loss进行优化，进一步提升文字检测效果。",
-    "computerVersion": [
-      "OCR"
-    ],
-    "naturalLanguageProcess": [],
-    "multimodal": [],
-    "video": [],
-    "framework": [
-      "PyTorch"
-    ],
-    "supportOs": [
-      "OpenHarmony",
-      "Linux"
-    ],
-    "computingPower": [
-      "Hi3403V100 SVP_NNN",
-      "Hi3403V100 NNN"
-    ],
-    "isCollect": 0,
-    "downloadNum": 19,
-    "collectCount": 0
-  },
-  {
-    "id": "i9snjr85ec00",
-    "name": "YOLOv3",
-    "coverImageId": 1712022653894659,
-    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1712022653894659%2Fom.jpg",
-    "isBeta": 1,
-    "betaVersionDesc": "Hi3403V100 SVP_NNN引擎上模型性能待进一步优化",
-    "createdBy": 137441035408492,
-    "creationDate": "2025-12-26 15:43:35",
-    "creationUserCN": "0e900d99dee8461b8",
-    "lastUpdateDate": "2025-12-30 20:02:17",
-    "currentHandler": "",
-    "currentHandlerName": "",
-    "description": "YOLOv3是一种端到端的one-stage目标检测模型。相比YOLOv2，YOLOv3采用了一个新的backbone-Darknet-53来进行特征提取工作，这个新网络比Darknet-19更加强大，也比ResNet-101或者ResNet-152更加高效。",
-    "computerVersion": [
-      "目标检测"
-    ],
-    "naturalLanguageProcess": [],
-    "multimodal": [],
-    "video": [],
-    "framework": [
-      "PyTorch"
-    ],
-    "supportOs": [
-      "OpenHarmony",
-      "Linux"
-    ],
-    "computingPower": [
-      "Hi3403V100 SVP_NNN",
-      "Hi3403V100 NNN"
-    ],
-    "isCollect": 0,
-    "downloadNum": 37,
-    "collectCount": 0
-  },
-  {
-    "id": "i9sgeqqt6k00",
-    "name": "YOLOv10s",
-    "coverImageId": 1719767893344257,
-    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1719767893344257%2F%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20251226152658.png",
-    "isBeta": 1,
-    "betaVersionDesc": "Hi3403V100 SVP_NNN引擎上模型性能进一步优化中",
-    "createdBy": 137441035408492,
-    "creationDate": "2025-12-26 15:12:19",
-    "creationUserCN": "0e900d99dee8461b8",
-    "lastUpdateDate": "2025-12-30 20:02:17",
-    "currentHandler": "",
-    "currentHandlerName": "",
-    "description": "YOLOv10 引入了一种新的实时目标检测方法，解决了以前YOLO 版本在后处理和模型架构方面的不足。通过消除非最大抑制NMS和优化各种模型组件，YOLOv10 显著降低了计算开销。本示例基于YOLOv10s。",
-    "computerVersion": [
-      "目标检测"
-    ],
-    "naturalLanguageProcess": [],
-    "multimodal": [],
-    "video": [],
-    "framework": [
-      "PyTorch"
-    ],
-    "supportOs": [
-      "OpenHarmony",
-      "Linux"
-    ],
-    "computingPower": [
-      "Hi3403V100 SVP_NNN"
-    ],
-    "isCollect": 0,
-    "downloadNum": 25,
-    "collectCount": 0
-  },
-  {
     "id": "i9qdl2hh6k00",
     "name": "HRNet",
     "coverImageId": 1719728246685699,
@@ -857,7 +999,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 10,
+    "downloadNum": 11,
     "collectCount": 0
   },
   {
@@ -892,7 +1034,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 29,
+    "downloadNum": 30,
     "collectCount": 0
   },
   {
@@ -962,7 +1104,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 10,
+    "downloadNum": 11,
     "collectCount": 0
   },
   {
@@ -1032,7 +1174,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 5,
+    "downloadNum": 6,
     "collectCount": 0
   },
   {
@@ -1067,7 +1209,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 6,
+    "downloadNum": 8,
     "collectCount": 0
   },
   {
@@ -1242,7 +1384,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 7,
+    "downloadNum": 8,
     "collectCount": 0
   },
   {
@@ -1277,7 +1419,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 47,
+    "downloadNum": 48,
     "collectCount": 0
   },
   {
@@ -1487,7 +1629,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 50,
+    "downloadNum": 52,
     "collectCount": 0
   },
   {
@@ -1591,75 +1733,6 @@
     ],
     "isCollect": 0,
     "downloadNum": 18,
-    "collectCount": 0
-  },
-  {
-    "id": "h819tsfh6c00",
-    "name": "Depth-Anything-v2",
-    "coverImageId": 1700942867267585,
-    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1700942867267585%2Fdepth.png",
-    "isBeta": 0,
-    "betaVersionDesc": "",
-    "createdBy": 137441035408492,
-    "creationDate": "2025-09-12 11:09:24",
-    "creationUserCN": "0e900d99dee8461b8",
-    "lastUpdateDate": null,
-    "currentHandler": "",
-    "currentHandlerName": null,
-    "description": "Depth Anything V2在细节和鲁棒性方面显著优于 [V1](https://github.com/LiheYoung/Depth-Anything)。与基于 SD 的模型相比，它具有更快的推理速度、更少的参数和更高的深度精度。本示例使用的是Depth-Anything-V2-Small",
-    "computerVersion": [
-      "单目深度"
-    ],
-    "naturalLanguageProcess": [],
-    "multimodal": [],
-    "video": [],
-    "framework": [
-      "PyTorch"
-    ],
-    "supportOs": [
-      "OpenHarmony",
-      "Linux"
-    ],
-    "computingPower": [
-      "Hi3403V100 SVP_NNN"
-    ],
-    "isCollect": 0,
-    "downloadNum": 13,
-    "collectCount": 0
-  },
-  {
-    "id": "h6s908ugto00",
-    "name": "YOLOv5s",
-    "coverImageId": 1701484647481346,
-    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1701484647481346%2Fyolov5s.jpg",
-    "isBeta": 0,
-    "betaVersionDesc": "",
-    "createdBy": 137441035408492,
-    "creationDate": "2025-09-08 20:52:23",
-    "creationUserCN": "0e900d99dee8461b8",
-    "lastUpdateDate": null,
-    "currentHandler": "",
-    "currentHandlerName": null,
-    "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv5网络模型在继承了原有YOLO网络模型优点的基础上，具有更优的检测精度和更快的推理速度。本示例使用YOLOv5s。",
-    "computerVersion": [
-      "目标检测"
-    ],
-    "naturalLanguageProcess": [],
-    "multimodal": [],
-    "video": [],
-    "framework": [
-      "PyTorch"
-    ],
-    "supportOs": [
-      "OpenHarmony",
-      "Linux"
-    ],
-    "computingPower": [
-      "Hi3403V100 SVP_NNN",
-      "Hi3403V100 NNN"
-    ],
-    "isCollect": 0,
-    "downloadNum": 22,
     "collectCount": 0
   }
 ]
