@@ -1,5 +1,1022 @@
 [
   {
+    "id": "joqqhel5c400",
+    "name": "MiniCPM-4v-0.5B",
+    "listData": {
+      "id": "joqqhel5c400",
+      "name": "MiniCPM-4v-0.5B",
+      "coverImageId": 1735709648093187,
+      "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1735709648093187%2FMiniCPM.png",
+      "isBeta": 1,
+      "betaVersionDesc": "Hi3403V100 SVP_NNN引擎上模型性能待进一步优化。",
+      "createdBy": 139036723332644,
+      "creationDate": "2026-05-21 11:51:11",
+      "creationUserCN": "y-0089",
+      "lastUpdateDate": "2026-06-26 21:38:44",
+      "currentHandler": "",
+      "currentHandlerName": "",
+      "description": "MiniCPM-4v-0.5B: 小参数, 大智慧——端侧多模态模型\n\n由面壁智能(OpenBMB)打造的MiniCPM-4v-0.5B, 以0.53B的精简参数量，在端侧设备上实现了卓越的图文理解与交互能力。专为边缘计算场景设计，让每一分算力都充分发挥价值。\n\n三大核心优势：\n    1. 创新架构，轻装上阵\n通过创新的稀疏感知训练和视觉压缩技术，实现 16:1 视觉特征压缩比，在保证高精度的同时，极大降低了推理算力消耗与内存占用。\n    2. 高能数据，以小博大\n依托高密度数据体系，数据准备成本下降90%。通过汇聚全球高质量语料进行精细化对齐，用优质的数据训练模型，实现越级性能表现。\n    3. 高效训练，成本锐减\n采用原创 WSD 调度策略与“模型风洞”技术，相比传统方案，搜索算力节省超99%，整体训练成本节省约60%，为端侧模型的持续迭代提供高效路径。\n\n海思平台技术支撑：\n现已适配 Hi3403V100 平台，持续生成速度达 21 tokens/s，为边缘侧设备提供流程、敏捷的智能视觉体验。",
+      "computerVersion": [],
+      "naturalLanguageProcess": [
+        "VLM"
+      ],
+      "multimodal": [],
+      "video": [],
+      "framework": [
+        "PyTorch"
+      ],
+      "supportOs": [
+        "Linux"
+      ],
+      "computingPower": [
+        "Hi3403V100 SVP_NNN"
+      ],
+      "isCollect": 0,
+      "downloadNum": 5,
+      "collectCount": 0
+    },
+    "apiDetail": {
+      "createdBy": 139036723332644,
+      "creationDate": "2026-05-21 11:51:11",
+      "creationUserCN": "y-0089",
+      "lastUpdatedBy": null,
+      "lastUpdateDate": "2026-06-26 21:38:44",
+      "lastUpdateUserCN": "y-0089",
+      "rowIdx": -1,
+      "id": "joqqhel5c400",
+      "name": "MiniCPM-4v-0.5B",
+      "isBeta": 1,
+      "betaVersionDesc": "Hi3403V100 SVP_NNN引擎上模型性能待进一步优化。",
+      "description": "MiniCPM-4v-0.5B: 小参数, 大智慧——端侧多模态模型\n\n由面壁智能(OpenBMB)打造的MiniCPM-4v-0.5B, 以0.53B的精简参数量，在端侧设备上实现了卓越的图文理解与交互能力。专为边缘计算场景设计，让每一分算力都充分发挥价值。\n\n三大核心优势：\n    1. 创新架构，轻装上阵\n通过创新的稀疏感知训练和视觉压缩技术，实现 16:1 视觉特征压缩比，在保证高精度的同时，极大降低了推理算力消耗与内存占用。\n    2. 高能数据，以小博大\n依托高密度数据体系，数据准备成本下降90%。通过汇聚全球高质量语料进行精细化对齐，用优质的数据训练模型，实现越级性能表现。\n    3. 高效训练，成本锐减\n采用原创 WSD 调度策略与“模型风洞”技术，相比传统方案，搜索算力节省超99%，整体训练成本节省约60%，为端侧模型的持续迭代提供高效路径。\n\n海思平台技术支撑：\n现已适配 Hi3403V100 平台，持续生成速度达 21 tokens/s，为边缘侧设备提供流程、敏捷的智能视觉体验。",
+      "parentId": "indvkfmcp400",
+      "coverImageId": 1735709648093187,
+      "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1735709648093187%2FMiniCPM.png",
+      "modelEffectId": null,
+      "modelEffectUrl": "",
+      "computerVersion": [],
+      "naturalLanguageProcess": [
+        "VLM"
+      ],
+      "multimodal": [],
+      "video": [],
+      "framework": [
+        "PyTorch"
+      ],
+      "modelRepository": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/vlm/MiniCPM/README.md",
+      "originModel": [],
+      "originModelLink": "",
+      "dataSet": "",
+      "modelLicense": "https://mb-data-backup.obs.cn-north-4.myhuaweicloud.com/user/jiachao/OM%20%E6%96%87%E4%BB%B6%202.zip?AccessKeyId=HPUARUUZPXAE4IVX5B31&Expires=1809590045&Signature=zzq0a/LHRlFPjCqmDHAUFp57ICM%3D",
+      "detailParams": [
+        {
+          "name": "输入",
+          "value": "图片: 512x512  Embedding: 200 Tokens"
+        },
+        {
+          "name": "参数量",
+          "value": "520.333 M"
+        },
+        {
+          "name": "计算量",
+          "value": "413.886 GFLOPs"
+        }
+      ],
+      "quickStart": {
+        "url": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/vlm/MiniCPM/README.md",
+        "markDownUrl": "",
+        "developLanguage": [
+          {
+            "language": "C++",
+            "context": "{\"ops\":[{\"insert\":\"MiniCPM模型可以通过以下代码完成快速推理\\n#include \\\"log.h\\\"\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"#include \\\"MiniCpmInfer.h\\\"\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"int main()\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"{\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    EnvInit();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    string result;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    MiniCpmInfer model;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    auto imagePath = \\\"../datasets/demo.png\\\"; // 图片地址\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    auto text = \\\"翻译\\\";      // 文本描述内容\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    LOG(INFO) << \\\"\\\\n Current question: \\\\n Text: \\\" << text << \\\"\\\\n Image path: \\\" << imagePath;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    result = model.InferSingle(imagePath, text);\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    LOG(INFO) << \\\"\\\\nMiniCPM infer result: \\\\n\\\" << result;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    EnvDeinit();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    return 0;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"}\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"备注：上述C++代码依赖的动态库与头文件位于目录 \"},{\"attributes\":{\"link\":\"https://gitee.com/HiSpark/modelzoo/tree/master/samples/common\",\"color\":\"#032f62\",\"background\":\"#f0f0f0\",\"size\":\"14px\",\"line-height\":\"19px\",\"underline\":true},\"insert\":\"/samples/common\"},{\"insert\":\"下，编译相关配置参考\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#f0f0f0\",\"color\":\"#032f62\",\"underline\":true},\"insert\":\" \"},{\"attributes\":{\"link\":\"https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/vlm/MiniCPM/src/CMakeLists.txt\",\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#f0f0f0\",\"color\":\"#032f62\",\"underline\":true},\"insert\":\"CMakeLists.txt\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#f0f0f0\",\"color\":\"#000000\"},\"insert\":\"。\"},{\"insert\":\"\\n\\n\"}]}"
+          }
+        ]
+      },
+      "status": "released",
+      "currentHandler": "",
+      "currentHandlerName": "",
+      "jsonPath": "",
+      "modelAdaptor": [
+        {
+          "createdBy": null,
+          "creationDate": null,
+          "creationUserCN": null,
+          "lastUpdatedBy": null,
+          "lastUpdateDate": null,
+          "lastUpdateUserCN": null,
+          "rowIdx": -1,
+          "id": "i8ttm5k1tc00",
+          "name": "Hi3403V100 SVP_NNN",
+          "modelId": "joqqhel5c400",
+          "modelName": "MiniCPM-4v-0.5B",
+          "supportNames": [
+            "A16W8"
+          ],
+          "toolkit": [
+            {
+              "name": "CANN工具",
+              "url": "",
+              "desc": "6.10.t01spc030b700 ； (请联系FAE获取)",
+              "imgId": "cann"
+            },
+            {
+              "name": "编译工具库",
+              "url": "",
+              "desc": "aarch64-mix210-linux-gcc",
+              "imgId": "tool"
+            },
+            {
+              "name": "SDK",
+              "url": "",
+              "desc": "SS928V100V1.0.2.5 B060 ；  (请联系FAE获取)",
+              "imgId": "sdk"
+            }
+          ],
+          "supportOs": [
+            "Linux"
+          ],
+          "supportQuantify": [
+            {
+              "createdBy": 139036723332644,
+              "creationDate": "2026-05-21 11:55:31",
+              "creationUserCN": "y-0089",
+              "lastUpdatedBy": 139036723332644,
+              "lastUpdateDate": "2026-05-21 11:55:31",
+              "lastUpdateUserCN": "y-0089",
+              "rowIdx": -1,
+              "id": "joqrh79lc400",
+              "name": "A16W8",
+              "computingId": "i8ttm5k1tc00",
+              "computingName": "Hi3403V100 SVP_NNN",
+              "omOfflineModelUrl": null,
+              "omOfflineModelId": null,
+              "omOfflineModelSize": null,
+              "omOfflineModelName": null,
+              "omOfflineModel": [],
+              "omOfflineModelLink": "https://mb-data-backup.obs.cn-north-4.myhuaweicloud.com/user/jiachao/OM%20%E6%96%87%E4%BB%B6%202.zip?AccessKeyId=HPUARUUZPXAE4IVX5B31&Expires=1809590045&Signature=zzq0a/LHRlFPjCqmDHAUFp57ICM%3D",
+              "releaseTime": "2026-02-06",
+              "boardOs": "Linux",
+              "modelLicense": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/vlm/MiniCPM/LICENSE",
+              "modelPerformance": [
+                {
+                  "performanceValue": "21.300",
+                  "unit": "TPS（Token/s）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "519.740",
+                  "unit": "TTFT（ms）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "544.514",
+                  "unit": "单帧内存带宽（MB）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "1217.676",
+                  "unit": "内存（MB）",
+                  "desc": ""
+                }
+              ],
+              "deleted": 0
+            }
+          ],
+          "deleted": 0
+        }
+      ],
+      "saveType": null,
+      "deleteType": null,
+      "latest": "Y",
+      "deleted": 0,
+      "modelPhase": "released",
+      "remark": null,
+      "fileInfo": null,
+      "reviewType": null,
+      "owner": "y-0089",
+      "ownerBy": 139036723332644,
+      "optional": null,
+      "optionalList": [
+        "0e900d99dee8461b8",
+        "hi_thy"
+      ],
+      "optionalBy": null,
+      "downloadNum": 5,
+      "collectNum": null,
+      "isCollect": null
+    },
+    "downloadUrls": [
+      {
+        "url": "https://mb-data-backup.obs.cn-north-4.myhuaweicloud.com/user/jiachao/OM%20%E6%96%87%E4%BB%B6%202.zip",
+        "source": "api-all"
+      }
+    ],
+    "downloadPageVisited": true,
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\n指导文档\n交流反馈\n0\n0\n模型详情\n源模型下载\n快速开始\n模型适配\n算力引擎：\n量化类型：\n下载模型\n模型性能\n模型工具\n支持的操作系统"
+  },
+  {
+    "id": "jk1dfiigi000",
+    "name": "Yolov8s-World",
+    "listData": {
+      "id": "jk1dfiigi000",
+      "name": "Yolov8s-World",
+      "coverImageId": 1737338061389827,
+      "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1737338061389827%2F6.png",
+      "isBeta": 0,
+      "betaVersionDesc": "",
+      "createdBy": 139036723332644,
+      "creationDate": "2026-05-06 14:23:10",
+      "creationUserCN": "y-0089",
+      "lastUpdateDate": "2026-05-12 19:06:21",
+      "currentHandler": "",
+      "currentHandlerName": "",
+      "description": "Yolov8s-World 是 Ultralytics 推出的一种基于 YOLO-World 架构的轻量级目标检测模型，它通过视觉-语言预训练实现了无需针对特定类别进行训练即可识别任意物体的 “开放词汇” (Open-Vocabulary) 实时检测功能。",
+      "computerVersion": [
+        "目标检测"
+      ],
+      "naturalLanguageProcess": [],
+      "multimodal": [],
+      "video": [],
+      "framework": [
+        "PyTorch"
+      ],
+      "supportOs": [
+        "OpenHarmony",
+        "Linux"
+      ],
+      "computingPower": [
+        "Hi3403V100 SVP_NNN",
+        "Hi3403V100 NNN"
+      ],
+      "isCollect": 0,
+      "downloadNum": 45,
+      "collectCount": 1
+    },
+    "apiDetail": {
+      "createdBy": 139036723332644,
+      "creationDate": "2026-05-06 14:23:10",
+      "creationUserCN": "y-0089",
+      "lastUpdatedBy": null,
+      "lastUpdateDate": "2026-05-12 19:06:21",
+      "lastUpdateUserCN": "y-0089",
+      "rowIdx": -1,
+      "id": "jk1dfiigi000",
+      "name": "Yolov8s-World",
+      "isBeta": 0,
+      "betaVersionDesc": "",
+      "description": "Yolov8s-World 是 Ultralytics 推出的一种基于 YOLO-World 架构的轻量级目标检测模型，它通过视觉-语言预训练实现了无需针对特定类别进行训练即可识别任意物体的 “开放词汇” (Open-Vocabulary) 实时检测功能。",
+      "parentId": "j93dspootk00",
+      "coverImageId": 1737338061389827,
+      "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1737338061389827%2F6.png",
+      "modelEffectId": null,
+      "modelEffectUrl": "",
+      "computerVersion": [
+        "目标检测"
+      ],
+      "naturalLanguageProcess": [],
+      "multimodal": [],
+      "video": [],
+      "framework": [
+        "PyTorch"
+      ],
+      "modelRepository": "https://gitee.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov8s-world",
+      "originModel": [
+        {
+          "id": "1737339059634179",
+          "name": "yolov8s-worldv2_svp_nnn.onnx",
+          "url": null,
+          "size": "13047733"
+        },
+        {
+          "id": "1737339059634178",
+          "name": "yolov8s-worldv2.pt",
+          "url": null,
+          "size": "25923032"
+        },
+        {
+          "id": "1737339059634180",
+          "name": "yolov8s-worldv20_nnn.onnx",
+          "url": null,
+          "size": "51352821"
+        },
+        {
+          "id": "1743496052539394",
+          "name": "text_feature.zip",
+          "url": null,
+          "size": "146941"
+        }
+      ],
+      "originModelLink": "",
+      "dataSet": "https://cocodataset.org/#download",
+      "modelLicense": "https://github.com/ultralytics/ultralytics/blob/master/LICENSE",
+      "detailParams": [
+        {
+          "name": "计算量",
+          "value": "34.636 GFLOPs"
+        },
+        {
+          "name": "输入",
+          "value": "640x640"
+        },
+        {
+          "name": "参数量",
+          "value": "12.746 M"
+        }
+      ],
+      "quickStart": {
+        "url": "https://gitee.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov8s-world",
+        "markDownUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov8s-world/doc/快速开始.md",
+        "developLanguage": [
+          {
+            "language": "C++",
+            "context": "{\"ops\":[{\"attributes\":{\"background\":\"#ffffff\",\"size\":\"16px\",\"color\":\"#40485b\",\"line-height\":\"1.6\"},\"insert\":\"yolov8s-world 可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\"},{\"attributes\":{\"text-indent\":\"0px\"},\"insert\":\"\\n\"},{\"insert\":\"#include \\\"model.h\\\"\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"#include \\\"log.h\\\"\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"using namespace Infer;\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"int main()\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"{\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    EnvInit();\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    std::string omModelPath = \\\"/path/to/model.om\\\"; // yolov8s-world模型文件路径 \"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    std::string imagePath = \\\"/path/to/image.jpg\\\"; // 输入图片路径\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    std::unique_ptr<Model> model = std::make_unique<Model>();\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    if (model->Load(omModelPath, ModelType::Yolov8sWorld) != 0) {\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"        LOG(ERROR) << \\\"fail to load model\\\";\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"        return -1;\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    }\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    if (ret.size() == 0) {\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"        LOG(ERROR) << \\\"fail to infer model\\\";\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"        model->Unload();\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"        return -1;\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    }\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    if (model->Unload() != 0) {\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"        LOG(ERROR) << \\\"fail to unload model\\\";\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"        return -1;\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    }\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    EnvDeinit();\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    return 0;\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"}\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"attributes\":{\"background\":\"#ffffff\",\"size\":\"16px\",\"color\":\"#40485b\",\"line-height\":\"1.6\"},\"insert\":\"备注：头文件和动态库位于\"},{\"attributes\":{\"background\":\"transparent\",\"size\":\"16px\",\"color\":\"#095eab\",\"line-height\":\"1.6\",\"link\":\"https://gitee.com/HiSpark/modelzoo/tree/master/samples/common\"},\"insert\":\"/samples/common\"},{\"attributes\":{\"background\":\"#ffffff\",\"size\":\"16px\",\"color\":\"#40485b\",\"line-height\":\"1.6\"},\"insert\":\"目录下，编译配置参考\"},{\"attributes\":{\"background\":\"transparent\",\"size\":\"16px\",\"color\":\"#095eab\",\"line-height\":\"1.6\",\"link\":\"https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov8s-world/src/CMakeLists.txt\"},\"insert\":\"文件\"},{\"attributes\":{\"text-indent\":\"0px\"},\"insert\":\"\\n\"}]}"
+          }
+        ]
+      },
+      "status": "released",
+      "currentHandler": "",
+      "currentHandlerName": "",
+      "jsonPath": "https://gitee.com/HiSpark/modelzoo-dev/blob/master/samples/samples_GPL/built-in/yolov8s-world/yolov8s-world.json",
+      "modelAdaptor": [
+        {
+          "createdBy": null,
+          "creationDate": null,
+          "creationUserCN": null,
+          "lastUpdatedBy": null,
+          "lastUpdateDate": null,
+          "lastUpdateUserCN": null,
+          "rowIdx": -1,
+          "id": "i8ttm5k1tc00",
+          "name": "Hi3403V100 SVP_NNN",
+          "modelId": "jk1dfiigi000",
+          "modelName": "Yolov8s-World",
+          "supportNames": [
+            "A8W8"
+          ],
+          "toolkit": [
+            {
+              "name": "CANN工具",
+              "url": "",
+              "desc": "6.10.t01spc030b700;(请联系FAE获取)",
+              "imgId": "cann"
+            },
+            {
+              "name": "编译工具链",
+              "url": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+              "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+              "imgId": "tool"
+            },
+            {
+              "name": "SDK",
+              "url": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+              "desc": "稳定、易用的设计；支撑客户快速产品量产",
+              "imgId": "sdk"
+            }
+          ],
+          "supportOs": [
+            "OpenHarmony",
+            "Linux"
+          ],
+          "supportQuantify": [
+            {
+              "createdBy": 139036723332644,
+              "creationDate": "2026-05-06 14:23:11",
+              "creationUserCN": "y-0089",
+              "lastUpdatedBy": 139036723332644,
+              "lastUpdateDate": "2026-05-06 14:23:11",
+              "lastUpdateUserCN": "y-0089",
+              "rowIdx": -1,
+              "id": "jk1dfioki000",
+              "name": "A8W8",
+              "computingId": "i8ttm5k1tc00",
+              "computingName": "Hi3403V100 SVP_NNN",
+              "omOfflineModelUrl": null,
+              "omOfflineModelId": null,
+              "omOfflineModelSize": null,
+              "omOfflineModelName": null,
+              "omOfflineModel": [
+                {
+                  "id": "1737338644398081",
+                  "name": "yolov8s-worldv2.om",
+                  "url": null,
+                  "size": "13716818"
+                }
+              ],
+              "omOfflineModelLink": null,
+              "releaseTime": "2026-04-02",
+              "boardOs": "OpenHarmony",
+              "modelLicense": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov8s-world/LICENSE",
+              "modelPerformance": [
+                {
+                  "performanceValue": "103.419",
+                  "unit": "耗时（ms）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "41.71",
+                  "unit": "性能（fps）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "139.937",
+                  "unit": "单帧内存带宽（MB）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "47.867",
+                  "unit": "内存（MB）",
+                  "desc": ""
+                }
+              ],
+              "deleted": 0
+            }
+          ],
+          "deleted": 0
+        },
+        {
+          "createdBy": null,
+          "creationDate": null,
+          "creationUserCN": null,
+          "lastUpdatedBy": null,
+          "lastUpdateDate": null,
+          "lastUpdateUserCN": null,
+          "rowIdx": -1,
+          "id": "i8ttm5k1tc01",
+          "name": "Hi3403V100 NNN",
+          "modelId": "jk1dfiigi000",
+          "modelName": "Yolov8s-World",
+          "supportNames": [
+            "FP16"
+          ],
+          "toolkit": [
+            {
+              "name": "CANN工具",
+              "url": "",
+              "desc": "5.30.t14.7.b140；(请联系FAE获取)",
+              "imgId": "cann"
+            },
+            {
+              "name": "编译工具链",
+              "url": "",
+              "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+              "imgId": "tool"
+            },
+            {
+              "name": "SDK",
+              "url": "",
+              "desc": "SS928V100R001C02SPC022;(请联系FAE获取)",
+              "imgId": "sdk"
+            }
+          ],
+          "supportOs": [
+            "Linux"
+          ],
+          "supportQuantify": [
+            {
+              "createdBy": 139036723332644,
+              "creationDate": "2026-05-06 14:23:11",
+              "creationUserCN": "y-0089",
+              "lastUpdatedBy": 139036723332644,
+              "lastUpdateDate": "2026-05-06 14:23:11",
+              "lastUpdateUserCN": "y-0089",
+              "rowIdx": -1,
+              "id": "jk1dfiq0i000",
+              "name": "FP16",
+              "computingId": "i8ttm5k1tc01",
+              "computingName": "Hi3403V100 NNN",
+              "omOfflineModelUrl": null,
+              "omOfflineModelId": null,
+              "omOfflineModelSize": null,
+              "omOfflineModelName": null,
+              "omOfflineModel": [
+                {
+                  "id": "1737338698924034",
+                  "name": "yolov8s-worldv2.om",
+                  "url": null,
+                  "size": "28145674"
+                }
+              ],
+              "omOfflineModelLink": null,
+              "releaseTime": "2026-04-02",
+              "boardOs": "Linux",
+              "modelLicense": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov8s-world/LICENSE",
+              "modelPerformance": [
+                {
+                  "performanceValue": "48.415",
+                  "unit": "耗时（ms）",
+                  "desc": null
+                },
+                {
+                  "performanceValue": "20.64",
+                  "unit": "性能（fps）",
+                  "desc": null
+                },
+                {
+                  "performanceValue": "442.179",
+                  "unit": "单帧内存带宽（MB）",
+                  "desc": null
+                },
+                {
+                  "performanceValue": "132.621",
+                  "unit": "内存（MB）",
+                  "desc": null
+                }
+              ],
+              "deleted": 0
+            }
+          ],
+          "deleted": 0
+        }
+      ],
+      "saveType": null,
+      "deleteType": null,
+      "latest": "Y",
+      "deleted": 0,
+      "modelPhase": "released",
+      "remark": null,
+      "fileInfo": null,
+      "reviewType": null,
+      "owner": "y-0089",
+      "ownerBy": 139036723332644,
+      "optional": null,
+      "optionalList": [
+        "0e900d99dee8461b8",
+        "hi_thy"
+      ],
+      "optionalBy": null,
+      "downloadNum": 45,
+      "collectNum": null,
+      "isCollect": null
+    },
+    "downloadUrls": [
+      {
+        "name": "yolov8s-worldv2_om-A8W8.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1737338644398081/yolov8s-worldv2.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1782485657&Signature=zs%2BmGgtMR8P0IC39HRKG5g4jStM%3D",
+        "source": "om-A8W8"
+      },
+      {
+        "name": "yolov8s-worldv2.om",
+        "source": "om-FP16"
+      },
+      {
+        "name": "yolov8s-worldv2_svp_nnn_source-model.onnx",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1737339059634179/yolov8s-worldv2_svp_nnn.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1782485717&Signature=ekfJMzZBmhstYQlVxt5YJTZ7wGE%3D",
+        "source": "source-model"
+      },
+      {
+        "name": "yolov8s-worldv2_source-model.pt",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1737339059634178/yolov8s-worldv2.pt?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1782485727&Signature=PZl%2BEo%2BaRKa36x0BN0EAMglQVns%3D",
+        "source": "source-model"
+      },
+      {
+        "name": "yolov8s-worldv20_nnn_source-model.onnx",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1737339059634180/yolov8s-worldv20_nnn.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1782485738&Signature=i9VMkJ3vcCi932qsDRWDGRJL8XM%3D",
+        "source": "source-model"
+      },
+      {
+        "name": "text_feature_source-model.zip",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1743496052539394/text_feature.zip?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1782485761&Signature=igto8kb1F09PrvGYxMmwWPe8%2Fy0%3D",
+        "source": "source-model"
+      },
+      {
+        "name": "yolov8s-worldv2_svp_nnn.onnx",
+        "fileId": "1737339059634179",
+        "size": "13047733",
+        "source": "originModel"
+      },
+      {
+        "name": "yolov8s-worldv2.pt",
+        "fileId": "1737339059634178",
+        "size": "25923032",
+        "source": "originModel"
+      },
+      {
+        "name": "yolov8s-worldv20_nnn.onnx",
+        "fileId": "1737339059634180",
+        "size": "51352821",
+        "source": "originModel"
+      },
+      {
+        "name": "text_feature.zip",
+        "fileId": "1743496052539394",
+        "size": "146941",
+        "source": "originModel"
+      },
+      {
+        "name": "yolov8s-worldv2.om",
+        "fileId": "1737338644398081",
+        "size": "13716818",
+        "quantify": "A8W8",
+        "computing": "Hi3403V100 SVP_NNN",
+        "source": "omOfflineModel"
+      },
+      {
+        "name": "编译工具链",
+        "url": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+        "source": "toolkit"
+      },
+      {
+        "name": "SDK",
+        "url": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+        "source": "toolkit"
+      },
+      {
+        "name": "yolov8s-worldv2.om",
+        "fileId": "1737338698924034",
+        "size": "28145674",
+        "quantify": "FP16",
+        "computing": "Hi3403V100 NNN",
+        "source": "omOfflineModel"
+      }
+    ],
+    "downloadPageVisited": true,
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nMiniCPM-4v-0.5B\nBeta\nVLM\nHi3403V100 SVP_NNN\nPyTorch\nLinux\ny-0089\n2026-05-21 11:51:11\n指导文档\n交流反馈\n5\n0\n模型详情\nMiniCPM-4v-0.5B: 小参数, 大智慧——端侧多模态模型\n\n由面壁智能(OpenBMB)打造的MiniCPM-4v-0.5B, 以0.53B的精简参数量，在端侧设备上实现了卓越的图文理解与交互能力。专为边缘计算场景设计，让每一分算力都充分发挥价值。\n\n三大核心优势：\n    1. 创新架构，轻装上阵\n通过创新的稀疏感知训练和视觉压缩技术，实现 16:1 视觉特征压缩比，在保证高精度的同时，极大降低了推理算力消耗与内存占用。\n    2. 高能数据，以小博大\n依托高密度数据体系，数据准备成本下降90%。通过汇聚全球高质量语料进行精细化对齐，用优质的数据训练模型，实现越级性能表现。\n    3. 高效训练，成本锐减\n采用原创 WSD 调度策略与“模型风洞”技术，相比传统方案，搜索算力节省超99%，整体训练成本节省约60%，为端侧模型的持续迭代提供高效路径。\n\n海思平台技术支撑：\n现已适配 Hi3403V100 平台，持续生成速度达 21 tokens/s，为边缘侧设备提供流程、敏捷的智能视觉体验。\n源模型下载模型许可证 >\n输入\n：\n图片: 512x512 Embedding: 200 Tokens\n参数量\n：\n520.333 M\n计算量\n：\n413.886 GFLOPs\n模型详细参数\n快速开始\nC++\n\nMiniCPM模型可以通过以下代码完成快速推理\n\n#include \"log.h\"\n#include \"MiniCpmInfer.h\"\n\n\nint main()\n{\n    EnvInit();\n    string result;\n    MiniCpmInfer model;\n    auto imagePath = \"../datasets/demo.png\"; // 图片地址\n    auto text = \"翻译\";      // 文本描述内容\n    LOG(INFO) << \"\\n Current question: \\n Text: \" << text << \"\\n Image path: \" << imagePath;\n    result = model.InferSingle(imagePath, text);\n    LOG(INFO) << \"\\nMiniCPM infer result: \\n\" << result;\n    EnvDeinit();\n    return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于目录 /samples/common下，编译相关配置参考 CMakeLists.txt。\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n21.300\nTPS（Token/s）\n519.740\nTTFT（ms）\n544.514\n单帧内存带宽（MB）\n1217.676\n内存（MB）\n*该数据基于Linux系统测试得出\n模型工具\nCANN工具\n6.10.t01spc030b700\n(请联系FAE获取)\n编译工具库\naarch64-mix210-linux-gcc\nSDK\nSS928V100V1.0.2.5 B060\n(请联系FAE获取)\n支持的操作系统"
+  },
+  {
+    "id": "jcvo6ap4tk00",
+    "name": "Vit-B-16",
+    "listData": {
+      "id": "jcvo6ap4tk00",
+      "name": "Vit-B-16",
+      "coverImageId": 1701276106686467,
+      "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1701276106686467%2F20250915111221_469_20.png",
+      "isBeta": 0,
+      "betaVersionDesc": "",
+      "createdBy": 138396906621956,
+      "creationDate": "2026-04-14 16:32:53",
+      "creationUserCN": "heronwang",
+      "lastUpdateDate": "2026-05-12 19:06:21",
+      "currentHandler": "",
+      "currentHandlerName": "",
+      "description": "Vision Transformer（ViT）模型在计算机视觉领域中对CNN的依赖不是必需的，直接将其应用于图像块序列来进行图像分类时，也能得到和目前卷积网络相媲美的准确率。",
+      "computerVersion": [
+        "分类"
+      ],
+      "naturalLanguageProcess": [],
+      "multimodal": [],
+      "video": [],
+      "framework": [
+        "PyTorch"
+      ],
+      "supportOs": [
+        "OpenHarmony",
+        "Linux"
+      ],
+      "computingPower": [
+        "Hi3403V100 SVP_NNN",
+        "Hi3403V100 NNN"
+      ],
+      "isCollect": 0,
+      "downloadNum": 6,
+      "collectCount": 0
+    },
+    "apiDetail": {
+      "createdBy": 138396906621956,
+      "creationDate": "2026-04-14 16:32:53",
+      "creationUserCN": "heronwang",
+      "lastUpdatedBy": null,
+      "lastUpdateDate": "2026-05-12 19:06:21",
+      "lastUpdateUserCN": "heronwang",
+      "rowIdx": -1,
+      "id": "jcvo6ap4tk00",
+      "name": "Vit-B-16",
+      "isBeta": 0,
+      "betaVersionDesc": "",
+      "description": "Vision Transformer（ViT）模型在计算机视觉领域中对CNN的依赖不是必需的，直接将其应用于图像块序列来进行图像分类时，也能得到和目前卷积网络相媲美的准确率。",
+      "parentId": "h91gf0sd6c00",
+      "coverImageId": 1701276106686467,
+      "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1701276106686467%2F20250915111221_469_20.png",
+      "modelEffectId": null,
+      "modelEffectUrl": "",
+      "computerVersion": [
+        "分类"
+      ],
+      "naturalLanguageProcess": [],
+      "multimodal": [],
+      "video": [],
+      "framework": [
+        "PyTorch"
+      ],
+      "modelRepository": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/classification/Vit-B-16",
+      "originModel": [
+        {
+          "id": "1701276278652929",
+          "name": "vit_base_patch16_224.pt",
+          "url": null,
+          "size": "346335542"
+        },
+        {
+          "id": "1706937123209218",
+          "name": "vit_base_patch16_224_bs1.onnx",
+          "url": null,
+          "size": "346375830"
+        }
+      ],
+      "originModelLink": "",
+      "dataSet": "https://image-net.org/",
+      "modelLicense": "https://github.com/huggingface/pytorch-image-models/blob/main/LICENSE",
+      "detailParams": [
+        {
+          "name": "计算量",
+          "value": "35.994GFLOPs"
+        },
+        {
+          "name": "输入",
+          "value": "224x224"
+        },
+        {
+          "name": "参数量",
+          "value": "86.568M"
+        }
+      ],
+      "quickStart": {
+        "url": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/classification/Vit-B-16",
+        "markDownUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/classification/Vit-B-16/",
+        "developLanguage": [
+          {
+            "language": "C++",
+            "context": "{\"ops\":[{\"attributes\":{\"color\":\"#3b3b3b\",\"background\":\"#ffffff\",\"size\":\"14px\",\"line-height\":\"19px\"},\"insert\":\"Vit-B-16模型可以通过以下代码完成快速推理\"},{\"insert\":\"\\n#include \\\"model.h\\\"\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"#include \\\"log.h\\\"\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"using namespace Infer;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"int main()\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"{\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  EnvInit();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  std::string omModelPath = \\\"/path/to/model.om\\\"; // Vit-B-16模型文件路径 \"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  std::string imagePath = \\\"/path/to/image.jpg\\\"; // 输入图片路径\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  std::unique_ptr<Model> model = std::make_unique<Model>();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  if (model->Load(omModelPath, ModelType::ResNet50) != 0) {\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    LOG(ERROR) << \\\"fail to load model\\\";\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    return -1;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  }\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  auto ret = model->Infer(imagePath, FileType::SingelImageFile);\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  if (ret.size() == 0) {\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    LOG(ERROR) << \\\"fail to infer model\\\";\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    model->Unload();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    return -1;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  }\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  if (model->Unload() != 0) {\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    LOG(ERROR) << \\\"fail to unload model\\\";\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    return -1;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  }\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  EnvDeinit();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  return 0;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"}\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"attributes\":{\"color\":\"#3b3b3b\",\"background\":\"#ffffff\",\"size\":\"14px\",\"line-height\":\"19px\"},\"insert\":\"备注：上述C++代码依赖的动态库与头文件位于\"},{\"attributes\":{\"color\":\"#a31515\",\"background\":\"#ffffff\",\"size\":\"14px\",\"line-height\":\"19px\",\"link\":\"https://gitee.com/HiSpark/modelzoo/tree/master/samples/common\"},\"insert\":\"/samples/common\"},{\"attributes\":{\"color\":\"#3b3b3b\",\"background\":\"#ffffff\",\"size\":\"14px\",\"line-height\":\"19px\"},\"insert\":\"目录下，编译相关配置参考\"},{\"attributes\":{\"color\":\"#a31515\",\"background\":\"#ffffff\",\"size\":\"14px\",\"line-height\":\"19px\",\"link\":\"https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/Vit-B-16/src/CMakeLists.txt\"},\"insert\":\"CMakeLists.txt\"},{\"attributes\":{\"color\":\"#3b3b3b\",\"background\":\"#ffffff\",\"size\":\"14px\",\"line-height\":\"19px\"},\"insert\":\"。\"},{\"insert\":\"\\n\"}]}"
+          }
+        ]
+      },
+      "status": "released",
+      "currentHandler": "",
+      "currentHandlerName": "",
+      "jsonPath": "https://gitee.com/HiSpark/modelzoo-dev/blob/master/samples/built-in/classification/Vit-B-16/Vit-B-16.json",
+      "modelAdaptor": [
+        {
+          "createdBy": null,
+          "creationDate": null,
+          "creationUserCN": null,
+          "lastUpdatedBy": null,
+          "lastUpdateDate": null,
+          "lastUpdateUserCN": null,
+          "rowIdx": -1,
+          "id": "i8ttm5k1tc00",
+          "name": "Hi3403V100 SVP_NNN",
+          "modelId": "jcvo6ap4tk00",
+          "modelName": "Vit-B-16",
+          "supportNames": [
+            "A16W8"
+          ],
+          "toolkit": [
+            {
+              "name": "CANN配置",
+              "url": "https://hispark-obs.obs.cn-east-3.myhuaweicloud.com/SVP_NNN_PC_V1.0.6.0.tgz",
+              "desc": "Al异构计算架构 提升计算效率的关键平台",
+              "imgId": "cann"
+            },
+            {
+              "name": "编译工具库",
+              "url": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
+              "desc": "高效编译，精准适配 AI性能优化，应用流畅运行",
+              "imgId": "tool"
+            },
+            {
+              "name": "SDK",
+              "url": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+              "desc": "稳定、易用的设计 支撑客户快速产品量产",
+              "imgId": "sdk"
+            }
+          ],
+          "supportOs": [
+            "OpenHarmony",
+            "Linux"
+          ],
+          "supportQuantify": [
+            {
+              "createdBy": 138396906621956,
+              "creationDate": "2026-05-06 14:37:57",
+              "creationUserCN": "heronwang",
+              "lastUpdatedBy": 138396906621956,
+              "lastUpdateDate": "2026-05-06 14:37:57",
+              "lastUpdateUserCN": "heronwang",
+              "rowIdx": -1,
+              "id": "jk1grodctk00",
+              "name": "A16W8",
+              "computingId": "i8ttm5k1tc00",
+              "computingName": "Hi3403V100 SVP_NNN",
+              "omOfflineModelUrl": null,
+              "omOfflineModelId": null,
+              "omOfflineModelSize": null,
+              "omOfflineModelName": null,
+              "omOfflineModel": [
+                {
+                  "id": "1739525252513795",
+                  "name": "vit_base_patch16_224.om",
+                  "url": null,
+                  "size": "91310649"
+                }
+              ],
+              "omOfflineModelLink": null,
+              "releaseTime": "2026-04-14",
+              "boardOs": "OpenHarmony",
+              "modelLicense": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/classification/Vit-B-16/LICENSE",
+              "modelPerformance": [
+                {
+                  "performanceValue": "23.515",
+                  "unit": "耗时（ms）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "42.527",
+                  "unit": "性能（fps）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "259.363",
+                  "unit": "单帧内存带宽（MB）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "92.973",
+                  "unit": "内存（MB）",
+                  "desc": ""
+                }
+              ],
+              "deleted": 0
+            }
+          ],
+          "deleted": 0
+        },
+        {
+          "createdBy": null,
+          "creationDate": null,
+          "creationUserCN": null,
+          "lastUpdatedBy": null,
+          "lastUpdateDate": null,
+          "lastUpdateUserCN": null,
+          "rowIdx": -1,
+          "id": "i8ttm5k1tc01",
+          "name": "Hi3403V100 NNN",
+          "modelId": "jcvo6ap4tk00",
+          "modelName": "Vit-B-16",
+          "supportNames": [
+            "FP16"
+          ],
+          "toolkit": [
+            {
+              "name": "CANN工具包",
+              "url": "",
+              "desc": "5.30.t14.7.b140；(请联系FAE获取)",
+              "imgId": "cann"
+            },
+            {
+              "name": "编译工具链",
+              "url": "",
+              "desc": "aarch64-mix210-linux-gcc  (请联系FAE获取)",
+              "imgId": "tool"
+            },
+            {
+              "name": "SDK",
+              "url": "",
+              "desc": "SS928V100R001C02SPC022；(请联系FAE获取)",
+              "imgId": "sdk"
+            }
+          ],
+          "supportOs": [
+            "Linux"
+          ],
+          "supportQuantify": [
+            {
+              "createdBy": 138396906621956,
+              "creationDate": "2026-05-06 14:37:57",
+              "creationUserCN": "heronwang",
+              "lastUpdatedBy": 138396906621956,
+              "lastUpdateDate": "2026-05-06 14:37:57",
+              "lastUpdateUserCN": "heronwang",
+              "rowIdx": -1,
+              "id": "jk1groeotk00",
+              "name": "FP16",
+              "computingId": "i8ttm5k1tc01",
+              "computingName": "Hi3403V100 NNN",
+              "omOfflineModelUrl": null,
+              "omOfflineModelId": null,
+              "omOfflineModelSize": null,
+              "omOfflineModelName": null,
+              "omOfflineModel": [
+                {
+                  "id": "1739525135073283",
+                  "name": "vit_base_patch16_224.om",
+                  "url": null,
+                  "size": "174953970"
+                }
+              ],
+              "omOfflineModelLink": null,
+              "releaseTime": "2026-04-14",
+              "boardOs": "Linux",
+              "modelLicense": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/classification/Vit-B-16/LICENSE",
+              "modelPerformance": [
+                {
+                  "performanceValue": "45.23",
+                  "unit": "耗时（ms）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "22.11",
+                  "unit": "性能（fps）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "309.008",
+                  "unit": "单帧内存带宽（MB）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "396.914",
+                  "unit": "内存（MB）",
+                  "desc": ""
+                }
+              ],
+              "deleted": 0
+            }
+          ],
+          "deleted": 0
+        }
+      ],
+      "saveType": null,
+      "deleteType": null,
+      "latest": "Y",
+      "deleted": 0,
+      "modelPhase": "released",
+      "remark": null,
+      "fileInfo": null,
+      "reviewType": null,
+      "owner": "heronwang",
+      "ownerBy": 138396906621956,
+      "optional": null,
+      "optionalList": [
+        "0e900d99dee8461b8",
+        "hi_thy"
+      ],
+      "optionalBy": null,
+      "downloadNum": 6,
+      "collectNum": null,
+      "isCollect": null
+    },
+    "downloadUrls": [
+      {
+        "name": "vit_base_patch16_224.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1739525252513795/vit_base_patch16_224.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1782485778&Signature=TE%2F%2F0AeIOpbcwMEH6vykBtoi62E%3D",
+        "source": "om-A16W8"
+      },
+      {
+        "name": "vit_base_patch16_224_om-FP16.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1739525252513795/vit_base_patch16_224.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1782485822&Signature=YqhTGL0V6dOsewoWN4fpHDRQJJQ%3D",
+        "source": "om-FP16"
+      },
+      {
+        "name": "vit_base_patch16_224.pt",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1701276278652929/vit_base_patch16_224.pt?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1782485862&Signature=SmDPotlqkGJzIGNdqXfWpXG67Zo%3D",
+        "source": "source-model"
+      },
+      {
+        "name": "vit_base_patch16_224_bs1.onnx",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706937123209218/vit_base_patch16_224_bs1.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1782485981&Signature=9YGGxFreAeLbS%2Bj4J6h7%2BiNCNxI%3D",
+        "source": "source-model"
+      },
+      {
+        "name": "vit_base_patch16_224.pt",
+        "fileId": "1701276278652929",
+        "size": "346335542",
+        "source": "originModel"
+      },
+      {
+        "name": "vit_base_patch16_224_bs1.onnx",
+        "fileId": "1706937123209218",
+        "size": "346375830",
+        "source": "originModel"
+      },
+      {
+        "name": "vit_base_patch16_224.om",
+        "fileId": "1739525252513795",
+        "size": "91310649",
+        "quantify": "A16W8",
+        "computing": "Hi3403V100 SVP_NNN",
+        "source": "omOfflineModel"
+      },
+      {
+        "name": "CANN配置",
+        "url": "https://hispark-obs.obs.cn-east-3.myhuaweicloud.com/SVP_NNN_PC_V1.0.6.0.tgz",
+        "source": "toolkit"
+      },
+      {
+        "name": "编译工具库",
+        "url": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
+        "source": "toolkit"
+      },
+      {
+        "name": "vit_base_patch16_224.om",
+        "fileId": "1739525135073283",
+        "size": "174953970",
+        "quantify": "FP16",
+        "computing": "Hi3403V100 NNN",
+        "source": "omOfflineModel"
+      }
+    ],
+    "downloadPageVisited": true,
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nMiniCPM-4v-0.5B\nBeta\nVLM\nHi3403V100 SVP_NNN\nPyTorch\nLinux\ny-0089\n2026-05-21 11:51:11\n指导文档\n交流反馈\n5\n0\n模型详情\nMiniCPM-4v-0.5B: 小参数, 大智慧——端侧多模态模型\n\n由面壁智能(OpenBMB)打造的MiniCPM-4v-0.5B, 以0.53B的精简参数量，在端侧设备上实现了卓越的图文理解与交互能力。专为边缘计算场景设计，让每一分算力都充分发挥价值。\n\n三大核心优势：\n    1. 创新架构，轻装上阵\n通过创新的稀疏感知训练和视觉压缩技术，实现 16:1 视觉特征压缩比，在保证高精度的同时，极大降低了推理算力消耗与内存占用。\n    2. 高能数据，以小博大\n依托高密度数据体系，数据准备成本下降90%。通过汇聚全球高质量语料进行精细化对齐，用优质的数据训练模型，实现越级性能表现。\n    3. 高效训练，成本锐减\n采用原创 WSD 调度策略与“模型风洞”技术，相比传统方案，搜索算力节省超99%，整体训练成本节省约60%，为端侧模型的持续迭代提供高效路径。\n\n海思平台技术支撑：\n现已适配 Hi3403V100 平台，持续生成速度达 21 tokens/s，为边缘侧设备提供流程、敏捷的智能视觉体验。\n源模型下载模型许可证 >\n输入\n：\n图片: 512x512 Embedding: 200 Tokens\n参数量\n：\n520.333 M\n计算量\n：\n413.886 GFLOPs\n模型详细参数\n快速开始\nC++\n\nMiniCPM模型可以通过以下代码完成快速推理\n\n#include \"log.h\"\n#include \"MiniCpmInfer.h\"\n\n\nint main()\n{\n    EnvInit();\n    string result;\n    MiniCpmInfer model;\n    auto imagePath = \"../datasets/demo.png\"; // 图片地址\n    auto text = \"翻译\";      // 文本描述内容\n    LOG(INFO) << \"\\n Current question: \\n Text: \" << text << \"\\n Image path: \" << imagePath;\n    result = model.InferSingle(imagePath, text);\n    LOG(INFO) << \"\\nMiniCPM infer result: \\n\" << result;\n    EnvDeinit();\n    return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于目录 /samples/common下，编译相关配置参考 CMakeLists.txt。\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n21.300\nTPS（Token/s）\n519.740\nTTFT（ms）\n544.514\n单帧内存带宽（MB）\n1217.676\n内存（MB）\n*该数据基于Linux系统测试得出\n模型工具\nCANN工具\n6.10.t01spc030b700\n(请联系FAE获取)\n编译工具库\naarch64-mix210-linux-gcc\nSDK\nSS928V100V1.0.2.5 B060\n(请联系FAE获取)\n支持的操作系统"
+  },
+  {
     "id": "j9brj6ooi000",
     "name": "YOLOv9s",
     "listData": {
@@ -378,395 +1395,6 @@
         "name": "yolov9s.om",
         "fileId": "1737497247809539",
         "size": "18915907",
-        "quantify": "FP16",
-        "computing": "Hi3403V100 NNN",
-        "source": "omOfflineModel"
-      }
-    ],
-    "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nYOLOv9s\n目标检测\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\ngideon\n2026-04-03 10:29:46\n指导文档\n交流反馈\n0\n0\n模型详情\nYOLOv9s 是 Ultralytics 推出的目标检测模型，采用了 GELAN 架构和 PGI 训练策略。相比于之前的版本，YOLOv9 在保持高效推理的同时，通过可编程梯度信息（PGI）进一步提升了检测精度。该模型在 COCO 数据集上进行了训练和验证。\n源模型下载数据集下载模型许可证 >\n计算量\n：\n29.526 GFLOPs\n输入\n：\n640x640\n参数量\n：\n7.240 M\n模型详细参数\n快速开始\nC++\n\n#include <memory>\n\n#include \"model.h\"\n\n#include \"log.h\"\n\n#include \"utils.h\"\n\n\n\n\nusing namespace Infer;\n\n\n\n\nint main(int argc, char *argv[])\n\n{\n\n    InferParam inferParam;\n\n    if (!ParseParamFromCmd(argc, argv, inferParam)) {\n\n        LOG(ERROR) << \"fail to parse cmd\";\n\n        return -1;\n\n    }\n\n    EnvInit(inferParam.aclConfigPath);\n\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n\n    if (model->Load(inferParam.omModelPath, Infer::Yolov9s) != 0) {\n\n        LOG(ERROR) << \"fail to load model\";\n\n        return -1;\n\n    }\n\n    auto ret = model->Infer(inferParam.imglistPath);\n\n    if (ret.size() == 0) {\n\n        LOG(ERROR) << \"fail to infer model\";\n\n        model->Unload();\n\n        EnvDeinit();\n\n        return -1;\n\n    }\n\n    ret.clear();\n\n    ret.shrink_to_fit();\n\n    if (model->Unload() != 0) {\n\n        LOG(ERROR) << \"fail to unload model\";\n\n        EnvDeinit();\n\n        return -1;\n\n    }\n\n    EnvDeinit();\n\n    return 0;\n\n}\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n28.185\n耗时（ms）\n35.48\n性能（fps）\n180.745\n单帧内存带宽（MB）\n49.863\n内存（MB）\n*该数据基于Linux系统测试得出\n模型工具\nCANN工具\nAl异构计算架构;提升计算效率的关键平台\n编译工具链\n高效编译，精准适配;AI性能优化，应用流畅运行\nSDK\n稳定、易用的设计;支撑客户快速产品量产\n支持的操作系统"
-  },
-  {
-    "id": "j93dspootk00",
-    "name": "Yolov8s-World",
-    "listData": {
-      "id": "j93dspootk00",
-      "name": "Yolov8s-World",
-      "coverImageId": 1737338061389827,
-      "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1737338061389827%2F6.png",
-      "isBeta": 0,
-      "betaVersionDesc": "",
-      "createdBy": 137441035408492,
-      "creationDate": "2026-04-02 14:51:26",
-      "creationUserCN": "0e900d99dee8461b8",
-      "lastUpdateDate": "2026-04-08 16:07:07",
-      "currentHandler": "",
-      "currentHandlerName": "",
-      "description": "Yolov8s-World 是 Ultralytics 推出的一种基于 YOLO-World 架构的轻量级目标检测模型，它通过视觉-语言预训练实现了无需针对特定类别进行训练即可识别任意物体的 “开放词汇” (Open-Vocabulary) 实时检测功能。",
-      "computerVersion": [
-        "目标检测"
-      ],
-      "naturalLanguageProcess": [],
-      "multimodal": [],
-      "video": [],
-      "framework": [
-        "PyTorch"
-      ],
-      "supportOs": [
-        "OpenHarmony",
-        "Linux"
-      ],
-      "computingPower": [
-        "Hi3403V100 SVP_NNN",
-        "Hi3403V100 NNN"
-      ],
-      "isCollect": 0,
-      "downloadNum": 2,
-      "collectCount": 0
-    },
-    "apiDetail": {
-      "createdBy": 137441035408492,
-      "creationDate": "2026-04-02 14:51:26",
-      "creationUserCN": "0e900d99dee8461b8",
-      "lastUpdatedBy": null,
-      "lastUpdateDate": "2026-04-08 16:07:07",
-      "lastUpdateUserCN": "0e900d99dee8461b8",
-      "rowIdx": -1,
-      "id": "j93dspootk00",
-      "name": "Yolov8s-World",
-      "isBeta": 0,
-      "betaVersionDesc": "",
-      "description": "Yolov8s-World 是 Ultralytics 推出的一种基于 YOLO-World 架构的轻量级目标检测模型，它通过视觉-语言预训练实现了无需针对特定类别进行训练即可识别任意物体的 “开放词汇” (Open-Vocabulary) 实时检测功能。",
-      "parentId": "j93dspootk00",
-      "coverImageId": 1737338061389827,
-      "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1737338061389827%2F6.png",
-      "modelEffectId": null,
-      "modelEffectUrl": "",
-      "computerVersion": [
-        "目标检测"
-      ],
-      "naturalLanguageProcess": [],
-      "multimodal": [],
-      "video": [],
-      "framework": [
-        "PyTorch"
-      ],
-      "modelRepository": "https://gitee.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov8s-world",
-      "originModel": [
-        {
-          "id": "1737339059634179",
-          "name": "yolov8s-worldv2_svp_nnn.onnx",
-          "url": null,
-          "size": "13047733"
-        },
-        {
-          "id": "1737339059634178",
-          "name": "yolov8s-worldv2.pt",
-          "url": null,
-          "size": "25923032"
-        },
-        {
-          "id": "1737339059634180",
-          "name": "yolov8s-worldv20_nnn.onnx",
-          "url": null,
-          "size": "51352821"
-        }
-      ],
-      "originModelLink": "",
-      "dataSet": "https://cocodataset.org/#download",
-      "modelLicense": "https://github.com/ultralytics/ultralytics/blob/master/LICENSE",
-      "detailParams": [
-        {
-          "name": "计算量",
-          "value": "34.636 GFLOPs"
-        },
-        {
-          "name": "输入",
-          "value": "640x640"
-        },
-        {
-          "name": "参数量",
-          "value": "12.746 M"
-        }
-      ],
-      "quickStart": {
-        "url": "https://gitee.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov8s-world",
-        "markDownUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov8s-world/doc/快速开始.md",
-        "developLanguage": [
-          {
-            "language": "C++",
-            "context": "{\"ops\":[{\"attributes\":{\"background\":\"#ffffff\",\"size\":\"16px\",\"color\":\"#40485b\",\"line-height\":\"1.6\"},\"insert\":\"yolov8s-world 可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\"},{\"attributes\":{\"text-indent\":\"0px\"},\"insert\":\"\\n\"},{\"insert\":\"#include \\\"model.h\\\"\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"#include \\\"log.h\\\"\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"using namespace Infer;\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"int main()\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"{\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    EnvInit();\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    std::string omModelPath = \\\"/path/to/model.om\\\"; // yolov8s-world模型文件路径 \"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    std::string imagePath = \\\"/path/to/image.jpg\\\"; // 输入图片路径\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    std::unique_ptr<Model> model = std::make_unique<Model>();\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    if (model->Load(omModelPath, ModelType::Yolov8sWorld) != 0) {\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"        LOG(ERROR) << \\\"fail to load model\\\";\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"        return -1;\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    }\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    if (ret.size() == 0) {\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"        LOG(ERROR) << \\\"fail to infer model\\\";\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"        model->Unload();\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"        return -1;\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    }\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    if (model->Unload() != 0) {\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"        LOG(ERROR) << \\\"fail to unload model\\\";\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"        return -1;\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    }\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    EnvDeinit();\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    return 0;\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"}\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"attributes\":{\"background\":\"#ffffff\",\"size\":\"16px\",\"color\":\"#40485b\",\"line-height\":\"1.6\"},\"insert\":\"备注：头文件和动态库位于\"},{\"attributes\":{\"background\":\"transparent\",\"size\":\"16px\",\"color\":\"#095eab\",\"line-height\":\"1.6\",\"link\":\"https://gitee.com/HiSpark/modelzoo/tree/master/samples/common\"},\"insert\":\"/samples/common\"},{\"attributes\":{\"background\":\"#ffffff\",\"size\":\"16px\",\"color\":\"#40485b\",\"line-height\":\"1.6\"},\"insert\":\"目录下，编译配置参考\"},{\"attributes\":{\"background\":\"transparent\",\"size\":\"16px\",\"color\":\"#095eab\",\"line-height\":\"1.6\",\"link\":\"https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov8s-world/src/CMakeLists.txt\"},\"insert\":\"文件\"},{\"attributes\":{\"text-indent\":\"0px\"},\"insert\":\"\\n\"}]}"
-          }
-        ]
-      },
-      "status": "released",
-      "currentHandler": "",
-      "currentHandlerName": "",
-      "jsonPath": "https://gitee.com/HiSpark/modelzoo-dev/blob/master/samples/samples_GPL/built-in/yolov8s-world/yolov8s-world.json",
-      "modelAdaptor": [
-        {
-          "createdBy": null,
-          "creationDate": null,
-          "creationUserCN": null,
-          "lastUpdatedBy": null,
-          "lastUpdateDate": null,
-          "lastUpdateUserCN": null,
-          "rowIdx": -1,
-          "id": "i8ttm5k1tc00",
-          "name": "Hi3403V100 SVP_NNN",
-          "modelId": "j93dspootk00",
-          "modelName": "Yolov8s-World",
-          "supportNames": [
-            "A8W8"
-          ],
-          "toolkit": [
-            {
-              "name": "CANN工具",
-              "url": "",
-              "desc": "6.10.t01spc030b700;(请联系FAE获取)",
-              "imgId": "cann"
-            },
-            {
-              "name": "编译工具链",
-              "url": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-              "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
-              "imgId": "tool"
-            },
-            {
-              "name": "SDK",
-              "url": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-              "desc": "稳定、易用的设计；支撑客户快速产品量产",
-              "imgId": "sdk"
-            }
-          ],
-          "supportOs": [
-            "OpenHarmony",
-            "Linux"
-          ],
-          "supportQuantify": [
-            {
-              "createdBy": 137441035408492,
-              "creationDate": "2026-04-03 11:54:27",
-              "creationUserCN": "0e900d99dee8461b8",
-              "lastUpdatedBy": 137441035408492,
-              "lastUpdateDate": "2026-04-03 11:54:27",
-              "lastUpdateUserCN": "0e900d99dee8461b8",
-              "rowIdx": -1,
-              "id": "j9cevepgi000",
-              "name": "A8W8",
-              "computingId": "i8ttm5k1tc00",
-              "computingName": "Hi3403V100 SVP_NNN",
-              "omOfflineModelUrl": null,
-              "omOfflineModelId": null,
-              "omOfflineModelSize": null,
-              "omOfflineModelName": null,
-              "omOfflineModel": [
-                {
-                  "id": "1737338644398081",
-                  "name": "yolov8s-worldv2.om",
-                  "url": null,
-                  "size": "13716818"
-                }
-              ],
-              "omOfflineModelLink": null,
-              "releaseTime": "2026-04-02",
-              "boardOs": "OpenHarmony",
-              "modelLicense": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov8s-world/LICENSE",
-              "modelPerformance": [
-                {
-                  "performanceValue": "103.419",
-                  "unit": "耗时（ms）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "41.71",
-                  "unit": "性能（fps）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "139.937",
-                  "unit": "单帧内存带宽（MB）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "47.867",
-                  "unit": "内存（MB）",
-                  "desc": ""
-                }
-              ],
-              "deleted": 0
-            }
-          ],
-          "deleted": 0
-        },
-        {
-          "createdBy": null,
-          "creationDate": null,
-          "creationUserCN": null,
-          "lastUpdatedBy": null,
-          "lastUpdateDate": null,
-          "lastUpdateUserCN": null,
-          "rowIdx": -1,
-          "id": "i8ttm5k1tc01",
-          "name": "Hi3403V100 NNN",
-          "modelId": "j93dspootk00",
-          "modelName": "Yolov8s-World",
-          "supportNames": [
-            "FP16"
-          ],
-          "toolkit": [
-            {
-              "name": "CANN工具",
-              "url": "",
-              "desc": "5.30.t14.7.b140 (请联系FAE获取)",
-              "imgId": "cann"
-            },
-            {
-              "name": "编译工具链",
-              "url": "",
-              "desc": "aarch64-mix210-linux-gcc;(请联系FAE获取)",
-              "imgId": "tool"
-            },
-            {
-              "name": "SDK",
-              "url": "",
-              "desc": "SS928 V100R001C02SPC022;(请联系FAE获取)",
-              "imgId": "sdk"
-            }
-          ],
-          "supportOs": [
-            "Linux"
-          ],
-          "supportQuantify": [
-            {
-              "createdBy": 137441035408492,
-              "creationDate": "2026-04-03 11:54:27",
-              "creationUserCN": "0e900d99dee8461b8",
-              "lastUpdatedBy": 137441035408492,
-              "lastUpdateDate": "2026-04-03 11:54:27",
-              "lastUpdateUserCN": "0e900d99dee8461b8",
-              "rowIdx": -1,
-              "id": "j9ceveqoi000",
-              "name": "FP16",
-              "computingId": "i8ttm5k1tc01",
-              "computingName": "Hi3403V100 NNN",
-              "omOfflineModelUrl": null,
-              "omOfflineModelId": null,
-              "omOfflineModelSize": null,
-              "omOfflineModelName": null,
-              "omOfflineModel": [
-                {
-                  "id": "1737338698924034",
-                  "name": "yolov8s-worldv2.om",
-                  "url": null,
-                  "size": "28145674"
-                }
-              ],
-              "omOfflineModelLink": null,
-              "releaseTime": "2026-04-02",
-              "boardOs": "Linux",
-              "modelLicense": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov8s-world/LICENSE",
-              "modelPerformance": [
-                {
-                  "performanceValue": "48.415",
-                  "unit": "耗时（ms）",
-                  "desc": null
-                },
-                {
-                  "performanceValue": "20.64",
-                  "unit": "性能（fps）",
-                  "desc": null
-                },
-                {
-                  "performanceValue": "442.179",
-                  "unit": "单帧内存带宽（MB）",
-                  "desc": null
-                },
-                {
-                  "performanceValue": "132.621",
-                  "unit": "内存（MB）",
-                  "desc": null
-                }
-              ],
-              "deleted": 0
-            }
-          ],
-          "deleted": 0
-        }
-      ],
-      "saveType": null,
-      "deleteType": null,
-      "latest": "Y",
-      "deleted": 0,
-      "modelPhase": "released",
-      "remark": null,
-      "fileInfo": null,
-      "reviewType": null,
-      "owner": "0e900d99dee8461b8",
-      "ownerBy": 137441035408492,
-      "optional": null,
-      "optionalList": null,
-      "optionalBy": null,
-      "downloadNum": 2,
-      "collectNum": null,
-      "isCollect": null
-    },
-    "downloadUrls": [
-      {
-        "name": "yolov8s-worldv2.om",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1737338644398081/yolov8s-worldv2.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1775639858&Signature=CUuf90s%2FFSNH6kpfbsqDQbqao%2Fs%3D",
-        "source": "om-A8W8"
-      },
-      {
-        "name": "yolov8s-worldv2_om-FP16.om",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1737338644398081/yolov8s-worldv2.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1775639872&Signature=5S6DCH%2F7SrbiM3HiuEtSnASo248%3D",
-        "source": "om-FP16"
-      },
-      {
-        "name": "yolov8s-worldv2_svp_nnn.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1737339059634179/yolov8s-worldv2_svp_nnn.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1775639883&Signature=CqKvo0sAUdoikO%2BTwlI5JmWmBHA%3D",
-        "source": "source-model"
-      },
-      {
-        "name": "yolov8s-worldv2.pt",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1737339059634178/yolov8s-worldv2.pt?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1775639889&Signature=j1NaTReWE0T5mlyuYvVzHkVVee8%3D",
-        "source": "source-model"
-      },
-      {
-        "name": "yolov8s-worldv20_nnn.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1737339059634180/yolov8s-worldv20_nnn.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1775639903&Signature=0Log1JKWwjppd%2FwnnxCPLDdgNZg%3D",
-        "source": "source-model"
-      },
-      {
-        "name": "yolov8s-worldv2_svp_nnn.onnx",
-        "fileId": "1737339059634179",
-        "size": "13047733",
-        "source": "originModel"
-      },
-      {
-        "name": "yolov8s-worldv2.pt",
-        "fileId": "1737339059634178",
-        "size": "25923032",
-        "source": "originModel"
-      },
-      {
-        "name": "yolov8s-worldv20_nnn.onnx",
-        "fileId": "1737339059634180",
-        "size": "51352821",
-        "source": "originModel"
-      },
-      {
-        "name": "yolov8s-worldv2.om",
-        "fileId": "1737338644398081",
-        "size": "13716818",
-        "quantify": "A8W8",
-        "computing": "Hi3403V100 SVP_NNN",
-        "source": "omOfflineModel"
-      },
-      {
-        "name": "yolov8s-worldv2.om",
-        "fileId": "1737338698924034",
-        "size": "28145674",
         "quantify": "FP16",
         "computing": "Hi3403V100 NNN",
         "source": "omOfflineModel"
@@ -4199,380 +4827,6 @@
     "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
-    "id": "j3vsc0jtvs00",
-    "name": "Vit-B-16",
-    "listData": {
-      "id": "j3vsc0jtvs00",
-      "name": "Vit-B-16",
-      "coverImageId": 1701276106686467,
-      "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1701276106686467%2F20250915111221_469_20.png",
-      "isBeta": 1,
-      "betaVersionDesc": "Hi3403V100 NNN引擎上模型性能待进一步优化",
-      "createdBy": 138396906621956,
-      "creationDate": "2026-03-17 17:45:49",
-      "creationUserCN": "heronwang",
-      "lastUpdateDate": "2026-03-26 09:35:38",
-      "currentHandler": "",
-      "currentHandlerName": "",
-      "description": "`Transformer` 架构已广泛应用于自然语言处理领域。Vision Transformer（ViT）模型在计算机视觉领域中对CNN的依赖不是必需的，直接将其应用于图像块序列来进行图像分类时，也能得到和目前卷积网络相媲美的准确率。",
-      "computerVersion": [
-        "分类"
-      ],
-      "naturalLanguageProcess": [],
-      "multimodal": [],
-      "video": [],
-      "framework": [
-        "PyTorch"
-      ],
-      "supportOs": [
-        "OpenHarmony",
-        "Linux"
-      ],
-      "computingPower": [
-        "Hi3403V100 SVP_NNN",
-        "Hi3403V100 NNN"
-      ],
-      "isCollect": 0,
-      "downloadNum": 33,
-      "collectCount": 0
-    },
-    "apiDetail": {
-      "createdBy": 138396906621956,
-      "creationDate": "2026-03-17 17:45:49",
-      "creationUserCN": "heronwang",
-      "lastUpdatedBy": null,
-      "lastUpdateDate": "2026-03-26 09:35:38",
-      "lastUpdateUserCN": "heronwang",
-      "rowIdx": -1,
-      "id": "j3vsc0jtvs00",
-      "name": "Vit-B-16",
-      "isBeta": 1,
-      "betaVersionDesc": "Hi3403V100 NNN引擎上模型性能待进一步优化",
-      "description": "`Transformer` 架构已广泛应用于自然语言处理领域。Vision Transformer（ViT）模型在计算机视觉领域中对CNN的依赖不是必需的，直接将其应用于图像块序列来进行图像分类时，也能得到和目前卷积网络相媲美的准确率。",
-      "parentId": "h91gf0sd6c00",
-      "coverImageId": 1701276106686467,
-      "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1701276106686467%2F20250915111221_469_20.png",
-      "modelEffectId": null,
-      "modelEffectUrl": "",
-      "computerVersion": [
-        "分类"
-      ],
-      "naturalLanguageProcess": [],
-      "multimodal": [],
-      "video": [],
-      "framework": [
-        "PyTorch"
-      ],
-      "modelRepository": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/classification/Vit-B-16",
-      "originModel": [
-        {
-          "id": "1701276278652929",
-          "name": "vit_base_patch16_224.pt",
-          "url": null,
-          "size": "346335542"
-        },
-        {
-          "id": "1706937123209218",
-          "name": "vit_base_patch16_224_bs1.onnx",
-          "url": null,
-          "size": "346375830"
-        }
-      ],
-      "originModelLink": "",
-      "dataSet": "https://image-net.org/",
-      "modelLicense": "https://github.com/huggingface/pytorch-image-models/blob/main/LICENSE",
-      "detailParams": [
-        {
-          "name": "计算量",
-          "value": "35.994GFLOPS"
-        },
-        {
-          "name": "输入",
-          "value": "224x224"
-        },
-        {
-          "name": "参数量",
-          "value": "86.568M"
-        }
-      ],
-      "quickStart": {
-        "url": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/classification/Vit-B-16",
-        "markDownUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/classification/Vit-B-16/",
-        "developLanguage": [
-          {
-            "language": "C++",
-            "context": "{\"ops\":[{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#3b3b3b\"},\"insert\":\"Vit-B-16模型可以通过以下代码完成快速推理\"},{\"insert\":\"\\n#include \\\"model.h\\\"\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"#include \\\"log.h\\\"\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"using namespace Infer;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"int main()\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"{\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  EnvInit();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  std::string omModelPath = \\\"/path/to/model.om\\\"; // Vit-B-16模型文件路径 \"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  std::string imagePath = \\\"/path/to/image.jpg\\\"; // 输入图片路径\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  std::unique_ptr<Model> model = std::make_unique<Model>();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  if (model->Load(omModelPath, ModelType::ResNet50) != 0) {\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    LOG(ERROR) << \\\"fail to load model\\\";\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    return -1;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  }\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  auto ret = model->Infer(imagePath, FileType::SingelImageFile);\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  if (ret.size() == 0) {\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    LOG(ERROR) << \\\"fail to infer model\\\";\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    model->Unload();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    return -1;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  }\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  if (model->Unload() != 0) {\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    LOG(ERROR) << \\\"fail to unload model\\\";\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    return -1;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  }\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  EnvDeinit();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  return 0;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"}\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#3b3b3b\"},\"insert\":\"备注：上述C++代码依赖的动态库与头文件位于\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#a31515\",\"link\":\"https://gitee.com/HiSpark/modelzoo/tree/master/samples/common\"},\"insert\":\"/samples/common\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#3b3b3b\"},\"insert\":\"目录下，编译相关配置参考\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#a31515\",\"link\":\"https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/Vit-B-16/src/CMakeLists.txt\"},\"insert\":\"CMakeLists.txt\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#3b3b3b\"},\"insert\":\"。\"},{\"insert\":\"\\n\\n\"}]}"
-          }
-        ]
-      },
-      "status": "released",
-      "currentHandler": "",
-      "currentHandlerName": "",
-      "jsonPath": "https://gitee.com/HiSpark/modelzoo-dev/blob/master/samples/built-in/classification/Vit-B-16/Vit-B-16.json",
-      "modelAdaptor": [
-        {
-          "createdBy": null,
-          "creationDate": null,
-          "creationUserCN": null,
-          "lastUpdatedBy": null,
-          "lastUpdateDate": null,
-          "lastUpdateUserCN": null,
-          "rowIdx": -1,
-          "id": "i8ttm5k1tc00",
-          "name": "Hi3403V100 SVP_NNN",
-          "modelId": "j3vsc0jtvs00",
-          "modelName": "Vit-B-16",
-          "supportNames": [
-            "A16W8"
-          ],
-          "toolkit": [
-            {
-              "name": "CANN工具",
-              "url": "https://hispark-obs.obs.cn-east-3.myhuaweicloud.com/SVP_NNN_PC_V1.0.6.0.tgz",
-              "desc": "Al异构计算架构 提升计算效率的关键平台",
-              "imgId": "cann"
-            },
-            {
-              "name": "编译工具链",
-              "url": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
-              "desc": "高效编译，精准适配 AI性能优化，应用流畅运行",
-              "imgId": "tool"
-            },
-            {
-              "name": "SDK",
-              "url": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-              "desc": "稳定、易用的设计 支撑客户快速产品量产",
-              "imgId": "sdk"
-            }
-          ],
-          "supportOs": [
-            "OpenHarmony",
-            "Linux"
-          ],
-          "supportQuantify": [
-            {
-              "createdBy": 138396906621956,
-              "creationDate": "2026-03-24 19:40:03",
-              "creationUserCN": "heronwang",
-              "lastUpdatedBy": 138396906621956,
-              "lastUpdateDate": "2026-03-24 19:40:03",
-              "lastUpdateUserCN": "heronwang",
-              "rowIdx": -1,
-              "id": "j68pkp99vs00",
-              "name": "A16W8",
-              "computingId": "i8ttm5k1tc00",
-              "computingName": "Hi3403V100 SVP_NNN",
-              "omOfflineModelUrl": null,
-              "omOfflineModelId": null,
-              "omOfflineModelSize": null,
-              "omOfflineModelName": null,
-              "omOfflineModel": [
-                {
-                  "id": "1734462496964611",
-                  "name": "vit_base_patch16_224.om",
-                  "url": null,
-                  "size": "91310649"
-                }
-              ],
-              "omOfflineModelLink": null,
-              "releaseTime": "2026-03-17",
-              "boardOs": "Linux",
-              "modelLicense": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/classification/Vit-B-16/LICENSE",
-              "modelPerformance": [
-                {
-                  "performanceValue": "23.515",
-                  "unit": "耗时（ms）",
-                  "desc": "性能工具。"
-                },
-                {
-                  "performanceValue": "42.527",
-                  "unit": "性能（fps）",
-                  "desc": "性能工具。"
-                },
-                {
-                  "performanceValue": "259.363",
-                  "unit": "单帧内存带宽（MB）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "92.973",
-                  "unit": "内存（MB）",
-                  "desc": ""
-                }
-              ],
-              "deleted": 0
-            }
-          ],
-          "deleted": 0
-        },
-        {
-          "createdBy": null,
-          "creationDate": null,
-          "creationUserCN": null,
-          "lastUpdatedBy": null,
-          "lastUpdateDate": null,
-          "lastUpdateUserCN": null,
-          "rowIdx": -1,
-          "id": "i8ttm5k1tc01",
-          "name": "Hi3403V100 NNN",
-          "modelId": "j3vsc0jtvs00",
-          "modelName": "Vit-B-16",
-          "supportNames": [
-            "A16W8",
-            "FP16"
-          ],
-          "toolkit": [
-            {
-              "name": "CANN工具包",
-              "url": "",
-              "desc": "SPC022 (请联系FAE获取)",
-              "imgId": "cann"
-            },
-            {
-              "name": "编译工具链",
-              "url": "",
-              "desc": "aarch64-mix210-linux-gcc (请联系FAE获取)",
-              "imgId": "tool"
-            },
-            {
-              "name": "SDK",
-              "url": "",
-              "desc": "SPC022 (请联系FAE获取)",
-              "imgId": "sdk"
-            }
-          ],
-          "supportOs": [
-            "Linux"
-          ],
-          "supportQuantify": [
-            {
-              "createdBy": 138396906621956,
-              "creationDate": "2026-03-24 19:40:03",
-              "creationUserCN": "heronwang",
-              "lastUpdatedBy": 138396906621956,
-              "lastUpdateDate": "2026-03-24 19:40:03",
-              "lastUpdateUserCN": "heronwang",
-              "rowIdx": -1,
-              "id": "j68pkpahvs00",
-              "name": "FP16",
-              "computingId": "i8ttm5k1tc01",
-              "computingName": "Hi3403V100 NNN",
-              "omOfflineModelUrl": null,
-              "omOfflineModelId": null,
-              "omOfflineModelSize": null,
-              "omOfflineModelName": null,
-              "omOfflineModel": [
-                {
-                  "id": "1734462612307971",
-                  "name": "vit_base_patch16_224.om",
-                  "url": null,
-                  "size": "176647820"
-                }
-              ],
-              "omOfflineModelLink": null,
-              "releaseTime": "2026-03-17",
-              "boardOs": "Linux",
-              "modelLicense": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/classification/Vit-B-16/LICENSE",
-              "modelPerformance": [
-                {
-                  "performanceValue": "146.276",
-                  "unit": "耗时（ms）",
-                  "desc": "性能工具。"
-                },
-                {
-                  "performanceValue": "6.85",
-                  "unit": "性能（fps）",
-                  "desc": "性能工具。"
-                },
-                {
-                  "performanceValue": "1280.401",
-                  "unit": "单帧内存带宽（MB）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "423.801",
-                  "unit": "内存（MB）",
-                  "desc": ""
-                }
-              ],
-              "deleted": 0
-            }
-          ],
-          "deleted": 0
-        }
-      ],
-      "saveType": null,
-      "deleteType": null,
-      "latest": "Y",
-      "deleted": 0,
-      "modelPhase": "released",
-      "remark": null,
-      "fileInfo": null,
-      "reviewType": null,
-      "owner": "heronwang",
-      "ownerBy": 138396906621956,
-      "optional": null,
-      "optionalList": null,
-      "optionalBy": null,
-      "downloadNum": 33,
-      "collectNum": null,
-      "isCollect": null
-    },
-    "downloadUrls": [
-      {
-        "name": "vit_base_patch16_224_om-A16W8.om",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1734462496964611/vit_base_patch16_224.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774627675&Signature=tLPe979y3gi4FN5%2BdBs%2FpezAY7c%3D",
-        "source": "om-A16W8"
-      },
-      {
-        "name": "vit_base_patch16_224.om",
-        "source": "om-FP16"
-      },
-      {
-        "name": "vit_base_patch16_224.pt",
-        "source": "source-model"
-      },
-      {
-        "name": "vit_base_patch16_224_bs1.onnx",
-        "source": "source-model"
-      },
-      {
-        "name": "vit_base_patch16_224.pt",
-        "fileId": "1701276278652929",
-        "size": "346335542",
-        "source": "originModel"
-      },
-      {
-        "name": "vit_base_patch16_224_bs1.onnx",
-        "fileId": "1706937123209218",
-        "size": "346375830",
-        "source": "originModel"
-      },
-      {
-        "name": "vit_base_patch16_224.om",
-        "fileId": "1734462496964611",
-        "size": "91310649",
-        "quantify": "A16W8",
-        "computing": "Hi3403V100 SVP_NNN",
-        "source": "omOfflineModel"
-      },
-      {
-        "name": "vit_base_patch16_224.om",
-        "fileId": "1734462612307971",
-        "size": "176647820",
-        "quantify": "FP16",
-        "computing": "Hi3403V100 NNN",
-        "source": "omOfflineModel"
-      },
-      {
-        "url": "https://hispark-obs.obs.cn-east-3.myhuaweicloud.com/SVP_NNN_PC_V1.0.6.0.tgz",
-        "source": "api-all"
-      }
-    ],
-    "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
-  },
-  {
     "id": "j3n1o7csso00",
     "name": "SuperPoint",
     "listData": {
@@ -7295,219 +7549,6 @@
         "quantify": "fp16",
         "computing": "Hi3591PV100",
         "source": "omOfflineModel"
-      }
-    ],
-    "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
-  },
-  {
-    "id": "indvkfmcp400",
-    "name": "MiniCPM-4v-0.5B",
-    "listData": {
-      "id": "indvkfmcp400",
-      "name": "MiniCPM-4v-0.5B",
-      "coverImageId": 1735709648093187,
-      "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1735709648093187%2FMiniCPM.png",
-      "isBeta": 1,
-      "betaVersionDesc": "Hi3403V100 SVP_NNN引擎上模型性能待进一步优化。",
-      "createdBy": 139036723332644,
-      "creationDate": "2026-02-06 17:16:24",
-      "creationUserCN": "y-0089",
-      "lastUpdateDate": "2026-03-26 09:35:38",
-      "currentHandler": "",
-      "currentHandlerName": "",
-      "description": "MiniCPM-4v-0.5B: 小参数, 大智慧——端侧多模态模型\n\n由面壁智能(OpenBMB)打造的MiniCPM-4v-0.5B, 以0.53B的精简参数量，在端侧设备上实现了卓越的图文理解与交互能力。专为边缘计算场景设计，让每一分算力都充分发挥价值。\n\n三大核心优势：\n    1. 创新架构，轻装上阵\n通过创新的稀疏感知训练和视觉压缩技术，实现 16:1 视觉特征压缩比，在保证高精度的同时，极大降低了推理算力消耗与内存占用。\n    2. 高能数据，以小博大\n依托高密度数据体系，数据准备成本下降90%。通过汇聚全球高质量语料进行精细化对齐，用优质的数据训练模型，实现越级性能表现。\n    3. 高效训练，成本锐减\n采用原创 WSD 调度策略与“模型风洞”技术，相比传统方案，搜索算力节省超99%，整体训练成本节省约60%，为端侧模型的持续迭代提供高效路径。\n\n海思平台技术支撑：\n现已适配 Hi3403V100 平台，持续生成速度达 21 tokens/s，为边缘侧设备提供流程、敏捷的智能视觉体验。",
-      "computerVersion": [],
-      "naturalLanguageProcess": [
-        "VLM"
-      ],
-      "multimodal": [],
-      "video": [],
-      "framework": [
-        "PyTorch"
-      ],
-      "supportOs": [
-        "Linux"
-      ],
-      "computingPower": [
-        "Hi3403V100 SVP_NNN"
-      ],
-      "isCollect": 0,
-      "downloadNum": 25,
-      "collectCount": 0
-    },
-    "apiDetail": {
-      "createdBy": 139036723332644,
-      "creationDate": "2026-02-06 17:16:24",
-      "creationUserCN": "y-0089",
-      "lastUpdatedBy": null,
-      "lastUpdateDate": "2026-03-26 09:35:38",
-      "lastUpdateUserCN": "y-0089",
-      "rowIdx": -1,
-      "id": "indvkfmcp400",
-      "name": "MiniCPM-4v-0.5B",
-      "isBeta": 1,
-      "betaVersionDesc": "Hi3403V100 SVP_NNN引擎上模型性能待进一步优化。",
-      "description": "MiniCPM-4v-0.5B: 小参数, 大智慧——端侧多模态模型\n\n由面壁智能(OpenBMB)打造的MiniCPM-4v-0.5B, 以0.53B的精简参数量，在端侧设备上实现了卓越的图文理解与交互能力。专为边缘计算场景设计，让每一分算力都充分发挥价值。\n\n三大核心优势：\n    1. 创新架构，轻装上阵\n通过创新的稀疏感知训练和视觉压缩技术，实现 16:1 视觉特征压缩比，在保证高精度的同时，极大降低了推理算力消耗与内存占用。\n    2. 高能数据，以小博大\n依托高密度数据体系，数据准备成本下降90%。通过汇聚全球高质量语料进行精细化对齐，用优质的数据训练模型，实现越级性能表现。\n    3. 高效训练，成本锐减\n采用原创 WSD 调度策略与“模型风洞”技术，相比传统方案，搜索算力节省超99%，整体训练成本节省约60%，为端侧模型的持续迭代提供高效路径。\n\n海思平台技术支撑：\n现已适配 Hi3403V100 平台，持续生成速度达 21 tokens/s，为边缘侧设备提供流程、敏捷的智能视觉体验。",
-      "parentId": "indvkfmcp400",
-      "coverImageId": 1735709648093187,
-      "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1735709648093187%2FMiniCPM.png",
-      "modelEffectId": null,
-      "modelEffectUrl": "",
-      "computerVersion": [],
-      "naturalLanguageProcess": [
-        "VLM"
-      ],
-      "multimodal": [],
-      "video": [],
-      "framework": [
-        "PyTorch"
-      ],
-      "modelRepository": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/vlm/MiniCPM/README.md",
-      "originModel": [],
-      "originModelLink": "",
-      "dataSet": "",
-      "modelLicense": "https://mb-data-backup.obs.cn-north-4.myhuaweicloud.com/user/jiachao/OM%20%E6%96%87%E4%BB%B6%202.zip?AccessKeyId=HPUA2FP6SKIBEDLHP6HL&Expires=1805167766&Signature=ypfYmM/49tx3mxFyOHgvHvv9QeE%3D",
-      "detailParams": [
-        {
-          "name": "输入",
-          "value": "图片: 512x512  Embedding: 200 Tokens"
-        },
-        {
-          "name": "参数量",
-          "value": "520.333 M"
-        },
-        {
-          "name": "计算量",
-          "value": "413.886 GFLOPs"
-        }
-      ],
-      "quickStart": {
-        "url": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/vlm/MiniCPM/README.md",
-        "markDownUrl": "",
-        "developLanguage": [
-          {
-            "language": "C++",
-            "context": "{\"ops\":[{\"insert\":\"MiniCPM模型可以通过以下代码完成快速推理\\n#include \\\"log.h\\\"\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"#include \\\"MiniCpmInfer.h\\\"\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"int main()\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"{\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    EnvInit();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    string result;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    MiniCpmInfer model;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    auto imagePath = \\\"../datasets/demo.png\\\"; // 图片地址\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    auto text = \\\"翻译\\\";      // 文本描述内容\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    LOG(INFO) << \\\"\\\\n Current question: \\\\n Text: \\\" << text << \\\"\\\\n Image path: \\\" << imagePath;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    result = model.InferSingle(imagePath, text);\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    LOG(INFO) << \\\"\\\\nMiniCPM infer result: \\\\n\\\" << result;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    EnvDeinit();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    return 0;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"}\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"备注：上述C++代码依赖的动态库与头文件位于目录 \"},{\"attributes\":{\"link\":\"https://gitee.com/HiSpark/modelzoo/tree/master/samples/common\",\"color\":\"#032f62\",\"background\":\"#f0f0f0\",\"size\":\"14px\",\"line-height\":\"19px\",\"underline\":true},\"insert\":\"/samples/common\"},{\"insert\":\"下，编译相关配置参考\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#f0f0f0\",\"color\":\"#032f62\",\"underline\":true},\"insert\":\" \"},{\"attributes\":{\"link\":\"https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/vlm/MiniCPM/src/CMakeLists.txt\",\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#f0f0f0\",\"color\":\"#032f62\",\"underline\":true},\"insert\":\"CMakeLists.txt\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#f0f0f0\",\"color\":\"#000000\"},\"insert\":\"。\"},{\"insert\":\"\\n\\n\"}]}"
-          }
-        ]
-      },
-      "status": "released",
-      "currentHandler": "",
-      "currentHandlerName": "",
-      "jsonPath": "",
-      "modelAdaptor": [
-        {
-          "createdBy": null,
-          "creationDate": null,
-          "creationUserCN": null,
-          "lastUpdatedBy": null,
-          "lastUpdateDate": null,
-          "lastUpdateUserCN": null,
-          "rowIdx": -1,
-          "id": "i8ttm5k1tc00",
-          "name": "Hi3403V100 SVP_NNN",
-          "modelId": "indvkfmcp400",
-          "modelName": "MiniCPM-4v-0.5B",
-          "supportNames": [
-            "A16W8"
-          ],
-          "toolkit": [
-            {
-              "name": "CANN工具",
-              "url": "",
-              "desc": "6.10.t01spc030b700 ； (请联系FAE获取)",
-              "imgId": "cann"
-            },
-            {
-              "name": "编译工具库",
-              "url": "",
-              "desc": "aarch64-mix210-linux-gcc",
-              "imgId": "tool"
-            },
-            {
-              "name": "SDK",
-              "url": "",
-              "desc": "SS928V100V1.0.2.5 B060 ；  (请联系FAE获取)",
-              "imgId": "sdk"
-            }
-          ],
-          "supportOs": [
-            "Linux"
-          ],
-          "supportQuantify": [
-            {
-              "createdBy": 139036723332644,
-              "creationDate": "2026-03-24 16:10:17",
-              "creationUserCN": "y-0089",
-              "lastUpdatedBy": 139036723332644,
-              "lastUpdateDate": "2026-03-24 16:10:17",
-              "lastUpdateUserCN": "y-0089",
-              "rowIdx": -1,
-              "id": "j679kfg8so00",
-              "name": "A16W8",
-              "computingId": "i8ttm5k1tc00",
-              "computingName": "Hi3403V100 SVP_NNN",
-              "omOfflineModelUrl": null,
-              "omOfflineModelId": null,
-              "omOfflineModelSize": null,
-              "omOfflineModelName": null,
-              "omOfflineModel": [],
-              "omOfflineModelLink": "https://mb-data-backup.obs.cn-north-4.myhuaweicloud.com/user/jiachao/OM%20%E6%96%87%E4%BB%B6%202.zip?AccessKeyId=HPUA2FP6SKIBEDLHP6HL&Expires=1805167766&Signature=ypfYmM/49tx3mxFyOHgvHvv9QeE%3D",
-              "releaseTime": "2026-02-06",
-              "boardOs": "Linux",
-              "modelLicense": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/vlm/MiniCPM/LICENSE",
-              "modelPerformance": [
-                {
-                  "performanceValue": "21.300",
-                  "unit": "TPS（Token/s）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "519.740",
-                  "unit": "TTFT（ms）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "544.514",
-                  "unit": "单帧内存带宽（MB）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "1217.676",
-                  "unit": "内存（MB）",
-                  "desc": ""
-                }
-              ],
-              "deleted": 0
-            }
-          ],
-          "deleted": 0
-        }
-      ],
-      "saveType": null,
-      "deleteType": null,
-      "latest": "Y",
-      "deleted": 0,
-      "modelPhase": "released",
-      "remark": null,
-      "fileInfo": null,
-      "reviewType": null,
-      "owner": "y-0089",
-      "ownerBy": 139036723332644,
-      "optional": null,
-      "optionalList": [
-        "0e900d99dee8461b8"
-      ],
-      "optionalBy": null,
-      "downloadNum": 25,
-      "collectNum": null,
-      "isCollect": null
-    },
-    "downloadUrls": [
-      {
-        "url": "https://mb-data-backup.obs.cn-north-4.myhuaweicloud.com/user/jiachao/OM%20%E6%96%87%E4%BB%B6%202.zip",
-        "source": "api-all"
       }
     ],
     "downloadPageVisited": true,
