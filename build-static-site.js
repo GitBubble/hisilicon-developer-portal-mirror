@@ -7,6 +7,8 @@ const MODELS_JSON = path.join(ROOT, 'api_all_models.json');
 const DETAILS_JSON = path.join(ROOT, 'api_all_details.json');
 const IMAGES_DIR = path.join(ROOT, 'assets', 'images');
 const MODELS_DIR = path.join(ROOT, 'models');
+const MODELS_REAL_DIR = path.join(ROOT, 'models-real-20260713');
+const FETCH_MANIFEST = path.join(MODELS_REAL_DIR, 'fetch-manifest.json');
 const OUTPUT = path.join(ROOT, 'assets', 'js', 'models.js');
 const SITE_HTML_FILES = [
     path.join(ROOT, 'index.html'),
@@ -17,11 +19,22 @@ const HF_NAMESPACE = process.env.HF_NAMESPACE || 'shadow-cann';
 const HF_MIRROR_BASE = 'https://hf-mirror.com';
 const HF_REPO_PREFIX = 'hispark-modelzoo-';
 const SITE_LAST_COMMIT_TIME_TOKEN = '{{SITE_LAST_COMMIT_TIME}}';
-const HF_UPLOAD_SKIPS = new Set(['Pi0', 'MiniCPM-4v-0.5B']);
+// Shared toolkit package (replaces hispark-obs SVP_NNN SDK).
+// Prefer the dedicated HF repo when the full package is present; fall back to GitHub Releases
+// which hosts the verified complete 249MB archive.
+const SHARED_SDK_FILE = 'SVP_NNN_PC_V1.0.6.0.tgz';
+const SHARED_SDK_HF_REPO_ID = `${HF_NAMESPACE}/svp-nnn-pc`;
+const SHARED_SDK_HF_URL = `${HF_MIRROR_BASE}/${SHARED_SDK_HF_REPO_ID}/resolve/main/${SHARED_SDK_FILE}`;
+const SHARED_SDK_GITHUB_URL = `https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/${SHARED_SDK_FILE}`;
+// Use GitHub Releases by default: HF mirror historically contained a truncated 31MB copy.
+// Set SVP_SDK_SOURCE=hf to force the dedicated Hugging Face URL after a full upload is verified.
+const SHARED_SDK_URL = process.env.SVP_SDK_SOURCE === 'hf' ? SHARED_SDK_HF_URL : SHARED_SDK_GITHUB_URL;
+const HUAWEICLOUD_HOST_RE = /(?:^|\.)myhuaweicloud\.com$/i;
+const HF_UPLOAD_SKIPS = new Set([]); // all models now have HF mirrors
 const MANUAL_REPO_OVERRIDES = new Map([
     ['Pi0', {
         repoId: 'shadow-cann/pi0',
-        useMirrorForRemoteDownloads: false,
+        useMirrorForRemoteDownloads: true,
         preferRepoUrlForDownloads: false,
         downloadTargetUrl: null,
     }],
@@ -382,11 +395,67 @@ function deriveCategory(model) {
     return '模型';
 }
 
+function isHuaweiCloudUrl(value) {
+    if (!value || !/^https?:\/\//i.test(value)) return false;
+    try {
+        const host = new URL(value).hostname;
+        return HUAWEICLOUD_HOST_RE.test(host) || host.includes('huaweicloud');
+    } catch (error) {
+        return /huaweicloud/i.test(String(value));
+    }
+}
+
+function unwrapRedirectTarget(value) {
+    if (!value) return value;
+    try {
+        const parsed = new URL(value);
+        const target = parsed.searchParams.get('target');
+        if (target) return decodeURIComponent(target);
+    } catch (error) {
+        // ignore
+    }
+    return value;
+}
+
+function isSdkPackageName(name) {
+    return /^SVP_NNN_PC_V[\d.]+\.tgz$/i.test(String(name || ''));
+}
+
+function isSdkPackageUrl(value) {
+    const raw = unwrapRedirectTarget(value || '');
+    if (!raw) return false;
+    const fileName = fileNameFromUrl(raw);
+    return isSdkPackageName(fileName) || /SVP_NNN_PC_V/i.test(raw);
+}
+
 function findLocalImage(coverImageId, imageFiles) {
     if (!coverImageId) return null;
-    const prefix = `${coverImageId}_`;
-    const match = imageFiles.find(file => file.startsWith(prefix));
+    const id = String(coverImageId);
+    const prefix = `${id}_`;
+    const match = imageFiles.find(file => file.startsWith(prefix) || file.startsWith(`${id}.`));
     return match ? encodeLocalFile(match, 'assets/images') : null;
+}
+
+function loadFetchManifest() {
+    if (!fs.existsSync(FETCH_MANIFEST)) return new Map();
+    try {
+        const data = readJson(FETCH_MANIFEST);
+        return new Map((data.models || []).map((item) => [item.name, item]));
+    } catch (error) {
+        console.warn(`Failed to load fetch manifest: ${error.message}`);
+        return new Map();
+    }
+}
+
+function listModelRealFiles(slug) {
+    if (!slug) return [];
+    const dir = path.join(MODELS_REAL_DIR, slug);
+    if (!fs.existsSync(dir)) return [];
+    return fs.readdirSync(dir).filter((file) => {
+        if (file.startsWith('.')) return false;
+        const fullPath = path.join(dir, file);
+        return fs.statSync(fullPath).isFile();
+    });
 }
 
 function resolveLocalModelFile(name, modelFiles) {
@@ -406,35 +475,103 @@ function resolveLocalModelFile(name, modelFiles) {
     });
 
     if (candidates.length === 1) return candidates[0];
+
+    // Prefer exact extension matches when multiple fuzzy candidates exist.
+    if (ext) {
+        const sameExt = candidates.filter((file) => path.extname(file).toLowerCase() === ext);
+        if (sameExt.length === 1) return sameExt[0];
+    }
     return null;
 }
 
-function buildRepoInfo(model, hasLocalFiles) {
-    const manualOverride = MANUAL_REPO_OVERRIDES.get(model.name);
-    if (manualOverride) {
-        return {
-            repoId: manualOverride.repoId,
-            repoUrl: `${HF_MIRROR_BASE}/${manualOverride.repoId}`,
-            readmeUrl: `${HF_MIRROR_BASE}/${manualOverride.repoId}/blob/main/README.md`,
-            resolveBase: `${HF_MIRROR_BASE}/${manualOverride.repoId}/resolve/main`,
-            useMirrorForRemoteDownloads: Boolean(manualOverride.useMirrorForRemoteDownloads),
-            preferRepoUrlForDownloads: Boolean(manualOverride.preferRepoUrlForDownloads),
-            downloadTargetUrl: manualOverride.downloadTargetUrl || null,
-        };
+function resolveRepoFileName(title, url, repoFiles) {
+    const candidates = unique([
+        title,
+        fileNameFromUrl(url),
+        fileNameFromUrl(unwrapRedirectTarget(url)),
+    ].filter(Boolean));
+
+    for (const candidate of candidates) {
+        if (repoFiles.includes(candidate)) return candidate;
+        const resolved = resolveLocalModelFile(candidate, repoFiles);
+        if (resolved) return resolved;
     }
 
-    if (!hasLocalFiles || HF_UPLOAD_SKIPS.has(model.name)) return null;
-    const repoName = `${HF_REPO_PREFIX}${slugify(model.name)}`;
-    const repoId = `${HF_NAMESPACE}/${repoName}`;
+    // Case-insensitive exact match fallback.
+    for (const candidate of candidates) {
+        const lower = candidate.toLowerCase();
+        const hit = repoFiles.find((file) => file.toLowerCase() === lower);
+        if (hit) return hit;
+    }
+
+    return null;
+}
+
+function makeRepoInfoFromId(repoId, options = {}) {
     return {
         repoId,
         repoUrl: `${HF_MIRROR_BASE}/${repoId}`,
         readmeUrl: `${HF_MIRROR_BASE}/${repoId}/blob/main/README.md`,
         resolveBase: `${HF_MIRROR_BASE}/${repoId}/resolve/main`,
-        useMirrorForRemoteDownloads: false,
-        preferRepoUrlForDownloads: false,
-        downloadTargetUrl: null,
+        useMirrorForRemoteDownloads: Boolean(options.useMirrorForRemoteDownloads),
+        preferRepoUrlForDownloads: Boolean(options.preferRepoUrlForDownloads),
+        downloadTargetUrl: options.downloadTargetUrl || null,
+        slug: options.slug || null,
+        repoFiles: options.repoFiles || [],
     };
+}
+
+function buildRepoInfo(model, manifestEntry, repoFiles) {
+    const manualOverride = MANUAL_REPO_OVERRIDES.get(model.name);
+    if (manualOverride) {
+        return makeRepoInfoFromId(manualOverride.repoId, {
+            ...manualOverride,
+            slug: manifestEntry?.slug || slugify(model.name),
+            repoFiles,
+        });
+    }
+
+    if (HF_UPLOAD_SKIPS.has(model.name)) return null;
+
+    if (manifestEntry?.repo_id) {
+        return makeRepoInfoFromId(manifestEntry.repo_id, {
+            slug: manifestEntry.slug || slugify(model.name),
+            repoFiles,
+            useMirrorForRemoteDownloads: true,
+        });
+    }
+
+    // Always expose the conventional HF mirror even without a local snapshot.
+    const repoName = `${HF_REPO_PREFIX}${slugify(model.name)}`;
+    const repoId = `${HF_NAMESPACE}/${repoName}`;
+    return makeRepoInfoFromId(repoId, {
+        slug: slugify(model.name),
+        repoFiles,
+        useMirrorForRemoteDownloads: true,
+    });
+}
+
+function rewriteExternalUrl(url, repoInfo) {
+    if (!url) return null;
+    const unwrapped = unwrapRedirectTarget(url);
+
+    if (isSdkPackageUrl(unwrapped) || isSdkPackageUrl(url)) {
+        return SHARED_SDK_URL;
+    }
+
+    if (isHuaweiCloudUrl(unwrapped) || isHuaweiCloudUrl(url)) {
+        const fileName = fileNameFromUrl(unwrapped) || fileNameFromUrl(url);
+        if (isSdkPackageName(fileName)) return SHARED_SDK_URL;
+        if (repoInfo && fileName) {
+            const resolved = resolveRepoFileName(fileName, unwrapped, repoInfo.repoFiles || []);
+            if (resolved) return `${repoInfo.resolveBase}/${encodeRepoFile(resolved)}`;
+            // Last resort: point at the HF tree rather than a Huawei OBS signed URL.
+            return repoInfo.repoUrl;
+        }
+        return null;
+    }
+
+    return unwrapped;
 }
 
 function buildQuickStart(detail) {
@@ -451,12 +588,15 @@ function buildQuickStart(detail) {
     };
 }
 
-function buildOriginModels(detail, modelFiles, repoInfo) {
+function buildOriginModels(detail, repoFiles, repoInfo) {
     return (detail.originModel || []).map((item) => {
-        const localFile = resolveLocalModelFile(item.name, modelFiles);
-        const href = localFile && repoInfo
-            ? `${repoInfo.resolveBase}/${encodeRepoFile(localFile)}`
-            : (item.url && /^https?:\/\//.test(item.url) ? item.url : null);
+        const localFile = resolveRepoFileName(item.name, item.url, repoFiles);
+        let href = null;
+        if (localFile && repoInfo) {
+            href = `${repoInfo.resolveBase}/${encodeRepoFile(localFile)}`;
+        } else if (item.url && /^https?:\/\//.test(item.url)) {
+            href = rewriteExternalUrl(item.url, repoInfo);
+        }
 
         return {
             name: item.name,
@@ -481,23 +621,34 @@ function buildManualOriginModels(modelName, repoInfo) {
     }));
 }
 
-function buildDownloads(detailEntry, modelFiles, repoInfo) {
-    const manualData = detailEntry ? null : null;
+function buildDownloads(detailEntry, repoFiles, repoInfo) {
     if (!detailEntry) return [];
 
     const downloads = [];
     for (const item of detailEntry.downloadUrls || []) {
         const title = item.name || (item.url ? fileNameFromUrl(item.url) : item.fileId) || '未命名文件';
-        const localFile = resolveLocalModelFile(title, modelFiles);
+        const localFile = resolveRepoFileName(title, item.url, repoFiles);
         let href = null;
-        if (localFile) {
-            href = repoInfo ? `${repoInfo.resolveBase}/${encodeRepoFile(localFile)}` : null;
-        } else if (repoInfo && repoInfo.useMirrorForRemoteDownloads && title && title !== '未命名文件') {
-            href = repoInfo.preferRepoUrlForDownloads
-                ? (repoInfo.downloadTargetUrl || repoInfo.repoUrl)
-                : `${repoInfo.resolveBase}/${encodeRepoFile(title)}`;
+
+        if (isSdkPackageUrl(item.url) || isSdkPackageName(title) || isSdkPackageName(fileNameFromUrl(item.url))) {
+            href = SHARED_SDK_URL;
+        } else if (localFile && repoInfo) {
+            href = `${repoInfo.resolveBase}/${encodeRepoFile(localFile)}`;
+        } else if (repoInfo && repoInfo.preferRepoUrlForDownloads) {
+            href = repoInfo.downloadTargetUrl || repoInfo.repoUrl;
+        } else if (repoInfo && repoInfo.useMirrorForRemoteDownloads && title && title !== '未命名文件' && path.extname(title)) {
+            // Known filename but not present in the local snapshot — still expose HF resolve URL.
+            href = `${repoInfo.resolveBase}/${encodeRepoFile(title)}`;
         } else if (item.url && /^https?:\/\//.test(item.url)) {
-            href = item.url;
+            href = rewriteExternalUrl(item.url, repoInfo);
+        }
+
+        // Never leave Huawei Cloud signed URLs in the generated site data.
+        if (isHuaweiCloudUrl(href)) {
+            href = rewriteExternalUrl(href, repoInfo);
+        }
+        if (isHuaweiCloudUrl(href)) {
+            href = repoInfo ? repoInfo.repoUrl : null;
         }
 
         downloads.push({
@@ -508,7 +659,7 @@ function buildDownloads(detailEntry, modelFiles, repoInfo) {
             sourceLabel: sourceLabel(item.source),
             group: sourceGroup(item.source),
             note: item.quantify || item.computing || '',
-            localFile: localFile || null,
+            localFile: localFile || (isSdkPackageUrl(item.url) ? SHARED_SDK_FILE : null),
         });
     }
 
@@ -540,14 +691,21 @@ function buildManualDownloads(modelName, repoInfo) {
     }));
 }
 
-function buildModelRecord(model, detailEntry, imageFiles, modelFiles) {
+function buildModelRecord(model, detailEntry, imageFiles, manifestByName) {
     const detail = detailEntry?.apiDetail || {};
     const manualData = MANUAL_MODEL_DATA.get(model.name);
-    const hasLocalFiles = (detailEntry?.downloadUrls || []).some((item) => resolveLocalModelFile(item.name, modelFiles))
-        || Boolean(manualData);
-    const repoInfo = buildRepoInfo(model, hasLocalFiles);
+    const manifestEntry = manifestByName.get(model.name) || null;
+    const slug = manifestEntry?.slug || slugify(model.name);
+    const repoFiles = unique([
+        ...listModelRealFiles(slug),
+        // Keep models/ as a secondary name source for historical local artifacts.
+        ...(fs.existsSync(MODELS_DIR)
+            ? fs.readdirSync(MODELS_DIR).filter((file) => !file.startsWith('.'))
+            : []),
+    ]);
+    const repoInfo = buildRepoInfo(model, manifestEntry, repoFiles);
     const downloads = detailEntry
-        ? buildDownloads(detailEntry, modelFiles, repoInfo)
+        ? buildDownloads(detailEntry, repoFiles, repoInfo)
         : buildManualDownloads(model.name, repoInfo);
     const tags = unique([
         ...(model.computerVersion || []),
@@ -569,6 +727,10 @@ function buildModelRecord(model, detailEntry, imageFiles, modelFiles) {
         summaryEn: buildReadmeSummary(entry, model.name),
     }));
 
+    // Prefer hosted local covers over Huawei OBS image URLs.
+    const image = localImage || null;
+    const licenseUrl = rewriteExternalUrl(detail.modelLicense || null, repoInfo);
+
     return {
         id: model.id,
         name: model.name,
@@ -581,19 +743,19 @@ function buildModelRecord(model, detailEntry, imageFiles, modelFiles) {
         betaVersionDesc: model.betaVersionDesc || '',
         category: deriveCategory(model),
         tags,
-        image: model.coverImageUrl || localImage,
-        coverImageUrl: model.coverImageUrl || null,
+        image,
+        coverImageUrl: localImage || null,
         framework: unique(model.framework),
         supportOs: unique(model.supportOs),
         computingPower: unique(model.computingPower),
         repositoryUrl: detail.modelRepository || null,
-        licenseUrl: detail.modelLicense || null,
+        licenseUrl,
         quickStartUrl: quickStart.url,
         quickStartMarkdownUrl: quickStart.markdownUrl,
         quickStartReadmes: enrichedQuickStartSections,
         detailParams: (detail.detailParams || []).filter(item => item && item.name && item.value),
         originModels: detailEntry
-            ? buildOriginModels(detail, modelFiles, repoInfo)
+            ? buildOriginModels(detail, repoFiles, repoInfo)
             : buildManualOriginModels(model.name, repoInfo),
         hfRepoId: repoInfo ? repoInfo.repoId : null,
         hfRepoUrl: repoInfo ? repoInfo.repoUrl : null,
@@ -647,20 +809,106 @@ function injectSiteMetadata(latestCommitTime) {
     return updatedFiles;
 }
 
+function ensureCoverImages(allModels, manifestByName) {
+    if (!fs.existsSync(IMAGES_DIR)) {
+        fs.mkdirSync(IMAGES_DIR, { recursive: true });
+    }
+
+    let copied = 0;
+    let missing = 0;
+
+    for (const model of allModels) {
+        const coverImageId = model.coverImageId ? String(model.coverImageId) : '';
+        if (!coverImageId) continue;
+
+        const existing = fs.readdirSync(IMAGES_DIR).find((file) => (
+            file.startsWith(`${coverImageId}_`) || file.startsWith(`${coverImageId}.`)
+        ));
+        if (existing) continue;
+
+        const manifestEntry = manifestByName.get(model.name);
+        const slug = manifestEntry?.slug || slugify(model.name);
+        const realDir = path.join(MODELS_REAL_DIR, slug);
+        let sourceFile = null;
+
+        if (fs.existsSync(realDir)) {
+            sourceFile = fs.readdirSync(realDir).find((file) => {
+                if (!/\.(png|jpe?g|webp|gif)$/i.test(file)) return false;
+                return file.startsWith(`${coverImageId}_`) || file.startsWith(`${coverImageId}.`);
+            }) || null;
+            if (sourceFile) {
+                sourceFile = path.join(realDir, sourceFile);
+            } else {
+                // Fallback: first image in the model real dir.
+                const anyImage = fs.readdirSync(realDir).find((file) => /\.(png|jpe?g|webp|gif)$/i.test(file));
+                if (anyImage) sourceFile = path.join(realDir, anyImage);
+            }
+        }
+
+        if (sourceFile && fs.existsSync(sourceFile)) {
+            const destName = path.basename(sourceFile).startsWith(coverImageId)
+                ? path.basename(sourceFile)
+                : `${coverImageId}_${path.basename(sourceFile)}`;
+            fs.copyFileSync(sourceFile, path.join(IMAGES_DIR, destName));
+            copied += 1;
+            continue;
+        }
+
+        // Last resort: download from the original cover URL once, then host locally.
+        const coverUrl = model.coverImageUrl;
+        if (coverUrl && /^https?:\/\//.test(coverUrl)) {
+            try {
+                const ext = path.extname(fileNameFromUrl(coverUrl)) || '.jpg';
+                const destName = `${coverImageId}_cover${ext}`;
+                const destPath = path.join(IMAGES_DIR, destName);
+                execSync(`curl -fsSL --max-time 60 -o ${JSON.stringify(destPath)} ${JSON.stringify(coverUrl)}`, {
+                    cwd: ROOT,
+                    stdio: ['ignore', 'ignore', 'pipe'],
+                });
+                if (fs.existsSync(destPath) && fs.statSync(destPath).size > 0) {
+                    copied += 1;
+                    continue;
+                }
+            } catch (error) {
+                // fall through to missing count
+            }
+        }
+
+        missing += 1;
+        console.warn(`Missing cover image for ${model.name} (${coverImageId})`);
+    }
+
+    return { copied, missing };
+}
+
 function main() {
     const allModels = readJson(MODELS_JSON);
     const details = readJson(DETAILS_JSON);
+    const manifestByName = loadFetchManifest();
+    const coverStats = ensureCoverImages(allModels, manifestByName);
     const imageFiles = fs.existsSync(IMAGES_DIR) ? fs.readdirSync(IMAGES_DIR).filter(file => !file.startsWith('.')) : [];
-    const modelFiles = fs.existsSync(MODELS_DIR) ? fs.readdirSync(MODELS_DIR).filter(file => !file.startsWith('.')) : [];
     const detailByName = new Map(details.map(item => [item.name, item]));
     const latestCommitTime = getLatestCommitTime();
 
-    const modelsData = allModels.map(model => buildModelRecord(model, detailByName.get(model.name), imageFiles, modelFiles));
+    const modelsData = allModels.map(model => buildModelRecord(model, detailByName.get(model.name), imageFiles, manifestByName));
     const content = `// Generated from api_all_models.json and api_all_details.json\nconst modelsData = ${JSON.stringify(modelsData, null, 4)};\n\nif (typeof window !== 'undefined') {\n    window.modelsData = modelsData;\n}\n\nif (typeof module !== 'undefined' && module.exports) {\n    module.exports = { modelsData };\n}\n`;
     fs.writeFileSync(OUTPUT, content);
     const updatedFiles = injectSiteMetadata(latestCommitTime);
+
+    const huaweiCount = (content.match(/huaweicloud/gi) || []).length;
+    const availableDownloads = modelsData.reduce((sum, model) => sum + (model.downloads || []).filter((item) => item.available).length, 0);
+    const modelsWithHf = modelsData.filter((model) => model.hfRepoId).length;
+
     console.log(`Generated ${OUTPUT} with ${modelsData.length} models.`);
+    console.log(`HF repos linked: ${modelsWithHf}/${modelsData.length}; available downloads: ${availableDownloads}`);
+    console.log(`Cover images: copied/downloaded ${coverStats.copied}, still missing ${coverStats.missing}, total local ${imageFiles.length}`);
+    console.log(`Huawei Cloud URL occurrences in models.js: ${huaweiCount}`);
     console.log(`Injected latest commit time into ${updatedFiles} site files: ${latestCommitTime}`);
+
+    if (huaweiCount > 0) {
+        console.warn('WARNING: Huawei Cloud URLs still present in generated site data.');
+        process.exitCode = 1;
+    }
 }
 
 main();
