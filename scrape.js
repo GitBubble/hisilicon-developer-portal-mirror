@@ -10,9 +10,9 @@ const path = require('path');
 const https = require('https');
 const http = require('http');
 
-const BASE_URL = 'https://xinhuo.developers.hisilicon.com';
+const BASE_URL = process.env.HISILICON_BASE_URL || 'https://xinhuo.developers.hisilicon.com';
 const LOGIN_URL = 'https://uniportal.hisilicon.com/uniportal1/login-pc.html?redirect=' +
-    encodeURIComponent('https://xinhuo.developers.hisilicon.com/#/');
+    encodeURIComponent(`${BASE_URL}/#/`);
 const USERNAME = process.env.HISILICON_USERNAME || '';
 const PASSWORD = process.env.HISILICON_PASSWORD || '';
 
@@ -20,6 +20,7 @@ const ROOT = path.resolve(__dirname);
 const IMAGES_DIR = path.join(ROOT, 'assets', 'images');
 const MODELS_DIR = path.join(ROOT, 'models');
 const DETAIL_DIR = path.join(ROOT, 'detail');
+const MODELS_REAL_DIR = path.join(ROOT, 'models-real-20260713');
 
 function parseArgs(argv) {
     const options = {
@@ -150,6 +151,41 @@ async function callApi(page, endpoint, params = {}, method = 'POST') {
  * Download all files from an open download page by clicking each icon-xiazai.
  * Returns array of {name, url} for files downloaded.
  */
+function localModelAlreadyPresent(fileName) {
+    const candidates = [path.join(MODELS_DIR, fileName)];
+    if (fs.existsSync(MODELS_REAL_DIR)) {
+        for (const slug of fs.readdirSync(MODELS_REAL_DIR)) {
+            candidates.push(path.join(MODELS_REAL_DIR, slug, fileName));
+        }
+    }
+    return candidates.some((filePath) => {
+        try {
+            return fs.existsSync(filePath) && fs.statSync(filePath).size > 1024;
+        } catch (_) {
+            return false;
+        }
+    });
+}
+
+function stripProxyFromEnv(env) {
+    for (const key of Object.keys(env)) {
+        if (/^(https?|all|socks|socks5)_proxy$/i.test(key)) {
+            delete env[key];
+        }
+    }
+    env.NO_PROXY = '*';
+    env.no_proxy = '*';
+    return env;
+}
+
+function stripProxyFromProcessEnv() {
+    stripProxyFromEnv(process.env);
+}
+
+function browserLaunchEnv() {
+    return stripProxyFromEnv({ ...process.env });
+}
+
 async function downloadFilesFromPage(dlPage, label) {
     const downloaded = [];
     // Wait for the table to render
@@ -164,23 +200,42 @@ async function downloadFilesFromPage(dlPage, label) {
         const row = icon.locator('xpath=ancestor::tr[1]');
         const fileName = (await row.locator('td').first().textContent().catch(() => `file_${fi}`)).trim();
         try {
+            if (fileName && localModelAlreadyPresent(fileName)) {
+                console.log(`    [skip] ${fileName} already present`);
+                downloaded.push({ name: fileName, source: label });
+                continue;
+            }
+
             const [download] = await Promise.all([
-                dlPage.waitForEvent('download', { timeout: 60000 }),
+                dlPage.waitForEvent('download', { timeout: 300000 }),
                 icon.click(),
             ]);
             let fname = download.suggestedFilename();
             // If file already exists AND this is a different variant, append label suffix
             let savePath = path.join(MODELS_DIR, fname);
-            if (fs.existsSync(savePath)) {
+            if (fs.existsSync(savePath) || localModelAlreadyPresent(fname)) {
                 const ext = path.extname(fname);
                 const base = path.basename(fname, ext);
                 const altName = `${base}_${label}${ext}`;
                 const altPath = path.join(MODELS_DIR, altName);
+                if (fs.existsSync(savePath) && fs.statSync(savePath).size > 1024) {
+                    console.log(`    [skip] ${fname} exists`);
+                    try { await download.cancel(); } catch (_) {}
+                    downloaded.push({ name: fname, url: download.url(), source: label });
+                    continue;
+                }
+                if (localModelAlreadyPresent(fname)) {
+                    console.log(`    [skip] ${fname} already present`);
+                    try { await download.cancel(); } catch (_) {}
+                    downloaded.push({ name: fname, url: download.url(), source: label });
+                    continue;
+                }
                 if (!fs.existsSync(altPath)) {
                     fname = altName;
                     savePath = altPath;
                 } else {
                     console.log(`    [skip] ${fname} exists`);
+                    try { await download.cancel(); } catch (_) {}
                     downloaded.push({ name: fname, source: label });
                     continue;
                 }
@@ -208,12 +263,24 @@ async function main() {
     ensureDir(path.dirname(options.filterFieldsOutput));
     ensureDir(path.dirname(options.fullScrapeOutput));
 
+    stripProxyFromProcessEnv();
     console.log('=== HiSilicon Developer Portal Scraper (API mode) ===\n');
-    console.log('Launching browser...');
+    console.log('Launching browser (direct connection, no proxy)...');
+    console.log(`  Proxy env after strip: HTTP_PROXY=${process.env.HTTP_PROXY || ''} HTTPS_PROXY=${process.env.HTTPS_PROXY || ''} NO_PROXY=${process.env.NO_PROXY || ''}`);
     const browser = await chromium.launch({
         headless: true,
         executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-        args: ['--no-sandbox', '--disable-setuid-sandbox', '--ignore-certificate-errors', '--disable-popup-blocking'],
+        env: browserLaunchEnv(),
+        proxy: { server: 'direct://' },
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--ignore-certificate-errors',
+            '--disable-popup-blocking',
+            '--no-proxy-server',
+            '--proxy-server=direct://',
+            '--proxy-bypass-list=*',
+        ],
         ignoreHTTPSErrors: true,
     });
 
@@ -372,14 +439,46 @@ async function main() {
         await sleep(5000);
     }
 
-    // Wait for model cards to appear (confirms the ModelZoo page loaded with data)
+    // Wait for model cards OR the list API. Portal refreshes have renamed card
+    // classes before; networkidle is also unreliable on this SPA and previously
+    // aborted the scrape after the list API had already returned.
+    const cardSelectors = [
+        '.model-card',
+        '.model-item',
+        '[class*="modelCard"]',
+        '[class*="model-card"]',
+        '[class*="ModelCard"]',
+    ].join(', ');
+    const listApiCaptured = () => capturedApiResponses.some(
+        (r) => r.url.includes('findAllReleasedModelByPage') && r.status === 200
+    );
     try {
-        await page.waitForSelector('.model-card', { timeout: 15000 });
+        await page.waitForSelector(cardSelectors, { timeout: 15000 });
         console.log('  Model cards visible!');
     } catch (_) {
         console.log('  No model cards found, trying to reload...');
-        await page.reload({ waitUntil: 'networkidle', timeout: 30000 });
+        try {
+            await page.reload({ waitUntil: 'domcontentloaded', timeout: 30000 });
+        } catch (reloadErr) {
+            console.log(`  Reload warning: ${reloadErr.message.split('\n')[0]}`);
+        }
         await sleep(5000);
+        try {
+            await page.waitForSelector(cardSelectors, { timeout: 8000 });
+            console.log('  Model cards visible after reload.');
+        } catch (_) {
+            if (listApiCaptured()) {
+                console.log('  Model cards still hidden; continuing with captured list API.');
+            } else {
+                const bodyPreview = await page.evaluate(() => ({
+                    url: location.href,
+                    title: document.title,
+                    text: (document.body && document.body.innerText || '').slice(0, 500),
+                    classes: [...document.querySelectorAll('[class]')].slice(0, 40).map((el) => el.className).filter(Boolean),
+                })).catch(() => ({}));
+                console.log(`  Diagnostic page state: ${JSON.stringify(bodyPreview)}`);
+            }
+        }
     }
 
     await page.screenshot({ path: screenshotPath('02_modelzoo') });

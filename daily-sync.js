@@ -198,6 +198,18 @@ function mergeDetails(localDetails, changedDetails, upstreamModels) {
     return { mergedDetails, missingIds };
 }
 
+function scrapeDirectEnv() {
+    const env = { ...process.env };
+    for (const key of Object.keys(env)) {
+        if (/^(https?|all|socks|socks5)_proxy$/i.test(key)) {
+            delete env[key];
+        }
+    }
+    env.NO_PROXY = '*';
+    env.no_proxy = '*';
+    return env;
+}
+
 function runCommand(command, args, options = {}) {
     return new Promise((resolve, reject) => {
         const label = options.label || `${command} ${args.join(' ')}`;
@@ -304,6 +316,7 @@ async function main() {
             await runCommand('node', ['scrape.js'], {
                 label: 'scrape.js --full',
                 logFile: path.join(options.logDir, `${runToken}_scrape.log`),
+                env: scrapeDirectEnv(),
             });
             upstreamModels = readJson(MODELS_JSON, []);
             changedModels = upstreamModels;
@@ -313,6 +326,7 @@ async function main() {
             await runCommand('node', ['scrape.js', '--list-only', '--models-output', tempModelsPath], {
                 label: 'scrape.js --list-only',
                 logFile: path.join(options.logDir, `${runToken}_list-only.log`),
+                env: scrapeDirectEnv(),
             });
 
             upstreamModels = readJson(tempModelsPath, []);
@@ -342,6 +356,7 @@ async function main() {
                     ], {
                         label: 'scrape.js --only-ids',
                         logFile: path.join(options.logDir, `${runToken}_scrape.log`),
+                        env: scrapeDirectEnv(),
                     });
                     changedDetails = readJson(tempDetailsPath, []);
                 }

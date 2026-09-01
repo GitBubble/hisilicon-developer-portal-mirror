@@ -6,9 +6,16 @@ const { execFileSync } = require('child_process');
 const ROOT = __dirname;
 const MODELS_JS = path.join(ROOT, 'assets', 'js', 'models.js');
 const DETAILS_JSON = path.join(ROOT, 'api_all_details.json');
+const MODELS_DIR = path.join(ROOT, 'models');
+const MODELS_REAL_DIR = path.join(ROOT, 'models-real-20260713');
 const STAGING_ROOT = path.join(ROOT, '.hf-upload-staging');
 const DEFAULT_PREFIX = 'hispark-modelzoo-';
 const DEFAULT_SKIP = new Set(['Pi0', 'MiniCPM-4v-0.5B']);
+const MIN_UPLOAD_BYTES = 1024;
+
+function isSdkPackageName(name) {
+    return /^SVP_NNN_PC_V[\d.]+\.tgz$/i.test(String(name || ''));
+}
 
 function parseArgs(argv) {
     const options = {
@@ -210,6 +217,35 @@ function hardLinkOrCopy(sourcePath, targetPath) {
     }
 }
 
+function usableFilePath(filePath) {
+    try {
+        const stats = fs.statSync(filePath);
+        return stats.isFile() && stats.size >= MIN_UPLOAD_BYTES ? stats.size : 0;
+    } catch (_) {
+        return 0;
+    }
+}
+
+function resolveLocalArtifact(fileName, modelName) {
+    if (!fileName || isSdkPackageName(fileName)) return null;
+
+    const candidates = [
+        path.join(MODELS_DIR, fileName),
+        path.join(MODELS_REAL_DIR, slugify(modelName), fileName),
+    ];
+
+    let bestPath = null;
+    let bestSize = 0;
+    for (const candidate of candidates) {
+        const size = usableFilePath(candidate);
+        if (size > bestSize) {
+            bestPath = candidate;
+            bestSize = size;
+        }
+    }
+    return bestPath;
+}
+
 function stageModel(model, detail, repoId) {
     const repoDir = path.join(STAGING_ROOT, repoId.replace('/', '__'));
     fs.rmSync(repoDir, { recursive: true, force: true });
@@ -220,9 +256,9 @@ function stageModel(model, detail, repoId) {
         .map(item => item.localFile))]
         .map(fileName => ({
             fileName,
-            sourcePath: path.join(ROOT, 'models', fileName),
+            sourcePath: resolveLocalArtifact(fileName, model.name),
         }))
-        .filter(item => fs.existsSync(item.sourcePath));
+        .filter(item => item.sourcePath);
 
     for (const item of localFiles) {
         hardLinkOrCopy(item.sourcePath, path.join(repoDir, item.fileName));
@@ -267,6 +303,11 @@ function runCommand(command, args, options = {}) {
     execFileSync(command, args, {
         cwd: ROOT,
         stdio: 'inherit',
+        env: {
+            ...process.env,
+            HF_HUB_DISABLE_XET: '1',
+            ...(options.env || {}),
+        },
         ...options,
     });
 }
@@ -281,7 +322,7 @@ function main() {
     let selected = models.filter(model => {
         if (DEFAULT_SKIP.has(model.name)) return false;
         if (options.only && !options.only.has(model.name)) return false;
-        return model.downloads.some(item => item.localFile);
+        return model.downloads.some(item => resolveLocalArtifact(item.localFile, model.name));
     });
 
     if (options.limit > 0) {
@@ -313,14 +354,14 @@ function main() {
         repoArgs.push(options.publicRepo ? '--no-private' : '--private');
         runCommand('hf', repoArgs);
         runCommand('hf', [
-            'upload-large-folder',
+            'upload',
             repoId,
             staged.repoDir,
+            '.',
             '--repo-type',
             'model',
-            '--num-workers',
-            '4',
-            '--no-bars',
+            '--commit-message',
+            `Mirror sync ${model.name}`,
         ]);
     }
 

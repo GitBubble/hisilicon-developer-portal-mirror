@@ -1,5 +1,248 @@
 [
   {
+    "id": "ko3ugg54j400",
+    "name": "Swin-Transformer",
+    "coverImageId": 1701485580845059,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1701485580845059%2Fswint.png",
+    "isBeta": 0,
+    "betaVersionDesc": "",
+    "createdBy": 139036723332644,
+    "creationDate": "2026-08-26 16:38:28",
+    "creationUserCN": "y-0089",
+    "lastUpdateDate": "2026-09-01 16:13:06",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "Swin-Transformer是针对于图片处理设计的基于Transformer架构的神经网络。该网络针对原始Transformer迁移到图片端后计算量过大，复用困难的问题，提出了新的swin-block以代替原有的attention架构。模型以窗口的attention方式极大地减少了图像不同区域间的互相响应，同时也避免了部分冗余信息的产生。最终，模型在减少了大量计算量的同时，在不同的视觉传统任务上也有了效果的提升。",
+    "computerVersion": [
+      "分类"
+    ],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "OpenHarmony",
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3403V100 SVP_NNN",
+      "Hi3403V100 NNN"
+    ],
+    "isCollect": 0,
+    "downloadNum": 0,
+    "collectCount": 0
+  },
+  {
+    "id": "ko3p9r40j400",
+    "name": "EfficientNetV2",
+    "coverImageId": 1700943102148611,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1700943102148611%2Feff.png",
+    "isBeta": 0,
+    "betaVersionDesc": "",
+    "createdBy": 137441035408492,
+    "creationDate": "2026-08-26 16:15:43",
+    "creationUserCN": "0e900d99dee8461b8",
+    "lastUpdateDate": "2026-09-01 16:13:06",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "EfficientNetV2是一系列图像分类模型，与现有技术相比，其实现了更好的参数效率和更快的训练速度。基于EfficientNetV1，Efficient NetV2模型使用神经架构搜索（NAS）来联合优化模型大小和训练速度，并以更快的训练和推理速度进行扩展。",
+    "computerVersion": [
+      "分类"
+    ],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "OpenHarmony",
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3403V100 SVP_NNN",
+      "Hi3403V100 NNN"
+    ],
+    "isCollect": 0,
+    "downloadNum": 0,
+    "collectCount": 0
+  },
+  {
+    "id": "ko3omi98j400",
+    "name": "TinySam",
+    "coverImageId": 1719774851694593,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1719774851694593%2Frealquant_201909262051154_0.jpg",
+    "isBeta": 0,
+    "betaVersionDesc": "",
+    "createdBy": 137441035408492,
+    "creationDate": "2026-08-26 16:13:05",
+    "creationUserCN": "0e900d99dee8461b8",
+    "lastUpdateDate": "2026-09-01 16:13:06",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "TinySAM 通过全阶段知识蒸馏、在线硬提示采样、量化等系列优化策略，构建轻量级 “万物分割” 模型，解决了原始 SAM 模型计算量大、部署困难的痛点，助力高效分割任务在资源受限场景下的应用。",
+    "computerVersion": [
+      "分割"
+    ],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "OpenHarmony",
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3403V100 SVP_NNN",
+      "Hi3403V100 NNN"
+    ],
+    "isCollect": 0,
+    "downloadNum": 0,
+    "collectCount": 0
+  },
+  {
+    "id": "knq1gnnkts00",
+    "name": "YOLOv10s",
+    "coverImageId": 1764112377970690,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1764112377970690%2F1719767893344257_%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20251226152658.png",
+    "isBeta": 0,
+    "betaVersionDesc": "",
+    "createdBy": 139036723332644,
+    "creationDate": "2026-08-25 17:33:30",
+    "creationUserCN": "y-0089",
+    "lastUpdateDate": "2026-09-01 16:13:06",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "YOLOv10 引入了一种新的实时目标检测方法，解决了以前YOLO 版本在后处理和模型架构方面的不足。通过消除非最大抑制NMS和优化各种模型组件，YOLOv10 显著降低了计算开销。本示例基于YOLOv10s。",
+    "computerVersion": [
+      "目标检测"
+    ],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "OpenHarmony",
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3403V100 SVP_NNN",
+      "Hi3403V100 NNN"
+    ],
+    "isCollect": 0,
+    "downloadNum": 0,
+    "collectCount": 0
+  },
+  {
+    "id": "knc6ud5cj400",
+    "name": "FSMN-KWS",
+    "coverImageId": 1763392620658690,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1763392620658690%2F%E6%95%88%E6%9E%9C.JPG",
+    "isBeta": 0,
+    "betaVersionDesc": "",
+    "createdBy": 137441035408492,
+    "creationDate": "2026-08-24 09:19:53",
+    "creationUserCN": "0e900d99dee8461b8",
+    "lastUpdateDate": "2026-09-01 16:13:07",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "小云唤醒词检测模型基于CharCTC（Character-level Connectionist Temporal Classification）架构，用于检测语音中的特定唤醒词\"小云小云\"。模型提取音频的Fbank特征，通过LFR（Low Frame Rate）降采样和CMVN归一化后进行CTC解码，输出关键词检测结果。",
+    "computerVersion": [],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [
+      "关键字检测"
+    ],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3516CV610"
+    ],
+    "isCollect": 0,
+    "downloadNum": 6,
+    "collectCount": 0
+  },
+  {
+    "id": "kmrpc00gts00",
+    "name": "YOLO26s",
+    "coverImageId": 1764112203841537,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1764112203841537%2Fyolo26.jpg",
+    "isBeta": 0,
+    "betaVersionDesc": "",
+    "createdBy": 139036723332644,
+    "creationDate": "2026-08-22 19:03:36",
+    "creationUserCN": "y-0089",
+    "lastUpdateDate": "2026-09-01 16:13:07",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "YOLO26s 是 Ultralytics YOLO 系列中的小型目标检测模型，适合在边缘设备上进行实时目标检测。",
+    "computerVersion": [
+      "检测"
+    ],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "OpenHarmony",
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3403V100 SVP_NNN",
+      "Hi3403V100 NNN"
+    ],
+    "isCollect": 0,
+    "downloadNum": 2,
+    "collectCount": 0
+  },
+  {
+    "id": "jrc61eo19400",
+    "name": "FastSpeech2",
+    "coverImageId": 1722265270026243,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1722265270026243%2Ffastspeech2.jpg",
+    "isBeta": 0,
+    "betaVersionDesc": "",
+    "createdBy": 139318985286440,
+    "creationDate": "2026-05-29 09:26:03",
+    "creationUserCN": "sloanqin",
+    "lastUpdateDate": "2026-09-01 16:13:07",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "FastSpeech2 是一种高效的端到端语音合成模型。相比 FastSpeech，FastSpeech2 引入了多尺度时长预测器和能量 / 基频预测分支，优化了时长预测模块并新增韵律特征建模，在合成速度和语音自然度上均有大幅提升。",
+    "computerVersion": [],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [
+      "文本转语音"
+    ],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "Linux",
+      "OpenHarmony"
+    ],
+    "computingPower": [
+      "Hi3403V100 SVP_NNN",
+      "Hi3403V100 NNN"
+    ],
+    "isCollect": 0,
+    "downloadNum": 4,
+    "collectCount": 0
+  },
+  {
     "id": "joqqhel5c400",
     "name": "MiniCPM-4v-0.5B",
     "coverImageId": 1735709648093187,
@@ -29,7 +272,7 @@
       "Hi3403V100 SVP_NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 5,
+    "downloadNum": 15,
     "collectCount": 0
   },
   {
@@ -64,7 +307,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 45,
+    "downloadNum": 75,
     "collectCount": 1
   },
   {
@@ -99,7 +342,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 6,
+    "downloadNum": 10,
     "collectCount": 0
   },
   {
@@ -134,7 +377,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 18,
+    "downloadNum": 30,
     "collectCount": 0
   },
   {
@@ -169,7 +412,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 14,
+    "downloadNum": 20,
     "collectCount": 0
   },
   {
@@ -204,7 +447,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 19,
+    "downloadNum": 28,
     "collectCount": 0
   },
   {
@@ -239,41 +482,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 2,
-    "collectCount": 0
-  },
-  {
-    "id": "j8pjtko0i000",
-    "name": "YOLOv10s",
-    "coverImageId": 1719767893344257,
-    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1719767893344257%2F%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20251226152658.png",
-    "isBeta": 0,
-    "betaVersionDesc": "",
-    "createdBy": 137441035408492,
-    "creationDate": "2026-04-01 15:59:40",
-    "creationUserCN": "0e900d99dee8461b8",
-    "lastUpdateDate": "2026-04-08 16:07:06",
-    "currentHandler": "",
-    "currentHandlerName": "",
-    "description": "YOLOv10 引入了一种新的实时目标检测方法，解决了以前YOLO 版本在后处理和模型架构方面的不足。通过消除非最大抑制NMS和优化各种模型组件，YOLOv10 显著降低了计算开销。本示例基于YOLOv10s。",
-    "computerVersion": [
-      "目标检测"
-    ],
-    "naturalLanguageProcess": [],
-    "multimodal": [],
-    "video": [],
-    "framework": [
-      "PyTorch"
-    ],
-    "supportOs": [
-      "OpenHarmony",
-      "Linux"
-    ],
-    "computingPower": [
-      "Hi3403V100 SVP_NNN"
-    ],
-    "isCollect": 0,
-    "downloadNum": 3,
+    "downloadNum": 10,
     "collectCount": 0
   },
   {
@@ -308,7 +517,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 3,
+    "downloadNum": 7,
     "collectCount": 0
   },
   {
@@ -343,7 +552,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 8,
+    "downloadNum": 19,
     "collectCount": 0
   },
   {
@@ -378,7 +587,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 23,
+    "downloadNum": 38,
     "collectCount": 0
   },
   {
@@ -413,7 +622,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 94,
+    "downloadNum": 97,
     "collectCount": 0
   },
   {
@@ -448,7 +657,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 39,
+    "downloadNum": 44,
     "collectCount": 0
   },
   {
@@ -483,7 +692,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 27,
+    "downloadNum": 28,
     "collectCount": 0
   },
   {
@@ -518,7 +727,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 23,
+    "downloadNum": 26,
     "collectCount": 0
   },
   {
@@ -553,7 +762,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 24,
+    "downloadNum": 26,
     "collectCount": 0
   },
   {
@@ -588,42 +797,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 29,
-    "collectCount": 0
-  },
-  {
-    "id": "j3m873lcso00",
-    "name": "Swin-Transformer",
-    "coverImageId": 1701485580845059,
-    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1701485580845059%2Fswint.png",
-    "isBeta": 1,
-    "betaVersionDesc": "Hi3403V100 NNN引擎上模型性能待进一步优化",
-    "createdBy": 139036723332644,
-    "creationDate": "2026-03-16 19:19:28",
-    "creationUserCN": "y-0089",
-    "lastUpdateDate": "2026-03-26 09:35:38",
-    "currentHandler": "",
-    "currentHandlerName": "",
-    "description": "Swin-Transformer是针对于图片处理设计的基于Transformer架构的神经网络。该网络针对原始Transformer迁移到图片端后计算量过大，复用困难的问题，提出了新的swin-block以代替原有的attention架构。模型以窗口的attention方式极大地减少了图像不同区域间的互相响应，同时也避免了部分冗余信息的产生。最终，模型在减少了大量计算量的同时，在不同的视觉传统任务上也有了效果的提升。",
-    "computerVersion": [
-      "分类"
-    ],
-    "naturalLanguageProcess": [],
-    "multimodal": [],
-    "video": [],
-    "framework": [
-      "PyTorch"
-    ],
-    "supportOs": [
-      "OpenHarmony",
-      "Linux"
-    ],
-    "computingPower": [
-      "Hi3403V100 SVP_NNN",
-      "Hi3403V100 NNN"
-    ],
-    "isCollect": 0,
-    "downloadNum": 21,
+    "downloadNum": 33,
     "collectCount": 0
   },
   {
@@ -689,7 +863,7 @@
       "Hi3403V100 SVP_NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 28,
+    "downloadNum": 30,
     "collectCount": 0
   },
   {
@@ -702,7 +876,7 @@
     "createdBy": 139036723332644,
     "creationDate": "2026-02-12 10:58:59",
     "creationUserCN": "y-0089",
-    "lastUpdateDate": "2026-03-04 16:06:24",
+    "lastUpdateDate": null,
     "currentHandler": "",
     "currentHandlerName": "",
     "description": "CRNN是卷积循环网络，本模型是一个基于其的中文 OCR 模型。",
@@ -724,7 +898,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 29,
+    "downloadNum": 30,
     "collectCount": 0
   },
   {
@@ -761,40 +935,6 @@
     "collectCount": 1
   },
   {
-    "id": "ie2sc9g1qk00",
-    "name": "FastSpeech2",
-    "coverImageId": 1722265270026243,
-    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1722265270026243%2Ffastspeech2.jpg",
-    "isBeta": 1,
-    "betaVersionDesc": "CANN包版本需要适配修改待发布",
-    "createdBy": 139318985286440,
-    "creationDate": "2026-01-08 16:18:57",
-    "creationUserCN": "sloanqin",
-    "lastUpdateDate": null,
-    "currentHandler": "",
-    "currentHandlerName": "",
-    "description": "FastSpeech2 是一种高效的端到端语音合成模型。相比 FastSpeech，FastSpeech2 引入了多尺度时长预测器和能量 / 基频预测分支，优化了时长预测模块并新增韵律特征建模，在合成速度和语音自然度上均有大幅提升。",
-    "computerVersion": [],
-    "naturalLanguageProcess": [],
-    "multimodal": [],
-    "video": [
-      "文本转语音"
-    ],
-    "framework": [
-      "PyTorch"
-    ],
-    "supportOs": [
-      "OpenHarmony",
-      "Linux"
-    ],
-    "computingPower": [
-      "Hi3403V100 SVP_NNN"
-    ],
-    "isCollect": 0,
-    "downloadNum": 31,
-    "collectCount": 1
-  },
-  {
     "id": "ib6scq68vs00",
     "name": "CodeFormer",
     "coverImageId": 1720510897520642,
@@ -826,7 +966,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 64,
+    "downloadNum": 70,
     "collectCount": 2
   },
   {
@@ -861,7 +1001,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 48,
+    "downloadNum": 53,
     "collectCount": 1
   },
   {
@@ -895,41 +1035,7 @@
       "Hi3403V100 SVP_NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 82,
-    "collectCount": 0
-  },
-  {
-    "id": "i9t43v4pec00",
-    "name": "TinySam",
-    "coverImageId": 1719774851694593,
-    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1719774851694593%2Frealquant_201909262051154_0.jpg",
-    "isBeta": 1,
-    "betaVersionDesc": "模型性能待优化",
-    "createdBy": 138418613601624,
-    "creationDate": "2025-12-26 16:38:13",
-    "creationUserCN": "ahau15",
-    "lastUpdateDate": "2025-12-30 20:02:17",
-    "currentHandler": "",
-    "currentHandlerName": "",
-    "description": "TinySAM 通过全阶段知识蒸馏、在线硬提示采样、量化等系列优化策略，构建轻量级 “万物分割” 模型，解决了原始 SAM 模型计算量大、部署困难的痛点，助力高效分割任务在资源受限场景下的应用。",
-    "computerVersion": [
-      "分割"
-    ],
-    "naturalLanguageProcess": [],
-    "multimodal": [],
-    "video": [],
-    "framework": [
-      "PyTorch"
-    ],
-    "supportOs": [
-      "OpenHarmony",
-      "Linux"
-    ],
-    "computingPower": [
-      "Hi3403V100 SVP_NNN"
-    ],
-    "isCollect": 0,
-    "downloadNum": 14,
+    "downloadNum": 83,
     "collectCount": 0
   },
   {
@@ -964,7 +1070,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 34,
+    "downloadNum": 38,
     "collectCount": 0
   },
   {
@@ -977,7 +1083,7 @@
     "createdBy": 138418613601624,
     "creationDate": "2025-12-26 10:20:26",
     "creationUserCN": "ahau15",
-    "lastUpdateDate": "2025-12-30 20:02:17",
+    "lastUpdateDate": null,
     "currentHandler": "",
     "currentHandlerName": "",
     "description": "HigherHRNet 是一种新型的自下而上人体姿态估计算法，它在训练阶段引入多分辨率监督机制，在推理阶段采用多分辨率聚合策略，不仅能有效应对自下而上多人姿态估计任务中的尺度变化难题，还可实现关键点的高精度定位，尤其在小尺寸人体目标的处理上表现突出。",
@@ -999,7 +1105,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 14,
+    "downloadNum": 15,
     "collectCount": 0
   },
   {
@@ -1034,7 +1140,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 52,
+    "downloadNum": 63,
     "collectCount": 0
   },
   {
@@ -1069,7 +1175,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 38,
+    "downloadNum": 47,
     "collectCount": 0
   },
   {
@@ -1104,7 +1210,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 15,
+    "downloadNum": 16,
     "collectCount": 0
   },
   {
@@ -1139,7 +1245,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 30,
+    "downloadNum": 32,
     "collectCount": 0
   },
   {
@@ -1174,7 +1280,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 13,
+    "downloadNum": 17,
     "collectCount": 0
   },
   {
@@ -1209,7 +1315,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 24,
+    "downloadNum": 31,
     "collectCount": 0
   },
   {
@@ -1244,7 +1350,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 7,
+    "downloadNum": 11,
     "collectCount": 0
   },
   {
@@ -1314,7 +1420,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 4,
+    "downloadNum": 8,
     "collectCount": 0
   },
   {
@@ -1349,7 +1455,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 6,
+    "downloadNum": 11,
     "collectCount": 0
   },
   {
@@ -1419,7 +1525,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 53,
+    "downloadNum": 56,
     "collectCount": 0
   },
   {
@@ -1432,7 +1538,7 @@
     "createdBy": 138418613601624,
     "creationDate": "2025-11-17 11:25:12",
     "creationUserCN": "ahau15",
-    "lastUpdateDate": "2025-11-29 14:49:58",
+    "lastUpdateDate": null,
     "currentHandler": "",
     "currentHandlerName": null,
     "description": "VGGNet是牛津大学计算机视觉组（Visual Geometry Group）和Google DeepMind公司的研究员一起研发的深度卷积神经网络，它探索了卷积神经网络的深度与其性能之间的关系，通过反复堆叠3*3的小型卷积核和2*2的最大池化层，成功地构筑了16~19层深的卷积神经网络。VGGNet相比之前state-of-the-art的网络结构，错误率大幅下降，VGGNet论文中全部使用了3*3的小型卷积核和2*2的最大池化核，通过不断加深网络结构来提升性能。",
@@ -1454,7 +1560,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 8,
+    "downloadNum": 11,
     "collectCount": 0
   },
   {
@@ -1489,7 +1595,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 9,
+    "downloadNum": 12,
     "collectCount": 0
   },
   {
@@ -1524,7 +1630,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 13,
+    "downloadNum": 20,
     "collectCount": 0
   },
   {
@@ -1559,42 +1665,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 10,
-    "collectCount": 0
-  },
-  {
-    "id": "hs4fr0150o00",
-    "name": "EfficientNetV2",
-    "coverImageId": 1700943102148611,
-    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1700943102148611%2Feff.png",
-    "isBeta": 1,
-    "betaVersionDesc": "Hi3403V100 SVP_NNN引擎上模型性能待进一步优化",
-    "createdBy": 137441035408492,
-    "creationDate": "2025-11-13 21:53:09",
-    "creationUserCN": "0e900d99dee8461b8",
-    "lastUpdateDate": "2025-11-29 14:49:58",
-    "currentHandler": "",
-    "currentHandlerName": null,
-    "description": "EfficientNetV2是一系列图像分类模型，与现有技术相比，其实现了更好的参数效率和更快的训练速度。基于EfficientNetV1，Efficient NetV2模型使用神经架构搜索（NAS）来联合优化模型大小和训练速度，并以更快的训练和推理速度进行扩展。",
-    "computerVersion": [
-      "分类"
-    ],
-    "naturalLanguageProcess": [],
-    "multimodal": [],
-    "video": [],
-    "framework": [
-      "PyTorch"
-    ],
-    "supportOs": [
-      "OpenHarmony",
-      "Linux"
-    ],
-    "computingPower": [
-      "Hi3403V100 SVP_NNN",
-      "Hi3403V100 NNN"
-    ],
-    "isCollect": 0,
-    "downloadNum": 36,
+    "downloadNum": 14,
     "collectCount": 0
   },
   {
@@ -1629,7 +1700,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 68,
+    "downloadNum": 132,
     "collectCount": 0
   },
   {
@@ -1663,7 +1734,7 @@
       "Hi3403V100 SVP_NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 9,
+    "downloadNum": 11,
     "collectCount": 0
   },
   {
@@ -1697,7 +1768,7 @@
       "Hi3403V100 SVP_NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 10,
+    "downloadNum": 12,
     "collectCount": 0
   },
   {
@@ -1732,7 +1803,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 25,
+    "downloadNum": 28,
     "collectCount": 0
   }
 ]
