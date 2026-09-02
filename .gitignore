@@ -3,5 +3,13 @@ node_modules/
 sync-logs/
 cookies.json
 *.log
+link-report.json
 test-results/
 .DS_Store
+.claude/
+.opencode/
+
+# Model binaries live on Hugging Face; these are local scratch/mirror areas only.
+models/
+models-real-*/
+*.partial.json

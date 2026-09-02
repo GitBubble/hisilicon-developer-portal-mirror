@@ -118,6 +118,7 @@
         '源模型下载': 'Source Download',
         '源模型元数据': 'Source Metadata',
         'OM 元数据': 'OM Metadata',
+        '镜像补充': 'Mirror Extra',
         '计算量': 'FLOPs',
         '输入': 'Input',
         '参数量': 'Parameters',
@@ -324,8 +325,50 @@
         return `${year}-${month}-${day}`;
     }
 
+    function parseModelTimestamp(value) {
+        if (!value) return 0;
+        const parsed = Date.parse(String(value).replace(' ', 'T'));
+        return Number.isFinite(parsed) ? parsed : 0;
+    }
+
+    function getCatalogTimestamp() {
+        const models = (typeof window !== 'undefined' && Array.isArray(window.modelsData))
+            ? window.modelsData
+            : [];
+        let bestRaw = '';
+        let bestMs = 0;
+        models.forEach((model) => {
+            [model && model.updatedAt, model && model.date].forEach((raw) => {
+                const ms = parseModelTimestamp(raw);
+                if (ms > bestMs) {
+                    bestMs = ms;
+                    bestRaw = String(raw);
+                }
+            });
+        });
+        return bestRaw;
+    }
+
     function formatCurrentDateLabel() {
-        return t('header.dateLabel', { date: formatDateValue(new Date()) });
+        const catalogTimestamp = getCatalogTimestamp();
+        const date = catalogTimestamp
+            ? String(catalogTimestamp).slice(0, 10)
+            : formatDateValue(new Date());
+        return t('header.dateLabel', { date });
+    }
+
+    function applySiteTimestamps(root) {
+        const scope = root || document;
+        const catalogTimestamp = getCatalogTimestamp();
+        const header = document.getElementById('headerDateText');
+        if (header) {
+            header.textContent = formatCurrentDateLabel();
+        }
+        scope.querySelectorAll('[data-site-updated]').forEach((element) => {
+            element.textContent = t('footer.siteStatus', {
+                timestamp: catalogTimestamp || '-',
+            });
+        });
     }
 
     function getQuoteIndex() {
@@ -382,9 +425,7 @@
             element.setAttribute('title', t(element.dataset.i18nTitle));
         });
 
-        scope.querySelectorAll('[data-updated-at]').forEach((element) => {
-            element.textContent = t('footer.siteStatus', { timestamp: element.dataset.updatedAt });
-        });
+        applySiteTimestamps(scope);
 
         if (document.body && document.body.dataset.titleKey) {
             document.title = t(document.body.dataset.titleKey);
@@ -436,6 +477,8 @@
         t,
         translateValue,
         formatCurrentDateLabel,
+        getCatalogTimestamp,
+        applySiteTimestamps,
         getCurrentQuote,
         formatCardFileCount,
         formatPaginationTotal,

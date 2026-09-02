@@ -255,7 +255,7 @@ function renderModels(models) {
                 ${model.tags.map(tag => `<span class="model-tag">${escapeHtml(i18n ? i18n.translateValue(tag) : tag)}</span>`).join('')}
             </div>
             <div class="model-meta">
-                <span class="model-date">📅 ${model.date}</span>
+                <span class="model-date">📅 ${escapeHtml(model.updatedAt || model.date || '-')}</span>
                 <span class="model-action">${escapeHtml(i18n ? i18n.formatCardFileCount((model.downloads || []).filter(item => item.available).length) : `${(model.downloads || []).filter(item => item.available).length} 文件`)}</span>
             </div>
         </a>

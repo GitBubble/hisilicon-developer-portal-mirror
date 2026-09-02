@@ -1,7 +1,7 @@
 /**
  * HiSilicon Developer Portal Scraper
- * Logs in via Uniportal → scrapes xinhuo.developers.hisilicon.com
- * Downloads all model data, images, and model files
+ * Prefer modelzoo.hispark.hisilicon.com; fall back to xinhuo ModelZoo.
+ * Login: prompt for Uniportal username/password whenever the login form appears.
  */
 
 const { chromium } = require('playwright');
@@ -9,12 +9,14 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const http = require('http');
+const readline = require('readline');
 
-const BASE_URL = process.env.HISILICON_BASE_URL || 'https://xinhuo.developers.hisilicon.com';
-const LOGIN_URL = 'https://uniportal.hisilicon.com/uniportal1/login-pc.html?redirect=' +
-    encodeURIComponent(`${BASE_URL}/#/`);
-const USERNAME = process.env.HISILICON_USERNAME || '';
-const PASSWORD = process.env.HISILICON_PASSWORD || '';
+const PREFERRED_PORTAL = 'https://modelzoo.hispark.hisilicon.com';
+const FALLBACK_PORTAL = 'https://xinhuo.developers.hisilicon.com';
+
+let BASE_URL = FALLBACK_PORTAL;
+let USERNAME = '';
+let PASSWORD = '';
 
 const ROOT = path.resolve(__dirname);
 const IMAGES_DIR = path.join(ROOT, 'assets', 'images');
@@ -26,6 +28,8 @@ function parseArgs(argv) {
     const options = {
         listOnly: false,
         onlyIds: new Set(),
+        headed: false,
+        baseUrl: process.env.HISILICON_BASE_URL || '',
         modelsOutput: path.join(ROOT, 'api_all_models.json'),
         detailsOutput: path.join(ROOT, 'api_all_details.json'),
         filterFieldsOutput: path.join(ROOT, 'api_filter_fields.json'),
@@ -36,6 +40,11 @@ function parseArgs(argv) {
         const arg = argv[index];
         if (arg === '--list-only') {
             options.listOnly = true;
+        } else if (arg === '--headed') {
+            options.headed = true;
+        } else if (arg === '--base-url') {
+            options.baseUrl = argv[index + 1] || '';
+            index += 1;
         } else if (arg === '--only-ids') {
             const rawValue = argv[index + 1] || '';
             rawValue
@@ -72,12 +81,184 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 function screenshotPath(name) { return path.join(ROOT, `debug_${name}.png`); }
 
-function assertCredentialsAvailable() {
-    if (!USERNAME || !PASSWORD) {
+// Screenshots are diagnostics only; the SPA can stall on font loading and must not abort a scrape.
+function safeScreenshot(target, options) {
+    return target.screenshot({ timeout: 15000, ...options }).catch((error) => {
+        console.log(`    [screenshot skipped] ${String(error.message || error).split('\n')[0].slice(0, 80)}`);
+    });
+}
+
+function loginUrlFor(origin) {
+    return 'https://uniportal.hisilicon.com/uniportal1/login-pc.html?redirect=' +
+        encodeURIComponent(`${origin}/#/`);
+}
+
+function portalHost(origin) {
+    try { return new URL(origin).hostname; } catch { return ''; }
+}
+
+function isOnPortal(pageUrl, origin) {
+    try {
+        const host = new URL(pageUrl).hostname;
+        const wanted = portalHost(origin);
+        return host === wanted
+            || host === 'modelzoo.hispark.hisilicon.com'
+            || host === 'xinhuo.developers.hisilicon.com';
+    } catch {
+        return false;
+    }
+}
+
+function probePortal(origin) {
+    return new Promise((resolve) => {
+        let settled = false;
+        const finish = (ok) => {
+            if (settled) return;
+            settled = true;
+            resolve(Boolean(ok));
+        };
+        const url = new URL('/', origin);
+        const req = https.request({
+            protocol: url.protocol,
+            hostname: url.hostname,
+            path: '/',
+            method: 'HEAD',
+            timeout: 8000,
+            rejectUnauthorized: false,
+        }, (res) => {
+            const code = res.statusCode || 0;
+            res.resume();
+            finish(code > 0 && code < 500);
+        });
+        req.on('error', () => finish(false));
+        req.on('timeout', () => { req.destroy(); finish(false); });
+        req.end();
+    });
+}
+
+async function resolvePortalOrigin(explicit) {
+    if (explicit) {
+        const origin = String(explicit).replace(/\/$/, '');
+        console.log(`使用指定门户 ${origin}`);
+        return origin;
+    }
+    console.log(`探测首选门户 ${PREFERRED_PORTAL} ...`);
+    if (await probePortal(PREFERRED_PORTAL)) {
+        console.log(`先使用 ${PREFERRED_PORTAL}，若页面 403 再回退 xinhuo`);
+        return PREFERRED_PORTAL;
+    }
+    console.log(`${PREFERRED_PORTAL} 不可用，回退到 ${FALLBACK_PORTAL}/#/ModelZoo`);
+    return FALLBACK_PORTAL;
+}
+
+async function portalLooksBlocked(page) {
+    const title = await page.title().catch(() => '');
+    const text = await page.evaluate(() => (document.body ? document.body.innerText.slice(0, 800) : '')).catch(() => '');
+    return /403\s*Forbidden/i.test(title)
+        || /traffic policy/i.test(text)
+        || /Powered by ALB/i.test(text);
+}
+
+async function fallbackToXinhuoIfBlocked(page) {
+    if (BASE_URL === FALLBACK_PORTAL) return false;
+    if (!(await portalLooksBlocked(page))) return false;
+    console.log(`首选门户 ${BASE_URL} 不可访问（403），回退到 ${FALLBACK_PORTAL}/#/ModelZoo`);
+    BASE_URL = FALLBACK_PORTAL;
+    await page.goto(`${BASE_URL}/#/ModelZoo`, { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await sleep(4000);
+    return true;
+}
+
+function askVisible(question) {
+    const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+    return new Promise((resolve) => {
+        rl.question(question, (answer) => {
+            rl.close();
+            resolve(answer);
+        });
+    });
+}
+
+function askHidden(question) {
+    return new Promise((resolve) => {
+        const stdin = process.stdin;
+        const stdout = process.stdout;
+        stdout.write(question);
+        const wasRaw = stdin.isRaw;
+        if (typeof stdin.setRawMode === 'function') stdin.setRawMode(true);
+        stdin.resume();
+        let value = '';
+        const onData = (buf) => {
+            const s = buf.toString('utf8');
+            if (s === '\n' || s === '\r' || s === '\u0004') {
+                stdin.removeListener('data', onData);
+                if (typeof stdin.setRawMode === 'function') stdin.setRawMode(Boolean(wasRaw));
+                stdout.write('\n');
+                resolve(value);
+                return;
+            }
+            if (s === '\u0003') process.exit(130);
+            if (s === '\u007f' || s === '\b') {
+                value = value.slice(0, -1);
+                return;
+            }
+            if (s.length === 1 && s.charCodeAt(0) < 32) return;
+            value += s;
+        };
+        stdin.on('data', onData);
+    });
+}
+
+async function promptCredentials() {
+    console.log('请输入 Uniportal 账号（每次登录都会询问，密码不回显）：');
+    if (!process.stdin.isTTY) {
         throw new Error(
-            'Manual login requires HISILICON_USERNAME and HISILICON_PASSWORD environment variables. ' +
-            'Set them before running scrape.js, or reuse a valid cookies.json session.'
+            '当前不是交互式终端，无法提示输入密码。请在本机终端运行 node scrape.js / node daily-sync.js'
         );
+    }
+    const username = (await askVisible('用户名/邮箱: ')).trim();
+    const password = await askHidden('密码: ');
+    if (!username || !password) {
+        throw new Error('用户名和密码不能为空');
+    }
+    return { username, password };
+}
+
+async function fillUniportalLogin(page, username, password) {
+    const inputs = page.locator('.el-input__inner');
+    await inputs.first().click({ clickCount: 3 });
+    await inputs.first().fill(username);
+    await page.waitForSelector('input[type="password"]', { timeout: 10000 });
+    await page.locator('input[type="password"]').fill(password);
+    await page.waitForSelector('.el-button.percent-width-100', { timeout: 10000 });
+    await page.click('.el-button.percent-width-100');
+}
+
+async function authenticateOnLoginForm(page, options, waitUntilOnPortal) {
+    if (process.stdin.isTTY) {
+        console.log('  Login form appeared, prompting for username/password...');
+        const creds = await promptCredentials();
+        USERNAME = creds.username;
+        PASSWORD = creds.password;
+    } else if (process.env.HISILICON_USERNAME && process.env.HISILICON_PASSWORD) {
+        console.log('  非交互环境，使用本次提供的用户名/密码登录...');
+        USERNAME = process.env.HISILICON_USERNAME;
+        PASSWORD = process.env.HISILICON_PASSWORD;
+    } else if (options.headed) {
+        console.log('  请在打开的浏览器窗口中输入 Uniportal 用户名和密码并登录（最多等 5 分钟）...');
+        await waitUntilOnPortal(5 * 60 * 1000);
+        return;
+    } else {
+        throw new Error(
+            '登录需要用户名和密码。请在终端运行 node scrape.js，或加上 --headed 在浏览器里登录。'
+        );
+    }
+    await fillUniportalLogin(page, USERNAME, PASSWORD);
+    console.log('  Clicked login button, waiting for redirect...');
+    try {
+        await waitUntilOnPortal(30000);
+    } catch (_) {
+        console.log('  Redirect timeout — current URL:', page.url());
     }
 }
 
@@ -151,8 +332,14 @@ async function callApi(page, endpoint, params = {}, method = 'POST') {
  * Download all files from an open download page by clicking each icon-xiazai.
  * Returns array of {name, url} for files downloaded.
  */
-function localModelAlreadyPresent(fileName) {
-    const candidates = [path.join(MODELS_DIR, fileName)];
+// Only the portal's own hosts serve model artifacts. Third-party datasets and docs
+// (ultralytics DOTAv1.zip, gitee guides, academic dataset hosts) are linked upstream,
+// so mirroring them just burns hours on gigabytes the site never serves.
+function isMirrorableHost(hostname) {
+    return /(^|\.)hisilicon\.com$|(^|\.)huawei\.com$|(^|\.)myhuaweicloud\.com$/i.test(String(hostname || ''));
+}
+
+function localModelAlreadyPresent(fileName) {    const candidates = [path.join(MODELS_DIR, fileName)];
     if (fs.existsSync(MODELS_REAL_DIR)) {
         for (const slug of fs.readdirSync(MODELS_REAL_DIR)) {
             candidates.push(path.join(MODELS_REAL_DIR, slug, fileName));
@@ -264,11 +451,15 @@ async function main() {
     ensureDir(path.dirname(options.fullScrapeOutput));
 
     stripProxyFromProcessEnv();
+    BASE_URL = await resolvePortalOrigin(options.baseUrl);
+    const loginUrl = loginUrlFor(BASE_URL);
     console.log('=== HiSilicon Developer Portal Scraper (API mode) ===\n');
+    console.log(`Portal: ${BASE_URL}`);
+    console.log(`ModelZoo: ${BASE_URL}/#/ModelZoo`);
     console.log('Launching browser (direct connection, no proxy)...');
     console.log(`  Proxy env after strip: HTTP_PROXY=${process.env.HTTP_PROXY || ''} HTTPS_PROXY=${process.env.HTTPS_PROXY || ''} NO_PROXY=${process.env.NO_PROXY || ''}`);
     const browser = await chromium.launch({
-        headless: true,
+        headless: !options.headed,
         executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
         env: browserLaunchEnv(),
         proxy: { server: 'direct://' },
@@ -291,6 +482,33 @@ async function main() {
         acceptDownloads: true,
     });
     let page = await context.newPage();
+    const capturedApiCalls = [];
+    const capturedApiResponses = [];
+    page.on('request', req => {
+        const u = req.url();
+        if (u.includes('openxinhuoGateway')) {
+            capturedApiCalls.push({
+                url: u,
+                method: req.method(),
+                headers: req.headers(),
+                postData: req.postData(),
+            });
+        }
+    });
+    page.on('response', async (res) => {
+        const u = res.url();
+        if (!u.includes('openxinhuoGateway')) return;
+        const ct = res.headers()['content-type'] || '';
+        if (!ct.includes('json')) return;
+        try {
+            const json = await res.json().catch(() => null);
+            if (json) {
+                capturedApiResponses.push({ url: u, status: res.status(), data: json });
+                const epName = u.split('/services/').pop()?.split('?')[0] || u;
+                console.log(`  [api-capture] ${res.status()} ${epName.slice(0, 100)}`);
+            }
+        } catch (_) {}
+    });
 
     // ── Load saved cookies if available ─────────────────────────────────────
     const cookieFile = path.join(ROOT, 'cookies.json');
@@ -305,7 +523,7 @@ async function main() {
     let loginSuccess = false;
     for (let attempt = 1; attempt <= 3; attempt++) {
         try {
-            await page.goto(LOGIN_URL, { waitUntil: 'domcontentloaded', timeout: 60000 });
+            await page.goto(loginUrl, { waitUntil: 'domcontentloaded', timeout: 60000 });
             loginSuccess = true;
             break;
         } catch (e) {
@@ -313,116 +531,60 @@ async function main() {
             if (attempt < 3) await sleep(5000);
         }
     }
-    // If login URL fails, try going directly to xinhuo with saved cookies
     if (!loginSuccess) {
-        console.log('  Login URL failed, trying direct access with saved cookies...');
+        console.log('  Login URL failed, trying the portal with saved cookies...');
         try {
-            await page.goto(`${BASE_URL}/#/`, { waitUntil: 'domcontentloaded', timeout: 30000 });
+            await page.goto(`${BASE_URL}/#/ModelZoo`, { waitUntil: 'domcontentloaded', timeout: 30000 });
         } catch (e) {
             throw new Error(`Cannot reach either login or target site: ${e.message}`);
         }
     }
     await sleep(5000);
-    await page.screenshot({ path: screenshotPath('01_login') });
+    await safeScreenshot(page, { path: screenshotPath('01_login') });
     let curUrl = page.url();
     console.log(`  Page URL: ${curUrl}`);
-    const isOnXinhuo = () => {
-        try { return new URL(page.url()).hostname === 'xinhuo.developers.hisilicon.com'; } catch { return false; }
+
+    const waitUntilOnPortal = async (timeout = 30000) => {
+        const hosts = ['modelzoo.hispark.hisilicon.com', 'xinhuo.developers.hisilicon.com', portalHost(BASE_URL)];
+        await page.waitForFunction(
+            (allowed) => allowed.includes(window.location.hostname),
+            hosts,
+            { timeout }
+        );
     };
 
-    // Case 1: SSO auto-redirected us back to xinhuo (cookies valid)
-    if (isOnXinhuo()) {
+    if (isOnPortal(curUrl, BASE_URL)) {
         console.log('  Already logged in via SSO cookies.');
-    }
-    // Case 2: "Signing in" intermediate page or commonRedirectionPage — wait for SSO
-    else if (curUrl.includes('commonRedirection') || curUrl.includes('uniportal')) {
+    } else if (curUrl.includes('commonRedirection') || curUrl.includes('uniportal')) {
         console.log('  SSO redirect in progress, waiting...');
         try {
-            await page.waitForFunction(() => window.location.hostname === 'xinhuo.developers.hisilicon.com', { timeout: 30000 });
+            await waitUntilOnPortal(30000);
         } catch (_) {
-            // May have redirected to login form instead
             console.log(`  Post-wait URL: ${page.url()}`);
         }
         await sleep(3000);
 
-        if (!isOnXinhuo()) {
-            // Check if login form appeared
+        if (!isOnPortal(page.url(), BASE_URL)) {
             const hasLoginForm = await page.locator('.el-input__inner').count().catch(() => 0);
             if (hasLoginForm > 0) {
-                console.log('  Login form appeared, filling credentials...');
-                assertCredentialsAvailable();
-                const inputs = page.locator('.el-input__inner');
-                await inputs.first().click({ clickCount: 3 });
-                await inputs.first().fill(USERNAME);
-                await page.locator('input[type="password"]').fill(PASSWORD);
-                await page.click('.el-button.percent-width-100');
-                try {
-                    await page.waitForFunction(() => window.location.hostname === 'xinhuo.developers.hisilicon.com', { timeout: 30000 });
-                } catch (_) {}
-                await sleep(3000);
+                await authenticateOnLoginForm(page, options, waitUntilOnPortal);
             }
         }
         console.log(`  SSO completed. URL: ${page.url()}`);
-    }
-    // Case 3: Login form visible — fill credentials
-    else {
-        console.log('  Manual login required.');
-        assertCredentialsAvailable();
+    } else {
+        console.log('  Login form required, prompting for username/password...');
         await page.waitForSelector('.el-input__inner', { timeout: 20000 });
-        const inputs = page.locator('.el-input__inner');
-        await inputs.first().click({ clickCount: 3 });
-        await inputs.first().fill(USERNAME);
-        await page.waitForSelector('input[type="password"]', { timeout: 10000 });
-        await page.locator('input[type="password"]').fill(PASSWORD);
-        await page.waitForSelector('.el-button.percent-width-100', { timeout: 10000 });
-        await page.click('.el-button.percent-width-100');
-        console.log('  Clicked login button, waiting for redirect...');
-        try {
-            await page.waitForURL('**/xinhuo.developers.hisilicon.com/**', { timeout: 30000 });
-        } catch (_) {
-            console.log('  Redirect timeout — current URL:', page.url());
-        }
+        await authenticateOnLoginForm(page, options, waitUntilOnPortal);
         await sleep(3000);
     }
     console.log(`  Logged in. Current URL: ${page.url()}`);
+    await fallbackToXinhuoIfBlocked(page);
 
     // ── Step 2: Navigate to ModelZoo via sidebar click ────────────────────────
     console.log('\n[2] Navigating to ModelZoo...');
 
-    // Intercept API requests to capture headers and full responses
-    const capturedApiCalls = [];
-    page.on('request', req => {
-        const u = req.url();
-        if (u.includes('openxinhuoGateway')) {
-            capturedApiCalls.push({
-                url: u,
-                method: req.method(),
-                headers: req.headers(),
-                postData: req.postData(),
-            });
-        }
-    });
-
-    const capturedApiResponses = [];
-    page.on('response', async (res) => {
-        const u = res.url();
-        if (!u.includes('openxinhuoGateway')) return;
-        const ct = res.headers()['content-type'] || '';
-        if (!ct.includes('json')) return;
-        try {
-            const json = await res.json().catch(() => null);
-            if (json) {
-                capturedApiResponses.push({ url: u, status: res.status(), data: json });
-                // Show the endpoint name after /services/
-                const epName = u.split('/services/').pop()?.split('?')[0] || u;
-                console.log(`  [api-capture] ${res.status()} ${epName.slice(0, 100)}`);
-            }
-        } catch (_) {}
-    });
-
-    // Make sure we're on the xinhuo page first
-    if (!page.url().includes('xinhuo.developers.hisilicon.com')) {
-        await page.goto(BASE_URL, { waitUntil: 'domcontentloaded', timeout: 45000 });
+    if (!isOnPortal(page.url(), BASE_URL)) {
+        await page.goto(`${BASE_URL}/#/ModelZoo`, { waitUntil: 'domcontentloaded', timeout: 45000 });
         await sleep(5000);
     }
 
@@ -437,6 +599,19 @@ async function main() {
         console.log(`  Sidebar click failed (${e.message.split('\n')[0]}), trying direct navigation...`);
         await page.goto(`${BASE_URL}/#/ModelZoo`, { waitUntil: 'domcontentloaded', timeout: 45000 });
         await sleep(5000);
+    }
+
+    if (await fallbackToXinhuoIfBlocked(page)) {
+        try {
+            const modelZooNav = page.locator('text=ModelZoo').first();
+            await modelZooNav.waitFor({ timeout: 10000 });
+            await modelZooNav.click();
+            await sleep(5000);
+            console.log(`  Clicked ModelZoo nav after fallback. URL: ${page.url()}`);
+        } catch (_) {
+            await page.goto(`${BASE_URL}/#/ModelZoo`, { waitUntil: 'domcontentloaded', timeout: 45000 });
+            await sleep(5000);
+        }
     }
 
     // Wait for model cards OR the list API. Portal refreshes have renamed card
@@ -481,7 +656,7 @@ async function main() {
         }
     }
 
-    await page.screenshot({ path: screenshotPath('02_modelzoo') });
+    await safeScreenshot(page, { path: screenshotPath('02_modelzoo') });
 
     // Dismiss cookie consent banner if present
     try {
@@ -665,6 +840,9 @@ async function main() {
 
             const detailUrl = `${BASE_URL}/#/ModelDetail?id=${matchModel.id}`;
             try {
+                // Hash-only navigation leaves the previous model mounted, so "下载模型"
+                // would keep firing count/download for whichever model loaded first.
+                await page.goto('about:blank', { timeout: 20000 }).catch(() => {});
                 await page.goto(detailUrl, { waitUntil: 'domcontentloaded', timeout: 45000 });
                 await sleep(5000);
                 await dismissCookie();
@@ -731,7 +909,7 @@ async function main() {
             });
 
             // Save detail page screenshot and HTML
-            await page.screenshot({ path: path.join(DETAIL_DIR, `${safeName}.png`), fullPage: true });
+            await safeScreenshot(page, { path: path.join(DETAIL_DIR, `${safeName}.png`), fullPage: true });
             fs.writeFileSync(path.join(DETAIL_DIR, `${safeName}.html`), await page.content());
 
             // ── Click "下载模型" → single model auto-downloads, multi shows list ──
@@ -741,34 +919,73 @@ async function main() {
 
             if (detailData) {
                 const mid = modelId || matchModel?.id;
-                const dlPage = await context.newPage();
+                // The ModelDownload page only serves OM files after "下载模型" registers the
+                // download intent (count/download/<id>); opening a constructed URL in a fresh
+                // tab renders "当前模型无OM离线模型文件" even though the file exists.
+                let dlPage = null;
+                try {
+                    for (const label of ['同意', '接受']) {
+                        const agree = page.locator(`button:has-text("${label}")`).first();
+                        if (await agree.isVisible({ timeout: 1500 }).catch(() => false)) {
+                            await agree.click().catch(() => {});
+                            await sleep(1500);
+                        }
+                    }
+                    const authBtn = page.locator('button:has-text("下载模型")').first();
+                    if (await authBtn.isVisible({ timeout: 4000 }).catch(() => false)) {
+                        const opened = context.waitForEvent('page', { timeout: 20000 }).catch(() => null);
+                        await authBtn.click();
+                        dlPage = await opened;
+                        if (dlPage) await sleep(5000);
+                        // A stale mount can open the previous model's tab; never harvest from it.
+                        if (dlPage && !dlPage.url().includes(String(mid))) {
+                            console.log(`    Ignoring download tab for another model: ${dlPage.url().slice(0, 90)}`);
+                            await dlPage.close().catch(() => {});
+                            dlPage = null;
+                        }
+                    }
+                } catch (authErr) {
+                    console.log(`    Download authorisation click failed: ${authErr.message.slice(0, 80)}`);
+                }
+                if (!dlPage) dlPage = await context.newPage();
                 usedDirectDownloadPages = true;
 
                 const visitDownloadPage = async (url, label, suffix) => {
+                    // Hash-only navigation does not remount the Vue view, so the table would
+                    // still show the previous model's files. Force a real load via about:blank.
+                    await dlPage.goto('about:blank', { timeout: 15000 }).catch(() => {});
                     try {
                         await dlPage.goto(url, { waitUntil: 'networkidle', timeout: 20000 });
                     } catch (_) {
                         await dlPage.goto(url, { waitUntil: 'domcontentloaded', timeout: 20000 });
                     }
-                    await sleep(2000);
+                    await sleep(4000);
                     const pageKind = label === 'source-model' ? 'Source model page' : 'Download page';
                     console.log(`    ${pageKind}: ${dlPage.url()}`);
                     downloadPageVisited = true;
                     const suffixSafe = suffix.replace(/[^a-zA-Z0-9_-]/g, '_');
-                    await dlPage.screenshot({ path: path.join(DETAIL_DIR, `${safeName}_${suffixSafe}.png`), fullPage: true }).catch(() => {});
+                    await safeScreenshot(dlPage, { path: path.join(DETAIL_DIR, `${safeName}_${suffixSafe}.png`), fullPage: true });
                     const files = await downloadFilesFromPage(dlPage, label);
                     files.forEach(f => modelDownloads.push(f));
                 };
 
                 try {
+                    // Harvest the tab the portal itself opened before navigating away from it.
+                    if (dlPage.url().includes('ModelDownload') && dlPage.url().includes(String(mid))) {
+                        downloadPageVisited = true;
+                        const authorised = await downloadFilesFromPage(dlPage, 'om-auto');
+                        authorised.forEach(f => modelDownloads.push(f));
+                    }
+
                     const adaptors = detailData.modelAdaptor || [];
                     for (const adaptor of adaptors) {
                         const computingName = encodeURIComponent(adaptor.name || '');
                         const quantifies = adaptor.supportQuantify || [];
                         for (const q of quantifies) {
-                            const platform = encodeURIComponent(q.name || '');
+                            // The SPA always uppercases the quantisation; lowercase renders an empty list.
+                            const platform = encodeURIComponent(String(q.name || '').toUpperCase());
                             const label = `om-${q.name || 'auto'}`;
-                            const omUrl = `${BASE_URL}/#/ModelDownload?id=${mid}&type=om&platform=${platform}&computingName=${computingName}&auto=${Date.now()}`;
+                            const omUrl = `${BASE_URL}/#/ModelDownload?id=${mid}&type=om&platform=${platform}&computingName=${computingName}&activeName=undefined&auto=${Date.now()}`;
                             await visitDownloadPage(omUrl, label, `download_${label}`);
                         }
                     }
@@ -816,7 +1033,7 @@ async function main() {
                         downloadPageVisited = true;
 
                         // Screenshot the initial download page
-                        await dlPage.screenshot({ path: path.join(DETAIL_DIR, `${safeName}_download.png`), fullPage: true });
+                        await safeScreenshot(dlPage, { path: path.join(DETAIL_DIR, `${safeName}_download.png`), fullPage: true });
 
                         // Download files from the initial page (auto-opened type)
                         const initialFiles = await downloadFilesFromPage(dlPage, 'om-auto');
@@ -902,7 +1119,7 @@ async function main() {
                             await sleep(3000);
                         }
                         console.log(`    Source model page: ${srcPage.url()}`);
-                        await srcPage.screenshot({ path: path.join(DETAIL_DIR, `${safeName}_source.png`), fullPage: true }).catch(() => {});
+                        await safeScreenshot(srcPage, { path: path.join(DETAIL_DIR, `${safeName}_source.png`), fullPage: true });
                         const srcFiles = await downloadFilesFromPage(srcPage, 'source-model');
                         srcFiles.forEach(f => modelDownloads.push(f));
 
@@ -1058,10 +1275,15 @@ async function main() {
     });
 
     console.log(`  Total unique download URLs: ${allDownloadUrls.size}`);
-    let dlOk = 0, dlFail = 0;
+    let dlOk = 0, dlFail = 0, dlSkipped = 0;
     for (const fileUrl of allDownloadUrls) {
         try {
             const urlObj = new URL(fileUrl);
+            if (!isMirrorableHost(urlObj.hostname)) {
+                console.log(`  [external] ${urlObj.hostname} — linked upstream, not mirrored`);
+                dlSkipped++;
+                continue;
+            }
             let fn = decodeURIComponent(path.basename(urlObj.pathname));
             fn = fn.replace(/[^a-zA-Z0-9\-_.]/g, '_');
             if (fn.length < 3) fn = `model_${Date.now()}.om`;
@@ -1079,7 +1301,7 @@ async function main() {
             dlFail++;
         }
     }
-    console.log(`  Models: ${dlOk} downloaded, ${dlFail} failed`);
+    console.log(`  Models: ${dlOk} downloaded, ${dlFail} failed, ${dlSkipped} external skipped`);
 
     // ── Step 6: Download all images ──────────────────────────────────────────
     console.log('\n[6] Downloading images...');
@@ -1115,7 +1337,7 @@ async function main() {
         try {
             await page.goto(u, { waitUntil: 'networkidle', timeout: 30000 });
             await sleep(3000);
-            await page.screenshot({ path: screenshotPath(name), fullPage: true });
+            await safeScreenshot(page, { path: screenshotPath(name), fullPage: true });
             fs.writeFileSync(path.join(ROOT, `captured_${name}.html`), await page.content());
             console.log(`  Captured: ${name}`);
         } catch (e) { console.log(`  [err] ${name}: ${e.message}`); }

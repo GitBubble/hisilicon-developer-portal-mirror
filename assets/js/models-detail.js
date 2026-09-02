@@ -365,7 +365,7 @@ function renderModelDetail() {
                             <div class="download-main">
                                 ${item.available
                                     ? `<a href="${escapeHtml(item.href)}" class="download-link" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a>`
-                                    : `<span class="download-link">${escapeHtml(item.title)}</span>`}
+                                    : `<span class="download-link">${escapeHtml(item.title)}</span><span class="muted">${escapeHtml(i18n ? i18n.t('common.unavailable') : '暂无链接')}</span>`}
                             </div>
                             <span class="download-source">${escapeHtml(i18n ? i18n.translateValue(item.sourceLabel) : item.sourceLabel)}</span>
                         </li>

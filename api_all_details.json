@@ -34,7 +34,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 0,
+      "downloadNum": 43,
       "collectCount": 0
     },
     "apiDetail": {
@@ -323,14 +323,18 @@
         "0e900d99dee8461b8"
       ],
       "optionalBy": null,
-      "downloadNum": 0,
+      "downloadNum": 43,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
         "name": "swin.om",
-        "source": "om-A8W8"
+        "source": "om-auto"
+      },
+      {
+        "name": "swin_dlite.om",
+        "source": "om-FP16"
       },
       {
         "name": "swin.onnx",
@@ -395,7 +399,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nSwin-Transformer\n分类\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\ny-0089\n2026-08-26 16:38:28\n指导文档\n交流反馈\n0\n0\n模型详情\nSwin-Transformer是针对于图片处理设计的基于Transformer架构的神经网络。该网络针对原始Transformer迁移到图片端后计算量过大，复用困难的问题，提出了新的swin-block以代替原有的attention架构。模型以窗口的attention方式极大地减少了图像不同区域间的互相响应，同时也避免了部分冗余信息的产生。最终，模型在减少了大量计算量的同时，在不同的视觉传统任务上也有了效果的提升。\n源模型下载数据集下载模型许可证 >\n输入\n：\n224x224\n参数量\n：\n28.798M\n计算量\n：\n9.567GFLOPs\n模型详细参数\n快速开始\nC++\n\nSwin-Transformer可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // Swin-Transformer 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::SwinT) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：头文件和动态库位于/samples/common目录下，编译配置参考文件\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n25.675\n耗时（ms）\n38.949\n性能（fps）\n295.711\n单帧内存带宽（MB）\n38.176\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nSwin-Transformer\n分类\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\ny-0089\n2026-08-26 16:38:28\n指导文档\n交流反馈\n43\n0\n模型详情\nSwin-Transformer是针对于图片处理设计的基于Transformer架构的神经网络。该网络针对原始Transformer迁移到图片端后计算量过大，复用困难的问题，提出了新的swin-block以代替原有的attention架构。模型以窗口的attention方式极大地减少了图像不同区域间的互相响应，同时也避免了部分冗余信息的产生。最终，模型在减少了大量计算量的同时，在不同的视觉传统任务上也有了效果的提升。\n源模型下载数据集下载模型许可证 >\n输入\n：\n224x224\n参数量\n：\n28.798M\n计算量\n：\n9.567GFLOPs\n模型详细参数\n快速开始\nC++\n\nSwin-Transformer可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // Swin-Transformer 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::SwinT) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：头文件和动态库位于/samples/common目录下，编译配置参考文件\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n25.675\n耗时（ms）\n38.949\n性能（fps）\n295.711\n单帧内存带宽（MB）\n38.176\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "ko3p9r40j400",
@@ -799,7 +803,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 0,
+      "downloadNum": 3,
       "collectCount": 0
     },
     "apiDetail": {
@@ -1091,18 +1095,28 @@
       "optional": null,
       "optionalList": null,
       "optionalBy": null,
-      "downloadNum": 0,
+      "downloadNum": 3,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
         "name": "tinysam改后缀为zip解压后使用.om",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1719805822435329/tinysam%E6%94%B9%E5%90%8E%E7%BC%80%E4%B8%BAzip%E8%A7%A3%E5%8E%8B%E5%90%8E%E4%BD%BF%E7%94%A8.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788270231&Signature=pEVpSrr8caSx04vyFoqi8nA%2B%2Flk%3D",
-        "source": "om-A8W8"
+        "source": "om-auto"
       },
       {
-        "name": "tinysam改后缀为zip解压后使用.om",
+        "name": "prompt_encoder_deploy_model.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1763803482161153/prompt_encoder_deploy_model.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788353517&Signature=CtZYSVjYe56cbL6pZ4l%2F6IRQmR0%3D",
+        "source": "om-FP16"
+      },
+      {
+        "name": "image_encoder_deploy_model.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1763803482095617/image_encoder_deploy_model.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788353517&Signature=22Mfwf%2B%2FpsrToHnkiKGVk6EULOI%3D",
+        "source": "om-FP16"
+      },
+      {
+        "name": "mask_decoder_deploy_model.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1763803482095618/mask_decoder_deploy_model.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788353518&Signature=J6%2FJSCM8ZfJA5C3UuSY7dDcUufA%3D",
         "source": "om-FP16"
       },
       {
@@ -1111,12 +1125,10 @@
       },
       {
         "name": "model_onnx_svp_nnn.zip",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1763803324874753/model_onnx_svp_nnn.zip?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788270240&Signature=YrE70LeGoH5nw%2Fg7WnCilTgRRzg%3D",
         "source": "source-model"
       },
       {
         "name": "model_nnn_onnx.zip",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1763803389886467/model_nnn_onnx.zip?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788270241&Signature=lUHMFluE6geLofLBqGZLU3wxJMw%3D",
         "source": "source-model"
       },
       {
@@ -1156,6 +1168,11 @@
         "source": "toolkit"
       },
       {
+        "name": "SDK",
+        "url": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+        "source": "toolkit"
+      },
+      {
         "name": "prompt_encoder_deploy_model.om",
         "fileId": "1763803482161153",
         "size": "137934",
@@ -1181,7 +1198,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nSwin-Transformer\n分类\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\ny-0089\n2026-08-26 16:38:28\n指导文档\n交流反馈\n0\n0\n模型详情\nSwin-Transformer是针对于图片处理设计的基于Transformer架构的神经网络。该网络针对原始Transformer迁移到图片端后计算量过大，复用困难的问题，提出了新的swin-block以代替原有的attention架构。模型以窗口的attention方式极大地减少了图像不同区域间的互相响应，同时也避免了部分冗余信息的产生。最终，模型在减少了大量计算量的同时，在不同的视觉传统任务上也有了效果的提升。\n源模型下载数据集下载模型许可证 >\n输入\n：\n224x224\n参数量\n：\n28.798M\n计算量\n：\n9.567GFLOPs\n模型详细参数\n快速开始\nC++\n\nSwin-Transformer可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // Swin-Transformer 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::SwinT) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：头文件和动态库位于/samples/common目录下，编译配置参考文件\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n25.675\n耗时（ms）\n38.949\n性能（fps）\n295.711\n单帧内存带宽（MB）\n38.176\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nTinySam\n分割\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-08-26 16:13:05\n指导文档\n交流反馈\n3\n0\n模型详情\nTinySAM 通过全阶段知识蒸馏、在线硬提示采样、量化等系列优化策略，构建轻量级 “万物分割” 模型，解决了原始 SAM 模型计算量大、部署困难的痛点，助力高效分割任务在资源受限场景下的应用。\n源模型下载数据集下载模型许可证 >\n输入\n：\n448*448\n参数量\n：\n5.739M\n计算量\n：\n15.423GFLOPs\n模型详细参数\n快速开始\nC++\n\nTinySam模型可以通过以下代码完成快速推理\n\n#include \"sam_predictor.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    SAMBoxPredictor predictor;\n    predictor.loadModel(modelPaths);\n    predictor.setImage(image); // 编码图像数据\n    predictor.predict(boxes);  // 设置检测框进行分割模型掩码解码\n    EnvDeinit();\n    return 0;\n}\n\n备注：上述C++代码依赖的动态库与文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n250.58\n耗时（ms）\n3.99\n性能（fps）\n330.25\n单帧内存带宽（MB）\n32.442\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN配置\nAl异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "knq1gnnkts00",
@@ -2241,7 +2258,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 4,
+      "downloadNum": 10,
       "collectCount": 0
     },
     "apiDetail": {
@@ -2518,28 +2535,26 @@
         "0e900d99dee8461b8"
       ],
       "optionalBy": null,
-      "downloadNum": 4,
+      "downloadNum": 10,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
         "name": "fastspeech_hifigan_en.om",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1722129460559875/fastspeech_hifigan_en.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788270309&Signature=A0DuC7XG%2B1sfgQpoAdspOtt6wuc%3D",
-        "source": "om-A16W8"
+        "source": "om-auto"
       },
       {
-        "name": "fastspeech_hifigan_en.om",
+        "name": "fastspeech_hifigan_en_nnn.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1763796788051970/fastspeech_hifigan_en_nnn.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788353553&Signature=JTqkG8RajM%2FQfOdJGWnzmqlbhnA%3D",
         "source": "om-FP16"
       },
       {
         "name": "fastspeech_hifigan_en_nnn.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1763796049854465/fastspeech_hifigan_en_nnn.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788270319&Signature=b6ZUlD0G7%2Fazi8v2LqqumW1lV84%3D",
         "source": "source-model"
       },
       {
         "name": "fastspeech_hifigan_en_svp_nnn.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1763796616085506/fastspeech_hifigan_en_svp_nnn.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788270325&Signature=pnjhy3WOMqVyp09V7omWrx7FwEo%3D",
         "source": "source-model"
       },
       {
@@ -2572,7 +2587,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nSwin-Transformer\n分类\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\ny-0089\n2026-08-26 16:38:28\n指导文档\n交流反馈\n0\n0\n模型详情\nSwin-Transformer是针对于图片处理设计的基于Transformer架构的神经网络。该网络针对原始Transformer迁移到图片端后计算量过大，复用困难的问题，提出了新的swin-block以代替原有的attention架构。模型以窗口的attention方式极大地减少了图像不同区域间的互相响应，同时也避免了部分冗余信息的产生。最终，模型在减少了大量计算量的同时，在不同的视觉传统任务上也有了效果的提升。\n源模型下载数据集下载模型许可证 >\n输入\n：\n224x224\n参数量\n：\n28.798M\n计算量\n：\n9.567GFLOPs\n模型详细参数\n快速开始\nC++\n\nSwin-Transformer可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // Swin-Transformer 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::SwinT) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：头文件和动态库位于/samples/common目录下，编译配置参考文件\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n25.675\n耗时（ms）\n38.949\n性能（fps）\n295.711\n单帧内存带宽（MB）\n38.176\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nFastSpeech2\n文本转语音\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nLinux\nOpenHarmony\nsloanqin\n2026-05-29 09:26:03\n指导文档\n交流反馈\n10\n0\n模型详情\nFastSpeech2 是一种高效的端到端语音合成模型。相比 FastSpeech，FastSpeech2 引入了多尺度时长预测器和能量 / 基频预测分支，优化了时长预测模块并新增韵律特征建模，在合成速度和语音自然度上均有大幅提升。\n源模型下载数据集下载模型许可证 >\n输入\n：\n1x40\n参数量\n：\n35.266M\n计算量\n：\n29.162GFLOPs\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n    std::string filePath= \"/path/to/file_list.json\"; // 输入文本文件路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::FastSpeech2) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(filePath, FileType::JsonFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n52.49\n耗时（ms）\n19.05\n性能（fps）\n484.476\n单帧内存带宽（MB）\n108.629\n内存（MB）\n*该数据基于Linux系统测试得出\n模型工具\nCANN配置\n6.10.t01spc030b660\n(请联系FAE获取)\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "joqqhel5c400",
@@ -5523,7 +5538,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 0,
+      "downloadNum": 28,
       "collectCount": 0
     },
     "apiDetail": {
@@ -5809,34 +5824,35 @@
       "optional": null,
       "optionalList": null,
       "optionalBy": null,
-      "downloadNum": 0,
+      "downloadNum": 28,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
         "name": "depthanything.om",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706935313301507/depthanything.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1775640619&Signature=RkPs2oKnKSC39IJYGMs8P%2FO%2Fvxg%3D",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706935313301507/depthanything.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788352148&Signature=2%2BX456g621b1lvq4cMvdVmHKd5Y%3D",
+        "source": "om-auto"
+      },
+      {
+        "name": "depthanything.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706935313301507/depthanything.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788352155&Signature=emubUlJKFgfukZMU59kk8ObiClY%3D",
         "source": "om-A16W8"
       },
       {
-        "name": "depthanything_om-FP16.om",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706935313301507/depthanything.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1775640644&Signature=ObO%2BVX9cOB1DsiaKijPZNWUhsG0%3D",
+        "name": "depth_anything_v2.om",
         "source": "om-FP16"
       },
       {
-        "name": "depth_anything_v2_vits_source-model.pth",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706935221092354/depth_anything_v2_vits.pth?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1775640662&Signature=I1bmFrvzWEC5TSDc6uIz9sFy2VI%3D",
+        "name": "depth_anything_v2_vits.pth",
         "source": "source-model"
       },
       {
         "name": "depth_anything_v2_vits_nnn.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1737163154718721/depth_anything_v2_vits_nnn.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1775640712&Signature=1sfKYC6UTa8%2F92cGCxJh3MdlzGM%3D",
         "source": "source-model"
       },
       {
         "name": "depth_anything_v2_vits_svp_nnn.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1737163154718722/depth_anything_v2_vits_svp_nnn.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1775640751&Signature=jLHnXV2p9Itf7WDuBlWtWlQqAdo%3D",
         "source": "source-model"
       },
       {
@@ -5879,7 +5895,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nYOLOv9s\n目标检测\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\ngideon\n2026-04-03 10:29:46\n指导文档\n交流反馈\n0\n0\n模型详情\nYOLOv9s 是 Ultralytics 推出的目标检测模型，采用了 GELAN 架构和 PGI 训练策略。相比于之前的版本，YOLOv9 在保持高效推理的同时，通过可编程梯度信息（PGI）进一步提升了检测精度。该模型在 COCO 数据集上进行了训练和验证。\n源模型下载数据集下载模型许可证 >\n计算量\n：\n29.526 GFLOPs\n输入\n：\n640x640\n参数量\n：\n7.240 M\n模型详细参数\n快速开始\nC++\n\n#include <memory>\n\n#include \"model.h\"\n\n#include \"log.h\"\n\n#include \"utils.h\"\n\n\n\n\nusing namespace Infer;\n\n\n\n\nint main(int argc, char *argv[])\n\n{\n\n    InferParam inferParam;\n\n    if (!ParseParamFromCmd(argc, argv, inferParam)) {\n\n        LOG(ERROR) << \"fail to parse cmd\";\n\n        return -1;\n\n    }\n\n    EnvInit(inferParam.aclConfigPath);\n\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n\n    if (model->Load(inferParam.omModelPath, Infer::Yolov9s) != 0) {\n\n        LOG(ERROR) << \"fail to load model\";\n\n        return -1;\n\n    }\n\n    auto ret = model->Infer(inferParam.imglistPath);\n\n    if (ret.size() == 0) {\n\n        LOG(ERROR) << \"fail to infer model\";\n\n        model->Unload();\n\n        EnvDeinit();\n\n        return -1;\n\n    }\n\n    ret.clear();\n\n    ret.shrink_to_fit();\n\n    if (model->Unload() != 0) {\n\n        LOG(ERROR) << \"fail to unload model\";\n\n        EnvDeinit();\n\n        return -1;\n\n    }\n\n    EnvDeinit();\n\n    return 0;\n\n}\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n28.185\n耗时（ms）\n35.48\n性能（fps）\n180.745\n单帧内存带宽（MB）\n49.863\n内存（MB）\n*该数据基于Linux系统测试得出\n模型工具\nCANN工具\nAl异构计算架构;提升计算效率的关键平台\n编译工具链\n高效编译，精准适配;AI性能优化，应用流畅运行\nSDK\n稳定、易用的设计;支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDepth-Anything-v2\nBeta\n单目深度\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-04-01 15:40:59\n指导文档\n交流反馈\n28\n0\n模型详情\nDepth Anything V2在细节和鲁棒性方面显著优于 V1。与基于 SD 的模型相比，它具有更快的推理速度、更少的参数和更高的深度精度。本示例使用的是Depth-Anything-V2-Small。\n源模型下载数据集下载模型许可证 >\n输入\n：\n518x518\n参数量\n：\n24.184M\n计算量\n：\n127.785GFLOPs\n模型详细参数\n快速开始\nC++\n\nDepth-Anything-v2模型可以通过以下代码完成快速推理\n\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    std::string modelPath = \"/path/to/imgModel.om\"; // 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::string aclConfigPath = \"/path/to/acl.cfg\"; // 输入acl的配置路径\n    int ret;\n    ret = Infer::DevInit(aclConfigPath);\n    std::shared_ptr<Infer::MdlBase> model = Infer::MdlCreate();\n    ret = model->LoadModel(modelPath);\n    std::vector<std::string> imglists;\n    ret = ReadImglistFile(imagePath, imglists);\n    std::vector<Infer::TensorBuf> inBufs, outBufs;\n    std::vector<Infer::TensorDesc> inDescs, outDescs;\n    Infer::TensorDesc desc;\n    size_t inputNum = model->GetInTensorNum();\n    size_t  outputNum = model->GetOutTensorNum();\n    for (size_t i = 0; i < inputNum; i++) {\n        model->GetInTensorDescByIdx(i, desc);\n        inDescs.push_back(desc);\n        inBufs.emplace_back(desc.defaultSize, desc.defaultStride);\n    }\n    for (size_t i = 0; i < outputNum; i++) {\n        model->GetOutTensorDescByIdx(i, desc);\n        outDescs.push_back(desc);\n        outBufs.emplace_back(desc.defaultSize, desc.defaultStride);\n    }\n    model->GetInTensorDescByIdx(0, desc);\n    for (size_t i = 0; i < imglists.size(); ++i) {\n        ret = ReadImgFileToBuf(imglists[i], desc, inBufs[0]);\n        ret = model->Execute(inBufs, outBufs);\n        (void)PostProcess(outBufs, outDescs, imglists[i]);\n    }\n    model->UnLoadModel();\n    Infer::DevDeInit();\n    return 0;\n}\n\n备注：上述C++代码仅展示了主要流程，详细实现请参考Depth-Anything-v2。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n266.06\n耗时（ms）\n3.76\n性能（fps）\n2243.373\n单帧内存带宽（MB）\n87.072\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "j8hn2954tk00",
@@ -6793,7 +6809,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 34,
+      "downloadNum": 49,
       "collectCount": 0
     },
     "apiDetail": {
@@ -7075,14 +7091,14 @@
         "0e900d99dee8461b8"
       ],
       "optionalBy": null,
-      "downloadNum": 34,
+      "downloadNum": 49,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
         "name": "mobileNetV2.om",
-        "source": "om-A8W8"
+        "source": "om-auto"
       },
       {
         "name": "mobilenet_v2-b0353104.pth",
@@ -7090,6 +7106,7 @@
       },
       {
         "name": "mobilenet_v2.onnx",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706934235430913/mobilenet_v2.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788353597&Signature=1PlhtTqOmkGkdpbpfewcsp%2BYRQs%3D",
         "source": "source-model"
       },
       {
@@ -7113,6 +7130,11 @@
         "source": "omOfflineModel"
       },
       {
+        "name": "CANN工具",
+        "url": "https://hispark-obs.obs.cn-east-3.myhuaweicloud.com/SVP_NNN_PC_V1.0.6.0.tgz",
+        "source": "toolkit"
+      },
+      {
         "name": "编译工具链",
         "url": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
         "source": "toolkit"
@@ -7124,14 +7146,10 @@
         "quantify": "fp16",
         "computing": "Hi3403V100 NNN",
         "source": "omOfflineModel"
-      },
-      {
-        "url": "https://hispark-obs.obs.cn-east-3.myhuaweicloud.com/SVP_NNN_PC_V1.0.6.0.tgz",
-        "source": "api-all"
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nMobileNetV2\n分类\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\ny-0089\n2026-03-24 16:23:20\n指导文档\n交流反馈\n49\n0\n模型详情\nMobileNetV2是对MobileNetV1的改进，是一种轻量级的神经网络。MobileNetV2保留了V1版本的深度可分离卷积，增加了线性瓶颈（Linear Bottleneck）和倒残差（Inverted Residual）。\n源模型下载数据集下载模型许可证 >\ninput\n：\n3x224x224\n参数量\n：\n3.488M\n计算量\n：\n0.640GFLOPs\n模型详细参数\n快速开始\nC++\n\nMobileNetV2可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // MobileNetV2 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::MobileNetV2) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：头文件和动态库位于/samples/common目录下，编译配置参考文件\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n78.209\n耗时（ms）\n1278.63\n性能（fps）\n4.11\n单帧内存带宽（MB）\n6.727\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "j3n1o7csso00",
@@ -7168,7 +7186,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 18,
+      "downloadNum": 30,
       "collectCount": 0
     },
     "apiDetail": {
@@ -7448,14 +7466,14 @@
       "optional": null,
       "optionalList": null,
       "optionalBy": null,
-      "downloadNum": 18,
+      "downloadNum": 30,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
         "name": "superpoint_bs1.om",
-        "source": "om-A8W8"
+        "source": "om-auto"
       },
       {
         "name": "superpoint_bs1.onnx",
@@ -7463,6 +7481,7 @@
       },
       {
         "name": "superPointNet_170000_checkpoint.pth",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706936462606339/superPointNet_170000_checkpoint.pth?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788352204&Signature=uzyz8DENF%2FPQbzY5zL4dT1xHhyM%3D",
         "source": "source-model"
       },
       {
@@ -7503,7 +7522,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nYOLOv9s\n目标检测\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\ngideon\n2026-04-03 10:29:46\n指导文档\n交流反馈\n0\n0\n模型详情\nYOLOv9s 是 Ultralytics 推出的目标检测模型，采用了 GELAN 架构和 PGI 训练策略。相比于之前的版本，YOLOv9 在保持高效推理的同时，通过可编程梯度信息（PGI）进一步提升了检测精度。该模型在 COCO 数据集上进行了训练和验证。\n源模型下载数据集下载模型许可证 >\n计算量\n：\n29.526 GFLOPs\n输入\n：\n640x640\n参数量\n：\n7.240 M\n模型详细参数\n快速开始\nC++\n\n#include <memory>\n\n#include \"model.h\"\n\n#include \"log.h\"\n\n#include \"utils.h\"\n\n\n\n\nusing namespace Infer;\n\n\n\n\nint main(int argc, char *argv[])\n\n{\n\n    InferParam inferParam;\n\n    if (!ParseParamFromCmd(argc, argv, inferParam)) {\n\n        LOG(ERROR) << \"fail to parse cmd\";\n\n        return -1;\n\n    }\n\n    EnvInit(inferParam.aclConfigPath);\n\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n\n    if (model->Load(inferParam.omModelPath, Infer::Yolov9s) != 0) {\n\n        LOG(ERROR) << \"fail to load model\";\n\n        return -1;\n\n    }\n\n    auto ret = model->Infer(inferParam.imglistPath);\n\n    if (ret.size() == 0) {\n\n        LOG(ERROR) << \"fail to infer model\";\n\n        model->Unload();\n\n        EnvDeinit();\n\n        return -1;\n\n    }\n\n    ret.clear();\n\n    ret.shrink_to_fit();\n\n    if (model->Unload() != 0) {\n\n        LOG(ERROR) << \"fail to unload model\";\n\n        EnvDeinit();\n\n        return -1;\n\n    }\n\n    EnvDeinit();\n\n    return 0;\n\n}\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n28.185\n耗时（ms）\n35.48\n性能（fps）\n180.745\n单帧内存带宽（MB）\n49.863\n内存（MB）\n*该数据基于Linux系统测试得出\n模型工具\nCANN工具\nAl异构计算架构;提升计算效率的关键平台\n编译工具链\n高效编译，精准适配;AI性能优化，应用流畅运行\nSDK\n稳定、易用的设计;支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nSuperPoint\n特征点检测\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-16 21:11:02\n指导文档\n交流反馈\n30\n0\n模型详情\nSuperPoint模型的全卷积神经网络架构对全尺寸图像进行操作，并在单次前向传递中产生伴随固定长度描述符的兴趣点检测。该模型有一个单一的共享编码器来处理和减少输入图像的维数。在编码器之后，该架构分成两个解码器“头”，它们学习任务特定权重——一个用于兴趣点检测，另一个用于感兴趣点描述。大多数网络参数在两个任务之间共享，这与传统系统不同，传统系统首先检测兴趣点，然后计算描述符，并且缺乏跨两个任务共享计算和表示的能力。\n源模型下载数据集下载模型许可证 >\n输入\n：\n240x320\n参数量\n：\n1.24M\n计算量\n：\n13.116GFLOPs\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n    std::string filePath= \"/path/to/file_list.json\"; // 输入文本文件路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::SuperPoint) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(filePath, FileType::JsonFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：上述C++代码仅展示了主要流程，详细实现请参考SuperPoint。\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n3.127\n耗时（ms）\n319.8\n性能（fps）\n5.679\n单帧内存带宽（MB）\n8.027\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "j3mmucroso00",
@@ -7540,7 +7559,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 19,
+      "downloadNum": 33,
       "collectCount": 0
     },
     "apiDetail": {
@@ -7823,18 +7842,17 @@
         "0e900d99dee8461b8"
       ],
       "optionalBy": null,
-      "downloadNum": 19,
+      "downloadNum": 33,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
-        "name": "densenet121_om-A8W8.om",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1734300701687811/densenet121.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774627722&Signature=XdtD7Q7w0uxwev2l0AxqL1CkzJA%3D",
-        "source": "om-A8W8"
+        "name": "densenet121.om",
+        "source": "om-auto"
       },
       {
-        "name": "densenet121.om",
+        "name": "densenet_dlite.om",
         "source": "om-FP16"
       },
       {
@@ -7879,7 +7897,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDenseNet121\n分类\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\ny-0089\n2026-03-16 20:23:49\n指导文档\n交流反馈\n33\n0\n模型详情\nDenseNet 针对 ResNet 的冗余结构提出了改进：让网络中的每一层和前面的所有层相连，同时把每一层设计的比较窄，使每一层学到的特征变少从而降低冗余。除了减少参数量之外，该结构还有减轻梯度消失问题、增强特征传播等优点。\n源模型下载数据集下载模型许可证 >\n输入\n：\n224x224\n参数量\n：\n8.04M\n计算量\n：\n6.369GFLOPs\n模型详细参数\n快速开始\nC++\n\nDenseNet121可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // DenseNet121 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::DenseNet121) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：头文件和动态库位于/samples/common目录下，编译配置参考文件\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n模型性能\n5.935\n耗时（ms）\n168.49\n性能（fps）\n20.391\n内存（MB）\n47.986\n单帧内存带宽（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "j3mlrvvlvs00",
@@ -7916,7 +7934,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 20,
+      "downloadNum": 30,
       "collectCount": 0
     },
     "apiDetail": {
@@ -8199,18 +8217,17 @@
         "0e900d99dee8461b8"
       ],
       "optionalBy": null,
-      "downloadNum": 20,
+      "downloadNum": 30,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
-        "name": "shufflenetv2_om-A8W8.om",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706936007458819/shufflenetv2.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774627744&Signature=5Lh8Ruh5aBrnSExNCmlbW7TZ1Oc%3D",
-        "source": "om-A8W8"
+        "name": "shufflenetv2.om",
+        "source": "om-auto"
       },
       {
-        "name": "shufflenetv2.om",
+        "name": "shufflenetv2_dlite.om",
         "source": "om-FP16"
       },
       {
@@ -8219,6 +8236,7 @@
       },
       {
         "name": "shufflenetv2.onnx",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706935984455683/shufflenetv2.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788352272&Signature=rMqSfB4huRmmSqH%2FQ0sctYupqzA%3D",
         "source": "source-model"
       },
       {
@@ -8255,7 +8273,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nShuffleNetV2\n分类\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\ny-0089\n2026-03-16 20:19:07\n指导文档\n交流反馈\n30\n0\n模型详情\nShuffleNetV2是Shufflenet的升级版本，作为轻量级网络，通过遵循降低网络的碎片程度、减少element-wise等设计准则，在保证精度的前提下进一步追求高性能。\n源模型下载数据集下载模型许可证 >\n输入\n：\n224x224\n参数量\n：\n2.271M\n计算量\n：\n0.298GFLOPs\n模型详细参数\n快速开始\nC++\n\nShuffleNetV2可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n\n\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // ShuffleNetV2 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::ShuffleNetV2) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：头文件和动态库位于/samples/common目录下，编译配置参考文件\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n2.495\n耗时（ms）\n400.867\n性能（fps）\n10.823\n单帧内存带宽（MB）\n5.359\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "j3m99qggso00",
@@ -9271,7 +9289,7 @@
         "Hi3591PV100"
       ],
       "isCollect": 0,
-      "downloadNum": 21,
+      "downloadNum": 23,
       "collectCount": 1
     },
     "apiDetail": {
@@ -9441,14 +9459,17 @@
         "0e900d99dee8461b8"
       ],
       "optionalBy": null,
-      "downloadNum": 21,
+      "downloadNum": 23,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "graspnet_linux_aarch64[该模型文件仅用于非商用].om",
+        "source": "om-auto"
+      },
+      {
         "name": "graspnet[该模型文件仅用于非商用].onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1727953687937027/graspnet%5B%E8%AF%A5%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6%E4%BB%85%E7%94%A8%E4%BA%8E%E9%9D%9E%E5%95%86%E7%94%A8%5D.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774627889&Signature=RKuaJrIgW0DUN9xU8UHV3hxSVTU%3D",
         "source": "source-model"
       },
       {
@@ -9467,7 +9488,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nGraspNet\nBeta\n具身智能\nHi3591PV100\nPyTorch\nOpenEuler\nbazinga\n2026-02-09 19:42:15\n指导文档\n交流反馈\n23\n1\n模型详情\nGraspNet是一种基于点云输入的多阶段抓取姿态预测模型，由抓取视角估计和抓取姿态生成两个阶段组成，通过特征提取、视角估计、局部特征提取、抓取参数估计和预测解码一系列处理，最终生成包含抓取评分、抓取宽度、抓取高度、抓取深度、旋转矩阵、抓取中心点和物体ID的预测结果，旨在解决机器人抓取任务中的6D抓取姿态估计问题。\n源模型下载数据集下载模型许可证 >\n计算量\n：\n71.121GFLOPs\n输入\n：\n720x1280\n参数量\n：\n2.397M\n模型详细参数\n快速开始\nC++\n模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n    std::string filePath= \"/path/to/file_list_1.json\"; // 输入文本文件路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::GraspNet) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(filePath, FileType::JsonFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3591PV100\nHi3591PV100 是面向中高性能的 AI 处理器，内部集成了10个 AI core，单核算力 16.69TOPS，INT8总算力 176TOPS；8个 Vector core，单核算力 256GFLOPS，FP16总算力 2.048TFLOPS；16个64位 Taishan V200M 处理器核，主频最高达 1.9GHz。\nHi3591PV100 集成图像处理器，视频编解码器等多种加速引擎。包括硬件 QoS 管理及安全处理。此外还集成了通用的处理器接口，包括 384-bit 的 LPDDR4X/LPDDR5 接口、XGE、PCIe、CAN-FD等。\n下载模型\n>\n模型性能\n1337.75\n耗时（ms）\n0.75\n性能（fps）\n2842.42\n内存（MB）\n模型工具\nCANN工具\n7.7.0.1.238-linux.aarch64-spc001\n(请联系FAE获取)\nSDK\n7.7.0.1.231-openEuler24.03.aarch64-rc-spc001\n(请联系FAE获取)\n支持的操作系统"
   },
   {
     "id": "ib6scq68vs00",
@@ -9504,7 +9525,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 63,
+      "downloadNum": 72,
       "collectCount": 2
     },
     "apiDetail": {
@@ -9781,14 +9802,29 @@
         "whalenowings"
       ],
       "optionalBy": null,
-      "downloadNum": 63,
+      "downloadNum": 72,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "空文件，因为该模型仅用于非商用.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1720511059001345/%E7%A9%BA%E6%96%87%E4%BB%B6%EF%BC%8C%E5%9B%A0%E4%B8%BA%E8%AF%A5%E6%A8%A1%E5%9E%8B%E4%BB%85%E7%94%A8%E4%BA%8E%E9%9D%9E%E5%95%86%E7%94%A8.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788353610&Signature=wKg%2Ba%2BXo0SA%2FS%2B8VYBzPY9060xw%3D",
+        "source": "om-auto"
+      },
+      {
+        "name": "空文件，因为该模型仅用于非商用_om-a16w8.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1720511059001345/%E7%A9%BA%E6%96%87%E4%BB%B6%EF%BC%8C%E5%9B%A0%E4%B8%BA%E8%AF%A5%E6%A8%A1%E5%9E%8B%E4%BB%85%E7%94%A8%E4%BA%8E%E9%9D%9E%E5%95%86%E7%94%A8.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788353617&Signature=UjZg%2B%2Ffv5xERHznj5G82K7eiT1w%3D",
+        "source": "om-a16w8"
+      },
+      {
+        "name": "空文件，因为该模型仅用于非商用_om-fp16.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1720511038029825/%E7%A9%BA%E6%96%87%E4%BB%B6%EF%BC%8C%E5%9B%A0%E4%B8%BA%E8%AF%A5%E6%A8%A1%E5%9E%8B%E4%BB%85%E7%94%A8%E4%BA%8E%E9%9D%9E%E5%95%86%E7%94%A8.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788353624&Signature=VidKUQsM90gG85b8WPVL93luIc8%3D",
+        "source": "om-fp16"
+      },
+      {
         "name": "空文件，因为该模型仅用于非商用.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1720510975115266/%E7%A9%BA%E6%96%87%E4%BB%B6%EF%BC%8C%E5%9B%A0%E4%B8%BA%E8%AF%A5%E6%A8%A1%E5%9E%8B%E4%BB%85%E7%94%A8%E4%BA%8E%E9%9D%9E%E5%95%86%E7%94%A8.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774627954&Signature=NgO1xZVsXRsyOGEWrn1ttrHXPYk%3D",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1720510975115266/%E7%A9%BA%E6%96%87%E4%BB%B6%EF%BC%8C%E5%9B%A0%E4%B8%BA%E8%AF%A5%E6%A8%A1%E5%9E%8B%E4%BB%85%E7%94%A8%E4%BA%8E%E9%9D%9E%E5%95%86%E7%94%A8.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788353632&Signature=ly7CCO%2FxveXryLGtTxB4BJEVVkI%3D",
         "source": "source-model"
       },
       {
@@ -9819,7 +9855,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nCodeFormer\n图像增强\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\nsloanqin\n2025-12-30 17:56:29\n指导文档\n交流反馈\n72\n2\n模型详情\nCodeFormer 是一种基于码本查找 Transformer 的鲁棒盲人脸修复模型。相比传统方法，它通过生成对抗网络与量化编码技术，能有效处理模糊、噪声等多种退化问题，兼顾人脸修复质量与身份保真度，适用于盲人脸恢复场景。\n源模型下载数据集下载模型许可证 >\n输入\n：\n512x512\n参数量\n：\n94.375M\n计算量\n：\n835.584GFLOPs\n模型详细参数\n快速开始\nC++\n\nCodeFormer模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // CodeFormer模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::CodeFormer) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：头文件和动态库位于/samples/common目录下，编译配置参考文件\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n468.72\n耗时（ms）\n2.13\n性能（fps）\n2356.851\n单帧内存带宽（MB）\n264.789\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN配置\nAl异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "iapedo790s00",
@@ -9856,7 +9892,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 39,
+      "downloadNum": 55,
       "collectCount": 1
     },
     "apiDetail": {
@@ -10133,14 +10169,17 @@
         "whalenowings"
       ],
       "optionalBy": null,
-      "downloadNum": 39,
+      "downloadNum": 55,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "facenet_vggface2_dpico.om",
+        "source": "om-auto"
+      },
+      {
         "name": "facenet_vggface2_static.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1720276131840001/facenet_vggface2_static.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774627973&Signature=aEc3j602eCFS3RRauW6cKTjhUDA%3D",
         "source": "source-model"
       },
       {
@@ -10158,6 +10197,16 @@
         "source": "omOfflineModel"
       },
       {
+        "name": "CANN配置",
+        "url": "https://hispark-obs.obs.cn-east-3.myhuaweicloud.com/SVP_NNN_PC_V1.0.6.0.tgz",
+        "source": "toolkit"
+      },
+      {
+        "name": "编译工具库",
+        "url": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
+        "source": "toolkit"
+      },
+      {
         "name": "facenet_vggface2_dlite_fp16.om",
         "fileId": "1720276844871683",
         "size": "48742196",
@@ -10168,14 +10217,10 @@
       {
         "url": "http://vis-www.cs.umass.edu/lfw/lfw.tgz",
         "source": "api-all"
-      },
-      {
-        "url": "https://hispark-obs.obs.cn-east-3.myhuaweicloud.com/SVP_NNN_PC_V1.0.6.0.tgz",
-        "source": "api-all"
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nFaceNet\n人脸识别\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\nsloanqin\n2025-12-29 10:37:55\n指导文档\n交流反馈\n55\n1\n模型详情\nFaceNet 是一种基于深度卷积神经网络的端到端人脸识别与特征嵌入模型。相比传统基于手工特征或分阶段匹配的方法，它通过将人脸图像直接映射为固定维度的紧凑特征向量（Embedding），并采用三元组损失（Triplet Loss）优化特征相似度度量，能有效缩小类内差异、扩大类间距离，兼顾识别精度与推理效率，适用于身份验证、人脸检索、监控安防等大规模人脸识别场景。\n源模型下载数据集下载模型许可证 >\n输入\n：\n160 x 160\n参数量\n：\n23.469M\n计算量\n：\n2.854GFLOPs\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::FaceNet) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n4.07\n耗时（ms）\n245.73\n性能（fps）\n34.671\n单帧内存带宽（MB）\n26.344\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN配置\nAl异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "i9urm5td6k00",
@@ -10211,7 +10256,7 @@
         "Hi3403V100 SVP_NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 74,
+      "downloadNum": 85,
       "collectCount": 0
     },
     "apiDetail": {
@@ -10393,14 +10438,17 @@
         "whalenowings"
       ],
       "optionalBy": null,
-      "downloadNum": 74,
+      "downloadNum": 85,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "LRStereo-B_480x640_release.om",
+        "source": "om-auto"
+      },
+      {
         "name": "LRStereo-B.zip",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1719921677500418/LRStereo-B.zip?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774627996&Signature=zlXjFEGBXz6Tv3%2BY3QaKmrbPEOk%3D",
         "source": "source-model"
       },
       {
@@ -10423,7 +10471,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nLRStereo-B\n双目深度\nHi3403V100 SVP_NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2025-12-26 20:41:00\n指导文档\n交流反馈\n85\n0\n模型详情\nLRStereo-B是一个轻量且鲁棒的双目立体匹配模型。它在开源模型(Raft-Stereo)的基础上做了大量的模型结构改进和重训。具体功能为输入标定好的左右目图像以及相关的相机参数，获得左目图像对应的深度图。\n源模型下载数据集下载模型许可证 >\n输入\n：\n384x1248\n参数量\n：\n2.99M\n计算量\n：\n28.64GFLOPs\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n  EnvInit();\n  std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n  std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n  std::string omModelDisPath = \"/path/to/model.om\"; // 视差转距离模型文件路径 \n  bool type = std::stoi(cfg[\"type\"]) == 1; // 是否使用视差转距离模型\n  std::unique_ptr<Model> modelStereo = std::make_unique<Model>();\n  modelStereo->Load(omModelPath, LRStereo)\n  std::unique_ptr<Model> modelDis = std::make_unique<Model>();\n  if (type && modelDis->Load(dis_path, LRStereoDis) != 0) {\n    LOG(ERROR) << \"fail to load Dis model\";\n    return 0;\n  }\n  std::vector<std::vector<std::string>> fileLists = ParseFileList(imagePath);\n  std::vector<std::vector<Tensor>> ret;\n  std::vector<Tensor> result;\n  for (size_t i = 0; i < fileLists.size(); ++i) {\n    std::string inputString = BuildInputString(fileLists[i]);\n    ret = modelStereo->Infer(inputString, FileType::SingelImageFile);\n    if (type) {\n      result = modelDis->Infer(ret[0], inputString);\n    }\n  }\n  ret.clear();\n  ret.shrink_to_fit();\n  modelStereo->Unload()\n  if (type) {\n    result.clear();\n    result.shrink_to_fit();\n    modelDis->Unload() != 0\n  }\n  EnvDeinit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于[/samples/common]目录下，编译相关配置参考[CMakeLists.txt]\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n43.46\n耗时（ms）\n23.01\n性能（fps）\n226.649\n单帧内存带宽（MB）\n29.395\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "i9t0hkf56k00",
@@ -10460,7 +10508,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 26,
+      "downloadNum": 38,
       "collectCount": 0
     },
     "apiDetail": {
@@ -10736,14 +10784,17 @@
         "whalenowings"
       ],
       "optionalBy": null,
-      "downloadNum": 26,
+      "downloadNum": 38,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "yolov8s-obb.om",
+        "source": "om-auto"
+      },
+      {
         "name": "yolov8s-obb.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1719773463379969/yolov8s-obb.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628034&Signature=SuKTGu5%2Bn%2F1o22uY2BmziB8QzXQ%3D",
         "source": "source-model"
       },
       {
@@ -10778,7 +10829,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nYOLOv8s-OBB\n目标检测\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2025-12-26 16:22:36\n指导文档\n交流反馈\n38\n0\n模型详情\nYOLOv8s-OBB 是 Ultralytics 推出的基于 YOLOv8 的旋转目标检测（Oriented Bounding Box, OBB）模型。相比于水平框检测，OBB 能够更准确地检测倾斜或不规则排列的目标（如航拍图像中的车辆、船只等）。该模型在 DOTA 数据集上进行了训练和验证。\n源模型下载数据集下载模型许可证 >\n输入\n：\n1024x1024\n参数量\n：\n11.482M\n计算量\n：\n80.204GFLOPs\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\nusing namespace Infer;\nint main()\n{\n  EnvInit();\n  std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n  std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(omModelPath, ModelType::Yolov8sObb) != 0) {\n    LOG(ERROR) << \"fail to load model\";\n    return -1;\n  }\n  auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n  if (ret.size() == 0) {\n    LOG(ERROR) << \"fail to infer model\";\n    model->Unload();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    LOG(ERROR) << \"fail to unload model\";\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于[/samples/common]目录下，编译相关配置参考[CMakeLists.txt]\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n53.05\n耗时（ms）\n18.85\n性能（fps）\n333.576\n单帧内存带宽（MB）\n68.492\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "i9qdl2hh6k00",
@@ -10793,7 +10844,7 @@
       "createdBy": 138418613601624,
       "creationDate": "2025-12-26 10:20:26",
       "creationUserCN": "ahau15",
-      "lastUpdateDate": "2025-12-30 20:02:17",
+      "lastUpdateDate": null,
       "currentHandler": "",
       "currentHandlerName": "",
       "description": "HigherHRNet 是一种新型的自下而上人体姿态估计算法，它在训练阶段引入多分辨率监督机制，在推理阶段采用多分辨率聚合策略，不仅能有效应对自下而上多人姿态估计任务中的尺度变化难题，还可实现关键点的高精度定位，尤其在小尺寸人体目标的处理上表现突出。",
@@ -10815,7 +10866,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 10,
+      "downloadNum": 18,
       "collectCount": 0
     },
     "apiDetail": {
@@ -10823,7 +10874,7 @@
       "creationDate": "2025-12-26 10:20:26",
       "creationUserCN": "ahau15",
       "lastUpdatedBy": null,
-      "lastUpdateDate": "2025-12-30 20:02:17",
+      "lastUpdateDate": null,
       "lastUpdateUserCN": "ahau15",
       "rowIdx": -1,
       "id": "i9qdl2hh6k00",
@@ -11090,26 +11141,33 @@
       "remark": null,
       "fileInfo": null,
       "reviewType": null,
-      "owner": "ahau15",
-      "ownerBy": 138418613601624,
+      "owner": "0e900d99dee8461b8",
+      "ownerBy": 137441035408492,
       "optional": null,
       "optionalList": [
         "0e900d99dee8461b8"
       ],
       "optionalBy": null,
-      "downloadNum": 10,
+      "downloadNum": 18,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "hrnet_512_768.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1719728865345537/hrnet_512_768.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788353644&Signature=%2Fg1v61EWtkdAjZK11H4jpOApFzw%3D",
+        "source": "om-auto"
+      },
+      {
+        "name": "hrnet_512_768.om",
+        "source": "om-a16w8"
+      },
+      {
         "name": "pose_higher_hrnet_w32_512.pth",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1719728345251843/pose_higher_hrnet_w32_512.pth?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628174&Signature=1gLiBoLmwilMKBjWSadwyRBUVwQ%3D",
         "source": "source-model"
       },
       {
         "name": "hrnet_512_768.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1719728345251842/hrnet_512_768.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628181&Signature=bA%2B7DxjUR1mrP08ne7c52PNcMrI%3D",
         "source": "source-model"
       },
       {
@@ -11146,7 +11204,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nHRNet\n姿态估计\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\nahau15\n2025-12-26 10:20:26\n指导文档\n交流反馈\n18\n0\n模型详情\nHigherHRNet 是一种新型的自下而上人体姿态估计算法，它在训练阶段引入多分辨率监督机制，在推理阶段采用多分辨率聚合策略，不仅能有效应对自下而上多人姿态估计任务中的尺度变化难题，还可实现关键点的高精度定位，尤其在小尺寸人体目标的处理上表现突出。\n源模型下载数据集下载模型许可证 >\n输入\n：\n512x768\n参数量\n：\n28.618M\n计算量\n：\n70.645GFLOPs\n模型详细参数\n快速开始\nC++\n\nHRNet模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // HRNet模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::HRNet) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common 目录下，编译相关配置参考CMakeLists.txt 。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n72.28\n耗时（ms）\n13.84\n性能（fps）\n323.933\n单帧内存带宽（MB）\n82.879\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN配置\nAl异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "i9q7jrn16k00",
@@ -11183,7 +11241,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 29,
+      "downloadNum": 63,
       "collectCount": 0
     },
     "apiDetail": {
@@ -11465,19 +11523,21 @@
         "0e900d99dee8461b8"
       ],
       "optionalBy": null,
-      "downloadNum": 29,
+      "downloadNum": 63,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "yolo11s.om",
+        "source": "om-auto"
+      },
+      {
         "name": "yolo11s.pt",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1701422617919491/yolo11s.pt?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628206&Signature=T7pZ70cqAQpAFQyvmMylKXbkviA%3D",
         "source": "source-model"
       },
       {
         "name": "yolo11s.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1701422618050563/yolo11s.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628208&Signature=s%2Fgy%2Fpbi60%2BpdisaJ%2FYZIDdNgew%3D",
         "source": "source-model"
       },
       {
@@ -11514,7 +11574,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nYOLO11s\n目标检测\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\ny-0089\n2025-12-26 09:54:03\n指导文档\n交流反馈\n63\n0\n模型详情\nYOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率\n源模型下载数据集下载模型许可证 >\n输入\n：\n640x640\n参数量\n：\n9.469M\n计算量\n：\n23.805GFLOPs\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n\n\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main(int argc, char *argv[])\n{\n    InferParam inferParam;\n    ParseCmd(argc, argv, inferParam)\n    DevInit(inferParam.aclConfigPath);\n    ModelInfer(inferParam);\n    Infer::DevDeInit();\n    return 0;\n}\n\n备注：头文件和动态库位于/samples/common目录下，编译配置参考文件\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n23.471\n耗时（ms）\n42.607\n性能（fps）\n153.643\n单帧内存带宽（MB）\n37.102\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "i9q65e4hec00",
@@ -11551,7 +11611,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 17,
+      "downloadNum": 47,
       "collectCount": 0
     },
     "apiDetail": {
@@ -11833,19 +11893,21 @@
         "0e900d99dee8461b8"
       ],
       "optionalBy": null,
-      "downloadNum": 17,
+      "downloadNum": 47,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "yolov8s.om",
+        "source": "om-auto"
+      },
+      {
         "name": "yolov8s.pt",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706936766627842/yolov8s.pt?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628230&Signature=GLOVHhrqIynLfP%2B9MeVn2XoJyGk%3D",
         "source": "source-model"
       },
       {
         "name": "yolov8s.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706936783470593/yolov8s.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628232&Signature=GvMEclSdHogCXxeAICz0ict4yXs%3D",
         "source": "source-model"
       },
       {
@@ -11882,7 +11944,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nYOLOv8s\n目标检测\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\ny-0089\n2025-12-26 09:47:43\n指导文档\n交流反馈\n47\n0\n模型详情\nYOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv8在之前的YOLO版本的基础上进行了改进，在继承了原有YOLO网络模型优点的基础上，引入了新的特效和优化，具有更高的检测精度。\n源模型下载数据集下载模型许可证 >\n输入\n：\n640x640\n参数量\n：\n11.182M\n计算量\n：\n30.486GFLOPs\n模型详细参数\n快速开始\nC++\n\n模型 可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n\n\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main(int argc, char *argv[])\n{\n    InferParam inferParam;\n    ParseCmd(argc, argv, inferParam)\n    DevInit(inferParam.aclConfigPath);\n    ModelInfer(inferParam);\n    Infer::DevDeInit();\n    return 0;\n}\n\n备注：头文件和动态库位于/samples/common目录下，编译配置参考文件\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n23.461\n耗时（ms）\n42.624\n性能（fps）\n132.421\n单帧内存带宽（MB）\n34.344\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "i9kll1a96k00",
@@ -11919,7 +11981,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 10,
+      "downloadNum": 17,
       "collectCount": 0
     },
     "apiDetail": {
@@ -12195,14 +12257,22 @@
         "0e900d99dee8461b8"
       ],
       "optionalBy": null,
-      "downloadNum": 10,
+      "downloadNum": 17,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "vdsr.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1719628069928961/vdsr.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788353680&Signature=iQofNcXu7k12gGd4cVPoDU1FOzQ%3D",
+        "source": "om-auto"
+      },
+      {
+        "name": "vdsr.om",
+        "source": "om-a8w8"
+      },
+      {
         "name": "vdsr.zip",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1719627658887171/vdsr.zip?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628253&Signature=0Vj9d4nkQVuYXT%2F0mp%2F%2B9wc81ig%3D",
         "source": "source-model"
       },
       {
@@ -12233,7 +12303,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nVDSR\n图像超分\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\ny-0089\n2025-12-25 20:56:31\n指导文档\n交流反馈\n17\n0\n模型详情\nVDSR（Very Deep Super-Resolution Network）是一种20层深度卷积神经网络，通过残差学习实现图像超分辨率重建。\n源模型下载数据集下载模型许可证 >\n输入\n：\n516x516\n参数量\n：\n664.704M\n计算量\n：\n354.611GFLOPs\n模型详细参数\n快速开始\nC++\n\nVDSR模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // VDSR模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::VDSR) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：头文件和动态库位于/samples/common目录下，编译配置参考文件\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n66.28\n耗时（ms）\n15.09\n性能（fps）\n38.72\n单帧内存带宽（MB）\n22.332\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN配置\nAl异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "i9kei1td6k00",
@@ -12270,7 +12340,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 21,
+      "downloadNum": 34,
       "collectCount": 0
     },
     "apiDetail": {
@@ -12546,14 +12616,17 @@
         "0e900d99dee8461b8"
       ],
       "optionalBy": null,
-      "downloadNum": 21,
+      "downloadNum": 34,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "siamese_network.om",
+        "source": "om-auto"
+      },
+      {
         "name": "siamese_model_weights.pt",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1719623605092353/siamese_model_weights.pt?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628273&Signature=c%2F3NirzRiH8%2FeK0dHZy%2BWjn8oTI%3D",
         "source": "source-model"
       },
       {
@@ -12584,7 +12657,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nSiamese Network\nBeta\n人脸识别\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\ny-0089\n2025-12-25 20:25:32\n指导文档\n交流反馈\n34\n0\n模型详情\nSiamese Network(孪生神经网络)是一种通过共享权重的两个相同子网络来度量两个输入样本相似性的深度学习框架，广泛应用于人脸识别、签名验证等任务。\n源模型下载数据集下载模型许可证 >\n输入\n：\n100x100\n参数量\n：\n40254.505M\n计算量\n：\n0.223GFLOPs\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // SiameseNetwork模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::SiameseNetwork) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：头文件和动态库位于/samples/common目录下，编译配置参考文件\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n4.6\n耗时（ms）\n217.44\n性能（fps）\n77.754\n单帧内存带宽（MB）\n98.895\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN配置\nAl异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "i9j5c2fl6k00",
@@ -12621,7 +12694,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 5,
+      "downloadNum": 18,
       "collectCount": 0
     },
     "apiDetail": {
@@ -12903,19 +12976,21 @@
         "0e900d99dee8461b8"
       ],
       "optionalBy": null,
-      "downloadNum": 5,
+      "downloadNum": 18,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "yolo11s-seg.om",
+        "source": "om-auto"
+      },
+      {
         "name": "yolo11s-seg.pt",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706936500289537/yolo11s-seg.pt?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628305&Signature=lla9TwuFo%2FBmUV%2FDIi1P4h2FIdk%3D",
         "source": "source-model"
       },
       {
         "name": "yolo11s-seg.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706936514969601/yolo11s-seg.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628307&Signature=kWLL8VVRK05qpDq5YVCqLgAwnvg%3D",
         "source": "source-model"
       },
       {
@@ -12952,7 +13027,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nYOLO11s-seg\n目标检测\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\nsloanqin\n2025-12-25 17:25:35\n指导文档\n交流反馈\n18\n0\n模型详情\nYOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-seg作为实例分割的模型，比检测模型更进一步，包括识别图像中的各个对象并将它们与图像的其余部分分割开来。\n源模型下载数据集下载模型许可证 >\n输入\n：\n640x640\n参数量\n：\n10.123M\n计算量\n：\n38.183GFLOPs\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\n\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolo11s-seg模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::Yolo11s-seg) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n29.36\n耗时（ms）\n34.06\n性能（fps）\n172.6\n单帧内存带宽（MB）\n39.973\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "i9j3k8rpec00",
@@ -12989,7 +13064,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 6,
+      "downloadNum": 31,
       "collectCount": 0
     },
     "apiDetail": {
@@ -13271,19 +13346,21 @@
         "0e900d99dee8461b8"
       ],
       "optionalBy": null,
-      "downloadNum": 6,
+      "downloadNum": 31,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "yolo11s-pose.om",
+        "source": "om-auto"
+      },
+      {
         "name": "yolo11s-pose.pt",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1712123742912515/yolo11s-pose.pt?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628329&Signature=JWGL9FSNtism7DvDJ7vgzOXHv1I%3D",
         "source": "source-model"
       },
       {
         "name": "yolo11s-pose.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1712123742846979/yolo11s-pose.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628331&Signature=LQh5vq2lobTm2IgWgrNgyzWqJos%3D",
         "source": "source-model"
       },
       {
@@ -13320,7 +13397,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nYOLO11s-pose\n姿态估计\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\nsloanqin\n2025-12-25 17:17:58\n指导文档\n交流反馈\n31\n0\n模型详情\nYOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。\n源模型下载数据集下载模型许可证 >\n输入\n：\n640x640\n参数量\n：\n9.970M\n计算量\n：\n25.414GFLOPs\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\n\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolo11s-pose模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::Yolo11s-pose) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n25.09\n耗时（ms）\n39.85\n性能（fps）\n168.145\n单帧内存带宽（MB）\n36.895\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "i9j2lpl16k00",
@@ -13357,7 +13434,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 6,
+      "downloadNum": 11,
       "collectCount": 0
     },
     "apiDetail": {
@@ -13639,19 +13716,21 @@
         "0e900d99dee8461b8"
       ],
       "optionalBy": null,
-      "downloadNum": 6,
+      "downloadNum": 11,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "yolov6s_dpico.om",
+        "source": "om-auto"
+      },
+      {
         "name": "yolov6s.pt",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1712124009185281/yolov6s.pt?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628353&Signature=6qnw1knzccFVl6dJcFJ77IUNo88%3D",
         "source": "source-model"
       },
       {
         "name": "yolov6s_opset11.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1712124009250818/yolov6s_opset11.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628355&Signature=vhRC%2BQ5aRlYxsTn3KH0ubmFP0Hc%3D",
         "source": "source-model"
       },
       {
@@ -13688,7 +13767,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nYOLOv6s\n目标检测\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\nsloanqin\n2025-12-25 17:13:48\n指导文档\n交流反馈\n11\n0\n模型详情\nYOLOv6s 是一种轻量高效的 one-stage 目标检测模型。相比前代 YOLO 模型，YOLOv6s 采用了 EfficientRep 作为 backbone 和 Rep-PAN 作为颈部网络，兼顾了检测精度与推理速度，更适用于边缘计算场景。\n源模型下载数据集下载模型许可证 >\n输入\n：\n640x640\n参数量\n：\n18.571M\n计算量\n：\n45.588GFLOPs\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\n\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolov6s模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, Infer::Yolov6s) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n25.31\n耗时（ms）\n39.51\n性能（fps）\n72.083\n单帧内存带宽（MB）\n35.957\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "i9j1qkj1ec00",
@@ -13725,7 +13804,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 8,
+      "downloadNum": 12,
       "collectCount": 0
     },
     "apiDetail": {
@@ -14001,14 +14080,22 @@
         "0e900d99dee8461b8"
       ],
       "optionalBy": null,
-      "downloadNum": 8,
+      "downloadNum": 12,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "pfld_dpico.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1719599236186115/pfld_dpico.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788352607&Signature=2c%2BudRgD6lqcy%2FO7ShJ67EoVtIk%3D",
+        "source": "om-auto"
+      },
+      {
+        "name": "pfld_dpico.om",
+        "source": "om-a16w8"
+      },
+      {
         "name": "pfld-sim.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706935546085379/pfld-sim.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628379&Signature=uBgw%2FHjxcBfCPYxa3FxO%2BW6Z5zk%3D",
         "source": "source-model"
       },
       {
@@ -14039,7 +14126,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nPFLD\n关键点检测\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\nsloanqin\n2025-12-25 17:10:06\n指导文档\n交流反馈\n12\n0\n模型详情\nPFLD全称A Practical Facial Landmark Detector是一个精度高，速度快，模型小的人脸关键点检测模型。\n源模型下载数据集下载模型许可证 >\n输入\n：\n112 x 112\n参数量\n：\n24.184M\n计算量\n：\n127.785GFLOPs\n模型详细参数\n快速开始\nC++\n\nPFLD模型可以通过以下代码完成快速推理\n\n\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n     std::string aclConfigPath = \"/path/to/acl.cfg\"; // 输入acl的配置路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    ret = Infer::DevInit(aclConfigPath);\n    std::shared_ptr<Infer::MdlBase> model = Infer::MdlCreate();\n    ret = model->LoadModel(omModelPath);\n    std::vector<std::string> imglists;\n    ret = ReadImglistFile(imagePath, imglists);\n    std::vector<Infer::TensorBuf> inBufs, outBufs;\n    std::vector<Infer::TensorDesc> inDescs, outDescs;\n    Infer::TensorDesc desc;\n    size_t inputNum = model->GetInTensorNum();\n    size_t  outputNum = model->GetOutTensorNum();\n    for (size_t i = 0; i < inputNum; i++) {\n        model->GetInTensorDescByIdx(i, desc);\n        inDescs.push_back(desc);\n        inBufs.emplace_back(desc.defaultSize, desc.defaultStride);\n    }\n    for (size_t i = 0; i < outputNum; i++) {\n        model->GetOutTensorDescByIdx(i, desc);\n        outDescs.push_back(desc);\n        outBufs.emplace_back(desc.defaultSize, desc.defaultStride);\n    }\n    model->GetInTensorDescByIdx(0, desc);\n    for (size_t i = 0; i < imglists.size(); ++i) {\n        ret = ReadImgFileToBuf(imglists[i], desc, inBufs[0]);\n        for (size_t j = 0; j < loop; j++) {\n            ret = model->Execute(inBufs, outBufs);\n        }\n        (void)PostProcess(outBufs, outDescs, imglists[i]);\n    }\n    model->UnLoadModel();\n    Infer::DevDeInit();\n    return 0;\n}\n\n备注：上述C++代码仅展示了主要流程，详细实现请参考PFLD。\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n0.62\n耗时（ms）\n1624.65\n性能（fps）\n5.076\n单帧内存带宽（MB）\n4.824\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "i9ivuh3hec00",
@@ -14076,7 +14163,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 4,
+      "downloadNum": 9,
       "collectCount": 0
     },
     "apiDetail": {
@@ -14359,19 +14446,26 @@
         "whalenowings"
       ],
       "optionalBy": null,
-      "downloadNum": 4,
+      "downloadNum": 9,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "yolov4_dpico.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1712122820165635/yolov4_dpico.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788352641&Signature=3DXvJnFgfR5OXRL2evJ79TSjU14%3D",
+        "source": "om-auto"
+      },
+      {
+        "name": "yolov4_dpico.om",
+        "source": "om-a16w8"
+      },
+      {
         "name": "yolov4.pth",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1712122673299459/yolov4.pth?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628398&Signature=%2FVqjje03cL2YAXE55KgIRYIJgBU%3D",
         "source": "source-model"
       },
       {
         "name": "yolov4.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1712122673364994/yolov4.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628418&Signature=MF2dbNLq8WM6GiQbnRjh6OloaCo%3D",
         "source": "source-model"
       },
       {
@@ -14408,7 +14502,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nYOLOv4\nBeta\n目标检测\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\nsloanqin\n2025-12-25 17:01:53\n指导文档\n交流反馈\n9\n0\n模型详情\nYOLOv4 是一种高性能的 one-stage 目标检测模型。相比 YOLOv3，YOLOv4 采用了 CSPDarknet53 作为 backbone 进行特征提取，该网络结合了跨金字塔池化结构和路径聚合网络，在精度和速度上均有显著提升。\n源模型下载数据集下载模型许可证 >\n输入\n：\n608x608\n参数量\n：\n64.330M\n计算量\n：\n157.842GFLOPs\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\n\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolov4模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::yolov4) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：头文件和动态库位于/samples/common目录下，编译配置参考文件\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n252.58\n耗时（ms）\n3.96\n性能（fps）\n488.841\n单帧内存带宽（MB）\n119.559\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "i9iei09pec00",
@@ -14445,7 +14539,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 5,
+      "downloadNum": 11,
       "collectCount": 0
     },
     "apiDetail": {
@@ -14721,14 +14815,27 @@
         "0e900d99dee8461b8"
       ],
       "optionalBy": null,
-      "downloadNum": 5,
+      "downloadNum": 11,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "yolov8s-seg_dpico.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1719588981112835/yolov8s-seg_dpico.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788352677&Signature=eKlIrxWoewIePrhsQSObmgwn7Ns%3D",
+        "source": "om-auto"
+      },
+      {
+        "name": "yolov8s-seg_dpico.om",
+        "source": "om-a16w8"
+      },
+      {
+        "name": "yolov8s-seg_dlite_fp16.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1719589004181505/yolov8s-seg_dlite_fp16.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788352692&Signature=A1U%2BJhla3FkMEL1do92akg37w4g%3D",
+        "source": "om-fp16"
+      },
+      {
         "name": "yolov8s-seg.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1719588742037507/yolov8s-seg.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628457&Signature=I3wRfWgkgzUM1YUpHWYiTAU7CWY%3D",
         "source": "source-model"
       },
       {
@@ -14759,7 +14866,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nYOLOv8s-seg\n分割\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\nsloanqin\n2025-12-25 15:45:54\n指导文档\n交流反馈\n11\n0\n模型详情\nYOLOv8s-seg 是一种轻量高效的 one-stage 实例分割模型。相比前代 YOLO 模型，YOLOv8s-seg 采用 C2f 作为 backbone 和 PAFPN 作为颈部网络，结合 “原型掩码 + 掩码系数” 的分割头设计，在保证实时推理速度的同时实现像素级实例分割，适用于轻量化边缘部署场景。\n源模型下载数据集下载模型许可证 >\n输入\n：\n640x640\n参数量\n：\n11.853M\n计算量\n：\n44.864GFLOPs\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::Yolov8sSeg) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n46.59\n耗时（ms）\n21.46\n性能（fps）\n165.177\n单帧内存带宽（MB）\n63.418\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN配置\nAl异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "i9i4tr9hec00",
@@ -15148,7 +15255,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 47,
+      "downloadNum": 56,
       "collectCount": 0
     },
     "apiDetail": {
@@ -15434,24 +15541,25 @@
       "optional": null,
       "optionalList": null,
       "optionalBy": null,
-      "downloadNum": 47,
+      "downloadNum": 56,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "unet.om",
+        "source": "om-auto"
+      },
+      {
         "name": "UNet.pth",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706937051906050/UNet.pth?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628509&Signature=zhShSf59N%2FZUKzh7cltNwKZMQ9o%3D",
         "source": "source-model"
       },
       {
         "name": "UNet_dynamic_bs.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706937022545923/UNet_dynamic_bs.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628517&Signature=2Le1NcVNmP9%2B4QLNawzXePbA6TI%3D",
         "source": "source-model"
       },
       {
         "name": "UNet_dynamic_sim.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706936993120258/UNet_dynamic_sim.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628524&Signature=fHj3%2FK3w8x5sbB1ybFgEHrkMJ5s%3D",
         "source": "source-model"
       },
       {
@@ -15494,7 +15602,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nUNet\n分割\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2025-11-29 15:01:53\n指导文档\n交流反馈\n56\n0\n模型详情\nUNet是由FCN改进而来的图像分割模型，其网络结构像U型，分为特征提取部分和上采样特征融合部分。\n源模型下载数据集下载模型许可证 >\n输入\n：\n572x572\n参数量\n：\n31.032M\n计算量\n：\n499.572GFLOPs\n模型详细参数\n快速开始\nC++\n\nUNet模型可以通过以下代码完成快速推理\n\n\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // UNet模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::Unet) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n104.09\n耗时（ms）\n9.61\n性能（fps）\n281.472\n单帧内存带宽（MB）\n91.445\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "ht96f9b50o00",
@@ -15509,7 +15617,7 @@
       "createdBy": 138418613601624,
       "creationDate": "2025-11-17 11:25:12",
       "creationUserCN": "ahau15",
-      "lastUpdateDate": "2025-11-29 14:49:58",
+      "lastUpdateDate": null,
       "currentHandler": "",
       "currentHandlerName": null,
       "description": "VGGNet是牛津大学计算机视觉组（Visual Geometry Group）和Google DeepMind公司的研究员一起研发的深度卷积神经网络，它探索了卷积神经网络的深度与其性能之间的关系，通过反复堆叠3*3的小型卷积核和2*2的最大池化层，成功地构筑了16~19层深的卷积神经网络。VGGNet相比之前state-of-the-art的网络结构，错误率大幅下降，VGGNet论文中全部使用了3*3的小型卷积核和2*2的最大池化核，通过不断加深网络结构来提升性能。",
@@ -15531,7 +15639,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 8,
+      "downloadNum": 11,
       "collectCount": 0
     },
     "apiDetail": {
@@ -15539,7 +15647,7 @@
       "creationDate": "2025-11-17 11:25:12",
       "creationUserCN": "ahau15",
       "lastUpdatedBy": null,
-      "lastUpdateDate": "2025-11-29 14:49:58",
+      "lastUpdateDate": null,
       "lastUpdateUserCN": "ahau15",
       "rowIdx": -1,
       "id": "ht96f9b50o00",
@@ -15806,24 +15914,31 @@
       "remark": null,
       "fileInfo": null,
       "reviewType": null,
-      "owner": "ahau15",
-      "ownerBy": 138418613601624,
+      "owner": "0e900d99dee8461b8",
+      "ownerBy": 137441035408492,
       "optional": null,
       "optionalList": null,
       "optionalBy": null,
-      "downloadNum": 8,
+      "downloadNum": 11,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "vgg16.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1712669402923010/vgg16.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788353713&Signature=TiDsU%2FYIW1%2B3THCTRTGeQlxoEh0%3D",
+        "source": "om-auto"
+      },
+      {
+        "name": "vgg16.om",
+        "source": "om-a8w8"
+      },
+      {
         "name": "vgg16.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1712668270526466/vgg16.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628550&Signature=K3moqIkPiKuG8aAun5w2FkNXVQo%3D",
         "source": "source-model"
       },
       {
         "name": "vgg16-397923af.pth",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1712668270460930/vgg16-397923af.pth?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628594&Signature=dq0h6IjmbtCiG0euXcatgCIpMDg%3D",
         "source": "source-model"
       },
       {
@@ -15860,7 +15975,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nVGG16\n分类\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\nahau15\n2025-11-17 11:25:12\n指导文档\n交流反馈\n11\n0\n模型详情\nVGGNet是牛津大学计算机视觉组（Visual Geometry Group）和Google DeepMind公司的研究员一起研发的深度卷积神经网络，它探索了卷积神经网络的深度与其性能之间的关系，通过反复堆叠3*3的小型卷积核和2*2的最大池化层，成功地构筑了16~19层深的卷积神经网络。VGGNet相比之前state-of-the-art的网络结构，错误率大幅下降，VGGNet论文中全部使用了3*3的小型卷积核和2*2的最大池化核，通过不断加深网络结构来提升性能。\n源模型下载数据集下载模型许可证 >\n输入\n：\n224x224\n参数量\n：\n138.358M\n计算量\n：\n31.007GFLOPs\n模型详细参数\n快速开始\nC++\n\nVGG16模型可以通过以下代码完成快速推理\n\n\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // VGG16模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::VGG16) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n12.88\n耗时（ms）\n77.65\n性能（fps）\n133.486\n单帧内存带宽（MB）\n143.195\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "hsd8o65p5c00",
@@ -15897,7 +16012,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 7,
+      "downloadNum": 18,
       "collectCount": 0
     },
     "apiDetail": {
@@ -16179,19 +16294,21 @@
         "0e900d99dee8461b8"
       ],
       "optionalBy": null,
-      "downloadNum": 7,
+      "downloadNum": 18,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "seresnet50.om",
+        "source": "om-auto"
+      },
+      {
         "name": "seresnet50.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1712179225165827/seresnet50.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628648&Signature=32H%2Bs3ah97gpdAlbYXdRzSFlb%2Bk%3D",
         "source": "source-model"
       },
       {
         "name": "seresnet50.zip",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1712179319472129/seresnet50.zip?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628657&Signature=%2Bg8rr88nB0XcFHQ9eoGnLQFkyhc%3D",
         "source": "source-model"
       },
       {
@@ -16228,7 +16345,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nSE-ResNet50\nBeta\n分类\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\ny-0089\n2025-11-14 18:20:28\n指导文档\n交流反馈\n18\n0\n模型详情\nSE-ResNet50是一种基于ResNet50架构的改进卷积神经网络，通过引入SE（Squeeze-and-Excitation）注意力模块，自适应校准通道特征响应，显著提升模型表达能力。\n源模型下载数据集下载模型许可证 >\n输入\n：\n224x224\n参数量\n：\n28.045M\n计算量\n：\n8.263GFLOPs\n模型详细参数\n快速开始\nC++\n\nSEResnet50模型可以通过以下代码完成快速推理\n\n\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // SEResnet50模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::SEResnet50) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：头文件和动态库位于/samples/common目录下，编译配置参考文件\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n73.63\n耗时（ms）\n13.58\n性能（fps）\n165.344\n单帧内存带宽（MB）\n35.777\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "hsd646tl0o00",
@@ -16265,7 +16382,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 11,
+      "downloadNum": 28,
       "collectCount": 0
     },
     "apiDetail": {
@@ -16547,19 +16664,21 @@
         "0e900d99dee8461b8"
       ],
       "optionalBy": null,
-      "downloadNum": 11,
+      "downloadNum": 28,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "InceptionV3.om",
+        "source": "om-auto"
+      },
+      {
         "name": "InceptionV3.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1712177052450818/InceptionV3.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628684&Signature=WWCy5Od6EbBvRki11yxkS%2Bk%2BGzs%3D",
         "source": "source-model"
       },
       {
         "name": "Inceptionv3.zip",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1712177209737219/Inceptionv3.zip?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628690&Signature=AqVW9uMLmv%2FWvaZcut3EIPl8S6Q%3D",
         "source": "source-model"
       },
       {
@@ -16596,7 +16715,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nInceptionV3\n分类\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\ny-0089\n2025-11-14 18:09:00\n指导文档\n交流反馈\n28\n0\n模型详情\nInceptionV3 是为图像分类任务设计的高效卷积神经网络，其核心创新是使用模块化的 Inception 结构（如分解卷积、辅助分类器）来在保持计算效率的同时提升特征提取能力，并在 ImageNet 等数据集上取得优异性能。\n源模型下载数据集下载模型许可证 >\n输入\n：\n299x299\n参数量\n：\n23.817M\n计算量\n：\n11.511GFLOPs\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\n\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // InceptionV3模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::InceptionV3) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：头文件和动态库位于/samples/common目录下，编译配置参考文件\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n5.15\n耗时（ms）\n194.26\n性能（fps）\n30.555\n单帧内存带宽（MB）\n28.0\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "hs9rrefl5c00",
@@ -16633,7 +16752,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 5,
+      "downloadNum": 19,
       "collectCount": 0
     },
     "apiDetail": {
@@ -16915,19 +17034,21 @@
         "0e900d99dee8461b8"
       ],
       "optionalBy": null,
-      "downloadNum": 5,
+      "downloadNum": 19,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "yolov7.om",
+        "source": "om-auto"
+      },
+      {
         "name": "yolov7.pt",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1712118286057473/yolov7.pt?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628714&Signature=AV9LwY9F3l3QZT%2B2e98xiQJMyFo%3D",
         "source": "source-model"
       },
       {
         "name": "yolov7.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1712118286123009/yolov7.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628718&Signature=yavj0B3p5Sjc3Ew501o72LuQ98o%3D",
         "source": "source-model"
       },
       {
@@ -16964,7 +17085,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nYOLOv7\n目标检测\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\ny-0089\n2025-11-14 10:24:41\n指导文档\n交流反馈\n19\n0\n模型详情\nYOLOv7在速度与精度方面均超越现有已知目标检测器：在5-160 FPS范围内表现最优，并在GPU V100上以30+ FPS实现56.8% AP的最高精度。其YOLOv7-E6模型在V100上达到56 FPS和55.9% AP，相比基于Transformer的SWIN-L Cascade-Mask R-CNN（A100 9.2 FPS，53.9% AP）速度提升509%且精度提高2%；相较基于卷积的ConvNeXt-XL Cascade-Mask R-CNN（A100 8.6 FPS，55.2% AP）速度提升551%且精度提高0.7%。此外，YOLOv7在速度与精度上均优于YOLOR、YOLOX、YOLOv5等主流检测器，且仅使用MS COCO数据集从头训练，未借助任何预训练权重。\n源模型下载数据集下载模型许可证 >\n输入\n：\n640x640\n参数量\n：\n36.922M\n计算量\n：\n110.553 GFLOPs\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\n\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // YOLOV7模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::YOLOV7) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：头文件和动态库位于/samples/common目录下，编译配置参考文件\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n74.19\n耗时（ms）\n13.48\n性能（fps）\n454.059\n单帧内存带宽（MB）\n79.949\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "hbcci1q1oc00",
@@ -17001,7 +17122,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 50,
+      "downloadNum": 137,
       "collectCount": 0
     },
     "apiDetail": {
@@ -17281,19 +17402,26 @@
       "optional": null,
       "optionalList": null,
       "optionalBy": null,
-      "downloadNum": 50,
+      "downloadNum": 137,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "resnet50.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706935755866114/resnet50.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788353754&Signature=PuggHDB7c%2F5B0Prg8%2BGi4QVr7zE%3D",
+        "source": "om-auto"
+      },
+      {
+        "name": "resnet50.om",
+        "source": "om-a8w8"
+      },
+      {
         "name": "resnet50-0676ba61.pth",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706935699177473/resnet50-0676ba61.pth?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628773&Signature=A40YEr6rkbwqMSbSxdTFjUPLUHE%3D",
         "source": "source-model"
       },
       {
         "name": "resnet50.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706935726440451/resnet50.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628780&Signature=oifhWcZrNRp6TIKqmqAsrxfm8Yo%3D",
         "source": "source-model"
       },
       {
@@ -17330,7 +17458,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nResNet50\n分类\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2025-09-22 20:40:35\n指导文档\n交流反馈\n137\n0\n模型详情\nResNet是残差网络(Residual Network)的缩写,该系列网络广泛用于目标分类等领域以及作为计算机视觉任务主干经典神经网络的一部分，典型的网络有ResNet50, ResNet101等。ResNet证明网络能够向更深（包含更多隐藏层）的方向发展。\n源模型下载数据集下载模型许可证 >\n输入\n：\n224x224\n参数量\n：\n25.530M\n计算量\n：\n8.235GFLOPs\n模型详细参数\n快速开始\nC++\n\nResNet50模型可以通过以下代码完成快速推理\n\n\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // ResNet50模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::ResNet50) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n2.99\n耗时（ms）\n334.22\n性能（fps）\n27.342\n单帧内存带宽（MB）\n26.582\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "h9k2a5agkk00",
@@ -17366,7 +17494,7 @@
         "Hi3403V100 SVP_NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 7,
+      "downloadNum": 17,
       "collectCount": 0
     },
     "apiDetail": {
@@ -17552,19 +17680,26 @@
       "optional": null,
       "optionalList": null,
       "optionalBy": null,
-      "downloadNum": 7,
+      "downloadNum": 17,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "resnet18.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706935655137282/resnet18.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788353789&Signature=rzDnkO574RxJYiCrP%2Br3tacUqGM%3D",
+        "source": "om-auto"
+      },
+      {
+        "name": "resnet18.om",
+        "source": "om-a8w8"
+      },
+      {
         "name": "resnet18-f37072fd.pth",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706935606902785/resnet18-f37072fd.pth?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628800&Signature=3IirHYLFxdOy8zjQ7FTZVAx0F8I%3D",
         "source": "source-model"
       },
       {
         "name": "resnet18.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706935630036994/resnet18.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628803&Signature=d3Hw3xhZz7jQ59cjgnc82Em63iw%3D",
         "source": "source-model"
       },
       {
@@ -17593,7 +17728,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nResNet18\n分类\nHi3403V100 SVP_NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2025-09-17 09:26:27\n指导文档\n交流反馈\n17\n0\n模型详情\nResNet是残差网络(Residual Network)的缩写,该系列网络广泛用于目标分类等领域以及作为计算机视觉任务主干经典神经网络的一部分，典型的网络有ResNet18, ResNet101等。ResNet证明网络能够向更深（包含更多隐藏层）的方向发展。\n源模型下载数据集下载模型许可证 >\n输入\n：\n224x224\n参数量\n：\n11.685M\n计算量\n：\n3.643GFLOPs\n模型详细参数\n快速开始\nC++\n\nResNet18模型可以通过以下代码完成快速推理\n\n\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // ResNet18模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::ResNet18) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.35\n耗时（ms）\n738.62\n性能（fps）\n11.435\n单帧内存带宽（MB）\n13.43\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构，承上启下 提升计算效率的关键平台\n编译工具链\n高效编译，精准适配 AI性能优化，应用流畅运行\nSDK\n稳定、易用的设计 支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "h94sd5f0v800",
@@ -17629,7 +17764,7 @@
         "Hi3403V100 SVP_NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 9,
+      "downloadNum": 13,
       "collectCount": 0
     },
     "apiDetail": {
@@ -17815,19 +17950,21 @@
       "optional": null,
       "optionalList": null,
       "optionalBy": null,
-      "downloadNum": 9,
+      "downloadNum": 13,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "yolov8l.om",
+        "source": "om-auto"
+      },
+      {
         "name": "yolov8l.pt",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706936642895873/yolov8l.pt?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628820&Signature=ZKudu9ciZMoWkPdatThUsP4%2BLes%3D",
         "source": "source-model"
       },
       {
         "name": "yolov8l.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706936665964547/yolov8l.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628825&Signature=Gx32SHFRnVlC6ZmikTRZnnoPspg%3D",
         "source": "source-model"
       },
       {
@@ -17856,7 +17993,7 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nYOLOv8l\n检测\nHi3403V100 SVP_NNN\nPyTorch\nOpenHarmony\nLinux\nwbd1234\n2025-09-15 22:03:30\n指导文档\n交流反馈\n13\n0\n模型详情\nYOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv8l在之前的YOLO版本的基础上进行了改进，在继承了原有YOLO网络模型优点的基础上，引入了新的特效和优化，具有更高的检测精度。\n源模型下载数据集下载模型许可证 >\n输入\n：\n640x640\n参数量\n：\n43.694M\n计算量\n：\n170.256GFLOPs\n模型详细参数\n快速开始\nC++\n\nyolov8l 可以通过以下代码完成快速推理, 该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n\n\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main(int argc, char *argv[])\n{\n    InferParam inferParam;\n    ParseCmd(argc, argv, inferParam)\n    DevInit(inferParam.aclConfigPath);\n    ModelInfer(inferParam);\n    Infer::DevDeInit();\n    return 0;\n}\n\n备注：头文件和动态库位于/samples/common目录下，编译配置参考文件\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n93.842\n耗时（ms）\n10.656\n性能（fps）\n480.774\n单帧内存带宽（MB）\n90.754\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构，承上启下 提升计算效率的关键平台\n编译工具链\n高效编译，精准适配 AI性能优化，应用流畅运行\nSDK\n稳定、易用的设计 支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "h8eivmf56c00",
@@ -17893,7 +18030,7 @@
         "Hi3403V100 NNN"
       ],
       "isCollect": 0,
-      "downloadNum": 18,
+      "downloadNum": 33,
       "collectCount": 0
     },
     "apiDetail": {
@@ -18173,19 +18310,26 @@
       "optional": null,
       "optionalList": null,
       "optionalBy": null,
-      "downloadNum": 18,
+      "downloadNum": 33,
       "collectNum": null,
       "isCollect": null
     },
     "downloadUrls": [
       {
+        "name": "resnet101.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706935911055363/resnet101.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1788353816&Signature=cwaYNlf7C%2F8bpDLfxhTEaOnSe4Y%3D",
+        "source": "om-auto"
+      },
+      {
+        "name": "resnet101.om",
+        "source": "om-a8w8"
+      },
+      {
         "name": "resnet101.onnx",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706935845978113/resnet101.onnx?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628854&Signature=888hVzoCo2Z8Ilm62ojLg%2BLU7RI%3D",
         "source": "source-model"
       },
       {
         "name": "resnet101-63fe2227.pth",
-        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1706935808229378/resnet101-63fe2227.pth?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1774628873&Signature=Bn%2F6N3lYTNTwxDKdsG%2FXl1BCA5Y%3D",
         "source": "source-model"
       },
       {
@@ -18222,6 +18366,6 @@
       }
     ],
     "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nDeepSort\n多目标跟踪\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2026-03-26 23:59:38\n指导文档\n交流反馈\n82\n0\n模型详情\nDeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。\n源模型下载模型许可证 >\n计算量\n：\n2.253GFLOPs\n输入\n：\n128x64\n参数量\n：\n11.164M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\nint main(int argc, char **argv) {\n  if (argc < 4) {\n    std::cerr << \"Usage: ./main <yolov5.om> <resnet18.om> \"\n           \"<image_dir_or_file> [config.json]\" << std::endl;\n    return -1;\n  }\n\n\n  // 初始化 NPU 驱动设备\n  if (Infer::DevInit(\"\") != Infer::SUCCESS) {\n    std::cerr << \"Device Init Failed.\" << std::endl;\n    return -1;\n  }\n\n\n  // 构建默认超参数配置\n  DeepSORTConfig config;\n  config.yoloModelPath = argv[1];\n  config.resnetModelPath = argv[2];\n  config.yoloConfThres = 0.3f;\n  config.yoloNmsThres = 0.4f;\n  config.maxCosineDistance = 0.15f;\n  config.nnBudget = 100;\n\n\n  // 卡尔曼滤波器数学对齐自检\n  RunKalmanParityCheck();\n  std::string configPath = (argc > 4) ? argv[4] : \"\";\n  if (!configPath.empty()) {\n    LoadConfigFromJson(configPath, config);\n  }\n\n\n  std::string inputPath = argv[3];\n  std::string outFilename = BuildOutputFilename(inputPath);\n  {\n    DeepSortController deepSort(config);\n    if (deepSort.Init() != Infer::SUCCESS) {\n      std::cerr << \"DeepSort Init Failed.\" << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    std::vector<std::string> framePaths = GetFramePaths(inputPath);\n    if (framePaths.empty()) {\n      std::cerr << \"No image files found in: \" << inputPath << std::endl;\n      Infer::DevDeInit();\n      return -1;\n    }\n\n\n    RunTrackingPipeline(deepSort, framePaths, outFilename);\n  }\n\n\n  Infer::DevDeInit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n1.443\n耗时（ms）\n693.28\n性能（fps）\n59.863\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAI异构计算架构\n提升计算效率的关键平台\n编译工具库\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nResNet101\n分类\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\n0e900d99dee8461b8\n2025-09-13 18:06:31\n指导文档\n交流反馈\n33\n0\n模型详情\nResNet是ImageNet竞赛中分类问题效果较好的网络，它引入了残差学习的概念，通过增加直连通道来保护信息的完整性，解决信息丢失、梯度消失、梯度爆炸等问题，让很深的网络也得以训练。ResNet有不同的网络层数，常用的有18-layer、34-layer、50-layer、101-layer、152-layer。\n源模型下载数据集下载模型许可证 >\n输入\n：\n224x224\n参数量\n：\n44.496M\n计算量\n：\n15.686GFLOPs\n模型详细参数\n快速开始\nC++\n\nResNet101模型可以通过以下代码完成快速推理\n\n\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // ResNet101模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::ResNet101) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n4.76\n耗时（ms）\n210.03\n性能（fps）\n45.933\n单帧内存带宽（MB）\n46.348\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构，承上启下 提升计算效率的关键平台\n编译工具链\n高效编译，精准适配 AI性能优化，应用流畅运行\nSDK\n稳定、易用的设计 支撑客户快速产品量产\n支持的操作系统"
   }
 ]

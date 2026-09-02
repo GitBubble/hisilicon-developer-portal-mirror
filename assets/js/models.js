@@ -5,7 +5,7 @@ const modelsData = [
         "name": "Swin-Transformer",
         "description": "Swin-Transformer是针对于图片处理设计的基于Transformer架构的神经网络。该网络针对原始Transformer迁移到图片端后计算量过大，复用困难的问题，提出了新的swin-block以代替原有的attention架构。模型以窗口的attention方式极大地减少了图像不同区域间的互相响应，同时也避免了部分冗余信息的产生。最终，模型在减少了大量计算量的同时，在不同的视觉传统任务上也有了效果的提升。",
         "descriptionZh": "Swin-Transformer是针对于图片处理设计的基于Transformer架构的神经网络。该网络针对原始Transformer迁移到图片端后计算量过大，复用困难的问题，提出了新的swin-block以代替原有的attention架构。模型以窗口的attention方式极大地减少了图像不同区域间的互相响应，同时也避免了部分冗余信息的产生。最终，模型在减少了大量计算量的同时，在不同的视觉传统任务上也有了效果的提升。",
-        "descriptionEn": "Swin-Transformer is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 12 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "Swin-Transformer is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 9 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-08-26 16:38:28",
         "updatedAt": "2026-09-01 16:13:06",
         "badge": null,
@@ -86,81 +86,51 @@ const modelsData = [
                 "title": "swin.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-swin-transformer/resolve/main/swin.om",
                 "available": true,
-                "source": "om-A8W8",
-                "sourceLabel": "A8W8",
-                "group": "编译模型",
-                "note": "",
-                "localFile": "swin.om"
-            },
-            {
-                "title": "swin.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-swin-transformer/resolve/main/swin.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "swin.onnx"
-            },
-            {
-                "title": "swin_tiny_patch4_window7_224.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-swin-transformer/resolve/main/swin_tiny_patch4_window7_224.pth",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "swin_tiny_patch4_window7_224.pth"
-            },
-            {
-                "title": "swin_sim.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-swin-transformer/resolve/main/swin_sim.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "swin_sim.onnx"
-            },
-            {
-                "title": "swin.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-swin-transformer/resolve/main/swin.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "swin.onnx"
-            },
-            {
-                "title": "swin_tiny_patch4_window7_224.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-swin-transformer/resolve/main/swin_tiny_patch4_window7_224.pth",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "swin_tiny_patch4_window7_224.pth"
-            },
-            {
-                "title": "swin_sim.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-swin-transformer/resolve/main/swin_sim.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "swin_sim.onnx"
-            },
-            {
-                "title": "swin.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-swin-transformer/resolve/main/swin.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
                 "group": "编译模型",
                 "note": "A8W8",
                 "localFile": "swin.om"
+            },
+            {
+                "title": "swin_dlite.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-swin-transformer/resolve/main/swin_dlite.om",
+                "available": true,
+                "source": "om-FP16",
+                "sourceLabel": "FP16",
+                "group": "编译模型",
+                "note": "FP16",
+                "localFile": "swin_dlite.om"
+            },
+            {
+                "title": "swin.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-swin-transformer/resolve/main/swin.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "swin.onnx"
+            },
+            {
+                "title": "swin_tiny_patch4_window7_224.pth",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-swin-transformer/resolve/main/swin_tiny_patch4_window7_224.pth",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "swin_tiny_patch4_window7_224.pth"
+            },
+            {
+                "title": "swin_sim.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-swin-transformer/resolve/main/swin_sim.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "swin_sim.onnx"
             },
             {
                 "title": "CANN工具",
@@ -193,14 +163,14 @@ const modelsData = [
                 "localFile": null
             },
             {
-                "title": "swin_dlite.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-swin-transformer/resolve/main/swin_dlite.om",
+                "title": "swin_om-A8W8.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-swin-transformer/resolve/main/swin_om-A8W8.om",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
                 "group": "编译模型",
-                "note": "FP16",
-                "localFile": null
+                "note": "",
+                "localFile": "swin_om-A8W8.om"
             }
         ]
     },
@@ -209,7 +179,7 @@ const modelsData = [
         "name": "EfficientNetV2",
         "description": "EfficientNetV2是一系列图像分类模型，与现有技术相比，其实现了更好的参数效率和更快的训练速度。基于EfficientNetV1，Efficient NetV2模型使用神经架构搜索（NAS）来联合优化模型大小和训练速度，并以更快的训练和推理速度进行扩展。",
         "descriptionZh": "EfficientNetV2是一系列图像分类模型，与现有技术相比，其实现了更好的参数效率和更快的训练速度。基于EfficientNetV1，Efficient NetV2模型使用神经架构搜索（NAS）来联合优化模型大小和训练速度，并以更快的训练和推理速度进行扩展。",
-        "descriptionEn": "EfficientNetV2 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 8 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "EfficientNetV2 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-08-26 16:15:43",
         "updatedAt": "2026-09-01 16:13:06",
         "badge": null,
@@ -286,17 +256,7 @@ const modelsData = [
                 "source": "om-A8W8",
                 "sourceLabel": "A8W8",
                 "group": "编译模型",
-                "note": "",
-                "localFile": "efficientnetv2.om"
-            },
-            {
-                "title": "efficientnetv2.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-efficientnetv2/resolve/main/efficientnetv2.om",
-                "available": true,
-                "source": "om-FP16",
-                "sourceLabel": "FP16",
-                "group": "编译模型",
-                "note": "",
+                "note": "A8W8 / FP16",
                 "localFile": "efficientnetv2.om"
             },
             {
@@ -318,36 +278,6 @@ const modelsData = [
                 "group": "源模型",
                 "note": "",
                 "localFile": "efficientnetv2_t_agc-3620981a.pth"
-            },
-            {
-                "title": "efficientnetv2.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-efficientnetv2/resolve/main/efficientnetv2.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "efficientnetv2.onnx"
-            },
-            {
-                "title": "efficientnetv2_t_agc-3620981a.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-efficientnetv2/resolve/main/efficientnetv2_t_agc-3620981a.pth",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "efficientnetv2_t_agc-3620981a.pth"
-            },
-            {
-                "title": "efficientnetv2.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-efficientnetv2/resolve/main/efficientnetv2.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "A8W8",
-                "localFile": "efficientnetv2.om"
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -358,6 +288,16 @@ const modelsData = [
                 "group": "附加资源",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "vit_base_patch16_224.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-efficientnetv2/resolve/main/vit_base_patch16_224.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "vit_base_patch16_224.om"
             }
         ]
     },
@@ -366,7 +306,7 @@ const modelsData = [
         "name": "TinySam",
         "description": "TinySAM 通过全阶段知识蒸馏、在线硬提示采样、量化等系列优化策略，构建轻量级 “万物分割” 模型，解决了原始 SAM 模型计算量大、部署困难的痛点，助力高效分割任务在资源受限场景下的应用。",
         "descriptionZh": "TinySAM 通过全阶段知识蒸馏、在线硬提示采样、量化等系列优化策略，构建轻量级 “万物分割” 模型，解决了原始 SAM 模型计算量大、部署困难的痛点，助力高效分割任务在资源受限场景下的应用。",
-        "descriptionEn": "TinySam is a computer vision model for segmentation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 14 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "TinySam is a computer vision model for segmentation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 13 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-08-26 16:13:05",
         "updatedAt": "2026-09-01 16:13:06",
         "badge": null,
@@ -447,91 +387,71 @@ const modelsData = [
                 "title": "tinysam改后缀为zip解压后使用.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/tinysam%E6%94%B9%E5%90%8E%E7%BC%80%E4%B8%BAzip%E8%A7%A3%E5%8E%8B%E5%90%8E%E4%BD%BF%E7%94%A8.om",
                 "available": true,
-                "source": "om-A8W8",
-                "sourceLabel": "A8W8",
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
                 "group": "编译模型",
-                "note": "",
+                "note": "A8W8",
                 "localFile": "tinysam改后缀为zip解压后使用.om"
             },
             {
-                "title": "tinysam改后缀为zip解压后使用.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/tinysam%E6%94%B9%E5%90%8E%E7%BC%80%E4%B8%BAzip%E8%A7%A3%E5%8E%8B%E5%90%8E%E4%BD%BF%E7%94%A8.om",
+                "title": "prompt_encoder_deploy_model.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/prompt_encoder_deploy_model.om",
                 "available": true,
                 "source": "om-FP16",
                 "sourceLabel": "FP16",
                 "group": "编译模型",
-                "note": "",
-                "localFile": "tinysam改后缀为zip解压后使用.om"
+                "note": "FP16",
+                "localFile": "prompt_encoder_deploy_model.om"
             },
             {
-                "title": "tinysam.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/tinysam.pth",
+                "title": "image_encoder_deploy_model.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/image_encoder_deploy_model.om",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "tinysam.pth"
-            },
-            {
-                "title": "model_onnx_svp_nnn.zip",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/model_onnx_svp_nnn.zip",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "model_onnx_svp_nnn.zip"
-            },
-            {
-                "title": "model_nnn_onnx.zip",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/model_nnn_onnx.zip",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "model_nnn_onnx.zip"
-            },
-            {
-                "title": "tinysam.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/tinysam.pth",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "tinysam.pth"
-            },
-            {
-                "title": "model_onnx_svp_nnn.zip",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/model_onnx_svp_nnn.zip",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "model_onnx_svp_nnn.zip"
-            },
-            {
-                "title": "model_nnn_onnx.zip",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/model_nnn_onnx.zip",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "model_nnn_onnx.zip"
-            },
-            {
-                "title": "tinysam改后缀为zip解压后使用.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/tinysam%E6%94%B9%E5%90%8E%E7%BC%80%E4%B8%BAzip%E8%A7%A3%E5%8E%8B%E5%90%8E%E4%BD%BF%E7%94%A8.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
+                "source": "om-FP16",
+                "sourceLabel": "FP16",
                 "group": "编译模型",
-                "note": "A8W8",
-                "localFile": "tinysam改后缀为zip解压后使用.om"
+                "note": "FP16",
+                "localFile": "image_encoder_deploy_model.om"
+            },
+            {
+                "title": "mask_decoder_deploy_model.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/mask_decoder_deploy_model.om",
+                "available": true,
+                "source": "om-FP16",
+                "sourceLabel": "FP16",
+                "group": "编译模型",
+                "note": "FP16",
+                "localFile": "mask_decoder_deploy_model.om"
+            },
+            {
+                "title": "tinysam.pth",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/tinysam.pth",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "tinysam.pth"
+            },
+            {
+                "title": "model_onnx_svp_nnn.zip",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/model_onnx_svp_nnn.zip",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "model_onnx_svp_nnn.zip"
+            },
+            {
+                "title": "model_nnn_onnx.zip",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/model_nnn_onnx.zip",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "model_nnn_onnx.zip"
             },
             {
                 "title": "CANN配置",
@@ -554,34 +474,44 @@ const modelsData = [
                 "localFile": null
             },
             {
-                "title": "prompt_encoder_deploy_model.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/prompt_encoder_deploy_model.onnx",
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "FP16",
-                "localFile": "prompt_encoder_deploy_model.onnx"
+                "source": "toolkit",
+                "sourceLabel": "工具链",
+                "group": "工具链",
+                "note": "",
+                "localFile": null
             },
             {
-                "title": "image_encoder_deploy_model.om",
+                "title": "image_encoder_deploy_model.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/image_encoder_deploy_model.onnx",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "FP16",
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
                 "localFile": "image_encoder_deploy_model.onnx"
             },
             {
-                "title": "mask_decoder_deploy_model.om",
+                "title": "mask_decoder_deploy_model.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/mask_decoder_deploy_model.onnx",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "FP16",
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
                 "localFile": "mask_decoder_deploy_model.onnx"
+            },
+            {
+                "title": "prompt_encoder_deploy_model.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/prompt_encoder_deploy_model.onnx",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "prompt_encoder_deploy_model.onnx"
             }
         ]
     },
@@ -590,7 +520,7 @@ const modelsData = [
         "name": "YOLOv10s",
         "description": "YOLOv10 引入了一种新的实时目标检测方法，解决了以前YOLO 版本在后处理和模型架构方面的不足。通过消除非最大抑制NMS和优化各种模型组件，YOLOv10 显著降低了计算开销。本示例基于YOLOv10s。",
         "descriptionZh": "YOLOv10 引入了一种新的实时目标检测方法，解决了以前YOLO 版本在后处理和模型架构方面的不足。通过消除非最大抑制NMS和优化各种模型组件，YOLOv10 显著降低了计算开销。本示例基于YOLOv10s。",
-        "descriptionEn": "YOLOv10s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv10s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-08-25 17:33:30",
         "updatedAt": "2026-09-01 16:13:06",
         "badge": null,
@@ -667,7 +597,7 @@ const modelsData = [
                 "source": "om-A16W8",
                 "sourceLabel": "A16W8",
                 "group": "编译模型",
-                "note": "",
+                "note": "A16W8 / FP16",
                 "localFile": "yolov10s.om"
             },
             {
@@ -689,36 +619,6 @@ const modelsData = [
                 "group": "源模型",
                 "note": "",
                 "localFile": "yolov10s.pt"
-            },
-            {
-                "title": "yolov10s.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/yolov10s.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov10s.onnx"
-            },
-            {
-                "title": "yolov10s.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/yolov10s.pt",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov10s.pt"
-            },
-            {
-                "title": "yolov10s.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/yolov10s.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "A16W8",
-                "localFile": "yolov10s.om"
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -729,6 +629,26 @@ const modelsData = [
                 "group": "附加资源",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "yolov10s_source-model.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/yolov10s_source-model.onnx",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov10s_source-model.onnx"
+            },
+            {
+                "title": "yolov10s_source-model.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/yolov10s_source-model.pt",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov10s_source-model.pt"
             }
         ]
     },
@@ -737,7 +657,7 @@ const modelsData = [
         "name": "FSMN-KWS",
         "description": "小云唤醒词检测模型基于CharCTC（Character-level Connectionist Temporal Classification）架构，用于检测语音中的特定唤醒词\"小云小云\"。模型提取音频的Fbank特征，通过LFR（Low Frame Rate）降采样和CMVN归一化后进行CTC解码，输出关键词检测结果。",
         "descriptionZh": "小云唤醒词检测模型基于CharCTC（Character-level Connectionist Temporal Classification）架构，用于检测语音中的特定唤醒词\"小云小云\"。模型提取音频的Fbank特征，通过LFR（Low Frame Rate）降采样和CMVN归一化后进行CTC解码，输出关键词检测结果。",
-        "descriptionEn": "FSMN-KWS is a video model for 关键字检测. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: Linux. Compute targets: Hi3516CV610. The mirror currently exposes 12 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "FSMN-KWS is a video model for 关键字检测. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: Linux. Compute targets: Hi3516CV610. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-08-24 09:19:53",
         "updatedAt": "2026-09-01 16:13:07",
         "badge": null,
@@ -826,7 +746,7 @@ const modelsData = [
                 "source": "om-A8W8",
                 "sourceLabel": "A8W8",
                 "group": "编译模型",
-                "note": "",
+                "note": "A8W8",
                 "localFile": "kws-610.om"
             },
             {
@@ -836,7 +756,7 @@ const modelsData = [
                 "source": "om-A8W8",
                 "sourceLabel": "A8W8",
                 "group": "编译模型",
-                "note": "",
+                "note": "A8W8",
                 "localFile": "kws-610-a.om"
             },
             {
@@ -878,66 +798,6 @@ const modelsData = [
                 "group": "源模型",
                 "note": "",
                 "localFile": "speech_charctc_kws_phone-xiaoyun_151.onnx"
-            },
-            {
-                "title": "speech_charctc_kws_phone-xiaoyun_onnxsim_364.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/speech_charctc_kws_phone-xiaoyun_onnxsim_364.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "speech_charctc_kws_phone-xiaoyun_onnxsim_364.onnx"
-            },
-            {
-                "title": "speech_charctc_kws_phone-xiaoyun_onnxsim_151.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/speech_charctc_kws_phone-xiaoyun_onnxsim_151.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "speech_charctc_kws_phone-xiaoyun_onnxsim_151.onnx"
-            },
-            {
-                "title": "speech_charctc_kws_phone-xiaoyun_364.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/speech_charctc_kws_phone-xiaoyun_364.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "speech_charctc_kws_phone-xiaoyun_364.onnx"
-            },
-            {
-                "title": "speech_charctc_kws_phone-xiaoyun_151.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/speech_charctc_kws_phone-xiaoyun_151.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "speech_charctc_kws_phone-xiaoyun_151.onnx"
-            },
-            {
-                "title": "kws-610.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/kws-610.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "A8W8",
-                "localFile": "kws-610.om"
-            },
-            {
-                "title": "kws-610-a.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/kws-610-a.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "A8W8",
-                "localFile": "kws-610-a.om"
             }
         ]
     },
@@ -946,7 +806,7 @@ const modelsData = [
         "name": "YOLO26s",
         "description": "YOLO26s 是 Ultralytics YOLO 系列中的小型目标检测模型，适合在边缘设备上进行实时目标检测。",
         "descriptionZh": "YOLO26s 是 Ultralytics YOLO 系列中的小型目标检测模型，适合在边缘设备上进行实时目标检测。",
-        "descriptionEn": "YOLO26s is a computer vision model for detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLO26s is a computer vision model for detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-08-22 19:03:36",
         "updatedAt": "2026-09-01 16:13:07",
         "badge": null,
@@ -1016,17 +876,7 @@ const modelsData = [
                 "source": "om-A8W8",
                 "sourceLabel": "A8W8",
                 "group": "编译模型",
-                "note": "",
-                "localFile": "yolo26s_dpiconew.om"
-            },
-            {
-                "title": "yolo26s_dpiconew.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s/resolve/main/yolo26s_dpiconew.om",
-                "available": true,
-                "source": "om-FP16",
-                "sourceLabel": "FP16",
-                "group": "编译模型",
-                "note": "",
+                "note": "A8W8",
                 "localFile": "yolo26s_dpiconew.om"
             },
             {
@@ -1040,26 +890,6 @@ const modelsData = [
                 "localFile": "yolo26s.onnx"
             },
             {
-                "title": "yolo26s.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s/resolve/main/yolo26s.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolo26s.onnx"
-            },
-            {
-                "title": "yolo26s_dpiconew.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s/resolve/main/yolo26s_dpiconew.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "A8W8",
-                "localFile": "yolo26s_dpiconew.om"
-            },
-            {
                 "title": "yolo26s.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s/resolve/main/yolo26s_dpiconew.om",
                 "available": true,
@@ -1071,7 +901,7 @@ const modelsData = [
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.5.tgz",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
+                "href": "https://hf-mirror.com/shadow-cann/svp-nnn-pc/resolve/main/SVP_NNN_PC_V1.0.6.5.tgz",
                 "available": true,
                 "source": "api-all",
                 "sourceLabel": "附加资源",
@@ -1086,7 +916,7 @@ const modelsData = [
         "name": "FastSpeech2",
         "description": "FastSpeech2 是一种高效的端到端语音合成模型。相比 FastSpeech，FastSpeech2 引入了多尺度时长预测器和能量 / 基频预测分支，优化了时长预测模块并新增韵律特征建模，在合成速度和语音自然度上均有大幅提升。",
         "descriptionZh": "FastSpeech2 是一种高效的端到端语音合成模型。相比 FastSpeech，FastSpeech2 引入了多尺度时长预测器和能量 / 基频预测分支，优化了时长预测模块并新增韵律特征建模，在合成速度和语音自然度上均有大幅提升。",
-        "descriptionEn": "FastSpeech2 is a audio model for text-to-speech. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: Linux and OpenHarmony. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 8 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "FastSpeech2 is a audio model for text-to-speech. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: Linux and OpenHarmony. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-05-29 09:26:03",
         "updatedAt": "2026-09-01 16:13:07",
         "badge": null,
@@ -1160,81 +990,51 @@ const modelsData = [
                 "title": "fastspeech_hifigan_en.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fastspeech2/resolve/main/fastspeech_hifigan_en.om",
                 "available": true,
-                "source": "om-A16W8",
-                "sourceLabel": "A16W8",
-                "group": "编译模型",
-                "note": "",
-                "localFile": "fastspeech_hifigan_en.om"
-            },
-            {
-                "title": "fastspeech_hifigan_en.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fastspeech2/resolve/main/fastspeech_hifigan_en.om",
-                "available": true,
-                "source": "om-FP16",
-                "sourceLabel": "FP16",
-                "group": "编译模型",
-                "note": "",
-                "localFile": "fastspeech_hifigan_en.om"
-            },
-            {
-                "title": "fastspeech_hifigan_en_nnn.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fastspeech2/resolve/main/fastspeech_hifigan_en_nnn.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "fastspeech_hifigan_en_nnn.onnx"
-            },
-            {
-                "title": "fastspeech_hifigan_en_svp_nnn.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fastspeech2/resolve/main/fastspeech_hifigan_en_svp_nnn.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "fastspeech_hifigan_en_svp_nnn.onnx"
-            },
-            {
-                "title": "fastspeech_hifigan_en_nnn.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fastspeech2/resolve/main/fastspeech_hifigan_en_nnn.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "fastspeech_hifigan_en_nnn.onnx"
-            },
-            {
-                "title": "fastspeech_hifigan_en_svp_nnn.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fastspeech2/resolve/main/fastspeech_hifigan_en_svp_nnn.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "fastspeech_hifigan_en_svp_nnn.onnx"
-            },
-            {
-                "title": "fastspeech_hifigan_en.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fastspeech2/resolve/main/fastspeech_hifigan_en.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
                 "group": "编译模型",
                 "note": "A16W8",
                 "localFile": "fastspeech_hifigan_en.om"
             },
             {
                 "title": "fastspeech_hifigan_en_nnn.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fastspeech2/resolve/main/fastspeech_hifigan_en_nnn.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fastspeech2/resolve/main/fastspeech_hifigan_en_nnn.om",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
+                "source": "om-FP16",
+                "sourceLabel": "FP16",
                 "group": "编译模型",
                 "note": "FP16",
+                "localFile": "fastspeech_hifigan_en_nnn.om"
+            },
+            {
+                "title": "fastspeech_hifigan_en_nnn.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fastspeech2/resolve/main/fastspeech_hifigan_en_nnn.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
                 "localFile": "fastspeech_hifigan_en_nnn.onnx"
+            },
+            {
+                "title": "fastspeech_hifigan_en_svp_nnn.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fastspeech2/resolve/main/fastspeech_hifigan_en_svp_nnn.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "fastspeech_hifigan_en_svp_nnn.onnx"
+            },
+            {
+                "title": "fastspeech_hifigan_en.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fastspeech2/resolve/main/fastspeech_hifigan_en.onnx",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "fastspeech_hifigan_en.onnx"
             }
         ]
     },
@@ -1243,7 +1043,7 @@ const modelsData = [
         "name": "MiniCPM-4v-0.5B",
         "description": "MiniCPM-4v-0.5B: 小参数, 大智慧——端侧多模态模型\n\n由面壁智能(OpenBMB)打造的MiniCPM-4v-0.5B, 以0.53B的精简参数量，在端侧设备上实现了卓越的图文理解与交互能力。专为边缘计算场景设计，让每一分算力都充分发挥价值。\n\n三大核心优势：\n    1. 创新架构，轻装上阵\n通过创新的稀疏感知训练和视觉压缩技术，实现 16:1 视觉特征压缩比，在保证高精度的同时，极大降低了推理算力消耗与内存占用。\n    2. 高能数据，以小博大\n依托高密度数据体系，数据准备成本下降90%。通过汇聚全球高质量语料进行精细化对齐，用优质的数据训练模型，实现越级性能表现。\n    3. 高效训练，成本锐减\n采用原创 WSD 调度策略与“模型风洞”技术，相比传统方案，搜索算力节省超99%，整体训练成本节省约60%，为端侧模型的持续迭代提供高效路径。\n\n海思平台技术支撑：\n现已适配 Hi3403V100 平台，持续生成速度达 21 tokens/s，为边缘侧设备提供流程、敏捷的智能视觉体验。",
         "descriptionZh": "MiniCPM-4v-0.5B: 小参数, 大智慧——端侧多模态模型\n\n由面壁智能(OpenBMB)打造的MiniCPM-4v-0.5B, 以0.53B的精简参数量，在端侧设备上实现了卓越的图文理解与交互能力。专为边缘计算场景设计，让每一分算力都充分发挥价值。\n\n三大核心优势：\n    1. 创新架构，轻装上阵\n通过创新的稀疏感知训练和视觉压缩技术，实现 16:1 视觉特征压缩比，在保证高精度的同时，极大降低了推理算力消耗与内存占用。\n    2. 高能数据，以小博大\n依托高密度数据体系，数据准备成本下降90%。通过汇聚全球高质量语料进行精细化对齐，用优质的数据训练模型，实现越级性能表现。\n    3. 高效训练，成本锐减\n采用原创 WSD 调度策略与“模型风洞”技术，相比传统方案，搜索算力节省超99%，整体训练成本节省约60%，为端侧模型的持续迭代提供高效路径。\n\n海思平台技术支撑：\n现已适配 Hi3403V100 平台，持续生成速度达 21 tokens/s，为边缘侧设备提供流程、敏捷的智能视觉体验。",
-        "descriptionEn": "MiniCPM-4v-0. 5B is a natural language processing model for VLM. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 1 downloadable artifact, along with quick-start resources when available.",
+        "descriptionEn": "MiniCPM-4v-0. 5B is a natural language processing model for VLM. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 10 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-05-21 11:51:11",
         "updatedAt": "2026-06-26 21:38:44",
         "badge": "Beta",
@@ -1293,8 +1093,8 @@ const modelsData = [
         "hfRepoId": "shadow-cann/minicpm-v-0.5B",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/tree/main",
-        "primaryDownloadLabel": "OM 文件 2.zip",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/resolve/main/decode.om",
+        "primaryDownloadLabel": "decode.om",
         "downloads": [
             {
                 "title": "OM 文件 2.zip",
@@ -1305,6 +1105,96 @@ const modelsData = [
                 "group": "附加资源",
                 "note": "",
                 "localFile": null
+            },
+            {
+                "title": "MiniCPM-V 0.5B 模型开源发布授权协议-面壁智能&海思（HiSpark）.pdf",
+                "href": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/resolve/main/MiniCPM-V%200.5B%20%E6%A8%A1%E5%9E%8B%E5%BC%80%E6%BA%90%E5%8F%91%E5%B8%83%E6%8E%88%E6%9D%83%E5%8D%8F%E8%AE%AE-%E9%9D%A2%E5%A3%81%E6%99%BA%E8%83%BD%26%E6%B5%B7%E6%80%9D%EF%BC%88HiSpark%EF%BC%89.pdf",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "MiniCPM-V 0.5B 模型开源发布授权协议-面壁智能&海思（HiSpark）.pdf"
+            },
+            {
+                "title": "decode.om",
+                "href": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/resolve/main/decode.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "decode.om"
+            },
+            {
+                "title": "prefill_decode.om",
+                "href": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/resolve/main/prefill_decode.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "prefill_decode.om"
+            },
+            {
+                "title": "resample.om",
+                "href": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/resolve/main/resample.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "resample.om"
+            },
+            {
+                "title": "rotary_position_emb0.bin",
+                "href": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/resolve/main/rotary_position_emb0.bin",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "rotary_position_emb0.bin"
+            },
+            {
+                "title": "rotary_position_emb1.bin",
+                "href": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/resolve/main/rotary_position_emb1.bin",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "rotary_position_emb1.bin"
+            },
+            {
+                "title": "token_emb.bin",
+                "href": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/resolve/main/token_emb.bin",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "token_emb.bin"
+            },
+            {
+                "title": "tokenizer.json",
+                "href": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/resolve/main/tokenizer.json",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "tokenizer.json"
+            },
+            {
+                "title": "vision.om",
+                "href": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/resolve/main/vision.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "vision.om"
             }
         ]
     },
@@ -1414,7 +1304,7 @@ const modelsData = [
                 "source": "om-FP16",
                 "sourceLabel": "FP16",
                 "group": "编译模型",
-                "note": "",
+                "note": "A8W8 / FP16",
                 "localFile": "yolov8s-worldv2.om"
             },
             {
@@ -1498,16 +1388,6 @@ const modelsData = [
                 "localFile": "text_feature.zip"
             },
             {
-                "title": "yolov8s-worldv2.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv2.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "A8W8",
-                "localFile": "yolov8s-worldv2.om"
-            },
-            {
                 "title": "编译工具链",
                 "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
                 "available": true,
@@ -1526,6 +1406,16 @@ const modelsData = [
                 "group": "工具链",
                 "note": "",
                 "localFile": null
+            },
+            {
+                "title": "yolov8s-worldv2_om-FP16.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv2_om-FP16.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "yolov8s-worldv2_om-FP16.om"
             }
         ]
     },
@@ -1534,7 +1424,7 @@ const modelsData = [
         "name": "Vit-B-16",
         "description": "Vision Transformer（ViT）模型在计算机视觉领域中对CNN的依赖不是必需的，直接将其应用于图像块序列来进行图像分类时，也能得到和目前卷积网络相媲美的准确率。",
         "descriptionZh": "Vision Transformer（ViT）模型在计算机视觉领域中对CNN的依赖不是必需的，直接将其应用于图像块序列来进行图像分类时，也能得到和目前卷积网络相媲美的准确率。",
-        "descriptionEn": "Vit-B-16 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 9 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "Vit-B-16 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-04-14 16:32:53",
         "updatedAt": "2026-05-12 19:06:21",
         "badge": null,
@@ -1611,7 +1501,7 @@ const modelsData = [
                 "source": "om-A16W8",
                 "sourceLabel": "A16W8",
                 "group": "编译模型",
-                "note": "",
+                "note": "A16W8 / FP16",
                 "localFile": "vit_base_patch16_224.om"
             },
             {
@@ -1645,36 +1535,6 @@ const modelsData = [
                 "localFile": "vit_base_patch16_224_bs1.onnx"
             },
             {
-                "title": "vit_base_patch16_224.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vit-b-16/resolve/main/vit_base_patch16_224.pt",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "vit_base_patch16_224.pt"
-            },
-            {
-                "title": "vit_base_patch16_224_bs1.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vit-b-16/resolve/main/vit_base_patch16_224_bs1.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "vit_base_patch16_224_bs1.onnx"
-            },
-            {
-                "title": "vit_base_patch16_224.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vit-b-16/resolve/main/vit_base_patch16_224.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "A16W8",
-                "localFile": "vit_base_patch16_224.om"
-            },
-            {
                 "title": "CANN配置",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
@@ -1693,6 +1553,16 @@ const modelsData = [
                 "group": "工具链",
                 "note": "",
                 "localFile": null
+            },
+            {
+                "title": "vit_base_patch16_224_om-A16W8.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vit-b-16/resolve/main/vit_base_patch16_224_om-A16W8.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "vit_base_patch16_224_om-A16W8.om"
             }
         ]
     },
@@ -1701,7 +1571,7 @@ const modelsData = [
         "name": "YOLOv9s",
         "description": "YOLOv9s 是 Ultralytics 推出的目标检测模型，采用了 GELAN 架构和 PGI 训练策略。相比于之前的版本，YOLOv9 在保持高效推理的同时，通过可编程梯度信息（PGI）进一步提升了检测精度。该模型在 COCO 数据集上进行了训练和验证。",
         "descriptionZh": "YOLOv9s 是 Ultralytics 推出的目标检测模型，采用了 GELAN 架构和 PGI 训练策略。相比于之前的版本，YOLOv9 在保持高效推理的同时，通过可编程梯度信息（PGI）进一步提升了检测精度。该模型在 COCO 数据集上进行了训练和验证。",
-        "descriptionEn": "YOLOv9s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 10 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv9s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-04-03 10:29:46",
         "updatedAt": "2026-04-08 16:07:07",
         "badge": null,
@@ -1778,7 +1648,7 @@ const modelsData = [
                 "source": "om-A16W8",
                 "sourceLabel": "A16W8",
                 "group": "编译模型",
-                "note": "",
+                "note": "A16W8 / FP16",
                 "localFile": "yolov9s.om"
             },
             {
@@ -1810,36 +1680,6 @@ const modelsData = [
                 "group": "源模型",
                 "note": "",
                 "localFile": "yolov9s.onnx"
-            },
-            {
-                "title": "yolov9s.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov9s/resolve/main/yolov9s.pt",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov9s.pt"
-            },
-            {
-                "title": "yolov9s.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov9s/resolve/main/yolov9s.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov9s.onnx"
-            },
-            {
-                "title": "yolov9s.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov9s/resolve/main/yolov9s.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "A16W8",
-                "localFile": "yolov9s.om"
             },
             {
                 "title": "CANN工具",
@@ -1878,7 +1718,7 @@ const modelsData = [
         "name": "PaddleOCRv4-rec",
         "description": "PP-OCRv4识别模型在PP-OCRv3的基础上进一步升级。整体的框架保持了与PP-OCRv3识别模型相同的pipeline，分别进行了数据、网络结构、训练策略等方面的优化。",
         "descriptionZh": "PP-OCRv4识别模型在PP-OCRv3的基础上进一步升级。整体的框架保持了与PP-OCRv3识别模型相同的pipeline，分别进行了数据、网络结构、训练策略等方面的优化。",
-        "descriptionEn": "PaddleOCRv4-rec is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 8 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "PaddleOCRv4-rec is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-04-02 09:49:40",
         "updatedAt": "2026-04-08 16:07:07",
         "badge": "Beta",
@@ -1955,7 +1795,7 @@ const modelsData = [
                 "source": "om-A8W8",
                 "sourceLabel": "A8W8",
                 "group": "编译模型",
-                "note": "",
+                "note": "A8W8 / FP16",
                 "localFile": "rec.om"
             },
             {
@@ -2009,16 +1849,6 @@ const modelsData = [
                 "localFile": "ch_ptocr_v4_rec_simplified.onnx"
             },
             {
-                "title": "rec.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/rec.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "A8W8",
-                "localFile": "rec.om"
-            },
-            {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
@@ -2035,7 +1865,7 @@ const modelsData = [
         "name": "YOLOv5s",
         "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv5网络模型在继承了原有YOLO网络模型优点的基础上，具有更优的检测精度和更快的推理速度。本示例使用YOLOv5s。",
         "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv5网络模型在继承了原有YOLO网络模型优点的基础上，具有更优的检测精度和更快的推理速度。本示例使用YOLOv5s。",
-        "descriptionEn": "YOLOv5s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv5s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-04-01 16:31:00",
         "updatedAt": "2026-04-08 16:07:07",
         "badge": null,
@@ -2112,7 +1942,7 @@ const modelsData = [
                 "source": "om-A8W8",
                 "sourceLabel": "A8W8",
                 "group": "编译模型",
-                "note": "",
+                "note": "A8W8 / FP16",
                 "localFile": "yolov5s.om"
             },
             {
@@ -2146,26 +1976,6 @@ const modelsData = [
                 "localFile": "yolov5s.pt"
             },
             {
-                "title": "yolov5s.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov5s.onnx"
-            },
-            {
-                "title": "yolov5s.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "A8W8",
-                "localFile": "yolov5s.om"
-            },
-            {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
@@ -2182,7 +1992,7 @@ const modelsData = [
         "name": "YOLOv3",
         "description": "YOLOv3是一种端到端的one-stage目标检测模型。相比YOLOv2，YOLOv3采用了一个新的backbone-Darknet-53来进行特征提取工作，这个新网络比Darknet-19更加强大，也比ResNet-101或者ResNet-152更加高效。",
         "descriptionZh": "YOLOv3是一种端到端的one-stage目标检测模型。相比YOLOv2，YOLOv3采用了一个新的backbone-Darknet-53来进行特征提取工作，这个新网络比Darknet-19更加强大，也比ResNet-101或者ResNet-152更加高效。",
-        "descriptionEn": "YOLOv3 is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 10 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv3 is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 9 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-04-01 16:02:45",
         "updatedAt": "2026-04-08 16:07:07",
         "badge": null,
@@ -2266,7 +2076,7 @@ const modelsData = [
                 "source": "om-A8W8",
                 "sourceLabel": "A8W8",
                 "group": "编译模型",
-                "note": "",
+                "note": "A8W8 / FP16",
                 "localFile": "yolov3.om"
             },
             {
@@ -2340,16 +2150,6 @@ const modelsData = [
                 "localFile": "yolov3.onnx"
             },
             {
-                "title": "yolov3.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "A8W8",
-                "localFile": "yolov3.om"
-            },
-            {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
@@ -2366,7 +2166,7 @@ const modelsData = [
         "name": "PaddleOCRv4-det",
         "description": "PP-OCRv4检测模型在PP-OCRv3检测模型的基础上，在网络结构，训练策略，蒸馏策略三个方面做了优化。首先，PP-OCRv4检测模型使用PP-LCNetV3替换MobileNetv3，并提出并行分支融合的PFhead结构；其次，训练时动态调整shrink ratio的比例；最后，PP-OCRv4对CML的蒸馏loss进行优化，进一步提升文字检测效果。",
         "descriptionZh": "PP-OCRv4检测模型在PP-OCRv3检测模型的基础上，在网络结构，训练策略，蒸馏策略三个方面做了优化。首先，PP-OCRv4检测模型使用PP-LCNetV3替换MobileNetv3，并提出并行分支融合的PFhead结构；其次，训练时动态调整shrink ratio的比例；最后，PP-OCRv4对CML的蒸馏loss进行优化，进一步提升文字检测效果。",
-        "descriptionEn": "PaddleOCRv4-det is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "PaddleOCRv4-det is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-04-01 15:56:01",
         "updatedAt": "2026-04-08 16:07:07",
         "badge": null,
@@ -2443,7 +2243,7 @@ const modelsData = [
                 "source": "om-A8W8",
                 "sourceLabel": "A8W8",
                 "group": "编译模型",
-                "note": "",
+                "note": "A8W8 / FP16",
                 "localFile": "det.om"
             },
             {
@@ -2495,16 +2295,6 @@ const modelsData = [
                 "group": "源模型",
                 "note": "",
                 "localFile": "ch_ptocr_v4_det_simplified.onnx"
-            },
-            {
-                "title": "det.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/det.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "A8W8",
-                "localFile": "det.om"
             }
         ]
     },
@@ -2513,7 +2303,7 @@ const modelsData = [
         "name": "Depth-Anything-v2",
         "description": "Depth Anything V2在细节和鲁棒性方面显著优于 V1。与基于 SD 的模型相比，它具有更快的推理速度、更少的参数和更高的深度精度。本示例使用的是Depth-Anything-V2-Small。",
         "descriptionZh": "Depth Anything V2在细节和鲁棒性方面显著优于 V1。与基于 SD 的模型相比，它具有更快的推理速度、更少的参数和更高的深度精度。本示例使用的是Depth-Anything-V2-Small。",
-        "descriptionEn": "Depth-Anything-v2 is a computer vision model for monocular depth. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 11 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "Depth-Anything-v2 is a computer vision model for monocular depth. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 10 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-04-01 15:40:59",
         "updatedAt": "2026-04-08 16:07:07",
         "badge": "Beta",
@@ -2594,58 +2384,28 @@ const modelsData = [
                 "title": "depthanything.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depthanything.om",
                 "available": true,
-                "source": "om-A16W8",
-                "sourceLabel": "A16W8",
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
                 "group": "编译模型",
                 "note": "",
                 "localFile": "depthanything.om"
             },
             {
-                "title": "depthanything_om-FP16.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depthanything_om-FP16.om",
+                "title": "depth_anything_v2.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2.om",
                 "available": true,
                 "source": "om-FP16",
                 "sourceLabel": "FP16",
                 "group": "编译模型",
-                "note": "",
-                "localFile": "depthanything_om-FP16.om"
-            },
-            {
-                "title": "depth_anything_v2_vits_source-model.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits_source-model.pth",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "depth_anything_v2_vits_source-model.pth"
-            },
-            {
-                "title": "depth_anything_v2_vits_nnn.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits_nnn.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "depth_anything_v2_vits_nnn.onnx"
-            },
-            {
-                "title": "depth_anything_v2_vits_svp_nnn.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits_svp_nnn.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "depth_anything_v2_vits_svp_nnn.onnx"
+                "note": "FP16",
+                "localFile": "depth_anything_v2.om"
             },
             {
                 "title": "depth_anything_v2_vits.pth",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits.pth",
                 "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
                 "group": "源模型",
                 "note": "",
                 "localFile": "depth_anything_v2_vits.pth"
@@ -2654,8 +2414,8 @@ const modelsData = [
                 "title": "depth_anything_v2_vits_nnn.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits_nnn.onnx",
                 "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
                 "group": "源模型",
                 "note": "",
                 "localFile": "depth_anything_v2_vits_nnn.onnx"
@@ -2664,31 +2424,21 @@ const modelsData = [
                 "title": "depth_anything_v2_vits_svp_nnn.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits_svp_nnn.onnx",
                 "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
                 "group": "源模型",
                 "note": "",
                 "localFile": "depth_anything_v2_vits_svp_nnn.onnx"
             },
             {
                 "title": "depth_anything.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "A16W8",
-                "localFile": null
-            },
-            {
-                "title": "depth_anything_v2.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2.om",
                 "available": true,
                 "source": "omOfflineModel",
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
-                "note": "FP16",
-                "localFile": null
+                "note": "A16W8",
+                "localFile": "depth_anything_v2.om"
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -2699,6 +2449,36 @@ const modelsData = [
                 "group": "附加资源",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "depth_anything_v2_vits.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits.onnx",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "depth_anything_v2_vits.onnx"
+            },
+            {
+                "title": "depth_anything_v2_vits_source-model.pth",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits_source-model.pth",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "depth_anything_v2_vits_source-model.pth"
+            },
+            {
+                "title": "depthanything_om-FP16.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depthanything_om-FP16.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "depthanything_om-FP16.om"
             }
         ]
     },
@@ -2707,7 +2487,7 @@ const modelsData = [
         "name": "Chinese-CLIP",
         "description": "Chinese-CLIP 是 CLIP 模型的中文版本。CLIP 通过对比学习方式，同时学习图像和文本的表示，并能够理解两者之间的语义关联。Chinese-CLIP 使用约 2 亿规模的中文图文对进行训练，其核心目标是解决中文场景下的跨模态检索、图像表示生成等任务。",
         "descriptionZh": "Chinese-CLIP 是 CLIP 模型的中文版本。CLIP 通过对比学习方式，同时学习图像和文本的表示，并能够理解两者之间的语义关联。Chinese-CLIP 使用约 2 亿规模的中文图文对进行训练，其核心目标是解决中文场景下的跨模态检索、图像表示生成等任务。",
-        "descriptionEn": "Chinese-CLIP is a multimodal model for image-text matching. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 17 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "Chinese-CLIP is a multimodal model for image-text matching. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 14 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-31 21:34:55",
         "updatedAt": null,
         "badge": "Beta",
@@ -2805,7 +2585,7 @@ const modelsData = [
                 "source": "om-A16W8",
                 "sourceLabel": "A16W8",
                 "group": "编译模型",
-                "note": "",
+                "note": "A16W8 / FP16",
                 "localFile": "clip_img.om"
             },
             {
@@ -2815,7 +2595,7 @@ const modelsData = [
                 "source": "om-A16W8",
                 "sourceLabel": "A16W8",
                 "group": "编译模型",
-                "note": "",
+                "note": "A16W8 / FP16",
                 "localFile": "clip_text.om"
             },
             {
@@ -2889,76 +2669,6 @@ const modelsData = [
                 "localFile": "clip_cn_vit-b-16.pt"
             },
             {
-                "title": "vit-b-16_img_sim_NNN.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_img_sim_NNN.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "vit-b-16_img_sim_NNN.onnx"
-            },
-            {
-                "title": "vit-b-16_txt_sim_NNN.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_txt_sim_NNN.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "vit-b-16_txt_sim_NNN.onnx"
-            },
-            {
-                "title": "vit-b-16_img_sim_SVP_NNN.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_img_sim_SVP_NNN.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "vit-b-16_img_sim_SVP_NNN.onnx"
-            },
-            {
-                "title": "vit-b-16_txt_sim_SVP_NNN.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_txt_sim_SVP_NNN.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "vit-b-16_txt_sim_SVP_NNN.onnx"
-            },
-            {
-                "title": "clip_cn_vit-b-16.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_cn_vit-b-16.pt",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "clip_cn_vit-b-16.pt"
-            },
-            {
-                "title": "clip_img.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_img.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "A16W8",
-                "localFile": "clip_img.om"
-            },
-            {
-                "title": "clip_text.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_text.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "A16W8",
-                "localFile": "clip_text.om"
-            },
-            {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
@@ -2967,6 +2677,46 @@ const modelsData = [
                 "group": "附加资源",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "clip_img_om-A16W8.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_img_om-A16W8.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "clip_img_om-A16W8.om"
+            },
+            {
+                "title": "clip_text_om-A16W8.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_text_om-A16W8.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "clip_text_om-A16W8.om"
+            },
+            {
+                "title": "vit-b-16_img_sim.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_img_sim.onnx",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "vit-b-16_img_sim.onnx"
+            },
+            {
+                "title": "vit-b-16_txt_sim.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_txt_sim.onnx",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "vit-b-16_txt_sim.onnx"
             }
         ]
     },
@@ -2975,7 +2725,7 @@ const modelsData = [
         "name": "DeepSort",
         "description": "DeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。",
         "descriptionZh": "DeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。",
-        "descriptionEn": "DeepSort is a computer vision model for multi-object tracking. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 13 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "DeepSort is a computer vision model for multi-object tracking. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 9 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-26 23:59:38",
         "updatedAt": "2026-03-27 19:43:15",
         "badge": null,
@@ -3072,7 +2822,7 @@ const modelsData = [
                 "source": "om-FP16",
                 "sourceLabel": "FP16",
                 "group": "编译模型",
-                "note": "",
+                "note": "A8W8 / FP16",
                 "localFile": "yolov5s.om"
             },
             {
@@ -3082,7 +2832,7 @@ const modelsData = [
                 "source": "om-FP16",
                 "sourceLabel": "FP16",
                 "group": "编译模型",
-                "note": "",
+                "note": "A8W8 / FP16",
                 "localFile": "reid_net.om"
             },
             {
@@ -3104,50 +2854,10 @@ const modelsData = [
                 "group": "源模型",
                 "note": "",
                 "localFile": "reid_net.onnx"
-            },
-            {
-                "title": "yolov5s.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-deepsort/resolve/main/yolov5s.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov5s.onnx"
-            },
-            {
-                "title": "reid_net.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-deepsort/resolve/main/reid_net.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "reid_net.onnx"
-            },
-            {
-                "title": "yolov5s.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-deepsort/resolve/main/yolov5s.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "A8W8",
-                "localFile": "yolov5s.om"
-            },
-            {
-                "title": "reid_net.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-deepsort/resolve/main/reid_net.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "A8W8",
-                "localFile": "reid_net.om"
             },
             {
                 "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
+                "href": "https://hf-mirror.com/shadow-cann/svp-nnn-pc/resolve/main/SVP_NNN_PC_V1.0.6.5.tgz",
                 "available": true,
                 "source": "toolkit",
                 "sourceLabel": "工具链",
@@ -3182,7 +2892,7 @@ const modelsData = [
         "name": "MobileNetV2",
         "description": "MobileNetV2是对MobileNetV1的改进，是一种轻量级的神经网络。MobileNetV2保留了V1版本的深度可分离卷积，增加了线性瓶颈（Linear Bottleneck）和倒残差（Inverted Residual）。",
         "descriptionZh": "MobileNetV2是对MobileNetV1的改进，是一种轻量级的神经网络。MobileNetV2保留了V1版本的深度可分离卷积，增加了线性瓶颈（Linear Bottleneck）和倒残差（Inverted Residual）。",
-        "descriptionEn": "MobileNetV2 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 8 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "MobileNetV2 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-24 16:23:20",
         "updatedAt": "2026-03-26 09:35:37",
         "badge": null,
@@ -3241,9 +2951,9 @@ const modelsData = [
             {
                 "name": "mobilenetV2.onnx",
                 "size": "13.3 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-mobilenetv2/resolve/main/mobilenetV2.onnx",
-                "available": true,
-                "localFile": "mobilenetV2.onnx"
+                "href": null,
+                "available": false,
+                "localFile": null
             }
         ],
         "hfRepoId": "shadow-cann/hispark-modelzoo-mobilenetv2",
@@ -3256,10 +2966,10 @@ const modelsData = [
                 "title": "mobileNetV2.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-mobilenetv2/resolve/main/mobileNetV2.om",
                 "available": true,
-                "source": "om-A8W8",
-                "sourceLabel": "A8W8",
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
                 "group": "编译模型",
-                "note": "",
+                "note": "A8W8 / fp16",
                 "localFile": "mobileNetV2.om"
             },
             {
@@ -3283,34 +2993,24 @@ const modelsData = [
                 "localFile": "mobilenet_v2.onnx"
             },
             {
-                "title": "mobilenet_v2-b0353104.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-mobilenetv2/resolve/main/mobilenet_v2-b0353104.pth",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "mobilenet_v2-b0353104.pth"
-            },
-            {
                 "title": "mobilenetV2.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-mobilenetv2/resolve/main/mobilenetV2.onnx",
-                "available": true,
+                "href": null,
+                "available": false,
                 "source": "originModel",
                 "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "note": "",
-                "localFile": "mobilenetV2.onnx"
+                "localFile": null
             },
             {
-                "title": "mobileNetV2.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-mobilenetv2/resolve/main/mobileNetV2.om",
+                "title": "CANN工具",
+                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "A8W8",
-                "localFile": "mobileNetV2.om"
+                "source": "toolkit",
+                "sourceLabel": "工具链",
+                "group": "工具链",
+                "note": "",
+                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
             },
             {
                 "title": "编译工具链",
@@ -3321,16 +3021,6 @@ const modelsData = [
                 "group": "工具链",
                 "note": "",
                 "localFile": null
-            },
-            {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "api-all",
-                "sourceLabel": "附加资源",
-                "group": "附加资源",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
             }
         ]
     },
@@ -3339,7 +3029,7 @@ const modelsData = [
         "name": "SuperPoint",
         "description": "SuperPoint模型的全卷积神经网络架构对全尺寸图像进行操作，并在单次前向传递中产生伴随固定长度描述符的兴趣点检测。该模型有一个单一的共享编码器来处理和减少输入图像的维数。在编码器之后，该架构分成两个解码器“头”，它们学习任务特定权重——一个用于兴趣点检测，另一个用于感兴趣点描述。大多数网络参数在两个任务之间共享，这与传统系统不同，传统系统首先检测兴趣点，然后计算描述符，并且缺乏跨两个任务共享计算和表示的能力。",
         "descriptionZh": "SuperPoint模型的全卷积神经网络架构对全尺寸图像进行操作，并在单次前向传递中产生伴随固定长度描述符的兴趣点检测。该模型有一个单一的共享编码器来处理和减少输入图像的维数。在编码器之后，该架构分成两个解码器“头”，它们学习任务特定权重——一个用于兴趣点检测，另一个用于感兴趣点描述。大多数网络参数在两个任务之间共享，这与传统系统不同，传统系统首先检测兴趣点，然后计算描述符，并且缺乏跨两个任务共享计算和表示的能力。",
-        "descriptionEn": "SuperPoint is a computer vision model for feature point detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 8 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "SuperPoint is a computer vision model for feature point detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-16 21:11:02",
         "updatedAt": null,
         "badge": null,
@@ -3413,10 +3103,10 @@ const modelsData = [
                 "title": "superpoint_bs1.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-superpoint/resolve/main/superpoint_bs1.om",
                 "available": true,
-                "source": "om-A8W8",
-                "sourceLabel": "A8W8",
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
                 "group": "编译模型",
-                "note": "",
+                "note": "A8W8 / FP16",
                 "localFile": "superpoint_bs1.om"
             },
             {
@@ -3440,16 +3130,6 @@ const modelsData = [
                 "localFile": "superPointNet_170000_checkpoint.pth"
             },
             {
-                "title": "superpoint_bs1.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-superpoint/resolve/main/superpoint_bs1.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "superpoint_bs1.onnx"
-            },
-            {
                 "title": "SuperPointNet.pth",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-superpoint/resolve/main/superPointNet_170000_checkpoint.pth",
                 "available": true,
@@ -3460,19 +3140,9 @@ const modelsData = [
                 "localFile": "superPointNet_170000_checkpoint.pth"
             },
             {
-                "title": "superpoint_bs1.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-superpoint/resolve/main/superpoint_bs1.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "A8W8",
-                "localFile": "superpoint_bs1.om"
-            },
-            {
                 "title": "link",
-                "href": "http://icvl.ee.ic.ac.uk/vbalnt/hpatches/hpatches-sequences-release.tar.gz",
-                "available": true,
+                "href": null,
+                "available": false,
                 "source": "api-all",
                 "sourceLabel": "附加资源",
                 "group": "附加资源",
@@ -3488,6 +3158,16 @@ const modelsData = [
                 "group": "附加资源",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "superpoint_bs1_om-A8W8.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-superpoint/resolve/main/superpoint_bs1_om-A8W8.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "superpoint_bs1_om-A8W8.om"
             }
         ]
     },
@@ -3496,7 +3176,7 @@ const modelsData = [
         "name": "DenseNet121",
         "description": "DenseNet 针对 ResNet 的冗余结构提出了改进：让网络中的每一层和前面的所有层相连，同时把每一层设计的比较窄，使每一层学到的特征变少从而降低冗余。除了减少参数量之外，该结构还有减轻梯度消失问题、增强特征传播等优点。",
         "descriptionZh": "DenseNet 针对 ResNet 的冗余结构提出了改进：让网络中的每一层和前面的所有层相连，同时把每一层设计的比较窄，使每一层学到的特征变少从而降低冗余。除了减少参数量之外，该结构还有减轻梯度消失问题、增强特征传播等优点。",
-        "descriptionEn": "DenseNet121 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 9 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "DenseNet121 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-16 20:23:49",
         "updatedAt": "2026-03-26 09:35:38",
         "badge": null,
@@ -3563,75 +3243,15 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-densenet121",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121/resolve/main/densenet121_om-A8W8.om",
-        "primaryDownloadLabel": "densenet121_om-A8W8.om",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121/resolve/main/densenet121.om",
+        "primaryDownloadLabel": "densenet121.om",
         "downloads": [
             {
-                "title": "densenet121_om-A8W8.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121/resolve/main/densenet121_om-A8W8.om",
-                "available": true,
-                "source": "om-A8W8",
-                "sourceLabel": "A8W8",
-                "group": "编译模型",
-                "note": "",
-                "localFile": "densenet121_om-A8W8.om"
-            },
-            {
                 "title": "densenet121.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121/resolve/main/densenet121.om",
                 "available": true,
-                "source": "om-FP16",
-                "sourceLabel": "FP16",
-                "group": "编译模型",
-                "note": "",
-                "localFile": "densenet121.om"
-            },
-            {
-                "title": "densenet121.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121/resolve/main/densenet121.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "densenet121.onnx"
-            },
-            {
-                "title": "densenet121-a639ec97.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121/resolve/main/densenet121-a639ec97.pth",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "densenet121-a639ec97.pth"
-            },
-            {
-                "title": "densenet121.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121/resolve/main/densenet121.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "densenet121.onnx"
-            },
-            {
-                "title": "densenet121-a639ec97.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121/resolve/main/densenet121-a639ec97.pth",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "densenet121-a639ec97.pth"
-            },
-            {
-                "title": "densenet121.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121/resolve/main/densenet121.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
                 "group": "编译模型",
                 "note": "A8W8",
                 "localFile": "densenet121.om"
@@ -3640,11 +3260,31 @@ const modelsData = [
                 "title": "densenet_dlite.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121/resolve/main/densenet_dlite.om",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
+                "source": "om-FP16",
+                "sourceLabel": "FP16",
                 "group": "编译模型",
                 "note": "FP16",
-                "localFile": null
+                "localFile": "densenet_dlite.om"
+            },
+            {
+                "title": "densenet121.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121/resolve/main/densenet121.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "densenet121.onnx"
+            },
+            {
+                "title": "densenet121-a639ec97.pth",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121/resolve/main/densenet121-a639ec97.pth",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "densenet121-a639ec97.pth"
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -3655,6 +3295,16 @@ const modelsData = [
                 "group": "附加资源",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "densenet121_om-A8W8.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121/resolve/main/densenet121_om-A8W8.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "densenet121_om-A8W8.om"
             }
         ]
     },
@@ -3663,7 +3313,7 @@ const modelsData = [
         "name": "ShuffleNetV2",
         "description": "ShuffleNetV2是Shufflenet的升级版本，作为轻量级网络，通过遵循降低网络的碎片程度、减少element-wise等设计准则，在保证精度的前提下进一步追求高性能。",
         "descriptionZh": "ShuffleNetV2是Shufflenet的升级版本，作为轻量级网络，通过遵循降低网络的碎片程度、减少element-wise等设计准则，在保证精度的前提下进一步追求高性能。",
-        "descriptionEn": "ShuffleNetV2 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 9 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "ShuffleNetV2 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-16 20:19:07",
         "updatedAt": "2026-03-26 09:35:38",
         "badge": null,
@@ -3730,28 +3380,28 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-shufflenetv2",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-shufflenetv2",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-shufflenetv2/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-shufflenetv2/resolve/main/shufflenetv2_om-A8W8.om",
-        "primaryDownloadLabel": "shufflenetv2_om-A8W8.om",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-shufflenetv2/resolve/main/shufflenetv2.om",
+        "primaryDownloadLabel": "shufflenetv2.om",
         "downloads": [
-            {
-                "title": "shufflenetv2_om-A8W8.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-shufflenetv2/resolve/main/shufflenetv2_om-A8W8.om",
-                "available": true,
-                "source": "om-A8W8",
-                "sourceLabel": "A8W8",
-                "group": "编译模型",
-                "note": "",
-                "localFile": "shufflenetv2_om-A8W8.om"
-            },
             {
                 "title": "shufflenetv2.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-shufflenetv2/resolve/main/shufflenetv2.om",
                 "available": true,
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
+                "group": "编译模型",
+                "note": "A8W8",
+                "localFile": "shufflenetv2.om"
+            },
+            {
+                "title": "shufflenetv2_dlite.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-shufflenetv2/resolve/main/shufflenetv2_dlite.om",
+                "available": true,
                 "source": "om-FP16",
                 "sourceLabel": "FP16",
                 "group": "编译模型",
-                "note": "",
-                "localFile": "shufflenetv2.om"
+                "note": "FP16",
+                "localFile": "shufflenetv2_dlite.om"
             },
             {
                 "title": "shufflenetv2_x1-5666bf0f80.pth",
@@ -3774,43 +3424,13 @@ const modelsData = [
                 "localFile": "shufflenetv2.onnx"
             },
             {
-                "title": "shufflenetv2_x1-5666bf0f80.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-shufflenetv2/resolve/main/shufflenetv2_x1-5666bf0f80.pth",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "shufflenetv2_x1-5666bf0f80.pth"
-            },
-            {
                 "title": "shufflenetv2_fix.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-shufflenetv2/resolve/main/shufflenetv2_fix.onnx",
-                "available": true,
+                "href": null,
+                "available": false,
                 "source": "originModel",
                 "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "note": "",
-                "localFile": null
-            },
-            {
-                "title": "shufflenetv2.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-shufflenetv2/resolve/main/shufflenetv2.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "A8W8",
-                "localFile": "shufflenetv2.om"
-            },
-            {
-                "title": "shufflenetv2_dlite.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-shufflenetv2/resolve/main/shufflenetv2_dlite.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "FP16",
                 "localFile": null
             },
             {
@@ -3822,6 +3442,16 @@ const modelsData = [
                 "group": "附加资源",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "shufflenetv2_om-A8W8.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-shufflenetv2/resolve/main/shufflenetv2_om-A8W8.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "",
+                "localFile": "shufflenetv2_om-A8W8.om"
             }
         ]
     },
@@ -3830,7 +3460,7 @@ const modelsData = [
         "name": "SqueezeNet1_1",
         "description": "Squeezenet的设计采用了卷积替换、减少卷积通道数和降采样操作后置等策略，旨在在不大幅降低模型精度的前提下，最大程度的提高运算速度。",
         "descriptionZh": "Squeezenet的设计采用了卷积替换、减少卷积通道数和降采样操作后置等策略，旨在在不大幅降低模型精度的前提下，最大程度的提高运算速度。",
-        "descriptionEn": "SqueezeNet1_1 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 8 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "SqueezeNet1_1 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-16 19:24:13",
         "updatedAt": "2026-03-26 09:35:38",
         "badge": null,
@@ -3917,7 +3547,7 @@ const modelsData = [
                 "source": "om-FP16",
                 "sourceLabel": "FP16",
                 "group": "编译模型",
-                "note": "",
+                "note": "A8W8 / FP16",
                 "localFile": "squeezenet.om"
             },
             {
@@ -3939,36 +3569,6 @@ const modelsData = [
                 "group": "源模型",
                 "note": "",
                 "localFile": "squeezenet.onnx"
-            },
-            {
-                "title": "squeezenet1_1-f364aa15.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-squeezenet1-1/resolve/main/squeezenet1_1-f364aa15.pth",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "squeezenet1_1-f364aa15.pth"
-            },
-            {
-                "title": "squeezenet.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-squeezenet1-1/resolve/main/squeezenet.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "squeezenet.onnx"
-            },
-            {
-                "title": "squeezenet.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-squeezenet1-1/resolve/main/squeezenet.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "A8W8",
-                "localFile": "squeezenet.om"
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -4055,7 +3655,7 @@ const modelsData = [
         "name": "ACT",
         "description": "ACT（Action Chunking with Transformers）是面向机器人学习场景的高性能端到端动作控制模型。相比传统模块化机器人控制模型，ACT采用轻量化Transformer架构作为核心骨干进行动作表征学习，结合多模态感知融合模块和时序动作优化网络，在控制精度和实时响应速度上均有显著提升。",
         "descriptionZh": "ACT（Action Chunking with Transformers）是面向机器人学习场景的高性能端到端动作控制模型。相比传统模块化机器人控制模型，ACT采用轻量化Transformer架构作为核心骨干进行动作表征学习，结合多模态感知融合模块和时序动作优化网络，在控制精度和实时响应速度上均有显著提升。",
-        "descriptionEn": "ACT is a multimodal model for embodied AI. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenEuler. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "ACT is a multimodal model for embodied AI. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenEuler. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-03 10:30:33",
         "updatedAt": "2026-03-04 16:06:22",
         "badge": null,
@@ -4127,16 +3727,6 @@ const modelsData = [
                 "localFile": "ACT.zip"
             },
             {
-                "title": "ACT.zip",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-act/resolve/main/ACT.zip",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "ACT.zip"
-            },
-            {
                 "title": "act_distill_fp32_for_mindcmd_simp_release.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-act/resolve/main/act_distill_fp32_for_mindcmd_simp_release.om",
                 "available": true,
@@ -4163,7 +3753,7 @@ const modelsData = [
         "name": "CRNN",
         "description": "CRNN是卷积循环网络，本模型是一个基于其的中文 OCR 模型。",
         "descriptionZh": "CRNN是卷积循环网络，本模型是一个基于其的中文 OCR 模型。",
-        "descriptionEn": "CRNN is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "CRNN is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-02-12 10:58:59",
         "updatedAt": null,
         "badge": "Beta",
@@ -4254,33 +3844,13 @@ const modelsData = [
                 "localFile": "crnn.onnx"
             },
             {
-                "title": "mixed_second_finetune_acc_97P7.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-crnn/resolve/main/mixed_second_finetune_acc_97P7.pth",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "mixed_second_finetune_acc_97P7.pth"
-            },
-            {
-                "title": "crnn.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-crnn/resolve/main/crnn.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "crnn.onnx"
-            },
-            {
                 "title": "crnn.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-crnn/resolve/main/crnn.om",
                 "available": true,
                 "source": "omOfflineModel",
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
-                "note": "a8w8",
+                "note": "a8w8 / fp16",
                 "localFile": "crnn.om"
             },
             {
@@ -4300,7 +3870,7 @@ const modelsData = [
         "name": "GraspNet",
         "description": "GraspNet是一种基于点云输入的多阶段抓取姿态预测模型，由抓取视角估计和抓取姿态生成两个阶段组成，通过特征提取、视角估计、局部特征提取、抓取参数估计和预测解码一系列处理，最终生成包含抓取评分、抓取宽度、抓取高度、抓取深度、旋转矩阵、抓取中心点和物体ID的预测结果，旨在解决机器人抓取任务中的6D抓取姿态估计问题。",
         "descriptionZh": "GraspNet是一种基于点云输入的多阶段抓取姿态预测模型，由抓取视角估计和抓取姿态生成两个阶段组成，通过特征提取、视角估计、局部特征提取、抓取参数估计和预测解码一系列处理，最终生成包含抓取评分、抓取宽度、抓取高度、抓取深度、旋转矩阵、抓取中心点和物体ID的预测结果，旨在解决机器人抓取任务中的6D抓取姿态估计问题。",
-        "descriptionEn": "GraspNet is a computer vision model for embodied AI. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenEuler. Compute targets: Hi3591PV100. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "GraspNet is a computer vision model for embodied AI. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenEuler. Compute targets: Hi3591PV100. The mirror currently exposes 2 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-02-09 19:42:15",
         "updatedAt": "2026-02-12 11:24:22",
         "badge": "Beta",
@@ -4362,6 +3932,16 @@ const modelsData = [
         "primaryDownloadLabel": "graspnet_linux_aarch64[该模型文件仅用于非商用].om",
         "downloads": [
             {
+                "title": "graspnet_linux_aarch64[该模型文件仅用于非商用].om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-graspnet/resolve/main/graspnet_linux_aarch64%5B%E8%AF%A5%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6%E4%BB%85%E7%94%A8%E4%BA%8E%E9%9D%9E%E5%95%86%E7%94%A8%5D.om",
+                "available": true,
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
+                "group": "编译模型",
+                "note": "fp16",
+                "localFile": "graspnet_linux_aarch64[该模型文件仅用于非商用].om"
+            },
+            {
                 "title": "graspnet[该模型文件仅用于非商用].onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-graspnet/resolve/main/graspnet%5B%E8%AF%A5%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6%E4%BB%85%E7%94%A8%E4%BA%8E%E9%9D%9E%E5%95%86%E7%94%A8%5D.onnx",
                 "available": true,
@@ -4370,26 +3950,6 @@ const modelsData = [
                 "group": "源模型",
                 "note": "",
                 "localFile": "graspnet[该模型文件仅用于非商用].onnx"
-            },
-            {
-                "title": "graspnet[该模型文件仅用于非商用].onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-graspnet/resolve/main/graspnet%5B%E8%AF%A5%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6%E4%BB%85%E7%94%A8%E4%BA%8E%E9%9D%9E%E5%95%86%E7%94%A8%5D.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "graspnet[该模型文件仅用于非商用].onnx"
-            },
-            {
-                "title": "graspnet_linux_aarch64[该模型文件仅用于非商用].om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-graspnet/resolve/main/graspnet_linux_aarch64%5B%E8%AF%A5%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6%E4%BB%85%E7%94%A8%E4%BA%8E%E9%9D%9E%E5%95%86%E7%94%A8%5D.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "fp16",
-                "localFile": null
             }
         ]
     },
@@ -4398,7 +3958,7 @@ const modelsData = [
         "name": "CodeFormer",
         "description": "CodeFormer 是一种基于码本查找 Transformer 的鲁棒盲人脸修复模型。相比传统方法，它通过生成对抗网络与量化编码技术，能有效处理模糊、噪声等多种退化问题，兼顾人脸修复质量与身份保真度，适用于盲人脸恢复场景。",
         "descriptionZh": "CodeFormer 是一种基于码本查找 Transformer 的鲁棒盲人脸修复模型。相比传统方法，它通过生成对抗网络与量化编码技术，能有效处理模糊、噪声等多种退化问题，兼顾人脸修复质量与身份保真度，适用于盲人脸恢复场景。",
-        "descriptionEn": "CodeFormer is a computer vision model for image enhancement. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "CodeFormer is a computer vision model for image enhancement. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-30 17:56:29",
         "updatedAt": "2025-12-30 20:02:18",
         "badge": null,
@@ -4458,9 +4018,39 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-codeformer",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-codeformer",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-codeformer/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-codeformer/resolve/main/%E7%A9%BA%E6%96%87%E4%BB%B6%EF%BC%8C%E5%9B%A0%E4%B8%BA%E8%AF%A5%E6%A8%A1%E5%9E%8B%E4%BB%85%E7%94%A8%E4%BA%8E%E9%9D%9E%E5%95%86%E7%94%A8.onnx",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-codeformer",
         "primaryDownloadLabel": "空文件，因为该模型仅用于非商用.om",
         "downloads": [
+            {
+                "title": "空文件，因为该模型仅用于非商用.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-codeformer",
+                "available": true,
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
+                "group": "编译模型",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "空文件，因为该模型仅用于非商用_om-a16w8.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-codeformer",
+                "available": true,
+                "source": "om-a16w8",
+                "sourceLabel": "A16W8",
+                "group": "编译模型",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "空文件，因为该模型仅用于非商用_om-fp16.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-codeformer",
+                "available": true,
+                "source": "om-fp16",
+                "sourceLabel": "FP16",
+                "group": "编译模型",
+                "note": "",
+                "localFile": null
+            },
             {
                 "title": "空文件，因为该模型仅用于非商用.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-codeformer/resolve/main/%E7%A9%BA%E6%96%87%E4%BB%B6%EF%BC%8C%E5%9B%A0%E4%B8%BA%E8%AF%A5%E6%A8%A1%E5%9E%8B%E4%BB%85%E7%94%A8%E4%BA%8E%E9%9D%9E%E5%95%86%E7%94%A8.onnx",
@@ -4472,24 +4062,14 @@ const modelsData = [
                 "localFile": "空文件，因为该模型仅用于非商用.onnx"
             },
             {
-                "title": "空文件，因为该模型仅用于非商用.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-codeformer/resolve/main/%E7%A9%BA%E6%96%87%E4%BB%B6%EF%BC%8C%E5%9B%A0%E4%B8%BA%E8%AF%A5%E6%A8%A1%E5%9E%8B%E4%BB%85%E7%94%A8%E4%BA%8E%E9%9D%9E%E5%95%86%E7%94%A8.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "空文件，因为该模型仅用于非商用.onnx"
-            },
-            {
                 "title": "空文件，因为该模型仅用于非商用.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-codeformer/resolve/main/%E7%A9%BA%E6%96%87%E4%BB%B6%EF%BC%8C%E5%9B%A0%E4%B8%BA%E8%AF%A5%E6%A8%A1%E5%9E%8B%E4%BB%85%E7%94%A8%E4%BA%8E%E9%9D%9E%E5%95%86%E7%94%A8.onnx",
-                "available": true,
+                "href": null,
+                "available": false,
                 "source": "omOfflineModel",
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
-                "note": "a16w8",
-                "localFile": "空文件，因为该模型仅用于非商用.onnx"
+                "note": "a16w8 / fp16",
+                "localFile": null
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -4508,7 +4088,7 @@ const modelsData = [
         "name": "FaceNet",
         "description": "FaceNet 是一种基于深度卷积神经网络的端到端人脸识别与特征嵌入模型。相比传统基于手工特征或分阶段匹配的方法，它通过将人脸图像直接映射为固定维度的紧凑特征向量（Embedding），并采用三元组损失（Triplet Loss）优化特征相似度度量，能有效缩小类内差异、扩大类间距离，兼顾识别精度与推理效率，适用于身份验证、人脸检索、监控安防等大规模人脸识别场景。",
         "descriptionZh": "FaceNet 是一种基于深度卷积神经网络的端到端人脸识别与特征嵌入模型。相比传统基于手工特征或分阶段匹配的方法，它通过将人脸图像直接映射为固定维度的紧凑特征向量（Embedding），并采用三元组损失（Triplet Loss）优化特征相似度度量，能有效缩小类内差异、扩大类间距离，兼顾识别精度与推理效率，适用于身份验证、人脸检索、监控安防等大规模人脸识别场景。",
-        "descriptionEn": "FaceNet is a computer vision model for face recognition. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "FaceNet is a computer vision model for face recognition. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-29 10:37:55",
         "updatedAt": "2025-12-30 20:02:17",
         "badge": null,
@@ -4572,6 +4152,16 @@ const modelsData = [
         "primaryDownloadLabel": "facenet_vggface2_dpico.om",
         "downloads": [
             {
+                "title": "facenet_vggface2_dpico.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-facenet/resolve/main/facenet_vggface2_dpico.om",
+                "available": true,
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
+                "group": "编译模型",
+                "note": "a16w8",
+                "localFile": "facenet_vggface2_dpico.om"
+            },
+            {
                 "title": "facenet_vggface2_static.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-facenet/resolve/main/facenet_vggface2_static.onnx",
                 "available": true,
@@ -4582,23 +4172,23 @@ const modelsData = [
                 "localFile": "facenet_vggface2_static.onnx"
             },
             {
-                "title": "facenet_vggface2_static.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-facenet/resolve/main/facenet_vggface2_static.onnx",
+                "title": "CANN配置",
+                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
+                "source": "toolkit",
+                "sourceLabel": "工具链",
+                "group": "工具链",
                 "note": "",
-                "localFile": "facenet_vggface2_static.onnx"
+                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
             },
             {
-                "title": "facenet_vggface2_dpico.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-facenet/resolve/main/facenet_vggface2_dpico.om",
+                "title": "编译工具库",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "a16w8",
+                "source": "toolkit",
+                "sourceLabel": "工具链",
+                "group": "工具链",
+                "note": "",
                 "localFile": null
             },
             {
@@ -4609,27 +4199,17 @@ const modelsData = [
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
                 "note": "f16",
-                "localFile": null
+                "localFile": "facenet_vggface2_dlite_fp16.om"
             },
             {
                 "title": "lfw.tgz",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-facenet/resolve/main/lfw.tgz",
-                "available": true,
+                "href": null,
+                "available": false,
                 "source": "api-all",
                 "sourceLabel": "附加资源",
                 "group": "附加资源",
                 "note": "",
                 "localFile": null
-            },
-            {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "api-all",
-                "sourceLabel": "附加资源",
-                "group": "附加资源",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
             }
         ]
     },
@@ -4638,7 +4218,7 @@ const modelsData = [
         "name": "LRStereo-B",
         "description": "LRStereo-B是一个轻量且鲁棒的双目立体匹配模型。它在开源模型(Raft-Stereo)的基础上做了大量的模型结构改进和重训。具体功能为输入标定好的左右目图像以及相关的相机参数，获得左目图像对应的深度图。",
         "descriptionZh": "LRStereo-B是一个轻量且鲁棒的双目立体匹配模型。它在开源模型(Raft-Stereo)的基础上做了大量的模型结构改进和重训。具体功能为输入标定好的左右目图像以及相关的相机参数，获得左目图像对应的深度图。",
-        "descriptionEn": "LRStereo-B is a computer vision model for stereo depth. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "LRStereo-B is a computer vision model for stereo depth. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 20:41:00",
         "updatedAt": "2025-12-30 20:02:17",
         "badge": null,
@@ -4701,6 +4281,16 @@ const modelsData = [
         "primaryDownloadLabel": "LRStereo-B_480x640_release.om",
         "downloads": [
             {
+                "title": "LRStereo-B_480x640_release.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-lrstereo-b/resolve/main/LRStereo-B_480x640_release.om",
+                "available": true,
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
+                "group": "编译模型",
+                "note": "a8w8",
+                "localFile": "LRStereo-B_480x640_release.om"
+            },
+            {
                 "title": "LRStereo-B.zip",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-lrstereo-b/resolve/main/LRStereo-B.zip",
                 "available": true,
@@ -4709,26 +4299,6 @@ const modelsData = [
                 "group": "源模型",
                 "note": "",
                 "localFile": "LRStereo-B.zip"
-            },
-            {
-                "title": "LRStereo-B.zip",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-lrstereo-b/resolve/main/LRStereo-B.zip",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "LRStereo-B.zip"
-            },
-            {
-                "title": "LRStereo-B_480x640_release.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-lrstereo-b/resolve/main/LRStereo-B_480x640_release.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "a8w8",
-                "localFile": null
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -4747,7 +4317,7 @@ const modelsData = [
         "name": "YOLOv8s-OBB",
         "description": "YOLOv8s-OBB 是 Ultralytics 推出的基于 YOLOv8 的旋转目标检测（Oriented Bounding Box, OBB）模型。相比于水平框检测，OBB 能够更准确地检测倾斜或不规则排列的目标（如航拍图像中的车辆、船只等）。该模型在 DOTA 数据集上进行了训练和验证。",
         "descriptionZh": "YOLOv8s-OBB 是 Ultralytics 推出的基于 YOLOv8 的旋转目标检测（Oriented Bounding Box, OBB）模型。相比于水平框检测，OBB 能够更准确地检测倾斜或不规则排列的目标（如航拍图像中的车辆、船只等）。该模型在 DOTA 数据集上进行了训练和验证。",
-        "descriptionEn": "YOLOv8s-OBB is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv8s-OBB is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 16:22:36",
         "updatedAt": "2025-12-30 20:02:17",
         "badge": null,
@@ -4807,9 +4377,19 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-yolov8s-obb",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-obb",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-obb/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-obb/resolve/main/yolov8s-obb.onnx",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-obb/resolve/main/yolov8s-obb.om",
         "primaryDownloadLabel": "yolov8s-obb.om",
         "downloads": [
+            {
+                "title": "yolov8s-obb.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-obb/resolve/main/yolov8s-obb.om",
+                "available": true,
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
+                "group": "编译模型",
+                "note": "a16w8",
+                "localFile": "yolov8s-obb.om"
+            },
             {
                 "title": "yolov8s-obb.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-obb/resolve/main/yolov8s-obb.onnx",
@@ -4821,38 +4401,18 @@ const modelsData = [
                 "localFile": "yolov8s-obb.onnx"
             },
             {
-                "title": "yolov8s-obb.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-obb/resolve/main/yolov8s-obb.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov8s-obb.onnx"
-            },
-            {
-                "title": "yolov8s-obb.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-obb/resolve/main/yolov8s-obb.onnx",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "a16w8",
-                "localFile": "yolov8s-obb.onnx"
-            },
-            {
                 "title": "yolov8s_obb.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-obb/resolve/main/yolov8s_obb.om",
-                "available": true,
+                "href": null,
+                "available": false,
                 "source": "omOfflineModel",
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
                 "note": "f16",
-                "localFile": "yolov8s_obb.om"
+                "localFile": null
             },
             {
                 "title": "DOTAv1.zip",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-obb/resolve/main/DOTAv1.zip",
+                "href": "https://github.com/ultralytics/assets/releases/download/v0.0.0/DOTAv1.zip",
                 "available": true,
                 "source": "api-all",
                 "sourceLabel": "附加资源",
@@ -4877,7 +4437,7 @@ const modelsData = [
         "name": "HRNet",
         "description": "HigherHRNet 是一种新型的自下而上人体姿态估计算法，它在训练阶段引入多分辨率监督机制，在推理阶段采用多分辨率聚合策略，不仅能有效应对自下而上多人姿态估计任务中的尺度变化难题，还可实现关键点的高精度定位，尤其在小尺寸人体目标的处理上表现突出。",
         "descriptionZh": "HigherHRNet 是一种新型的自下而上人体姿态估计算法，它在训练阶段引入多分辨率监督机制，在推理阶段采用多分辨率聚合策略，不仅能有效应对自下而上多人姿态估计任务中的尺度变化难题，还可实现关键点的高精度定位，尤其在小尺寸人体目标的处理上表现突出。",
-        "descriptionEn": "HRNet is a computer vision model for pose estimation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "HRNet is a computer vision model for pose estimation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 10:20:26",
         "updatedAt": null,
         "badge": null,
@@ -4944,57 +4504,37 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-hrnet",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-hrnet",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-hrnet/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-hrnet/resolve/main/hrnet_512_768.onnx",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-hrnet/resolve/main/hrnet_512_768.om",
         "primaryDownloadLabel": "hrnet_512_768.om",
         "downloads": [
             {
-                "title": "pose_higher_hrnet_w32_512.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-hrnet/resolve/main/pose_higher_hrnet_w32_512.pth",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "pose_higher_hrnet_w32_512.pth"
-            },
-            {
-                "title": "hrnet_512_768.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-hrnet/resolve/main/hrnet_512_768.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "hrnet_512_768.onnx"
-            },
-            {
-                "title": "pose_higher_hrnet_w32_512.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-hrnet/resolve/main/pose_higher_hrnet_w32_512.pth",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "pose_higher_hrnet_w32_512.pth"
-            },
-            {
-                "title": "hrnet_512_768.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-hrnet/resolve/main/hrnet_512_768.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "hrnet_512_768.onnx"
-            },
-            {
                 "title": "hrnet_512_768.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-hrnet/resolve/main/hrnet_512_768.om",
+                "available": true,
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
+                "group": "编译模型",
+                "note": "a16w8 / fp16",
+                "localFile": "hrnet_512_768.om"
+            },
+            {
+                "title": "pose_higher_hrnet_w32_512.pth",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-hrnet/resolve/main/pose_higher_hrnet_w32_512.pth",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "pose_higher_hrnet_w32_512.pth"
+            },
+            {
+                "title": "hrnet_512_768.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-hrnet/resolve/main/hrnet_512_768.onnx",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "a16w8",
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
                 "localFile": "hrnet_512_768.onnx"
             },
             {
@@ -5014,7 +4554,7 @@ const modelsData = [
         "name": "YOLO11s",
         "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率",
         "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率",
-        "descriptionEn": "YOLO11s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLO11s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 09:54:03",
         "updatedAt": "2025-12-30 20:02:18",
         "badge": null,
@@ -5085,54 +4625,34 @@ const modelsData = [
         "primaryDownloadLabel": "yolo11s.om",
         "downloads": [
             {
-                "title": "yolo11s.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s/resolve/main/yolo11s.pt",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolo11s.pt"
-            },
-            {
-                "title": "yolo11s.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s/resolve/main/yolo11s.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolo11s.onnx"
-            },
-            {
-                "title": "yolo11s.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s/resolve/main/yolo11s.pt",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolo11s.pt"
-            },
-            {
-                "title": "yolo11s.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s/resolve/main/yolo11s.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolo11s.onnx"
-            },
-            {
                 "title": "yolo11s.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s/resolve/main/yolo11s.om",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
                 "group": "编译模型",
-                "note": "a16w8",
-                "localFile": null
+                "note": "a16w8 / fp16",
+                "localFile": "yolo11s.om"
+            },
+            {
+                "title": "yolo11s.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s/resolve/main/yolo11s.pt",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolo11s.pt"
+            },
+            {
+                "title": "yolo11s.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s/resolve/main/yolo11s.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolo11s.onnx"
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -5151,7 +4671,7 @@ const modelsData = [
         "name": "YOLOv8s",
         "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv8在之前的YOLO版本的基础上进行了改进，在继承了原有YOLO网络模型优点的基础上，引入了新的特效和优化，具有更高的检测精度。",
         "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv8在之前的YOLO版本的基础上进行了改进，在继承了原有YOLO网络模型优点的基础上，引入了新的特效和优化，具有更高的检测精度。",
-        "descriptionEn": "YOLOv8s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv8s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 09:47:43",
         "updatedAt": "2025-12-30 20:02:17",
         "badge": null,
@@ -5218,58 +4738,38 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-yolov8s",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s/resolve/main/yolov8s_obb.om",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s/resolve/main/yolov8s.om",
         "primaryDownloadLabel": "yolov8s.om",
         "downloads": [
             {
-                "title": "yolov8s.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s/resolve/main/yolov8s.pt",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov8s.pt"
-            },
-            {
-                "title": "yolov8s.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s/resolve/main/yolov8s.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov8s.onnx"
-            },
-            {
-                "title": "yolov8s.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s/resolve/main/yolov8s.pt",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov8s.pt"
-            },
-            {
-                "title": "yolov8s.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s/resolve/main/yolov8s.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov8s.onnx"
-            },
-            {
                 "title": "yolov8s.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s/resolve/main/yolov8s_obb.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s/resolve/main/yolov8s.om",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
                 "group": "编译模型",
-                "note": "a16w8",
-                "localFile": "yolov8s_obb.om"
+                "note": "a16w8 / fp16",
+                "localFile": "yolov8s.om"
+            },
+            {
+                "title": "yolov8s.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s/resolve/main/yolov8s.pt",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov8s.pt"
+            },
+            {
+                "title": "yolov8s.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s/resolve/main/yolov8s.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov8s.onnx"
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -5288,7 +4788,7 @@ const modelsData = [
         "name": "VDSR",
         "description": "VDSR（Very Deep Super-Resolution Network）是一种20层深度卷积神经网络，通过残差学习实现图像超分辨率重建。",
         "descriptionZh": "VDSR（Very Deep Super-Resolution Network）是一种20层深度卷积神经网络，通过残差学习实现图像超分辨率重建。",
-        "descriptionEn": "VDSR is a computer vision model for image super-resolution. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "VDSR is a computer vision model for image super-resolution. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 20:56:31",
         "updatedAt": "2025-12-30 20:02:18",
         "badge": null,
@@ -5348,9 +4848,19 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-vdsr",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vdsr",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vdsr/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vdsr/resolve/main/vdsr.zip",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vdsr/resolve/main/vdsr.om",
         "primaryDownloadLabel": "vdsr.om",
         "downloads": [
+            {
+                "title": "vdsr.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vdsr/resolve/main/vdsr.om",
+                "available": true,
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
+                "group": "编译模型",
+                "note": "a8w8 / fp16",
+                "localFile": "vdsr.om"
+            },
             {
                 "title": "vdsr.zip",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vdsr/resolve/main/vdsr.zip",
@@ -5359,26 +4869,6 @@ const modelsData = [
                 "sourceLabel": "源模型下载",
                 "group": "源模型",
                 "note": "",
-                "localFile": "vdsr.zip"
-            },
-            {
-                "title": "vdsr.zip",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vdsr/resolve/main/vdsr.zip",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "vdsr.zip"
-            },
-            {
-                "title": "vdsr.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vdsr/resolve/main/vdsr.zip",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "a8w8",
                 "localFile": "vdsr.zip"
             },
             {
@@ -5398,7 +4888,7 @@ const modelsData = [
         "name": "Siamese Network",
         "description": "Siamese Network(孪生神经网络)是一种通过共享权重的两个相同子网络来度量两个输入样本相似性的深度学习框架，广泛应用于人脸识别、签名验证等任务。",
         "descriptionZh": "Siamese Network(孪生神经网络)是一种通过共享权重的两个相同子网络来度量两个输入样本相似性的深度学习框架，广泛应用于人脸识别、签名验证等任务。",
-        "descriptionEn": "Siamese Network is a computer vision model for face recognition. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "Siamese Network is a computer vision model for face recognition. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 20:25:32",
         "updatedAt": null,
         "badge": "Beta",
@@ -5462,6 +4952,16 @@ const modelsData = [
         "primaryDownloadLabel": "siamese_network.om",
         "downloads": [
             {
+                "title": "siamese_network.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-siamese-network/resolve/main/siamese_network.om",
+                "available": true,
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
+                "group": "编译模型",
+                "note": "a8w8 / fp16",
+                "localFile": "siamese_network.om"
+            },
+            {
                 "title": "siamese_model_weights.pt",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-siamese-network/resolve/main/siamese_model_weights.pt",
                 "available": true,
@@ -5470,26 +4970,6 @@ const modelsData = [
                 "group": "源模型",
                 "note": "",
                 "localFile": "siamese_model_weights.pt"
-            },
-            {
-                "title": "siamese_model_weights.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-siamese-network/resolve/main/siamese_model_weights.pt",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "siamese_model_weights.pt"
-            },
-            {
-                "title": "siamese_network.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-siamese-network/resolve/main/siamese_network.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "a8w8",
-                "localFile": null
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -5508,7 +4988,7 @@ const modelsData = [
         "name": "YOLO11s-seg",
         "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-seg作为实例分割的模型，比检测模型更进一步，包括识别图像中的各个对象并将它们与图像的其余部分分割开来。",
         "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-seg作为实例分割的模型，比检测模型更进一步，包括识别图像中的各个对象并将它们与图像的其余部分分割开来。",
-        "descriptionEn": "YOLO11s-seg is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLO11s-seg is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 17:25:35",
         "updatedAt": "2025-12-30 20:02:18",
         "badge": null,
@@ -5579,54 +5059,34 @@ const modelsData = [
         "primaryDownloadLabel": "yolo11s-seg.om",
         "downloads": [
             {
-                "title": "yolo11s-seg.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-seg/resolve/main/yolo11s-seg.pt",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolo11s-seg.pt"
-            },
-            {
-                "title": "yolo11s-seg.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-seg/resolve/main/yolo11s-seg.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolo11s-seg.onnx"
-            },
-            {
-                "title": "yolo11s-seg.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-seg/resolve/main/yolo11s-seg.pt",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolo11s-seg.pt"
-            },
-            {
-                "title": "yolo11s-seg.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-seg/resolve/main/yolo11s-seg.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolo11s-seg.onnx"
-            },
-            {
                 "title": "yolo11s-seg.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-seg/resolve/main/yolo11s-seg.om",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
                 "group": "编译模型",
                 "note": "a16w8",
-                "localFile": null
+                "localFile": "yolo11s-seg.om"
+            },
+            {
+                "title": "yolo11s-seg.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-seg/resolve/main/yolo11s-seg.pt",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolo11s-seg.pt"
+            },
+            {
+                "title": "yolo11s-seg.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-seg/resolve/main/yolo11s-seg.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolo11s-seg.onnx"
             },
             {
                 "title": "yolo11s-seg_dlite_fp16.om",
@@ -5636,7 +5096,7 @@ const modelsData = [
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
                 "note": "f16",
-                "localFile": null
+                "localFile": "yolo11s-seg_dlite_fp16.om"
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -5655,7 +5115,7 @@ const modelsData = [
         "name": "YOLO11s-pose",
         "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。",
         "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。",
-        "descriptionEn": "YOLO11s-pose is a computer vision model for pose estimation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLO11s-pose is a computer vision model for pose estimation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 17:17:58",
         "updatedAt": "2025-12-30 20:02:18",
         "badge": null,
@@ -5726,54 +5186,34 @@ const modelsData = [
         "primaryDownloadLabel": "yolo11s-pose.om",
         "downloads": [
             {
-                "title": "yolo11s-pose.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose.pt",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolo11s-pose.pt"
-            },
-            {
-                "title": "yolo11s-pose.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolo11s-pose.onnx"
-            },
-            {
-                "title": "yolo11s-pose.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose.pt",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolo11s-pose.pt"
-            },
-            {
-                "title": "yolo11s-pose.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolo11s-pose.onnx"
-            },
-            {
                 "title": "yolo11s-pose.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose.om",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
                 "group": "编译模型",
                 "note": "a16w8",
-                "localFile": null
+                "localFile": "yolo11s-pose.om"
+            },
+            {
+                "title": "yolo11s-pose.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose.pt",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolo11s-pose.pt"
+            },
+            {
+                "title": "yolo11s-pose.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolo11s-pose.onnx"
             },
             {
                 "title": "yolo11s-pose_dlite_fp16.om",
@@ -5783,7 +5223,7 @@ const modelsData = [
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
                 "note": "f16",
-                "localFile": null
+                "localFile": "yolo11s-pose_dlite_fp16.om"
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -5802,7 +5242,7 @@ const modelsData = [
         "name": "YOLOv6s",
         "description": "YOLOv6s 是一种轻量高效的 one-stage 目标检测模型。相比前代 YOLO 模型，YOLOv6s 采用了 EfficientRep 作为 backbone 和 Rep-PAN 作为颈部网络，兼顾了检测精度与推理速度，更适用于边缘计算场景。",
         "descriptionZh": "YOLOv6s 是一种轻量高效的 one-stage 目标检测模型。相比前代 YOLO 模型，YOLOv6s 采用了 EfficientRep 作为 backbone 和 Rep-PAN 作为颈部网络，兼顾了检测精度与推理速度，更适用于边缘计算场景。",
-        "descriptionEn": "YOLOv6s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv6s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 17:13:48",
         "updatedAt": "2025-12-30 20:02:18",
         "badge": null,
@@ -5873,54 +5313,34 @@ const modelsData = [
         "primaryDownloadLabel": "yolov6s_dpico.om",
         "downloads": [
             {
-                "title": "yolov6s.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov6s/resolve/main/yolov6s.pt",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov6s.pt"
-            },
-            {
-                "title": "yolov6s_opset11.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov6s/resolve/main/yolov6s_opset11.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov6s_opset11.onnx"
-            },
-            {
-                "title": "yolov6s.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov6s/resolve/main/yolov6s.pt",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov6s.pt"
-            },
-            {
-                "title": "yolov6s_opset11.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov6s/resolve/main/yolov6s_opset11.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov6s_opset11.onnx"
-            },
-            {
                 "title": "yolov6s_dpico.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov6s/resolve/main/yolov6s_dpico.om",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
                 "group": "编译模型",
                 "note": "a16w8",
-                "localFile": null
+                "localFile": "yolov6s_dpico.om"
+            },
+            {
+                "title": "yolov6s.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov6s/resolve/main/yolov6s.pt",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov6s.pt"
+            },
+            {
+                "title": "yolov6s_opset11.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov6s/resolve/main/yolov6s_opset11.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov6s_opset11.onnx"
             },
             {
                 "title": "yolov6s_dlite_fp16.om",
@@ -5930,7 +5350,7 @@ const modelsData = [
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
                 "note": "f16",
-                "localFile": null
+                "localFile": "yolov6s_dlite_fp16.om"
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -5949,7 +5369,7 @@ const modelsData = [
         "name": "PFLD",
         "description": "PFLD全称A Practical Facial Landmark Detector是一个精度高，速度快，模型小的人脸关键点检测模型。",
         "descriptionZh": "PFLD全称A Practical Facial Landmark Detector是一个精度高，速度快，模型小的人脸关键点检测模型。",
-        "descriptionEn": "PFLD is a computer vision model for keypoint detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "PFLD is a computer vision model for keypoint detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 17:10:06",
         "updatedAt": "2025-12-30 20:02:18",
         "badge": null,
@@ -6013,6 +5433,16 @@ const modelsData = [
         "primaryDownloadLabel": "pfld_dpico.om",
         "downloads": [
             {
+                "title": "pfld_dpico.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-pfld/resolve/main/pfld_dpico.om",
+                "available": true,
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
+                "group": "编译模型",
+                "note": "a16w8",
+                "localFile": "pfld_dpico.om"
+            },
+            {
                 "title": "pfld-sim.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-pfld/resolve/main/pfld-sim.onnx",
                 "available": true,
@@ -6023,26 +5453,6 @@ const modelsData = [
                 "localFile": "pfld-sim.onnx"
             },
             {
-                "title": "pfld-sim.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-pfld/resolve/main/pfld-sim.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "pfld-sim.onnx"
-            },
-            {
-                "title": "pfld_dpico.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-pfld/resolve/main/pfld_dpico.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "a16w8",
-                "localFile": null
-            },
-            {
                 "title": "pfld_dlite_fp16.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-pfld/resolve/main/pfld_dlite_fp16.om",
                 "available": true,
@@ -6050,7 +5460,7 @@ const modelsData = [
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
                 "note": "f16",
-                "localFile": null
+                "localFile": "pfld_dlite_fp16.om"
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -6069,7 +5479,7 @@ const modelsData = [
         "name": "YOLOv4",
         "description": "YOLOv4 是一种高性能的 one-stage 目标检测模型。相比 YOLOv3，YOLOv4 采用了 CSPDarknet53 作为 backbone 进行特征提取，该网络结合了跨金字塔池化结构和路径聚合网络，在精度和速度上均有显著提升。",
         "descriptionZh": "YOLOv4 是一种高性能的 one-stage 目标检测模型。相比 YOLOv3，YOLOv4 采用了 CSPDarknet53 作为 backbone 进行特征提取，该网络结合了跨金字塔池化结构和路径聚合网络，在精度和速度上均有显著提升。",
-        "descriptionEn": "YOLOv4 is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv4 is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 17:01:53",
         "updatedAt": "2025-12-30 21:27:13",
         "badge": "Beta",
@@ -6140,54 +5550,34 @@ const modelsData = [
         "primaryDownloadLabel": "yolov4_dpico.om",
         "downloads": [
             {
-                "title": "yolov4.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4/resolve/main/yolov4.pth",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov4.pth"
-            },
-            {
-                "title": "yolov4.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4/resolve/main/yolov4.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov4.onnx"
-            },
-            {
-                "title": "yolov4.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4/resolve/main/yolov4.pth",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov4.pth"
-            },
-            {
-                "title": "yolov4.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4/resolve/main/yolov4.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov4.onnx"
-            },
-            {
                 "title": "yolov4_dpico.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4/resolve/main/yolov4_dpico.om",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
                 "group": "编译模型",
                 "note": "a16w8",
-                "localFile": null
+                "localFile": "yolov4_dpico.om"
+            },
+            {
+                "title": "yolov4.pth",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4/resolve/main/yolov4.pth",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov4.pth"
+            },
+            {
+                "title": "yolov4.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4/resolve/main/yolov4.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov4.onnx"
             },
             {
                 "title": "yolov4_dlite_fp16.om",
@@ -6197,7 +5587,7 @@ const modelsData = [
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
                 "note": "f16",
-                "localFile": null
+                "localFile": "yolov4_dlite_fp16.om"
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -6216,7 +5606,7 @@ const modelsData = [
         "name": "YOLOv8s-seg",
         "description": "YOLOv8s-seg 是一种轻量高效的 one-stage 实例分割模型。相比前代 YOLO 模型，YOLOv8s-seg 采用 C2f 作为 backbone 和 PAFPN 作为颈部网络，结合 “原型掩码 + 掩码系数” 的分割头设计，在保证实时推理速度的同时实现像素级实例分割，适用于轻量化边缘部署场景。",
         "descriptionZh": "YOLOv8s-seg 是一种轻量高效的 one-stage 实例分割模型。相比前代 YOLO 模型，YOLOv8s-seg 采用 C2f 作为 backbone 和 PAFPN 作为颈部网络，结合 “原型掩码 + 掩码系数” 的分割头设计，在保证实时推理速度的同时实现像素级实例分割，适用于轻量化边缘部署场景。",
-        "descriptionEn": "YOLOv8s-seg is a computer vision model for segmentation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv8s-seg is a computer vision model for segmentation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 15:45:54",
         "updatedAt": "2025-12-30 21:27:16",
         "badge": null,
@@ -6280,6 +5670,26 @@ const modelsData = [
         "primaryDownloadLabel": "yolov8s-seg_dpico.om",
         "downloads": [
             {
+                "title": "yolov8s-seg_dpico.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-seg/resolve/main/yolov8s-seg_dpico.om",
+                "available": true,
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
+                "group": "编译模型",
+                "note": "a16w8",
+                "localFile": "yolov8s-seg_dpico.om"
+            },
+            {
+                "title": "yolov8s-seg_dlite_fp16.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-seg/resolve/main/yolov8s-seg_dlite_fp16.om",
+                "available": true,
+                "source": "om-fp16",
+                "sourceLabel": "FP16",
+                "group": "编译模型",
+                "note": "fp16",
+                "localFile": "yolov8s-seg_dlite_fp16.om"
+            },
+            {
                 "title": "yolov8s-seg.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-seg/resolve/main/yolov8s-seg.onnx",
                 "available": true,
@@ -6288,36 +5698,6 @@ const modelsData = [
                 "group": "源模型",
                 "note": "",
                 "localFile": "yolov8s-seg.onnx"
-            },
-            {
-                "title": "yolov8s-seg.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-seg/resolve/main/yolov8s-seg.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov8s-seg.onnx"
-            },
-            {
-                "title": "yolov8s-seg_dpico.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-seg/resolve/main/yolov8s-seg_dpico.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "a16w8",
-                "localFile": null
-            },
-            {
-                "title": "yolov8s-seg_dlite_fp16.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-seg/resolve/main/yolov8s-seg_dlite_fp16.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "fp16",
-                "localFile": null
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -6336,7 +5716,7 @@ const modelsData = [
         "name": "CrowdCount",
         "description": "CrowdCount是一种基于多尺度卷积神经网络（MSCNN）的高精度人群计数模型。相比传统多列 / 多网络方法，它通过单列网络中的多尺度特征块（MSB）与尺度自适应密度图回归技术，能有效应对透视畸变导致的人物尺度差异问题，兼顾计数精度与模型轻量化，适用于监控图像、公共场所等密集人群计数场景。",
         "descriptionZh": "CrowdCount是一种基于多尺度卷积神经网络（MSCNN）的高精度人群计数模型。相比传统多列 / 多网络方法，它通过单列网络中的多尺度特征块（MSB）与尺度自适应密度图回归技术，能有效应对透视畸变导致的人物尺度差异问题，兼顾计数精度与模型轻量化，适用于监控图像、公共场所等密集人群计数场景。",
-        "descriptionEn": "CrowdCount is a computer vision model for crowd counting. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "CrowdCount is a computer vision model for crowd counting. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 15:03:50",
         "updatedAt": "2025-12-30 21:27:21",
         "badge": null,
@@ -6410,16 +5790,6 @@ const modelsData = [
                 "localFile": "mscnn_model.onnx"
             },
             {
-                "title": "mscnn_model.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-crowdcount/resolve/main/mscnn_model.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "mscnn_model.onnx"
-            },
-            {
                 "title": "mscnn_model_dpico.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-crowdcount/resolve/main/mscnn_model_dpico.om",
                 "available": true,
@@ -6427,7 +5797,7 @@ const modelsData = [
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
                 "note": "a16w8",
-                "localFile": null
+                "localFile": "mscnn_model_dpico.om"
             },
             {
                 "title": "mscnn_model_dlite.om",
@@ -6437,7 +5807,7 @@ const modelsData = [
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
                 "note": "f16",
-                "localFile": null
+                "localFile": "mscnn_model_dlite.om"
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -6456,7 +5826,7 @@ const modelsData = [
         "name": "UNet",
         "description": "UNet是由FCN改进而来的图像分割模型，其网络结构像U型，分为特征提取部分和上采样特征融合部分。",
         "descriptionZh": "UNet是由FCN改进而来的图像分割模型，其网络结构像U型，分为特征提取部分和上采样特征融合部分。",
-        "descriptionEn": "UNet is a computer vision model for segmentation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 8 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "UNet is a computer vision model for segmentation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-11-29 15:01:53",
         "updatedAt": "2025-11-29 18:03:49",
         "badge": null,
@@ -6534,74 +5904,44 @@ const modelsData = [
         "primaryDownloadLabel": "unet.om",
         "downloads": [
             {
-                "title": "UNet.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-unet/resolve/main/UNet.pth",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "UNet.pth"
-            },
-            {
-                "title": "UNet_dynamic_bs.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-unet/resolve/main/UNet_dynamic_bs.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "UNet_dynamic_bs.onnx"
-            },
-            {
-                "title": "UNet_dynamic_sim.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-unet/resolve/main/UNet_dynamic_sim.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "UNet_dynamic_sim.onnx"
-            },
-            {
-                "title": "UNet.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-unet/resolve/main/UNet.pth",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "UNet.pth"
-            },
-            {
-                "title": "UNet_dynamic_bs.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-unet/resolve/main/UNet_dynamic_bs.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "UNet_dynamic_bs.onnx"
-            },
-            {
-                "title": "UNet_dynamic_sim.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-unet/resolve/main/UNet_dynamic_sim.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "UNet_dynamic_sim.onnx"
-            },
-            {
                 "title": "unet.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-unet/resolve/main/unet.om",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
                 "group": "编译模型",
-                "note": "a8w8",
-                "localFile": null
+                "note": "a8w8 / f16",
+                "localFile": "unet.om"
+            },
+            {
+                "title": "UNet.pth",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-unet/resolve/main/UNet.pth",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "UNet.pth"
+            },
+            {
+                "title": "UNet_dynamic_bs.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-unet/resolve/main/UNet_dynamic_bs.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "UNet_dynamic_bs.onnx"
+            },
+            {
+                "title": "UNet_dynamic_sim.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-unet/resolve/main/UNet_dynamic_sim.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "UNet_dynamic_sim.onnx"
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -6620,7 +5960,7 @@ const modelsData = [
         "name": "VGG16",
         "description": "VGGNet是牛津大学计算机视觉组（Visual Geometry Group）和Google DeepMind公司的研究员一起研发的深度卷积神经网络，它探索了卷积神经网络的深度与其性能之间的关系，通过反复堆叠3*3的小型卷积核和2*2的最大池化层，成功地构筑了16~19层深的卷积神经网络。VGGNet相比之前state-of-the-art的网络结构，错误率大幅下降，VGGNet论文中全部使用了3*3的小型卷积核和2*2的最大池化核，通过不断加深网络结构来提升性能。",
         "descriptionZh": "VGGNet是牛津大学计算机视觉组（Visual Geometry Group）和Google DeepMind公司的研究员一起研发的深度卷积神经网络，它探索了卷积神经网络的深度与其性能之间的关系，通过反复堆叠3*3的小型卷积核和2*2的最大池化层，成功地构筑了16~19层深的卷积神经网络。VGGNet相比之前state-of-the-art的网络结构，错误率大幅下降，VGGNet论文中全部使用了3*3的小型卷积核和2*2的最大池化核，通过不断加深网络结构来提升性能。",
-        "descriptionEn": "VGG16 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "VGG16 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-11-17 11:25:12",
         "updatedAt": null,
         "badge": null,
@@ -6687,58 +6027,38 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-vgg16",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vgg16",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vgg16/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vgg16/resolve/main/vgg16.onnx",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vgg16/resolve/main/vgg16.om",
         "primaryDownloadLabel": "vgg16.om",
         "downloads": [
             {
-                "title": "vgg16.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vgg16/resolve/main/vgg16.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "vgg16.onnx"
-            },
-            {
-                "title": "vgg16-397923af.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vgg16/resolve/main/vgg16-397923af.pth",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "vgg16-397923af.pth"
-            },
-            {
-                "title": "vgg16.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vgg16/resolve/main/vgg16.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "vgg16.onnx"
-            },
-            {
-                "title": "vgg16-397923af.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vgg16/resolve/main/vgg16-397923af.pth",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "vgg16-397923af.pth"
-            },
-            {
                 "title": "vgg16.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vgg16/resolve/main/vgg16.om",
+                "available": true,
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
+                "group": "编译模型",
+                "note": "a8w8 / fp16",
+                "localFile": "vgg16.om"
+            },
+            {
+                "title": "vgg16.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vgg16/resolve/main/vgg16.onnx",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "a8w8",
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
                 "localFile": "vgg16.onnx"
+            },
+            {
+                "title": "vgg16-397923af.pth",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vgg16/resolve/main/vgg16-397923af.pth",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "vgg16-397923af.pth"
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -6757,7 +6077,7 @@ const modelsData = [
         "name": "SE-ResNet50",
         "description": "SE-ResNet50是一种基于ResNet50架构的改进卷积神经网络，通过引入SE（Squeeze-and-Excitation）注意力模块，自适应校准通道特征响应，显著提升模型表达能力。",
         "descriptionZh": "SE-ResNet50是一种基于ResNet50架构的改进卷积神经网络，通过引入SE（Squeeze-and-Excitation）注意力模块，自适应校准通道特征响应，显著提升模型表达能力。",
-        "descriptionEn": "SE-ResNet50 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "SE-ResNet50 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-11-14 18:20:28",
         "updatedAt": "2025-11-29 14:49:58",
         "badge": "Beta",
@@ -6828,54 +6148,34 @@ const modelsData = [
         "primaryDownloadLabel": "seresnet50.om",
         "downloads": [
             {
-                "title": "seresnet50.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-se-resnet50/resolve/main/seresnet50.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "seresnet50.onnx"
-            },
-            {
-                "title": "seresnet50.zip",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-se-resnet50/resolve/main/seresnet50.zip",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "seresnet50.zip"
-            },
-            {
-                "title": "seresnet50.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-se-resnet50/resolve/main/seresnet50.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "seresnet50.onnx"
-            },
-            {
-                "title": "seresnet50.zip",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-se-resnet50/resolve/main/seresnet50.zip",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "seresnet50.zip"
-            },
-            {
                 "title": "seresnet50.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-se-resnet50/resolve/main/seresnet50.om",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
                 "group": "编译模型",
-                "note": "a8w8",
-                "localFile": null
+                "note": "a8w8 / fp16",
+                "localFile": "seresnet50.om"
+            },
+            {
+                "title": "seresnet50.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-se-resnet50/resolve/main/seresnet50.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "seresnet50.onnx"
+            },
+            {
+                "title": "seresnet50.zip",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-se-resnet50/resolve/main/seresnet50.zip",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "seresnet50.zip"
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -6894,7 +6194,7 @@ const modelsData = [
         "name": "InceptionV3",
         "description": "InceptionV3 是为图像分类任务设计的高效卷积神经网络，其核心创新是使用模块化的 Inception 结构（如分解卷积、辅助分类器）来在保持计算效率的同时提升特征提取能力，并在 ImageNet 等数据集上取得优异性能。",
         "descriptionZh": "InceptionV3 是为图像分类任务设计的高效卷积神经网络，其核心创新是使用模块化的 Inception 结构（如分解卷积、辅助分类器）来在保持计算效率的同时提升特征提取能力，并在 ImageNet 等数据集上取得优异性能。",
-        "descriptionEn": "InceptionV3 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "InceptionV3 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-11-14 18:09:00",
         "updatedAt": "2025-11-29 14:49:57",
         "badge": null,
@@ -6965,54 +6265,34 @@ const modelsData = [
         "primaryDownloadLabel": "InceptionV3.om",
         "downloads": [
             {
-                "title": "InceptionV3.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-inceptionv3/resolve/main/InceptionV3.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "InceptionV3.onnx"
-            },
-            {
-                "title": "Inceptionv3.zip",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-inceptionv3/resolve/main/Inceptionv3.zip",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "Inceptionv3.zip"
-            },
-            {
-                "title": "InceptionV3.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-inceptionv3/resolve/main/InceptionV3.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "InceptionV3.onnx"
-            },
-            {
-                "title": "Inceptionv3.zip",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-inceptionv3/resolve/main/Inceptionv3.zip",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "Inceptionv3.zip"
-            },
-            {
                 "title": "InceptionV3.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-inceptionv3/resolve/main/InceptionV3.om",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
                 "group": "编译模型",
-                "note": "a8w8",
-                "localFile": null
+                "note": "a8w8 / fp16",
+                "localFile": "InceptionV3.om"
+            },
+            {
+                "title": "InceptionV3.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-inceptionv3/resolve/main/InceptionV3.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "InceptionV3.onnx"
+            },
+            {
+                "title": "Inceptionv3.zip",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-inceptionv3/resolve/main/Inceptionv3.zip",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "Inceptionv3.zip"
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -7031,7 +6311,7 @@ const modelsData = [
         "name": "YOLOv7",
         "description": "YOLOv7在速度与精度方面均超越现有已知目标检测器：在5-160 FPS范围内表现最优，并在GPU V100上以30+ FPS实现56.8% AP的最高精度。其YOLOv7-E6模型在V100上达到56 FPS和55.9% AP，相比基于Transformer的SWIN-L Cascade-Mask R-CNN（A100 9.2 FPS，53.9% AP）速度提升509%且精度提高2%；相较基于卷积的ConvNeXt-XL Cascade-Mask R-CNN（A100 8.6 FPS，55.2% AP）速度提升551%且精度提高0.7%。此外，YOLOv7在速度与精度上均优于YOLOR、YOLOX、YOLOv5等主流检测器，且仅使用MS COCO数据集从头训练，未借助任何预训练权重。",
         "descriptionZh": "YOLOv7在速度与精度方面均超越现有已知目标检测器：在5-160 FPS范围内表现最优，并在GPU V100上以30+ FPS实现56.8% AP的最高精度。其YOLOv7-E6模型在V100上达到56 FPS和55.9% AP，相比基于Transformer的SWIN-L Cascade-Mask R-CNN（A100 9.2 FPS，53.9% AP）速度提升509%且精度提高2%；相较基于卷积的ConvNeXt-XL Cascade-Mask R-CNN（A100 8.6 FPS，55.2% AP）速度提升551%且精度提高0.7%。此外，YOLOv7在速度与精度上均优于YOLOR、YOLOX、YOLOv5等主流检测器，且仅使用MS COCO数据集从头训练，未借助任何预训练权重。",
-        "descriptionEn": "YOLOv7 is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv7 is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-11-14 10:24:41",
         "updatedAt": "2025-11-29 14:49:58",
         "badge": null,
@@ -7102,54 +6382,34 @@ const modelsData = [
         "primaryDownloadLabel": "yolov7.om",
         "downloads": [
             {
-                "title": "yolov7.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov7/resolve/main/yolov7.pt",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov7.pt"
-            },
-            {
-                "title": "yolov7.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov7/resolve/main/yolov7.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov7.onnx"
-            },
-            {
-                "title": "yolov7.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov7/resolve/main/yolov7.pt",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov7.pt"
-            },
-            {
-                "title": "yolov7.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov7/resolve/main/yolov7.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov7.onnx"
-            },
-            {
                 "title": "yolov7.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov7/resolve/main/yolov7.om",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
                 "group": "编译模型",
-                "note": "a16w8",
-                "localFile": null
+                "note": "a16w8 / fp16",
+                "localFile": "yolov7.om"
+            },
+            {
+                "title": "yolov7.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov7/resolve/main/yolov7.pt",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov7.pt"
+            },
+            {
+                "title": "yolov7.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov7/resolve/main/yolov7.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov7.onnx"
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -7168,7 +6428,7 @@ const modelsData = [
         "name": "ResNet50",
         "description": "ResNet是残差网络(Residual Network)的缩写,该系列网络广泛用于目标分类等领域以及作为计算机视觉任务主干经典神经网络的一部分，典型的网络有ResNet50, ResNet101等。ResNet证明网络能够向更深（包含更多隐藏层）的方向发展。",
         "descriptionZh": "ResNet是残差网络(Residual Network)的缩写,该系列网络广泛用于目标分类等领域以及作为计算机视觉任务主干经典神经网络的一部分，典型的网络有ResNet50, ResNet101等。ResNet证明网络能够向更深（包含更多隐藏层）的方向发展。",
-        "descriptionEn": "ResNet50 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "ResNet50 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-09-22 20:40:35",
         "updatedAt": null,
         "badge": null,
@@ -7235,57 +6495,37 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-resnet50",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet50",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet50/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet50/resolve/main/resnet50.onnx",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet50/resolve/main/resnet50.om",
         "primaryDownloadLabel": "resnet50.om",
         "downloads": [
             {
-                "title": "resnet50-0676ba61.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet50/resolve/main/resnet50-0676ba61.pth",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "resnet50-0676ba61.pth"
-            },
-            {
-                "title": "resnet50.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet50/resolve/main/resnet50.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "resnet50.onnx"
-            },
-            {
-                "title": "resnet50-0676ba61.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet50/resolve/main/resnet50-0676ba61.pth",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "resnet50-0676ba61.pth"
-            },
-            {
-                "title": "resnet50.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet50/resolve/main/resnet50.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "resnet50.onnx"
-            },
-            {
                 "title": "resnet50.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet50/resolve/main/resnet50.om",
+                "available": true,
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
+                "group": "编译模型",
+                "note": "a8w8 / fp16",
+                "localFile": "resnet50.om"
+            },
+            {
+                "title": "resnet50-0676ba61.pth",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet50/resolve/main/resnet50-0676ba61.pth",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "resnet50-0676ba61.pth"
+            },
+            {
+                "title": "resnet50.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet50/resolve/main/resnet50.onnx",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "a8w8",
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
                 "localFile": "resnet50.onnx"
             },
             {
@@ -7305,7 +6545,7 @@ const modelsData = [
         "name": "ResNet18",
         "description": "ResNet是残差网络(Residual Network)的缩写,该系列网络广泛用于目标分类等领域以及作为计算机视觉任务主干经典神经网络的一部分，典型的网络有ResNet18, ResNet101等。ResNet证明网络能够向更深（包含更多隐藏层）的方向发展。",
         "descriptionZh": "ResNet是残差网络(Residual Network)的缩写,该系列网络广泛用于目标分类等领域以及作为计算机视觉任务主干经典神经网络的一部分，典型的网络有ResNet18, ResNet101等。ResNet证明网络能够向更深（包含更多隐藏层）的方向发展。",
-        "descriptionEn": "ResNet18 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "ResNet18 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-09-17 09:26:27",
         "updatedAt": null,
         "badge": null,
@@ -7371,57 +6611,37 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-resnet18",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet18",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet18/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet18/resolve/main/resnet18.onnx",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet18/resolve/main/resnet18.om",
         "primaryDownloadLabel": "resnet18.om",
         "downloads": [
             {
-                "title": "resnet18-f37072fd.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet18/resolve/main/resnet18-f37072fd.pth",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "resnet18-f37072fd.pth"
-            },
-            {
-                "title": "resnet18.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet18/resolve/main/resnet18.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "resnet18.onnx"
-            },
-            {
-                "title": "resnet18-f37072fd.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet18/resolve/main/resnet18-f37072fd.pth",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "resnet18-f37072fd.pth"
-            },
-            {
-                "title": "resnet18.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet18/resolve/main/resnet18.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "resnet18.onnx"
-            },
-            {
                 "title": "resnet18.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet18/resolve/main/resnet18.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet18/resolve/main/resnet18.om",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
                 "group": "编译模型",
                 "note": "a8w8",
+                "localFile": "resnet18.om"
+            },
+            {
+                "title": "resnet18-f37072fd.pth",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet18/resolve/main/resnet18-f37072fd.pth",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "resnet18-f37072fd.pth"
+            },
+            {
+                "title": "resnet18.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet18/resolve/main/resnet18.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
                 "localFile": "resnet18.onnx"
             },
             {
@@ -7441,7 +6661,7 @@ const modelsData = [
         "name": "YOLOv8l",
         "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv8l在之前的YOLO版本的基础上进行了改进，在继承了原有YOLO网络模型优点的基础上，引入了新的特效和优化，具有更高的检测精度。",
         "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv8l在之前的YOLO版本的基础上进行了改进，在继承了原有YOLO网络模型优点的基础上，引入了新的特效和优化，具有更高的检测精度。",
-        "descriptionEn": "YOLOv8l is a computer vision model for detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv8l is a computer vision model for detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-09-15 22:03:30",
         "updatedAt": null,
         "badge": null,
@@ -7511,54 +6731,34 @@ const modelsData = [
         "primaryDownloadLabel": "yolov8l.om",
         "downloads": [
             {
-                "title": "yolov8l.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8l/resolve/main/yolov8l.pt",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov8l.pt"
-            },
-            {
-                "title": "yolov8l.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8l/resolve/main/yolov8l.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov8l.onnx"
-            },
-            {
-                "title": "yolov8l.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8l/resolve/main/yolov8l.pt",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov8l.pt"
-            },
-            {
-                "title": "yolov8l.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8l/resolve/main/yolov8l.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "yolov8l.onnx"
-            },
-            {
                 "title": "yolov8l.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8l/resolve/main/yolov8l.om",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
                 "group": "编译模型",
                 "note": "a16w8",
-                "localFile": null
+                "localFile": "yolov8l.om"
+            },
+            {
+                "title": "yolov8l.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8l/resolve/main/yolov8l.pt",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov8l.pt"
+            },
+            {
+                "title": "yolov8l.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8l/resolve/main/yolov8l.onnx",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov8l.onnx"
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -7577,7 +6777,7 @@ const modelsData = [
         "name": "ResNet101",
         "description": "ResNet是ImageNet竞赛中分类问题效果较好的网络，它引入了残差学习的概念，通过增加直连通道来保护信息的完整性，解决信息丢失、梯度消失、梯度爆炸等问题，让很深的网络也得以训练。ResNet有不同的网络层数，常用的有18-layer、34-layer、50-layer、101-layer、152-layer。",
         "descriptionZh": "ResNet是ImageNet竞赛中分类问题效果较好的网络，它引入了残差学习的概念，通过增加直连通道来保护信息的完整性，解决信息丢失、梯度消失、梯度爆炸等问题，让很深的网络也得以训练。ResNet有不同的网络层数，常用的有18-layer、34-layer、50-layer、101-layer、152-layer。",
-        "descriptionEn": "ResNet101 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "ResNet101 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-09-13 18:06:31",
         "updatedAt": null,
         "badge": null,
@@ -7644,58 +6844,38 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-resnet101",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet101",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet101/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet101/resolve/main/resnet101.onnx",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet101/resolve/main/resnet101.om",
         "primaryDownloadLabel": "resnet101.om",
         "downloads": [
             {
-                "title": "resnet101.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet101/resolve/main/resnet101.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "resnet101.onnx"
-            },
-            {
-                "title": "resnet101-63fe2227.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet101/resolve/main/resnet101-63fe2227.pth",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "note": "",
-                "localFile": "resnet101-63fe2227.pth"
-            },
-            {
-                "title": "resnet101.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet101/resolve/main/resnet101.onnx",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "resnet101.onnx"
-            },
-            {
-                "title": "resnet101-63fe2227.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet101/resolve/main/resnet101-63fe2227.pth",
-                "available": true,
-                "source": "originModel",
-                "sourceLabel": "源模型元数据",
-                "group": "源模型",
-                "note": "",
-                "localFile": "resnet101-63fe2227.pth"
-            },
-            {
                 "title": "resnet101.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet101/resolve/main/resnet101.om",
+                "available": true,
+                "source": "om-auto",
+                "sourceLabel": "AUTO",
+                "group": "编译模型",
+                "note": "a8w8 / fp16",
+                "localFile": "resnet101.om"
+            },
+            {
+                "title": "resnet101.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet101/resolve/main/resnet101.onnx",
                 "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "note": "a8w8",
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
                 "localFile": "resnet101.onnx"
+            },
+            {
+                "title": "resnet101-63fe2227.pth",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet101/resolve/main/resnet101-63fe2227.pth",
+                "available": true,
+                "source": "source-model",
+                "sourceLabel": "源模型下载",
+                "group": "源模型",
+                "note": "",
+                "localFile": "resnet101-63fe2227.pth"
             },
             {
                 "title": "SVP_NNN_PC_V1.0.6.0.tgz",

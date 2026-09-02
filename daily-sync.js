@@ -227,7 +227,7 @@ function runCommand(command, args, options = {}) {
         const child = spawn(command, args, {
             cwd: ROOT,
             env,
-            stdio: ['ignore', 'pipe', 'pipe'],
+            stdio: ['inherit', 'pipe', 'pipe'],
         });
 
         const writeChunk = (chunk) => {
@@ -379,9 +379,6 @@ async function main() {
         await runCommand('node', ['build-static-site.js'], {
             label: 'build-static-site.js',
             logFile: path.join(options.logDir, `${runToken}_build.log`),
-            env: {
-                SITE_LAST_COMMIT_TIME: syncDateTime,
-            },
         });
     }
 

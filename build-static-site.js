@@ -9,16 +9,15 @@ const IMAGES_DIR = path.join(ROOT, 'assets', 'images');
 const MODELS_DIR = path.join(ROOT, 'models');
 const MODELS_REAL_DIR = path.join(ROOT, 'models-real-20260713');
 const FETCH_MANIFEST = path.join(MODELS_REAL_DIR, 'fetch-manifest.json');
+// Authoritative listing of what each HF repo actually contains; refresh with refresh-hf-files.js.
+// The models-real snapshots are incomplete, so they alone under-report available downloads.
+const HF_REPO_FILES = path.join(ROOT, 'hf-repo-files.json');
+// Upstream still advertises these dataset hosts, but their DNS records are gone.
+const DEAD_EXTERNAL_HOSTS = new Set(['icvl.ee.ic.ac.uk', 'vis-www.cs.umass.edu']);
 const OUTPUT = path.join(ROOT, 'assets', 'js', 'models.js');
-const SITE_HTML_FILES = [
-    path.join(ROOT, 'index.html'),
-    path.join(ROOT, 'modelzoo.html'),
-    path.join(ROOT, 'model-detail.html'),
-];
 const HF_NAMESPACE = process.env.HF_NAMESPACE || 'shadow-cann';
 const HF_MIRROR_BASE = 'https://hf-mirror.com';
 const HF_REPO_PREFIX = 'hispark-modelzoo-';
-const SITE_LAST_COMMIT_TIME_TOKEN = '{{SITE_LAST_COMMIT_TIME}}';
 // Shared toolkit package (replaces hispark-obs SVP_NNN SDK).
 // Prefer the dedicated HF repo when the full package is present; fall back to GitHub Releases
 // which hosts the verified complete 249MB archive.
@@ -29,6 +28,27 @@ const SHARED_SDK_GITHUB_URL = `https://github.com/GitBubble/hisilicon-developer-
 // Use GitHub Releases by default: HF mirror historically contained a truncated 31MB copy.
 // Set SVP_SDK_SOURCE=hf to force the dedicated Hugging Face URL after a full upload is verified.
 const SHARED_SDK_URL = process.env.SVP_SDK_SOURCE === 'hf' ? SHARED_SDK_HF_URL : SHARED_SDK_GITHUB_URL;
+
+// Only v1.0.6.0 has a GitHub release; other versions (DeepSort/YOLO26s need v1.0.6.5)
+// come from the dedicated HF SDK repo, since the per-model copies there are truncated.
+function sdkUrlForFile(fileName) {
+    const name = String(fileName || '');
+    if (!isSdkPackageName(name) || name === SHARED_SDK_FILE) return SHARED_SDK_URL;
+    return `${HF_MIRROR_BASE}/${SHARED_SDK_HF_REPO_ID}/resolve/main/${encodeURIComponent(name)}`;
+}
+
+// Toolkit entries name the SDK "CANN工具" and wrap the real file in an encoded gitee redirect.
+function sdkFileNameFrom(value) {
+    if (!value) return null;
+    let text = String(value);
+    try {
+        text = decodeURIComponent(text);
+    } catch (_) {
+        // keep the raw text when it is not valid percent-encoding
+    }
+    const match = text.match(/SVP_NNN_PC_V[\d.]+\.tgz/i);
+    return match ? match[0] : null;
+}
 const HUAWEICLOUD_HOST_RE = /(?:^|\.)myhuaweicloud\.com$/i;
 const HF_UPLOAD_SKIPS = new Set([]); // all models now have HF mirrors
 const MANUAL_REPO_OVERRIDES = new Map([
@@ -376,6 +396,7 @@ function sourceLabel(source) {
     if (source === 'originModel') return '源模型元数据';
     if (source === 'toolkit') return '工具链';
     if (source === 'api-all') return '附加资源';
+    if (source === 'mirror-extra') return '镜像补充';
     return source;
 }
 
@@ -458,13 +479,35 @@ function listModelRealFiles(slug) {
     });
 }
 
+function loadHfRepoFiles() {
+    try {
+        const raw = JSON.parse(fs.readFileSync(HF_REPO_FILES, 'utf8'));
+        return new Map(Object.entries(raw).filter(([, files]) => Array.isArray(files)));
+    } catch (_) {
+        return new Map();
+    }
+}
+
+function isDeadExternalUrl(url) {
+    if (!url || !/^https?:\/\//.test(url)) return false;
+    try {
+        return DEAD_EXTERNAL_HOSTS.has(new URL(url).hostname);
+    } catch (_) {
+        return false;
+    }
+}
+
+// A .om request must never resolve to .onnx/.pt/.zip: the link would download a
+// different artifact than its label promises, which is worse than showing nothing.
+const ARTIFACT_EXTENSIONS = new Set(['.om', '.onnx', '.pt', '.pth', '.zip', '.bin', '.safetensors', '.tgz', '.7z']);
+
 function resolveLocalModelFile(name, modelFiles) {
     if (!name) return null;
     if (modelFiles.includes(name)) return name;
 
     const ext = path.extname(name).toLowerCase();
     const stem = path.basename(name, ext).toLowerCase();
-    const candidates = modelFiles.filter(file => {
+    let candidates = modelFiles.filter(file => {
         const fileExt = path.extname(file).toLowerCase();
         const fileStem = path.basename(file, fileExt).toLowerCase();
         return fileStem === stem ||
@@ -473,6 +516,10 @@ function resolveLocalModelFile(name, modelFiles) {
             fileStem.includes(`${stem}_source-model`) ||
             fileStem.includes(`${stem}-source-model`);
     });
+
+    if (ARTIFACT_EXTENSIONS.has(ext)) {
+        candidates = candidates.filter((file) => path.extname(file).toLowerCase() === ext);
+    }
 
     if (candidates.length === 1) return candidates[0];
 
@@ -556,7 +603,7 @@ function rewriteExternalUrl(url, repoInfo) {
     const unwrapped = unwrapRedirectTarget(url);
 
     if (isSdkPackageUrl(unwrapped) || isSdkPackageUrl(url)) {
-        return SHARED_SDK_URL;
+        return sdkUrlForFile(sdkFileNameFrom(unwrapped) || sdkFileNameFrom(url));
     }
 
     if (isHuaweiCloudUrl(unwrapped) || isHuaweiCloudUrl(url)) {
@@ -630,18 +677,18 @@ function buildDownloads(detailEntry, repoFiles, repoInfo) {
         const localFile = resolveRepoFileName(title, item.url, repoFiles);
         let href = null;
 
-        if (isSdkPackageUrl(item.url) || isSdkPackageName(title) || isSdkPackageName(fileNameFromUrl(item.url))) {
-            href = SHARED_SDK_URL;
+        const sdkName = sdkFileNameFrom(title) || sdkFileNameFrom(item.url);
+        if (sdkName || isSdkPackageUrl(item.url)) {
+            href = sdkUrlForFile(sdkName);
         } else if (localFile && repoInfo) {
             href = `${repoInfo.resolveBase}/${encodeRepoFile(localFile)}`;
         } else if (repoInfo && repoInfo.preferRepoUrlForDownloads) {
             href = repoInfo.downloadTargetUrl || repoInfo.repoUrl;
-        } else if (repoInfo && repoInfo.useMirrorForRemoteDownloads && title && title !== '未命名文件' && path.extname(title)) {
-            // Known filename but not present in the local snapshot — still expose HF resolve URL.
-            href = `${repoInfo.resolveBase}/${encodeRepoFile(title)}`;
         } else if (item.url && /^https?:\/\//.test(item.url)) {
             href = rewriteExternalUrl(item.url, repoInfo);
         }
+        // Do not invent Hugging Face resolve URLs for filenames that were never
+        // mirrored locally. That previously advertised 404s (e.g. CrowdCount OMs).
 
         // Never leave Huawei Cloud signed URLs in the generated site data.
         if (isHuaweiCloudUrl(href)) {
@@ -649,6 +696,9 @@ function buildDownloads(detailEntry, repoFiles, repoInfo) {
         }
         if (isHuaweiCloudUrl(href)) {
             href = repoInfo ? repoInfo.repoUrl : null;
+        }
+        if (isDeadExternalUrl(href)) {
+            href = null;
         }
 
         downloads.push({
@@ -659,16 +709,26 @@ function buildDownloads(detailEntry, repoFiles, repoInfo) {
             sourceLabel: sourceLabel(item.source),
             group: sourceGroup(item.source),
             note: item.quantify || item.computing || '',
-            localFile: localFile || (isSdkPackageUrl(item.url) ? SHARED_SDK_FILE : null),
+            localFile: localFile || sdkName || (isSdkPackageUrl(item.url) ? SHARED_SDK_FILE : null),
         });
     }
 
     const deduped = [];
-    const seen = new Set();
+    const seen = new Map();
     for (const item of downloads) {
-        const key = `${item.group}|${item.source}|${item.title}|${item.href || ''}`;
-        if (seen.has(key)) continue;
-        seen.add(key);
+        // Upstream repeats the same artifact across sources (downloadUrls vs originModel);
+        // identical group+name+target means one download, so keep a single row for it.
+        const key = `${item.group}|${item.title}|${item.href || ''}`;
+        const existing = seen.get(key);
+        if (existing) {
+            // Upstream lists one row per quantisation, so keep every variant label
+            // rather than letting the duplicate filename hide the others.
+            if (item.note && !existing.note.split(' / ').includes(item.note)) {
+                existing.note = existing.note ? `${existing.note} / ${item.note}` : item.note;
+            }
+            continue;
+        }
+        seen.set(key, item);
         deduped.push(item);
     }
 
@@ -691,22 +751,60 @@ function buildManualDownloads(modelName, repoInfo) {
     }));
 }
 
-function buildModelRecord(model, detailEntry, imageFiles, manifestByName) {
+// Files published to Hugging Face that upstream's API never listed would otherwise
+// be unreachable from the site even though they download fine.
+const MIRROR_EXTRA_IGNORED = /^(\.gitattributes|\.DS_Store|README\.md|model-card\.json)$/i;
+const MIRROR_EXTRA_IGNORED_EXT = /\.(png|jpe?g|gif|webp|svg)$/i;
+
+function buildMirrorExtras(repoInfo, hfFiles, existingDownloads, originModels) {
+    if (!repoInfo || !hfFiles.length) return [];
+
+    const advertised = new Set();
+    for (const item of [...existingDownloads, ...originModels]) {
+        if (item.localFile) advertised.add(item.localFile);
+        if (item.title) advertised.add(item.title);
+        if (item.name) advertised.add(item.name);
+    }
+
+    return hfFiles
+        .filter((file) => (
+            !MIRROR_EXTRA_IGNORED.test(file)
+            && !MIRROR_EXTRA_IGNORED_EXT.test(file)
+            && !isSdkPackageName(file)
+            && !advertised.has(file)
+        ))
+        .map((file) => ({
+            title: file,
+            href: `${repoInfo.resolveBase}/${encodeRepoFile(file)}`,
+            available: true,
+            source: 'mirror-extra',
+            sourceLabel: sourceLabel('mirror-extra'),
+            group: /\.om$/i.test(file) ? '编译模型' : '源模型',
+            note: '',
+            localFile: file,
+        }));
+}
+
+function buildModelRecord(model, detailEntry, imageFiles, manifestByName, hfRepoFiles) {
     const detail = detailEntry?.apiDetail || {};
     const manualData = MANUAL_MODEL_DATA.get(model.name);
     const manifestEntry = manifestByName.get(model.name) || null;
     const slug = manifestEntry?.slug || slugify(model.name);
-    const repoFiles = unique([
-        ...listModelRealFiles(slug),
-        // Keep models/ as a secondary name source for historical local artifacts.
-        ...(fs.existsSync(MODELS_DIR)
-            ? fs.readdirSync(MODELS_DIR).filter((file) => !file.startsWith('.'))
-            : []),
-    ]);
+    // models/ is a local scratch/download area only. It must never seed repoFiles:
+    // its unresolved LFS pointer stubs previously turned into advertised 404s.
+    const localFiles = listModelRealFiles(slug);
+    // Resolve the repo first so the published listing is looked up by real repo id,
+    // which manifest entries and manual overrides can change independently of the slug.
+    const publishedFiles = hfRepoFiles.get(buildRepoInfo(model, manifestEntry, localFiles)?.repoId) || [];
+    const repoFiles = unique([...publishedFiles, ...localFiles]);
     const repoInfo = buildRepoInfo(model, manifestEntry, repoFiles);
     const downloads = detailEntry
         ? buildDownloads(detailEntry, repoFiles, repoInfo)
         : buildManualDownloads(model.name, repoInfo);
+    const originModels = detailEntry
+        ? buildOriginModels(detail, repoFiles, repoInfo)
+        : buildManualOriginModels(model.name, repoInfo);
+    downloads.push(...buildMirrorExtras(repoInfo, publishedFiles, downloads, originModels));
     const tags = unique([
         ...(model.computerVersion || []),
         ...(model.naturalLanguageProcess || []),
@@ -754,9 +852,7 @@ function buildModelRecord(model, detailEntry, imageFiles, manifestByName) {
         quickStartMarkdownUrl: quickStart.markdownUrl,
         quickStartReadmes: enrichedQuickStartSections,
         detailParams: (detail.detailParams || []).filter(item => item && item.name && item.value),
-        originModels: detailEntry
-            ? buildOriginModels(detail, repoFiles, repoInfo)
-            : buildManualOriginModels(model.name, repoInfo),
+        originModels,
         hfRepoId: repoInfo ? repoInfo.repoId : null,
         hfRepoUrl: repoInfo ? repoInfo.repoUrl : null,
         hfReadmeUrl: repoInfo ? repoInfo.readmeUrl : null,
@@ -764,49 +860,6 @@ function buildModelRecord(model, detailEntry, imageFiles, manifestByName) {
         primaryDownloadLabel: primaryDownload ? primaryDownload.title : null,
         downloads,
     };
-}
-
-function getLatestCommitTime() {
-    if (process.env.SITE_LAST_COMMIT_TIME) {
-        return process.env.SITE_LAST_COMMIT_TIME.trim();
-    }
-
-    try {
-        return execSync("git log -1 --date=format:'%Y-%m-%d %H:%M:%S' --format=%cd", {
-            cwd: ROOT,
-            encoding: 'utf8',
-            stdio: ['ignore', 'pipe', 'ignore'],
-        }).trim();
-    } catch (error) {
-        return new Date().toISOString().slice(0, 19).replace('T', ' ');
-    }
-}
-
-function injectSiteMetadata(latestCommitTime) {
-    let updatedFiles = 0;
-
-    for (const htmlFile of SITE_HTML_FILES) {
-        if (!fs.existsSync(htmlFile)) continue;
-
-        const template = fs.readFileSync(htmlFile, 'utf8');
-        const updated = template.replaceAll(SITE_LAST_COMMIT_TIME_TOKEN, latestCommitTime);
-
-        if (updated !== template) {
-            fs.writeFileSync(htmlFile, updated);
-            updatedFiles += 1;
-            continue;
-        }
-
-        const normalized = template.replace(/自动同步时间：[\s\S]*?<\/span>/, `自动同步时间：${latestCommitTime}</span>`)
-            .replace(/由开发者自行维护，更新时间：[\s\S]*?<\/span>/, `由开发者自行维护，更新时间：${latestCommitTime}</span>`);
-
-        if (normalized !== template) {
-            fs.writeFileSync(htmlFile, normalized);
-            updatedFiles += 1;
-        }
-    }
-
-    return updatedFiles;
 }
 
 function ensureCoverImages(allModels, manifestByName) {
@@ -888,12 +941,11 @@ function main() {
     const coverStats = ensureCoverImages(allModels, manifestByName);
     const imageFiles = fs.existsSync(IMAGES_DIR) ? fs.readdirSync(IMAGES_DIR).filter(file => !file.startsWith('.')) : [];
     const detailByName = new Map(details.map(item => [item.name, item]));
-    const latestCommitTime = getLatestCommitTime();
+    const hfRepoFiles = loadHfRepoFiles();
 
-    const modelsData = allModels.map(model => buildModelRecord(model, detailByName.get(model.name), imageFiles, manifestByName));
+    const modelsData = allModels.map(model => buildModelRecord(model, detailByName.get(model.name), imageFiles, manifestByName, hfRepoFiles));
     const content = `// Generated from api_all_models.json and api_all_details.json\nconst modelsData = ${JSON.stringify(modelsData, null, 4)};\n\nif (typeof window !== 'undefined') {\n    window.modelsData = modelsData;\n}\n\nif (typeof module !== 'undefined' && module.exports) {\n    module.exports = { modelsData };\n}\n`;
     fs.writeFileSync(OUTPUT, content);
-    const updatedFiles = injectSiteMetadata(latestCommitTime);
 
     const huaweiCount = (content.match(/huaweicloud/gi) || []).length;
     const availableDownloads = modelsData.reduce((sum, model) => sum + (model.downloads || []).filter((item) => item.available).length, 0);
@@ -903,7 +955,6 @@ function main() {
     console.log(`HF repos linked: ${modelsWithHf}/${modelsData.length}; available downloads: ${availableDownloads}`);
     console.log(`Cover images: copied/downloaded ${coverStats.copied}, still missing ${coverStats.missing}, total local ${imageFiles.length}`);
     console.log(`Huawei Cloud URL occurrences in models.js: ${huaweiCount}`);
-    console.log(`Injected latest commit time into ${updatedFiles} site files: ${latestCommitTime}`);
 
     if (huaweiCount > 0) {
         console.warn('WARNING: Huawei Cloud URLs still present in generated site data.');

@@ -4,6 +4,8 @@
   "description": "华为海思开发者门户 GitHub Pages 镜像项目",
   "main": "index.js",
   "scripts": {
+    "check-links": "node check-links.js --json link-report.json",
+    "refresh-hf-files": "node refresh-hf-files.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
