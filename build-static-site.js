@@ -400,6 +400,209 @@ function sourceLabel(source) {
     return source;
 }
 
+function normalizeArtifactName(value) {
+    const name = String(value || '').trim();
+    return name ? path.basename(name).toLowerCase() : '';
+}
+
+function normalizeQuantization(value) {
+    return String(value || '').trim().toUpperCase();
+}
+
+function isCompiledDownload(item) {
+    return item.group === '编译模型'
+        || /^om-/i.test(item.source || '')
+        || item.source === 'omOfflineModel'
+        || /\.om$/i.test(item.title || item.localFile || '');
+}
+
+function buildCompiledModelMetadata(detail) {
+    const metadata = [];
+
+    for (const adaptor of detail.modelAdaptor || []) {
+        for (const variant of adaptor.supportQuantify || []) {
+            const engine = String(variant.computingName || adaptor.name || '').trim();
+            const quantization = normalizeQuantization(variant.name);
+            const files = variant.omOfflineModel || [];
+            const fileEntries = files.length
+                ? files.map((file) => ({
+                    names: unique([
+                        file.name,
+                        files.length === 1 ? variant.omOfflineModelName : null,
+                    ]).map(normalizeArtifactName),
+                    fileIds: unique([
+                        file.id,
+                        files.length === 1 ? variant.omOfflineModelId : null,
+                    ]).map(String),
+                }))
+                : [{
+                    names: unique([variant.omOfflineModelName]).map(normalizeArtifactName),
+                    fileIds: unique([variant.omOfflineModelId]).map(String),
+                }];
+
+            for (const [index, file] of fileEntries.entries()) {
+                if (engine || quantization || file.names.length || file.fileIds.length) {
+                    metadata.push({
+                        engine,
+                        quantization,
+                        names: file.names,
+                        fileIds: file.fileIds,
+                        key: String(file.fileIds[0] || file.names[0] || `${adaptor.id || adaptor.name}:${variant.id || variant.name}:${index}`),
+                    });
+                }
+            }
+        }
+    }
+
+    return metadata;
+}
+
+function downloadFileIds(item) {
+    const ids = new Set((item.lookupFileIds || []).map(String));
+    if (item.fileId) ids.add(String(item.fileId));
+    if (!item.url) return ids;
+
+    try {
+        for (const segment of new URL(item.url).pathname.split('/')) {
+            if (/^\d{10,}$/.test(segment)) ids.add(segment);
+        }
+    } catch (_) {
+        // A malformed URL can still be matched by its filename below.
+    }
+    return ids;
+}
+
+function inferQuantization(item, title, metadata) {
+    const direct = normalizeQuantization(item.quantization || item.quantify);
+    if (direct) return direct;
+
+    const sourceMatch = String(item.source || '').match(/^om-(?!auto$)(.+)$/i);
+    if (sourceMatch) return normalizeQuantization(sourceMatch[1]);
+
+    const upperTitle = String(title || '').toUpperCase();
+    const knownVariants = unique(metadata.map((entry) => entry.quantization))
+        .sort((left, right) => right.length - left.length);
+    return knownVariants.find((variant) => upperTitle.includes(variant)) || '';
+}
+
+function hasMultipleCompiledVariants(title, metadata) {
+    const name = normalizeArtifactName(title);
+    if (!name) return false;
+    const variants = metadata
+        .filter((entry) => entry.names.includes(name))
+        .map((entry) => `${entry.engine}|${entry.quantization}`);
+    return unique(variants).length > 1;
+}
+
+function enrichDownloadMetadata(item, metadata, modelEngines) {
+    const { lookupFileIds, ...cleanItem } = item;
+    if (!isCompiledDownload(item)) return cleanItem;
+
+    const title = item.title || item.localFile || '';
+    const quantization = inferQuantization(item, title, metadata);
+    const ids = downloadFileIds(item);
+    const normalizedTitle = normalizeArtifactName(title);
+    let candidates = [];
+
+    if (ids.size) {
+        candidates = metadata.filter((entry) => entry.fileIds.some((id) => ids.has(id)));
+    }
+    if (!candidates.length && normalizedTitle) {
+        candidates = metadata.filter((entry) => entry.names.includes(normalizedTitle));
+    }
+    const matchedArtifact = candidates.length > 0;
+    let metadataConflict = false;
+    if (quantization) {
+        const matchingVariant = candidates.filter((entry) => entry.quantization === quantization);
+        if (matchingVariant.length) {
+            candidates = matchingVariant;
+        } else if (!matchedArtifact) {
+            candidates = metadata.filter((entry) => entry.quantization === quantization);
+        } else {
+            // A filename/file-ID match that disagrees with the requested variant is
+            // conflicting upstream data. Do not reassign it to an unrelated file.
+            candidates = [];
+            metadataConflict = true;
+        }
+    }
+
+    let engine = String(item.engine || item.computing || '').trim();
+    const candidateEngines = unique(candidates.map((entry) => entry.engine));
+    const candidateVariants = unique(candidates.map((entry) => entry.quantization));
+    if (!engine && candidateEngines.length === 1) engine = candidateEngines[0];
+    if (!engine && modelEngines.length === 1) engine = modelEngines[0];
+
+    const resolvedQuantization = quantization || (candidateVariants.length === 1 ? candidateVariants[0] : '');
+    return {
+        ...cleanItem,
+        engine,
+        quantization: resolvedQuantization,
+        note: resolvedQuantization || item.note || '',
+        _artifactKey: matchedArtifact && candidates.length === 1 ? candidates[0].key : '',
+        _metadataConflict: metadataConflict,
+    };
+}
+
+function downloadIdentityTokens(item) {
+    return unique([
+        normalizeArtifactName(item.title),
+        normalizeArtifactName(item.localFile),
+        item.href || '',
+    ]);
+}
+
+function finalizeDownloads(downloads, detail, modelEngines) {
+    const metadata = buildCompiledModelMetadata(detail);
+    const enriched = downloads.map((item) => enrichDownloadMetadata(item, metadata, modelEngines));
+    const describedArtifacts = new Set();
+
+    for (const item of enriched) {
+        if (isCompiledDownload(item) && item.engine && !item._metadataConflict) {
+            downloadIdentityTokens(item).forEach((token) => describedArtifacts.add(token));
+        }
+    }
+
+    const filtered = enriched.filter((item) => {
+        if (item._metadataConflict) return false;
+        // A mirror-only OM without any engine mapping cannot be presented as a
+        // trustworthy compiled-model download. It remains reachable via the repo.
+        if (item.source === 'mirror-extra' && isCompiledDownload(item) && !item.engine) return false;
+        if (!/^om-/i.test(item.source || '') || item.engine) return true;
+        return !downloadIdentityTokens(item).some((token) => describedArtifacts.has(token));
+    });
+    const deduped = [];
+    const seen = new Map();
+
+    for (const item of filtered) {
+        const compiled = isCompiledDownload(item);
+        const key = compiled
+            ? `${item.group}|${item._artifactKey || normalizeArtifactName(item.title)}|${item.engine || ''}|${item.quantization || ''}`
+            : `${item.group}|${item.title}|${item.href || ''}`;
+        const existing = seen.get(key);
+
+        if (existing) {
+            if (item.note && !String(existing.note || '').split(' / ').includes(item.note)) {
+                existing.note = existing.note ? `${existing.note} / ${item.note}` : item.note;
+            }
+            if (!existing.available && item.available) {
+                existing.href = item.href;
+                existing.available = true;
+                existing.localFile = item.localFile;
+            }
+            if (existing.source === 'om-auto' && item.source === 'omOfflineModel') {
+                existing.source = item.source;
+                existing.sourceLabel = item.sourceLabel;
+            }
+            continue;
+        }
+
+        seen.set(key, item);
+        deduped.push(item);
+    }
+
+    return deduped.map(({ _artifactKey, _metadataConflict, ...item }) => item);
+}
+
 function deriveCategory(model) {
     const tags = unique([
         ...(model.computerVersion || []),
@@ -540,6 +743,7 @@ function resolveRepoFileName(title, url, repoFiles) {
 
     for (const candidate of candidates) {
         if (repoFiles.includes(candidate)) return candidate;
+        if (path.extname(candidate).toLowerCase() === '.om') continue;
         const resolved = resolveLocalModelFile(candidate, repoFiles);
         if (resolved) return resolved;
     }
@@ -672,9 +876,19 @@ function buildDownloads(detailEntry, repoFiles, repoInfo) {
     if (!detailEntry) return [];
 
     const downloads = [];
+    const compiledMetadata = buildCompiledModelMetadata(detailEntry.apiDetail || {});
     for (const item of detailEntry.downloadUrls || []) {
         const title = item.name || (item.url ? fileNameFromUrl(item.url) : item.fileId) || '未命名文件';
-        const localFile = resolveRepoFileName(title, item.url, repoFiles);
+        const group = sourceGroup(item.source);
+        // A single unsuffixed filename can describe multiple engine-specific
+        // binaries upstream. Only attach that mirror file when a captured URL
+        // identifies which binary was actually downloaded.
+        const canResolveCompiledFile = group !== '编译模型'
+            || !hasMultipleCompiledVariants(title, compiledMetadata)
+            || Boolean(item.url);
+        const localFile = canResolveCompiledFile
+            ? resolveRepoFileName(title, item.url, repoFiles)
+            : null;
         let href = null;
 
         const sdkName = sdkFileNameFrom(title) || sdkFileNameFrom(item.url);
@@ -707,32 +921,16 @@ function buildDownloads(detailEntry, repoFiles, repoInfo) {
             available: Boolean(href),
             source: item.source || 'unknown',
             sourceLabel: sourceLabel(item.source),
-            group: sourceGroup(item.source),
-            note: item.quantify || item.computing || '',
+            group,
+            engine: item.computing || '',
+            quantization: normalizeQuantization(item.quantify),
+            note: normalizeQuantization(item.quantify),
             localFile: localFile || sdkName || (isSdkPackageUrl(item.url) ? SHARED_SDK_FILE : null),
+            lookupFileIds: [...downloadFileIds(item)],
         });
     }
 
-    const deduped = [];
-    const seen = new Map();
-    for (const item of downloads) {
-        // Upstream repeats the same artifact across sources (downloadUrls vs originModel);
-        // identical group+name+target means one download, so keep a single row for it.
-        const key = `${item.group}|${item.title}|${item.href || ''}`;
-        const existing = seen.get(key);
-        if (existing) {
-            // Upstream lists one row per quantisation, so keep every variant label
-            // rather than letting the duplicate filename hide the others.
-            if (item.note && !existing.note.split(' / ').includes(item.note)) {
-                existing.note = existing.note ? `${existing.note} / ${item.note}` : item.note;
-            }
-            continue;
-        }
-        seen.set(key, item);
-        deduped.push(item);
-    }
-
-    return deduped;
+    return downloads;
 }
 
 function buildManualDownloads(modelName, repoInfo) {
@@ -798,13 +996,14 @@ function buildModelRecord(model, detailEntry, imageFiles, manifestByName, hfRepo
     const publishedFiles = hfRepoFiles.get(buildRepoInfo(model, manifestEntry, localFiles)?.repoId) || [];
     const repoFiles = unique([...publishedFiles, ...localFiles]);
     const repoInfo = buildRepoInfo(model, manifestEntry, repoFiles);
-    const downloads = detailEntry
+    const baseDownloads = detailEntry
         ? buildDownloads(detailEntry, repoFiles, repoInfo)
         : buildManualDownloads(model.name, repoInfo);
     const originModels = detailEntry
         ? buildOriginModels(detail, repoFiles, repoInfo)
         : buildManualOriginModels(model.name, repoInfo);
-    downloads.push(...buildMirrorExtras(repoInfo, publishedFiles, downloads, originModels));
+    baseDownloads.push(...buildMirrorExtras(repoInfo, publishedFiles, baseDownloads, originModels));
+    const downloads = finalizeDownloads(baseDownloads, detail, unique(model.computingPower));
     const tags = unique([
         ...(model.computerVersion || []),
         ...(model.naturalLanguageProcess || []),

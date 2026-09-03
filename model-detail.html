@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ModelZoo Duck Lab 模型规格、OM 构建与算力引擎详情。">
+    <meta name="theme-color" content="#ffd438">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="ModelZoo Duck Lab">
+    <meta property="og:title" content="模型档案｜ModelZoo Duck Lab">
+    <meta property="og:description" content="查看模型参数、下载文件、OM 构建与对应算力引擎。">
+    <meta property="og:image" content="https://gitbubble.github.io/hisilicon-developer-portal-mirror/assets/images/modelzoo-duck-keeper.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="assets/images/modelzoo-duck-keeper.png" type="image/png">
     <title>模型详情 - ModelZoo镜像站</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -10,7 +19,7 @@
     <div class="header">
         <div class="header-left">
             <a href="index.html" class="site-brand" data-i18n-aria-label="header.brandAria">
-                <div class="brand-badge">MZ</div>
+                <div class="brand-badge" aria-hidden="true"><img class="brand-duck" src="assets/images/modelzoo-duck-keeper.png" alt=""></div>
                 <div class="brand-copy">
                     <span class="brand-subtitle" id="headerDateText"></span>
                     <strong class="brand-title" data-i18n="header.brandTitle">ModelZoo镜像站</strong>
@@ -30,102 +39,72 @@
         </div>
     </div>
 
+    <div class="duck-ticker" aria-hidden="true">
+        <div class="duck-ticker-track">
+            <div class="duck-ticker-set">
+                <span data-i18n="home.tickerModels">MODEL ZOO · 模型列队中</span><b>//</b>
+                <span data-i18n="home.tickerOm">OM ENGINE · 引擎已标注</span><b>//</b>
+                <span data-i18n="home.tickerOpen">OPEN MIRROR · 开发者友好</span><b>//</b>
+            </div>
+            <div class="duck-ticker-set">
+                <span data-i18n="home.tickerModels">MODEL ZOO · 模型列队中</span><b>//</b>
+                <span data-i18n="home.tickerOm">OM ENGINE · 引擎已标注</span><b>//</b>
+                <span data-i18n="home.tickerOpen">OPEN MIRROR · 开发者友好</span><b>//</b>
+            </div>
+        </div>
+    </div>
+
     <div class="main-container">
         <div class="detail-container">
+            <span class="detail-lab-kicker" data-i18n="detail.labKicker">DUCK LAB / MODEL SPECIMEN</span>
             <a href="index.html" class="back-btn" data-i18n="detail.backToMarket">← 返回模型市场</a>
-            
-            <div class="detail-header">
-                <div id="modelImage" class="detail-hero-image"></div>
+
+            <header class="detail-header">
+                <div id="modelImage" class="detail-hero-image" aria-hidden="true"></div>
                 <div class="detail-header-main">
-                    <h1 id="modelName">模型名称</h1>
-                    <span id="modelBadge" class="detail-badge" style="display: none;"></span>
-                    <div id="modelTags" class="detail-tags"></div>
-                    <div class="resource-links">
-                        <a id="hfRepoLink" class="resource-link" href="#" target="_blank" rel="noreferrer" data-i18n="detail.hfRepo">HF 镜像仓库</a>
-                        <a id="hfReadmeLink" class="resource-link" href="#" target="_blank" rel="noreferrer">HF README</a>
-                        <a id="quickStartLink" class="resource-link" href="#" target="_blank" rel="noreferrer" data-i18n="detail.quickStart">快速开始</a>
-                        <a id="repositoryLink" class="resource-link" href="#" target="_blank" rel="noreferrer" data-i18n="detail.repository">代码仓库</a>
-                        <a id="licenseLink" class="resource-link" href="#" target="_blank" rel="noreferrer" data-i18n="detail.license">许可证</a>
+                    <div class="detail-title-row">
+                        <h1 id="modelName">模型名称</h1>
+                        <span id="modelBadge" class="detail-badge" style="display: none;"></span>
                     </div>
-                    <div id="betaNote" class="detail-note" style="display: none;"></div>
+                    <div id="modelTags" class="detail-tags" data-i18n-aria-label="detail.modelTagsAria" aria-label="模型标签"></div>
                 </div>
+                <span class="detail-duck-seal" aria-hidden="true"><img src="assets/images/modelzoo-duck-keeper.png" alt=""></span>
+            </header>
+
+            <div id="betaNote" class="detail-note" style="display: none;"></div>
+
+            <div class="action-buttons" data-i18n-aria-label="detail.actionsAria" aria-label="模型操作">
+                <a id="downloadLink" class="btn btn-primary" data-i18n="detail.downloadModel">下载模型</a>
+                <a id="repoActionLink" class="btn btn-secondary" href="#" target="_blank" rel="noreferrer" data-i18n="detail.openRepo">打开 HF 镜像仓库</a>
+                <button id="shareLinkButton" class="btn btn-secondary" type="button" data-i18n="detail.shareLink">分享链接</button>
             </div>
-            
+
             <div class="detail-content">
                 <div class="detail-section">
-                    <h2 data-i18n="detail.modelDescription">模型描述</h2>
-                    <p id="modelDescription">模型描述内容...</p>
-                </div>
-                
-                <div class="detail-section">
-                    <h2 data-i18n="detail.basicInfo">基本信息</h2>
-                    <div class="detail-meta">
-                        <div class="detail-meta-item">
-                            <span>📅</span>
-                            <div class="detail-meta-copy">
-                                <span class="detail-meta-label" data-i18n="detail.updatedDateLabel">发布时间</span>
-                                <span id="modelDate" class="detail-meta-value">更新时间</span>
-                            </div>
-                        </div>
-                        <div class="detail-meta-item">
-                            <span>🕒</span>
-                            <div class="detail-meta-copy">
-                                <span class="detail-meta-label" data-i18n="detail.lastUpdatedLabel">最近更新</span>
-                                <span id="modelUpdatedAt" class="detail-meta-value">最近更新</span>
-                            </div>
-                        </div>
-                        <div class="detail-meta-item">
-                            <span>🏷️</span>
-                            <div class="detail-meta-copy">
-                                <span class="detail-meta-label" data-i18n="detail.taskTypeLabel">任务类型</span>
-                                <span id="modelCategory" class="detail-meta-value">任务类型</span>
-                            </div>
-                        </div>
-                        <div class="detail-meta-item">
-                            <span>📦</span>
-                            <div class="detail-meta-copy">
-                                <span class="detail-meta-label" data-i18n="detail.availableFilesLabel">可用文件</span>
-                                <span id="modelCount" class="detail-meta-value">0 个可用文件</span>
-                            </div>
-                        </div>
-                        <div class="detail-meta-item">
-                            <span>🌐</span>
-                            <div class="detail-meta-copy">
-                                <span class="detail-meta-label" data-i18n="detail.hfRepoLabel">HF Repo</span>
-                                <span id="modelRepoId" class="detail-meta-value">HF Repo</span>
-                            </div>
-                        </div>
-                        <div class="detail-meta-item">
-                            <span>📈</span>
-                            <div class="detail-meta-copy">
-                                <span class="detail-meta-label" data-i18n="detail.pageViewsLabel">页面浏览</span>
-                                <span id="modelPageCounter" class="detail-meta-value">已浏览 0 次</span>
-                            </div>
-                        </div>
+                    <h2 id="basicInfoHeading" data-i18n="detail.basicInfo">基本信息</h2>
+                    <div class="table-frame">
+                        <table class="spec-table" aria-labelledby="basicInfoHeading">
+                            <tbody id="basicInfoTable"></tbody>
+                        </table>
                     </div>
-                    <div id="frameworkTags" class="detail-pills"></div>
-                    <div id="osTags" class="detail-pills"></div>
-                    <div id="computeTags" class="detail-pills"></div>
-                </div>
-                
-                <div class="action-buttons">
-                    <a id="downloadLink" class="btn btn-primary" data-i18n="detail.downloadModel">下载模型</a>
-                    <a id="repoActionLink" class="btn btn-secondary" href="#" target="_blank" rel="noreferrer" data-i18n="detail.openRepo">打开 HF 镜像仓库</a>
-                    <button id="shareLinkButton" class="btn btn-secondary" type="button" data-i18n="detail.shareLink">分享链接</button>
                 </div>
 
                 <div id="detailParamsSection" class="detail-section">
-                    <h2 data-i18n="detail.modelParams">模型参数</h2>
-                    <div id="detailParamsList" class="detail-params-grid"></div>
+                    <h2 id="detailParamsHeading" data-i18n="detail.modelParams">模型参数</h2>
+                    <div class="table-frame">
+                        <table class="spec-table spec-table-compact" aria-labelledby="detailParamsHeading">
+                            <tbody id="detailParamsList"></tbody>
+                        </table>
+                    </div>
                 </div>
 
                 <div class="detail-section">
-                    <h2 data-i18n="detail.downloadList">下载清单</h2>
+                    <h2 id="downloadListHeading" data-i18n="detail.downloadList">下载清单</h2>
                     <div id="downloadSections"></div>
                 </div>
 
                 <div id="originModelsSection" class="detail-section" style="display: none;">
-                    <h2 data-i18n="detail.originModelLinks">原始模型链接</h2>
+                    <h2 id="originModelsHeading" data-i18n="detail.originModelLinks">原始模型链接</h2>
                     <div id="originModelsTable"></div>
                 </div>
 

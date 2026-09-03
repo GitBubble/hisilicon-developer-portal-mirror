@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ModelZoo Duck Lab：面向开发者的模型镜像、OM 构建与算力引擎目录。">
+    <meta name="theme-color" content="#ffd438">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="ModelZoo Duck Lab">
+    <meta property="og:title" content="ModelZoo Duck Lab｜模型镜像站">
+    <meta property="og:description" content="从源模型到 OM 构建，一站检索任务、框架与算力引擎。">
+    <meta property="og:image" content="https://gitbubble.github.io/hisilicon-developer-portal-mirror/assets/images/modelzoo-duck-keeper.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="assets/images/modelzoo-duck-keeper.png" type="image/png">
     <title>ModelZoo镜像站</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -10,7 +19,7 @@
     <div class="header">
         <div class="header-left">
             <a href="index.html" class="site-brand" data-i18n-aria-label="header.brandAria">
-                <div class="brand-badge">MZ</div>
+                <div class="brand-badge" aria-hidden="true"><img class="brand-duck" src="assets/images/modelzoo-duck-keeper.png" alt=""></div>
                 <div class="brand-copy">
                     <span class="brand-subtitle" id="headerDateText"></span>
                     <strong class="brand-title" data-i18n="header.brandTitle">ModelZoo镜像站</strong>
@@ -32,11 +41,27 @@
         </div>
     </div>
 
+    <div class="duck-ticker" aria-hidden="true">
+        <div class="duck-ticker-track">
+            <div class="duck-ticker-set">
+                <span data-i18n="home.tickerModels">MODEL ZOO · 模型列队中</span><b>//</b>
+                <span data-i18n="home.tickerOm">OM ENGINE · 引擎已标注</span><b>//</b>
+                <span data-i18n="home.tickerOpen">OPEN MIRROR · 开发者友好</span><b>//</b>
+            </div>
+            <div class="duck-ticker-set">
+                <span data-i18n="home.tickerModels">MODEL ZOO · 模型列队中</span><b>//</b>
+                <span data-i18n="home.tickerOm">OM ENGINE · 引擎已标注</span><b>//</b>
+                <span data-i18n="home.tickerOpen">OPEN MIRROR · 开发者友好</span><b>//</b>
+            </div>
+        </div>
+    </div>
+
     <div class="main-container">
-        <div class="filter-sidebar">
+        <aside class="filter-sidebar" id="modelFilters">
             <div class="filter-header">
                 <span data-i18n="home.filterTitle">筛选条件</span>
                 <a href="#" class="clear-filter" data-i18n="home.clearAll">清除全部</a>
+                <button class="filter-close" type="button" data-i18n-aria-label="home.closeFilters" aria-label="关闭筛选">×</button>
             </div>
             
             <div class="filter-section">
@@ -82,26 +107,63 @@
                     <span data-i18n="home.sectionLinks">友情链接</span>
                 </div>
                 <a href="https://developers.hisilicon.com/forum/01101205484609485006" class="friendly-link" target="_blank" rel="noreferrer">
-                    <span class="friendly-link-icon">↗</span>
+                    <span class="friendly-link-icon">LINK</span>
                     <span data-i18n="home.hisparkForum">Hispark论坛</span>
                 </a>
                 <a href="https://www.hisilicon.com/cn/products/smart-vision" class="friendly-link" target="_blank" rel="noreferrer">
-                    <span class="friendly-link-icon">↗</span>
+                    <span class="friendly-link-icon">LINK</span>
                     <span data-i18n="home.hisiliconAiot">海思AIoT</span>
                 </a>
             </div>
-        </div>
+        </aside>
+
+        <button class="filter-overlay" type="button" data-i18n-aria-label="home.closeFilters" aria-label="关闭筛选" tabindex="-1"></button>
 
         <div class="content-area">
-            <div class="search-bar">
-                <input type="text" placeholder="搜索模型名称" class="search-input" data-i18n-placeholder="home.searchPlaceholder">
-                <button class="search-btn" data-i18n-aria-label="home.searchAria">🔍</button>
+            <section class="duck-hero" aria-labelledby="duckHeroTitle">
+                <div class="duck-hero-copy">
+                    <span class="duck-hero-eyebrow" data-i18n="home.heroEyebrow">MODELZOO × DUCK LAB / 01</span>
+                    <h1 id="duckHeroTitle">
+                        <span data-i18n="home.heroTitleLine1">把好模型，</span>
+                        <mark data-i18n="home.heroTitleLine2">赶进同一座鸭舍。</mark>
+                    </h1>
+                    <p data-i18n="home.heroBody">从源模型到 OM 构建，把任务、框架和算力引擎整理成一份真正好查的开发者目录。</p>
+                    <dl class="duck-hero-stats">
+                        <div><dt id="heroModelCount">52</dt><dd data-i18n="home.statModels">模型</dd></div>
+                        <div><dt id="heroEngineCount">—</dt><dd data-i18n="home.statEngines">算力引擎</dd></div>
+                        <div><dt id="heroOmCount">—</dt><dd data-i18n="home.statOmBuilds">OM 构建</dd></div>
+                    </dl>
+                </div>
+                <div class="duck-hero-visual" aria-hidden="true">
+                    <span class="duck-hero-sticker" data-i18n="home.heroSticker">OM READY!</span>
+                    <div class="duck-stage">
+                        <img class="duck-mascot" src="assets/images/modelzoo-duck-keeper.png" alt="">
+                    </div>
+                    <span class="duck-code-chip">MODEL_KEEPER.CORE</span>
+                </div>
+            </section>
+
+            <div class="catalog-heading">
+                <div>
+                    <span class="catalog-eyebrow" data-i18n="home.catalogEyebrow">FIELD NOTES / 02</span>
+                    <h2 data-i18n="home.catalogTitle">挑一只模型，看看它会什么</h2>
+                </div>
+                <button class="mobile-filter-button" id="mobileFilterButton" type="button" aria-controls="modelFilters" aria-expanded="false">
+                    <span class="mobile-filter-glyph" aria-hidden="true">FILTER</span>
+                    <span data-i18n="home.mobileFilters">打开筛选</span>
+                </button>
             </div>
-            
-            <div class="sort-bar">
-                <select class="sort-select">
-                    <option>默认排序</option>
-                </select>
+
+            <div class="catalog-toolbar">
+                <div class="search-bar">
+                    <input type="text" placeholder="搜索模型名称" class="search-input" data-i18n-placeholder="home.searchPlaceholder">
+                    <button class="search-btn" data-i18n-aria-label="home.searchAria">GO</button>
+                </div>
+                <div class="sort-bar">
+                    <select class="sort-select">
+                        <option>默认排序</option>
+                    </select>
+                </div>
             </div>
 
             <div class="model-grid" id="modelGrid">

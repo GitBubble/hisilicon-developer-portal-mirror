@@ -373,7 +373,7 @@ function browserLaunchEnv() {
     return stripProxyFromEnv({ ...process.env });
 }
 
-async function downloadFilesFromPage(dlPage, label) {
+async function downloadFilesFromPage(dlPage, label, metadata = {}) {
     const downloaded = [];
     // Wait for the table to render
     await sleep(2000);
@@ -389,7 +389,7 @@ async function downloadFilesFromPage(dlPage, label) {
         try {
             if (fileName && localModelAlreadyPresent(fileName)) {
                 console.log(`    [skip] ${fileName} already present`);
-                downloaded.push({ name: fileName, source: label });
+                downloaded.push({ name: fileName, source: label, ...metadata });
                 continue;
             }
 
@@ -408,13 +408,13 @@ async function downloadFilesFromPage(dlPage, label) {
                 if (fs.existsSync(savePath) && fs.statSync(savePath).size > 1024) {
                     console.log(`    [skip] ${fname} exists`);
                     try { await download.cancel(); } catch (_) {}
-                    downloaded.push({ name: fname, url: download.url(), source: label });
+                    downloaded.push({ name: fname, url: download.url(), source: label, ...metadata });
                     continue;
                 }
                 if (localModelAlreadyPresent(fname)) {
                     console.log(`    [skip] ${fname} already present`);
                     try { await download.cancel(); } catch (_) {}
-                    downloaded.push({ name: fname, url: download.url(), source: label });
+                    downloaded.push({ name: fname, url: download.url(), source: label, ...metadata });
                     continue;
                 }
                 if (!fs.existsSync(altPath)) {
@@ -423,16 +423,16 @@ async function downloadFilesFromPage(dlPage, label) {
                 } else {
                     console.log(`    [skip] ${fname} exists`);
                     try { await download.cancel(); } catch (_) {}
-                    downloaded.push({ name: fname, source: label });
+                    downloaded.push({ name: fname, source: label, ...metadata });
                     continue;
                 }
             }
             console.log(`    ↓ ${fname}`);
             await download.saveAs(savePath);
-            console.log(`    ✓ Saved: ${fname}`);
-            downloaded.push({ name: fname, url: download.url(), source: label });
+            console.log(`    [ok] Saved: ${fname}`);
+            downloaded.push({ name: fname, url: download.url(), source: label, ...metadata });
         } catch (dlErr) {
-            console.log(`    ✗ ${fileName}: ${dlErr.message.slice(0, 80)}`);
+            console.log(`    [error] ${fileName}: ${dlErr.message.slice(0, 80)}`);
         }
     }
     return downloaded;
@@ -847,14 +847,14 @@ async function main() {
                 await sleep(5000);
                 await dismissCookie();
             } catch (e) {
-                console.log(`    ⚠ Detail navigation error: ${e.message.slice(0, 80)}`);
+                console.log(`    [warn] Detail navigation error: ${e.message.slice(0, 80)}`);
                 try {
                     page = await context.newPage();
                     await page.goto(detailUrl, { waitUntil: 'domcontentloaded', timeout: 45000 });
                     await sleep(5000);
                     await dismissCookie();
                 } catch (navErr) {
-                    console.log(`    ✗ Failed to open detail page: ${navErr.message.slice(0, 80)}`);
+                    console.log(`    [error] Failed to open detail page: ${navErr.message.slice(0, 80)}`);
                     fatalError = true;
                     break;
                 }
@@ -900,7 +900,7 @@ async function main() {
                     }
                 }, { base: BASE_URL, id: modelId, csrfToken });
             }
-            if (detailData) console.log('    ✓ Got detail data (findByIdAll)');
+            if (detailData) console.log('    [ok] Got detail data (findByIdAll)');
 
             // Extract full page text content from the rendered detail page
             const pageText = await page.evaluate(() => {
@@ -950,7 +950,7 @@ async function main() {
                 if (!dlPage) dlPage = await context.newPage();
                 usedDirectDownloadPages = true;
 
-                const visitDownloadPage = async (url, label, suffix) => {
+                const visitDownloadPage = async (url, label, suffix, metadata = {}) => {
                     // Hash-only navigation does not remount the Vue view, so the table would
                     // still show the previous model's files. Force a real load via about:blank.
                     await dlPage.goto('about:blank', { timeout: 15000 }).catch(() => {});
@@ -965,7 +965,7 @@ async function main() {
                     downloadPageVisited = true;
                     const suffixSafe = suffix.replace(/[^a-zA-Z0-9_-]/g, '_');
                     await safeScreenshot(dlPage, { path: path.join(DETAIL_DIR, `${safeName}_${suffixSafe}.png`), fullPage: true });
-                    const files = await downloadFilesFromPage(dlPage, label);
+                    const files = await downloadFilesFromPage(dlPage, label, metadata);
                     files.forEach(f => modelDownloads.push(f));
                 };
 
@@ -986,7 +986,10 @@ async function main() {
                             const platform = encodeURIComponent(String(q.name || '').toUpperCase());
                             const label = `om-${q.name || 'auto'}`;
                             const omUrl = `${BASE_URL}/#/ModelDownload?id=${mid}&type=om&platform=${platform}&computingName=${computingName}&activeName=undefined&auto=${Date.now()}`;
-                            await visitDownloadPage(omUrl, label, `download_${label}`);
+                            await visitDownloadPage(omUrl, label, `download_${label}`, {
+                                computing: q.computingName || adaptor.name || '',
+                                quantify: q.name || '',
+                            });
                         }
                     }
 
@@ -1046,7 +1049,7 @@ async function main() {
                                 const savePath = path.join(MODELS_DIR, fname);
                                 if (!fs.existsSync(savePath)) {
                                     await dl.saveAs(savePath);
-                                    console.log(`    ✓ Auto-saved: ${fname}`);
+                                    console.log(`    [ok] Auto-saved: ${fname}`);
                                 }
                                 modelDownloads.push({ name: fname, url: dl.url(), source: 'auto-download' });
                             } catch (_) {}
@@ -1068,21 +1071,28 @@ async function main() {
                                     const omUrl = `${BASE_URL}/#/ModelDownload?id=${mid}&type=om&platform=${pf}&computingName=${cName}`;
                                     // Skip if this matches the already-opened page
                                     if (!dlPageUrl.includes(`platform=${pf}`)) {
-                                        dlUrls.push({ url: omUrl, label: `om-${q.name}` });
+                                        dlUrls.push({
+                                            url: omUrl,
+                                            label: `om-${q.name}`,
+                                            metadata: {
+                                                computing: q.computingName || adaptor.name || '',
+                                                quantify: q.name || '',
+                                            },
+                                        });
                                     }
                                 }
                             }
 
                             // Visit each additional download URL for other quantization types
-                            for (const { url: dlUrl, label } of dlUrls) {
+                            for (const { url: dlUrl, label, metadata } of dlUrls) {
                                 try {
                                     console.log(`    Navigating: ${label}...`);
                                     await dlPage.goto(dlUrl, { waitUntil: 'networkidle', timeout: 20000 });
                                     await sleep(2000);
-                                    const files = await downloadFilesFromPage(dlPage, label);
+                                    const files = await downloadFilesFromPage(dlPage, label, metadata);
                                     files.forEach(f => modelDownloads.push(f));
                                 } catch (navErr) {
-                                    console.log(`    ✗ ${label}: ${navErr.message.slice(0, 80)}`);
+                                    console.log(`    [error] ${label}: ${navErr.message.slice(0, 80)}`);
                                 }
                             }
                         }
@@ -1139,11 +1149,11 @@ async function main() {
                                     const savePath = path.join(MODELS_DIR, fname);
                                     if (!fs.existsSync(savePath)) {
                                         await download.saveAs(savePath);
-                                        console.log(`    ✓ Saved: ${fname}`);
+                                        console.log(`    [ok] Saved: ${fname}`);
                                     }
                                     modelDownloads.push({ name: fname, url: download.url(), source: 'source-all' });
                                 } catch (dlErr) {
-                                    console.log(`    ✗ Source全部下载: ${dlErr.message.slice(0, 80)}`);
+                                    console.log(`    [error] Source全部下载: ${dlErr.message.slice(0, 80)}`);
                                 }
                             }
                             // Also try any clickable download icons/spans
@@ -1161,7 +1171,7 @@ async function main() {
                                         const savePath = path.join(MODELS_DIR, fname);
                                         if (!fs.existsSync(savePath)) {
                                             await download.saveAs(savePath);
-                                            console.log(`    ✓ Saved: ${fname}`);
+                                            console.log(`    [ok] Saved: ${fname}`);
                                         }
                                         modelDownloads.push({ name: fname, url: download.url(), source: 'source-alt' });
                                     } catch (_) {}
@@ -1223,8 +1233,9 @@ async function main() {
             const uniqueDownloads = [];
             const seenKeys = new Set();
             for (const dl of modelDownloads) {
-                const key = dl.url || dl.fileId || dl.name || '';
-                if (key && !seenKeys.has(key)) {
+                const identity = dl.url || dl.fileId || dl.name || '';
+                const key = [identity, dl.computing || '', String(dl.quantify || '').trim().toUpperCase()].join('|');
+                if (identity && !seenKeys.has(key)) {
                     seenKeys.add(key);
                     uniqueDownloads.push(dl);
                 }
@@ -1253,7 +1264,7 @@ async function main() {
             fs.writeFileSync(options.detailsOutput, JSON.stringify(allDetails, null, 2));
 
             if (page.isClosed()) {
-                console.log('    ⚠ Main page closed, recreating...');
+                console.log('    [warn] Main page closed, recreating...');
                 page = await context.newPage();
             }
     }
@@ -1367,4 +1378,3 @@ async function main() {
 }
 
 main().catch(e => { console.error('Fatal:', e); process.exit(1); });
-

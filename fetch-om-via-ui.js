@@ -89,10 +89,10 @@ async function main() {
                     continue;
                 }
                 await download.saveAs(dest);
-                console.log(`  ✓ saved ${fname} (${(fs.statSync(dest).size / 1048576).toFixed(2)} MB)`);
+                console.log(`  [ok] saved ${fname} (${(fs.statSync(dest).size / 1048576).toFixed(2)} MB)`);
                 saved.push(fname);
             } catch (e) {
-                console.log(`  ✗ ${name}: ${String(e.message).split('\n')[0].slice(0, 90)}`);
+                console.log(`  [error] ${name}: ${String(e.message).split('\n')[0].slice(0, 90)}`);
             }
         }
     };

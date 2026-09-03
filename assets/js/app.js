@@ -1,18 +1,11 @@
-// Gradient backgrounds for model cards
-const gradients = [
-    'linear-gradient(135deg, #d80f19 0%, #a10015 100%)',
-    'linear-gradient(135deg, #c7000b 0%, #8f0010 100%)',
-    'linear-gradient(135deg, #e5444d 0%, #a60a18 100%)',
-    'linear-gradient(135deg, #b2081d 0%, #6f0010 100%)',
-    'linear-gradient(135deg, #f26b73 0%, #b2081d 100%)',
-    'linear-gradient(135deg, #d92c36 0%, #7c0010 100%)',
-    'linear-gradient(135deg, #ef8b91 0%, #bc1d28 100%)',
-    'linear-gradient(135deg, #b81521 0%, #54000b 100%)',
-    'linear-gradient(135deg, #e45b63 0%, #930010 100%)',
-    'linear-gradient(135deg, #ffb0b5 0%, #cf1620 100%)',
-    'linear-gradient(135deg, #cd2f39 0%, #87000f 100%)',
-    'linear-gradient(135deg, #f2c2c6 0%, #b2081d 100%)'
-];
+const fallbackCardTones = ['sun', 'cyan', 'pink', 'violet'];
+const categoryCardTones = {
+    '计算机视觉': 'sun',
+    '自然语言处理': 'cyan',
+    '多模态': 'violet',
+    '音频': 'pink',
+    '视频': 'orange',
+};
 
 const state = {
     currentPage: 1,
@@ -127,7 +120,8 @@ function buildFilterCatalog() {
 function renderFilterTag(groupKey, value, count, taskCategory = '') {
     const taskCategoryAttr = taskCategory ? ` data-task-category="${escapeHtml(taskCategory)}"` : '';
     const translatedValue = i18n ? i18n.translateValue(value) : value;
-    return `<span class="filter-tag" data-filter-group="${escapeHtml(groupKey)}" data-filter-value="${escapeHtml(value)}"${taskCategoryAttr}><span class="filter-tag-label">${escapeHtml(translatedValue)}</span><span class="filter-tag-count">${count}</span></span>`;
+    const isActive = Boolean(state.filters[groupKey] && state.filters[groupKey].has(value));
+    return `<button type="button" class="filter-tag${isActive ? ' active' : ''}" data-filter-group="${escapeHtml(groupKey)}" data-filter-value="${escapeHtml(value)}"${taskCategoryAttr} aria-pressed="${isActive}"><span class="filter-tag-label">${escapeHtml(translatedValue)}</span><span class="filter-tag-count">${count}</span></button>`;
 }
 
 function renderFilterSidebar() {
@@ -209,6 +203,23 @@ function initDailyQuote() {
     quoteAuthor.textContent = `- ${quote.author}`;
 }
 
+function renderHomeStats() {
+    const modelCount = document.getElementById('heroModelCount');
+    const engineCount = document.getElementById('heroEngineCount');
+    const omCount = document.getElementById('heroOmCount');
+    if (!modelCount && !engineCount && !omCount) return;
+
+    const omBuilds = modelsData.flatMap((model) => (model.downloads || []).filter((item) => (
+        item.group === '编译模型' || /\.om(?:$|[?#])/i.test(item.name || item.url || '')
+    )));
+    const omEngines = unique(omBuilds.map((item) => item.engine).filter(Boolean));
+    const catalogEngines = unique(modelsData.flatMap((model) => model.computingPower || []));
+
+    if (modelCount) modelCount.textContent = String(modelsData.length);
+    if (engineCount) engineCount.textContent = String((omEngines.length ? omEngines : catalogEngines).length);
+    if (omCount) omCount.textContent = String(omBuilds.length);
+}
+
 function getVisibleModels() {
     let filtered = modelsData.filter((model) => {
         if (!matchesFilters(model)) return false;
@@ -240,26 +251,55 @@ function renderModels(models) {
         `;
         return;
     }
-    
-    grid.innerHTML = models.map((model, index) => `
-        <a href="model-detail.html?id=${encodeURIComponent(model.id)}" class="model-card">
-            <div class="model-image" style="background: ${gradients[index % gradients.length]}">
-                ${model.image
-                    ? `<img src="${escapeHtml(model.image)}" alt="${escapeHtml(model.name)}">`
-                    : `<span style="font-size: 48px; color: white;">🧠</span>`}
-            </div>
-            <div class="model-name">${model.name}</div>
-            ${model.badge ? `<span class="model-badge">${model.badge}</span>` : ''}
-            <div class="model-description">${escapeHtml(i18n && i18n.getLanguage() === 'en' ? (model.descriptionEn || model.description) : (model.descriptionZh || model.description))}</div>
-            <div class="model-tags">
-                ${model.tags.map(tag => `<span class="model-tag">${escapeHtml(i18n ? i18n.translateValue(tag) : tag)}</span>`).join('')}
-            </div>
-            <div class="model-meta">
-                <span class="model-date">📅 ${escapeHtml(model.updatedAt || model.date || '-')}</span>
-                <span class="model-action">${escapeHtml(i18n ? i18n.formatCardFileCount((model.downloads || []).filter(item => item.available).length) : `${(model.downloads || []).filter(item => item.available).length} 文件`)}</span>
-            </div>
-        </a>
-    `).join('');
+
+    grid.innerHTML = models.map((model, index) => {
+        const catalogIndex = ((state.currentPage - 1) * state.pageSize) + index;
+        const sequence = String(catalogIndex + 1).padStart(2, '0');
+        const tone = categoryCardTones[model.category] || fallbackCardTones[catalogIndex % fallbackCardTones.length];
+        const category = i18n ? i18n.translateValue(model.category || '模型') : (model.category || '模型');
+        const framework = unique(model.framework || []).slice(0, 1).join('') || 'MODEL';
+        const engine = unique(model.computingPower || [])
+            .slice(0, 2)
+            .map((value) => i18n ? i18n.translateValue(value) : value)
+            .join(' / ') || '—';
+        const description = i18n && i18n.getLanguage() === 'en'
+            ? (model.descriptionEn || model.description)
+            : (model.descriptionZh || model.description);
+        const availableFiles = (model.downloads || []).filter((item) => item.available).length;
+
+        return `
+            <a href="model-detail.html?id=${encodeURIComponent(model.id)}" class="model-card model-card-tone-${tone}">
+                <div class="model-card-kicker">
+                    <span class="model-card-number">FIELD ${sequence}</span>
+                    <span class="model-card-category">${escapeHtml(category)}</span>
+                </div>
+                <div class="model-image">
+                    ${model.image
+                        ? `<img src="${escapeHtml(model.image)}" alt="${escapeHtml(model.name)}">`
+                        : '<span class="model-image-fallback" aria-hidden="true">MODEL</span>'}
+                    <span class="model-image-chip">${escapeHtml(framework)}</span>
+                </div>
+                <div class="model-card-content">
+                    <div class="model-title-row">
+                        <div class="model-name">${escapeHtml(model.name)}</div>
+                        ${model.badge ? `<span class="model-badge">${escapeHtml(model.badge)}</span>` : ''}
+                    </div>
+                    <div class="model-description">${escapeHtml(description)}</div>
+                    <div class="model-tags">
+                        ${(model.tags || []).map((tag) => `<span class="model-tag">${escapeHtml(i18n ? i18n.translateValue(tag) : tag)}</span>`).join('')}
+                    </div>
+                    <div class="model-engine-strip">
+                        <span>ENGINE</span>
+                        <strong>${escapeHtml(engine)}</strong>
+                    </div>
+                    <div class="model-meta">
+                        <span class="model-date">${escapeHtml(model.updatedAt || model.date || '-')}</span>
+                        <span class="model-action">${escapeHtml(i18n ? i18n.formatCardFileCount(availableFiles) : `${availableFiles} 文件`)}</span>
+                    </div>
+                </div>
+            </a>
+        `;
+    }).join('');
 }
 
 function renderPagination() {
@@ -370,6 +410,7 @@ function syncFilterTagState(groupKey, value, isActive) {
     document.querySelectorAll('.filter-tag').forEach((tag) => {
         if (tag.dataset.filterGroup === groupKey && tag.dataset.filterValue === value) {
             tag.classList.toggle('active', isActive);
+            tag.setAttribute('aria-pressed', String(isActive));
         }
     });
 }
@@ -405,7 +446,10 @@ function toggleFilterValue(groupKey, value) {
 
 function clearAllFilters() {
     Object.values(state.filters).forEach((filterSet) => filterSet.clear());
-    document.querySelectorAll('.filter-tag.active').forEach((tag) => tag.classList.remove('active'));
+    document.querySelectorAll('.filter-tag.active').forEach((tag) => {
+        tag.classList.remove('active');
+        tag.setAttribute('aria-pressed', 'false');
+    });
     state.currentPage = 1;
     updateClearFilterState();
     updatePage();
@@ -414,7 +458,8 @@ function clearAllFilters() {
 function initFilterCollapsing() {
     document.querySelectorAll('.filter-section').forEach((section) => {
         const title = section.querySelector('.filter-title');
-        if (title) {
+        if (title && title.dataset.bound !== 'true') {
+            title.dataset.bound = 'true';
             title.addEventListener('click', () => {
                 section.classList.toggle('collapsed');
             });
@@ -480,6 +525,47 @@ function initCookieBanner() {
     }
 }
 
+function initMobileFilters() {
+    const openButton = document.getElementById('mobileFilterButton');
+    const closeButton = document.querySelector('.filter-close');
+    const overlay = document.querySelector('.filter-overlay');
+    const sidebar = document.getElementById('modelFilters');
+    if (!openButton || !sidebar) return;
+    const mobileQuery = window.matchMedia('(max-width: 768px)');
+
+    const setOpen = (isOpen, manageFocus = true) => {
+        const isMobile = mobileQuery.matches;
+        document.body.classList.toggle('filters-open', isOpen);
+        openButton.setAttribute('aria-expanded', String(isOpen));
+        if (isMobile) {
+            sidebar.setAttribute('aria-hidden', String(!isOpen));
+            sidebar.inert = !isOpen;
+        } else {
+            sidebar.removeAttribute('aria-hidden');
+            sidebar.inert = false;
+        }
+        if (manageFocus && isOpen && closeButton) {
+            closeButton.focus();
+        } else if (manageFocus && !isOpen && isMobile) {
+            openButton.focus();
+        }
+    };
+
+    openButton.addEventListener('click', () => setOpen(true));
+    if (closeButton) closeButton.addEventListener('click', () => setOpen(false));
+    if (overlay) overlay.addEventListener('click', () => setOpen(false));
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && document.body.classList.contains('filters-open')) setOpen(false);
+    });
+    const handleLayoutChange = () => setOpen(false, false);
+    if (typeof mobileQuery.addEventListener === 'function') {
+        mobileQuery.addEventListener('change', handleLayoutChange);
+    } else {
+        mobileQuery.addListener(handleLayoutChange);
+    }
+    setOpen(false, false);
+}
+
 // Search functionality
 function initSearch() {
     const searchInput = document.querySelector('.search-input');
@@ -527,11 +613,13 @@ function rerenderForLanguage() {
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
     initDailyQuote();
+    renderHomeStats();
     renderFilterSidebar();
     updatePage();
     initFilters();
     initCookieBanner();
     initSearch();
+    initMobileFilters();
 });
 
 document.addEventListener('site-language-change', () => {
