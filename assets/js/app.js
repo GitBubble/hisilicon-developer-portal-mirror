@@ -315,9 +315,17 @@ function renderPagination() {
         summary.textContent = i18n ? i18n.formatPaginationTotal(visibleModels.length) : `共${visibleModels.length}条`;
     }
     
+    let firstVisiblePage = 1;
+    let lastVisiblePage = totalPages;
+    if (window.matchMedia('(max-width: 520px)').matches && totalPages > 3) {
+        firstVisiblePage = Math.max(1, state.currentPage - 1);
+        lastVisiblePage = Math.min(totalPages, firstVisiblePage + 2);
+        firstVisiblePage = Math.max(1, lastVisiblePage - 2);
+    }
+
     let html = '';
-    for (let i = 1; i <= totalPages; i++) {
-        html += `<li class="${i === state.currentPage ? 'active' : ''}">${i}</li>`;
+    for (let i = firstVisiblePage; i <= lastVisiblePage; i++) {
+        html += `<li class="${i === state.currentPage ? 'active' : ''}"${i === state.currentPage ? ' aria-current="page"' : ''}>${i}</li>`;
     }
     pageNumbers.innerHTML = html;
 
@@ -350,6 +358,16 @@ function renderPagination() {
                 updatePage();
             }
         };
+    }
+}
+
+function initResponsivePagination() {
+    const compactQuery = window.matchMedia('(max-width: 520px)');
+    const handleLayoutChange = () => renderPagination();
+    if (typeof compactQuery.addEventListener === 'function') {
+        compactQuery.addEventListener('change', handleLayoutChange);
+    } else {
+        compactQuery.addListener(handleLayoutChange);
     }
 }
 
@@ -620,6 +638,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initCookieBanner();
     initSearch();
     initMobileFilters();
+    initResponsivePagination();
 });
 
 document.addEventListener('site-language-change', () => {

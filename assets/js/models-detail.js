@@ -225,22 +225,26 @@ function renderOriginModels(items) {
         return;
     }
 
+    const fileLabel = i18n ? i18n.t('detail.modelFile') : '模型文件';
+    const sizeLabel = i18n ? i18n.t('detail.size') : '大小';
+    const linkLabel = i18n ? i18n.t('detail.link') : '链接';
+
     container.innerHTML = `
         <div class="table-frame table-scroll">
         <table class="data-table origin-table" aria-labelledby="originModelsHeading">
             <thead>
                 <tr>
-                    <th scope="col">${escapeHtml(i18n ? i18n.t('detail.modelFile') : '模型文件')}</th>
-                    <th scope="col">${escapeHtml(i18n ? i18n.t('detail.size') : '大小')}</th>
-                    <th scope="col">${escapeHtml(i18n ? i18n.t('detail.link') : '链接')}</th>
+                    <th scope="col">${escapeHtml(fileLabel)}</th>
+                    <th scope="col">${escapeHtml(sizeLabel)}</th>
+                    <th scope="col">${escapeHtml(linkLabel)}</th>
                 </tr>
             </thead>
             <tbody>
                 ${items.map((item) => `
                     <tr>
-                        <td>${escapeHtml(item.name || '—')}</td>
-                        <td>${escapeHtml(item.size || '—')}</td>
-                        <td>
+                        <td class="origin-file"><span class="mobile-cell-label" aria-hidden="true">${escapeHtml(fileLabel)}</span>${escapeHtml(item.name || '—')}</td>
+                        <td class="origin-size"><span class="mobile-cell-label" aria-hidden="true">${escapeHtml(sizeLabel)}</span>${escapeHtml(item.size || '—')}</td>
+                        <td class="origin-action"><span class="mobile-cell-label" aria-hidden="true">${escapeHtml(linkLabel)}</span>
                             ${item.available
                                 ? `<a href="${escapeHtml(item.href)}" target="_blank" rel="noreferrer">${escapeHtml(i18n ? i18n.translateValue(item.localFile ? 'HF Mirror' : '原始链接') : (item.localFile ? 'HF Mirror' : '原始链接'))}</a>`
                                 : `<span class="muted">${escapeHtml(i18n ? i18n.t('common.unavailable') : '暂无链接')}</span>`}
@@ -306,24 +310,35 @@ function renderDownloads(downloads) {
         return;
     }
 
+    const labels = {
+        file: i18n ? i18n.t('detail.modelFile') : '模型文件',
+        engine: i18n ? i18n.t('detail.computeLabel') : '算力引擎',
+        note: i18n ? i18n.t('detail.fileNote') : '规格',
+        source: i18n ? i18n.t('detail.fileSource') : '来源',
+        action: i18n ? i18n.t('detail.action') : '操作'
+    };
+
     const bodies = groups.map(([group, items]) => `
         <tbody>
-            ${items.map((item, index) => `
-                <tr class="${item.available ? '' : 'is-unavailable'}">
-                    ${index === 0 ? `<th class="download-group-cell" scope="rowgroup" rowspan="${items.length}">${escapeHtml(i18n ? i18n.translateValue(group) : group)}</th>` : ''}
-                    <td class="download-file">${escapeHtml(item.title || '—')}</td>
-                    <td class="download-engine">${escapeHtml(item.engine || (item.group === '编译模型'
-                        ? (i18n ? i18n.t('detail.engineUnknown') : '未标注')
-                        : '—'))}</td>
-                    <td>${escapeHtml(item.quantization || item.note || '—')}</td>
-                    <td>${escapeHtml(i18n ? i18n.translateValue(item.sourceLabel || '—') : (item.sourceLabel || '—'))}</td>
-                    <td class="download-action-cell">
-                        ${item.available
-                            ? `<a class="table-action" href="${escapeHtml(item.href)}" target="_blank" rel="noreferrer">${escapeHtml(i18n ? i18n.t('detail.downloadAction') : '下载')}</a>`
-                            : `<span class="muted">${escapeHtml(i18n ? i18n.t('common.unavailable') : '暂无链接')}</span>`}
-                    </td>
-                </tr>
-            `).join('')}
+            ${items.map((item, index) => {
+                const engine = item.engine || (item.group === '编译模型'
+                    ? (i18n ? i18n.t('detail.engineUnknown') : '未标注')
+                    : '—');
+                return `
+                    <tr class="${item.available ? '' : 'is-unavailable'}">
+                        ${index === 0 ? `<th class="download-group-cell" scope="rowgroup" rowspan="${items.length}">${escapeHtml(i18n ? i18n.translateValue(group) : group)}</th>` : ''}
+                        <td class="download-file"><span class="mobile-cell-label" aria-hidden="true">${escapeHtml(labels.file)}</span>${escapeHtml(item.title || '—')}</td>
+                        <td class="download-engine" data-empty="${engine === '—'}"><span class="mobile-cell-label" aria-hidden="true">${escapeHtml(labels.engine)}</span>${escapeHtml(engine)}</td>
+                        <td class="download-spec"><span class="mobile-cell-label" aria-hidden="true">${escapeHtml(labels.note)}</span>${escapeHtml(item.quantization || item.note || '—')}</td>
+                        <td class="download-source"><span class="mobile-cell-label" aria-hidden="true">${escapeHtml(labels.source)}</span>${escapeHtml(i18n ? i18n.translateValue(item.sourceLabel || '—') : (item.sourceLabel || '—'))}</td>
+                        <td class="download-action-cell"><span class="mobile-cell-label" aria-hidden="true">${escapeHtml(labels.action)}</span>
+                            ${item.available
+                                ? `<a class="table-action" href="${escapeHtml(item.href)}" target="_blank" rel="noreferrer">${escapeHtml(i18n ? i18n.t('detail.downloadAction') : '下载')}</a>`
+                                : `<span class="muted">${escapeHtml(i18n ? i18n.t('common.unavailable') : '暂无链接')}</span>`}
+                        </td>
+                    </tr>
+                `;
+            }).join('')}
         </tbody>
     `).join('');
 
@@ -333,11 +348,11 @@ function renderDownloads(downloads) {
                 <thead>
                     <tr>
                         <th scope="col">${escapeHtml(i18n ? i18n.t('detail.fileGroup') : '类别')}</th>
-                        <th scope="col">${escapeHtml(i18n ? i18n.t('detail.modelFile') : '模型文件')}</th>
-                        <th scope="col">${escapeHtml(i18n ? i18n.t('detail.computeLabel') : '算力引擎')}</th>
-                        <th scope="col">${escapeHtml(i18n ? i18n.t('detail.fileNote') : '规格')}</th>
-                        <th scope="col">${escapeHtml(i18n ? i18n.t('detail.fileSource') : '来源')}</th>
-                        <th scope="col">${escapeHtml(i18n ? i18n.t('detail.action') : '操作')}</th>
+                        <th scope="col">${escapeHtml(labels.file)}</th>
+                        <th scope="col">${escapeHtml(labels.engine)}</th>
+                        <th scope="col">${escapeHtml(labels.note)}</th>
+                        <th scope="col">${escapeHtml(labels.source)}</th>
+                        <th scope="col">${escapeHtml(labels.action)}</th>
                     </tr>
                 </thead>
                 ${bodies}
