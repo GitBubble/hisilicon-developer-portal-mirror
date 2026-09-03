@@ -1,0 +1,10 @@
+# Cloudflare Workers deploys this repository with `--assets .`.
+# Ignore build dependencies and repository-only files, then publish only the
+# static site shared with GitHub Pages.
+/*
+!/index.html
+!/modelzoo.html
+!/model-detail.html
+!/assets/
+!/assets/**
+/assets/.DS_Store
