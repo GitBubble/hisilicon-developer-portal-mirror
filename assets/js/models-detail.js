@@ -130,6 +130,11 @@ function setSectionVisible(sectionId, visible) {
     section.style.display = visible ? '' : 'none';
 }
 
+function isUsableResourceUrl(value) {
+    const normalized = String(value || '').trim();
+    return Boolean(normalized && normalized.toLowerCase() !== 'xxx');
+}
+
 function renderBasicInfo(model) {
     const container = document.getElementById('basicInfoTable');
     if (!container) return;
@@ -145,7 +150,7 @@ function renderBasicInfo(model) {
         { url: model.quickStartUrl, label: i18n ? i18n.t('detail.quickStart') : '快速开始' },
         { url: model.repositoryUrl, label: i18n ? i18n.t('detail.repository') : '代码仓库' },
         { url: model.licenseUrl, label: i18n ? i18n.t('detail.license') : '许可证' },
-    ].filter(item => item.url);
+    ].filter(item => isUsableResourceUrl(item.url));
     const resourceLinksMarkup = resourceLinks.length
         ? resourceLinks.map(item => `<a class="resource-link" href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">${escapeHtml(item.label)}</a>`).join('')
         : '<span class="muted">—</span>';
@@ -262,23 +267,38 @@ function renderOriginModels(items) {
 function renderReadmes(items, links) {
     const container = document.getElementById('readmeSections');
     const linksContainer = document.getElementById('readmeLinks');
-    if (!container || !linksContainer) return;
+    if (!container || !linksContainer) {
+        return {
+            hasInlineQuickStart: false,
+            externalQuickStartUrl: '',
+            hfReadmeUrl: '',
+        };
+    }
+
+    const readmeItems = (items || []).filter(item => String(item && item.content || '').trim());
+    const quickStartUrl = isUsableResourceUrl(links.quickStartUrl) ? links.quickStartUrl : '';
+    const quickStartMarkdownUrl = isUsableResourceUrl(links.quickStartMarkdownUrl) ? links.quickStartMarkdownUrl : '';
+    const hfReadmeUrl = isUsableResourceUrl(links.hfReadmeUrl) ? links.hfReadmeUrl : '';
 
     const availableLinks = [
-        links.quickStartUrl ? `<a class="resource-link" href="${escapeHtml(links.quickStartUrl)}" target="_blank" rel="noreferrer">${escapeHtml(i18n ? i18n.translateValue('快速开始原始链接') : '快速开始原始链接')}</a>` : '',
-        links.quickStartMarkdownUrl ? `<a class="resource-link" href="${escapeHtml(links.quickStartMarkdownUrl)}" target="_blank" rel="noreferrer">${escapeHtml(i18n ? i18n.translateValue('Markdown 文档') : 'Markdown 文档')}</a>` : '',
-        links.hfReadmeUrl ? `<a class="resource-link" href="${escapeHtml(links.hfReadmeUrl)}" target="_blank" rel="noreferrer">HF README</a>` : ''
+        quickStartUrl ? `<a class="resource-link" href="${escapeHtml(quickStartUrl)}" target="_blank" rel="noreferrer">${escapeHtml(i18n ? i18n.translateValue('快速开始原始链接') : '快速开始原始链接')}</a>` : '',
+        quickStartMarkdownUrl ? `<a class="resource-link" href="${escapeHtml(quickStartMarkdownUrl)}" target="_blank" rel="noreferrer">${escapeHtml(i18n ? i18n.translateValue('Markdown 文档') : 'Markdown 文档')}</a>` : '',
+        hfReadmeUrl ? `<a class="resource-link" href="${escapeHtml(hfReadmeUrl)}" target="_blank" rel="noreferrer">HF README</a>` : ''
     ].filter(Boolean);
 
     linksContainer.innerHTML = availableLinks.join('');
 
-    if (!(items || []).length) {
+    if (!readmeItems.length) {
         container.innerHTML = `<div class="table-empty">${escapeHtml(i18n ? i18n.t('detail.noReadme') : '暂无 README / 快速开始内容')}</div>`;
         setSectionVisible('readmeSection', availableLinks.length > 0);
-        return;
+        return {
+            hasInlineQuickStart: false,
+            externalQuickStartUrl: quickStartMarkdownUrl || quickStartUrl,
+            hfReadmeUrl,
+        };
     }
 
-    container.innerHTML = items.map((item) => `
+    container.innerHTML = readmeItems.map((item) => `
         <div class="readme-block">
             <div class="readme-label">${escapeHtml(item.language || (i18n ? i18n.t('detail.textLabel') : 'Text'))}</div>
             ${item.summaryEn && i18n && i18n.getLanguage() === 'en'
@@ -288,6 +308,62 @@ function renderReadmes(items, links) {
         </div>
     `).join('');
     setSectionVisible('readmeSection', true);
+    return {
+        hasInlineQuickStart: true,
+        externalQuickStartUrl: quickStartMarkdownUrl || quickStartUrl,
+        hfReadmeUrl,
+    };
+}
+
+function setQuickStartLabel(link, translationKey, fallbackText) {
+    link.dataset.i18n = translationKey;
+    link.textContent = i18n ? i18n.t(translationKey) : fallbackText;
+}
+
+function configureQuickStartAction(readmeState) {
+    const quickStartLink = document.getElementById('quickStartLink');
+    if (!quickStartLink) return;
+
+    quickStartLink.hidden = false;
+    quickStartLink.removeAttribute('target');
+    quickStartLink.removeAttribute('rel');
+
+    if (readmeState.hasInlineQuickStart) {
+        const targetUrl = new URL(detailPageUrl.href);
+        targetUrl.hash = 'readmeQuickStartHeading';
+        quickStartLink.href = targetUrl.href;
+        setQuickStartLabel(quickStartLink, 'detail.quickStart', '快速开始');
+        return;
+    }
+
+    const externalUrl = readmeState.externalQuickStartUrl || readmeState.hfReadmeUrl;
+    if (!externalUrl) {
+        quickStartLink.hidden = true;
+        quickStartLink.removeAttribute('href');
+        return;
+    }
+
+    quickStartLink.href = externalUrl;
+    quickStartLink.target = '_blank';
+    quickStartLink.rel = 'noreferrer';
+    if (readmeState.externalQuickStartUrl) {
+        setQuickStartLabel(quickStartLink, 'detail.quickStart', '快速开始');
+    } else {
+        setQuickStartLabel(quickStartLink, 'detail.viewHfReadme', '查看 HF README');
+    }
+}
+
+function syncReadmeHashTarget(targetHash = window.location.hash) {
+    if (targetHash !== '#readmeQuickStartHeading') return;
+
+    const section = document.getElementById('readmeSection');
+    const heading = document.getElementById('readmeQuickStartHeading');
+    if (!section || !heading || section.style.display === 'none') return;
+
+    window.requestAnimationFrame(() => {
+        heading.scrollIntoView({ block: 'start' });
+        heading.focus({ preventScroll: true });
+    });
 }
 
 function groupDownloads(downloads) {
@@ -462,6 +538,9 @@ function renderModelDetail() {
         document.title = i18n ? i18n.t('page.modelNotFoundTitle') : '未找到模型 - ModelZoo镜像站';
         return;
     }
+
+    const actionButtons = document.querySelector('.action-buttons');
+    if (actionButtons) actionButtons.hidden = false;
     
     document.getElementById('modelName').textContent = model.name;
     renderBasicInfo(model);
@@ -504,27 +583,12 @@ function renderModelDetail() {
     renderDownloads(model.downloads || []);
     renderDetailParams(model.detailParams || []);
     renderOriginModels(model.originModels || []);
-    renderReadmes(model.quickStartReadmes || [], {
+    const readmeState = renderReadmes(model.quickStartReadmes || [], {
         quickStartUrl: model.quickStartUrl,
         quickStartMarkdownUrl: model.quickStartMarkdownUrl,
         hfReadmeUrl: model.hfReadmeUrl,
     });
-    
-    // Setup download link
-    const downloadLink = document.getElementById('downloadLink');
-    if (downloadLink) {
-        downloadLink.classList.remove('is-disabled');
-        if (model.primaryDownloadUrl) {
-            downloadLink.href = model.primaryDownloadUrl;
-            downloadLink.textContent = model.primaryDownloadLabel || '下载模型';
-            downloadLink.target = '_blank';
-            downloadLink.rel = 'noreferrer';
-        } else {
-            downloadLink.removeAttribute('href');
-            downloadLink.textContent = i18n ? i18n.t('detail.downloadUnavailable') : '暂无可用下载';
-            downloadLink.classList.add('is-disabled');
-        }
-    }
+    configureQuickStartAction(readmeState);
 
     const repoActionLink = document.getElementById('repoActionLink');
     if (repoActionLink) {
@@ -549,9 +613,18 @@ document.addEventListener('DOMContentLoaded', () => {
     stabilizeDocumentBase();
     initDailyQuote();
     renderModelDetail();
+    syncReadmeHashTarget(detailPageUrl.hash);
+});
+
+window.addEventListener('load', () => {
+    if (window.scrollY <= 1) {
+        syncReadmeHashTarget(detailPageUrl.hash);
+    }
 });
 
 document.addEventListener('site-language-change', () => {
     initDailyQuote();
     renderModelDetail();
 });
+
+window.addEventListener('hashchange', () => syncReadmeHashTarget());
