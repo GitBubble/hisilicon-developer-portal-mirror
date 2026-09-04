@@ -269,8 +269,7 @@ function renderReadmes(items, links) {
     const linksContainer = document.getElementById('readmeLinks');
     if (!container || !linksContainer) {
         return {
-            hasInlineQuickStart: false,
-            externalQuickStartUrl: '',
+            originalQuickStartUrl: '',
             hfReadmeUrl: '',
         };
     }
@@ -292,8 +291,7 @@ function renderReadmes(items, links) {
         container.innerHTML = `<div class="table-empty">${escapeHtml(i18n ? i18n.t('detail.noReadme') : '暂无 README / 快速开始内容')}</div>`;
         setSectionVisible('readmeSection', availableLinks.length > 0);
         return {
-            hasInlineQuickStart: false,
-            externalQuickStartUrl: quickStartMarkdownUrl || quickStartUrl,
+            originalQuickStartUrl: quickStartUrl || quickStartMarkdownUrl,
             hfReadmeUrl,
         };
     }
@@ -309,8 +307,7 @@ function renderReadmes(items, links) {
     `).join('');
     setSectionVisible('readmeSection', true);
     return {
-        hasInlineQuickStart: true,
-        externalQuickStartUrl: quickStartMarkdownUrl || quickStartUrl,
+        originalQuickStartUrl: quickStartUrl || quickStartMarkdownUrl,
         hfReadmeUrl,
     };
 }
@@ -328,15 +325,7 @@ function configureQuickStartAction(readmeState) {
     quickStartLink.removeAttribute('target');
     quickStartLink.removeAttribute('rel');
 
-    if (readmeState.hasInlineQuickStart) {
-        const targetUrl = new URL(detailPageUrl.href);
-        targetUrl.hash = 'readmeQuickStartHeading';
-        quickStartLink.href = targetUrl.href;
-        setQuickStartLabel(quickStartLink, 'detail.quickStart', '快速开始');
-        return;
-    }
-
-    const externalUrl = readmeState.externalQuickStartUrl || readmeState.hfReadmeUrl;
+    const externalUrl = readmeState.originalQuickStartUrl || readmeState.hfReadmeUrl;
     if (!externalUrl) {
         quickStartLink.hidden = true;
         quickStartLink.removeAttribute('href');
@@ -346,7 +335,7 @@ function configureQuickStartAction(readmeState) {
     quickStartLink.href = externalUrl;
     quickStartLink.target = '_blank';
     quickStartLink.rel = 'noreferrer';
-    if (readmeState.externalQuickStartUrl) {
+    if (readmeState.originalQuickStartUrl) {
         setQuickStartLabel(quickStartLink, 'detail.quickStart', '快速开始');
     } else {
         setQuickStartLabel(quickStartLink, 'detail.viewHfReadme', '查看 HF README');
