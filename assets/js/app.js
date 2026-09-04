@@ -534,11 +534,28 @@ function renderSortOptions() {
 
 // Cookie banner close
 function initCookieBanner() {
-    const closeBtn = document.querySelector('.cookie-banner .close-btn');
+    const banner = document.querySelector('.cookie-banner');
+    const closeBtn = banner ? banner.querySelector('.close-btn') : null;
+    const storageKey = 'modelzoo-cookie-banner-dismissed';
+    if (!banner) return;
+
+    try {
+        if (window.localStorage.getItem(storageKey) === 'true') {
+            banner.hidden = true;
+        }
+    } catch (error) {
+        // Storage can be unavailable in privacy-focused browsing modes.
+    }
+
     if (closeBtn && closeBtn.dataset.bound !== 'true') {
         closeBtn.dataset.bound = 'true';
         closeBtn.addEventListener('click', function() {
-            document.querySelector('.cookie-banner').style.display = 'none';
+            banner.hidden = true;
+            try {
+                window.localStorage.setItem(storageKey, 'true');
+            } catch (error) {
+                // The banner can still be dismissed for the current page.
+            }
         });
     }
 }
@@ -549,7 +566,7 @@ function initMobileFilters() {
     const overlay = document.querySelector('.filter-overlay');
     const sidebar = document.getElementById('modelFilters');
     if (!openButton || !sidebar) return;
-    const mobileQuery = window.matchMedia('(max-width: 768px)');
+    const mobileQuery = window.matchMedia('(max-width: 1023px)');
 
     const setOpen = (isOpen, manageFocus = true) => {
         const isMobile = mobileQuery.matches;
@@ -580,6 +597,30 @@ function initMobileFilters() {
         mobileQuery.addEventListener('change', handleLayoutChange);
     } else {
         mobileQuery.addListener(handleLayoutChange);
+    }
+
+    const getViewportMode = () => {
+        const viewportWidth = Math.round(window.visualViewport?.width || window.innerWidth);
+        return viewportWidth < 600 ? 'narrow' : (viewportWidth < 840 ? 'medium' : 'wide');
+    };
+    let lastViewportWidth = Math.round(window.visualViewport?.width || window.innerWidth);
+    let lastViewportMode = getViewportMode();
+    let resizeTimer = 0;
+    const handleViewportResize = () => {
+        window.clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(() => {
+            const nextViewportWidth = Math.round(window.visualViewport?.width || window.innerWidth);
+            const nextViewportMode = getViewportMode();
+            if (Math.abs(nextViewportWidth - lastViewportWidth) >= 120 || nextViewportMode !== lastViewportMode) {
+                setOpen(false, false);
+            }
+            lastViewportWidth = nextViewportWidth;
+            lastViewportMode = nextViewportMode;
+        }, 150);
+    };
+    window.addEventListener('resize', handleViewportResize, { passive: true });
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', handleViewportResize, { passive: true });
     }
     setOpen(false, false);
 }
