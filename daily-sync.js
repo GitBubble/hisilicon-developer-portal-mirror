@@ -43,12 +43,15 @@ function parseArgs(argv) {
         fullScrape: false,
         commitMessage: '',
         logDir: LOG_DIR,
+        headed: false,
         help: false,
     };
 
     for (let index = 0; index < argv.length; index += 1) {
         const arg = argv[index];
-        if (arg === '--skip-scrape') {
+        if (arg === '--headed') {
+            options.headed = true;
+        } else if (arg === '--skip-scrape') {
             options.skipScrape = true;
         } else if (arg === '--skip-build') {
             options.skipBuild = true;
@@ -101,6 +104,7 @@ function printHelp() {
         'exported; a non-interactive shell without those aborts before any data is fetched.',
         '',
         'Options:',
+        '  --headed              Open a visible Chrome window so you can log in when SSO expired',
         '  --skip-scrape         Skip running scrape.js',
         '  --skip-build          Skip running build-static-site.js',
         '  --skip-hf             Skip uploading local files to Hugging Face',
@@ -280,6 +284,13 @@ async function verifyScrapedFiles(detailsPath, options, runToken) {
     });
 }
 
+// The Uniportal SSO session behind cookies.json expires within the hour, so an unattended
+// run dies at the login form. --headed opens a visible Chrome window for every scrape.js
+// step so the operator can log in there instead of exporting credentials.
+function scrapeModeArgs(options) {
+    return options.headed ? ['--headed'] : [];
+}
+
 function scrapeDirectEnv() {
     const env = { ...process.env };
     for (const key of Object.keys(env)) {
@@ -396,7 +407,7 @@ async function main() {
 
     if (!options.skipScrape) {
         if (options.fullScrape) {
-            await runCommand('node', ['scrape.js'], {
+            await runCommand('node', ['scrape.js', ...scrapeModeArgs(options)], {
                 label: 'scrape.js --full',
                 logFile: path.join(options.logDir, `${runToken}_scrape.log`),
                 env: scrapeDirectEnv(),
@@ -417,6 +428,7 @@ async function main() {
                 '--list-only',
                 '--models-output', tempModelsPath,
                 '--api-details-output', tempApiDetailsPath,
+                ...scrapeModeArgs(options),
             ], {
                 label: 'scrape.js --list-only',
                 logFile: path.join(options.logDir, `${runToken}_list-only.log`),
@@ -456,6 +468,7 @@ async function main() {
                         '--models-output', MODELS_JSON,
                         '--details-output', tempDetailsPath,
                         '--full-scrape-output', tempFullScrapePath,
+                        ...scrapeModeArgs(options),
                     ], {
                         label: 'scrape.js --only-ids',
                         logFile: path.join(options.logDir, `${runToken}_scrape.log`),
