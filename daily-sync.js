@@ -9,13 +9,26 @@ const DETAILS_JSON = path.join(ROOT, 'api_all_details.json');
 const SYNC_STAGE_TARGETS = [
     'api_all_models.json',
     'api_all_details.json',
+    // build-static-site.js resolves every download href against this listing.
+    'hf-repo-files.json',
     'assets/js/models.js',
+    'assets/js/i18n.js',
     'assets/css/style.css',
     'assets/js/app.js',
     'assets/js/models-detail.js',
+    'assets/images',
     'index.html',
+    'modelzoo.html',
     'model-detail.html',
 ];
+// Fields that churn upstream without any user-visible change (counters, reviewer
+// handles). Everything else in the detail payload — toolkit links, OM file ids,
+// quick-start URLs, adaptor republishes — counts as a change worth re-scraping.
+const VOLATILE_DETAIL_KEYS = new Set([
+    'downloadNum', 'collectNum', 'collectCount', 'isCollect', 'rowIdx',
+    'owner', 'ownerBy', 'createdBy', 'lastUpdatedBy', 'creationUserCN', 'lastUpdateUserCN',
+    'currentHandler', 'currentHandlerName',
+]);
 
 function parseArgs(argv) {
     const options = {
@@ -75,6 +88,17 @@ function printHelp() {
         'Usage: node daily-sync.js [options]',
         '',
         'Runs the daily mirror workflow against the original HiSilicon ModelZoo.',
+        '',
+        'Flow: scrape list + detail payloads -> diff against local data -> re-scrape changed',
+        'models (downloads to models/<slug>/) -> canonicalize names + verify byte sizes ->',
+        'stage into models-real-20260713/ -> build -> upload to Hugging Face -> refresh',
+        'hf-repo-files.json (with sizes) -> rebuild -> audit every link against the live',
+        'mirror (aborts on any wrong/missing file) -> commit -> push.',
+        '',
+        'Login: scrape.js reuses cookies.json; when the Uniportal form appears it prompts for',
+        'a username/password on the terminal (TTY) or, with a headed browser, waits for you',
+        'to log in. Run it from a real terminal or with HISILICON_USERNAME/HISILICON_PASSWORD',
+        'exported; a non-interactive shell without those aborts before any data is fetched.',
         '',
         'Options:',
         '  --skip-scrape         Skip running scrape.js',
@@ -151,17 +175,61 @@ function modelFingerprint(model) {
     ].join('::');
 }
 
-function compareModelCatalogs(localModels, upstreamModels) {
+function stripVolatile(value) {
+    if (Array.isArray(value)) return value.map(stripVolatile);
+    if (value && typeof value === 'object') {
+        const out = {};
+        for (const key of Object.keys(value).sort()) {
+            if (VOLATILE_DETAIL_KEYS.has(key)) continue;
+            out[key] = stripVolatile(value[key]);
+        }
+        return out;
+    }
+    return value;
+}
+
+// Stable identity of a findByIdAll payload. The list fingerprint already covers the
+// top-level lastUpdateDate, so it is dropped here; nested dates (per-adaptor
+// republishes) stay because those are exactly what the list never reflects.
+function stableDetailFingerprint(apiDetail) {
+    if (!apiDetail || typeof apiDetail !== 'object') return '';
+    const stable = stripVolatile(apiDetail);
+    delete stable.lastUpdateDate;
+    return JSON.stringify(stable);
+}
+
+function compareModelCatalogs(localModels, upstreamModels, payloads = {}) {
     const localMap = new Map(localModels.map((model) => [modelIdOf(model), model]));
     const upstreamMap = new Map(upstreamModels.map((model) => [modelIdOf(model), model]));
+    const localDetailMap = new Map((payloads.localDetails || []).map((detail) => [modelIdOf(detail), detail]));
+    const upstreamDetailMap = new Map((payloads.upstreamApiDetails || []).map((detail) => [modelIdOf(detail), detail]));
     const changedModels = [];
     const removedModels = [];
+    const reasons = new Map();
 
     for (const upstreamModel of upstreamModels) {
         const id = modelIdOf(upstreamModel);
         const localModel = localMap.get(id);
-        if (!localModel || modelFingerprint(localModel) !== modelFingerprint(upstreamModel)) {
+        let reason = '';
+        if (!localModel) {
+            reason = 'new id';
+        } else if (modelFingerprint(localModel) !== modelFingerprint(upstreamModel)) {
+            reason = 'list fingerprint';
+        } else {
+            const localDetail = localDetailMap.get(id);
+            const upstreamDetail = upstreamDetailMap.get(id);
+            if (!localDetail || !localDetail.apiDetail) {
+                reason = 'local detail missing';
+            } else if (upstreamDetail && upstreamDetail.apiDetail
+                && stableDetailFingerprint(localDetail.apiDetail) !== stableDetailFingerprint(upstreamDetail.apiDetail)) {
+                reason = 'detail payload';
+            }
+            // No upstream payload (endpoint unavailable): fall back to the list fingerprint
+            // alone rather than re-scraping the whole catalog.
+        }
+        if (reason) {
             changedModels.push(upstreamModel);
+            reasons.set(id, reason);
         }
     }
 
@@ -175,6 +243,7 @@ function compareModelCatalogs(localModels, upstreamModels) {
     return {
         changedModels,
         removedModels,
+        reasons,
         hasChanges: changedModels.length > 0 || removedModels.length > 0,
     };
 }
@@ -196,6 +265,19 @@ function mergeDetails(localDetails, changedDetails, upstreamModels) {
     }
 
     return { mergedDetails, missingIds };
+}
+
+// Same-model filename clashes are resolved deterministically and every scraped file is
+// checked against upstream's byte size (or the served size) before it can be staged.
+async function verifyScrapedFiles(detailsPath, options, runToken) {
+    await runCommand('node', ['canonicalize-rows.js', detailsPath], {
+        label: 'canonicalize-rows.js',
+        logFile: path.join(options.logDir, `${runToken}_canonicalize.log`),
+    });
+    await runCommand('python3', ['verify-downloads.py', detailsPath], {
+        label: 'verify-downloads.py',
+        logFile: path.join(options.logDir, `${runToken}_verify.log`),
+    });
 }
 
 function scrapeDirectEnv() {
@@ -301,6 +383,7 @@ async function main() {
     const runToken = timestampForFile(startedAt);
     const tempModelsPath = path.join(options.logDir, `${runToken}_upstream_models.json`);
     const tempDetailsPath = path.join(options.logDir, `${runToken}_changed_details.json`);
+    const tempApiDetailsPath = path.join(options.logDir, `${runToken}_upstream_details.json`);
     const tempFullScrapePath = path.join(options.logDir, `${runToken}_partial_scrape.json`);
 
     console.log(`=== Daily Sync ${syncDateTime} ===`);
@@ -320,30 +403,50 @@ async function main() {
             });
             upstreamModels = readJson(MODELS_JSON, []);
             changedModels = upstreamModels;
+            await verifyScrapedFiles(DETAILS_JSON, options, runToken);
+            await runCommand('node', ['stage-scraped-downloads.js', '--details', DETAILS_JSON], {
+                label: 'stage-scraped-downloads.js',
+                logFile: path.join(options.logDir, `${runToken}_stage.log`),
+            });
         } else {
             const localModels = readJson(MODELS_JSON, []);
+            const localDetails = readJson(DETAILS_JSON, []);
 
-            await runCommand('node', ['scrape.js', '--list-only', '--models-output', tempModelsPath], {
+            await runCommand('node', [
+                'scrape.js',
+                '--list-only',
+                '--models-output', tempModelsPath,
+                '--api-details-output', tempApiDetailsPath,
+            ], {
                 label: 'scrape.js --list-only',
                 logFile: path.join(options.logDir, `${runToken}_list-only.log`),
                 env: scrapeDirectEnv(),
             });
 
             upstreamModels = readJson(tempModelsPath, []);
-            const catalogDiff = compareModelCatalogs(localModels, upstreamModels);
+            const upstreamApiDetails = readJson(tempApiDetailsPath, []);
+            if (!upstreamApiDetails.length) {
+                console.log('Warning: no upstream detail payloads captured; comparing list fingerprints only.');
+            }
+            const catalogDiff = compareModelCatalogs(localModels, upstreamModels, { localDetails, upstreamApiDetails });
             changedModels = catalogDiff.changedModels;
             removedModels = catalogDiff.removedModels;
 
             if (!catalogDiff.hasChanges) {
-                console.log('No upstream model additions, removals, or update-date changes detected.');
+                console.log('No upstream model additions, removals, update-date or detail payload changes detected.');
                 shouldRunBuild = false;
                 shouldRunHf = false;
             } else {
                 const changedIds = changedModels.map((model) => modelIdOf(model)).filter(Boolean);
                 console.log(`Upstream changes detected: ${changedModels.length} changed/new, ${removedModels.length} removed.`);
+                for (const model of changedModels) {
+                    console.log(`  ${model.name} (${modelIdOf(model)}): ${catalogDiff.reasons.get(modelIdOf(model))}`);
+                }
+                for (const model of removedModels) {
+                    console.log(`  ${model.name} (${modelIdOf(model)}): removed upstream`);
+                }
                 writeJson(MODELS_JSON, upstreamModels);
 
-                const localDetails = readJson(DETAILS_JSON, []);
                 let changedDetails = [];
 
                 if (changedIds.length > 0) {
@@ -358,7 +461,12 @@ async function main() {
                         logFile: path.join(options.logDir, `${runToken}_scrape.log`),
                         env: scrapeDirectEnv(),
                     });
+                    await verifyScrapedFiles(tempDetailsPath, options, runToken);
                     changedDetails = readJson(tempDetailsPath, []);
+                    await runCommand('node', ['stage-scraped-downloads.js', '--details', tempDetailsPath], {
+                        label: 'stage-scraped-downloads.js',
+                        logFile: path.join(options.logDir, `${runToken}_stage.log`),
+                    });
                 }
 
                 const { mergedDetails, missingIds } = mergeDetails(localDetails, changedDetails, upstreamModels);
@@ -410,6 +518,23 @@ async function main() {
             label: 'upload-models-to-hf.js',
             logFile: path.join(options.logDir, `${runToken}_hf-upload.log`),
         });
+
+        // The first build ran before the upload, so its hrefs only know files that were
+        // already published. Refresh the listing and rebuild so new uploads get linked.
+        await runCommand('node', ['refresh-hf-files.js'], {
+            label: 'refresh-hf-files.js',
+            logFile: path.join(options.logDir, `${runToken}_refresh-hf-files.log`),
+        });
+        await runCommand('node', ['build-static-site.js'], {
+            label: 'build-static-site.js (after upload)',
+            logFile: path.join(options.logDir, `${runToken}_build.log`),
+        });
+        // Gate: every linked row must be byte-exact against upstream on the live mirror.
+        // A non-zero exit here aborts the sync before anything is committed.
+        await runCommand('node', ['audit-links.js', '--json', path.join(options.logDir, `${runToken}_audit.json`)], {
+            label: 'audit-links.js',
+            logFile: path.join(options.logDir, `${runToken}_audit.log`),
+        });
     } else if (!options.skipHf) {
         console.log('Skipping Hugging Face upload because no model payload changes were detected.');
     }
@@ -445,7 +570,11 @@ async function main() {
     console.log(`Daily sync published at commit ${head}.`);
 }
 
-main().catch((error) => {
-    console.error(`\nDaily sync failed: ${error.message}`);
-    process.exitCode = 1;
-});
+if (require.main === module) {
+    main().catch((error) => {
+        console.error(`\nDaily sync failed: ${error.message}`);
+        process.exitCode = 1;
+    });
+}
+
+module.exports = { compareModelCatalogs, mergeDetails, modelFingerprint, stableDetailFingerprint };

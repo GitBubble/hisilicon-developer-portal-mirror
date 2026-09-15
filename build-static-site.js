@@ -378,6 +378,15 @@ function deltaToText(serializedDelta) {
     }
 }
 
+// Upstream toolkit rows (SDK, CANN package, 编译工具链/库) reach us either tagged
+// `toolkit` by a fresh scrape or `api-all` from older hand-merged captures. Group and
+// label them by name so the table does not drift between models after each sync.
+const TOOLKIT_ROW_NAMES = new Set(['SDK', 'CANN工具', 'CANN配置', '编译工具链', '编译工具库']);
+
+function isToolkitRowName(name) {
+    return TOOLKIT_ROW_NAMES.has(String(name || '').trim());
+}
+
 function sourceGroup(source) {
     if (!source) return '其它';
     if (source.startsWith('om-') || source === 'omOfflineModel' || source === 'auto-download') return '编译模型';
@@ -448,10 +457,12 @@ function buildCompiledModelMetadata(detail) {
                         file.id,
                         files.length === 1 ? variant.omOfflineModelId : null,
                     ]).map(String),
+                    size: Number(file.size) || 0,
                 }))
                 : [{
                     names: unique([variant.omOfflineModelName]).map(normalizeArtifactName),
                     fileIds: unique([variant.omOfflineModelId]).map(String),
+                    size: 0,
                 }];
 
             for (const [index, file] of fileEntries.entries()) {
@@ -470,6 +481,7 @@ function buildCompiledModelMetadata(detail) {
                             legacyName && legacyName === fileName ? legacyName : null,
                         ]).filter(Boolean),
                         fileIds: file.fileIds,
+                        size: file.size,
                         performance: normalizePerformance(variant.modelPerformance),
                         key: String(file.fileIds[0] || file.names[0] || `${adaptor.id || adaptor.name}:${variant.id || variant.name}:${index}`),
                     });
@@ -596,9 +608,32 @@ function downloadIdentityTokens(item) {
     ]);
 }
 
-function finalizeDownloads(downloads, detail, modelEngines) {
+function finalizeDownloads(downloads, detail, modelEngines, mirror = null) {
     const metadata = buildCompiledModelMetadata(detail);
-    const enriched = downloads.map((item) => enrichDownloadMetadata(item, metadata, modelEngines));
+    const enriched = downloads.map((item) => {
+        const row = enrichDownloadMetadata(item, metadata, modelEngines);
+        // Rows captured before sizes were recorded identify their artifact only through
+        // engine/variant metadata; check the linked file against that artifact's size.
+        if (mirror && row._artifactKey && isCompiledDownload(row) && row.href && row.href.startsWith(mirror.repoInfo.resolveBase)) {
+            const entry = metadata.find((candidate) => candidate.key === row._artifactKey);
+            const servedEntry = entry && entry.fileIds.map((id) => mirror.served.get(id)).find(Boolean);
+            const expectedSize = servedEntry ? servedEntry.size : ((entry && entry.size) || 0);
+            if (expectedSize && mirror.repoSizes.get(row.localFile) !== expectedSize) {
+                const verified = resolveVerifiedRepoFile([row.title, row.localFile], expectedSize, mirror.repoFiles, mirror.repoSizes);
+                if (verified) {
+                    row.localFile = verified;
+                    row.href = `${mirror.repoInfo.resolveBase}/${encodeRepoFile(verified)}`;
+                } else {
+                    reportLinkIssue(mirror.modelName, row.title, expectedSize,
+                        `linked ${row.localFile} is ${mirror.repoSizes.get(row.localFile) ?? 'unknown'} bytes`);
+                    row.href = null;
+                    row.available = false;
+                    row.localFile = null;
+                }
+            }
+        }
+        return row;
+    });
     const describedArtifacts = new Set();
 
     for (const item of enriched) {
@@ -645,7 +680,7 @@ function finalizeDownloads(downloads, detail, modelEngines) {
         deduped.push(item);
     }
 
-    return deduped.map(({ _artifactKey, _metadataConflict, ...item }) => item);
+    return deduped.map(({ _artifactKey, _metadataConflict, expectedSize, ...item }) => item);
 }
 
 function deriveCategory(model) {
@@ -722,17 +757,36 @@ function listModelRealFiles(slug) {
     if (!fs.existsSync(dir)) return [];
     return fs.readdirSync(dir).filter((file) => {
         if (file.startsWith('.')) return false;
+        // Scraper sidecars recording served-vs-declared sizes are not artifacts.
+        if (file.endsWith('.served.json')) return false;
         const fullPath = path.join(dir, file);
         return fs.statSync(fullPath).isFile();
     });
 }
 
+// hf-repo-files.json entries are either bare names (older listings) or {name, size}
+// objects; the size is what lets a row be linked only to a byte-exact mirror file.
 function loadHfRepoFiles() {
     try {
         const raw = JSON.parse(fs.readFileSync(HF_REPO_FILES, 'utf8'));
-        return new Map(Object.entries(raw).filter(([, files]) => Array.isArray(files)));
+        const files = new Map();
+        const sizes = new Map();
+        for (const [repoId, entries] of Object.entries(raw)) {
+            if (!Array.isArray(entries)) continue;
+            const names = [];
+            const sizeMap = new Map();
+            for (const entry of entries) {
+                const name = typeof entry === 'string' ? entry : entry && entry.name;
+                if (!name) continue;
+                names.push(name);
+                if (entry && typeof entry === 'object' && Number.isFinite(entry.size)) sizeMap.set(name, entry.size);
+            }
+            files.set(repoId, names);
+            sizes.set(repoId, sizeMap);
+        }
+        return { files, sizes };
     } catch (_) {
-        return new Map();
+        return { files: new Map(), sizes: new Map() };
     }
 }
 
@@ -884,13 +938,24 @@ function buildQuickStart(detail) {
     };
 }
 
-function buildOriginModels(detail, repoFiles, repoInfo) {
+function buildOriginModels(detail, repoFiles, repoInfo, repoSizes = new Map(), modelName = '', served = new Map()) {
     return (detail.originModel || []).map((item) => {
-        const localFile = resolveRepoFileName(item.name, item.url, repoFiles);
+        let localFile = resolveRepoFileName(item.name, item.url, repoFiles);
+        const servedEntry = item.id != null ? served.get(String(item.id)) : null;
+        const expectedSize = servedEntry ? servedEntry.size : (Number(item.size) || 0);
+        if (expectedSize && repoInfo) {
+            const verified = resolveVerifiedRepoFile([item.name, fileNameFromUrl(item.url), localFile], expectedSize, repoFiles, repoSizes);
+            if (!verified) {
+                reportLinkIssue(modelName, item.name, expectedSize, localFile
+                    ? `mirror has ${localFile} at ${repoSizes.get(localFile) ?? 'unknown'} bytes`
+                    : 'no mirror file of that size');
+            }
+            localFile = verified;
+        }
         let href = null;
         if (localFile && repoInfo) {
             href = `${repoInfo.resolveBase}/${encodeRepoFile(localFile)}`;
-        } else if (item.url && /^https?:\/\//.test(item.url)) {
+        } else if (!expectedSize && item.url && /^https?:\/\//.test(item.url)) {
             href = rewriteExternalUrl(item.url, repoInfo);
         }
 
@@ -917,23 +982,144 @@ function buildManualOriginModels(modelName, repoInfo) {
     }));
 }
 
-function buildDownloads(detailEntry, repoFiles, repoInfo) {
+// Byte sizes upstream declares for a model's artifacts, keyed by file id and by name.
+// They are the only reliable identity: the portal reuses one filename for different
+// engine binaries and replaces file content without renaming it.
+function buildSizeIndex(detail) {
+    const byFileId = new Map();
+    const byName = new Map();
+    const add = (file) => {
+        if (!file) return;
+        const size = Number(file.size) || 0;
+        if (!size) return;
+        if (file.id != null) byFileId.set(String(file.id), size);
+        const name = normalizeArtifactName(file.name);
+        if (name) byName.set(name, unique([...(byName.get(name) || []), size]));
+    };
+    (detail.originModel || []).forEach(add);
+    for (const adaptor of detail.modelAdaptor || []) {
+        for (const variant of adaptor.supportQuantify || []) {
+            (variant.omOfflineModel || []).forEach(add);
+        }
+    }
+    return { byFileId, byName };
+}
+
+// Served-size policy: when the portal served a completed file whose length differs from
+// its own metadata, the scraper keeps it and records size (served) + declaredSize. The
+// served bytes are what a portal user gets, so they are the truth for every row that
+// refers to that file id; the discrepancy is reported as a note, never hidden.
+const LINK_NOTES = [];
+
+function servedSizeIndex(detailEntry) {
+    const served = new Map();
+    for (const row of (detailEntry && detailEntry.downloadUrls) || []) {
+        const size = Number(row && row.size) || 0;
+        const declared = Number(row && row.declaredSize) || 0;
+        if (row && row.fileId && size && declared && size !== declared) {
+            served.set(String(row.fileId), { size, declared });
+        }
+    }
+    return served;
+}
+
+function expectedSizeFor(item, title, sizeIndex, served = new Map()) {
+    for (const id of downloadFileIds(item)) {
+        if (served.has(id)) return served.get(id).size;
+    }
+    const direct = Number(item.size) || 0;
+    if (direct) return direct;
+    for (const id of downloadFileIds(item)) {
+        if (sizeIndex.byFileId.has(id)) return sizeIndex.byFileId.get(id);
+    }
+    const sizes = sizeIndex.byName.get(normalizeArtifactName(title)) || [];
+    return sizes.length === 1 ? sizes[0] : 0;
+}
+
+// Every mirror file that could plausibly be the artifact `name` refers to: the same
+// stem with a variant/source suffix, as the snapshots name sibling variants.
+function relatedRepoFiles(name, repoFiles) {
+    if (!name) return [];
+    const ext = path.extname(name).toLowerCase();
+    const stem = path.basename(name, ext).toLowerCase();
+    return repoFiles.filter((file) => {
+        const fileExt = path.extname(file).toLowerCase();
+        const fileStem = path.basename(file, fileExt).toLowerCase();
+        if (ARTIFACT_EXTENSIONS.has(ext) && fileExt !== ext) return false;
+        return fileStem === stem
+            || fileStem.startsWith(`${stem}_`)
+            || fileStem.includes(`${stem}_om-`)
+            || fileStem.includes(`${stem}_source-model`)
+            || fileStem.includes(`${stem}-source-model`);
+    });
+}
+
+// The mirror file a row may link to when upstream declares its size: a related name
+// whose recorded size is byte-exact, or — for names that drifted between the API and the
+// download page (depth_anything.om vs depthanything.om) — the only file of that size and
+// extension in the repo. Anything else is unverifiable and must not be linked.
+function resolveVerifiedRepoFile(names, expectedSize, repoFiles, repoSizes) {
+    if (!expectedSize) return null;
+    const wanted = unique(names.filter(Boolean));
+    const related = unique(wanted.flatMap((name) => [name, ...relatedRepoFiles(name, repoFiles)]));
+    const matches = related.filter((file) => repoFiles.includes(file) && repoSizes.get(file) === expectedSize);
+    if (matches.length) {
+        return matches.find((file) => wanted.includes(file)) || matches.sort()[0];
+    }
+    const ext = path.extname(wanted[0] || '').toLowerCase();
+    const bySize = repoFiles.filter((file) => repoSizes.get(file) === expectedSize && path.extname(file).toLowerCase() === ext);
+    return bySize.length === 1 ? bySize[0] : null;
+}
+
+// Link problems found while building, reported once at the end so a sync never
+// silently ships a row that points at the wrong binary.
+const LINK_ISSUES = [];
+
+// Upstream ships a few byte-sized placeholder "files" (CodeFormer's 空文件…om is 3 bytes)
+// for non-commercial models; they are not artifacts and are never mirrored, so an
+// unlinked row is the correct outcome rather than a problem to report.
+const PLACEHOLDER_MAX_BYTES = 1024;
+
+function reportLinkIssue(modelName, title, expectedSize, detail) {
+    if (expectedSize && expectedSize < PLACEHOLDER_MAX_BYTES) return;
+    LINK_ISSUES.push({ modelName, title, expectedSize, detail });
+}
+
+function buildDownloads(detailEntry, repoFiles, repoInfo, repoSizes = new Map()) {
     if (!detailEntry) return [];
 
     const downloads = [];
     const compiledMetadata = buildCompiledModelMetadata(detailEntry.apiDetail || {});
+    const sizeIndex = buildSizeIndex(detailEntry.apiDetail || {});
+    const served = servedSizeIndex(detailEntry);
+    for (const [fileId, entry] of served) {
+        LINK_NOTES.push(`${detailEntry.name}: file ${fileId} is served at ${entry.size} bytes while upstream metadata declares ${entry.declared}; mirror follows the served file`);
+    }
     for (const item of detailEntry.downloadUrls || []) {
         const title = item.name || (item.url ? fileNameFromUrl(item.url) : item.fileId) || '未命名文件';
-        const group = sourceGroup(item.source);
+        const toolkitRow = isToolkitRowName(item.name);
+        const group = toolkitRow ? '工具链' : sourceGroup(item.source);
+        const expectedSize = toolkitRow ? 0 : expectedSizeFor(item, title, sizeIndex, served);
         // A single unsuffixed filename can describe multiple engine-specific
         // binaries upstream. Only attach that mirror file when a captured URL
-        // identifies which binary was actually downloaded.
+        // identifies which binary was actually downloaded, or when upstream's
+        // byte size (directly, or via the row's fileId) can single it out below.
         const canResolveCompiledFile = group !== '编译模型'
             || !hasMultipleCompiledVariants(title, compiledMetadata)
-            || Boolean(item.url);
-        const localFile = canResolveCompiledFile
+            || Boolean(item.url)
+            || Boolean(expectedSize);
+        let localFile = canResolveCompiledFile
             ? resolveRepoFileName(title, item.url, repoFiles)
             : null;
+        if (expectedSize && repoInfo) {
+            const verified = resolveVerifiedRepoFile([title, fileNameFromUrl(item.url), localFile], expectedSize, repoFiles, repoSizes);
+            if (!verified) {
+                reportLinkIssue(detailEntry.name, title, expectedSize, localFile
+                    ? `mirror has ${localFile} at ${repoSizes.get(localFile) ?? 'unknown'} bytes`
+                    : 'no mirror file of that size');
+            }
+            localFile = verified;
+        }
         let href = null;
 
         const sdkName = sdkFileNameFrom(title) || sdkFileNameFrom(item.url);
@@ -941,6 +1127,10 @@ function buildDownloads(detailEntry, repoFiles, repoInfo) {
             href = sdkUrlForFile(sdkName);
         } else if (localFile && repoInfo) {
             href = `${repoInfo.resolveBase}/${encodeRepoFile(localFile)}`;
+        } else if (expectedSize && repoInfo) {
+            // Upstream told us exactly which bytes this row means and the mirror does
+            // not hold them: leave it unlinked rather than fall back to a guess.
+            href = null;
         } else if (repoInfo && repoInfo.preferRepoUrlForDownloads) {
             href = repoInfo.downloadTargetUrl || repoInfo.repoUrl;
         } else if (item.url && /^https?:\/\//.test(item.url)) {
@@ -965,13 +1155,14 @@ function buildDownloads(detailEntry, repoFiles, repoInfo) {
             href,
             available: Boolean(href),
             source: item.source || 'unknown',
-            sourceLabel: sourceLabel(item.source),
+            sourceLabel: toolkitRow ? '工具链' : sourceLabel(item.source),
             group,
             engine: item.computing || '',
             quantization: normalizeQuantization(item.quantify),
             note: normalizeQuantization(item.quantify),
             localFile: localFile || sdkName || (isSdkPackageUrl(item.url) ? SHARED_SDK_FILE : null),
             lookupFileIds: [...downloadFileIds(item)],
+            expectedSize,
         });
     }
 
@@ -999,22 +1190,32 @@ function buildManualDownloads(modelName, repoInfo) {
 const MIRROR_EXTRA_IGNORED = /^(\.gitattributes|\.DS_Store|README\.md|model-card\.json)$/i;
 const MIRROR_EXTRA_IGNORED_EXT = /\.(png|jpe?g|gif|webp|svg)$/i;
 
-function buildMirrorExtras(repoInfo, hfFiles, existingDownloads, originModels) {
+// A mirror file upstream never listed can only be shown when its bytes are provably one
+// of upstream's artifacts (same size as a declared/served file); older snapshots left
+// mislabeled siblings and superseded builds on HF under alias names, and presenting
+// those as compiled-model rows would put the wrong binary behind an engine label.
+function buildMirrorExtras(repoInfo, hfFiles, existingDownloads, originModels, repoSizes = new Map(), upstreamSizes = new Set()) {
     if (!repoInfo || !hfFiles.length) return [];
 
     const advertised = new Set();
+    const linkedSizes = new Set();
     for (const item of [...existingDownloads, ...originModels]) {
         if (item.localFile) advertised.add(item.localFile);
         if (item.title) advertised.add(item.title);
         if (item.name) advertised.add(item.name);
+        if (item.localFile && repoSizes.has(item.localFile)) linkedSizes.add(repoSizes.get(item.localFile));
     }
 
     return hfFiles
         .filter((file) => (
             !MIRROR_EXTRA_IGNORED.test(file)
             && !MIRROR_EXTRA_IGNORED_EXT.test(file)
+            && !/\.served\.json$/i.test(file)
             && !isSdkPackageName(file)
             && !advertised.has(file)
+            // byte-identical to an upstream artifact, and not already linked under its real name
+            && upstreamSizes.has(repoSizes.get(file))
+            && !linkedSizes.has(repoSizes.get(file))
         ))
         .map((file) => ({
             title: file,
@@ -1038,17 +1239,33 @@ function buildModelRecord(model, detailEntry, imageFiles, manifestByName, hfRepo
     const localFiles = listModelRealFiles(slug);
     // Resolve the repo first so the published listing is looked up by real repo id,
     // which manifest entries and manual overrides can change independently of the slug.
-    const publishedFiles = hfRepoFiles.get(buildRepoInfo(model, manifestEntry, localFiles)?.repoId) || [];
+    const repoId = buildRepoInfo(model, manifestEntry, localFiles)?.repoId;
+    const publishedFiles = hfRepoFiles.files.get(repoId) || [];
     const repoFiles = unique([...publishedFiles, ...localFiles]);
+    // Sizes decide which file a row may link to. The local snapshot is what the next
+    // upload publishes, so it overrides a stale listing; the post-upload audit checks HF.
+    const repoSizes = new Map(hfRepoFiles.sizes.get(repoId) || []);
+    for (const file of localFiles) {
+        try {
+            repoSizes.set(file, fs.statSync(path.join(MODELS_REAL_DIR, slug, file)).size);
+        } catch (_) {
+            // unreadable snapshot file: keep the listing's size, if any
+        }
+    }
     const repoInfo = buildRepoInfo(model, manifestEntry, repoFiles);
     const baseDownloads = detailEntry
-        ? buildDownloads(detailEntry, repoFiles, repoInfo)
+        ? buildDownloads(detailEntry, repoFiles, repoInfo, repoSizes)
         : buildManualDownloads(model.name, repoInfo);
     const originModels = detailEntry
-        ? buildOriginModels(detail, repoFiles, repoInfo)
+        ? buildOriginModels(detail, repoFiles, repoInfo, repoSizes, model.name, servedSizeIndex(detailEntry))
         : buildManualOriginModels(model.name, repoInfo);
-    baseDownloads.push(...buildMirrorExtras(repoInfo, publishedFiles, baseDownloads, originModels));
-    const downloads = finalizeDownloads(baseDownloads, detail, unique(model.computingPower));
+    const upstreamSizes = new Set([
+        ...[...buildSizeIndex(detail).byFileId.values()],
+        ...[...servedSizeIndex(detailEntry).values()].map((entry) => entry.size),
+    ]);
+    baseDownloads.push(...buildMirrorExtras(repoInfo, publishedFiles, baseDownloads, originModels, repoSizes, upstreamSizes));
+    const downloads = finalizeDownloads(baseDownloads, detail, unique(model.computingPower),
+        repoInfo ? { repoInfo, repoFiles, repoSizes, modelName: model.name, served: servedSizeIndex(detailEntry) } : null);
     const tags = unique([
         ...(model.computerVersion || []),
         ...(model.naturalLanguageProcess || []),
@@ -1200,6 +1417,24 @@ function main() {
     console.log(`HF repos linked: ${modelsWithHf}/${modelsData.length}; available downloads: ${availableDownloads}`);
     console.log(`Cover images: copied/downloaded ${coverStats.copied}, still missing ${coverStats.missing}, total local ${imageFiles.length}`);
     console.log(`Huawei Cloud URL occurrences in models.js: ${huaweiCount}`);
+
+    if (LINK_NOTES.length) {
+        console.log(`Served-size notes (portal file differs from its metadata): ${LINK_NOTES.length}`);
+        LINK_NOTES.forEach((note) => console.log(`  ${note}`));
+    }
+    if (LINK_ISSUES.length) {
+        const byModel = new Map();
+        for (const issue of LINK_ISSUES) {
+            if (!byModel.has(issue.modelName)) byModel.set(issue.modelName, []);
+            byModel.get(issue.modelName).push(issue);
+        }
+        console.warn(`Unlinked artifacts (upstream size not matched by any mirror file): ${LINK_ISSUES.length} in ${byModel.size} model(s)`);
+        for (const [modelName, issues] of byModel) {
+            for (const issue of issues) {
+                console.warn(`  ${modelName}: ${issue.title} (${issue.expectedSize} bytes) — ${issue.detail}`);
+            }
+        }
+    }
 
     if (huaweiCount > 0) {
         console.warn('WARNING: Huawei Cloud URLs still present in generated site data.');

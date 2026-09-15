@@ -34,6 +34,9 @@ function parseArgs(argv) {
         detailsOutput: path.join(ROOT, 'api_all_details.json'),
         filterFieldsOutput: path.join(ROOT, 'api_filter_fields.json'),
         fullScrapeOutput: path.join(ROOT, 'full_scrape_data.json'),
+        // --list-only companion: full findByIdAll payload per model, so daily-sync can
+        // detect detail-only changes (toolkit links, OM files) that never bump lastUpdateDate.
+        apiDetailsOutput: '',
     };
 
     for (let index = 0; index < argv.length; index += 1) {
@@ -64,6 +67,9 @@ function parseArgs(argv) {
             index += 1;
         } else if (arg === '--full-scrape-output') {
             options.fullScrapeOutput = path.resolve(ROOT, argv[index + 1] || 'full_scrape_data.json');
+            index += 1;
+        } else if (arg === '--api-details-output') {
+            options.apiDetailsOutput = path.resolve(ROOT, argv[index + 1] || 'api_list_details.json');
             index += 1;
         }
     }
@@ -328,6 +334,26 @@ async function callApi(page, endpoint, params = {}, method = 'POST') {
     }, { base: BASE_URL, ep: endpoint, params, method });
 }
 
+/** Fetch one model's full detail record (findByIdAll) from inside the page context. */
+async function fetchDetailViaApi(page, modelId, csrfToken) {
+    return page.evaluate(async ({ base, id, csrfToken }) => {
+        try {
+            const res = await fetch(`${base}/openxinhuoGateway/com.huawei.ipd.openxinhuo:modelzoo/modelzoo/services/modelzoo/modelNew/findByIdAll/${id}`, {
+                method: 'GET',
+                credentials: 'include',
+                headers: {
+                    'accept': 'application/json, text/plain, */*',
+                    'x-csrf-token': csrfToken,
+                },
+            });
+            if (!res.ok) return null;
+            return await res.json();
+        } catch (_) {
+            return null;
+        }
+    }, { base: BASE_URL, id: modelId, csrfToken });
+}
+
 /**
  * Download all files from an open download page by clicking each icon-xiazai.
  * Returns array of {name, url} for files downloaded.
@@ -339,19 +365,117 @@ function isMirrorableHost(hostname) {
     return /(^|\.)hisilicon\.com$|(^|\.)huawei\.com$|(^|\.)myhuaweicloud\.com$/i.test(String(hostname || ''));
 }
 
-function localModelAlreadyPresent(fileName) {    const candidates = [path.join(MODELS_DIR, fileName)];
-    if (fs.existsSync(MODELS_REAL_DIR)) {
-        for (const slug of fs.readdirSync(MODELS_REAL_DIR)) {
-            candidates.push(path.join(MODELS_REAL_DIR, slug, fileName));
+// Local copies live in models/ (flat scratch) and models-real-20260713/<slug>/ (staged
+// snapshots). A copy only counts when its size matches what upstream lists for that exact
+// file: the portal labels different engine binaries with the same filename, and the old
+// name-only check let a 27.9 MB A16W8 file stand in for a 53.3 MB NNN one.
+// Must match slugify() in build-static-site.js / upload-models-to-hf.js.
+function slugify(value) {
+    return String(value || '')
+        .normalize('NFKD')
+        .replace(/[^\w\s-]/g, '')
+        .trim()
+        .replace(/[\s_]+/g, '-')
+        .replace(/-+/g, '-')
+        .toLowerCase();
+}
+
+// Per-model download directory. models/ used to be flat, so DeepSort's yolov5s.om
+// silently replaced YOLOv5s's within one run; every model now owns its own folder.
+function modelDownloadDir(modelName) {
+    return path.join(MODELS_DIR, slugify(modelName));
+}
+
+// Sidecar written next to a completed download whose byte count differs from the size
+// upstream declares, so later runs can tell "kept on purpose" from "stale or partial".
+function servedSidecarPath(filePath) {
+    return `${filePath}.served.json`;
+}
+
+function readServedSidecar(filePath) {
+    try {
+        const sidecar = servedSidecarPath(filePath);
+        if (!fs.existsSync(sidecar)) return null;
+        const data = JSON.parse(fs.readFileSync(sidecar, 'utf8'));
+        return data && Number(data.size) > 0 ? data : null;
+    } catch (_) {
+        return null;
+    }
+}
+
+function findLocalArtifact(fileName, expectedSize, modelName) {
+    if (!fileName) return null;
+    const slug = modelName ? slugify(modelName) : '';
+    const candidates = slug
+        ? [path.join(MODELS_DIR, slug, fileName), path.join(MODELS_REAL_DIR, slug, fileName)]
+        : [path.join(MODELS_DIR, fileName)];
+    for (const filePath of candidates) {
+        try {
+            if (!fs.existsSync(filePath)) continue;
+            const size = fs.statSync(filePath).size;
+            if (expectedSize ? size === expectedSize : size > 1024) return filePath;
+            if (expectedSize) {
+                const kept = readServedSidecar(filePath);
+                if (kept && Number(kept.declaredSize) === expectedSize && Number(kept.size) === size) return filePath;
+            }
+        } catch (_) {
+            // unreadable candidate
         }
     }
-    return candidates.some((filePath) => {
-        try {
-            return fs.existsSync(filePath) && fs.statSync(filePath).size > 1024;
-        } catch (_) {
-            return false;
+    return null;
+}
+
+function localModelAlreadyPresent(fileName, expectedSize, modelName) {
+    return Boolean(findLocalArtifact(fileName, expectedSize || null, modelName));
+}
+
+// Identify a download-page row against the files upstream lists for that page: exact
+// name first; a single-file page also covers a row whose label differs from the API name
+// (Depth-Anything-v2 shows "depthanything.om" for the file the API calls depth_anything.om).
+function matchExpectedFile(pageName, expectedFiles) {
+    const byName = expectedFiles.filter((file) => file.name === pageName);
+    if (byName.length === 1) return byName[0];
+    if (expectedFiles.length === 1) return expectedFiles[0];
+    return null;
+}
+
+function slugToken(value) {
+    return String(value || '').trim().replace(/\s+/g, '-');
+}
+
+// Decide the local filename for a page row and whether that file is already held.
+// The API name is canonical. When another variant of the same model shares it (both
+// SE-ResNet50 engines upstream call their OM seresnet50.om), the variant that does not
+// own the bare name is kept apart by spec + engine, e.g. seresnet50_FP16_Hi3403V100-NNN.om.
+function resolveSaveName(pageName, expected, expectedSize, allModelFiles, rowMeta, modelName) {
+    const canonical = expected ? expected.name : pageName;
+    const held = findLocalArtifact(canonical, expectedSize, modelName);
+    if (held) return { name: canonical, present: true, path: held };
+    const existing = findLocalArtifact(canonical, null, modelName);
+    if (existing && expectedSize) {
+        const existingSize = fs.statSync(existing).size;
+        // A copy kept at its served size stands for the size upstream declared for it.
+        const kept = readServedSidecar(existing);
+        const existingDeclared = kept && Number(kept.size) === existingSize ? Number(kept.declaredSize) : existingSize;
+        const siblingSizes = allModelFiles
+            .filter((file) => file.name === canonical && Number(file.size) !== expectedSize)
+            .map((file) => Number(file.size));
+        if (siblingSizes.includes(existingDeclared)) {
+            const ext = path.extname(canonical);
+            const base = path.basename(canonical, ext);
+            // Earlier captures already published some siblings as <name>_om-<spec>.om; keep
+            // that name when the copy has the right size instead of re-uploading a twin.
+            const legacy = rowMeta.quantify ? `${base}_om-${rowMeta.quantify}${ext}` : '';
+            const legacyHeld = legacy ? findLocalArtifact(legacy, expectedSize, modelName) : null;
+            if (legacyHeld) return { name: legacy, present: true, path: legacyHeld };
+            const suffix = [rowMeta.quantify, rowMeta.computing].filter(Boolean).map(slugToken).join('_') || 'variant';
+            const aliased = `${base}_${suffix}${ext}`;
+            const aliasHeld = findLocalArtifact(aliased, expectedSize, modelName);
+            return { name: aliased, present: Boolean(aliasHeld), path: aliasHeld || undefined };
         }
-    });
+        // A copy with a size matching no variant is stale or partial: download over it.
+    }
+    return { name: canonical, present: false };
 }
 
 function stripProxyFromEnv(env) {
@@ -373,66 +497,145 @@ function browserLaunchEnv() {
     return stripProxyFromEnv({ ...process.env });
 }
 
+// The ModelDownload page auto-starts its own download of a single-file listing, and the
+// portal serves parallel downloads slowly, so a click can bind to a duplicate copy that
+// crawls behind the auto-started one (UFLDv2 stalled for 10+ minutes that way while the
+// other copy had long finished). Track every download a page starts, race same-named
+// copies to completion, and cancel the rest — including auto-downloads of files we
+// already hold locally, which otherwise burn bandwidth for the whole model.
+const downloadTrackers = new WeakMap();
+
+function trackerFor(dlPage) {
+    if (!downloadTrackers.has(dlPage)) {
+        const tracker = { all: [], inFlight: new Map() };
+        // Downloads still running from a previous page belong to another variant; a later
+        // page must never adopt one of them as its own file.
+        tracker.reset = () => {
+            for (const dl of tracker.all) {
+                if (!dl._finished) dl.cancel().catch(() => {});
+            }
+            tracker.all = [];
+            tracker.inFlight.clear();
+        };
+        dlPage.on('download', (dl) => {
+            dl._finished = false;
+            dl.path().catch(() => null).then(() => { dl._finished = true; });
+            tracker.all.push(dl);
+            const name = dl.suggestedFilename();
+            // Never cancel by filename alone: on a sibling-variant page the same label names a
+            // different binary than the copy we hold (seresnet50.om FP16 vs A8W8), and that
+            // cancelled the only legitimate download. Auto-downloads of files we do hold are
+            // cheap: the click is skipped and reset() drops them on the next page.
+            // A second copy of a file that is still downloading only splits the bandwidth;
+            // drop it right away and let the first copy win the race in firstFinishedCopy.
+            if (name && tracker.inFlight.has(name)) {
+                console.log(`    duplicate download of ${name} cancelled (first copy still in flight)`);
+                dl.cancel().catch(() => {});
+                return;
+            }
+            if (name) {
+                tracker.inFlight.set(name, dl);
+                dl.path().catch(() => null).then(() => {
+                    if (tracker.inFlight.get(name) === dl) tracker.inFlight.delete(name);
+                });
+            }
+        });
+        downloadTrackers.set(dlPage, tracker);
+    }
+    return downloadTrackers.get(dlPage);
+}
+
+async function firstFinishedCopy(tracker, primary) {
+    const name = primary.suggestedFilename();
+    const candidates = tracker.all.filter((dl) => dl.suggestedFilename() === name);
+    if (!candidates.includes(primary)) candidates.push(primary);
+    if (candidates.length > 1) {
+        console.log(`    ${candidates.length} download objects for ${name}; keeping whichever finishes first`);
+    }
+    const winner = await Promise.any(candidates.map(async (dl) => {
+        const filePath = await dl.path();
+        if (!filePath) throw new Error('download failed');
+        return dl;
+    }));
+    for (const dl of candidates) {
+        if (dl !== winner) dl.cancel().catch(() => {});
+    }
+    return winner;
+}
+
 async function downloadFilesFromPage(dlPage, label, metadata = {}) {
+    const { expectedFiles = [], allModelFiles = [], modelName = '', ...rowMeta } = metadata;
     const downloaded = [];
+    const tracker = trackerFor(dlPage);
+    const saveDir = modelName ? modelDownloadDir(modelName) : MODELS_DIR;
     // Wait for the table to render
     await sleep(2000);
 
     const fileIcons = dlPage.locator('span.icon-xiazai[title="下载"]');
     const iconCount = await fileIcons.count().catch(() => 0);
+    downloaded.iconCount = iconCount;
     console.log(`    [${label}] ${iconCount} file(s)`);
+    if (expectedFiles.length && iconCount > expectedFiles.length) {
+        // The single-file rule would map every extra row to the same upstream file.
+        console.log(`    [warn] page lists ${iconCount} file(s) but upstream lists ${expectedFiles.length}; rows beyond the first may be misattributed`);
+    }
 
     for (let fi = 0; fi < iconCount; fi++) {
         const icon = fileIcons.nth(fi);
         const row = icon.locator('xpath=ancestor::tr[1]');
-        const fileName = (await row.locator('td').first().textContent().catch(() => `file_${fi}`)).trim();
+        const pageName = (await row.locator('td').first().textContent().catch(() => `file_${fi}`)).trim();
+        const expected = matchExpectedFile(pageName, expectedFiles);
+        const expectedSize = expected ? Number(expected.size) || null : null;
+        const identity = expected ? { fileId: String(expected.id), size: expectedSize || undefined, declaredSize: expectedSize || undefined } : {};
+        const target = resolveSaveName(pageName, expected, expectedSize, allModelFiles, rowMeta, modelName);
+        const fileName = target.name;
         try {
-            if (fileName && localModelAlreadyPresent(fileName)) {
-                console.log(`    [skip] ${fileName} already present`);
-                downloaded.push({ name: fileName, source: label, ...metadata });
+            if (target.present) {
+                const heldSize = target.path ? fs.statSync(target.path).size : expectedSize;
+                const heldNote = expectedSize && heldSize !== expectedSize ? `, upstream declares ${expectedSize}` : '';
+                console.log(`    [skip] ${fileName} already present${heldSize ? ` (${heldSize} bytes${heldNote})` : ''}`);
+                downloaded.push({ name: fileName, source: label, ...identity, ...(heldSize ? { size: heldSize } : {}), ...rowMeta });
                 continue;
             }
+            if (!expected && expectedFiles.length) {
+                console.log(`    [warn] ${pageName} is not among the ${expectedFiles.length} file(s) upstream lists for this page`);
+            }
 
-            const [download] = await Promise.all([
+            const [clicked] = await Promise.all([
                 dlPage.waitForEvent('download', { timeout: 300000 }),
                 icon.click(),
             ]);
-            let fname = download.suggestedFilename();
-            // If file already exists AND this is a different variant, append label suffix
-            let savePath = path.join(MODELS_DIR, fname);
-            if (fs.existsSync(savePath) || localModelAlreadyPresent(fname)) {
-                const ext = path.extname(fname);
-                const base = path.basename(fname, ext);
-                const altName = `${base}_${label}${ext}`;
-                const altPath = path.join(MODELS_DIR, altName);
-                if (fs.existsSync(savePath) && fs.statSync(savePath).size > 1024) {
-                    console.log(`    [skip] ${fname} exists`);
-                    try { await download.cancel(); } catch (_) {}
-                    downloaded.push({ name: fname, url: download.url(), source: label, ...metadata });
-                    continue;
-                }
-                if (localModelAlreadyPresent(fname)) {
-                    console.log(`    [skip] ${fname} already present`);
-                    try { await download.cancel(); } catch (_) {}
-                    downloaded.push({ name: fname, url: download.url(), source: label, ...metadata });
-                    continue;
-                }
-                if (!fs.existsSync(altPath)) {
-                    fname = altName;
-                    savePath = altPath;
-                } else {
-                    console.log(`    [skip] ${fname} exists`);
-                    try { await download.cancel(); } catch (_) {}
-                    downloaded.push({ name: fname, source: label, ...metadata });
-                    continue;
-                }
+            console.log(`    ↓ ${pageName}${fileName !== pageName ? ` -> ${fileName}` : ''}`);
+            // Give an auto-started copy of the same file a moment to register, then take
+            // whichever copy completes first.
+            await sleep(1500);
+            const winner = await firstFinishedCopy(tracker, clicked);
+            ensureDir(saveDir);
+            const savePath = path.join(saveDir, fileName);
+            if (fs.existsSync(savePath)) fs.unlinkSync(savePath); // stale or partial copy
+            await winner.saveAs(savePath);
+            const actualSize = fs.statSync(savePath).size;
+            if (!actualSize) {
+                fs.unlinkSync(savePath);
+                throw new Error('download completed with 0 bytes');
             }
-            console.log(`    ↓ ${fname}`);
-            await download.saveAs(savePath);
-            console.log(`    [ok] Saved: ${fname}`);
-            downloaded.push({ name: fname, url: download.url(), source: label, ...metadata });
+            const sidecar = servedSidecarPath(savePath);
+            if (fs.existsSync(sidecar)) fs.unlinkSync(sidecar);
+            if (expectedSize && actualSize !== expectedSize) {
+                // path() only resolves for a transfer Chrome completed, so these are the bytes the
+                // portal really serves; the declared size is metadata and is sometimes stale
+                // (MobileNetV2 A8W8: 3,900,282 served vs 3,900,270 declared). Keep the file and
+                // record both numbers.
+                console.log(`    [warn] ${fileName}: served ${actualSize} bytes, upstream declares ${expectedSize}; keeping the served file`);
+                fs.writeFileSync(sidecar, JSON.stringify({
+                    name: fileName, size: actualSize, declaredSize: expectedSize,
+                    fileId: identity.fileId || null, url: winner.url(), capturedAt: new Date().toISOString(),
+                }, null, 2));
+            }
+            console.log(`    [ok] Saved: ${fileName} (${actualSize} bytes)`);
+            downloaded.push({ name: fileName, url: winner.url(), source: label, ...identity, size: actualSize, ...rowMeta });
         } catch (dlErr) {
-            console.log(`    [error] ${fileName}: ${dlErr.message.slice(0, 80)}`);
+            console.log(`    [error] ${pageName}: ${dlErr.message.slice(0, 100)}`);
         }
     }
     return downloaded;
@@ -758,6 +961,12 @@ async function main() {
     }
     } // end else (fallback)
 
+    if (!csrfToken) {
+        // The direct-API fallback never sets the token; reuse one from any captured call.
+        const tokenCall = capturedApiCalls.find((r) => r.headers && r.headers['x-csrf-token']);
+        csrfToken = tokenCall ? tokenCall.headers['x-csrf-token'] : '';
+    }
+
     // Also capture filter fields from intercepted responses
     const filterFieldsResponse = capturedApiResponses.find(r => r.url.includes('getReleasedFilterFields') && r.status === 200);
     const filterFields = filterFieldsResponse ? filterFieldsResponse.data : {};
@@ -780,11 +989,22 @@ async function main() {
     }
 
     if (options.listOnly) {
+        const apiDetails = [];
+        if (options.apiDetailsOutput) {
+            console.log(`\n[3b] Fetching ${selectedModels.length} detail payload(s) via API for change detection...`);
+            for (const model of selectedModels) {
+                const apiDetail = await fetchDetailViaApi(page, model.id, csrfToken);
+                if (!apiDetail) console.log(`  [warn] No detail payload for ${model.name} (${model.id})`);
+                apiDetails.push({ id: model.id, name: model.name, apiDetail: apiDetail || null });
+            }
+            fs.writeFileSync(options.apiDetailsOutput, JSON.stringify(apiDetails, null, 2));
+            console.log(`  Wrote ${apiDetails.filter((d) => d.apiDetail).length}/${apiDetails.length} detail payload(s) to ${options.apiDetailsOutput}`);
+        }
         const summary = {
             timestamp: new Date().toISOString(),
             totalModels: allModels.length,
             selectedModels: selectedModels.length,
-            detailsFetched: 0,
+            detailsFetched: apiDetails.filter((d) => d.apiDetail).length,
             downloadUrlsFound: 0,
             imagesDownloaded: 0,
             modelsDownloaded: 0,
@@ -807,7 +1027,6 @@ async function main() {
     // ── Step 4: Visit each model detail page to capture detail + downloads ───
     console.log('\n[4] Visiting each model detail page for detail + downloads...');
     const allDetails = [];
-    const sdkDownloaded = new Set(); // Track SDK downloads (shared across all models)
 
     // Helper: dismiss cookie banner if visible
     async function dismissCookie() {
@@ -883,22 +1102,7 @@ async function main() {
                 }
             }
             if (!detailData) {
-                detailData = await page.evaluate(async ({ base, id, csrfToken }) => {
-                    try {
-                        const res = await fetch(`${base}/openxinhuoGateway/com.huawei.ipd.openxinhuo:modelzoo/modelzoo/services/modelzoo/modelNew/findByIdAll/${id}`, {
-                            method: 'GET',
-                            credentials: 'include',
-                            headers: {
-                                'accept': 'application/json, text/plain, */*',
-                                'x-csrf-token': csrfToken,
-                            }
-                        });
-                        if (!res.ok) return null;
-                        return await res.json();
-                    } catch (_) {
-                        return null;
-                    }
-                }, { base: BASE_URL, id: modelId, csrfToken });
+                detailData = await fetchDetailViaApi(page, modelId, csrfToken);
             }
             if (detailData) console.log('    [ok] Got detail data (findByIdAll)');
 
@@ -948,9 +1152,11 @@ async function main() {
                     console.log(`    Download authorisation click failed: ${authErr.message.slice(0, 80)}`);
                 }
                 if (!dlPage) dlPage = await context.newPage();
+                trackerFor(dlPage);
                 usedDirectDownloadPages = true;
 
                 const visitDownloadPage = async (url, label, suffix, metadata = {}) => {
+                    trackerFor(dlPage).reset();
                     // Hash-only navigation does not remount the Vue view, so the table would
                     // still show the previous model's files. Force a real load via about:blank.
                     await dlPage.goto('about:blank', { timeout: 15000 }).catch(() => {});
@@ -967,34 +1173,64 @@ async function main() {
                     await safeScreenshot(dlPage, { path: path.join(DETAIL_DIR, `${safeName}_${suffixSafe}.png`), fullPage: true });
                     const files = await downloadFilesFromPage(dlPage, label, metadata);
                     files.forEach(f => modelDownloads.push(f));
+                    return files;
                 };
 
                 try {
-                    // Harvest the tab the portal itself opened before navigating away from it.
+                    // The tab the portal opened shows one unlabeled variant. Which binary it
+                    // holds is only certain on the explicit per-variant pages below, so it is
+                    // not harvested; "下载模型" has already registered the download intent.
                     if (dlPage.url().includes('ModelDownload') && dlPage.url().includes(String(mid))) {
                         downloadPageVisited = true;
-                        const authorised = await downloadFilesFromPage(dlPage, 'om-auto');
-                        authorised.forEach(f => modelDownloads.push(f));
                     }
 
                     const adaptors = detailData.modelAdaptor || [];
+                    const describeFile = (file) => ({ name: file.name, id: file.id, size: file.size });
+                    const allOmFiles = adaptors.flatMap((adaptor) => (adaptor.supportQuantify || [])
+                        .flatMap((q) => (q.omOfflineModel || []).map(describeFile)));
                     for (const adaptor of adaptors) {
                         const computingName = encodeURIComponent(adaptor.name || '');
                         const quantifies = adaptor.supportQuantify || [];
                         for (const q of quantifies) {
-                            // The SPA always uppercases the quantisation; lowercase renders an empty list.
-                            const platform = encodeURIComponent(String(q.name || '').toUpperCase());
+                            // The SPA normally wants the quantisation uppercased ("A8W8", "FP16");
+                            // lowercase renders an empty list. A few NNN variants are named "f16"
+                            // upstream and their F16 page is empty too, so when a page lists
+                            // nothing although findByIdAll lists files, the other spellings are tried.
+                            const rawName = String(q.name || '');
+                            // Probed 2026-09-16 on FaceNet: for a variant named "f16" only
+                            // platform=FP16 lists the file (f16, F16 and fp16 all render empty).
+                            const spellings = rawName
+                                ? [...new Set([...(/^f(p)?16$/i.test(rawName) ? ['FP16'] : []), rawName.toUpperCase(), rawName, ...(/^f(p)?16$/i.test(rawName) ? ['fp16', 'F16', 'f16'] : [])])]
+                                : [''];
                             const label = `om-${q.name || 'auto'}`;
-                            const omUrl = `${BASE_URL}/#/ModelDownload?id=${mid}&type=om&platform=${platform}&computingName=${computingName}&activeName=undefined&auto=${Date.now()}`;
-                            await visitDownloadPage(omUrl, label, `download_${label}`, {
-                                computing: q.computingName || adaptor.name || '',
-                                quantify: q.name || '',
-                            });
+                            const expectedRows = (q.omOfflineModel || []).map(describeFile);
+                            for (let si = 0; si < spellings.length; si++) {
+                                const platform = encodeURIComponent(spellings[si]);
+                                const omUrl = `${BASE_URL}/#/ModelDownload?id=${mid}&type=om&platform=${platform}&computingName=${computingName}&activeName=undefined&auto=${Date.now()}`;
+                                const files = await visitDownloadPage(omUrl, label, si ? `download_${label}_${spellings[si]}` : `download_${label}`, {
+                                    modelName,
+                                    computing: q.computingName || adaptor.name || '',
+                                    quantify: q.name || '',
+                                    expectedFiles: expectedRows,
+                                    allModelFiles: allOmFiles,
+                                });
+                                if (!expectedRows.length || (files && files.iconCount > 0)) break;
+                                if (si + 1 < spellings.length) {
+                                    console.log(`    [retry] platform=${spellings[si]} listed no files though upstream lists ${expectedRows.length}; trying platform=${spellings[si + 1]}`);
+                                } else {
+                                    console.log(`    [warn] no platform spelling listed the ${expectedRows.length} file(s) upstream declares for ${label}`);
+                                }
+                            }
                         }
                     }
 
                     const originUrl = `${BASE_URL}/#/ModelDownload?id=${mid}&type=origin&auto=${Date.now()}`;
-                    await visitDownloadPage(originUrl, 'source-model', 'source');
+                    const originFiles = (detailData.originModel || []).map(describeFile);
+                    await visitDownloadPage(originUrl, 'source-model', 'source', {
+                        modelName,
+                        expectedFiles: originFiles,
+                        allModelFiles: originFiles,
+                    });
                 } catch (directErr) {
                     usedDirectDownloadPages = false;
                     console.log(`    Direct download page flow error: ${directErr.message.slice(0, 100)}`);
@@ -1208,14 +1444,15 @@ async function main() {
                             });
                         }
                     }
-                    // Toolkit URLs (SDK — only need once)
+                    // Toolkit URLs (SDK / CANN / 编译工具链). Every model keeps its own
+                    // rows: an incremental --only-ids run used to drop these for every
+                    // model after the first, and the SDK version differs per model
+                    // (V1.0.6.0 vs V1.0.6.5, Beta-v0.9.1 vs Beta-v0.9.3, Hi3516CV610).
+                    // Same-URL duplicates across adaptors are collapsed by the dedupe below.
                     const toolkit = adaptor.toolkit || [];
                     for (const t of toolkit) {
                         if (t.url && t.url.startsWith('http')) {
-                            const isSDK = t.name.includes('SDK') || t.name.includes('CANN') || t.name.includes('工具');
-                            if (isSDK && sdkDownloaded.has(t.name)) continue;
                             modelDownloads.push({ name: t.name, url: t.url, source: 'toolkit' });
-                            if (isSDK) sdkDownloaded.add(t.name);
                         }
                     }
                 }
@@ -1281,13 +1518,22 @@ async function main() {
     fs.writeFileSync(path.join(ROOT, 'cookies.json'), JSON.stringify(finalCookies, null, 2));
 
     const allDownloadUrls = new Set();
+    // Files taken from a variant or source page already sit in models/<slug>/ with their
+    // size checked; fetching the same URL again by basename into flat models/ only produced
+    // unlabeled twins (squeezenet.om holding the FP16 bytes next to the A8W8 one).
+    const capturedUrls = new Set();
     allDetails.forEach(d => {
-        (d.downloadUrls || []).forEach(dl => { if (dl.url) allDownloadUrls.add(dl.url); });
+        (d.downloadUrls || []).forEach(dl => {
+            if (!dl.url) return;
+            if (/^(om-|source-)/.test(String(dl.source || '')) && dl.name) capturedUrls.add(dl.url);
+            else allDownloadUrls.add(dl.url);
+        });
     });
 
-    console.log(`  Total unique download URLs: ${allDownloadUrls.size}`);
+    console.log(`  Total unique download URLs: ${allDownloadUrls.size} (${capturedUrls.size} already captured from download pages)`);
     let dlOk = 0, dlFail = 0, dlSkipped = 0;
     for (const fileUrl of allDownloadUrls) {
+        if (capturedUrls.has(fileUrl)) continue;
         try {
             const urlObj = new URL(fileUrl);
             if (!isMirrorableHost(urlObj.hostname)) {

@@ -10,11 +10,26 @@
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
+const { spawnSync } = require('child_process');
+
+// Node's built-in fetch ignores HTTP(S)_PROXY unless NODE_USE_ENV_PROXY=1 is set before
+// startup. On a proxied machine every request otherwise times out and the script keeps
+// the stale listing, so re-exec once with the flag when a proxy is configured.
+const proxyConfigured = ['HTTPS_PROXY', 'https_proxy', 'HTTP_PROXY', 'http_proxy'].some((key) => process.env[key]);
+if (proxyConfigured && process.env.NODE_USE_ENV_PROXY !== '1') {
+    const result = spawnSync(process.execPath, ['--no-warnings', __filename, ...process.argv.slice(2)], {
+        stdio: 'inherit',
+        env: { ...process.env, NODE_USE_ENV_PROXY: '1' },
+    });
+    process.exit(result.status == null ? 1 : result.status);
+}
 
 const ROOT = __dirname;
 const MODELS_JS = path.join(ROOT, 'assets', 'js', 'models.js');
 const OUTPUT = path.join(ROOT, 'hf-repo-files.json');
-const API_BASE = process.env.HF_ENDPOINT || 'https://hf-mirror.com';
+// hf-mirror.com answers /api/models/* with a 308 to huggingface.co, so query the origin
+// directly; the site keeps linking downloads through hf-mirror.com regardless.
+const API_BASE = process.env.HF_ENDPOINT || 'https://huggingface.co';
 const CONCURRENCY = 6;
 const TIMEOUT_MS = 20000;
 
@@ -29,11 +44,15 @@ async function fetchRepoFiles(repoId) {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
     try {
-        const response = await fetch(`${API_BASE}/api/models/${repoId}`, { signal: controller.signal });
+        // blobs=true adds each file's byte size, which build-static-site.js compares with
+        // upstream's declared size before linking a row to a mirror file.
+        const response = await fetch(`${API_BASE}/api/models/${repoId}?blobs=true`, { signal: controller.signal });
         if (!response.ok) return { error: `HTTP ${response.status}` };
         const payload = await response.json();
         if (!Array.isArray(payload.siblings)) return { error: payload.error || 'no siblings' };
-        return payload.siblings.map(file => file.rfilename).sort();
+        return payload.siblings
+            .map(file => ({ name: file.rfilename, size: Number.isFinite(file.size) ? file.size : null }))
+            .sort((a, b) => a.name.localeCompare(b.name));
     } catch (error) {
         return { error: error.name === 'AbortError' ? 'timeout' : String(error.message || error) };
     } finally {

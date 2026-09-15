@@ -81,9 +81,18 @@ function loadDetails() {
 
 function resolveNamespace(explicitNamespace) {
     if (explicitNamespace) return explicitNamespace;
-    const output = execFileSync('hf', ['auth', 'whoami'], { cwd: ROOT, encoding: 'utf8' });
-    const cleanOutput = output.replace(/\u001b\[[0-9;]*m/g, '');
-    const match = cleanOutput.match(/user:\s+([^\s]+)/m);
+    // hf >= 1.x prints `user=<name>` on a non-TTY and `user: <name>` on a TTY; ask for JSON
+    // and fall back to either text form for older CLIs that lack --format.
+    let output = '';
+    try {
+        output = execFileSync('hf', ['auth', 'whoami', '--format', 'json'], { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
+        const parsed = JSON.parse(output);
+        if (parsed && typeof parsed.user === 'string' && parsed.user.trim()) return parsed.user.trim();
+    } catch (_) {
+        output = execFileSync('hf', ['auth', 'whoami'], { cwd: ROOT, encoding: 'utf8' });
+    }
+    const cleanOutput = String(output).replace(/\u001b\[[0-9;]*m/g, '');
+    const match = cleanOutput.match(/user[:=]\s*([^\s"]+)/m);
     if (!match) {
         throw new Error('Unable to determine Hugging Face namespace from `hf auth whoami`.');
     }
@@ -226,24 +235,20 @@ function usableFilePath(filePath) {
     }
 }
 
+// The snapshot (models-real-20260713/<slug>/) is the verified, staged copy and always
+// wins. models/ is scratch: it is flat, so another model's same-named file may sit there
+// (DeepSort's yolov5s.om), and the scraper's URL step can drop a sibling variant under the
+// bare name. Picking "the larger file" from it uploaded the wrong binaries for four repos.
 function resolveLocalArtifact(fileName, modelName) {
     if (!fileName || isSdkPackageName(fileName)) return null;
 
+    const slug = slugify(modelName);
     const candidates = [
+        path.join(MODELS_REAL_DIR, slug, fileName),
+        path.join(MODELS_DIR, slug, fileName),
         path.join(MODELS_DIR, fileName),
-        path.join(MODELS_REAL_DIR, slugify(modelName), fileName),
     ];
-
-    let bestPath = null;
-    let bestSize = 0;
-    for (const candidate of candidates) {
-        const size = usableFilePath(candidate);
-        if (size > bestSize) {
-            bestPath = candidate;
-            bestSize = size;
-        }
-    }
-    return bestPath;
+    return candidates.find((candidate) => usableFilePath(candidate) > 0) || null;
 }
 
 function stageModel(model, detail, repoId) {

@@ -1,572 +1,2202 @@
 {
   "shadow-cann/hispark-modelzoo-act": [
-    ".gitattributes",
-    "1731868158459906_____.png",
-    "ACT.zip",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "act_distill_fp32_for_mindcmd_simp_release.om",
-    "model-card.json"
+    {
+      "name": ".gitattributes",
+      "size": 1662
+    },
+    {
+      "name": "1731868158459906_____.png",
+      "size": 284717
+    },
+    {
+      "name": "act_distill_fp32_for_mindcmd_simp_release.om",
+      "size": 72787553
+    },
+    {
+      "name": "ACT.zip",
+      "size": 950831252
+    },
+    {
+      "name": "model-card.json",
+      "size": 17460
+    },
+    {
+      "name": "README.md",
+      "size": 1673
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    }
   ],
   "shadow-cann/hispark-modelzoo-chinese-clip": [
-    ".gitattributes",
-    "1734291744751619_clip.png",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "clip_cn_vit-b-16.pt",
-    "clip_img.om",
-    "clip_img_om-A16W8.om",
-    "clip_img_om-FP16.om",
-    "clip_text.om",
-    "clip_text_om-A16W8.om",
-    "clip_text_om-FP16.om",
-    "model-card.json",
-    "vit-b-16_img_sim.onnx",
-    "vit-b-16_img_sim_NNN.onnx",
-    "vit-b-16_img_sim_SVP_NNN.onnx",
-    "vit-b-16_txt_sim.onnx",
-    "vit-b-16_txt_sim_NNN.onnx",
-    "vit-b-16_txt_sim_SVP_NNN.onnx"
+    {
+      "name": ".gitattributes",
+      "size": 1981
+    },
+    {
+      "name": "1734291744751619_clip.png",
+      "size": 76377
+    },
+    {
+      "name": "clip_cn_vit-b-16.pt",
+      "size": 753196934
+    },
+    {
+      "name": "clip_img_FP16_Hi3403V100-NNN.om",
+      "size": 175571010
+    },
+    {
+      "name": "clip_img_om-A16W8.om",
+      "size": 89564009
+    },
+    {
+      "name": "clip_img_om-FP16.om",
+      "size": 89564009
+    },
+    {
+      "name": "clip_img.om",
+      "size": 89564009
+    },
+    {
+      "name": "clip_text_FP16_Hi3403V100-NNN.om",
+      "size": 208228024
+    },
+    {
+      "name": "clip_text_om-A16W8.om",
+      "size": 152955890
+    },
+    {
+      "name": "clip_text_om-FP16.om",
+      "size": 152955890
+    },
+    {
+      "name": "clip_text.om",
+      "size": 152955890
+    },
+    {
+      "name": "model-card.json",
+      "size": 16236
+    },
+    {
+      "name": "README.md",
+      "size": 2377
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    },
+    {
+      "name": "vit-b-16_img_sim_NNN.onnx",
+      "size": 347865314
+    },
+    {
+      "name": "vit-b-16_img_sim_SVP_NNN.onnx",
+      "size": 347987094
+    },
+    {
+      "name": "vit-b-16_img_sim.onnx",
+      "size": 347987094
+    },
+    {
+      "name": "vit-b-16_txt_sim_NNN.onnx",
+      "size": 412811998
+    },
+    {
+      "name": "vit-b-16_txt_sim_SVP_NNN.onnx",
+      "size": 412712604
+    },
+    {
+      "name": "vit-b-16_txt_sim.onnx",
+      "size": 412712604
+    }
   ],
   "shadow-cann/hispark-modelzoo-codeformer": [
-    ".gitattributes",
-    "1720510897520642_codeformer.jpg",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "空文件，因为该模型仅用于非商用.onnx"
+    {
+      "name": ".gitattributes",
+      "size": 1587
+    },
+    {
+      "name": "1720510897520642_codeformer.jpg",
+      "size": 126188
+    },
+    {
+      "name": "model-card.json",
+      "size": 14366
+    },
+    {
+      "name": "README.md",
+      "size": 1661
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    },
+    {
+      "name": "空文件，因为该模型仅用于非商用.onnx",
+      "size": 3
+    }
   ],
   "shadow-cann/hispark-modelzoo-crnn": [
-    ".gitattributes",
-    "1719628489359362_CRNN.png",
-    "README.md",
-    "crnn.om",
-    "crnn.onnx",
-    "mixed_second_finetune_acc_97P7.pth",
-    "model-card.json"
+    {
+      "name": ".gitattributes",
+      "size": 1627
+    },
+    {
+      "name": "1719628489359362_CRNN.png",
+      "size": 31720
+    },
+    {
+      "name": "crnn_fp16_Hi3403V100-NNN.om",
+      "size": 24023689
+    },
+    {
+      "name": "crnn.om",
+      "size": 12208309
+    },
+    {
+      "name": "crnn.onnx",
+      "size": 47067386
+    },
+    {
+      "name": "mixed_second_finetune_acc_97P7.pth",
+      "size": 47088712
+    },
+    {
+      "name": "model-card.json",
+      "size": 13420
+    },
+    {
+      "name": "README.md",
+      "size": 1452
+    }
   ],
   "shadow-cann/hispark-modelzoo-crowdcount": [
-    ".gitattributes",
-    "1719967754027009_combined_plot.jpg",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "mscnn_model.onnx"
+    {
+      "name": ".gitattributes",
+      "size": 1633
+    },
+    {
+      "name": "1719967754027009_combined_plot.jpg",
+      "size": 77838
+    },
+    {
+      "name": "model-card.json",
+      "size": 14731
+    },
+    {
+      "name": "mscnn_model_dlite.om",
+      "size": 70287392
+    },
+    {
+      "name": "mscnn_model_dpico.om",
+      "size": 34998884
+    },
+    {
+      "name": "mscnn_model.onnx",
+      "size": 138968748
+    },
+    {
+      "name": "README.md",
+      "size": 1783
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    }
   ],
   "shadow-cann/hispark-modelzoo-deepsort": [
-    ".gitattributes",
-    "1736139606130691_20260326235720.jpg",
-    "README.md",
-    "model-card.json",
-    "reid_net.om",
-    "reid_net.onnx",
-    "reid_net_om-A8W8.om",
-    "yolov5s.om",
-    "yolov5s.onnx",
-    "yolov5s_om-A8W8.om"
+    {
+      "name": ".gitattributes",
+      "size": 1932
+    },
+    {
+      "name": "1736139606130691_20260326235720.jpg",
+      "size": 201937
+    },
+    {
+      "name": "model-card.json",
+      "size": 17598
+    },
+    {
+      "name": "README.md",
+      "size": 2098
+    },
+    {
+      "name": "reid_net_FP16_Hi3403V100-NNN.om",
+      "size": 22616799
+    },
+    {
+      "name": "reid_net_om-A8W8.om",
+      "size": 11310387
+    },
+    {
+      "name": "reid_net.om",
+      "size": 11310387
+    },
+    {
+      "name": "reid_net.onnx",
+      "size": 44662689
+    },
+    {
+      "name": "yolov5s_FP16_Hi3403V100-NNN.om",
+      "size": 16172192
+    },
+    {
+      "name": "yolov5s_om-A8W8.om",
+      "size": 8626175
+    },
+    {
+      "name": "yolov5s.om",
+      "size": 8626175
+    },
+    {
+      "name": "yolov5s.onnx",
+      "size": 28944024
+    }
   ],
   "shadow-cann/hispark-modelzoo-densenet121": [
-    ".gitattributes",
-    "1700942504460291_des.png",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "densenet121-a639ec97.pth",
-    "densenet121.om",
-    "densenet121.onnx",
-    "densenet121_om-A8W8.om",
-    "densenet_dlite.om",
-    "model-card.json"
+    {
+      "name": ".gitattributes",
+      "size": 1744
+    },
+    {
+      "name": "1700942504460291_des.png",
+      "size": 284837
+    },
+    {
+      "name": "densenet_dlite.om",
+      "size": 19243606
+    },
+    {
+      "name": "densenet121_om-A8W8.om",
+      "size": 10386522
+    },
+    {
+      "name": "densenet121-a639ec97.pth",
+      "size": 32342954
+    },
+    {
+      "name": "densenet121.om",
+      "size": 10386522
+    },
+    {
+      "name": "densenet121.onnx",
+      "size": 32228458
+    },
+    {
+      "name": "model-card.json",
+      "size": 14623
+    },
+    {
+      "name": "README.md",
+      "size": 1792
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    }
   ],
   "shadow-cann/hispark-modelzoo-depth-anything-v2": [
-    ".gitattributes",
-    "1700942867267585_depth.png",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "depth_anything_v2.om",
-    "depth_anything_v2_vits.onnx",
-    "depth_anything_v2_vits.pth",
-    "depth_anything_v2_vits_nnn.onnx",
-    "depth_anything_v2_vits_source-model.pth",
-    "depth_anything_v2_vits_svp_nnn.onnx",
-    "depthanything.om",
-    "depthanything_om-FP16.om",
-    "model-card.json"
+    {
+      "name": ".gitattributes",
+      "size": 1807
+    },
+    {
+      "name": "1700942867267585_depth.png",
+      "size": 156075
+    },
+    {
+      "name": "depth_anything_v2_vits_nnn.onnx",
+      "size": 155607548
+    },
+    {
+      "name": "depth_anything_v2_vits_source-model.pth",
+      "size": 99218434
+    },
+    {
+      "name": "depth_anything_v2_vits_svp_nnn.onnx",
+      "size": 98969097
+    },
+    {
+      "name": "depth_anything_v2_vits.onnx",
+      "size": 98969097
+    },
+    {
+      "name": "depth_anything_v2_vits.pth",
+      "size": 99218434
+    },
+    {
+      "name": "depth_anything_v2.om",
+      "size": 56332336
+    },
+    {
+      "name": "depth_anything.om",
+      "size": 27936284
+    },
+    {
+      "name": "depthanything.om",
+      "size": 53281295
+    },
+    {
+      "name": "model-card.json",
+      "size": 17257
+    },
+    {
+      "name": "README.md",
+      "size": 1928
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    }
   ],
   "shadow-cann/hispark-modelzoo-efficientnetv2": [
-    ".gitattributes",
-    "1700943102148611_eff.png",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "efficientnetv2.om",
-    "efficientnetv2.onnx",
-    "efficientnetv2_t_agc-3620981a.pth",
-    "model-card.json",
-    "vit_base_patch16_224.om"
+    {
+      "name": ".gitattributes",
+      "size": 1768
+    },
+    {
+      "name": "1700943102148611_eff.png",
+      "size": 314377
+    },
+    {
+      "name": "efficientnetv2_FP16_Hi3403V100-NNN.om",
+      "size": 37821853
+    },
+    {
+      "name": "efficientnetv2_t_agc-3620981a.pth",
+      "size": 55190269
+    },
+    {
+      "name": "efficientnetv2.om",
+      "size": 16091832
+    },
+    {
+      "name": "efficientnetv2.onnx",
+      "size": 54407550
+    },
+    {
+      "name": "model-card.json",
+      "size": 16803
+    },
+    {
+      "name": "README.md",
+      "size": 1764
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    },
+    {
+      "name": "vit_base_patch16_224.om",
+      "size": 91310649
+    }
   ],
   "shadow-cann/hispark-modelzoo-facenet": [
-    ".gitattributes",
-    "1720278245769217_facenet1.jpg",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "facenet_vggface2_dlite_fp16.om",
-    "facenet_vggface2_dpico.om",
-    "facenet_vggface2_static.onnx",
-    "model-card.json"
+    {
+      "name": ".gitattributes",
+      "size": 1714
+    },
+    {
+      "name": "1720278245769217_facenet1.jpg",
+      "size": 184621
+    },
+    {
+      "name": "facenet_vggface2_dlite_fp16.om",
+      "size": 48742196
+    },
+    {
+      "name": "facenet_vggface2_dpico.om",
+      "size": 24482261
+    },
+    {
+      "name": "facenet_vggface2_static.onnx",
+      "size": 93958678
+    },
+    {
+      "name": "model-card.json",
+      "size": 15559
+    },
+    {
+      "name": "README.md",
+      "size": 1901
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    }
   ],
   "shadow-cann/hispark-modelzoo-fastspeech2": [
-    ".gitattributes",
-    "1722265270026243_fastspeech2.jpg",
-    "README.md",
-    "fastspeech_hifigan_en.om",
-    "fastspeech_hifigan_en.onnx",
-    "fastspeech_hifigan_en_nnn.om",
-    "fastspeech_hifigan_en_nnn.onnx",
-    "fastspeech_hifigan_en_svp_nnn.onnx",
-    "model-card.json"
+    {
+      "name": ".gitattributes",
+      "size": 1714
+    },
+    {
+      "name": "1722265270026243_fastspeech2.jpg",
+      "size": 300030
+    },
+    {
+      "name": "fastspeech_hifigan_en_nnn.om",
+      "size": 77109299
+    },
+    {
+      "name": "fastspeech_hifigan_en_nnn.onnx",
+      "size": 142908831
+    },
+    {
+      "name": "fastspeech_hifigan_en_svp_nnn.onnx",
+      "size": 142724651
+    },
+    {
+      "name": "fastspeech_hifigan_en.om",
+      "size": 40041177
+    },
+    {
+      "name": "fastspeech_hifigan_en.onnx",
+      "size": 142724651
+    },
+    {
+      "name": "model-card.json",
+      "size": 14646
+    },
+    {
+      "name": "README.md",
+      "size": 1758
+    }
   ],
   "shadow-cann/hispark-modelzoo-fsmn-kws": [
-    ".gitattributes",
-    "1763392620658690___.JPG",
-    "README.md",
-    "kws-610-a.om",
-    "kws-610.om",
-    "model-card.json",
-    "speech_charctc_kws_phone-xiaoyun_151.onnx",
-    "speech_charctc_kws_phone-xiaoyun_364.onnx",
-    "speech_charctc_kws_phone-xiaoyun_onnxsim_151.onnx",
-    "speech_charctc_kws_phone-xiaoyun_onnxsim_364.onnx"
+    {
+      "name": ".gitattributes",
+      "size": 1615
+    },
+    {
+      "name": "1763392620658690___.JPG",
+      "size": 45280
+    },
+    {
+      "name": "kws-610-a.om",
+      "size": 1013211
+    },
+    {
+      "name": "kws-610.om",
+      "size": 983497
+    },
+    {
+      "name": "model-card.json",
+      "size": 12052
+    },
+    {
+      "name": "README.md",
+      "size": 1834
+    },
+    {
+      "name": "speech_charctc_kws_phone-xiaoyun_151.onnx",
+      "size": 3067265
+    },
+    {
+      "name": "speech_charctc_kws_phone-xiaoyun_364.onnx",
+      "size": 3067265
+    },
+    {
+      "name": "speech_charctc_kws_phone-xiaoyun_onnxsim_151.onnx",
+      "size": 3051489
+    },
+    {
+      "name": "speech_charctc_kws_phone-xiaoyun_onnxsim_364.onnx",
+      "size": 3051489
+    }
   ],
   "shadow-cann/hispark-modelzoo-graspnet": [
-    ".gitattributes",
-    "1726646426140674_graspnet_16_9.jpg",
-    "README.md",
-    "graspnet[该模型文件仅用于非商用].onnx",
-    "graspnet_linux_aarch64[该模型文件仅用于非商用].om",
-    "model-card.json"
+    {
+      "name": ".gitattributes",
+      "size": 1689
+    },
+    {
+      "name": "1726646426140674_graspnet_16_9.jpg",
+      "size": 947270
+    },
+    {
+      "name": "graspnet_linux_aarch64[该模型文件仅用于非商用].om",
+      "size": 427026639
+    },
+    {
+      "name": "graspnet[该模型文件仅用于非商用].onnx",
+      "size": 4942215
+    },
+    {
+      "name": "model-card.json",
+      "size": 11095
+    },
+    {
+      "name": "README.md",
+      "size": 1782
+    }
   ],
   "shadow-cann/hispark-modelzoo-hrnet": [
-    ".gitattributes",
-    "1719728246685699_result_valid_0.jpg",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "hrnet_512_768.om",
-    "hrnet_512_768.onnx",
-    "model-card.json",
-    "pose_higher_hrnet_w32_512.pth"
+    {
+      "name": ".gitattributes",
+      "size": 1717
+    },
+    {
+      "name": "1719728246685699_result_valid_0.jpg",
+      "size": 662777
+    },
+    {
+      "name": "hrnet_512_768_fp16_Hi3403V100-NNN.om",
+      "size": 62484920
+    },
+    {
+      "name": "hrnet_512_768.om",
+      "size": 30168501
+    },
+    {
+      "name": "hrnet_512_768.onnx",
+      "size": 116983678
+    },
+    {
+      "name": "model-card.json",
+      "size": 14037
+    },
+    {
+      "name": "pose_higher_hrnet_w32_512.pth",
+      "size": 115172215
+    },
+    {
+      "name": "README.md",
+      "size": 1782
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    }
   ],
   "shadow-cann/hispark-modelzoo-inceptionv3": [
-    ".gitattributes",
-    "1712176979116033_InceptionV3.png",
-    "InceptionV3.om",
-    "InceptionV3.onnx",
-    "Inceptionv3.zip",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json"
+    {
+      "name": ".gitattributes",
+      "size": 1710
+    },
+    {
+      "name": "1712176979116033_InceptionV3.png",
+      "size": 342072
+    },
+    {
+      "name": "InceptionV3_fp16_Hi3403V100-NNN.om",
+      "size": 53381205
+    },
+    {
+      "name": "InceptionV3.om",
+      "size": 24391933
+    },
+    {
+      "name": "InceptionV3.onnx",
+      "size": 95292862
+    },
+    {
+      "name": "Inceptionv3.zip",
+      "size": 100993320
+    },
+    {
+      "name": "model-card.json",
+      "size": 15104
+    },
+    {
+      "name": "README.md",
+      "size": 1692
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    }
   ],
   "shadow-cann/hispark-modelzoo-lrstereo-b": [
-    ".gitattributes",
-    "1719806466260993_depth.jpg",
-    "LRStereo-B.zip",
-    "LRStereo-B_480x640_release.om",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json"
+    {
+      "name": ".gitattributes",
+      "size": 1648
+    },
+    {
+      "name": "1719806466260993_depth.jpg",
+      "size": 380509
+    },
+    {
+      "name": "LRStereo-B_480x640_release.om",
+      "size": 6604184
+    },
+    {
+      "name": "LRStereo-B.zip",
+      "size": 9764477
+    },
+    {
+      "name": "model-card.json",
+      "size": 12750
+    },
+    {
+      "name": "README.md",
+      "size": 1577
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    }
   ],
   "shadow-cann/hispark-modelzoo-mobilenetv2": [
-    ".gitattributes",
-    "1700942949056514_mobilev2.png",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "mobileNetV2.om",
-    "mobilenet_v2-b0353104.pth",
-    "mobilenet_v2.onnx",
-    "model-card.json"
+    {
+      "name": ".gitattributes",
+      "size": 1707
+    },
+    {
+      "name": "1700942949056514_mobilev2.png",
+      "size": 145851
+    },
+    {
+      "name": "mobilenet_v2-b0353104.pth",
+      "size": 14212972
+    },
+    {
+      "name": "mobilenet_v2.onnx",
+      "size": 13992270
+    },
+    {
+      "name": "mobileNetV2_fp16_Hi3403V100-NNN.om",
+      "size": 9573920
+    },
+    {
+      "name": "mobileNetV2.om",
+      "size": 3900282
+    },
+    {
+      "name": "mobilenetV2.onnx",
+      "size": 13992270
+    },
+    {
+      "name": "model-card.json",
+      "size": 14440
+    },
+    {
+      "name": "README.md",
+      "size": 1682
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    }
   ],
   "shadow-cann/hispark-modelzoo-paddleocrv4-det": [
-    ".gitattributes",
-    "1719770449772547_ocr.jpg",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "ch_ptocr_v4_det_infer.pth",
-    "ch_ptocr_v4_det_infer_source-model.pth",
-    "ch_ptocr_v4_det_simplified.onnx",
-    "ch_ptocr_v4_det_simplified_source-model.onnx",
-    "det.om",
-    "det_om-FP16.om",
-    "model-card.json"
+    {
+      "name": ".gitattributes",
+      "size": 1676
+    },
+    {
+      "name": "1719770449772547_ocr.jpg",
+      "size": 76185
+    },
+    {
+      "name": "ch_ptocr_v4_det_infer_source-model.pth",
+      "size": 14508378
+    },
+    {
+      "name": "ch_ptocr_v4_det_infer.pth",
+      "size": 14508378
+    },
+    {
+      "name": "ch_ptocr_v4_det_simplified_source-model.onnx",
+      "size": 13987369
+    },
+    {
+      "name": "ch_ptocr_v4_det_simplified.onnx",
+      "size": 13987369
+    },
+    {
+      "name": "det_FP16_Hi3403V100-NNN.om",
+      "size": 17016140
+    },
+    {
+      "name": "det_om-FP16.om",
+      "size": 4848843
+    },
+    {
+      "name": "det.om",
+      "size": 4848843
+    },
+    {
+      "name": "model-card.json",
+      "size": 15142
+    },
+    {
+      "name": "README.md",
+      "size": 1959
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    }
   ],
   "shadow-cann/hispark-modelzoo-paddleocrv4-rec": [
-    ".gitattributes",
-    "1719966200037379______20251227174303.png",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "ch_ptocr_v4_rec_infer.pth",
-    "ch_ptocr_v4_rec_infer_source-model.pth",
-    "ch_ptocr_v4_rec_simplified.onnx",
-    "ch_ptocr_v4_rec_simplified_source-model.onnx",
-    "model-card.json",
-    "rec.om",
-    "rec_om-FP16.om"
+    {
+      "name": ".gitattributes",
+      "size": 1753
+    },
+    {
+      "name": "1719966200037379______20251227174303.png",
+      "size": 165195
+    },
+    {
+      "name": "ch_ptocr_v4_rec_infer_source-model.pth",
+      "size": 26921839
+    },
+    {
+      "name": "ch_ptocr_v4_rec_infer.pth",
+      "size": 26921839
+    },
+    {
+      "name": "ch_ptocr_v4_rec_simplified_source-model.onnx",
+      "size": 26416340
+    },
+    {
+      "name": "ch_ptocr_v4_rec_simplified.onnx",
+      "size": 26416340
+    },
+    {
+      "name": "model-card.json",
+      "size": 14911
+    },
+    {
+      "name": "README.md",
+      "size": 1844
+    },
+    {
+      "name": "rec_FP16_Hi3403V100-NNN.om",
+      "size": 24821144
+    },
+    {
+      "name": "rec_om-FP16.om",
+      "size": 8153608
+    },
+    {
+      "name": "rec.om",
+      "size": 8153608
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    }
   ],
   "shadow-cann/hispark-modelzoo-pfld": [
-    ".gitattributes",
-    "1701485360513025_PFLD.png",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "pfld-sim.onnx",
-    "pfld_dlite_fp16.om",
-    "pfld_dpico.om"
+    {
+      "name": ".gitattributes",
+      "size": 1686
+    },
+    {
+      "name": "1701485360513025_PFLD.png",
+      "size": 294855
+    },
+    {
+      "name": "model-card.json",
+      "size": 16501
+    },
+    {
+      "name": "pfld_dlite_fp16.om",
+      "size": 4215587
+    },
+    {
+      "name": "pfld_dpico.om",
+      "size": 1556318
+    },
+    {
+      "name": "pfld-sim.onnx",
+      "size": 5136035
+    },
+    {
+      "name": "README.md",
+      "size": 1454
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    }
   ],
   "shadow-cann/hispark-modelzoo-resnet101": [
-    ".gitattributes",
-    "1700943569813507_res101.png",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "resnet101-63fe2227.pth",
-    "resnet101.om",
-    "resnet101.onnx"
+    {
+      "name": ".gitattributes",
+      "size": 1701
+    },
+    {
+      "name": "1700943569813507_res101.png",
+      "size": 276596
+    },
+    {
+      "name": "model-card.json",
+      "size": 15293
+    },
+    {
+      "name": "README.md",
+      "size": 1744
+    },
+    {
+      "name": "resnet101_fp16_Hi3403V100-NNN.om",
+      "size": 45561433
+    },
+    {
+      "name": "resnet101-63fe2227.pth",
+      "size": 178793939
+    },
+    {
+      "name": "resnet101.om",
+      "size": 90570588
+    },
+    {
+      "name": "resnet101.onnx",
+      "size": 178034618
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    }
   ],
   "shadow-cann/hispark-modelzoo-resnet18": [
-    ".gitattributes",
-    "1701602950053889_res18.png",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "resnet18-f37072fd.pth",
-    "resnet18.om",
-    "resnet18.onnx"
+    {
+      "name": ".gitattributes",
+      "size": 1630
+    },
+    {
+      "name": "1701602950053889_res18.png",
+      "size": 317767
+    },
+    {
+      "name": "model-card.json",
+      "size": 12127
+    },
+    {
+      "name": "README.md",
+      "size": 1615
+    },
+    {
+      "name": "resnet18-f37072fd.pth",
+      "size": 46830571
+    },
+    {
+      "name": "resnet18.om",
+      "size": 11827598
+    },
+    {
+      "name": "resnet18.onnx",
+      "size": 46748538
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    }
   ],
   "shadow-cann/hispark-modelzoo-resnet50": [
-    ".gitattributes",
-    "1702593768259586_res51.png",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "resnet50-0676ba61.pth",
-    "resnet50.om",
-    "resnet50.onnx"
+    {
+      "name": ".gitattributes",
+      "size": 1698
+    },
+    {
+      "name": "1702593768259586_res51.png",
+      "size": 206125
+    },
+    {
+      "name": "model-card.json",
+      "size": 15151
+    },
+    {
+      "name": "README.md",
+      "size": 1675
+    },
+    {
+      "name": "resnet50_fp16_Hi3403V100-NNN.om",
+      "size": 51971280
+    },
+    {
+      "name": "resnet50-0676ba61.pth",
+      "size": 102530333
+    },
+    {
+      "name": "resnet50.om",
+      "size": 26074852
+    },
+    {
+      "name": "resnet50.onnx",
+      "size": 102133355
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    }
   ],
   "shadow-cann/hispark-modelzoo-se-resnet50": [
-    ".gitattributes",
-    "1712179080462337_SEResNet50.png",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "seresnet50.om",
-    "seresnet50.onnx",
-    "seresnet50.zip"
+    {
+      "name": ".gitattributes",
+      "size": 1707
+    },
+    {
+      "name": "1712179080462337_SEResNet50.png",
+      "size": 410825
+    },
+    {
+      "name": "model-card.json",
+      "size": 14465
+    },
+    {
+      "name": "README.md",
+      "size": 1618
+    },
+    {
+      "name": "seresnet50_FP16_Hi3403V100-NNN.om",
+      "size": 58198016
+    },
+    {
+      "name": "seresnet50.om",
+      "size": 36957154
+    },
+    {
+      "name": "seresnet50.onnx",
+      "size": 112210167
+    },
+    {
+      "name": "seresnet50.zip",
+      "size": 104782096
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    }
   ],
   "shadow-cann/hispark-modelzoo-shufflenetv2": [
-    ".gitattributes",
-    "1700942607089666_shu.png",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "shufflenetv2.om",
-    "shufflenetv2.onnx",
-    "shufflenetv2_dlite.om",
-    "shufflenetv2_om-A8W8.om",
-    "shufflenetv2_x1-5666bf0f80.pth"
+    {
+      "name": ".gitattributes",
+      "size": 1750
+    },
+    {
+      "name": "1700942607089666_shu.png",
+      "size": 289700
+    },
+    {
+      "name": "model-card.json",
+      "size": 14755
+    },
+    {
+      "name": "README.md",
+      "size": 1726
+    },
+    {
+      "name": "shufflenetv2_dlite.om",
+      "size": 6701315
+    },
+    {
+      "name": "shufflenetv2_fix.onnx",
+      "size": 9144448
+    },
+    {
+      "name": "shufflenetv2_om-A8W8.om",
+      "size": 2781048
+    },
+    {
+      "name": "shufflenetv2_x1-5666bf0f80.pth",
+      "size": 9218294
+    },
+    {
+      "name": "shufflenetv2.om",
+      "size": 2781048
+    },
+    {
+      "name": "shufflenetv2.onnx",
+      "size": 9144448
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    }
   ],
   "shadow-cann/hispark-modelzoo-siamese-network": [
-    ".gitattributes",
-    "1719623508623362_SiameseNetwork.png",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "siamese_model_weights.pt",
-    "siamese_network.om"
+    {
+      "name": ".gitattributes",
+      "size": 1721
+    },
+    {
+      "name": "1719623508623362_SiameseNetwork.png",
+      "size": 139491
+    },
+    {
+      "name": "model-card.json",
+      "size": 14889
+    },
+    {
+      "name": "README.md",
+      "size": 1659
+    },
+    {
+      "name": "siamese_model_weights.pt",
+      "size": 161026210
+    },
+    {
+      "name": "siamese_network_fp16_Hi3403V100-NNN.om",
+      "size": 82718819
+    },
+    {
+      "name": "siamese_network.om",
+      "size": 80619355
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    }
   ],
   "shadow-cann/hispark-modelzoo-squeezenet1-1": [
-    ".gitattributes",
-    "1700942720335875_sq.png",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "squeezenet.om",
-    "squeezenet.onnx",
-    "squeezenet1_1-f364aa15.pth",
-    "squeezenet_om-A8W8.om"
+    {
+      "name": ".gitattributes",
+      "size": 1757
+    },
+    {
+      "name": "1700942720335875_sq.png",
+      "size": 233409
+    },
+    {
+      "name": "model-card.json",
+      "size": 14488
+    },
+    {
+      "name": "README.md",
+      "size": 1667
+    },
+    {
+      "name": "squeezenet_FP16_Hi3403V100-NNN.om",
+      "size": 2856757
+    },
+    {
+      "name": "squeezenet_om-A8W8.om",
+      "size": 1380693
+    },
+    {
+      "name": "squeezenet.om",
+      "size": 1380693
+    },
+    {
+      "name": "squeezenet.onnx",
+      "size": 4950240
+    },
+    {
+      "name": "squeezenet1_1-f364aa15.pth",
+      "size": 4966400
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    }
   ],
   "shadow-cann/hispark-modelzoo-superpoint": [
-    ".gitattributes",
-    "1702559012290562_cat_320x240_draw_keypoints.jpg",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "superPointNet_170000_checkpoint.pth",
-    "superpoint_bs1.om",
-    "superpoint_bs1.onnx",
-    "superpoint_bs1_om-A8W8.om"
+    {
+      "name": ".gitattributes",
+      "size": 1709
+    },
+    {
+      "name": "1702559012290562_cat_320x240_draw_keypoints.jpg",
+      "size": 22914
+    },
+    {
+      "name": "model-card.json",
+      "size": 15170
+    },
+    {
+      "name": "README.md",
+      "size": 2176
+    },
+    {
+      "name": "superpoint_bs1_FP16_Hi3403V100-NNN.om",
+      "size": 2917579
+    },
+    {
+      "name": "superpoint_bs1_om-A8W8.om",
+      "size": 1372242
+    },
+    {
+      "name": "superpoint_bs1.om",
+      "size": 1372242
+    },
+    {
+      "name": "superpoint_bs1.onnx",
+      "size": 5276380
+    },
+    {
+      "name": "superPointNet_170000_checkpoint.pth",
+      "size": 15692105
+    },
+    {
+      "name": "SuperPointNet.pth",
+      "size": 15692105
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    }
   ],
   "shadow-cann/hispark-modelzoo-swin-transformer": [
-    ".gitattributes",
-    "1701485580845059_swint.png",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "swin.om",
-    "swin.onnx",
-    "swin_dlite.om",
-    "swin_om-A8W8.om",
-    "swin_sim.onnx",
-    "swin_tiny_patch4_window7_224.pth"
+    {
+      "name": ".gitattributes",
+      "size": 1728
+    },
+    {
+      "name": "1701485580845059_swint.png",
+      "size": 173496
+    },
+    {
+      "name": "model-card.json",
+      "size": 15481
+    },
+    {
+      "name": "README.md",
+      "size": 2045
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    },
+    {
+      "name": "swin_dlite.om",
+      "size": 62380441
+    },
+    {
+      "name": "swin_om-A8W8.om",
+      "size": 30870482
+    },
+    {
+      "name": "swin_sim.onnx",
+      "size": 115268484
+    },
+    {
+      "name": "swin_tiny_patch4_window7_224.pth",
+      "size": 114342173
+    },
+    {
+      "name": "swin.om",
+      "size": 30870482
+    },
+    {
+      "name": "swin.onnx",
+      "size": 115360652
+    }
   ],
   "shadow-cann/hispark-modelzoo-tinysam": [
-    ".gitattributes",
-    "1719774851694593_realquant_201909262051154_0.jpg",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "image_encoder_deploy_model.om",
-    "image_encoder_deploy_model.onnx",
-    "mask_decoder_deploy_model.om",
-    "mask_decoder_deploy_model.onnx",
-    "model-card.json",
-    "model_nnn_onnx.zip",
-    "model_onnx_svp_nnn.zip",
-    "prompt_encoder_deploy_model.om",
-    "prompt_encoder_deploy_model.onnx",
-    "tinysam.pth",
-    "tinysam改后缀为zip解压后使用.om"
+    {
+      "name": ".gitattributes",
+      "size": 1794
+    },
+    {
+      "name": "1719774851694593_realquant_201909262051154_0.jpg",
+      "size": 46207
+    },
+    {
+      "name": "image_encoder_deploy_model.om",
+      "size": 19657113
+    },
+    {
+      "name": "image_encoder_deploy_model.onnx",
+      "size": 10825872
+    },
+    {
+      "name": "mask_decoder_deploy_model.om",
+      "size": 10850475
+    },
+    {
+      "name": "mask_decoder_deploy_model.onnx",
+      "size": 4977575
+    },
+    {
+      "name": "model_nnn_onnx.zip",
+      "size": 39808463
+    },
+    {
+      "name": "model_onnx_svp_nnn.zip",
+      "size": 9290934
+    },
+    {
+      "name": "model-card.json",
+      "size": 13486
+    },
+    {
+      "name": "prompt_encoder_deploy_model.om",
+      "size": 137934
+    },
+    {
+      "name": "prompt_encoder_deploy_model.onnx",
+      "size": 5458
+    },
+    {
+      "name": "README.md",
+      "size": 2108
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    },
+    {
+      "name": "tinysam.pth",
+      "size": 40708627
+    },
+    {
+      "name": "tinysam改后缀为zip解压后使用.om",
+      "size": 10573427
+    }
+  ],
+  "shadow-cann/hispark-modelzoo-ufldv2": [
+    {
+      "name": ".gitattributes",
+      "size": 1628
+    },
+    {
+      "name": "1767233107918850_cover.jpg",
+      "size": 395295
+    },
+    {
+      "name": "model-card.json",
+      "size": 12896
+    },
+    {
+      "name": "README.md",
+      "size": 1495
+    },
+    {
+      "name": "ufldv2.om",
+      "size": 96902609
+    },
+    {
+      "name": "ufldv2.onnx",
+      "size": 385467107
+    }
   ],
   "shadow-cann/hispark-modelzoo-unet": [
-    ".gitattributes",
-    "1701484842647555_15_2307569255_huge.jpg",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "UNet.pth",
-    "UNet_dynamic_bs.onnx",
-    "UNet_dynamic_sim.onnx",
-    "model-card.json",
-    "unet.om"
+    {
+      "name": ".gitattributes",
+      "size": 1626
+    },
+    {
+      "name": "1701484842647555_15_2307569255_huge.jpg",
+      "size": 19813
+    },
+    {
+      "name": "model-card.json",
+      "size": 15061
+    },
+    {
+      "name": "README.md",
+      "size": 1571
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    },
+    {
+      "name": "UNet_dynamic_bs.onnx",
+      "size": 124144074
+    },
+    {
+      "name": "UNet_dynamic_sim.onnx",
+      "size": 124134358
+    },
+    {
+      "name": "unet_f16_Hi3403V100-NNN.om",
+      "size": 62653952
+    },
+    {
+      "name": "unet.om",
+      "size": 31268058
+    },
+    {
+      "name": "UNet.pth",
+      "size": 124272183
+    }
   ],
   "shadow-cann/hispark-modelzoo-vdsr": [
-    ".gitattributes",
-    "1719627344314369_VDSRdemo.png",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "vdsr.om",
-    "vdsr.zip"
+    {
+      "name": ".gitattributes",
+      "size": 1693
+    },
+    {
+      "name": "1719627344314369_VDSRdemo.png",
+      "size": 446355
+    },
+    {
+      "name": "model-card.json",
+      "size": 13239
+    },
+    {
+      "name": "README.md",
+      "size": 1475
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    },
+    {
+      "name": "vdsr_fp16_Hi3403V100-NNN.om",
+      "size": 1851043
+    },
+    {
+      "name": "vdsr.om",
+      "size": 750629
+    },
+    {
+      "name": "vdsr.zip",
+      "size": 5006474
+    }
   ],
   "shadow-cann/hispark-modelzoo-vgg16": [
-    ".gitattributes",
-    "1712668134146051_panda1.jpg",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "vgg16-397923af.pth",
-    "vgg16.om",
-    "vgg16.onnx"
+    {
+      "name": ".gitattributes",
+      "size": 1629
+    },
+    {
+      "name": "1712668134146051_panda1.jpg",
+      "size": 32555
+    },
+    {
+      "name": "model-card.json",
+      "size": 15533
+    },
+    {
+      "name": "README.md",
+      "size": 1898
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    },
+    {
+      "name": "vgg16_fp16_Hi3403V100-NNN.om",
+      "size": 277334329
+    },
+    {
+      "name": "vgg16-397923af.pth",
+      "size": 553433881
+    },
+    {
+      "name": "vgg16.om",
+      "size": 138529095
+    },
+    {
+      "name": "vgg16.onnx",
+      "size": 553434827
+    }
   ],
   "shadow-cann/hispark-modelzoo-vit-b-16": [
-    ".gitattributes",
-    "1701276106686467_20250915111221_469_20.png",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "vit_base_patch16_224.om",
-    "vit_base_patch16_224.pt",
-    "vit_base_patch16_224_bs1.onnx",
-    "vit_base_patch16_224_om-A16W8.om",
-    "vit_base_patch16_224_om-FP16.om"
+    {
+      "name": ".gitattributes",
+      "size": 1875
+    },
+    {
+      "name": "1701276106686467_20250915111221_469_20.png",
+      "size": 238164
+    },
+    {
+      "name": "model-card.json",
+      "size": 14736
+    },
+    {
+      "name": "README.md",
+      "size": 1830
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    },
+    {
+      "name": "vit_base_patch16_224_bs1.onnx",
+      "size": 346375830
+    },
+    {
+      "name": "vit_base_patch16_224_FP16_Hi3403V100-NNN.om",
+      "size": 174953970
+    },
+    {
+      "name": "vit_base_patch16_224_om-A16W8.om",
+      "size": 91310649
+    },
+    {
+      "name": "vit_base_patch16_224_om-FP16.om",
+      "size": 91310649
+    },
+    {
+      "name": "vit_base_patch16_224.om",
+      "size": 91310649
+    },
+    {
+      "name": "vit_base_patch16_224.pt",
+      "size": 346335542
+    }
+  ],
+  "shadow-cann/hispark-modelzoo-xfeat": [
+    {
+      "name": ".gitattributes",
+      "size": 1627
+    },
+    {
+      "name": "1767208963342338_cover.jpg",
+      "size": 147074
+    },
+    {
+      "name": "model-card.json",
+      "size": 12693
+    },
+    {
+      "name": "README.md",
+      "size": 1410
+    },
+    {
+      "name": "xfeat_sim.onnx",
+      "size": 2730070
+    },
+    {
+      "name": "xfeat.om",
+      "size": 2142553
+    }
   ],
   "shadow-cann/hispark-modelzoo-yolo11s": [
-    ".gitattributes",
-    "1701337666486274_yolo11s.jpg",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "yolo11s.om",
-    "yolo11s.onnx",
-    "yolo11s.pt"
+    {
+      "name": ".gitattributes",
+      "size": 1698
+    },
+    {
+      "name": "1701337666486274_yolo11s.jpg",
+      "size": 168157
+    },
+    {
+      "name": "model-card.json",
+      "size": 13173
+    },
+    {
+      "name": "README.md",
+      "size": 1713
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    },
+    {
+      "name": "yolo11s_fp16_Hi3403V100-NNN.om",
+      "size": 21529146
+    },
+    {
+      "name": "yolo11s.om",
+      "size": 10368919
+    },
+    {
+      "name": "yolo11s.onnx",
+      "size": 37963224
+    },
+    {
+      "name": "yolo11s.pt",
+      "size": 19313732
+    }
   ],
   "shadow-cann/hispark-modelzoo-yolo11s-pose": [
-    ".gitattributes",
-    "1712135222657026_yolo11-pose-small.jpg",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "yolo11s-pose.om",
-    "yolo11s-pose.onnx",
-    "yolo11s-pose.pt",
-    "yolo11s-pose_dlite_fp16.om"
+    {
+      "name": ".gitattributes",
+      "size": 2096
+    },
+    {
+      "name": "1712135222657026_yolo11-pose-small.jpg",
+      "size": 174745
+    },
+    {
+      "name": "model-card.json",
+      "size": 18647
+    },
+    {
+      "name": "README.md",
+      "size": 2292
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    },
+    {
+      "name": "yolo11s-pose_610_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+      "size": 11417881
+    },
+    {
+      "name": "yolo11s-pose_928_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+      "size": 23026919
+    },
+    {
+      "name": "yolo11s-pose_928_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+      "size": 10946755
+    },
+    {
+      "name": "yolo11s-pose_dlite_fp16.om",
+      "size": 23026919
+    },
+    {
+      "name": "yolo11s-pose.om",
+      "size": 10946755
+    },
+    {
+      "name": "yolo11s-pose.onnx",
+      "size": 39999435
+    },
+    {
+      "name": "yolo11s-pose.pt",
+      "size": 20373161
+    }
   ],
   "shadow-cann/hispark-modelzoo-yolo11s-seg": [
-    ".gitattributes",
-    "1701430507536385_yolo11s-seg.jpg",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "yolo11s-seg.om",
-    "yolo11s-seg.onnx",
-    "yolo11s-seg.pt",
-    "yolo11s-seg_dlite_fp16.om"
+    {
+      "name": ".gitattributes",
+      "size": 1701
+    },
+    {
+      "name": "1701430507536385_yolo11s-seg.jpg",
+      "size": 248252
+    },
+    {
+      "name": "model-card.json",
+      "size": 15647
+    },
+    {
+      "name": "README.md",
+      "size": 1924
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    },
+    {
+      "name": "yolo11s-seg_dlite_fp16.om",
+      "size": 23119621
+    },
+    {
+      "name": "yolo11s-seg.om",
+      "size": 11096806
+    },
+    {
+      "name": "yolo11s-seg.onnx",
+      "size": 40589684
+    },
+    {
+      "name": "yolo11s-seg.pt",
+      "size": 20669228
+    }
   ],
   "shadow-cann/hispark-modelzoo-yolo26s": [
-    ".gitattributes",
-    "1764112203841537_yolo26.jpg",
-    "README.md",
-    "model-card.json",
-    "yolo26s.onnx",
-    "yolo26s_dpiconew.om"
+    {
+      "name": ".gitattributes",
+      "size": 1946
+    },
+    {
+      "name": "1764112203841537_yolo26.jpg",
+      "size": 83330
+    },
+    {
+      "name": "model-card.json",
+      "size": 19290
+    },
+    {
+      "name": "README.md",
+      "size": 1817
+    },
+    {
+      "name": "yolo26s_610_SVPNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+      "size": 11020971
+    },
+    {
+      "name": "yolo26s_928_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+      "size": 22128438
+    },
+    {
+      "name": "yolo26s_928_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+      "size": 10541644
+    },
+    {
+      "name": "yolo26s_dpiconew.om",
+      "size": 10541644
+    },
+    {
+      "name": "yolo26s.onnx",
+      "size": 38288590
+    }
   ],
   "shadow-cann/hispark-modelzoo-yolov10s": [
-    ".gitattributes",
-    "1719767893344257______20251226152658.png",
-    "1764112377970690_1719767893344257______20251226152658.png",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "yolov10s.om",
-    "yolov10s.onnx",
-    "yolov10s.pt",
-    "yolov10s_source-model.onnx",
-    "yolov10s_source-model.pt"
+    {
+      "name": ".gitattributes",
+      "size": 1806
+    },
+    {
+      "name": "1719767893344257______20251226152658.png",
+      "size": 910857
+    },
+    {
+      "name": "1764112377970690_1719767893344257______20251226152658.png",
+      "size": 910857
+    },
+    {
+      "name": "model-card.json",
+      "size": 14547
+    },
+    {
+      "name": "README.md",
+      "size": 1772
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    },
+    {
+      "name": "yolov10s_FP16_Hi3403V100-NNN.om",
+      "size": 19193314
+    },
+    {
+      "name": "yolov10s_source-model.onnx",
+      "size": 29187843
+    },
+    {
+      "name": "yolov10s_source-model.pt",
+      "size": 32956375
+    },
+    {
+      "name": "yolov10s.om",
+      "size": 8333694
+    },
+    {
+      "name": "yolov10s.onnx",
+      "size": 29187843
+    },
+    {
+      "name": "yolov10s.pt",
+      "size": 32956375
+    }
   ],
   "shadow-cann/hispark-modelzoo-yolov3": [
-    ".gitattributes",
-    "1712022653894659_om.jpg",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "yolov3.om",
-    "yolov3.onnx",
-    "yolov3.pt",
-    "yolov3_om-FP16.om",
-    "yolov3_sim.onnx",
-    "yolov3_sim_source-model.onnx",
-    "yolov3_source-model.onnx",
-    "yolov3_source-model.pt"
+    {
+      "name": ".gitattributes",
+      "size": 1745
+    },
+    {
+      "name": "1712022653894659_om.jpg",
+      "size": 182106
+    },
+    {
+      "name": "model-card.json",
+      "size": 15128
+    },
+    {
+      "name": "README.md",
+      "size": 1883
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    },
+    {
+      "name": "yolov3_FP16_Hi3403V100-NNN.om",
+      "size": 125720029
+    },
+    {
+      "name": "yolov3_om-FP16.om",
+      "size": 62776547
+    },
+    {
+      "name": "yolov3_sim_source-model.onnx",
+      "size": 247724140
+    },
+    {
+      "name": "yolov3_sim.onnx",
+      "size": 247724140
+    },
+    {
+      "name": "yolov3_source-model.onnx",
+      "size": 247724140
+    },
+    {
+      "name": "yolov3_source-model.pt",
+      "size": 124307969
+    },
+    {
+      "name": "yolov3.om",
+      "size": 62776547
+    },
+    {
+      "name": "yolov3.onnx",
+      "size": 247724140
+    },
+    {
+      "name": "yolov3.pt",
+      "size": 124307969
+    }
   ],
   "shadow-cann/hispark-modelzoo-yolov4": [
-    ".gitattributes",
-    "1712131749773315_yolov4.jpg",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "yolov4.onnx",
-    "yolov4.pth",
-    "yolov4_dlite_fp16.om",
-    "yolov4_dpico.om"
+    {
+      "name": ".gitattributes",
+      "size": 1628
+    },
+    {
+      "name": "1712131749773315_yolov4.jpg",
+      "size": 88158
+    },
+    {
+      "name": "model-card.json",
+      "size": 14949
+    },
+    {
+      "name": "README.md",
+      "size": 1651
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    },
+    {
+      "name": "yolov4_dlite_fp16.om",
+      "size": 132169974
+    },
+    {
+      "name": "yolov4_dpico.om",
+      "size": 65469713
+    },
+    {
+      "name": "yolov4.onnx",
+      "size": 257433018
+    },
+    {
+      "name": "yolov4.pth",
+      "size": 257852609
+    }
   ],
   "shadow-cann/hispark-modelzoo-yolov5s": [
-    ".gitattributes",
-    "1701484647481346_yolov5s.jpg",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "yolov5s.om",
-    "yolov5s.onnx",
-    "yolov5s.pt",
-    "yolov5s_source-model.pt"
+    {
+      "name": ".gitattributes",
+      "size": 1633
+    },
+    {
+      "name": "1701484647481346_yolov5s.jpg",
+      "size": 51273
+    },
+    {
+      "name": "model-card.json",
+      "size": 14753
+    },
+    {
+      "name": "README.md",
+      "size": 1710
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    },
+    {
+      "name": "yolov5s_FP16_Hi3403V100-NNN.om",
+      "size": 15768836
+    },
+    {
+      "name": "yolov5s_source-model.pt",
+      "size": 14808437
+    },
+    {
+      "name": "yolov5s.om",
+      "size": 7729947
+    },
+    {
+      "name": "yolov5s.onnx",
+      "size": 28925429
+    },
+    {
+      "name": "yolov5s.pt",
+      "size": 14808437
+    }
   ],
   "shadow-cann/hispark-modelzoo-yolov6s": [
-    ".gitattributes",
-    "1712131718316033_yolov6s.jpg",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "yolov6s.pt",
-    "yolov6s_dlite_fp16.om",
-    "yolov6s_dpico.om",
-    "yolov6s_opset11.onnx"
+    {
+      "name": ".gitattributes",
+      "size": 1695
+    },
+    {
+      "name": "1712131718316033_yolov6s.jpg",
+      "size": 384151
+    },
+    {
+      "name": "model-card.json",
+      "size": 15087
+    },
+    {
+      "name": "README.md",
+      "size": 1659
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    },
+    {
+      "name": "yolov6s_dlite_fp16.om",
+      "size": 38491258
+    },
+    {
+      "name": "yolov6s_dpico.om",
+      "size": 19536022
+    },
+    {
+      "name": "yolov6s_opset11.onnx",
+      "size": 74346710
+    },
+    {
+      "name": "yolov6s.pt",
+      "size": 40760195
+    }
   ],
   "shadow-cann/hispark-modelzoo-yolov7": [
-    ".gitattributes",
-    "1712178182881282_test067_output.jpg",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "yolov7.om",
-    "yolov7.onnx",
-    "yolov7.pt"
+    {
+      "name": ".gitattributes",
+      "size": 1703
+    },
+    {
+      "name": "1712178182881282_test067_output.jpg",
+      "size": 370257
+    },
+    {
+      "name": "model-card.json",
+      "size": 15669
+    },
+    {
+      "name": "README.md",
+      "size": 2009
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    },
+    {
+      "name": "yolov7_fp16_Hi3403V100-NNN.om",
+      "size": 76198091
+    },
+    {
+      "name": "yolov7.om",
+      "size": 38032223
+    },
+    {
+      "name": "yolov7.onnx",
+      "size": 147731261
+    },
+    {
+      "name": "yolov7.pt",
+      "size": 75587165
+    }
   ],
   "shadow-cann/hispark-modelzoo-yolov8l": [
-    ".gitattributes",
-    "1701422771011587_yolov8l.jpg",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "yolov8l.om",
-    "yolov8l.onnx",
-    "yolov8l.pt"
+    {
+      "name": ".gitattributes",
+      "size": 1631
+    },
+    {
+      "name": "1701422771011587_yolov8l.jpg",
+      "size": 198123
+    },
+    {
+      "name": "model-card.json",
+      "size": 10082
+    },
+    {
+      "name": "README.md",
+      "size": 1614
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    },
+    {
+      "name": "yolov8l.om",
+      "size": 44820477
+    },
+    {
+      "name": "yolov8l.onnx",
+      "size": 174869736
+    },
+    {
+      "name": "yolov8l.pt",
+      "size": 87792836
+    }
   ],
   "shadow-cann/hispark-modelzoo-yolov8s": [
-    ".gitattributes",
-    "1701430205546498_yolov8s.jpg",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "yolov8s.om",
-    "yolov8s.onnx",
-    "yolov8s.pt"
+    {
+      "name": ".gitattributes",
+      "size": 1698
+    },
+    {
+      "name": "1701430205546498_yolov8s.jpg",
+      "size": 850940
+    },
+    {
+      "name": "model-card.json",
+      "size": 13115
+    },
+    {
+      "name": "README.md",
+      "size": 1690
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    },
+    {
+      "name": "yolov8s_fp16_Hi3403V100-NNN.om",
+      "size": 24041690
+    },
+    {
+      "name": "yolov8s.om",
+      "size": 11843633
+    },
+    {
+      "name": "yolov8s.onnx",
+      "size": 44787842
+    },
+    {
+      "name": "yolov8s.pt",
+      "size": 22588772
+    }
   ],
   "shadow-cann/hispark-modelzoo-yolov8s-obb": [
-    ".gitattributes",
-    "1719773337550850______20251226161015.jpg",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "yolov8s-obb.om",
-    "yolov8s-obb.onnx"
+    {
+      "name": ".gitattributes",
+      "size": 1698
+    },
+    {
+      "name": "1719773337550850______20251226161015.jpg",
+      "size": 338854
+    },
+    {
+      "name": "model-card.json",
+      "size": 14303
+    },
+    {
+      "name": "README.md",
+      "size": 1673
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    },
+    {
+      "name": "yolov8s_obb.om",
+      "size": 25012396
+    },
+    {
+      "name": "yolov8s-obb.om",
+      "size": 12224189
+    },
+    {
+      "name": "yolov8s-obb.onnx",
+      "size": 46013875
+    }
   ],
   "shadow-cann/hispark-modelzoo-yolov8s-seg": [
-    ".gitattributes",
-    "1719623665909762_yolov8s-seg.jpg",
-    "README.md",
-    "SVP_NNN_PC_V1.0.6.0.tgz",
-    "model-card.json",
-    "yolov8s-seg.onnx",
-    "yolov8s-seg_dlite_fp16.om",
-    "yolov8s-seg_dpico.om"
+    {
+      "name": ".gitattributes",
+      "size": 1707
+    },
+    {
+      "name": "1719623665909762_yolov8s-seg.jpg",
+      "size": 171899
+    },
+    {
+      "name": "model-card.json",
+      "size": 14620
+    },
+    {
+      "name": "README.md",
+      "size": 1726
+    },
+    {
+      "name": "SVP_NNN_PC_V1.0.6.0.tgz",
+      "size": 31072256
+    },
+    {
+      "name": "yolov8s-seg_dlite_fp16.om",
+      "size": 25678118
+    },
+    {
+      "name": "yolov8s-seg_dpico.om",
+      "size": 12581911
+    },
+    {
+      "name": "yolov8s-seg.onnx",
+      "size": 47498645
+    }
   ],
   "shadow-cann/hispark-modelzoo-yolov8s-world": [
-    ".gitattributes",
-    "README.md",
-    "model-card.json",
-    "text_feature.zip",
-    "text_feature_source-model.zip",
-    "yolov8s-worldv2.om",
-    "yolov8s-worldv2.pt",
-    "yolov8s-worldv20_nnn.onnx",
-    "yolov8s-worldv20_nnn_source-model.onnx",
-    "yolov8s-worldv2_om-A8W8.om",
-    "yolov8s-worldv2_om-FP16.om",
-    "yolov8s-worldv2_source-model.pt",
-    "yolov8s-worldv2_svp_nnn.onnx",
-    "yolov8s-worldv2_svp_nnn_source-model.onnx"
+    {
+      "name": ".gitattributes",
+      "size": 1897
+    },
+    {
+      "name": "1737338061389827_6.png",
+      "size": 964360
+    },
+    {
+      "name": "1737338061389827_cover.png",
+      "size": 964360
+    },
+    {
+      "name": "model-card.json",
+      "size": 16497
+    },
+    {
+      "name": "README.md",
+      "size": 2160
+    },
+    {
+      "name": "text_feature_source-model.zip",
+      "size": 146941
+    },
+    {
+      "name": "text_feature.zip",
+      "size": 146941
+    },
+    {
+      "name": "yolov8s-worldv2_FP16_Hi3403V100-NNN.om",
+      "size": 28145674
+    },
+    {
+      "name": "yolov8s-worldv2_om-A8W8.om",
+      "size": 13716818
+    },
+    {
+      "name": "yolov8s-worldv2_om-FP16.om",
+      "size": 13716818
+    },
+    {
+      "name": "yolov8s-worldv2_source-model.pt",
+      "size": 25923032
+    },
+    {
+      "name": "yolov8s-worldv2_svp_nnn_source-model.onnx",
+      "size": 13047733
+    },
+    {
+      "name": "yolov8s-worldv2_svp_nnn.onnx",
+      "size": 13047733
+    },
+    {
+      "name": "yolov8s-worldv2.om",
+      "size": 13716818
+    },
+    {
+      "name": "yolov8s-worldv2.pt",
+      "size": 25923032
+    },
+    {
+      "name": "yolov8s-worldv20_nnn_source-model.onnx",
+      "size": 51352821
+    },
+    {
+      "name": "yolov8s-worldv20_nnn.onnx",
+      "size": 51352821
+    }
   ],
   "shadow-cann/hispark-modelzoo-yolov9s": [
-    ".gitattributes",
-    "README.md",
-    "model-card.json",
-    "yolov9s.om",
-    "yolov9s.onnx",
-    "yolov9s.pt",
-    "yolov9s_om-FP16.om"
+    {
+      "name": ".gitattributes",
+      "size": 1824
+    },
+    {
+      "name": "1737486946598914_202103071025384.jpg",
+      "size": 1029082
+    },
+    {
+      "name": "1737486946598914_cover.jpg",
+      "size": 1029082
+    },
+    {
+      "name": "model-card.json",
+      "size": 11733
+    },
+    {
+      "name": "README.md",
+      "size": 1755
+    },
+    {
+      "name": "yolov9s_FP16_Hi3403V100-NNN.om",
+      "size": 18915907
+    },
+    {
+      "name": "yolov9s_om-FP16.om",
+      "size": 8679621
+    },
+    {
+      "name": "yolov9s.om",
+      "size": 8679621
+    },
+    {
+      "name": "yolov9s.onnx",
+      "size": 29198608
+    },
+    {
+      "name": "yolov9s.pt",
+      "size": 15389259
+    }
   ],
   "shadow-cann/minicpm-v-0.5B": [
-    ".DS_Store",
-    ".gitattributes",
-    "MiniCPM-V 0.5B 模型开源发布授权协议-面壁智能&海思（HiSpark）.pdf",
-    "README.md",
-    "decode.om",
-    "prefill_decode.om",
-    "resample.om",
-    "rotary_position_emb0.bin",
-    "rotary_position_emb1.bin",
-    "token_emb.bin",
-    "tokenizer.json",
-    "vision.om"
+    {
+      "name": ".DS_Store",
+      "size": 6148
+    },
+    {
+      "name": ".gitattributes",
+      "size": 1852
+    },
+    {
+      "name": "decode.om",
+      "size": 436261224
+    },
+    {
+      "name": "MiniCPM-V 0.5B 模型开源发布授权协议-面壁智能&海思（HiSpark）.pdf",
+      "size": 1371295
+    },
+    {
+      "name": "prefill_decode.om",
+      "size": 445050511
+    },
+    {
+      "name": "README.md",
+      "size": 657
+    },
+    {
+      "name": "resample.om",
+      "size": 7249046
+    },
+    {
+      "name": "rotary_position_emb0.bin",
+      "size": 8388608
+    },
+    {
+      "name": "rotary_position_emb1.bin",
+      "size": 8388608
+    },
+    {
+      "name": "token_emb.bin",
+      "size": 300843008
+    },
+    {
+      "name": "tokenizer.json",
+      "size": 3691593
+    },
+    {
+      "name": "vision.om",
+      "size": 90462982
+    }
   ],
   "shadow-cann/pi0": [
-    ".gitattributes",
-    "README.md",
-    "pi0.om",
-    "pi0.onnx"
+    {
+      "name": ".gitattributes",
+      "size": 1562
+    },
+    {
+      "name": "pi0.om",
+      "size": 6307819641
+    },
+    {
+      "name": "pi0.onnx",
+      "size": 25893080
+    },
+    {
+      "name": "README.md",
+      "size": 139
+    }
   ]
 }
