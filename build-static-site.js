@@ -203,6 +203,30 @@ function encodeRepoFile(fileName) {
     return encodeURIComponent(fileName).replace(/%2F/g, '/');
 }
 
+// Gitee does not redirect between its two view modes: a file addressed with /tree/ and a
+// directory addressed with /blob/ both answer 404 (GitHub and GitCode forgive this).
+// Upstream publishes several such links (e.g. .../tree/master/.../README.md), so choose the
+// mode from the target's last segment. Links whose mode is already right are left untouched
+// (trailing slash included) so the site stays byte-identical to upstream wherever upstream works.
+function normalizeGiteeUrl(url) {
+    if (!url || typeof url !== 'string') return url;
+    let parsed;
+    try {
+        parsed = new URL(url);
+    } catch (error) {
+        return url;
+    }
+    if (parsed.hostname !== 'gitee.com') return url;
+    const match = parsed.pathname.match(/^(\/[^/]+\/[^/]+\/)(tree|blob)(\/[^/]+\/)(.+?)\/?$/);
+    if (!match) return url;
+    const [, repoPath, mode, refPath, target] = match;
+    const lastSegment = decodeURIComponent(target.split('/').pop());
+    const wanted = /\.[A-Za-z0-9]{1,8}$/.test(lastSegment) ? 'blob' : 'tree';
+    if (wanted === mode) return url;
+    parsed.pathname = `${repoPath}${wanted}${refPath}${target}`;
+    return parsed.toString();
+}
+
 function fileNameFromUrl(fileUrl) {
     if (!fileUrl) return '';
 
@@ -1307,10 +1331,10 @@ function buildModelRecord(model, detailEntry, imageFiles, manifestByName, hfRepo
         framework: unique(model.framework),
         supportOs: unique(model.supportOs),
         computingPower: unique(model.computingPower),
-        repositoryUrl: detail.modelRepository || null,
+        repositoryUrl: normalizeGiteeUrl(detail.modelRepository || null),
         licenseUrl,
-        quickStartUrl: quickStart.url,
-        quickStartMarkdownUrl: quickStart.markdownUrl,
+        quickStartUrl: normalizeGiteeUrl(quickStart.url),
+        quickStartMarkdownUrl: normalizeGiteeUrl(quickStart.markdownUrl),
         quickStartReadmes: enrichedQuickStartSections,
         detailParams: (detail.detailParams || []).filter(item => item && item.name && item.value),
         performance: buildModelPerformance(detail),

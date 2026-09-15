@@ -529,14 +529,18 @@ async function main() {
             label: 'build-static-site.js (after upload)',
             logFile: path.join(options.logDir, `${runToken}_build.log`),
         });
-        // Gate: every linked row must be byte-exact against upstream on the live mirror.
-        // A non-zero exit here aborts the sync before anything is committed.
+    } else if (!options.skipHf) {
+        console.log('Skipping Hugging Face upload because no model payload changes were detected.');
+    }
+
+    if (shouldRunBuild) {
+        // Gate on whatever build ran last: every linked row must be byte-exact against
+        // upstream on the live mirror. A non-zero exit aborts before anything is committed,
+        // including syncs that rebuilt without uploading (removals, --skip-hf).
         await runCommand('node', ['audit-links.js', '--json', path.join(options.logDir, `${runToken}_audit.json`)], {
             label: 'audit-links.js',
             logFile: path.join(options.logDir, `${runToken}_audit.log`),
         });
-    } else if (!options.skipHf) {
-        console.log('Skipping Hugging Face upload because no model payload changes were detected.');
     }
 
     if (options.skipCommit) {

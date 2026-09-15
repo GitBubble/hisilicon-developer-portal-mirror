@@ -583,7 +583,7 @@ const modelsData = [
         "repositoryUrl": "https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s",
         "licenseUrl": "https://github.com/ultralytics/ultralytics/blob/main/LICENSE",
         "quickStartUrl": "https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolo26s/doc/快速开始.md",
-        "quickStartMarkdownUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov10s/doc/快速开始.md",
+        "quickStartMarkdownUrl": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov10s/doc/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.md",
         "quickStartReadmes": [
             {
                 "language": "C++",
@@ -3349,9 +3349,9 @@ const modelsData = [
         "computingPower": [
             "Hi3403V100 SVP_NNN"
         ],
-        "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/vlm/MiniCPM/README.md",
+        "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/vlm/MiniCPM/README.md",
         "licenseUrl": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B",
-        "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/vlm/MiniCPM/README.md",
+        "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/vlm/MiniCPM/README.md",
         "quickStartMarkdownUrl": null,
         "quickStartReadmes": [
             {
@@ -3454,7 +3454,7 @@ const modelsData = [
         "repositoryUrl": "https://gitee.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov8s-world",
         "licenseUrl": "https://github.com/ultralytics/ultralytics/blob/master/LICENSE",
         "quickStartUrl": "https://gitee.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov8s-world",
-        "quickStartMarkdownUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov8s-world/doc/快速开始.md",
+        "quickStartMarkdownUrl": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov8s-world/doc/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.md",
         "quickStartReadmes": [
             {
                 "language": "C++",
@@ -3998,7 +3998,7 @@ const modelsData = [
         "repositoryUrl": "https://gitee.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov9s",
         "licenseUrl": "https://github.com/ultralytics/ultralytics/blob/master/LICENSE",
         "quickStartUrl": "https://gitee.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov9s",
-        "quickStartMarkdownUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov9s/README.md",
+        "quickStartMarkdownUrl": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov9s/README.md",
         "quickStartReadmes": [
             {
                 "language": "C++",
@@ -5300,7 +5300,7 @@ const modelsData = [
         "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/classification/Chinese-CLIP",
         "licenseUrl": "https://github.com/OFA-Sys/Chinese-CLIP/blob/master/MIT-LICENSE.txt",
         "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/classification/Chinese-CLIP",
-        "quickStartMarkdownUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/classification/Chinese-CLIP/doc/快速开始.md",
+        "quickStartMarkdownUrl": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/Chinese-CLIP/doc/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.md",
         "quickStartReadmes": [
             {
                 "language": "C++",
@@ -7286,7 +7286,7 @@ const modelsData = [
         "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/embodied_intelligence/Pi0/README.md",
         "licenseUrl": "https://github.com/Physical-Intelligence/openpi/blob/main/LICENSE",
         "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/embodied_intelligence/Pi0",
-        "quickStartMarkdownUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/embodied_intelligence/Pi0/README.md",
+        "quickStartMarkdownUrl": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/embodied_intelligence/Pi0/README.md",
         "quickStartReadmes": [
             {
                 "language": "C++",
@@ -7845,7 +7845,7 @@ const modelsData = [
         "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/embodied_intelligence/GraspNet/README.md",
         "licenseUrl": "https://github.com/graspnet/graspnet-baseline/blob/main/LICENSE",
         "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/embodied_intelligence/GraspNet",
-        "quickStartMarkdownUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/embodied_intelligence/GraspNet/README.md",
+        "quickStartMarkdownUrl": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/embodied_intelligence/GraspNet/README.md",
         "quickStartReadmes": [
             {
                 "language": "C++",
@@ -9916,7 +9916,7 @@ const modelsData = [
             "Hi3403V100 SVP_NNN",
             "Hi3403V100 NNN"
         ],
-        "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/recognition/SiameseNetwork/doc/快速开始.md/",
+        "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/recognition/SiameseNetwork/doc/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.md",
         "licenseUrl": "https://github.com/harveyslash/Facial-Similarity-with-Siamese-Networks-in-Pytorch/blob/master/LICENSE",
         "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/recognition/SiameseNetwork",
         "quickStartMarkdownUrl": null,
@@ -11394,9 +11394,9 @@ const modelsData = [
             "Hi3403V100 SVP_NNN",
             "Hi3403V100 NNN"
         ],
-        "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/UNet",
+        "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/UNet",
         "licenseUrl": "https://github.com/milesial/Pytorch-UNet/blob/master/LICENSE",
-        "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/UNet",
+        "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/UNet",
         "quickStartMarkdownUrl": null,
         "quickStartReadmes": [
             {

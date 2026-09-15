@@ -80,6 +80,8 @@ node daily-sync.js --skip-build --skip-hf --skip-commit
 
 已知的上游特例：量化名为 `f16` 的 NNN 变体，其下载页只有用 `platform=FP16` 才会列出文件（`scrape.js` 已处理）；CodeFormer 的 OM 是 3 字节占位文件，按“无可下载文件”处理。
 
+代码仓库 / 快速开始链接原样来自上游，但 gitee 对“用 `/tree/` 指向文件”或“用 `/blob/` 指向目录”一律返回 404（GitHub、GitCode 会自动纠正），上游有 7 条这样的链接。`build-static-site.js` 的 `normalizeGiteeUrl` 只按目标末段是否带扩展名改写 tree/blob 并去掉多余的尾部斜杠，仓库、分支、路径不变；非 gitee 链接不做处理。
+
 ### 部署到 GitHub Pages
 
 ```bash
