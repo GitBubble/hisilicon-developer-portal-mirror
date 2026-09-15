@@ -409,6 +409,17 @@ function normalizeQuantization(value) {
     return String(value || '').trim().toUpperCase();
 }
 
+function normalizePerformance(items) {
+    return (items || [])
+        .filter((item) => item && item.performanceValue != null && item.unit)
+        .map((item) => ({
+            value: String(item.performanceValue).trim(),
+            unit: String(item.unit).trim(),
+            desc: item.desc == null ? '' : String(item.desc).trim(),
+        }))
+        .filter((item) => item.value && item.unit);
+}
+
 function isCompiledDownload(item) {
     return item.group === '编译模型'
         || /^om-/i.test(item.source || '')
@@ -428,7 +439,10 @@ function buildCompiledModelMetadata(detail) {
                 ? files.map((file) => ({
                     names: unique([
                         file.name,
-                        files.length === 1 ? variant.omOfflineModelName : null,
+                        // Older captures sometimes omit the per-file name. Only
+                        // fall back to the variant name when no file name exists;
+                        // do not alias a stale generic name to a republished file.
+                        !file.name && files.length === 1 ? variant.omOfflineModelName : null,
                     ]).map(normalizeArtifactName),
                     fileIds: unique([
                         file.id,
@@ -442,11 +456,21 @@ function buildCompiledModelMetadata(detail) {
 
             for (const [index, file] of fileEntries.entries()) {
                 if (engine || quantization || file.names.length || file.fileIds.length) {
+                    const legacyName = files.length === 1 ? normalizeArtifactName(variant.omOfflineModelName) : '';
+                    const fileName = normalizeArtifactName(file.names[0]);
                     metadata.push({
                         engine,
                         quantization,
-                        names: file.names,
+                        // Keep the legacy variant name only when it is the same
+                        // artifact. Newly republished models may use a descriptive
+                        // filename while the old `omOfflineModelName` remains stale;
+                        // aliasing those names would point a new row at an old mirror.
+                        names: unique([
+                            ...file.names,
+                            legacyName && legacyName === fileName ? legacyName : null,
+                        ]).filter(Boolean),
                         fileIds: file.fileIds,
+                        performance: normalizePerformance(variant.modelPerformance),
                         key: String(file.fileIds[0] || file.names[0] || `${adaptor.id || adaptor.name}:${variant.id || variant.name}:${index}`),
                     });
                 }
@@ -455,6 +479,16 @@ function buildCompiledModelMetadata(detail) {
     }
 
     return metadata;
+}
+
+function buildModelPerformance(detail) {
+    return (detail.modelAdaptor || []).flatMap((adaptor) => (
+        (adaptor.supportQuantify || []).map((variant) => ({
+            engine: String(variant.computingName || adaptor.name || '').trim(),
+            quantization: normalizeQuantization(variant.name),
+            metrics: normalizePerformance(variant.modelPerformance),
+        }))
+    )).filter((entry) => entry.engine || entry.quantization || entry.metrics.length);
 }
 
 function downloadFileIds(item) {
@@ -510,6 +544,15 @@ function enrichDownloadMetadata(item, metadata, modelEngines) {
     if (!candidates.length && normalizedTitle) {
         candidates = metadata.filter((entry) => entry.names.includes(normalizedTitle));
     }
+    if (!candidates.length && modelEngines.length === 1) {
+        // Some upstream variants expose an OM download link but no individual
+        // file record. When the model has exactly one engine, its performance
+        // metadata can still be safely applied to mirror-provided OM parts.
+        const metadataWithoutArtifact = metadata.filter((entry) => (
+            !entry.names.length && !entry.fileIds.length
+        ));
+        if (metadataWithoutArtifact.length === 1) candidates = metadataWithoutArtifact;
+    }
     const matchedArtifact = candidates.length > 0;
     let metadataConflict = false;
     if (quantization) {
@@ -533,11 +576,13 @@ function enrichDownloadMetadata(item, metadata, modelEngines) {
     if (!engine && modelEngines.length === 1) engine = modelEngines[0];
 
     const resolvedQuantization = quantization || (candidateVariants.length === 1 ? candidateVariants[0] : '');
+    const candidatePerformance = candidates.length === 1 ? candidates[0].performance : [];
     return {
         ...cleanItem,
         engine,
         quantization: resolvedQuantization,
         note: resolvedQuantization || item.note || '',
+        performance: item.performance || candidatePerformance,
         _artifactKey: matchedArtifact && candidates.length === 1 ? candidates[0].key : '',
         _metadataConflict: metadataConflict,
     };
@@ -1051,6 +1096,7 @@ function buildModelRecord(model, detailEntry, imageFiles, manifestByName, hfRepo
         quickStartMarkdownUrl: quickStart.markdownUrl,
         quickStartReadmes: enrichedQuickStartSections,
         detailParams: (detail.detailParams || []).filter(item => item && item.name && item.value),
+        performance: buildModelPerformance(detail),
         originModels,
         hfRepoId: repoInfo ? repoInfo.repoId : null,
         hfRepoUrl: repoInfo ? repoInfo.repoUrl : null,

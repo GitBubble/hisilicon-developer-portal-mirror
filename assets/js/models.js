@@ -1,6 +1,2059 @@
 // Generated from api_all_models.json and api_all_details.json
 const modelsData = [
     {
+        "id": "kuerjmbgts00",
+        "name": "YOLOv4",
+        "description": "YOLOv4 是一种高性能的 one-stage 目标检测模型。相比 YOLOv3，YOLOv4 采用了 CSPDarknet53 作为 backbone 进行特征提取，该网络结合了跨金字塔池化结构和路径聚合网络，在精度和速度上均有显著提升。",
+        "descriptionZh": "YOLOv4 是一种高性能的 one-stage 目标检测模型。相比 YOLOv3，YOLOv4 采用了 CSPDarknet53 作为 backbone 进行特征提取，该网络结合了跨金字塔池化结构和路径聚合网络，在精度和速度上均有显著提升。",
+        "descriptionEn": "YOLOv4 is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "date": "2026-09-15 09:27:15",
+        "updatedAt": "2026-09-15 15:27:11",
+        "badge": null,
+        "betaVersionDesc": "",
+        "category": "计算机视觉",
+        "tags": [
+            "目标检测"
+        ],
+        "image": "assets/images/1712131749773315_yolov4.jpg",
+        "coverImageUrl": "assets/images/1712131749773315_yolov4.jpg",
+        "framework": [
+            "PyTorch"
+        ],
+        "supportOs": [
+            "OpenHarmony",
+            "Linux"
+        ],
+        "computingPower": [
+            "Hi3403V100 SVP_NNN",
+            "Hi3403V100 NNN"
+        ],
+        "repositoryUrl": "https://gitcode.com/HiSpark/modelzoo/tree/master/samples/built-in/detection/yolov4",
+        "licenseUrl": "https://github.com/Tianxiaomo/pytorch-YOLOv4/blob/master/License.txt",
+        "quickStartUrl": "https://gitcode.com/HiSpark/modelzoo/tree/master/samples/built-in/detection/yolov4",
+        "quickStartMarkdownUrl": null,
+        "quickStartReadmes": [
+            {
+                "language": "C++",
+                "content": "模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolov4模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::yolov4) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/detection/yolov4/src/CMakeLists.txt)",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for YOLOv4. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
+            }
+        ],
+        "detailParams": [
+            {
+                "name": "输入",
+                "value": "608x608"
+            },
+            {
+                "name": "参数量",
+                "value": "64.330M"
+            },
+            {
+                "name": "计算量",
+                "value": "157.842GFLOPs"
+            }
+        ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "252.58",
+                        "unit": "耗时（ms）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "3.96",
+                        "unit": "性能（fps）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "488.841",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "119.559",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "415.57",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "2.41",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "2160.436",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "384.109",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
+        "originModels": [
+            {
+                "name": "yolov4.pth",
+                "size": "246 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4/resolve/main/yolov4.pth",
+                "available": true,
+                "localFile": "yolov4.pth"
+            },
+            {
+                "name": "yolov4.onnx",
+                "size": "246 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4/resolve/main/yolov4.onnx",
+                "available": true,
+                "localFile": "yolov4.onnx"
+            }
+        ],
+        "hfRepoId": "shadow-cann/hispark-modelzoo-yolov4",
+        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4",
+        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4/blob/main/README.md",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4/resolve/main/yolov4_dpico.om",
+        "primaryDownloadLabel": "yolov4_dpico.om",
+        "downloads": [
+            {
+                "title": "yolov4.pth",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4/resolve/main/yolov4.pth",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "yolov4.pth"
+            },
+            {
+                "title": "yolov4.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4/resolve/main/yolov4.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "yolov4.onnx"
+            },
+            {
+                "title": "yolov4_dpico.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4/resolve/main/yolov4_dpico.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "note": "A16W8",
+                "localFile": "yolov4_dpico.om",
+                "performance": [
+                    {
+                        "value": "252.58",
+                        "unit": "耗时（ms）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "3.96",
+                        "unit": "性能（fps）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "488.841",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "119.559",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "yolov4_dlite_fp16.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4/resolve/main/yolov4_dlite_fp16.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "note": "FP16",
+                "localFile": "yolov4_dlite_fp16.om",
+                "performance": [
+                    {
+                        "value": "415.57",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "2.41",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "2160.436",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "384.109",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "CANN工具",
+                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitcode.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            }
+        ]
+    },
+    {
+        "id": "ku5e0eekj400",
+        "name": "YOLO11s-pose",
+        "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
+        "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
+        "descriptionEn": "YOLO11s-pose is a computer vision model for pose estimation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN, Hi3403V100 NNN, and Hi3516CV610. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "date": "2026-09-14 11:29:32",
+        "updatedAt": null,
+        "badge": null,
+        "betaVersionDesc": "",
+        "category": "计算机视觉",
+        "tags": [
+            "姿态估计"
+        ],
+        "image": "assets/images/1712135222657026_yolo11-pose-small.jpg",
+        "coverImageUrl": "assets/images/1712135222657026_yolo11-pose-small.jpg",
+        "framework": [
+            "PyTorch"
+        ],
+        "supportOs": [
+            "OpenHarmony",
+            "Linux"
+        ],
+        "computingPower": [
+            "Hi3403V100 SVP_NNN",
+            "Hi3403V100 NNN",
+            "Hi3516CV610"
+        ],
+        "repositoryUrl": "https://gitcode.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolo11s-pose",
+        "licenseUrl": "https://github.com/ultralytics/ultralytics/blob/master/LICENSE",
+        "quickStartUrl": "https://gitcode.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolo11s-pose",
+        "quickStartMarkdownUrl": null,
+        "quickStartReadmes": [
+            {
+                "language": "C++",
+                "content": "模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolo11s-pose模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::Yolo11s-pose) != 0) {\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitcode.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo11s-pose/src/CMakeLists.txt)。",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for YOLO11s-pose. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
+            }
+        ],
+        "detailParams": [
+            {
+                "name": "输入",
+                "value": "640x640"
+            },
+            {
+                "name": "参数量",
+                "value": "9.970M"
+            },
+            {
+                "name": "计算量",
+                "value": "25.414GFLOPs"
+            }
+        ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "25.09",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "39.85",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "168.145",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "36.895",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "45.41",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "22.02",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "360.947",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "125.070",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3516CV610",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "169.063",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "5.92",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "35.199",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "337.639",
+                        "unit": "单帧内存带宽 (MB)",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
+        "originModels": [],
+        "hfRepoId": "shadow-cann/hispark-modelzoo-yolo11s-pose",
+        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose",
+        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/blob/main/README.md",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose_dlite_fp16.om",
+        "primaryDownloadLabel": "yolo11s-pose_dlite_fp16.om",
+        "downloads": [
+            {
+                "title": "yolo11s-pose_928_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "note": "A16W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "25.09",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "39.85",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "168.145",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "36.895",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "yolo11s-pose_928_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "note": "FP16",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "45.41",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "22.02",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "360.947",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "125.070",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "yolo11s-pose_610_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3516CV610",
+                "quantization": "A16W8",
+                "note": "A16W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "169.063",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "5.92",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "35.199",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "337.639",
+                        "unit": "单帧内存带宽 (MB)",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "CANN工具",
+                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "yolo11s-pose.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose.onnx",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolo11s-pose.onnx"
+            },
+            {
+                "title": "yolo11s-pose.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose.pt",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolo11s-pose.pt"
+            },
+            {
+                "title": "yolo11s-pose_dlite_fp16.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose_dlite_fp16.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "FP16",
+                "localFile": "yolo11s-pose_dlite_fp16.om",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "performance": [
+                    {
+                        "value": "45.41",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "22.02",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "360.947",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "125.070",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "ku5ckc88j400",
+        "name": "YOLO26s",
+        "description": "YOLO26s 是 Ultralytics YOLO 系列中的小型目标检测模型，适合在边缘设备上进行实时目标检测。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
+        "descriptionZh": "YOLO26s 是 Ultralytics YOLO 系列中的小型目标检测模型，适合在边缘设备上进行实时目标检测。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
+        "descriptionEn": "YOLO26s is a computer vision model for detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN, Hi3403V100 NNN, and Hi3516CV610. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
+        "date": "2026-09-14 11:23:31",
+        "updatedAt": null,
+        "badge": null,
+        "betaVersionDesc": "",
+        "category": "计算机视觉",
+        "tags": [
+            "检测"
+        ],
+        "image": "assets/images/1764112203841537_yolo26.jpg",
+        "coverImageUrl": "assets/images/1764112203841537_yolo26.jpg",
+        "framework": [
+            "PyTorch"
+        ],
+        "supportOs": [
+            "OpenHarmony",
+            "Linux"
+        ],
+        "computingPower": [
+            "Hi3403V100 SVP_NNN",
+            "Hi3403V100 NNN",
+            "Hi3516CV610"
+        ],
+        "repositoryUrl": "https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s",
+        "licenseUrl": "https://github.com/ultralytics/ultralytics/blob/main/LICENSE",
+        "quickStartUrl": "https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolo26s/doc/快速开始.md",
+        "quickStartMarkdownUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov10s/doc/快速开始.md",
+        "quickStartReadmes": [
+            {
+                "language": "C++",
+                "content": "模型可以通过以下代码完成快速推理\n\n#include <memory>\n#include \"model.h\"\n#include \"log.h\"\n#include \"utils.h\"\n#include \"param.h\"\n#include \"yolov26s_process.h\"\n\nusing namespace Infer;\n\nint main(int argc, char *argv[])\n{\n  InferParam inferParam;\n  if (!ParseParamFromCmd(argc, argv, inferParam)) {\n    return -1;\n  }\n\n  EnvInit(inferParam.aclConfigPath);\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(inferParam.omModelPath) != 0) {\n    EnvDeinit();\n    return -1;\n  }\n\n  Yolov26sProcess processFunc;\n  model->SetProcessFunc(processFunc);\n\n  Yolov26sParam cfgParam;\n  cfgParam.platformType = model->GetPlatformType();\n  std::any param = cfgParam;\n  int32_t ret = model->Infer(inferParam.imglistPath, JsonFile, std::ref(param));\n  if (ret != 0) {\n    model->Unload();\n    EnvDeinit();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    EnvDeinit();\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于[ (https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/common)/samples/samples_GPL/common (https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/common)] (https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/common)目录下，编译相关配置参考[ (https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/src/CMakeLists.txt)CMakeLists.txt (https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/src/CMakeLists.txt)] (https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/src/CMakeLists.txt)。",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for YOLO26s. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
+            }
+        ],
+        "detailParams": [
+            {
+                "name": "计算量",
+                "value": "23.250GFLOPs"
+            },
+            {
+                "name": "输入",
+                "value": "640x640"
+            },
+            {
+                "name": "参数量",
+                "value": "9.538M"
+            }
+        ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "20.965",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "47.630",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "33.000",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "123.379",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "46.217",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "8.060",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "120.175",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "282.906",
+                        "unit": "单帧内存带宽 (MB)",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3516CV610",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "192.825",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "5.19",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "35.756",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "346.308",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
+        "originModels": [],
+        "hfRepoId": "shadow-cann/hispark-modelzoo-yolo26s",
+        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s",
+        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s/blob/main/README.md",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s/resolve/main/yolo26s.onnx",
+        "primaryDownloadLabel": "yolo26s.onnx",
+        "downloads": [
+            {
+                "title": "yolo26s_928_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "note": "A16W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "20.965",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "47.630",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "33.000",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "123.379",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "yolo26s_928_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "note": "FP16",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "46.217",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "8.060",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "120.175",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "282.906",
+                        "unit": "单帧内存带宽 (MB)",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "yolo26s_610_SVPNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3516CV610",
+                "quantization": "A16W8",
+                "note": "A16W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "192.825",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "5.19",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "35.756",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "346.308",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "CANN工具",
+                "href": "https://hf-mirror.com/shadow-cann/svp-nnn-pc/resolve/main/SVP_NNN_PC_V1.0.6.5.tgz",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "SVP_NNN_PC_V1.0.6.5.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.3/docs/zh-CN/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.3/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "yolo26s.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s/resolve/main/yolo26s.onnx",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolo26s.onnx"
+            }
+        ]
+    },
+    {
+        "id": "ku59qr0kts00",
+        "name": "XFeat",
+        "description": "XFeat是用于特征点检测与匹配的轻量级局部特征模型，可输出局部描述子、关键点分类图和可靠性热力图，支持基于HPatches数据集进行单应性估计评估。",
+        "descriptionZh": "XFeat是用于特征点检测与匹配的轻量级局部特征模型，可输出局部描述子、关键点分类图和可靠性热力图，支持基于HPatches数据集进行单应性估计评估。",
+        "descriptionEn": "XFeat is a computer vision model for feature point detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: Linux. Compute targets: Hi3516CV610. The mirror currently exposes 1 downloadable artifact, along with quick-start resources when available.",
+        "date": "2026-09-14 11:11:18",
+        "updatedAt": "2026-09-15 15:27:11",
+        "badge": null,
+        "betaVersionDesc": "",
+        "category": "计算机视觉",
+        "tags": [
+            "特征点检测"
+        ],
+        "image": "assets/images/1767208963342338_cover.jpg",
+        "coverImageUrl": "assets/images/1767208963342338_cover.jpg",
+        "framework": [
+            "PyTorch"
+        ],
+        "supportOs": [
+            "Linux"
+        ],
+        "computingPower": [
+            "Hi3516CV610"
+        ],
+        "repositoryUrl": "https://gitcode.com/HiSpark/modelzoo/tree/master/samples/built-in/point/Xfeat/README.md",
+        "licenseUrl": "https://github.com/verlab/accelerated_features/blob/main/LICENSE",
+        "quickStartUrl": "https://gitcode.com/HiSpark/modelzoo/tree/master/samples/built-in/point/Xfeat",
+        "quickStartMarkdownUrl": null,
+        "quickStartReadmes": [
+            {
+                "language": "C++",
+                "content": "XFeat 可以通过以下代码完成快速推理，该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n#include <memory>\n#include \"log.h\"\n#include \"model.h\"\n#include \"utils.h\"\n#include \"xfeat_process.h\"\n\nusing namespace Infer;\n\nint main(int argc, char *argv[])\n{\n    InferParam inferParam;\n    if (!ParseParamFromCmd(argc, argv, inferParam)) {\n        LOG(ERROR) << \"fail to parse cmd\";\n        return -1;\n    }\n    XFeatParam cfgParam;\n    if (cfgParam.InitParam(\"../data/cfg.txt\") != 0) {\n        LOG(ERROR) << \"fail to parse cfg param\";\n        return -1;\n    }\n    if (EnvInit(inferParam.aclConfigPath) != 0) {\n        LOG(ERROR) << \"fail to init env\";\n        return -1;\n    }\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(inferParam.omModelPath) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        EnvDeinit();\n        return -1;\n    }\n    XFeatProcess processFunc;\n    model->SetProcessFunc(processFunc);\n    std::any param = cfgParam;\n    auto ret = model->Infer(inferParam.imglistPath, JsonFile, std::ref(param));\n    if (ret.empty()) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        EnvDeinit();\n        return -1;\n    }\n    ret.clear();\n    ret.shrink_to_fit();\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        EnvDeinit();\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitcode.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitcode.com/HiSpark/modelzoo/blob/master/samples/built-in/point/Xfeat/src/CMakeLists.txt)。",
+                "summary": "XFeat 可以通过以下代码完成快速推理，该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme",
+                "summaryEn": "C++ quick-start notes for XFeat. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
+            }
+        ],
+        "detailParams": [
+            {
+                "name": "输入",
+                "value": "640 x 480"
+            },
+            {
+                "name": "参数量",
+                "value": "0.66M"
+            },
+            {
+                "name": "计算量",
+                "value": "2.66 GFLOPs"
+            }
+        ],
+        "performance": [
+            {
+                "engine": "Hi3516CV610",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "87.88",
+                        "unit": "耗时（ms）",
+                        "desc": "单帧推理耗时"
+                    },
+                    {
+                        "value": "11.38",
+                        "unit": "性能（fps）",
+                        "desc": "帧率"
+                    },
+                    {
+                        "value": "32.92",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": "DDR单帧带宽"
+                    },
+                    {
+                        "value": "11.22",
+                        "unit": "内存（MB）",
+                        "desc": "峰值内存"
+                    }
+                ]
+            }
+        ],
+        "originModels": [
+            {
+                "name": "xfeat_sim.onnx",
+                "size": "2.6 MB",
+                "href": null,
+                "available": false,
+                "localFile": null
+            }
+        ],
+        "hfRepoId": "shadow-cann/hispark-modelzoo-xfeat",
+        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-xfeat",
+        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-xfeat/blob/main/README.md",
+        "primaryDownloadUrl": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta",
+        "primaryDownloadLabel": "SDK",
+        "downloads": [
+            {
+                "title": "xfeat_sim.onnx",
+                "href": null,
+                "available": false,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "xfeat.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3516CV610",
+                "quantization": "A8W8",
+                "note": "A8W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "87.88",
+                        "unit": "耗时（ms）",
+                        "desc": "单帧推理耗时"
+                    },
+                    {
+                        "value": "11.38",
+                        "unit": "性能（fps）",
+                        "desc": "帧率"
+                    },
+                    {
+                        "value": "32.92",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": "DDR单帧带宽"
+                    },
+                    {
+                        "value": "11.22",
+                        "unit": "内存（MB）",
+                        "desc": "峰值内存"
+                    }
+                ]
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            }
+        ]
+    },
+    {
+        "id": "ku57c46cj400",
+        "name": "UFLDv2",
+        "description": "UFLDv2（Ultra-Fast-Lane-Detection-v2）是一种基于混合锚点驱动有序分类方法的车道线检测模型。该模型采用 ResNet18 作为骨干网络，配合 ParsingNet 解析网络，在保持超高推理速度的同时实现了良好的车道线检测精度。",
+        "descriptionZh": "UFLDv2（Ultra-Fast-Lane-Detection-v2）是一种基于混合锚点驱动有序分类方法的车道线检测模型。该模型采用 ResNet18 作为骨干网络，配合 ParsingNet 解析网络，在保持超高推理速度的同时实现了良好的车道线检测精度。",
+        "descriptionEn": "UFLDv2 is a computer vision model for 车道线检测. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: Linux. Compute targets: Hi3516CV610. The mirror currently exposes 1 downloadable artifact, along with quick-start resources when available.",
+        "date": "2026-09-14 11:00:33",
+        "updatedAt": "2026-09-15 15:27:10",
+        "badge": null,
+        "betaVersionDesc": "",
+        "category": "计算机视觉",
+        "tags": [
+            "车道线检测"
+        ],
+        "image": "assets/images/1767233107918850_cover.jpg",
+        "coverImageUrl": "assets/images/1767233107918850_cover.jpg",
+        "framework": [
+            "PyTorch"
+        ],
+        "supportOs": [
+            "Linux"
+        ],
+        "computingPower": [
+            "Hi3516CV610"
+        ],
+        "repositoryUrl": "https://gitcode.com/HiSpark/modelzoo/tree/master/samples/built-in/detection/ufldv2/README.md",
+        "licenseUrl": "https://github.com/cfzd/Ultra-Fast-Lane-Detection-v2/blob/master/LICENSE",
+        "quickStartUrl": "https://gitcode.com/HiSpark/modelzoo/tree/master/samples/built-in/detection/ufldv2",
+        "quickStartMarkdownUrl": null,
+        "quickStartReadmes": [
+            {
+                "language": "C++",
+                "content": "UFLDv2 可以通过以下代码完成快速推理，该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme\n#include <memory>\n#include \"log.h\"\n#include \"model.h\"\n#include \"utils.h\"\n#include \"ufldv2_process.h\"\n\nusing namespace Infer;\n\nint main(int argc, char *argv[])\n{\n    InferParam inferParam;\n    if (!ParseParamFromCmd(argc, argv, inferParam)) {\n        LOG(ERROR) << \"fail to parse cmd\";\n        return -1;\n    }\n    Ufldv2Param cfgParam;\n    if (cfgParam.InitParam(\"../data/cfg.txt\") != 0) {\n        LOG(ERROR) << \"fail to parse cfg param\";\n        return -1;\n    }\n    if (EnvInit(inferParam.aclConfigPath) != 0) {\n        LOG(ERROR) << \"fail to init env\";\n        return -1;\n    }\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(inferParam.omModelPath) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        EnvDeinit();\n        return -1;\n    }\n    Ufldv2Process processFunc;\n    model->SetProcessFunc(processFunc);\n    std::any param = cfgParam;\n    auto ret = model->Infer(inferParam.imglistPath, JsonFile, std::ref(param));\n    if (ret.empty()) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        EnvDeinit();\n        return -1;\n    }\n    ret.clear();\n    ret.shrink_to_fit();\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        EnvDeinit();\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitcode.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitcode.com/HiSpark/modelzoo/blob/master/samples/built-in/detection/ufldv2/src/CMakeLists.txt)。",
+                "summary": "UFLDv2 可以通过以下代码完成快速推理，该代码仅展示主要流程，完整实现参考src/main.cpp文件和readme",
+                "summaryEn": "C++ quick-start notes for UFLDv2. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
+            }
+        ],
+        "detailParams": [
+            {
+                "name": "输入",
+                "value": "800 x 320"
+            },
+            {
+                "name": "参数量",
+                "value": "96.365M"
+            },
+            {
+                "name": "计算量",
+                "value": "18.753 GFLOPs"
+            }
+        ],
+        "performance": [
+            {
+                "engine": "Hi3516CV610",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "98.04",
+                        "unit": "耗时（ms）",
+                        "desc": "单帧推理耗时"
+                    },
+                    {
+                        "value": "10.20",
+                        "unit": "性能（fps）",
+                        "desc": "帧率"
+                    },
+                    {
+                        "value": "217.149",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": "DDR单帧带宽"
+                    },
+                    {
+                        "value": "102.508",
+                        "unit": "内存（MB）",
+                        "desc": "峰值内存"
+                    }
+                ]
+            }
+        ],
+        "originModels": [
+            {
+                "name": "ufldv2.onnx",
+                "size": "368 MB",
+                "href": null,
+                "available": false,
+                "localFile": null
+            }
+        ],
+        "hfRepoId": "shadow-cann/hispark-modelzoo-ufldv2",
+        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-ufldv2",
+        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-ufldv2/blob/main/README.md",
+        "primaryDownloadUrl": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta",
+        "primaryDownloadLabel": "SDK",
+        "downloads": [
+            {
+                "title": "ufldv2.onnx",
+                "href": null,
+                "available": false,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "ufldv2.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3516CV610",
+                "quantization": "A8W8",
+                "note": "A8W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "98.04",
+                        "unit": "耗时（ms）",
+                        "desc": "单帧推理耗时"
+                    },
+                    {
+                        "value": "10.20",
+                        "unit": "性能（fps）",
+                        "desc": "帧率"
+                    },
+                    {
+                        "value": "217.149",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": "DDR单帧带宽"
+                    },
+                    {
+                        "value": "102.508",
+                        "unit": "内存（MB）",
+                        "desc": "峰值内存"
+                    }
+                ]
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            }
+        ]
+    },
+    {
+        "id": "ku4ntpbgj400",
+        "name": "FSMN-KWS",
+        "description": "小云唤醒词检测模型基于CharCTC（Character-level Connectionist Temporal Classification）架构，用于检测语音中的特定唤醒词\"小云小云\"。模型提取音频的Fbank特征，通过LFR（Low Frame Rate）降采样和CMVN归一化后进行CTC解码，输出关键词检测结果。",
+        "descriptionZh": "小云唤醒词检测模型基于CharCTC（Character-level Connectionist Temporal Classification）架构，用于检测语音中的特定唤醒词\"小云小云\"。模型提取音频的Fbank特征，通过LFR（Low Frame Rate）降采样和CMVN归一化后进行CTC解码，输出关键词检测结果。",
+        "descriptionEn": "FSMN-KWS is a video model for 关键字检测. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: Linux. Compute targets: Hi3516CV610. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "date": "2026-09-14 09:53:03",
+        "updatedAt": "2026-09-15 15:27:10",
+        "badge": null,
+        "betaVersionDesc": "",
+        "category": "视频",
+        "tags": [
+            "关键字检测"
+        ],
+        "image": "assets/images/1763392620658690___.JPG",
+        "coverImageUrl": "assets/images/1763392620658690___.JPG",
+        "framework": [
+            "PyTorch"
+        ],
+        "supportOs": [
+            "Linux"
+        ],
+        "computingPower": [
+            "Hi3516CV610"
+        ],
+        "repositoryUrl": "https://gitcode.com/HiSpark/modelzoo/tree/master/samples/built-in/audio/fsmn_kws",
+        "licenseUrl": "https://www.modelscope.cn/iic/speech_charctc_kws_phone-xiaoyun.git",
+        "quickStartUrl": "https://gitcode.com/HiSpark/modelzoo/tree/master/samples/built-in/audio/fsmn_kws",
+        "quickStartMarkdownUrl": null,
+        "quickStartReadmes": [
+            {
+                "language": "C++",
+                "content": "#include <memory>\n#include \"model.h\"\n#include \"log.h\"\n#include \"utils.h\"\n#include \"xiaoyun_preprocess.h\"\n#include \"xiaoyun_postprocess.h\"\n\nusing namespace Infer;\n\nint main(int argc, char *argv[])\n{ \n  InferParam inferParam;\n  if (!ParseParamFromCmd(argc, argv, inferParam)) {\n    LOG(ERROR) << \"fail to parse cmd\";\n    return -1;\n  }\n  EnvInit(inferParam.aclConfigPath);\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(inferParam.omModelPath, Infer::Custom) != 0) {\n    LOG(ERROR) << \"fail to load model\";\n    EnvDeinit();\n    return -1;\n  }\n  model->SetPreProcessFunc(Infer::XiaoYunPreprocess ::XiaoYunPreprocess);\n  model->SetPostProcessFunc(Infer::XiaoYunPostprocess::XiaoYunPostprocess);\n  auto ret = model->Infer(inferParam.imglistPath);\n  if (ret.size() == 0) {\n    LOG(ERROR) << \"fail to infer model\";\n    model->Unload();\n    EnvDeinit();\n    return -1;\n  }\n  ret.clear();\n  ret.shrink_to_fit();\n  if (model->Unload() != 0) {\n    LOG(ERROR) << \"fail to unload model\";\n    EnvDeinit();\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}",
+                "summary": "#include <memory>",
+                "summaryEn": "C++ quick-start notes for FSMN-KWS. Covers runtime initialization, model loading, inference execution, configuration handling, and build instructions."
+            }
+        ],
+        "detailParams": [
+            {
+                "name": "计算量",
+                "value": "0.229GFLOPs"
+            },
+            {
+                "name": "输入",
+                "value": "151x400"
+            },
+            {
+                "name": "参数量",
+                "value": "0.758M"
+            }
+        ],
+        "performance": [
+            {
+                "engine": "Hi3516CV610",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "5.87",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "170.27",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "10.036",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "2.98",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
+        "originModels": [
+            {
+                "name": "speech_charctc_kws_phone-xiaoyun_onnxsim_364.onnx",
+                "size": "2.9 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/speech_charctc_kws_phone-xiaoyun_onnxsim_364.onnx",
+                "available": true,
+                "localFile": "speech_charctc_kws_phone-xiaoyun_onnxsim_364.onnx"
+            },
+            {
+                "name": "speech_charctc_kws_phone-xiaoyun_onnxsim_151.onnx",
+                "size": "2.9 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/speech_charctc_kws_phone-xiaoyun_onnxsim_151.onnx",
+                "available": true,
+                "localFile": "speech_charctc_kws_phone-xiaoyun_onnxsim_151.onnx"
+            },
+            {
+                "name": "speech_charctc_kws_phone-xiaoyun_364.onnx",
+                "size": "2.9 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/speech_charctc_kws_phone-xiaoyun_364.onnx",
+                "available": true,
+                "localFile": "speech_charctc_kws_phone-xiaoyun_364.onnx"
+            },
+            {
+                "name": "speech_charctc_kws_phone-xiaoyun_151.onnx",
+                "size": "2.9 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/speech_charctc_kws_phone-xiaoyun_151.onnx",
+                "available": true,
+                "localFile": "speech_charctc_kws_phone-xiaoyun_151.onnx"
+            }
+        ],
+        "hfRepoId": "shadow-cann/hispark-modelzoo-fsmn-kws",
+        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws",
+        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/blob/main/README.md",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/kws-610.om",
+        "primaryDownloadLabel": "kws-610.om",
+        "downloads": [
+            {
+                "title": "speech_charctc_kws_phone-xiaoyun_onnxsim_364.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/speech_charctc_kws_phone-xiaoyun_onnxsim_364.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "speech_charctc_kws_phone-xiaoyun_onnxsim_364.onnx"
+            },
+            {
+                "title": "speech_charctc_kws_phone-xiaoyun_onnxsim_151.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/speech_charctc_kws_phone-xiaoyun_onnxsim_151.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "speech_charctc_kws_phone-xiaoyun_onnxsim_151.onnx"
+            },
+            {
+                "title": "speech_charctc_kws_phone-xiaoyun_364.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/speech_charctc_kws_phone-xiaoyun_364.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "speech_charctc_kws_phone-xiaoyun_364.onnx"
+            },
+            {
+                "title": "speech_charctc_kws_phone-xiaoyun_151.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/speech_charctc_kws_phone-xiaoyun_151.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "speech_charctc_kws_phone-xiaoyun_151.onnx"
+            },
+            {
+                "title": "kws-610.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/kws-610.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3516CV610",
+                "quantization": "A8W8",
+                "note": "A8W8",
+                "localFile": "kws-610.om",
+                "performance": [
+                    {
+                        "value": "5.87",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "170.27",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "10.036",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "2.98",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "kws-610-a.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/kws-610-a.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3516CV610",
+                "quantization": "A8W8",
+                "note": "A8W8",
+                "localFile": "kws-610-a.om",
+                "performance": [
+                    {
+                        "value": "5.87",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "170.27",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "10.036",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "2.98",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            }
+        ]
+    },
+    {
+        "id": "ku4m5qfcts00",
+        "name": "SE-ResNet50",
+        "description": "SE-ResNet50是一种基于ResNet50架构的改进卷积神经网络，通过引入SE（Squeeze-and-Excitation）注意力模块，自适应校准通道特征响应，显著提升模型表达能力。",
+        "descriptionZh": "SE-ResNet50是一种基于ResNet50架构的改进卷积神经网络，通过引入SE（Squeeze-and-Excitation）注意力模块，自适应校准通道特征响应，显著提升模型表达能力。",
+        "descriptionEn": "SE-ResNet50 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
+        "date": "2026-09-14 09:45:25",
+        "updatedAt": "2026-09-15 15:27:11",
+        "badge": null,
+        "betaVersionDesc": "",
+        "category": "计算机视觉",
+        "tags": [
+            "分类"
+        ],
+        "image": "assets/images/1712179080462337_SEResNet50.png",
+        "coverImageUrl": "assets/images/1712179080462337_SEResNet50.png",
+        "framework": [
+            "PyTorch"
+        ],
+        "supportOs": [
+            "OpenHarmony",
+            "Linux"
+        ],
+        "computingPower": [
+            "Hi3403V100 SVP_NNN",
+            "Hi3403V100 NNN"
+        ],
+        "repositoryUrl": "https://gitcode.com/HiSpark/modelzoo/tree/master/samples/built-in/classification/SEResNet50",
+        "licenseUrl": "https://github.com/morning4346/Se_resnet50/blob/master/LICENSE",
+        "quickStartUrl": "https://gitcode.com/HiSpark/modelzoo/tree/master/samples/built-in/classification/SEResNet50",
+        "quickStartMarkdownUrl": null,
+        "quickStartReadmes": [
+            {
+                "language": "C++",
+                "content": "SEResnet50模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // SEResnet50模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::SEResnet50) != 0) {\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitcode.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitcode.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/SEResnet50/src/CMakeLists.txt)",
+                "summary": "SEResnet50模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for SE-ResNet50. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
+            }
+        ],
+        "detailParams": [
+            {
+                "name": "输入",
+                "value": "224x224"
+            },
+            {
+                "name": "参数量",
+                "value": "28.045M"
+            },
+            {
+                "name": "计算量",
+                "value": "8.263GFLOPs"
+            }
+        ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "73.63",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "13.58",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "165.344",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "35.777",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "15.602",
+                        "unit": "耗时（ms）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "63.83",
+                        "unit": "性能（fps）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "216.793",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "166.801",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
+        "originModels": [
+            {
+                "name": "seresnet50.onnx",
+                "size": "107 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-se-resnet50/resolve/main/seresnet50.onnx",
+                "available": true,
+                "localFile": "seresnet50.onnx"
+            },
+            {
+                "name": "seresnet50.zip",
+                "size": "99.9 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-se-resnet50/resolve/main/seresnet50.zip",
+                "available": true,
+                "localFile": "seresnet50.zip"
+            }
+        ],
+        "hfRepoId": "shadow-cann/hispark-modelzoo-se-resnet50",
+        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-se-resnet50",
+        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-se-resnet50/blob/main/README.md",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-se-resnet50/resolve/main/seresnet50.onnx",
+        "primaryDownloadLabel": "seresnet50.onnx",
+        "downloads": [
+            {
+                "title": "seresnet50.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-se-resnet50/resolve/main/seresnet50.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "seresnet50.onnx"
+            },
+            {
+                "title": "seresnet50.zip",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-se-resnet50/resolve/main/seresnet50.zip",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "seresnet50.zip"
+            },
+            {
+                "title": "seresnet50.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "note": "A8W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "73.63",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "13.58",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "165.344",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "35.777",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "seresnet50.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "note": "FP16",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "15.602",
+                        "unit": "耗时（ms）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "63.83",
+                        "unit": "性能（fps）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "216.793",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "166.801",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "CANN工具",
+                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            }
+        ]
+    },
+    {
+        "id": "ktgi9vl8j400",
+        "name": "Depth-Anything-v2",
+        "description": "Depth Anything V2在细节和鲁棒性方面显著优于 V1。与基于 SD 的模型相比，它具有更快的推理速度、更少的参数和更高的深度精度。本示例使用的是Depth-Anything-V2-Small。",
+        "descriptionZh": "Depth Anything V2在细节和鲁棒性方面显著优于 V1。与基于 SD 的模型相比，它具有更快的推理速度、更少的参数和更高的深度精度。本示例使用的是Depth-Anything-V2-Small。",
+        "descriptionEn": "Depth-Anything-v2 is a computer vision model for monocular depth. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 10 downloadable artifacts, along with quick-start resources when available.",
+        "date": "2026-09-12 10:52:18",
+        "updatedAt": "2026-09-15 15:27:10",
+        "badge": null,
+        "betaVersionDesc": "",
+        "category": "计算机视觉",
+        "tags": [
+            "单目深度"
+        ],
+        "image": "assets/images/1700942867267585_depth.png",
+        "coverImageUrl": "assets/images/1700942867267585_depth.png",
+        "framework": [
+            "PyTorch"
+        ],
+        "supportOs": [
+            "OpenHarmony",
+            "Linux"
+        ],
+        "computingPower": [
+            "Hi3403V100 SVP_NNN",
+            "Hi3403V100 NNN"
+        ],
+        "repositoryUrl": "https://gitcode.com/HiSpark/modelzoo/tree/master/samples/built-in/depth/Depth-Anything-v2",
+        "licenseUrl": "https://github.com/DepthAnything/Depth-Anything-V2/blob/main/LICENSE",
+        "quickStartUrl": "https://gitcode.com/HiSpark/modelzoo/tree/master/samples/built-in/depth/Depth-Anything-v2",
+        "quickStartMarkdownUrl": null,
+        "quickStartReadmes": [
+            {
+                "language": "C++",
+                "content": "Depth-Anything-v2模型可以通过以下代码完成快速推理\n\nusing namespace Infer;\n\nint main()\n{\n    std::string modelPath = \"/path/to/imgModel.om\"; // 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::string aclConfigPath = \"/path/to/acl.cfg\"; // 输入acl的配置路径\n    int ret;\n    ret = Infer::DevInit(aclConfigPath);\n    std::shared_ptr<Infer::MdlBase> model = Infer::MdlCreate();\n    ret = model->LoadModel(modelPath);\n    std::vector<std::string> imglists;\n    ret = ReadImglistFile(imagePath, imglists);\n    std::vector<Infer::TensorBuf> inBufs, outBufs;\n    std::vector<Infer::TensorDesc> inDescs, outDescs;\n    Infer::TensorDesc desc;\n    size_t inputNum = model->GetInTensorNum();\n    size_t  outputNum = model->GetOutTensorNum();\n    for (size_t i = 0; i < inputNum; i++) {\n        model->GetInTensorDescByIdx(i, desc);\n        inDescs.push_back(desc);\n        inBufs.emplace_back(desc.defaultSize, desc.defaultStride);\n    }\n    for (size_t i = 0; i < outputNum; i++) {\n        model->GetOutTensorDescByIdx(i, desc);\n        outDescs.push_back(desc);\n        outBufs.emplace_back(desc.defaultSize, desc.defaultStride);\n    }\n    model->GetInTensorDescByIdx(0, desc);\n    for (size_t i = 0; i < imglists.size(); ++i) {\n        ret = ReadImgFileToBuf(imglists[i], desc, inBufs[0]);\n        ret = model->Execute(inBufs, outBufs);\n        (void)PostProcess(outBufs, outDescs, imglists[i]);\n    }\n    model->UnLoadModel();\n    Infer::DevDeInit();\n    return 0;\n}\n备注：上述C++代码仅展示了主要流程，详细实现请参考Depth-Anything-v2 (https://gitcode.com/HiSpark/modelzoo/tree/master/samples/built-in/depth/Depth-Anything-v2)。",
+                "summary": "Depth-Anything-v2模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for Depth-Anything-v2. Covers runtime initialization, inference execution, and configuration handling."
+            }
+        ],
+        "detailParams": [
+            {
+                "name": "输入",
+                "value": "518x518"
+            },
+            {
+                "name": "参数量",
+                "value": "24.184M"
+            },
+            {
+                "name": "计算量",
+                "value": "127.785GFLOPs"
+            }
+        ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "266.06",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "3.76",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "2243.373",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "87.072",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "275.482",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "3.63",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1604.515",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "254.773",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
+        "originModels": [
+            {
+                "name": "depth_anything_v2_vits.pth",
+                "size": "94.6 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits.pth",
+                "available": true,
+                "localFile": "depth_anything_v2_vits.pth"
+            },
+            {
+                "name": "depth_anything_v2_vits_svp_nnn.onnx",
+                "size": "94.4 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits_svp_nnn.onnx",
+                "available": true,
+                "localFile": "depth_anything_v2_vits_svp_nnn.onnx"
+            },
+            {
+                "name": "depth_anything_v2_vits_nnn.onnx",
+                "size": "148 MB",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits_nnn.onnx",
+                "available": true,
+                "localFile": "depth_anything_v2_vits_nnn.onnx"
+            }
+        ],
+        "hfRepoId": "shadow-cann/hispark-modelzoo-depth-anything-v2",
+        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2",
+        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/blob/main/README.md",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depthanything.om",
+        "primaryDownloadLabel": "depthanything.om",
+        "downloads": [
+            {
+                "title": "depth_anything_v2_vits.pth",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits.pth",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "depth_anything_v2_vits.pth"
+            },
+            {
+                "title": "depth_anything_v2_vits_svp_nnn.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits_svp_nnn.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "depth_anything_v2_vits_svp_nnn.onnx"
+            },
+            {
+                "title": "depth_anything_v2_vits_nnn.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits_nnn.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "depth_anything_v2_vits_nnn.onnx"
+            },
+            {
+                "title": "depth_anything.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "note": "A16W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "266.06",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "3.76",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "2243.373",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "87.072",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "depthanything.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depthanything.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "note": "FP16",
+                "localFile": "depthanything.om",
+                "performance": [
+                    {
+                        "value": "275.482",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "3.63",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1604.515",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "254.773",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "CANN工具",
+                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "depth_anything_v2_vits.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits.onnx",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "depth_anything_v2_vits.onnx"
+            },
+            {
+                "title": "depth_anything_v2_vits_source-model.pth",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits_source-model.pth",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "depth_anything_v2_vits_source-model.pth"
+            },
+            {
+                "title": "depthanything_om-FP16.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depthanything_om-FP16.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "FP16",
+                "localFile": "depthanything_om-FP16.om",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "performance": [
+                    {
+                        "value": "275.482",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "3.63",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1604.515",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "254.773",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "id": "ko3ugg54j400",
         "name": "Swin-Transformer",
         "description": "Swin-Transformer是针对于图片处理设计的基于Transformer架构的神经网络。该网络针对原始Transformer迁移到图片端后计算量过大，复用困难的问题，提出了新的swin-block以代替原有的attention架构。模型以窗口的attention方式极大地减少了图像不同区域间的互相响应，同时也避免了部分冗余信息的产生。最终，模型在减少了大量计算量的同时，在不同的视觉传统任务上也有了效果的提升。",
@@ -53,6 +2106,60 @@ const modelsData = [
                 "value": "9.567GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "25.675",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "38.949",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "295.711",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "38.176",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "101.97",
+                        "unit": "耗时（ms）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "9.81",
+                        "unit": "性能（fps）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "494.766",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "215.668",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "swin.onnx",
@@ -83,35 +2190,11 @@ const modelsData = [
         "primaryDownloadLabel": "swin.om",
         "downloads": [
             {
-                "title": "swin.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-swin-transformer/resolve/main/swin.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A8W8",
-                "note": "A8W8",
-                "localFile": "swin.om"
-            },
-            {
-                "title": "swin_dlite.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-swin-transformer/resolve/main/swin_dlite.om",
-                "available": true,
-                "source": "om-FP16",
-                "sourceLabel": "FP16",
-                "group": "编译模型",
-                "engine": "Hi3403V100 NNN",
-                "quantization": "FP16",
-                "note": "FP16",
-                "localFile": "swin_dlite.om"
-            },
-            {
                 "title": "swin.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-swin-transformer/resolve/main/swin.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -122,8 +2205,8 @@ const modelsData = [
                 "title": "swin_tiny_patch4_window7_224.pth",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-swin-transformer/resolve/main/swin_tiny_patch4_window7_224.pth",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -134,8 +2217,8 @@ const modelsData = [
                 "title": "swin_sim.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-swin-transformer/resolve/main/swin_sim.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -143,12 +2226,80 @@ const modelsData = [
                 "localFile": "swin_sim.onnx"
             },
             {
+                "title": "swin.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-swin-transformer/resolve/main/swin.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "note": "A8W8",
+                "localFile": "swin.om",
+                "performance": [
+                    {
+                        "value": "25.675",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "38.949",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "295.711",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "38.176",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "swin_dlite.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-swin-transformer/resolve/main/swin_dlite.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "note": "FP16",
+                "localFile": "swin_dlite.om",
+                "performance": [
+                    {
+                        "value": "101.97",
+                        "unit": "耗时（ms）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "9.81",
+                        "unit": "性能（fps）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "494.766",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "215.668",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
                 "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
                 "engine": "",
                 "quantization": "",
                 "note": "",
@@ -158,9 +2309,9 @@ const modelsData = [
                 "title": "编译工具链",
                 "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
                 "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
                 "engine": "",
                 "quantization": "",
                 "note": "",
@@ -170,9 +2321,9 @@ const modelsData = [
                 "title": "SDK",
                 "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
                 "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
                 "engine": "",
                 "quantization": "",
                 "note": "",
@@ -188,7 +2339,29 @@ const modelsData = [
                 "note": "A8W8",
                 "localFile": "swin_om-A8W8.om",
                 "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A8W8"
+                "quantization": "A8W8",
+                "performance": [
+                    {
+                        "value": "25.675",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "38.949",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "295.711",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "38.176",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             }
         ]
     },
@@ -197,7 +2370,7 @@ const modelsData = [
         "name": "EfficientNetV2",
         "description": "EfficientNetV2是一系列图像分类模型，与现有技术相比，其实现了更好的参数效率和更快的训练速度。基于EfficientNetV1，Efficient NetV2模型使用神经架构搜索（NAS）来联合优化模型大小和训练速度，并以更快的训练和推理速度进行扩展。",
         "descriptionZh": "EfficientNetV2是一系列图像分类模型，与现有技术相比，其实现了更好的参数效率和更快的训练速度。基于EfficientNetV1，Efficient NetV2模型使用神经架构搜索（NAS）来联合优化模型大小和训练速度，并以更快的训练和推理速度进行扩展。",
-        "descriptionEn": "EfficientNetV2 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "EfficientNetV2 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-08-26 16:15:43",
         "updatedAt": "2026-09-01 16:13:06",
         "badge": null,
@@ -245,6 +2418,60 @@ const modelsData = [
                 "value": "8.235GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "27.35",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "36.57",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "55.91",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "20.441",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "36.512",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "27.388",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "150.156",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "131.914",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "efficientnetv2.onnx",
@@ -264,39 +2491,15 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-efficientnetv2",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-efficientnetv2",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-efficientnetv2/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-efficientnetv2/resolve/main/efficientnetv2.om",
-        "primaryDownloadLabel": "efficientnetv2.om",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-efficientnetv2/resolve/main/efficientnetv2.onnx",
+        "primaryDownloadLabel": "efficientnetv2.onnx",
         "downloads": [
-            {
-                "title": "efficientnetv2.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-efficientnetv2/resolve/main/efficientnetv2.om",
-                "available": true,
-                "source": "om-A8W8",
-                "sourceLabel": "A8W8",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A8W8",
-                "note": "A8W8",
-                "localFile": "efficientnetv2.om"
-            },
-            {
-                "title": "efficientnetv2.om",
-                "href": null,
-                "available": false,
-                "source": "om-FP16",
-                "sourceLabel": "FP16",
-                "group": "编译模型",
-                "engine": "Hi3403V100 NNN",
-                "quantization": "FP16",
-                "note": "FP16",
-                "localFile": null
-            },
             {
                 "title": "efficientnetv2.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-efficientnetv2/resolve/main/efficientnetv2.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -307,8 +2510,8 @@ const modelsData = [
                 "title": "efficientnetv2_t_agc-3620981a.pth",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-efficientnetv2/resolve/main/efficientnetv2_t_agc-3620981a.pth",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -316,7 +2519,75 @@ const modelsData = [
                 "localFile": "efficientnetv2_t_agc-3620981a.pth"
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "efficientnetv2.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "note": "A8W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "27.35",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "36.57",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "55.91",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "20.441",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "efficientnetv2.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "note": "FP16",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "36.512",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "27.388",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "150.156",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "131.914",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -326,6 +2597,30 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             }
         ]
     },
@@ -382,6 +2677,60 @@ const modelsData = [
                 "value": "15.423GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "250.58",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "3.99",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "330.25",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "32.442",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "398.406",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "2.51",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1178.383",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "234.285",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "tinysam.pth",
@@ -412,59 +2761,11 @@ const modelsData = [
         "primaryDownloadLabel": "tinysam改后缀为zip解压后使用.om",
         "downloads": [
             {
-                "title": "tinysam改后缀为zip解压后使用.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/tinysam%E6%94%B9%E5%90%8E%E7%BC%80%E4%B8%BAzip%E8%A7%A3%E5%8E%8B%E5%90%8E%E4%BD%BF%E7%94%A8.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A8W8",
-                "note": "A8W8",
-                "localFile": "tinysam改后缀为zip解压后使用.om"
-            },
-            {
-                "title": "prompt_encoder_deploy_model.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/prompt_encoder_deploy_model.om",
-                "available": true,
-                "source": "om-FP16",
-                "sourceLabel": "FP16",
-                "group": "编译模型",
-                "engine": "Hi3403V100 NNN",
-                "quantization": "FP16",
-                "note": "FP16",
-                "localFile": "prompt_encoder_deploy_model.om"
-            },
-            {
-                "title": "image_encoder_deploy_model.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/image_encoder_deploy_model.om",
-                "available": true,
-                "source": "om-FP16",
-                "sourceLabel": "FP16",
-                "group": "编译模型",
-                "engine": "Hi3403V100 NNN",
-                "quantization": "FP16",
-                "note": "FP16",
-                "localFile": "image_encoder_deploy_model.om"
-            },
-            {
-                "title": "mask_decoder_deploy_model.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/mask_decoder_deploy_model.om",
-                "available": true,
-                "source": "om-FP16",
-                "sourceLabel": "FP16",
-                "group": "编译模型",
-                "engine": "Hi3403V100 NNN",
-                "quantization": "FP16",
-                "note": "FP16",
-                "localFile": "mask_decoder_deploy_model.om"
-            },
-            {
                 "title": "tinysam.pth",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/tinysam.pth",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -475,8 +2776,8 @@ const modelsData = [
                 "title": "model_onnx_svp_nnn.zip",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/model_onnx_svp_nnn.zip",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -487,8 +2788,8 @@ const modelsData = [
                 "title": "model_nnn_onnx.zip",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/model_nnn_onnx.zip",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -496,12 +2797,148 @@ const modelsData = [
                 "localFile": "model_nnn_onnx.zip"
             },
             {
+                "title": "tinysam改后缀为zip解压后使用.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/tinysam%E6%94%B9%E5%90%8E%E7%BC%80%E4%B8%BAzip%E8%A7%A3%E5%8E%8B%E5%90%8E%E4%BD%BF%E7%94%A8.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "note": "A8W8",
+                "localFile": "tinysam改后缀为zip解压后使用.om",
+                "performance": [
+                    {
+                        "value": "250.58",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "3.99",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "330.25",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "32.442",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "prompt_encoder_deploy_model.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/prompt_encoder_deploy_model.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "note": "FP16",
+                "localFile": "prompt_encoder_deploy_model.om",
+                "performance": [
+                    {
+                        "value": "398.406",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "2.51",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1178.383",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "234.285",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "image_encoder_deploy_model.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/image_encoder_deploy_model.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "note": "FP16",
+                "localFile": "image_encoder_deploy_model.om",
+                "performance": [
+                    {
+                        "value": "398.406",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "2.51",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1178.383",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "234.285",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "mask_decoder_deploy_model.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-tinysam/resolve/main/mask_decoder_deploy_model.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "note": "FP16",
+                "localFile": "mask_decoder_deploy_model.om",
+                "performance": [
+                    {
+                        "value": "398.406",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "2.51",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1178.383",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "234.285",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
                 "title": "CANN配置",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
                 "engine": "",
                 "quantization": "",
                 "note": "",
@@ -511,9 +2948,9 @@ const modelsData = [
                 "title": "编译工具库",
                 "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
                 "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
                 "engine": "",
                 "quantization": "",
                 "note": "",
@@ -523,9 +2960,9 @@ const modelsData = [
                 "title": "SDK",
                 "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
                 "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
                 "engine": "",
                 "quantization": "",
                 "note": "",
@@ -568,9 +3005,9 @@ const modelsData = [
         "name": "YOLOv10s",
         "description": "YOLOv10 引入了一种新的实时目标检测方法，解决了以前YOLO 版本在后处理和模型架构方面的不足。通过消除非最大抑制NMS和优化各种模型组件，YOLOv10 显著降低了计算开销。本示例基于YOLOv10s。",
         "descriptionZh": "YOLOv10 引入了一种新的实时目标检测方法，解决了以前YOLO 版本在后处理和模型架构方面的不足。通过消除非最大抑制NMS和优化各种模型组件，YOLOv10 显著降低了计算开销。本示例基于YOLOv10s。",
-        "descriptionEn": "YOLOv10s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv10s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-08-25 17:33:30",
-        "updatedAt": "2026-09-01 16:13:06",
+        "updatedAt": null,
         "badge": null,
         "betaVersionDesc": "",
         "category": "计算机视觉",
@@ -616,6 +3053,60 @@ const modelsData = [
                 "value": "24.073GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "29.03",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "34.44",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "115.224",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "53.785",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "48.325",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "8.13",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "263.663",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "112.254",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "yolov10s.onnx",
@@ -639,23 +3130,11 @@ const modelsData = [
         "primaryDownloadLabel": "yolov10s.onnx",
         "downloads": [
             {
-                "title": "yolov10s.om",
-                "href": null,
-                "available": false,
-                "source": "om-A16W8",
-                "sourceLabel": "A16W8",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A16W8",
-                "note": "A16W8",
-                "localFile": null
-            },
-            {
                 "title": "yolov10s.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/yolov10s.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -666,8 +3145,8 @@ const modelsData = [
                 "title": "yolov10s.pt",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov10s/resolve/main/yolov10s.pt",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -681,13 +3160,69 @@ const modelsData = [
                 "source": "omOfflineModel",
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "note": "A16W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "29.03",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "34.44",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "115.224",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "53.785",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "yolov10s.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
                 "engine": "Hi3403V100 NNN",
                 "quantization": "FP16",
                 "note": "FP16",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "48.325",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "8.13",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "263.663",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "112.254",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -697,6 +3232,30 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             },
             {
                 "title": "yolov10s_source-model.onnx",
@@ -721,290 +3280,11 @@ const modelsData = [
         ]
     },
     {
-        "id": "knc6ud5cj400",
-        "name": "FSMN-KWS",
-        "description": "小云唤醒词检测模型基于CharCTC（Character-level Connectionist Temporal Classification）架构，用于检测语音中的特定唤醒词\"小云小云\"。模型提取音频的Fbank特征，通过LFR（Low Frame Rate）降采样和CMVN归一化后进行CTC解码，输出关键词检测结果。",
-        "descriptionZh": "小云唤醒词检测模型基于CharCTC（Character-level Connectionist Temporal Classification）架构，用于检测语音中的特定唤醒词\"小云小云\"。模型提取音频的Fbank特征，通过LFR（Low Frame Rate）降采样和CMVN归一化后进行CTC解码，输出关键词检测结果。",
-        "descriptionEn": "FSMN-KWS is a video model for 关键字检测. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: Linux. Compute targets: Hi3516CV610. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
-        "date": "2026-08-24 09:19:53",
-        "updatedAt": "2026-09-01 16:13:07",
-        "badge": null,
-        "betaVersionDesc": "",
-        "category": "视频",
-        "tags": [
-            "关键字检测"
-        ],
-        "image": "assets/images/1763392620658690___.JPG",
-        "coverImageUrl": "assets/images/1763392620658690___.JPG",
-        "framework": [
-            "PyTorch"
-        ],
-        "supportOs": [
-            "Linux"
-        ],
-        "computingPower": [
-            "Hi3516CV610"
-        ],
-        "repositoryUrl": "https://gitcode.com/HiSpark/modelzoo/blob/master/samples/contribute/audio/fsmn_kws/README.md",
-        "licenseUrl": "https://www.modelscope.cn/iic/speech_charctc_kws_phone-xiaoyun.git",
-        "quickStartUrl": "https://gitcode.com/HiSpark/modelzoo/blob/master/samples/contribute/audio/fsmn_kws/README.md",
-        "quickStartMarkdownUrl": null,
-        "quickStartReadmes": [
-            {
-                "language": "C++",
-                "content": "#include <memory>\n#include \"model.h\"\n#include \"log.h\"\n#include \"utils.h\"\n#include \"xiaoyun_preprocess.h\"\n#include \"xiaoyun_postprocess.h\"\n\nusing namespace Infer;\n\nint main(int argc, char *argv[])\n{ \n  InferParam inferParam;\n  if (!ParseParamFromCmd(argc, argv, inferParam)) {\n    LOG(ERROR) << \"fail to parse cmd\";\n    return -1;\n  }\n  EnvInit(inferParam.aclConfigPath);\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(inferParam.omModelPath, Infer::Custom) != 0) {\n    LOG(ERROR) << \"fail to load model\";\n    EnvDeinit();\n    return -1;\n  }\n  model->SetPreProcessFunc(Infer::XiaoYunPreprocess ::XiaoYunPreprocess);\n  model->SetPostProcessFunc(Infer::XiaoYunPostprocess::XiaoYunPostprocess);\n  auto ret = model->Infer(inferParam.imglistPath);\n  if (ret.size() == 0) {\n    LOG(ERROR) << \"fail to infer model\";\n    model->Unload();\n    EnvDeinit();\n    return -1;\n  }\n  ret.clear();\n  ret.shrink_to_fit();\n  if (model->Unload() != 0) {\n    LOG(ERROR) << \"fail to unload model\";\n    EnvDeinit();\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}",
-                "summary": "#include <memory>",
-                "summaryEn": "C++ quick-start notes for FSMN-KWS. Covers runtime initialization, model loading, inference execution, configuration handling, and build instructions."
-            }
-        ],
-        "detailParams": [
-            {
-                "name": "计算量",
-                "value": "0.229GFLOPs"
-            },
-            {
-                "name": "输入",
-                "value": "151x400"
-            },
-            {
-                "name": "参数量",
-                "value": "0.758M"
-            }
-        ],
-        "originModels": [
-            {
-                "name": "speech_charctc_kws_phone-xiaoyun_onnxsim_364.onnx",
-                "size": "2.9 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/speech_charctc_kws_phone-xiaoyun_onnxsim_364.onnx",
-                "available": true,
-                "localFile": "speech_charctc_kws_phone-xiaoyun_onnxsim_364.onnx"
-            },
-            {
-                "name": "speech_charctc_kws_phone-xiaoyun_onnxsim_151.onnx",
-                "size": "2.9 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/speech_charctc_kws_phone-xiaoyun_onnxsim_151.onnx",
-                "available": true,
-                "localFile": "speech_charctc_kws_phone-xiaoyun_onnxsim_151.onnx"
-            },
-            {
-                "name": "speech_charctc_kws_phone-xiaoyun_364.onnx",
-                "size": "2.9 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/speech_charctc_kws_phone-xiaoyun_364.onnx",
-                "available": true,
-                "localFile": "speech_charctc_kws_phone-xiaoyun_364.onnx"
-            },
-            {
-                "name": "speech_charctc_kws_phone-xiaoyun_151.onnx",
-                "size": "2.9 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/speech_charctc_kws_phone-xiaoyun_151.onnx",
-                "available": true,
-                "localFile": "speech_charctc_kws_phone-xiaoyun_151.onnx"
-            }
-        ],
-        "hfRepoId": "shadow-cann/hispark-modelzoo-fsmn-kws",
-        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws",
-        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/kws-610.om",
-        "primaryDownloadLabel": "kws-610.om",
-        "downloads": [
-            {
-                "title": "kws-610.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/kws-610.om",
-                "available": true,
-                "source": "om-A8W8",
-                "sourceLabel": "A8W8",
-                "group": "编译模型",
-                "engine": "Hi3516CV610",
-                "quantization": "A8W8",
-                "note": "A8W8",
-                "localFile": "kws-610.om"
-            },
-            {
-                "title": "kws-610-a.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/kws-610-a.om",
-                "available": true,
-                "source": "om-A8W8",
-                "sourceLabel": "A8W8",
-                "group": "编译模型",
-                "engine": "Hi3516CV610",
-                "quantization": "A8W8",
-                "note": "A8W8",
-                "localFile": "kws-610-a.om"
-            },
-            {
-                "title": "speech_charctc_kws_phone-xiaoyun_onnxsim_364.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/speech_charctc_kws_phone-xiaoyun_onnxsim_364.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "speech_charctc_kws_phone-xiaoyun_onnxsim_364.onnx"
-            },
-            {
-                "title": "speech_charctc_kws_phone-xiaoyun_onnxsim_151.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/speech_charctc_kws_phone-xiaoyun_onnxsim_151.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "speech_charctc_kws_phone-xiaoyun_onnxsim_151.onnx"
-            },
-            {
-                "title": "speech_charctc_kws_phone-xiaoyun_364.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/speech_charctc_kws_phone-xiaoyun_364.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "speech_charctc_kws_phone-xiaoyun_364.onnx"
-            },
-            {
-                "title": "speech_charctc_kws_phone-xiaoyun_151.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fsmn-kws/resolve/main/speech_charctc_kws_phone-xiaoyun_151.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "speech_charctc_kws_phone-xiaoyun_151.onnx"
-            }
-        ]
-    },
-    {
-        "id": "kmrpc00gts00",
-        "name": "YOLO26s",
-        "description": "YOLO26s 是 Ultralytics YOLO 系列中的小型目标检测模型，适合在边缘设备上进行实时目标检测。",
-        "descriptionZh": "YOLO26s 是 Ultralytics YOLO 系列中的小型目标检测模型，适合在边缘设备上进行实时目标检测。",
-        "descriptionEn": "YOLO26s is a computer vision model for detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
-        "date": "2026-08-22 19:03:36",
-        "updatedAt": "2026-09-01 16:13:07",
-        "badge": null,
-        "betaVersionDesc": "",
-        "category": "计算机视觉",
-        "tags": [
-            "检测"
-        ],
-        "image": "assets/images/1764112203841537_yolo26.jpg",
-        "coverImageUrl": "assets/images/1764112203841537_yolo26.jpg",
-        "framework": [
-            "PyTorch"
-        ],
-        "supportOs": [
-            "OpenHarmony",
-            "Linux"
-        ],
-        "computingPower": [
-            "Hi3403V100 SVP_NNN",
-            "Hi3403V100 NNN"
-        ],
-        "repositoryUrl": "https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s",
-        "licenseUrl": "https://github.com/ultralytics/ultralytics/blob/main/LICENSE",
-        "quickStartUrl": "https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolo26s/doc/快速开始.md",
-        "quickStartMarkdownUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov10s/doc/快速开始.md",
-        "quickStartReadmes": [
-            {
-                "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理\n\n#include <memory>\n#include \"model.h\"\n#include \"log.h\"\n#include \"utils.h\"\n#include \"param.h\"\n#include \"yolov26s_process.h\"\n\nusing namespace Infer;\n\nint main(int argc, char *argv[])\n{\n  InferParam inferParam;\n  if (!ParseParamFromCmd(argc, argv, inferParam)) {\n    LOG(ERROR) << \"fail to parse cmd\";\n    return -1;\n  }\n\n  EnvInit(inferParam.aclConfigPath);\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(inferParam.omModelPath) != 0) {\n    LOG(ERROR) << \"fail to load model\";\n    EnvDeinit();\n    return -1;\n  }\n\n  Yolov26sProcess processFunc;\n  model->SetProcessFunc(processFunc);\n\n  Yolov26sParam cfgParam;\n  cfgParam.platformType = model->GetPlatformType();\n  std::any param = cfgParam;\n  int32_t ret = model->Infer(inferParam.imglistPath, JsonFile, std::ref(param));\n  if (ret != 0) {\n    LOG(ERROR) << \"fail to infer model\";\n    model->Unload();\n    EnvDeinit();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    LOG(ERROR) << \"fail to unload model\";\n    EnvDeinit();\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于[ (https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/common)/samples/samples_GPL/common (https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/common)] (https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/common)目录下，编译相关配置参考[ (https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/src/CMakeLists.txt)CMakeLists.txt (https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/src/CMakeLists.txt)] (https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/src/CMakeLists.txt)。",
-                "summary": "模型可以通过以下代码完成快速推理",
-                "summaryEn": "C++ quick-start notes for YOLO26s. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
-            }
-        ],
-        "detailParams": [
-            {
-                "name": "计算量",
-                "value": "23.250GFLOPs"
-            },
-            {
-                "name": "输入",
-                "value": "640x640"
-            },
-            {
-                "name": "参数量",
-                "value": "9.538M"
-            }
-        ],
-        "originModels": [
-            {
-                "name": "yolo26s.onnx",
-                "size": "36.5 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s/resolve/main/yolo26s.onnx",
-                "available": true,
-                "localFile": "yolo26s.onnx"
-            }
-        ],
-        "hfRepoId": "shadow-cann/hispark-modelzoo-yolo26s",
-        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s",
-        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s/resolve/main/yolo26s_dpiconew.om",
-        "primaryDownloadLabel": "yolo26s_dpiconew.om",
-        "downloads": [
-            {
-                "title": "yolo26s_dpiconew.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s/resolve/main/yolo26s_dpiconew.om",
-                "available": true,
-                "source": "om-A8W8",
-                "sourceLabel": "A8W8",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A8W8",
-                "note": "A8W8",
-                "localFile": "yolo26s_dpiconew.om"
-            },
-            {
-                "title": "yolo26s.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s/resolve/main/yolo26s.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "yolo26s.onnx"
-            },
-            {
-                "title": "yolo26s.om",
-                "href": null,
-                "available": false,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "engine": "Hi3403V100 NNN",
-                "quantization": "FP16",
-                "note": "FP16",
-                "localFile": null
-            },
-            {
-                "title": "SVP_NNN_PC_V1.0.6.5.tgz",
-                "href": "https://hf-mirror.com/shadow-cann/svp-nnn-pc/resolve/main/SVP_NNN_PC_V1.0.6.5.tgz",
-                "available": true,
-                "source": "api-all",
-                "sourceLabel": "附加资源",
-                "group": "附加资源",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.5.tgz"
-            }
-        ]
-    },
-    {
         "id": "jrc61eo19400",
         "name": "FastSpeech2",
         "description": "FastSpeech2 是一种高效的端到端语音合成模型。相比 FastSpeech，FastSpeech2 引入了多尺度时长预测器和能量 / 基频预测分支，优化了时长预测模块并新增韵律特征建模，在合成速度和语音自然度上均有大幅提升。",
         "descriptionZh": "FastSpeech2 是一种高效的端到端语音合成模型。相比 FastSpeech，FastSpeech2 引入了多尺度时长预测器和能量 / 基频预测分支，优化了时长预测模块并新增韵律特征建模，在合成速度和语音自然度上均有大幅提升。",
-        "descriptionEn": "FastSpeech2 is a audio model for text-to-speech. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: Linux and OpenHarmony. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "FastSpeech2 is a audio model for text-to-speech. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: Linux and OpenHarmony. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-05-29 09:26:03",
         "updatedAt": "2026-09-01 16:13:07",
         "badge": null,
@@ -1052,6 +3332,60 @@ const modelsData = [
                 "value": "29.162GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "52.49",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "19.05",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "484.476",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "108.629",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "67.934",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "14.72",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "651.341",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "234.285",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "fastspeech_hifigan_en_nnn.onnx",
@@ -1075,35 +3409,11 @@ const modelsData = [
         "primaryDownloadLabel": "fastspeech_hifigan_en.om",
         "downloads": [
             {
-                "title": "fastspeech_hifigan_en.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fastspeech2/resolve/main/fastspeech_hifigan_en.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A16W8",
-                "note": "A16W8",
-                "localFile": "fastspeech_hifigan_en.om"
-            },
-            {
-                "title": "fastspeech_hifigan_en_nnn.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fastspeech2/resolve/main/fastspeech_hifigan_en_nnn.om",
-                "available": true,
-                "source": "om-FP16",
-                "sourceLabel": "FP16",
-                "group": "编译模型",
-                "engine": "Hi3403V100 NNN",
-                "quantization": "FP16",
-                "note": "FP16",
-                "localFile": "fastspeech_hifigan_en_nnn.om"
-            },
-            {
                 "title": "fastspeech_hifigan_en_nnn.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fastspeech2/resolve/main/fastspeech_hifigan_en_nnn.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -1114,13 +3424,105 @@ const modelsData = [
                 "title": "fastspeech_hifigan_en_svp_nnn.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fastspeech2/resolve/main/fastspeech_hifigan_en_svp_nnn.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
                 "note": "",
                 "localFile": "fastspeech_hifigan_en_svp_nnn.onnx"
+            },
+            {
+                "title": "fastspeech_hifigan_en.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fastspeech2/resolve/main/fastspeech_hifigan_en.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "note": "A16W8",
+                "localFile": "fastspeech_hifigan_en.om",
+                "performance": [
+                    {
+                        "value": "52.49",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "19.05",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "484.476",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "108.629",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "fastspeech_hifigan_en_nnn.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-fastspeech2/resolve/main/fastspeech_hifigan_en_nnn.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "note": "FP16",
+                "localFile": "fastspeech_hifigan_en_nnn.om",
+                "performance": [
+                    {
+                        "value": "67.934",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "14.72",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "651.341",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "234.285",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "编译工具库",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             },
             {
                 "title": "fastspeech_hifigan_en.onnx",
@@ -1139,9 +3541,9 @@ const modelsData = [
         "name": "MiniCPM-4v-0.5B",
         "description": "MiniCPM-4v-0.5B: 小参数, 大智慧——端侧多模态模型\n\n由面壁智能(OpenBMB)打造的MiniCPM-4v-0.5B, 以0.53B的精简参数量，在端侧设备上实现了卓越的图文理解与交互能力。专为边缘计算场景设计，让每一分算力都充分发挥价值。\n\n三大核心优势：\n    1. 创新架构，轻装上阵\n通过创新的稀疏感知训练和视觉压缩技术，实现 16:1 视觉特征压缩比，在保证高精度的同时，极大降低了推理算力消耗与内存占用。\n    2. 高能数据，以小博大\n依托高密度数据体系，数据准备成本下降90%。通过汇聚全球高质量语料进行精细化对齐，用优质的数据训练模型，实现越级性能表现。\n    3. 高效训练，成本锐减\n采用原创 WSD 调度策略与“模型风洞”技术，相比传统方案，搜索算力节省超99%，整体训练成本节省约60%，为端侧模型的持续迭代提供高效路径。\n\n海思平台技术支撑：\n现已适配 Hi3403V100 平台，持续生成速度达 21 tokens/s，为边缘侧设备提供流程、敏捷的智能视觉体验。",
         "descriptionZh": "MiniCPM-4v-0.5B: 小参数, 大智慧——端侧多模态模型\n\n由面壁智能(OpenBMB)打造的MiniCPM-4v-0.5B, 以0.53B的精简参数量，在端侧设备上实现了卓越的图文理解与交互能力。专为边缘计算场景设计，让每一分算力都充分发挥价值。\n\n三大核心优势：\n    1. 创新架构，轻装上阵\n通过创新的稀疏感知训练和视觉压缩技术，实现 16:1 视觉特征压缩比，在保证高精度的同时，极大降低了推理算力消耗与内存占用。\n    2. 高能数据，以小博大\n依托高密度数据体系，数据准备成本下降90%。通过汇聚全球高质量语料进行精细化对齐，用优质的数据训练模型，实现越级性能表现。\n    3. 高效训练，成本锐减\n采用原创 WSD 调度策略与“模型风洞”技术，相比传统方案，搜索算力节省超99%，整体训练成本节省约60%，为端侧模型的持续迭代提供高效路径。\n\n海思平台技术支撑：\n现已适配 Hi3403V100 平台，持续生成速度达 21 tokens/s，为边缘侧设备提供流程、敏捷的智能视觉体验。",
-        "descriptionEn": "MiniCPM-4v-0. 5B is a natural language processing model for VLM. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 10 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "MiniCPM-4v-0. 5B is a natural language processing model for VLM. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-05-21 11:51:11",
-        "updatedAt": "2026-06-26 21:38:44",
+        "updatedAt": null,
         "badge": "Beta",
         "betaVersionDesc": "Hi3403V100 SVP_NNN引擎上模型性能待进一步优化。",
         "category": "自然语言处理",
@@ -1160,7 +3562,7 @@ const modelsData = [
             "Hi3403V100 SVP_NNN"
         ],
         "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/vlm/MiniCPM/README.md",
-        "licenseUrl": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B",
+        "licenseUrl": null,
         "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/vlm/MiniCPM/README.md",
         "quickStartMarkdownUrl": null,
         "quickStartReadmes": [
@@ -1185,6 +3587,34 @@ const modelsData = [
                 "value": "413.886 GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "21.300",
+                        "unit": "TPS（Token/s）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "519.740",
+                        "unit": "TTFT（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "544.514",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1217.676",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [],
         "hfRepoId": "shadow-cann/minicpm-v-0.5B",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B",
@@ -1192,18 +3622,6 @@ const modelsData = [
         "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/resolve/main/decode.om",
         "primaryDownloadLabel": "decode.om",
         "downloads": [
-            {
-                "title": "OM 文件 2.zip",
-                "href": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/tree/main",
-                "available": true,
-                "source": "api-all",
-                "sourceLabel": "附加资源",
-                "group": "附加资源",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
             {
                 "title": "MiniCPM-V 0.5B 模型开源发布授权协议-面壁智能&海思（HiSpark）.pdf",
                 "href": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/resolve/main/MiniCPM-V%200.5B%20%E6%A8%A1%E5%9E%8B%E5%BC%80%E6%BA%90%E5%8F%91%E5%B8%83%E6%8E%88%E6%9D%83%E5%8D%8F%E8%AE%AE-%E9%9D%A2%E5%A3%81%E6%99%BA%E8%83%BD%26%E6%B5%B7%E6%80%9D%EF%BC%88HiSpark%EF%BC%89.pdf",
@@ -1221,34 +3639,32 @@ const modelsData = [
                 "source": "mirror-extra",
                 "sourceLabel": "镜像补充",
                 "group": "编译模型",
-                "note": "",
+                "note": "A16W8",
                 "localFile": "decode.om",
                 "engine": "Hi3403V100 SVP_NNN",
-                "quantization": ""
-            },
-            {
-                "title": "prefill_decode.om",
-                "href": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/resolve/main/prefill_decode.om",
-                "available": true,
-                "source": "mirror-extra",
-                "sourceLabel": "镜像补充",
-                "group": "编译模型",
-                "note": "",
-                "localFile": "prefill_decode.om",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": ""
-            },
-            {
-                "title": "resample.om",
-                "href": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/resolve/main/resample.om",
-                "available": true,
-                "source": "mirror-extra",
-                "sourceLabel": "镜像补充",
-                "group": "编译模型",
-                "note": "",
-                "localFile": "resample.om",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": ""
+                "quantization": "A16W8",
+                "performance": [
+                    {
+                        "value": "21.300",
+                        "unit": "TPS（Token/s）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "519.740",
+                        "unit": "TTFT（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "544.514",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1217.676",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
                 "title": "rotary_position_emb0.bin",
@@ -1289,18 +3705,6 @@ const modelsData = [
                 "group": "源模型",
                 "note": "",
                 "localFile": "tokenizer.json"
-            },
-            {
-                "title": "vision.om",
-                "href": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/resolve/main/vision.om",
-                "available": true,
-                "source": "mirror-extra",
-                "sourceLabel": "镜像补充",
-                "group": "编译模型",
-                "note": "",
-                "localFile": "vision.om",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": ""
             }
         ]
     },
@@ -1357,6 +3761,60 @@ const modelsData = [
                 "value": "12.746 M"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "103.419",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "41.71",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "139.937",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "47.867",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "48.415",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "20.64",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "442.179",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "132.621",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "yolov8s-worldv2_svp_nnn.onnx",
@@ -1393,78 +3851,6 @@ const modelsData = [
         "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv2_om-A8W8.om",
         "primaryDownloadLabel": "yolov8s-worldv2_om-A8W8.om",
         "downloads": [
-            {
-                "title": "yolov8s-worldv2_om-A8W8.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv2_om-A8W8.om",
-                "available": true,
-                "source": "om-A8W8",
-                "sourceLabel": "A8W8",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A8W8",
-                "note": "A8W8",
-                "localFile": "yolov8s-worldv2_om-A8W8.om"
-            },
-            {
-                "title": "yolov8s-worldv2.om",
-                "href": null,
-                "available": false,
-                "source": "om-FP16",
-                "sourceLabel": "FP16",
-                "group": "编译模型",
-                "engine": "Hi3403V100 NNN",
-                "quantization": "FP16",
-                "note": "FP16",
-                "localFile": null
-            },
-            {
-                "title": "yolov8s-worldv2_svp_nnn_source-model.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv2_svp_nnn_source-model.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "yolov8s-worldv2_svp_nnn_source-model.onnx"
-            },
-            {
-                "title": "yolov8s-worldv2_source-model.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv2_source-model.pt",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "yolov8s-worldv2_source-model.pt"
-            },
-            {
-                "title": "yolov8s-worldv20_nnn_source-model.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv20_nnn_source-model.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "yolov8s-worldv20_nnn_source-model.onnx"
-            },
-            {
-                "title": "text_feature_source-model.zip",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/text_feature_source-model.zip",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "text_feature_source-model.zip"
-            },
             {
                 "title": "yolov8s-worldv2_svp_nnn.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv2_svp_nnn.onnx",
@@ -1514,12 +3900,80 @@ const modelsData = [
                 "localFile": "text_feature.zip"
             },
             {
+                "title": "yolov8s-worldv2.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "note": "A8W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "103.419",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "41.71",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "139.937",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "47.867",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "yolov8s-worldv2.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "note": "FP16",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "48.415",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "20.64",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "442.179",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "132.621",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
                 "title": "编译工具链",
                 "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
                 "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
                 "engine": "",
                 "quantization": "",
                 "note": "",
@@ -1529,13 +3983,67 @@ const modelsData = [
                 "title": "SDK",
                 "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
                 "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
                 "engine": "",
                 "quantization": "",
                 "note": "",
                 "localFile": null
+            },
+            {
+                "title": "text_feature_source-model.zip",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/text_feature_source-model.zip",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "text_feature_source-model.zip"
+            },
+            {
+                "title": "yolov8s-worldv20_nnn_source-model.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv20_nnn_source-model.onnx",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov8s-worldv20_nnn_source-model.onnx"
+            },
+            {
+                "title": "yolov8s-worldv2_om-A8W8.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv2_om-A8W8.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "A8W8",
+                "localFile": "yolov8s-worldv2_om-A8W8.om",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "performance": [
+                    {
+                        "value": "103.419",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "41.71",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "139.937",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "47.867",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
                 "title": "yolov8s-worldv2_om-FP16.om",
@@ -1547,7 +4055,49 @@ const modelsData = [
                 "note": "FP16",
                 "localFile": "yolov8s-worldv2_om-FP16.om",
                 "engine": "Hi3403V100 NNN",
-                "quantization": "FP16"
+                "quantization": "FP16",
+                "performance": [
+                    {
+                        "value": "48.415",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "20.64",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "442.179",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "132.621",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "yolov8s-worldv2_source-model.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv2_source-model.pt",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov8s-worldv2_source-model.pt"
+            },
+            {
+                "title": "yolov8s-worldv2_svp_nnn_source-model.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-world/resolve/main/yolov8s-worldv2_svp_nnn_source-model.onnx",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov8s-worldv2_svp_nnn_source-model.onnx"
             }
         ]
     },
@@ -1556,7 +4106,7 @@ const modelsData = [
         "name": "Vit-B-16",
         "description": "Vision Transformer（ViT）模型在计算机视觉领域中对CNN的依赖不是必需的，直接将其应用于图像块序列来进行图像分类时，也能得到和目前卷积网络相媲美的准确率。",
         "descriptionZh": "Vision Transformer（ViT）模型在计算机视觉领域中对CNN的依赖不是必需的，直接将其应用于图像块序列来进行图像分类时，也能得到和目前卷积网络相媲美的准确率。",
-        "descriptionEn": "Vit-B-16 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "Vit-B-16 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-04-14 16:32:53",
         "updatedAt": "2026-05-12 19:06:21",
         "badge": null,
@@ -1604,6 +4154,60 @@ const modelsData = [
                 "value": "86.568M"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "23.515",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "42.527",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "259.363",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "92.973",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "45.23",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "22.11",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "309.008",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "396.914",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "vit_base_patch16_224.pt",
@@ -1623,27 +4227,15 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-vit-b-16",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vit-b-16",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vit-b-16/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vit-b-16/resolve/main/vit_base_patch16_224.om",
-        "primaryDownloadLabel": "vit_base_patch16_224.om",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vit-b-16/resolve/main/vit_base_patch16_224_om-A16W8.om",
+        "primaryDownloadLabel": "vit_base_patch16_224_om-A16W8.om",
         "downloads": [
-            {
-                "title": "vit_base_patch16_224.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vit-b-16/resolve/main/vit_base_patch16_224.om",
-                "available": true,
-                "source": "om-A16W8",
-                "sourceLabel": "A16W8",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A16W8",
-                "note": "A16W8",
-                "localFile": "vit_base_patch16_224.om"
-            },
             {
                 "title": "vit_base_patch16_224.pt",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vit-b-16/resolve/main/vit_base_patch16_224.pt",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -1654,8 +4246,8 @@ const modelsData = [
                 "title": "vit_base_patch16_224_bs1.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vit-b-16/resolve/main/vit_base_patch16_224_bs1.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -1663,28 +4255,38 @@ const modelsData = [
                 "localFile": "vit_base_patch16_224_bs1.onnx"
             },
             {
-                "title": "CANN配置",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具库",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "title": "vit_base_patch16_224.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "note": "A16W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "23.515",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "42.527",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "259.363",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "92.973",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
                 "title": "vit_base_patch16_224.om",
@@ -1696,6 +4298,64 @@ const modelsData = [
                 "engine": "Hi3403V100 NNN",
                 "quantization": "FP16",
                 "note": "FP16",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "45.23",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "22.11",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "309.008",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "396.914",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "CANN配置",
+                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具库",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
                 "localFile": null
             },
             {
@@ -1708,7 +4368,63 @@ const modelsData = [
                 "note": "A16W8",
                 "localFile": "vit_base_patch16_224_om-A16W8.om",
                 "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A16W8"
+                "quantization": "A16W8",
+                "performance": [
+                    {
+                        "value": "23.515",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "42.527",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "259.363",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "92.973",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "vit_base_patch16_224_om-FP16.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vit-b-16/resolve/main/vit_base_patch16_224_om-FP16.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "FP16",
+                "localFile": "vit_base_patch16_224_om-FP16.om",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "performance": [
+                    {
+                        "value": "45.23",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "22.11",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "309.008",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "396.914",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             }
         ]
     },
@@ -1765,6 +4481,60 @@ const modelsData = [
                 "value": "7.240 M"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "28.185",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "35.48",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "180.745",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "49.863",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "55.340",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "18.07",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "345.718",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "122.281",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "yolov9s.pt",
@@ -1784,27 +4554,15 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-yolov9s",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov9s",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov9s/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov9s/resolve/main/yolov9s.om",
-        "primaryDownloadLabel": "yolov9s.om",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov9s/resolve/main/yolov9s_om-FP16.om",
+        "primaryDownloadLabel": "yolov9s_om-FP16.om",
         "downloads": [
-            {
-                "title": "yolov9s.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov9s/resolve/main/yolov9s.om",
-                "available": true,
-                "source": "om-A16W8",
-                "sourceLabel": "A16W8",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A16W8",
-                "note": "A16W8",
-                "localFile": "yolov9s.om"
-            },
             {
                 "title": "yolov9s.pt",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov9s/resolve/main/yolov9s.pt",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -1815,8 +4573,8 @@ const modelsData = [
                 "title": "yolov9s.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov9s/resolve/main/yolov9s.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -1824,40 +4582,38 @@ const modelsData = [
                 "localFile": "yolov9s.onnx"
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "title": "yolov9s.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "note": "A16W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "28.185",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "35.48",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "180.745",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "49.863",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
                 "title": "yolov9s.om",
@@ -1869,7 +4625,99 @@ const modelsData = [
                 "engine": "Hi3403V100 NNN",
                 "quantization": "FP16",
                 "note": "FP16",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "55.340",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "18.07",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "345.718",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "122.281",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "CANN工具",
+                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
                 "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "yolov9s_om-FP16.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov9s/resolve/main/yolov9s_om-FP16.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "FP16",
+                "localFile": "yolov9s_om-FP16.om",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "performance": [
+                    {
+                        "value": "55.340",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "18.07",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "345.718",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "122.281",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             }
         ]
     },
@@ -1878,7 +4726,7 @@ const modelsData = [
         "name": "PaddleOCRv4-rec",
         "description": "PP-OCRv4识别模型在PP-OCRv3的基础上进一步升级。整体的框架保持了与PP-OCRv3识别模型相同的pipeline，分别进行了数据、网络结构、训练策略等方面的优化。",
         "descriptionZh": "PP-OCRv4识别模型在PP-OCRv3的基础上进一步升级。整体的框架保持了与PP-OCRv3识别模型相同的pipeline，分别进行了数据、网络结构、训练策略等方面的优化。",
-        "descriptionEn": "PaddleOCRv4-rec is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "PaddleOCRv4-rec is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 8 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-04-02 09:49:40",
         "updatedAt": "2026-04-08 16:07:07",
         "badge": "Beta",
@@ -1926,6 +4774,60 @@ const modelsData = [
                 "value": "24.83GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "11.045",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "90.54",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "76.95",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "12.343",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "22.163",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "45.12",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "219.498",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "238.387",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "ch_ptocr_v4_rec_infer.pth",
@@ -1945,45 +4847,9 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-paddleocrv4-rec",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/rec.om",
-        "primaryDownloadLabel": "rec.om",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/rec_om-FP16.om",
+        "primaryDownloadLabel": "rec_om-FP16.om",
         "downloads": [
-            {
-                "title": "rec.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/rec.om",
-                "available": true,
-                "source": "om-A8W8",
-                "sourceLabel": "A8W8",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A8W8",
-                "note": "A8W8",
-                "localFile": "rec.om"
-            },
-            {
-                "title": "ch_ptocr_v4_rec_infer_source-model.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/ch_ptocr_v4_rec_infer_source-model.pth",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "ch_ptocr_v4_rec_infer_source-model.pth"
-            },
-            {
-                "title": "ch_ptocr_v4_rec_simplified_source-model.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/ch_ptocr_v4_rec_simplified_source-model.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "ch_ptocr_v4_rec_simplified_source-model.onnx"
-            },
             {
                 "title": "ch_ptocr_v4_rec_infer.pth",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/ch_ptocr_v4_rec_infer.pth",
@@ -2015,13 +4881,69 @@ const modelsData = [
                 "source": "omOfflineModel",
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "note": "A8W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "11.045",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "90.54",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "76.95",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "12.343",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "rec.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
                 "engine": "Hi3403V100 NNN",
                 "quantization": "FP16",
                 "note": "FP16",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "22.163",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "45.12",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "219.498",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "238.387",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -2031,6 +4953,84 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "ch_ptocr_v4_rec_infer_source-model.pth",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/ch_ptocr_v4_rec_infer_source-model.pth",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "ch_ptocr_v4_rec_infer_source-model.pth"
+            },
+            {
+                "title": "ch_ptocr_v4_rec_simplified_source-model.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/ch_ptocr_v4_rec_simplified_source-model.onnx",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "ch_ptocr_v4_rec_simplified_source-model.onnx"
+            },
+            {
+                "title": "rec_om-FP16.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-rec/resolve/main/rec_om-FP16.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "FP16",
+                "localFile": "rec_om-FP16.om",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "performance": [
+                    {
+                        "value": "22.163",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "45.12",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "219.498",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "238.387",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             }
         ]
     },
@@ -2039,7 +5039,7 @@ const modelsData = [
         "name": "YOLOv5s",
         "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv5网络模型在继承了原有YOLO网络模型优点的基础上，具有更优的检测精度和更快的推理速度。本示例使用YOLOv5s。",
         "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv5网络模型在继承了原有YOLO网络模型优点的基础上，具有更优的检测精度和更快的推理速度。本示例使用YOLOv5s。",
-        "descriptionEn": "YOLOv5s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv5s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-04-01 16:31:00",
         "updatedAt": "2026-04-08 16:07:07",
         "badge": null,
@@ -2087,6 +5087,60 @@ const modelsData = [
                 "value": "18.066GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "11.69",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "85.53",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "45.99",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "29.395",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "28.137",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "35.54",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "204.298",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "66.164",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "yolov5s.pt",
@@ -2106,45 +5160,9 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-yolov5s",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s_source-model.pt",
-        "primaryDownloadLabel": "yolov5s_source-model.pt",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s.pt",
+        "primaryDownloadLabel": "yolov5s.pt",
         "downloads": [
-            {
-                "title": "yolov5s.om",
-                "href": null,
-                "available": false,
-                "source": "om-A8W8",
-                "sourceLabel": "A8W8",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A8W8",
-                "note": "A8W8",
-                "localFile": null
-            },
-            {
-                "title": "yolov5s_source-model.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s_source-model.pt",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "yolov5s_source-model.pt"
-            },
-            {
-                "title": "yolov5s.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "yolov5s.onnx"
-            },
             {
                 "title": "yolov5s.pt",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s.pt",
@@ -2158,6 +5176,52 @@ const modelsData = [
                 "localFile": "yolov5s.pt"
             },
             {
+                "title": "yolov5s.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "yolov5s.onnx"
+            },
+            {
+                "title": "yolov5s.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "note": "A8W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "11.69",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "85.53",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "45.99",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "29.395",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
                 "title": "yolov5s.om",
                 "href": null,
                 "available": false,
@@ -2167,10 +5231,32 @@ const modelsData = [
                 "engine": "Hi3403V100 NNN",
                 "quantization": "FP16",
                 "note": "FP16",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "28.137",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "35.54",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "204.298",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "66.164",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -2180,6 +5266,40 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "yolov5s_source-model.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov5s/resolve/main/yolov5s_source-model.pt",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov5s_source-model.pt"
             }
         ]
     },
@@ -2188,7 +5308,7 @@ const modelsData = [
         "name": "YOLOv3",
         "description": "YOLOv3是一种端到端的one-stage目标检测模型。相比YOLOv2，YOLOv3采用了一个新的backbone-Darknet-53来进行特征提取工作，这个新网络比Darknet-19更加强大，也比ResNet-101或者ResNet-152更加高效。",
         "descriptionZh": "YOLOv3是一种端到端的one-stage目标检测模型。相比YOLOv2，YOLOv3采用了一个新的backbone-Darknet-53来进行特征提取工作，这个新网络比Darknet-19更加强大，也比ResNet-101或者ResNet-152更加高效。",
-        "descriptionEn": "YOLOv3 is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 8 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv3 is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 10 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-04-01 16:02:45",
         "updatedAt": "2026-04-08 16:07:07",
         "badge": null,
@@ -2236,6 +5356,60 @@ const modelsData = [
                 "value": "3.002GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "57.15",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "17.5",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "148.001",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "86.848",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "130.05",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "7.69",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "80.735",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "346.551",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "yolov3.pt",
@@ -2262,57 +5436,9 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-yolov3",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3.om",
-        "primaryDownloadLabel": "yolov3.om",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3_om-FP16.om",
+        "primaryDownloadLabel": "yolov3_om-FP16.om",
         "downloads": [
-            {
-                "title": "yolov3.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3.om",
-                "available": true,
-                "source": "om-A8W8",
-                "sourceLabel": "A8W8",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A8W8",
-                "note": "A8W8",
-                "localFile": "yolov3.om"
-            },
-            {
-                "title": "yolov3_source-model.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3_source-model.pt",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "yolov3_source-model.pt"
-            },
-            {
-                "title": "yolov3_sim_source-model.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3_sim_source-model.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "yolov3_sim_source-model.onnx"
-            },
-            {
-                "title": "yolov3_source-model.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3_source-model.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "yolov3_source-model.onnx"
-            },
             {
                 "title": "yolov3.pt",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3.pt",
@@ -2356,13 +5482,69 @@ const modelsData = [
                 "source": "omOfflineModel",
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "note": "A8W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "57.15",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "17.5",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "148.001",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "86.848",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "yolov3.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
                 "engine": "Hi3403V100 NNN",
                 "quantization": "FP16",
                 "note": "FP16",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "130.05",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "7.69",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "80.735",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "346.551",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -2372,6 +5554,94 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "yolov3_om-FP16.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3_om-FP16.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "FP16",
+                "localFile": "yolov3_om-FP16.om",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "performance": [
+                    {
+                        "value": "130.05",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "7.69",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "80.735",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "346.551",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "yolov3_sim_source-model.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3_sim_source-model.onnx",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov3_sim_source-model.onnx"
+            },
+            {
+                "title": "yolov3_source-model.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3_source-model.onnx",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov3_source-model.onnx"
+            },
+            {
+                "title": "yolov3_source-model.pt",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov3/resolve/main/yolov3_source-model.pt",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "yolov3_source-model.pt"
             }
         ]
     },
@@ -2380,7 +5650,7 @@ const modelsData = [
         "name": "PaddleOCRv4-det",
         "description": "PP-OCRv4检测模型在PP-OCRv3检测模型的基础上，在网络结构，训练策略，蒸馏策略三个方面做了优化。首先，PP-OCRv4检测模型使用PP-LCNetV3替换MobileNetv3，并提出并行分支融合的PFhead结构；其次，训练时动态调整shrink ratio的比例；最后，PP-OCRv4对CML的蒸馏loss进行优化，进一步提升文字检测效果。",
         "descriptionZh": "PP-OCRv4检测模型在PP-OCRv3检测模型的基础上，在网络结构，训练策略，蒸馏策略三个方面做了优化。首先，PP-OCRv4检测模型使用PP-LCNetV3替换MobileNetv3，并提出并行分支融合的PFhead结构；其次，训练时动态调整shrink ratio的比例；最后，PP-OCRv4对CML的蒸馏loss进行优化，进一步提升文字检测效果。",
-        "descriptionEn": "PaddleOCRv4-det is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "PaddleOCRv4-det is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-04-01 15:56:01",
         "updatedAt": "2026-04-08 16:07:07",
         "badge": null,
@@ -2428,6 +5698,60 @@ const modelsData = [
                 "value": "24.83GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "69.686",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "14.35",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "555.06",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "100.082",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "279.77",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "3.57",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1995.893",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "203.766",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "ch_ptocr_v4_det_infer.pth",
@@ -2447,45 +5771,9 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-paddleocrv4-det",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/det.om",
-        "primaryDownloadLabel": "det.om",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/det_om-FP16.om",
+        "primaryDownloadLabel": "det_om-FP16.om",
         "downloads": [
-            {
-                "title": "det.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/det.om",
-                "available": true,
-                "source": "om-A8W8",
-                "sourceLabel": "A8W8",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A8W8",
-                "note": "A8W8",
-                "localFile": "det.om"
-            },
-            {
-                "title": "ch_ptocr_v4_det_infer_source-model.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/ch_ptocr_v4_det_infer_source-model.pth",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "ch_ptocr_v4_det_infer_source-model.pth"
-            },
-            {
-                "title": "ch_ptocr_v4_det_simplified_source-model.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/ch_ptocr_v4_det_simplified_source-model.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "ch_ptocr_v4_det_simplified_source-model.onnx"
-            },
             {
                 "title": "ch_ptocr_v4_det_infer.pth",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/ch_ptocr_v4_det_infer.pth",
@@ -2517,158 +5805,70 @@ const modelsData = [
                 "source": "omOfflineModel",
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
-                "engine": "Hi3403V100 NNN",
-                "quantization": "FP16",
-                "note": "FP16",
-                "localFile": null
-            }
-        ]
-    },
-    {
-        "id": "j8pfkrsgtk00",
-        "name": "Depth-Anything-v2",
-        "description": "Depth Anything V2在细节和鲁棒性方面显著优于 V1。与基于 SD 的模型相比，它具有更快的推理速度、更少的参数和更高的深度精度。本示例使用的是Depth-Anything-V2-Small。",
-        "descriptionZh": "Depth Anything V2在细节和鲁棒性方面显著优于 V1。与基于 SD 的模型相比，它具有更快的推理速度、更少的参数和更高的深度精度。本示例使用的是Depth-Anything-V2-Small。",
-        "descriptionEn": "Depth-Anything-v2 is a computer vision model for monocular depth. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 9 downloadable artifacts, along with quick-start resources when available.",
-        "date": "2026-04-01 15:40:59",
-        "updatedAt": "2026-04-08 16:07:07",
-        "badge": "Beta",
-        "betaVersionDesc": "Hi3403V100 NNN引擎上模型性能待进一步优化",
-        "category": "计算机视觉",
-        "tags": [
-            "单目深度"
-        ],
-        "image": "assets/images/1700942867267585_depth.png",
-        "coverImageUrl": "assets/images/1700942867267585_depth.png",
-        "framework": [
-            "PyTorch"
-        ],
-        "supportOs": [
-            "OpenHarmony",
-            "Linux"
-        ],
-        "computingPower": [
-            "Hi3403V100 SVP_NNN",
-            "Hi3403V100 NNN"
-        ],
-        "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/depth/Depth-Anything-v2",
-        "licenseUrl": "https://github.com/DepthAnything/Depth-Anything-V2/blob/main/LICENSE",
-        "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/depth/Depth-Anything-v2",
-        "quickStartMarkdownUrl": null,
-        "quickStartReadmes": [
-            {
-                "language": "C++",
-                "content": "Depth-Anything-v2模型可以通过以下代码完成快速推理\n\nusing namespace Infer;\n\nint main()\n{\n    std::string modelPath = \"/path/to/imgModel.om\"; // 模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::string aclConfigPath = \"/path/to/acl.cfg\"; // 输入acl的配置路径\n    int ret;\n    ret = Infer::DevInit(aclConfigPath);\n    std::shared_ptr<Infer::MdlBase> model = Infer::MdlCreate();\n    ret = model->LoadModel(modelPath);\n    std::vector<std::string> imglists;\n    ret = ReadImglistFile(imagePath, imglists);\n    std::vector<Infer::TensorBuf> inBufs, outBufs;\n    std::vector<Infer::TensorDesc> inDescs, outDescs;\n    Infer::TensorDesc desc;\n    size_t inputNum = model->GetInTensorNum();\n    size_t  outputNum = model->GetOutTensorNum();\n    for (size_t i = 0; i < inputNum; i++) {\n        model->GetInTensorDescByIdx(i, desc);\n        inDescs.push_back(desc);\n        inBufs.emplace_back(desc.defaultSize, desc.defaultStride);\n    }\n    for (size_t i = 0; i < outputNum; i++) {\n        model->GetOutTensorDescByIdx(i, desc);\n        outDescs.push_back(desc);\n        outBufs.emplace_back(desc.defaultSize, desc.defaultStride);\n    }\n    model->GetInTensorDescByIdx(0, desc);\n    for (size_t i = 0; i < imglists.size(); ++i) {\n        ret = ReadImgFileToBuf(imglists[i], desc, inBufs[0]);\n        ret = model->Execute(inBufs, outBufs);\n        (void)PostProcess(outBufs, outDescs, imglists[i]);\n    }\n    model->UnLoadModel();\n    Infer::DevDeInit();\n    return 0;\n}\n备注：上述C++代码仅展示了主要流程，详细实现请参考Depth-Anything-v2 (https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/depth/Depth-Anything-v2)。",
-                "summary": "Depth-Anything-v2模型可以通过以下代码完成快速推理",
-                "summaryEn": "C++ quick-start notes for Depth-Anything-v2. Covers runtime initialization, inference execution, and configuration handling."
-            }
-        ],
-        "detailParams": [
-            {
-                "name": "输入",
-                "value": "518x518"
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "note": "A8W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "69.686",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "14.35",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "555.06",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "100.082",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "name": "参数量",
-                "value": "24.184M"
-            },
-            {
-                "name": "计算量",
-                "value": "127.785GFLOPs"
-            }
-        ],
-        "originModels": [
-            {
-                "name": "depth_anything_v2_vits.pth",
-                "size": "94.6 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits.pth",
-                "available": true,
-                "localFile": "depth_anything_v2_vits.pth"
-            },
-            {
-                "name": "depth_anything_v2_vits_nnn.onnx",
-                "size": "94.4 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits_nnn.onnx",
-                "available": true,
-                "localFile": "depth_anything_v2_vits_nnn.onnx"
-            },
-            {
-                "name": "depth_anything_v2_vits_svp_nnn.onnx",
-                "size": "94.4 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits_svp_nnn.onnx",
-                "available": true,
-                "localFile": "depth_anything_v2_vits_svp_nnn.onnx"
-            }
-        ],
-        "hfRepoId": "shadow-cann/hispark-modelzoo-depth-anything-v2",
-        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2",
-        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depthanything.om",
-        "primaryDownloadLabel": "depthanything.om",
-        "downloads": [
-            {
-                "title": "depthanything.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depthanything.om",
-                "available": true,
+                "title": "det.om",
+                "href": null,
+                "available": false,
                 "source": "omOfflineModel",
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A16W8",
-                "note": "A16W8",
-                "localFile": "depthanything.om"
-            },
-            {
-                "title": "depth_anything_v2.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2.om",
-                "available": true,
-                "source": "om-FP16",
-                "sourceLabel": "FP16",
-                "group": "编译模型",
                 "engine": "Hi3403V100 NNN",
                 "quantization": "FP16",
                 "note": "FP16",
-                "localFile": "depth_anything_v2.om"
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "279.77",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "3.57",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1995.893",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "203.766",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "depth_anything_v2_vits.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits.pth",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "depth_anything_v2_vits.pth"
-            },
-            {
-                "title": "depth_anything_v2_vits_nnn.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits_nnn.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "depth_anything_v2_vits_nnn.onnx"
-            },
-            {
-                "title": "depth_anything_v2_vits_svp_nnn.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits_svp_nnn.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "depth_anything_v2_vits_svp_nnn.onnx"
-            },
-            {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
                 "available": true,
                 "source": "api-all",
                 "sourceLabel": "附加资源",
@@ -2676,39 +5876,73 @@ const modelsData = [
                 "engine": "",
                 "quantization": "",
                 "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+                "localFile": null
             },
             {
-                "title": "depth_anything_v2_vits.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits.onnx",
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "ch_ptocr_v4_det_infer_source-model.pth",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/ch_ptocr_v4_det_infer_source-model.pth",
                 "available": true,
                 "source": "mirror-extra",
                 "sourceLabel": "镜像补充",
                 "group": "源模型",
                 "note": "",
-                "localFile": "depth_anything_v2_vits.onnx"
+                "localFile": "ch_ptocr_v4_det_infer_source-model.pth"
             },
             {
-                "title": "depth_anything_v2_vits_source-model.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depth_anything_v2_vits_source-model.pth",
+                "title": "ch_ptocr_v4_det_simplified_source-model.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/ch_ptocr_v4_det_simplified_source-model.onnx",
                 "available": true,
                 "source": "mirror-extra",
                 "sourceLabel": "镜像补充",
                 "group": "源模型",
                 "note": "",
-                "localFile": "depth_anything_v2_vits_source-model.pth"
+                "localFile": "ch_ptocr_v4_det_simplified_source-model.onnx"
             },
             {
-                "title": "depthanything_om-FP16.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-depth-anything-v2/resolve/main/depthanything_om-FP16.om",
+                "title": "det_om-FP16.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-paddleocrv4-det/resolve/main/det_om-FP16.om",
                 "available": true,
                 "source": "mirror-extra",
                 "sourceLabel": "镜像补充",
                 "group": "编译模型",
                 "note": "FP16",
-                "localFile": "depthanything_om-FP16.om",
+                "localFile": "det_om-FP16.om",
                 "engine": "Hi3403V100 NNN",
-                "quantization": "FP16"
+                "quantization": "FP16",
+                "performance": [
+                    {
+                        "value": "279.77",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "3.57",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1995.893",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "203.766",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             }
         ]
     },
@@ -2717,7 +5951,7 @@ const modelsData = [
         "name": "Chinese-CLIP",
         "description": "Chinese-CLIP 是 CLIP 模型的中文版本。CLIP 通过对比学习方式，同时学习图像和文本的表示，并能够理解两者之间的语义关联。Chinese-CLIP 使用约 2 亿规模的中文图文对进行训练，其核心目标是解决中文场景下的跨模态检索、图像表示生成等任务。",
         "descriptionZh": "Chinese-CLIP 是 CLIP 模型的中文版本。CLIP 通过对比学习方式，同时学习图像和文本的表示，并能够理解两者之间的语义关联。Chinese-CLIP 使用约 2 亿规模的中文图文对进行训练，其核心目标是解决中文场景下的跨模态检索、图像表示生成等任务。",
-        "descriptionEn": "Chinese-CLIP is a multimodal model for image-text matching. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 10 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "Chinese-CLIP is a multimodal model for image-text matching. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 14 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-31 21:34:55",
         "updatedAt": null,
         "badge": "Beta",
@@ -2765,6 +5999,60 @@ const modelsData = [
                 "value": "36.381GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "89.754",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "11.142",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "573.585",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "91.703",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "1049.88",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "0.95",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "8372.353",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "506.328",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "vit-b-16_img_sim_NNN.onnx",
@@ -2809,35 +6097,11 @@ const modelsData = [
         "primaryDownloadLabel": "clip_img_om-A16W8.om",
         "downloads": [
             {
-                "title": "clip_img.om",
-                "href": null,
-                "available": false,
-                "source": "om-A16W8",
-                "sourceLabel": "A16W8",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A16W8",
-                "note": "A16W8",
-                "localFile": null
-            },
-            {
-                "title": "clip_text.om",
-                "href": null,
-                "available": false,
-                "source": "om-A16W8",
-                "sourceLabel": "A16W8",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A16W8",
-                "note": "A16W8",
-                "localFile": null
-            },
-            {
                 "title": "vit-b-16_img_sim_NNN.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_img_sim_NNN.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -2848,8 +6112,8 @@ const modelsData = [
                 "title": "vit-b-16_txt_sim_NNN.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_txt_sim_NNN.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -2860,8 +6124,8 @@ const modelsData = [
                 "title": "vit-b-16_img_sim_SVP_NNN.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_img_sim_SVP_NNN.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -2872,8 +6136,8 @@ const modelsData = [
                 "title": "vit-b-16_txt_sim_SVP_NNN.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/vit-b-16_txt_sim_SVP_NNN.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -2884,8 +6148,8 @@ const modelsData = [
                 "title": "clip_cn_vit-b-16.pt",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_cn_vit-b-16.pt",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -2899,10 +6163,100 @@ const modelsData = [
                 "source": "omOfflineModel",
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "note": "A16W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "89.754",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "11.142",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "573.585",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "91.703",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "clip_text.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "note": "A16W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "89.754",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "11.142",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "573.585",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "91.703",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "clip_img.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
                 "engine": "Hi3403V100 NNN",
                 "quantization": "FP16",
                 "note": "FP16",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "1049.88",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "0.95",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "8372.353",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "506.328",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
                 "title": "clip_text.om",
@@ -2914,10 +6268,32 @@ const modelsData = [
                 "engine": "Hi3403V100 NNN",
                 "quantization": "FP16",
                 "note": "FP16",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "1049.88",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "0.95",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "8372.353",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "506.328",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -2929,6 +6305,30 @@ const modelsData = [
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
             },
             {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
                 "title": "clip_img_om-A16W8.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_img_om-A16W8.om",
                 "available": true,
@@ -2938,7 +6338,21 @@ const modelsData = [
                 "note": "A16W8",
                 "localFile": "clip_img_om-A16W8.om",
                 "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A16W8"
+                "quantization": "A16W8",
+                "performance": []
+            },
+            {
+                "title": "clip_img_om-FP16.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_img_om-FP16.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "FP16",
+                "localFile": "clip_img_om-FP16.om",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "performance": []
             },
             {
                 "title": "clip_text_om-A16W8.om",
@@ -2950,7 +6364,21 @@ const modelsData = [
                 "note": "A16W8",
                 "localFile": "clip_text_om-A16W8.om",
                 "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A16W8"
+                "quantization": "A16W8",
+                "performance": []
+            },
+            {
+                "title": "clip_text_om-FP16.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-chinese-clip/resolve/main/clip_text_om-FP16.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "FP16",
+                "localFile": "clip_text_om-FP16.om",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "performance": []
             },
             {
                 "title": "vit-b-16_img_sim.onnx",
@@ -3027,6 +6455,50 @@ const modelsData = [
                 "value": "11.164M"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "1.443",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "693.28",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "59.863",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "14.186",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "70.49",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "157.676",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "yolov5s.onnx",
@@ -3046,63 +6518,15 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-deepsort",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-deepsort",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-deepsort/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-deepsort/resolve/main/yolov5s_om-A8W8.om",
-        "primaryDownloadLabel": "yolov5s_om-A8W8.om",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-deepsort/resolve/main/reid_net_om-A8W8.om",
+        "primaryDownloadLabel": "reid_net_om-A8W8.om",
         "downloads": [
-            {
-                "title": "yolov5s_om-A8W8.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-deepsort/resolve/main/yolov5s_om-A8W8.om",
-                "available": true,
-                "source": "om-A8W8",
-                "sourceLabel": "A8W8",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A8W8",
-                "note": "A8W8",
-                "localFile": "yolov5s_om-A8W8.om"
-            },
-            {
-                "title": "reid_net_om-A8W8.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-deepsort/resolve/main/reid_net_om-A8W8.om",
-                "available": true,
-                "source": "om-A8W8",
-                "sourceLabel": "A8W8",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A8W8",
-                "note": "A8W8",
-                "localFile": "reid_net_om-A8W8.om"
-            },
-            {
-                "title": "yolov5s.om",
-                "href": null,
-                "available": false,
-                "source": "om-FP16",
-                "sourceLabel": "FP16",
-                "group": "编译模型",
-                "engine": "Hi3403V100 NNN",
-                "quantization": "FP16",
-                "note": "FP16",
-                "localFile": null
-            },
-            {
-                "title": "reid_net.om",
-                "href": null,
-                "available": false,
-                "source": "om-FP16",
-                "sourceLabel": "FP16",
-                "group": "编译模型",
-                "engine": "Hi3403V100 NNN",
-                "quantization": "FP16",
-                "note": "FP16",
-                "localFile": null
-            },
             {
                 "title": "yolov5s.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-deepsort/resolve/main/yolov5s.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -3113,8 +6537,8 @@ const modelsData = [
                 "title": "reid_net.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-deepsort/resolve/main/reid_net.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -3122,12 +6546,128 @@ const modelsData = [
                 "localFile": "reid_net.onnx"
             },
             {
+                "title": "yolov5s.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "note": "A8W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "1.443",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "693.28",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "59.863",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "reid_net.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "note": "A8W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "1.443",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "693.28",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "59.863",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "yolov5s.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "note": "FP16",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "14.186",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "70.49",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "157.676",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "reid_net.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "note": "FP16",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "14.186",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "70.49",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "157.676",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
                 "title": "CANN工具",
                 "href": "https://hf-mirror.com/shadow-cann/svp-nnn-pc/resolve/main/SVP_NNN_PC_V1.0.6.5.tgz",
                 "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
                 "engine": "",
                 "quantization": "",
                 "note": "",
@@ -3137,9 +6677,9 @@ const modelsData = [
                 "title": "编译工具库",
                 "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
                 "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
                 "engine": "",
                 "quantization": "",
                 "note": "",
@@ -3149,13 +6689,39 @@ const modelsData = [
                 "title": "SDK",
                 "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
                 "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
                 "engine": "",
                 "quantization": "",
                 "note": "",
                 "localFile": null
+            },
+            {
+                "title": "reid_net_om-A8W8.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-deepsort/resolve/main/reid_net_om-A8W8.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "A8W8",
+                "localFile": "reid_net_om-A8W8.om",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "performance": []
+            },
+            {
+                "title": "yolov5s_om-A8W8.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-deepsort/resolve/main/yolov5s_om-A8W8.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "A8W8",
+                "localFile": "yolov5s_om-A8W8.om",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "performance": []
             }
         ]
     },
@@ -3164,7 +6730,7 @@ const modelsData = [
         "name": "MobileNetV2",
         "description": "MobileNetV2是对MobileNetV1的改进，是一种轻量级的神经网络。MobileNetV2保留了V1版本的深度可分离卷积，增加了线性瓶颈（Linear Bottleneck）和倒残差（Inverted Residual）。",
         "descriptionZh": "MobileNetV2是对MobileNetV1的改进，是一种轻量级的神经网络。MobileNetV2保留了V1版本的深度可分离卷积，增加了线性瓶颈（Linear Bottleneck）和倒残差（Inverted Residual）。",
-        "descriptionEn": "MobileNetV2 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "MobileNetV2 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-24 16:23:20",
         "updatedAt": "2026-03-26 09:35:37",
         "badge": null,
@@ -3212,6 +6778,60 @@ const modelsData = [
                 "value": "0.640GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "78.209",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1278.63",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "4.11",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "6.727",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "3.207",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "311.8",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "38.008",
+                        "unit": "单帧带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "65.434",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "mobilenet_v2-b0353104.pth",
@@ -3238,25 +6858,13 @@ const modelsData = [
                 "title": "mobilenet_v2-b0353104.pth",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-mobilenetv2/resolve/main/mobilenet_v2-b0353104.pth",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
                 "note": "",
                 "localFile": "mobilenet_v2-b0353104.pth"
-            },
-            {
-                "title": "mobilenet_v2.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-mobilenetv2/resolve/main/mobilenet_v2.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "mobilenet_v2.onnx"
             },
             {
                 "title": "mobilenetV2.onnx",
@@ -3280,31 +6888,29 @@ const modelsData = [
                 "engine": "Hi3403V100 SVP_NNN",
                 "quantization": "A8W8",
                 "note": "A8W8",
-                "localFile": null
-            },
-            {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "78.209",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1278.63",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "4.11",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "6.727",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
                 "title": "mobileNetV2.om",
@@ -3316,7 +6922,75 @@ const modelsData = [
                 "engine": "Hi3403V100 NNN",
                 "quantization": "FP16",
                 "note": "FP16",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "3.207",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "311.8",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "38.008",
+                        "unit": "单帧带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "65.434",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "CANN工具",
+                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
                 "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "mobilenet_v2.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-mobilenetv2/resolve/main/mobilenet_v2.onnx",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "mobilenet_v2.onnx"
             }
         ]
     },
@@ -3325,7 +6999,7 @@ const modelsData = [
         "name": "SuperPoint",
         "description": "SuperPoint模型的全卷积神经网络架构对全尺寸图像进行操作，并在单次前向传递中产生伴随固定长度描述符的兴趣点检测。该模型有一个单一的共享编码器来处理和减少输入图像的维数。在编码器之后，该架构分成两个解码器“头”，它们学习任务特定权重——一个用于兴趣点检测，另一个用于感兴趣点描述。大多数网络参数在两个任务之间共享，这与传统系统不同，传统系统首先检测兴趣点，然后计算描述符，并且缺乏跨两个任务共享计算和表示的能力。",
         "descriptionZh": "SuperPoint模型的全卷积神经网络架构对全尺寸图像进行操作，并在单次前向传递中产生伴随固定长度描述符的兴趣点检测。该模型有一个单一的共享编码器来处理和减少输入图像的维数。在编码器之后，该架构分成两个解码器“头”，它们学习任务特定权重——一个用于兴趣点检测，另一个用于感兴趣点描述。大多数网络参数在两个任务之间共享，这与传统系统不同，传统系统首先检测兴趣点，然后计算描述符，并且缺乏跨两个任务共享计算和表示的能力。",
-        "descriptionEn": "SuperPoint is a computer vision model for feature point detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "SuperPoint is a computer vision model for feature point detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-16 21:11:02",
         "updatedAt": null,
         "badge": null,
@@ -3373,6 +7047,60 @@ const modelsData = [
                 "value": "13.116GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "3.127",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "319.8",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "5.679",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "8.027",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "15.21",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "65.76",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "80.735",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "66.686",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "superpoint_bs1.onnx",
@@ -3399,25 +7127,13 @@ const modelsData = [
                 "title": "superpoint_bs1.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-superpoint/resolve/main/superpoint_bs1.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
                 "note": "",
                 "localFile": "superpoint_bs1.onnx"
-            },
-            {
-                "title": "superPointNet_170000_checkpoint.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-superpoint/resolve/main/superPointNet_170000_checkpoint.pth",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "superPointNet_170000_checkpoint.pth"
             },
             {
                 "title": "SuperPointNet.pth",
@@ -3441,7 +7157,29 @@ const modelsData = [
                 "engine": "Hi3403V100 SVP_NNN",
                 "quantization": "A8W8",
                 "note": "A8W8",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "3.127",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "319.8",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "5.679",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "8.027",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
                 "title": "superpoint_bs1.om",
@@ -3453,22 +7191,32 @@ const modelsData = [
                 "engine": "Hi3403V100 NNN",
                 "quantization": "FP16",
                 "note": "FP16",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "15.21",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "65.76",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "80.735",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "66.686",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "link",
-                "href": null,
-                "available": false,
-                "source": "api-all",
-                "sourceLabel": "附加资源",
-                "group": "附加资源",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -3480,6 +7228,30 @@ const modelsData = [
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
             },
             {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
                 "title": "superpoint_bs1_om-A8W8.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-superpoint/resolve/main/superpoint_bs1_om-A8W8.om",
                 "available": true,
@@ -3489,7 +7261,29 @@ const modelsData = [
                 "note": "A8W8",
                 "localFile": "superpoint_bs1_om-A8W8.om",
                 "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A8W8"
+                "quantization": "A8W8",
+                "performance": [
+                    {
+                        "value": "3.127",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "319.8",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "5.679",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "8.027",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             }
         ]
     },
@@ -3498,7 +7292,7 @@ const modelsData = [
         "name": "DenseNet121",
         "description": "DenseNet 针对 ResNet 的冗余结构提出了改进：让网络中的每一层和前面的所有层相连，同时把每一层设计的比较窄，使每一层学到的特征变少从而降低冗余。除了减少参数量之外，该结构还有减轻梯度消失问题、增强特征传播等优点。",
         "descriptionZh": "DenseNet 针对 ResNet 的冗余结构提出了改进：让网络中的每一层和前面的所有层相连，同时把每一层设计的比较窄，使每一层学到的特征变少从而降低冗余。除了减少参数量之外，该结构还有减轻梯度消失问题、增强特征传播等优点。",
-        "descriptionEn": "DenseNet121 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "DenseNet121 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 8 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-16 20:23:49",
         "updatedAt": "2026-03-26 09:35:38",
         "badge": null,
@@ -3546,6 +7340,60 @@ const modelsData = [
                 "value": "6.369GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "5.935",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "168.49",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "20.391",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "47.986",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "9.26",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "108.01",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "147.608",
+                        "unit": "带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "99.133",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "densenet121.onnx",
@@ -3565,27 +7413,15 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-densenet121",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121/resolve/main/densenet_dlite.om",
-        "primaryDownloadLabel": "densenet_dlite.om",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121/resolve/main/densenet121.om",
+        "primaryDownloadLabel": "densenet121.om",
         "downloads": [
-            {
-                "title": "densenet_dlite.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121/resolve/main/densenet_dlite.om",
-                "available": true,
-                "source": "om-FP16",
-                "sourceLabel": "FP16",
-                "group": "编译模型",
-                "engine": "Hi3403V100 NNN",
-                "quantization": "FP16",
-                "note": "FP16",
-                "localFile": "densenet_dlite.om"
-            },
             {
                 "title": "densenet121.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121/resolve/main/densenet121.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -3596,8 +7432,8 @@ const modelsData = [
                 "title": "densenet121-a639ec97.pth",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121/resolve/main/densenet121-a639ec97.pth",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -3606,18 +7442,74 @@ const modelsData = [
             },
             {
                 "title": "densenet121.om",
-                "href": null,
-                "available": false,
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121/resolve/main/densenet121.om",
+                "available": true,
                 "source": "omOfflineModel",
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
                 "engine": "Hi3403V100 SVP_NNN",
                 "quantization": "A8W8",
                 "note": "A8W8",
-                "localFile": null
+                "localFile": "densenet121.om",
+                "performance": [
+                    {
+                        "value": "5.935",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "168.49",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "20.391",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "47.986",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "densenet_dlite.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121/resolve/main/densenet_dlite.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "note": "FP16",
+                "localFile": "densenet_dlite.om",
+                "performance": [
+                    {
+                        "value": "9.26",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "108.01",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "147.608",
+                        "unit": "带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "99.133",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -3629,6 +7521,30 @@ const modelsData = [
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
             },
             {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
                 "title": "densenet121_om-A8W8.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-densenet121/resolve/main/densenet121_om-A8W8.om",
                 "available": true,
@@ -3638,7 +7554,29 @@ const modelsData = [
                 "note": "A8W8",
                 "localFile": "densenet121_om-A8W8.om",
                 "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A8W8"
+                "quantization": "A8W8",
+                "performance": [
+                    {
+                        "value": "5.935",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "168.49",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "20.391",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "47.986",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    }
+                ]
             }
         ]
     },
@@ -3647,7 +7585,7 @@ const modelsData = [
         "name": "ShuffleNetV2",
         "description": "ShuffleNetV2是Shufflenet的升级版本，作为轻量级网络，通过遵循降低网络的碎片程度、减少element-wise等设计准则，在保证精度的前提下进一步追求高性能。",
         "descriptionZh": "ShuffleNetV2是Shufflenet的升级版本，作为轻量级网络，通过遵循降低网络的碎片程度、减少element-wise等设计准则，在保证精度的前提下进一步追求高性能。",
-        "descriptionEn": "ShuffleNetV2 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "ShuffleNetV2 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 8 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-16 20:19:07",
         "updatedAt": "2026-03-26 09:35:38",
         "badge": null,
@@ -3695,6 +7633,60 @@ const modelsData = [
                 "value": "0.298GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "2.495",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "400.867",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "10.823",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "5.359",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "3.92",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "255",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "30.142",
+                        "unit": "带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "60.426",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "shufflenetv2_x1-5666bf0f80.pth",
@@ -3714,44 +7706,20 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-shufflenetv2",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-shufflenetv2",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-shufflenetv2/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-shufflenetv2/resolve/main/shufflenetv2_dlite.om",
-        "primaryDownloadLabel": "shufflenetv2_dlite.om",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-shufflenetv2/resolve/main/shufflenetv2.om",
+        "primaryDownloadLabel": "shufflenetv2.om",
         "downloads": [
-            {
-                "title": "shufflenetv2_dlite.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-shufflenetv2/resolve/main/shufflenetv2_dlite.om",
-                "available": true,
-                "source": "om-FP16",
-                "sourceLabel": "FP16",
-                "group": "编译模型",
-                "engine": "Hi3403V100 NNN",
-                "quantization": "FP16",
-                "note": "FP16",
-                "localFile": "shufflenetv2_dlite.om"
-            },
             {
                 "title": "shufflenetv2_x1-5666bf0f80.pth",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-shufflenetv2/resolve/main/shufflenetv2_x1-5666bf0f80.pth",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
                 "note": "",
                 "localFile": "shufflenetv2_x1-5666bf0f80.pth"
-            },
-            {
-                "title": "shufflenetv2.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-shufflenetv2/resolve/main/shufflenetv2.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "shufflenetv2.onnx"
             },
             {
                 "title": "shufflenetv2_fix.onnx",
@@ -3767,18 +7735,74 @@ const modelsData = [
             },
             {
                 "title": "shufflenetv2.om",
-                "href": null,
-                "available": false,
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-shufflenetv2/resolve/main/shufflenetv2.om",
+                "available": true,
                 "source": "omOfflineModel",
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
                 "engine": "Hi3403V100 SVP_NNN",
                 "quantization": "A8W8",
                 "note": "A8W8",
-                "localFile": null
+                "localFile": "shufflenetv2.om",
+                "performance": [
+                    {
+                        "value": "2.495",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "400.867",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "10.823",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "5.359",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "shufflenetv2_dlite.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-shufflenetv2/resolve/main/shufflenetv2_dlite.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "note": "FP16",
+                "localFile": "shufflenetv2_dlite.om",
+                "performance": [
+                    {
+                        "value": "3.92",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "255",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "30.142",
+                        "unit": "带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "60.426",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -3790,6 +7814,40 @@ const modelsData = [
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
             },
             {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "shufflenetv2.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-shufflenetv2/resolve/main/shufflenetv2.onnx",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "源模型",
+                "note": "",
+                "localFile": "shufflenetv2.onnx"
+            },
+            {
                 "title": "shufflenetv2_om-A8W8.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-shufflenetv2/resolve/main/shufflenetv2_om-A8W8.om",
                 "available": true,
@@ -3799,7 +7857,29 @@ const modelsData = [
                 "note": "A8W8",
                 "localFile": "shufflenetv2_om-A8W8.om",
                 "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A8W8"
+                "quantization": "A8W8",
+                "performance": [
+                    {
+                        "value": "2.495",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "400.867",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "10.823",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "5.359",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             }
         ]
     },
@@ -3808,7 +7888,7 @@ const modelsData = [
         "name": "SqueezeNet1_1",
         "description": "Squeezenet的设计采用了卷积替换、减少卷积通道数和降采样操作后置等策略，旨在在不大幅降低模型精度的前提下，最大程度的提高运算速度。",
         "descriptionZh": "Squeezenet的设计采用了卷积替换、减少卷积通道数和降采样操作后置等策略，旨在在不大幅降低模型精度的前提下，最大程度的提高运算速度。",
-        "descriptionEn": "SqueezeNet1_1 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "SqueezeNet1_1 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-16 19:24:13",
         "updatedAt": "2026-03-26 09:35:38",
         "badge": null,
@@ -3856,6 +7936,60 @@ const modelsData = [
                 "value": "0.715GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "0.502",
+                        "unit": "耗时（ms）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "1992.07",
+                        "unit": "性能（fps）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "3.762",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "4.84",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "1.247",
+                        "unit": "耗时（ms）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "801.62",
+                        "unit": "性能（fps）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "14.634",
+                        "unit": "带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "50.066",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "squeezenet1_1-f364aa15.pth",
@@ -3879,35 +8013,11 @@ const modelsData = [
         "primaryDownloadLabel": "squeezenet_om-A8W8.om",
         "downloads": [
             {
-                "title": "squeezenet_om-A8W8.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-squeezenet1-1/resolve/main/squeezenet_om-A8W8.om",
-                "available": true,
-                "source": "om-A8W8",
-                "sourceLabel": "A8W8",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A8W8",
-                "note": "A8W8",
-                "localFile": "squeezenet_om-A8W8.om"
-            },
-            {
-                "title": "squeezenet.om",
-                "href": null,
-                "available": false,
-                "source": "om-FP16",
-                "sourceLabel": "FP16",
-                "group": "编译模型",
-                "engine": "Hi3403V100 NNN",
-                "quantization": "FP16",
-                "note": "FP16",
-                "localFile": null
-            },
-            {
                 "title": "squeezenet1_1-f364aa15.pth",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-squeezenet1-1/resolve/main/squeezenet1_1-f364aa15.pth",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -3918,8 +8028,8 @@ const modelsData = [
                 "title": "squeezenet.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-squeezenet1-1/resolve/main/squeezenet.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -3927,7 +8037,75 @@ const modelsData = [
                 "localFile": "squeezenet.onnx"
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "squeezenet.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "note": "A8W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "0.502",
+                        "unit": "耗时（ms）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "1992.07",
+                        "unit": "性能（fps）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "3.762",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "4.84",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "squeezenet.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "note": "FP16",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "1.247",
+                        "unit": "耗时（ms）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "801.62",
+                        "unit": "性能（fps）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "14.634",
+                        "unit": "带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "50.066",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -3937,6 +8115,64 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "squeezenet_om-A8W8.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-squeezenet1-1/resolve/main/squeezenet_om-A8W8.om",
+                "available": true,
+                "source": "mirror-extra",
+                "sourceLabel": "镜像补充",
+                "group": "编译模型",
+                "note": "A8W8",
+                "localFile": "squeezenet_om-A8W8.om",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "performance": [
+                    {
+                        "value": "0.502",
+                        "unit": "耗时（ms）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "1992.07",
+                        "unit": "性能（fps）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "3.762",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "4.84",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             }
         ]
     },
@@ -3965,12 +8201,55 @@ const modelsData = [
         "computingPower": [
             "Hi3591PV100"
         ],
-        "repositoryUrl": null,
-        "licenseUrl": null,
-        "quickStartUrl": null,
-        "quickStartMarkdownUrl": null,
-        "quickStartReadmes": [],
-        "detailParams": [],
+        "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/embodied_intelligence/Pi0/README.md",
+        "licenseUrl": "https://github.com/Physical-Intelligence/openpi/blob/main/LICENSE",
+        "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/embodied_intelligence/Pi0",
+        "quickStartMarkdownUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/embodied_intelligence/Pi0/README.md",
+        "quickStartReadmes": [
+            {
+                "language": "C++",
+                "content": "模型可以通过以下代码完成快速推理\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n  EnvInit();\n  std::string omModelPath = \"/path/to/model.om\"; // 模型文件路径 \n  std::string imagePath = \"/path/to/file_list_1.json\"; // 输入文本文件路径\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(omModelPath, ModelType::Pi0) != 0) {\n    LOG(ERROR) << \"fail to load model\";\n    return -1;\n  }\n  auto ret = model->Infer(imagePath, FileType::JsonFile);\n  if (ret.size() == 0) {\n    LOG(ERROR) << \"fail to infer model\";\n    model->Unload();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    LOG(ERROR) << \"fail to unload model\";\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/embodied_intelligence/Pi0/src/CMakeLists.txt)。",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for Pi0. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
+            }
+        ],
+        "detailParams": [
+            {
+                "name": "计算量",
+                "value": "1762.693GFLOPs"
+            },
+            {
+                "name": "输入",
+                "value": "1x48; 1x48; 1x14; 1x3x480x640"
+            },
+            {
+                "name": "参数量",
+                "value": "3152.177M"
+            }
+        ],
+        "performance": [
+            {
+                "engine": "Hi3591PV100",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "221.48",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "4.52",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "7088.023",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "pi0.onnx",
@@ -3987,26 +8266,45 @@ const modelsData = [
         "primaryDownloadLabel": "pi0.om",
         "downloads": [
             {
-                "title": "pi0.om",
-                "href": "https://hf-mirror.com/shadow-cann/pi0/resolve/main/pi0.om",
-                "available": true,
-                "source": "om-FP16",
-                "sourceLabel": "FP16",
-                "group": "编译模型",
-                "note": "FP16",
-                "localFile": "pi0.om",
-                "engine": "Hi3591PV100",
-                "quantization": "FP16"
-            },
-            {
                 "title": "pi0.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/pi0/resolve/main/pi0.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
+                "engine": "",
+                "quantization": "",
                 "note": "",
                 "localFile": "pi0.onnx"
+            },
+            {
+                "title": "pi0.om",
+                "href": "https://hf-mirror.com/shadow-cann/pi0/resolve/main/pi0.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3591PV100",
+                "quantization": "FP16",
+                "note": "FP16",
+                "localFile": "pi0.om",
+                "performance": [
+                    {
+                        "value": "221.48",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "4.52",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "7088.023",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             }
         ]
     },
@@ -4015,7 +8313,7 @@ const modelsData = [
         "name": "ACT",
         "description": "ACT（Action Chunking with Transformers）是面向机器人学习场景的高性能端到端动作控制模型。相比传统模块化机器人控制模型，ACT采用轻量化Transformer架构作为核心骨干进行动作表征学习，结合多模态感知融合模块和时序动作优化网络，在控制精度和实时响应速度上均有显著提升。",
         "descriptionZh": "ACT（Action Chunking with Transformers）是面向机器人学习场景的高性能端到端动作控制模型。相比传统模块化机器人控制模型，ACT采用轻量化Transformer架构作为核心骨干进行动作表征学习，结合多模态感知融合模块和时序动作优化网络，在控制精度和实时响应速度上均有显著提升。",
-        "descriptionEn": "ACT is a multimodal model for embodied AI. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenEuler. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "ACT is a multimodal model for embodied AI. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenEuler. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-03 10:30:33",
         "updatedAt": "2026-03-04 16:06:22",
         "badge": null,
@@ -4061,6 +8359,29 @@ const modelsData = [
                 "value": "8.02 GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "37",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "27",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1.8",
+                        "unit": "内存（GB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "ACT.zip",
@@ -4080,8 +8401,8 @@ const modelsData = [
                 "title": "ACT.zip",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-act/resolve/main/ACT.zip",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -4098,10 +8419,27 @@ const modelsData = [
                 "engine": "Hi3403V100 SVP_NNN",
                 "quantization": "A16W8",
                 "note": "A16W8",
-                "localFile": "act_distill_fp32_for_mindcmd_simp_release.om"
+                "localFile": "act_distill_fp32_for_mindcmd_simp_release.om",
+                "performance": [
+                    {
+                        "value": "37",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "27",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1.8",
+                        "unit": "内存（GB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -4111,6 +8449,30 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具库",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             }
         ]
     },
@@ -4119,7 +8481,7 @@ const modelsData = [
         "name": "CRNN",
         "description": "CRNN是卷积循环网络，本模型是一个基于其的中文 OCR 模型。",
         "descriptionZh": "CRNN是卷积循环网络，本模型是一个基于其的中文 OCR 模型。",
-        "descriptionEn": "CRNN is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "CRNN is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-02-12 10:58:59",
         "updatedAt": null,
         "badge": "Beta",
@@ -4167,6 +8529,60 @@ const modelsData = [
                 "value": "2.550GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "12.31",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "81.26",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "124.114",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "184.258",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "100.6",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "9.94",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "477.985",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "100.082",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "mixed_second_finetune_acc_97P7.pth",
@@ -4193,8 +8609,8 @@ const modelsData = [
                 "title": "mixed_second_finetune_acc_97P7.pth",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-crnn/resolve/main/mixed_second_finetune_acc_97P7.pth",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -4205,8 +8621,8 @@ const modelsData = [
                 "title": "crnn.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-crnn/resolve/main/crnn.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -4223,19 +8639,29 @@ const modelsData = [
                 "engine": "Hi3403V100 SVP_NNN",
                 "quantization": "A8W8",
                 "note": "A8W8",
-                "localFile": null
-            },
-            {
-                "title": "CANN配置",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "12.31",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "81.26",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "124.114",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "184.258",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
                 "title": "crnn.om",
@@ -4247,6 +8673,64 @@ const modelsData = [
                 "engine": "Hi3403V100 NNN",
                 "quantization": "FP16",
                 "note": "FP16",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "100.6",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "9.94",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "477.985",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "100.082",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "CANN配置",
+                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具库",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
                 "localFile": null
             }
         ]
@@ -4302,6 +8786,29 @@ const modelsData = [
                 "value": "2.397M"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3591PV100",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "1337.75",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "0.75",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "2842.42",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "graspnet[该模型文件仅用于非商用].onnx",
@@ -4318,6 +8825,18 @@ const modelsData = [
         "primaryDownloadLabel": "graspnet_linux_aarch64[该模型文件仅用于非商用].om",
         "downloads": [
             {
+                "title": "graspnet[该模型文件仅用于非商用].onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-graspnet/resolve/main/graspnet%5B%E8%AF%A5%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6%E4%BB%85%E7%94%A8%E4%BA%8E%E9%9D%9E%E5%95%86%E7%94%A8%5D.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "graspnet[该模型文件仅用于非商用].onnx"
+            },
+            {
                 "title": "graspnet_linux_aarch64[该模型文件仅用于非商用].om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-graspnet/resolve/main/graspnet_linux_aarch64%5B%E8%AF%A5%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6%E4%BB%85%E7%94%A8%E4%BA%8E%E9%9D%9E%E5%95%86%E7%94%A8%5D.om",
                 "available": true,
@@ -4327,19 +8846,24 @@ const modelsData = [
                 "engine": "Hi3591PV100",
                 "quantization": "FP16",
                 "note": "FP16",
-                "localFile": "graspnet_linux_aarch64[该模型文件仅用于非商用].om"
-            },
-            {
-                "title": "graspnet[该模型文件仅用于非商用].onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-graspnet/resolve/main/graspnet%5B%E8%AF%A5%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6%E4%BB%85%E7%94%A8%E4%BA%8E%E9%9D%9E%E5%95%86%E7%94%A8%5D.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "graspnet[该模型文件仅用于非商用].onnx"
+                "localFile": "graspnet_linux_aarch64[该模型文件仅用于非商用].om",
+                "performance": [
+                    {
+                        "value": "1337.75",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "0.75",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "2842.42",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             }
         ]
     },
@@ -4396,6 +8920,60 @@ const modelsData = [
                 "value": "835.584GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "468.72",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "2.13",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "2356.851",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "264.789",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "1724.14",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "0.58",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "19676.725",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "877.707",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "空文件，因为该模型仅用于非商用.onnx",
@@ -4408,39 +8986,15 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-codeformer",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-codeformer",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-codeformer/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-codeformer",
-        "primaryDownloadLabel": "空文件，因为该模型仅用于非商用.om",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-codeformer/resolve/main/%E7%A9%BA%E6%96%87%E4%BB%B6%EF%BC%8C%E5%9B%A0%E4%B8%BA%E8%AF%A5%E6%A8%A1%E5%9E%8B%E4%BB%85%E7%94%A8%E4%BA%8E%E9%9D%9E%E5%95%86%E7%94%A8.onnx",
+        "primaryDownloadLabel": "空文件，因为该模型仅用于非商用.onnx",
         "downloads": [
-            {
-                "title": "空文件，因为该模型仅用于非商用.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-codeformer",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A16W8",
-                "note": "A16W8",
-                "localFile": null
-            },
-            {
-                "title": "空文件，因为该模型仅用于非商用_om-fp16.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-codeformer",
-                "available": true,
-                "source": "om-fp16",
-                "sourceLabel": "FP16",
-                "group": "编译模型",
-                "engine": "Hi3403V100 NNN",
-                "quantization": "FP16",
-                "note": "FP16",
-                "localFile": null
-            },
             {
                 "title": "空文件，因为该模型仅用于非商用.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-codeformer/resolve/main/%E7%A9%BA%E6%96%87%E4%BB%B6%EF%BC%8C%E5%9B%A0%E4%B8%BA%E8%AF%A5%E6%A8%A1%E5%9E%8B%E4%BB%85%E7%94%A8%E4%BA%8E%E9%9D%9E%E5%95%86%E7%94%A8.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -4448,7 +9002,75 @@ const modelsData = [
                 "localFile": "空文件，因为该模型仅用于非商用.onnx"
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "空文件，因为该模型仅用于非商用.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "note": "A16W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "468.72",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "2.13",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "2356.851",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "264.789",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "空文件，因为该模型仅用于非商用.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "note": "FP16",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "1724.14",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "0.58",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "19676.725",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "877.707",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "CANN配置",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -4458,6 +9080,30 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具库",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             }
         ]
     },
@@ -4466,7 +9112,7 @@ const modelsData = [
         "name": "FaceNet",
         "description": "FaceNet 是一种基于深度卷积神经网络的端到端人脸识别与特征嵌入模型。相比传统基于手工特征或分阶段匹配的方法，它通过将人脸图像直接映射为固定维度的紧凑特征向量（Embedding），并采用三元组损失（Triplet Loss）优化特征相似度度量，能有效缩小类内差异、扩大类间距离，兼顾识别精度与推理效率，适用于身份验证、人脸检索、监控安防等大规模人脸识别场景。",
         "descriptionZh": "FaceNet 是一种基于深度卷积神经网络的端到端人脸识别与特征嵌入模型。相比传统基于手工特征或分阶段匹配的方法，它通过将人脸图像直接映射为固定维度的紧凑特征向量（Embedding），并采用三元组损失（Triplet Loss）优化特征相似度度量，能有效缩小类内差异、扩大类间距离，兼顾识别精度与推理效率，适用于身份验证、人脸检索、监控安防等大规模人脸识别场景。",
-        "descriptionEn": "FaceNet is a computer vision model for face recognition. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "FaceNet is a computer vision model for face recognition. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-29 10:37:55",
         "updatedAt": "2025-12-30 20:02:17",
         "badge": null,
@@ -4514,6 +9160,60 @@ const modelsData = [
                 "value": "2.854GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "4.07",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "245.73",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "34.671",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "26.344",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "F16",
+                "metrics": [
+                    {
+                        "value": "6.27",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "159.41",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "70.628",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "143.895",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "facenet_vggface2_static.onnx",
@@ -4530,6 +9230,18 @@ const modelsData = [
         "primaryDownloadLabel": "facenet_vggface2_dpico.om",
         "downloads": [
             {
+                "title": "facenet_vggface2_static.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-facenet/resolve/main/facenet_vggface2_static.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "facenet_vggface2_static.onnx"
+            },
+            {
                 "title": "facenet_vggface2_dpico.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-facenet/resolve/main/facenet_vggface2_dpico.om",
                 "available": true,
@@ -4539,43 +9251,29 @@ const modelsData = [
                 "engine": "Hi3403V100 SVP_NNN",
                 "quantization": "A16W8",
                 "note": "A16W8",
-                "localFile": "facenet_vggface2_dpico.om"
-            },
-            {
-                "title": "facenet_vggface2_static.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-facenet/resolve/main/facenet_vggface2_static.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "facenet_vggface2_static.onnx"
-            },
-            {
-                "title": "CANN配置",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具库",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "localFile": "facenet_vggface2_dpico.om",
+                "performance": [
+                    {
+                        "value": "4.07",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "245.73",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "34.671",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "26.344",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
                 "title": "facenet_vggface2_dlite_fp16.om",
@@ -4587,12 +9285,58 @@ const modelsData = [
                 "engine": "Hi3403V100 NNN",
                 "quantization": "F16",
                 "note": "F16",
-                "localFile": "facenet_vggface2_dlite_fp16.om"
+                "localFile": "facenet_vggface2_dlite_fp16.om",
+                "performance": [
+                    {
+                        "value": "6.27",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "159.41",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "70.628",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "143.895",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "lfw.tgz",
-                "href": null,
-                "available": false,
+                "title": "CANN配置",
+                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具库",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
                 "source": "api-all",
                 "sourceLabel": "附加资源",
                 "group": "附加资源",
@@ -4608,7 +9352,7 @@ const modelsData = [
         "name": "LRStereo-B",
         "description": "LRStereo-B是一个轻量且鲁棒的双目立体匹配模型。它在开源模型(Raft-Stereo)的基础上做了大量的模型结构改进和重训。具体功能为输入标定好的左右目图像以及相关的相机参数，获得左目图像对应的深度图。",
         "descriptionZh": "LRStereo-B是一个轻量且鲁棒的双目立体匹配模型。它在开源模型(Raft-Stereo)的基础上做了大量的模型结构改进和重训。具体功能为输入标定好的左右目图像以及相关的相机参数，获得左目图像对应的深度图。",
-        "descriptionEn": "LRStereo-B is a computer vision model for stereo depth. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "LRStereo-B is a computer vision model for stereo depth. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 20:41:00",
         "updatedAt": "2025-12-30 20:02:17",
         "badge": null,
@@ -4655,6 +9399,34 @@ const modelsData = [
                 "value": "28.64GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "43.46",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "23.01",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "226.649",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "29.395",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "LRStereo-B.zip",
@@ -4671,6 +9443,18 @@ const modelsData = [
         "primaryDownloadLabel": "LRStereo-B_480x640_release.om",
         "downloads": [
             {
+                "title": "LRStereo-B.zip",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-lrstereo-b/resolve/main/LRStereo-B.zip",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "LRStereo-B.zip"
+            },
+            {
                 "title": "LRStereo-B_480x640_release.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-lrstereo-b/resolve/main/LRStereo-B_480x640_release.om",
                 "available": true,
@@ -4680,22 +9464,32 @@ const modelsData = [
                 "engine": "Hi3403V100 SVP_NNN",
                 "quantization": "A8W8",
                 "note": "A8W8",
-                "localFile": "LRStereo-B_480x640_release.om"
+                "localFile": "LRStereo-B_480x640_release.om",
+                "performance": [
+                    {
+                        "value": "43.46",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "23.01",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "226.649",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "29.395",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "LRStereo-B.zip",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-lrstereo-b/resolve/main/LRStereo-B.zip",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "LRStereo-B.zip"
-            },
-            {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -4705,6 +9499,30 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             }
         ]
     },
@@ -4713,7 +9531,7 @@ const modelsData = [
         "name": "YOLOv8s-OBB",
         "description": "YOLOv8s-OBB 是 Ultralytics 推出的基于 YOLOv8 的旋转目标检测（Oriented Bounding Box, OBB）模型。相比于水平框检测，OBB 能够更准确地检测倾斜或不规则排列的目标（如航拍图像中的车辆、船只等）。该模型在 DOTA 数据集上进行了训练和验证。",
         "descriptionZh": "YOLOv8s-OBB 是 Ultralytics 推出的基于 YOLOv8 的旋转目标检测（Oriented Bounding Box, OBB）模型。相比于水平框检测，OBB 能够更准确地检测倾斜或不规则排列的目标（如航拍图像中的车辆、船只等）。该模型在 DOTA 数据集上进行了训练和验证。",
-        "descriptionEn": "YOLOv8s-OBB is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv8s-OBB is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 16:22:36",
         "updatedAt": "2025-12-30 20:02:17",
         "badge": null,
@@ -4761,6 +9579,60 @@ const modelsData = [
                 "value": "80.204GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "53.05",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "18.85",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "333.576",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "68.492",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "F16",
+                "metrics": [
+                    {
+                        "value": "274.40",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "3.65",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "943.954",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "165.102",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "yolov8s-obb.onnx",
@@ -4777,6 +9649,18 @@ const modelsData = [
         "primaryDownloadLabel": "yolov8s-obb.om",
         "downloads": [
             {
+                "title": "yolov8s-obb.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-obb/resolve/main/yolov8s-obb.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "yolov8s-obb.onnx"
+            },
+            {
                 "title": "yolov8s-obb.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-obb/resolve/main/yolov8s-obb.om",
                 "available": true,
@@ -4786,19 +9670,29 @@ const modelsData = [
                 "engine": "Hi3403V100 SVP_NNN",
                 "quantization": "A16W8",
                 "note": "A16W8",
-                "localFile": "yolov8s-obb.om"
-            },
-            {
-                "title": "yolov8s-obb.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-obb/resolve/main/yolov8s-obb.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "yolov8s-obb.onnx"
+                "localFile": "yolov8s-obb.om",
+                "performance": [
+                    {
+                        "value": "53.05",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "18.85",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "333.576",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "68.492",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
                 "title": "yolov8s_obb.om",
@@ -4810,22 +9704,32 @@ const modelsData = [
                 "engine": "Hi3403V100 NNN",
                 "quantization": "F16",
                 "note": "F16",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "274.40",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "3.65",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "943.954",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "165.102",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "DOTAv1.zip",
-                "href": "https://github.com/ultralytics/assets/releases/download/v0.0.0/DOTAv1.zip",
-                "available": true,
-                "source": "api-all",
-                "sourceLabel": "附加资源",
-                "group": "附加资源",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -4835,6 +9739,30 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             }
         ]
     },
@@ -4843,7 +9771,7 @@ const modelsData = [
         "name": "HRNet",
         "description": "HigherHRNet 是一种新型的自下而上人体姿态估计算法，它在训练阶段引入多分辨率监督机制，在推理阶段采用多分辨率聚合策略，不仅能有效应对自下而上多人姿态估计任务中的尺度变化难题，还可实现关键点的高精度定位，尤其在小尺寸人体目标的处理上表现突出。",
         "descriptionZh": "HigherHRNet 是一种新型的自下而上人体姿态估计算法，它在训练阶段引入多分辨率监督机制，在推理阶段采用多分辨率聚合策略，不仅能有效应对自下而上多人姿态估计任务中的尺度变化难题，还可实现关键点的高精度定位，尤其在小尺寸人体目标的处理上表现突出。",
-        "descriptionEn": "HRNet is a computer vision model for pose estimation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "HRNet is a computer vision model for pose estimation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 10:20:26",
         "updatedAt": null,
         "badge": null,
@@ -4891,6 +9819,60 @@ const modelsData = [
                 "value": "70.645GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "72.28",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "13.84",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "323.933",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "82.879",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "181.16",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "5.52",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1278.445",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "307.164",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "pose_higher_hrnet_w32_512.pth",
@@ -4910,27 +9892,15 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-hrnet",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-hrnet",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-hrnet/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-hrnet/resolve/main/hrnet_512_768.om",
-        "primaryDownloadLabel": "hrnet_512_768.om",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-hrnet/resolve/main/pose_higher_hrnet_w32_512.pth",
+        "primaryDownloadLabel": "pose_higher_hrnet_w32_512.pth",
         "downloads": [
-            {
-                "title": "hrnet_512_768.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-hrnet/resolve/main/hrnet_512_768.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A16W8",
-                "note": "A16W8",
-                "localFile": "hrnet_512_768.om"
-            },
             {
                 "title": "pose_higher_hrnet_w32_512.pth",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-hrnet/resolve/main/pose_higher_hrnet_w32_512.pth",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -4941,8 +9911,8 @@ const modelsData = [
                 "title": "hrnet_512_768.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-hrnet/resolve/main/hrnet_512_768.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -4956,13 +9926,69 @@ const modelsData = [
                 "source": "omOfflineModel",
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "note": "A16W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "72.28",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "13.84",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "323.933",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "82.879",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "hrnet_512_768.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
                 "engine": "Hi3403V100 NNN",
                 "quantization": "FP16",
                 "note": "FP16",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "181.16",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "5.52",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1278.445",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "307.164",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN配置",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -4972,6 +9998,30 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具库",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             }
         ]
     },
@@ -4980,7 +10030,7 @@ const modelsData = [
         "name": "YOLO11s",
         "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率",
         "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率",
-        "descriptionEn": "YOLO11s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLO11s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 09:54:03",
         "updatedAt": "2025-12-30 20:02:18",
         "badge": null,
@@ -5028,6 +10078,60 @@ const modelsData = [
                 "value": "23.805GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "23.471",
+                        "unit": "耗时（ms）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "42.607",
+                        "unit": "性能（fps）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "153.643",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "37.102",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "43.430",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "23.020",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "342.670",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "112.672",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "yolo11s.pt",
@@ -5054,8 +10158,8 @@ const modelsData = [
                 "title": "yolo11s.pt",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s/resolve/main/yolo11s.pt",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -5066,8 +10170,8 @@ const modelsData = [
                 "title": "yolo11s.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s/resolve/main/yolo11s.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -5084,7 +10188,29 @@ const modelsData = [
                 "engine": "Hi3403V100 SVP_NNN",
                 "quantization": "A16W8",
                 "note": "A16W8",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "23.471",
+                        "unit": "耗时（ms）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "42.607",
+                        "unit": "性能（fps）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "153.643",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "37.102",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
                 "title": "yolo11s.om",
@@ -5096,10 +10222,32 @@ const modelsData = [
                 "engine": "Hi3403V100 NNN",
                 "quantization": "FP16",
                 "note": "FP16",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "43.430",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "23.020",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "342.670",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "112.672",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -5109,6 +10257,30 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             }
         ]
     },
@@ -5117,7 +10289,7 @@ const modelsData = [
         "name": "YOLOv8s",
         "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv8在之前的YOLO版本的基础上进行了改进，在继承了原有YOLO网络模型优点的基础上，引入了新的特效和优化，具有更高的检测精度。",
         "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv8在之前的YOLO版本的基础上进行了改进，在继承了原有YOLO网络模型优点的基础上，引入了新的特效和优化，具有更高的检测精度。",
-        "descriptionEn": "YOLOv8s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv8s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 09:47:43",
         "updatedAt": "2025-12-30 20:02:17",
         "badge": null,
@@ -5165,6 +10337,60 @@ const modelsData = [
                 "value": "30.486GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "23.461",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "42.624",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "132.421",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "34.344",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "39.060",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "26.220",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "298.243",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "115.578",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "yolov8s.pt",
@@ -5191,8 +10417,8 @@ const modelsData = [
                 "title": "yolov8s.pt",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s/resolve/main/yolov8s.pt",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -5203,8 +10429,8 @@ const modelsData = [
                 "title": "yolov8s.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s/resolve/main/yolov8s.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -5221,7 +10447,29 @@ const modelsData = [
                 "engine": "Hi3403V100 SVP_NNN",
                 "quantization": "A16W8",
                 "note": "A16W8",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "23.461",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "42.624",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "132.421",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "34.344",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
                 "title": "yolov8s.om",
@@ -5233,10 +10481,32 @@ const modelsData = [
                 "engine": "Hi3403V100 NNN",
                 "quantization": "FP16",
                 "note": "FP16",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "39.060",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "26.220",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "298.243",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "115.578",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -5246,6 +10516,30 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             }
         ]
     },
@@ -5254,7 +10548,7 @@ const modelsData = [
         "name": "VDSR",
         "description": "VDSR（Very Deep Super-Resolution Network）是一种20层深度卷积神经网络，通过残差学习实现图像超分辨率重建。",
         "descriptionZh": "VDSR（Very Deep Super-Resolution Network）是一种20层深度卷积神经网络，通过残差学习实现图像超分辨率重建。",
-        "descriptionEn": "VDSR is a computer vision model for image super-resolution. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "VDSR is a computer vision model for image super-resolution. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 20:56:31",
         "updatedAt": "2025-12-30 20:02:18",
         "badge": null,
@@ -5302,6 +10596,60 @@ const modelsData = [
                 "value": "354.611GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "66.28",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "15.09",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "38.72",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "22.332",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "228.43",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "4.38",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1714.531",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "120.004",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "vdsr.zip",
@@ -5314,27 +10662,15 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-vdsr",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vdsr",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vdsr/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vdsr/resolve/main/vdsr.om",
-        "primaryDownloadLabel": "vdsr.om",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vdsr/resolve/main/vdsr.zip",
+        "primaryDownloadLabel": "vdsr.zip",
         "downloads": [
-            {
-                "title": "vdsr.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vdsr/resolve/main/vdsr.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A8W8",
-                "note": "A8W8",
-                "localFile": "vdsr.om"
-            },
             {
                 "title": "vdsr.zip",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vdsr/resolve/main/vdsr.zip",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -5348,13 +10684,69 @@ const modelsData = [
                 "source": "omOfflineModel",
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "note": "A8W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "66.28",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "15.09",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "38.72",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "22.332",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "vdsr.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
                 "engine": "Hi3403V100 NNN",
                 "quantization": "FP16",
                 "note": "FP16",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "228.43",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "4.38",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1714.531",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "120.004",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN配置",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -5364,6 +10756,30 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具库",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             }
         ]
     },
@@ -5372,7 +10788,7 @@ const modelsData = [
         "name": "Siamese Network",
         "description": "Siamese Network(孪生神经网络)是一种通过共享权重的两个相同子网络来度量两个输入样本相似性的深度学习框架，广泛应用于人脸识别、签名验证等任务。",
         "descriptionZh": "Siamese Network(孪生神经网络)是一种通过共享权重的两个相同子网络来度量两个输入样本相似性的深度学习框架，广泛应用于人脸识别、签名验证等任务。",
-        "descriptionEn": "Siamese Network is a computer vision model for face recognition. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 2 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "Siamese Network is a computer vision model for face recognition. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 20:25:32",
         "updatedAt": null,
         "badge": "Beta",
@@ -5420,6 +10836,60 @@ const modelsData = [
                 "value": "0.223GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "4.6",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "217.44",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "77.754",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "98.895",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "28.81",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "34.71",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "377.84",
+                        "unit": "带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "197.715",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "siamese_model_weights.pt",
@@ -5439,8 +10909,8 @@ const modelsData = [
                 "title": "siamese_model_weights.pt",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-siamese-network/resolve/main/siamese_model_weights.pt",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -5457,7 +10927,29 @@ const modelsData = [
                 "engine": "Hi3403V100 SVP_NNN",
                 "quantization": "A8W8",
                 "note": "A8W8",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "4.6",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "217.44",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "77.754",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "98.895",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
                 "title": "siamese_network.om",
@@ -5469,10 +10961,32 @@ const modelsData = [
                 "engine": "Hi3403V100 NNN",
                 "quantization": "FP16",
                 "note": "FP16",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "28.81",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "34.71",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "377.84",
+                        "unit": "带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "197.715",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN配置",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -5482,6 +10996,30 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具库",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             }
         ]
     },
@@ -5490,7 +11028,7 @@ const modelsData = [
         "name": "YOLO11s-seg",
         "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-seg作为实例分割的模型，比检测模型更进一步，包括识别图像中的各个对象并将它们与图像的其余部分分割开来。",
         "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-seg作为实例分割的模型，比检测模型更进一步，包括识别图像中的各个对象并将它们与图像的其余部分分割开来。",
-        "descriptionEn": "YOLO11s-seg is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLO11s-seg is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 17:25:35",
         "updatedAt": "2025-12-30 20:02:18",
         "badge": null,
@@ -5538,6 +11076,60 @@ const modelsData = [
                 "value": "38.183GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "29.36",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "34.06",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "172.6",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "39.973",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "F16",
+                "metrics": [
+                    {
+                        "value": "55.00",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "18.18",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "420.118",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "130.477",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "yolo11s-seg.pt",
@@ -5561,23 +11153,11 @@ const modelsData = [
         "primaryDownloadLabel": "yolo11s-seg.om",
         "downloads": [
             {
-                "title": "yolo11s-seg.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-seg/resolve/main/yolo11s-seg.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A16W8",
-                "note": "A16W8",
-                "localFile": "yolo11s-seg.om"
-            },
-            {
                 "title": "yolo11s-seg.pt",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-seg/resolve/main/yolo11s-seg.pt",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -5588,13 +11168,47 @@ const modelsData = [
                 "title": "yolo11s-seg.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-seg/resolve/main/yolo11s-seg.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
                 "note": "",
                 "localFile": "yolo11s-seg.onnx"
+            },
+            {
+                "title": "yolo11s-seg.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-seg/resolve/main/yolo11s-seg.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "note": "A16W8",
+                "localFile": "yolo11s-seg.om",
+                "performance": [
+                    {
+                        "value": "29.36",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "34.06",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "172.6",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "39.973",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
                 "title": "yolo11s-seg_dlite_fp16.om",
@@ -5606,10 +11220,32 @@ const modelsData = [
                 "engine": "Hi3403V100 NNN",
                 "quantization": "F16",
                 "note": "F16",
-                "localFile": "yolo11s-seg_dlite_fp16.om"
+                "localFile": "yolo11s-seg_dlite_fp16.om",
+                "performance": [
+                    {
+                        "value": "55.00",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "18.18",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "420.118",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "130.477",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -5619,135 +11255,10 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            }
-        ]
-    },
-    {
-        "id": "i9j3k8rpec00",
-        "name": "YOLO11s-pose",
-        "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。",
-        "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。",
-        "descriptionEn": "YOLO11s-pose is a computer vision model for pose estimation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
-        "date": "2025-12-25 17:17:58",
-        "updatedAt": "2025-12-30 20:02:18",
-        "badge": null,
-        "betaVersionDesc": "",
-        "category": "计算机视觉",
-        "tags": [
-            "姿态估计"
-        ],
-        "image": "assets/images/1712135222657026_yolo11-pose-small.jpg",
-        "coverImageUrl": "assets/images/1712135222657026_yolo11-pose-small.jpg",
-        "framework": [
-            "PyTorch"
-        ],
-        "supportOs": [
-            "OpenHarmony",
-            "Linux"
-        ],
-        "computingPower": [
-            "Hi3403V100 SVP_NNN",
-            "Hi3403V100 NNN"
-        ],
-        "repositoryUrl": "https://gitee.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolo11s-pose",
-        "licenseUrl": "https://github.com/ultralytics/ultralytics/blob/master/LICENSE",
-        "quickStartUrl": "https://gitee.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolo11s-pose",
-        "quickStartMarkdownUrl": null,
-        "quickStartReadmes": [
-            {
-                "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolo11s-pose模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::Yolo11s-pose) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo11s-pose/src/CMakeLists.txt)。",
-                "summary": "模型可以通过以下代码完成快速推理",
-                "summaryEn": "C++ quick-start notes for YOLO11s-pose. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
-            }
-        ],
-        "detailParams": [
-            {
-                "name": "输入",
-                "value": "640x640"
             },
             {
-                "name": "参数量",
-                "value": "9.970M"
-            },
-            {
-                "name": "计算量",
-                "value": "25.414GFLOPs"
-            }
-        ],
-        "originModels": [
-            {
-                "name": "yolo11s-pose.pt",
-                "size": "19.4 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose.pt",
-                "available": true,
-                "localFile": "yolo11s-pose.pt"
-            },
-            {
-                "name": "yolo11s-pose.onnx",
-                "size": "38.1 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose.onnx",
-                "available": true,
-                "localFile": "yolo11s-pose.onnx"
-            }
-        ],
-        "hfRepoId": "shadow-cann/hispark-modelzoo-yolo11s-pose",
-        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose",
-        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose.om",
-        "primaryDownloadLabel": "yolo11s-pose.om",
-        "downloads": [
-            {
-                "title": "yolo11s-pose.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A16W8",
-                "note": "A16W8",
-                "localFile": "yolo11s-pose.om"
-            },
-            {
-                "title": "yolo11s-pose.pt",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose.pt",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "yolo11s-pose.pt"
-            },
-            {
-                "title": "yolo11s-pose.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "yolo11s-pose.onnx"
-            },
-            {
-                "title": "yolo11s-pose_dlite_fp16.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose_dlite_fp16.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "engine": "Hi3403V100 NNN",
-                "quantization": "F16",
-                "note": "F16",
-                "localFile": "yolo11s-pose_dlite_fp16.om"
-            },
-            {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
                 "available": true,
                 "source": "api-all",
                 "sourceLabel": "附加资源",
@@ -5755,7 +11266,19 @@ const modelsData = [
                 "engine": "",
                 "quantization": "",
                 "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             }
         ]
     },
@@ -5764,7 +11287,7 @@ const modelsData = [
         "name": "YOLOv6s",
         "description": "YOLOv6s 是一种轻量高效的 one-stage 目标检测模型。相比前代 YOLO 模型，YOLOv6s 采用了 EfficientRep 作为 backbone 和 Rep-PAN 作为颈部网络，兼顾了检测精度与推理速度，更适用于边缘计算场景。",
         "descriptionZh": "YOLOv6s 是一种轻量高效的 one-stage 目标检测模型。相比前代 YOLO 模型，YOLOv6s 采用了 EfficientRep 作为 backbone 和 Rep-PAN 作为颈部网络，兼顾了检测精度与推理速度，更适用于边缘计算场景。",
-        "descriptionEn": "YOLOv6s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv6s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 17:13:48",
         "updatedAt": "2025-12-30 20:02:18",
         "badge": null,
@@ -5812,6 +11335,60 @@ const modelsData = [
                 "value": "45.588GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "25.31",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "39.51",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "72.083",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "35.957",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "F16",
+                "metrics": [
+                    {
+                        "value": "33.07",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "30.24",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "253.230",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "141.480",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "yolov6s.pt",
@@ -5835,23 +11412,11 @@ const modelsData = [
         "primaryDownloadLabel": "yolov6s_dpico.om",
         "downloads": [
             {
-                "title": "yolov6s_dpico.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov6s/resolve/main/yolov6s_dpico.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A16W8",
-                "note": "A16W8",
-                "localFile": "yolov6s_dpico.om"
-            },
-            {
                 "title": "yolov6s.pt",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov6s/resolve/main/yolov6s.pt",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -5862,13 +11427,47 @@ const modelsData = [
                 "title": "yolov6s_opset11.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov6s/resolve/main/yolov6s_opset11.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
                 "note": "",
                 "localFile": "yolov6s_opset11.onnx"
+            },
+            {
+                "title": "yolov6s_dpico.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov6s/resolve/main/yolov6s_dpico.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "note": "A16W8",
+                "localFile": "yolov6s_dpico.om",
+                "performance": [
+                    {
+                        "value": "25.31",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "39.51",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "72.083",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "35.957",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
                 "title": "yolov6s_dlite_fp16.om",
@@ -5880,10 +11479,32 @@ const modelsData = [
                 "engine": "Hi3403V100 NNN",
                 "quantization": "F16",
                 "note": "F16",
-                "localFile": "yolov6s_dlite_fp16.om"
+                "localFile": "yolov6s_dlite_fp16.om",
+                "performance": [
+                    {
+                        "value": "33.07",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "30.24",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "253.230",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "141.480",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -5893,6 +11514,30 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             }
         ]
     },
@@ -5901,9 +11546,9 @@ const modelsData = [
         "name": "PFLD",
         "description": "PFLD全称A Practical Facial Landmark Detector是一个精度高，速度快，模型小的人脸关键点检测模型。",
         "descriptionZh": "PFLD全称A Practical Facial Landmark Detector是一个精度高，速度快，模型小的人脸关键点检测模型。",
-        "descriptionEn": "PFLD is a computer vision model for keypoint detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "PFLD is a computer vision model for keypoint detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 17:10:06",
-        "updatedAt": "2025-12-30 20:02:18",
+        "updatedAt": null,
         "badge": null,
         "betaVersionDesc": "",
         "category": "计算机视觉",
@@ -5949,6 +11594,60 @@ const modelsData = [
                 "value": "127.785GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "0.62",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1624.65",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "5.076",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "4.824",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "F16",
+                "metrics": [
+                    {
+                        "value": "1.63",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "611.95",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "19.859",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "48.227",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "pfld-sim.onnx",
@@ -5965,6 +11664,18 @@ const modelsData = [
         "primaryDownloadLabel": "pfld_dpico.om",
         "downloads": [
             {
+                "title": "pfld-sim.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-pfld/resolve/main/pfld-sim.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "pfld-sim.onnx"
+            },
+            {
                 "title": "pfld_dpico.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-pfld/resolve/main/pfld_dpico.om",
                 "available": true,
@@ -5974,19 +11685,29 @@ const modelsData = [
                 "engine": "Hi3403V100 SVP_NNN",
                 "quantization": "A16W8",
                 "note": "A16W8",
-                "localFile": "pfld_dpico.om"
-            },
-            {
-                "title": "pfld-sim.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-pfld/resolve/main/pfld-sim.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "pfld-sim.onnx"
+                "localFile": "pfld_dpico.om",
+                "performance": [
+                    {
+                        "value": "0.62",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1624.65",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "5.076",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "4.824",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
                 "title": "pfld_dlite_fp16.om",
@@ -5998,10 +11719,32 @@ const modelsData = [
                 "engine": "Hi3403V100 NNN",
                 "quantization": "F16",
                 "note": "F16",
-                "localFile": "pfld_dlite_fp16.om"
+                "localFile": "pfld_dlite_fp16.om",
+                "performance": [
+                    {
+                        "value": "1.63",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "611.95",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "19.859",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "48.227",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -6011,135 +11754,10 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            }
-        ]
-    },
-    {
-        "id": "i9ivuh3hec00",
-        "name": "YOLOv4",
-        "description": "YOLOv4 是一种高性能的 one-stage 目标检测模型。相比 YOLOv3，YOLOv4 采用了 CSPDarknet53 作为 backbone 进行特征提取，该网络结合了跨金字塔池化结构和路径聚合网络，在精度和速度上均有显著提升。",
-        "descriptionZh": "YOLOv4 是一种高性能的 one-stage 目标检测模型。相比 YOLOv3，YOLOv4 采用了 CSPDarknet53 作为 backbone 进行特征提取，该网络结合了跨金字塔池化结构和路径聚合网络，在精度和速度上均有显著提升。",
-        "descriptionEn": "YOLOv4 is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
-        "date": "2025-12-25 17:01:53",
-        "updatedAt": "2025-12-30 21:27:13",
-        "badge": "Beta",
-        "betaVersionDesc": "Hi3403V100 NNN引擎上模型性能待进一步优化",
-        "category": "计算机视觉",
-        "tags": [
-            "目标检测"
-        ],
-        "image": "assets/images/1712131749773315_yolov4.jpg",
-        "coverImageUrl": "assets/images/1712131749773315_yolov4.jpg",
-        "framework": [
-            "PyTorch"
-        ],
-        "supportOs": [
-            "OpenHarmony",
-            "Linux"
-        ],
-        "computingPower": [
-            "Hi3403V100 SVP_NNN",
-            "Hi3403V100 NNN"
-        ],
-        "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/detection/yolov4",
-        "licenseUrl": "https://github.com/Tianxiaomo/pytorch-YOLOv4/blob/master/License.txt",
-        "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/detection/yolov4",
-        "quickStartMarkdownUrl": null,
-        "quickStartReadmes": [
-            {
-                "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolov4模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::yolov4) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/detection/yolov4/src/CMakeLists.txt)",
-                "summary": "模型可以通过以下代码完成快速推理",
-                "summaryEn": "C++ quick-start notes for YOLOv4. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
-            }
-        ],
-        "detailParams": [
-            {
-                "name": "输入",
-                "value": "608x608"
             },
             {
-                "name": "参数量",
-                "value": "64.330M"
-            },
-            {
-                "name": "计算量",
-                "value": "157.842GFLOPs"
-            }
-        ],
-        "originModels": [
-            {
-                "name": "yolov4.pth",
-                "size": "246 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4/resolve/main/yolov4.pth",
-                "available": true,
-                "localFile": "yolov4.pth"
-            },
-            {
-                "name": "yolov4.onnx",
-                "size": "246 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4/resolve/main/yolov4.onnx",
-                "available": true,
-                "localFile": "yolov4.onnx"
-            }
-        ],
-        "hfRepoId": "shadow-cann/hispark-modelzoo-yolov4",
-        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4",
-        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4/resolve/main/yolov4_dpico.om",
-        "primaryDownloadLabel": "yolov4_dpico.om",
-        "downloads": [
-            {
-                "title": "yolov4_dpico.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4/resolve/main/yolov4_dpico.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A16W8",
-                "note": "A16W8",
-                "localFile": "yolov4_dpico.om"
-            },
-            {
-                "title": "yolov4.pth",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4/resolve/main/yolov4.pth",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "yolov4.pth"
-            },
-            {
-                "title": "yolov4.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4/resolve/main/yolov4.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "yolov4.onnx"
-            },
-            {
-                "title": "yolov4_dlite_fp16.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov4/resolve/main/yolov4_dlite_fp16.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "engine": "Hi3403V100 NNN",
-                "quantization": "F16",
-                "note": "F16",
-                "localFile": "yolov4_dlite_fp16.om"
-            },
-            {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
                 "available": true,
                 "source": "api-all",
                 "sourceLabel": "附加资源",
@@ -6147,7 +11765,19 @@ const modelsData = [
                 "engine": "",
                 "quantization": "",
                 "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             }
         ]
     },
@@ -6156,7 +11786,7 @@ const modelsData = [
         "name": "YOLOv8s-seg",
         "description": "YOLOv8s-seg 是一种轻量高效的 one-stage 实例分割模型。相比前代 YOLO 模型，YOLOv8s-seg 采用 C2f 作为 backbone 和 PAFPN 作为颈部网络，结合 “原型掩码 + 掩码系数” 的分割头设计，在保证实时推理速度的同时实现像素级实例分割，适用于轻量化边缘部署场景。",
         "descriptionZh": "YOLOv8s-seg 是一种轻量高效的 one-stage 实例分割模型。相比前代 YOLO 模型，YOLOv8s-seg 采用 C2f 作为 backbone 和 PAFPN 作为颈部网络，结合 “原型掩码 + 掩码系数” 的分割头设计，在保证实时推理速度的同时实现像素级实例分割，适用于轻量化边缘部署场景。",
-        "descriptionEn": "YOLOv8s-seg is a computer vision model for segmentation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv8s-seg is a computer vision model for segmentation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 15:45:54",
         "updatedAt": "2025-12-30 21:27:16",
         "badge": null,
@@ -6204,6 +11834,60 @@ const modelsData = [
                 "value": "44.864GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "46.59",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "21.46",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "165.177",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "63.418",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "48.34",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "20.69",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "371.216",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "124.887",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "yolov8s-seg.onnx",
@@ -6220,6 +11904,18 @@ const modelsData = [
         "primaryDownloadLabel": "yolov8s-seg_dpico.om",
         "downloads": [
             {
+                "title": "yolov8s-seg.onnx",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-seg/resolve/main/yolov8s-seg.onnx",
+                "available": true,
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
+                "group": "源模型",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": "yolov8s-seg.onnx"
+            },
+            {
                 "title": "yolov8s-seg_dpico.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-seg/resolve/main/yolov8s-seg_dpico.om",
                 "available": true,
@@ -6229,34 +11925,66 @@ const modelsData = [
                 "engine": "Hi3403V100 SVP_NNN",
                 "quantization": "A16W8",
                 "note": "A16W8",
-                "localFile": "yolov8s-seg_dpico.om"
+                "localFile": "yolov8s-seg_dpico.om",
+                "performance": [
+                    {
+                        "value": "46.59",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "21.46",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "165.177",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "63.418",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
                 "title": "yolov8s-seg_dlite_fp16.om",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-seg/resolve/main/yolov8s-seg_dlite_fp16.om",
                 "available": true,
-                "source": "om-fp16",
-                "sourceLabel": "FP16",
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
                 "group": "编译模型",
                 "engine": "Hi3403V100 NNN",
                 "quantization": "FP16",
                 "note": "FP16",
-                "localFile": "yolov8s-seg_dlite_fp16.om"
+                "localFile": "yolov8s-seg_dlite_fp16.om",
+                "performance": [
+                    {
+                        "value": "48.34",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "20.69",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "371.216",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "124.887",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "yolov8s-seg.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8s-seg/resolve/main/yolov8s-seg.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "yolov8s-seg.onnx"
-            },
-            {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN配置",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -6266,6 +11994,30 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具库",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             }
         ]
     },
@@ -6274,7 +12026,7 @@ const modelsData = [
         "name": "CrowdCount",
         "description": "CrowdCount是一种基于多尺度卷积神经网络（MSCNN）的高精度人群计数模型。相比传统多列 / 多网络方法，它通过单列网络中的多尺度特征块（MSB）与尺度自适应密度图回归技术，能有效应对透视畸变导致的人物尺度差异问题，兼顾计数精度与模型轻量化，适用于监控图像、公共场所等密集人群计数场景。",
         "descriptionZh": "CrowdCount是一种基于多尺度卷积神经网络（MSCNN）的高精度人群计数模型。相比传统多列 / 多网络方法，它通过单列网络中的多尺度特征块（MSB）与尺度自适应密度图回归技术，能有效应对透视畸变导致的人物尺度差异问题，兼顾计数精度与模型轻量化，适用于监控图像、公共场所等密集人群计数场景。",
-        "descriptionEn": "CrowdCount is a computer vision model for crowd counting. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "CrowdCount is a computer vision model for crowd counting. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 15:03:50",
         "updatedAt": "2025-12-30 21:27:21",
         "badge": null,
@@ -6322,6 +12074,60 @@ const modelsData = [
                 "value": "587.807GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "217.01",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "4.61",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "322.604",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "67.703",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "F16",
+                "metrics": [
+                    {
+                        "value": "349.99",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "2.86",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1677.176",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "243.684",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "mscnn_model.onnx",
@@ -6341,8 +12147,8 @@ const modelsData = [
                 "title": "mscnn_model.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-crowdcount/resolve/main/mscnn_model.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -6359,7 +12165,29 @@ const modelsData = [
                 "engine": "Hi3403V100 SVP_NNN",
                 "quantization": "A16W8",
                 "note": "A16W8",
-                "localFile": "mscnn_model_dpico.om"
+                "localFile": "mscnn_model_dpico.om",
+                "performance": [
+                    {
+                        "value": "217.01",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "4.61",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "322.604",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "67.703",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
                 "title": "mscnn_model_dlite.om",
@@ -6371,10 +12199,32 @@ const modelsData = [
                 "engine": "Hi3403V100 NNN",
                 "quantization": "F16",
                 "note": "F16",
-                "localFile": "mscnn_model_dlite.om"
+                "localFile": "mscnn_model_dlite.om",
+                "performance": [
+                    {
+                        "value": "349.99",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "2.86",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "1677.176",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "243.684",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -6384,6 +12234,30 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             }
         ]
     },
@@ -6392,7 +12266,7 @@ const modelsData = [
         "name": "UNet",
         "description": "UNet是由FCN改进而来的图像分割模型，其网络结构像U型，分为特征提取部分和上采样特征融合部分。",
         "descriptionZh": "UNet是由FCN改进而来的图像分割模型，其网络结构像U型，分为特征提取部分和上采样特征融合部分。",
-        "descriptionEn": "UNet is a computer vision model for segmentation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "UNet is a computer vision model for segmentation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-11-29 15:01:53",
         "updatedAt": "2025-11-29 18:03:49",
         "badge": null,
@@ -6440,6 +12314,60 @@ const modelsData = [
                 "value": "499.572GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "104.09",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "9.61",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "281.472",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "91.445",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "F16",
+                "metrics": [
+                    {
+                        "value": "467.29",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "2.14",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "3072.86",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "397.098",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "UNet.pth",
@@ -6473,8 +12401,8 @@ const modelsData = [
                 "title": "UNet.pth",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-unet/resolve/main/UNet.pth",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -6485,8 +12413,8 @@ const modelsData = [
                 "title": "UNet_dynamic_bs.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-unet/resolve/main/UNet_dynamic_bs.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -6497,8 +12425,8 @@ const modelsData = [
                 "title": "UNet_dynamic_sim.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-unet/resolve/main/UNet_dynamic_sim.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -6515,7 +12443,29 @@ const modelsData = [
                 "engine": "Hi3403V100 SVP_NNN",
                 "quantization": "A8W8",
                 "note": "A8W8",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "104.09",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "9.61",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "281.472",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "91.445",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
                 "title": "unet.om",
@@ -6527,10 +12477,32 @@ const modelsData = [
                 "engine": "Hi3403V100 NNN",
                 "quantization": "F16",
                 "note": "F16",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "467.29",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "2.14",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "3072.86",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "397.098",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -6540,6 +12512,30 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ ",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             }
         ]
     },
@@ -6548,7 +12544,7 @@ const modelsData = [
         "name": "VGG16",
         "description": "VGGNet是牛津大学计算机视觉组（Visual Geometry Group）和Google DeepMind公司的研究员一起研发的深度卷积神经网络，它探索了卷积神经网络的深度与其性能之间的关系，通过反复堆叠3*3的小型卷积核和2*2的最大池化层，成功地构筑了16~19层深的卷积神经网络。VGGNet相比之前state-of-the-art的网络结构，错误率大幅下降，VGGNet论文中全部使用了3*3的小型卷积核和2*2的最大池化核，通过不断加深网络结构来提升性能。",
         "descriptionZh": "VGGNet是牛津大学计算机视觉组（Visual Geometry Group）和Google DeepMind公司的研究员一起研发的深度卷积神经网络，它探索了卷积神经网络的深度与其性能之间的关系，通过反复堆叠3*3的小型卷积核和2*2的最大池化层，成功地构筑了16~19层深的卷积神经网络。VGGNet相比之前state-of-the-art的网络结构，错误率大幅下降，VGGNet论文中全部使用了3*3的小型卷积核和2*2的最大池化核，通过不断加深网络结构来提升性能。",
-        "descriptionEn": "VGG16 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "VGG16 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-11-17 11:25:12",
         "updatedAt": null,
         "badge": null,
@@ -6596,6 +12592,60 @@ const modelsData = [
                 "value": "31.007GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "12.88",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "77.65",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "133.486",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "143.195",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "30.74",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "32.53",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "373.265",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "582.809",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "vgg16.onnx",
@@ -6615,27 +12665,15 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-vgg16",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vgg16",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vgg16/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vgg16/resolve/main/vgg16.om",
-        "primaryDownloadLabel": "vgg16.om",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vgg16/resolve/main/vgg16.onnx",
+        "primaryDownloadLabel": "vgg16.onnx",
         "downloads": [
-            {
-                "title": "vgg16.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vgg16/resolve/main/vgg16.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A8W8",
-                "note": "A8W8",
-                "localFile": "vgg16.om"
-            },
             {
                 "title": "vgg16.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vgg16/resolve/main/vgg16.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -6646,8 +12684,8 @@ const modelsData = [
                 "title": "vgg16-397923af.pth",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-vgg16/resolve/main/vgg16-397923af.pth",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -6661,138 +12699,35 @@ const modelsData = [
                 "source": "omOfflineModel",
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
-                "engine": "Hi3403V100 NNN",
-                "quantization": "FP16",
-                "note": "FP16",
-                "localFile": null
-            },
-            {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "api-all",
-                "sourceLabel": "附加资源",
-                "group": "附加资源",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            }
-        ]
-    },
-    {
-        "id": "hsd8o65p5c00",
-        "name": "SE-ResNet50",
-        "description": "SE-ResNet50是一种基于ResNet50架构的改进卷积神经网络，通过引入SE（Squeeze-and-Excitation）注意力模块，自适应校准通道特征响应，显著提升模型表达能力。",
-        "descriptionZh": "SE-ResNet50是一种基于ResNet50架构的改进卷积神经网络，通过引入SE（Squeeze-and-Excitation）注意力模块，自适应校准通道特征响应，显著提升模型表达能力。",
-        "descriptionEn": "SE-ResNet50 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
-        "date": "2025-11-14 18:20:28",
-        "updatedAt": "2025-11-29 14:49:58",
-        "badge": "Beta",
-        "betaVersionDesc": "Hi3403V100 SVP_NNN引擎上模型性能待进一步优化",
-        "category": "计算机视觉",
-        "tags": [
-            "分类"
-        ],
-        "image": "assets/images/1712179080462337_SEResNet50.png",
-        "coverImageUrl": "assets/images/1712179080462337_SEResNet50.png",
-        "framework": [
-            "PyTorch"
-        ],
-        "supportOs": [
-            "OpenHarmony",
-            "Linux"
-        ],
-        "computingPower": [
-            "Hi3403V100 SVP_NNN",
-            "Hi3403V100 NNN"
-        ],
-        "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/classification/SEResNet50",
-        "licenseUrl": "https://github.com/morning4346/Se_resnet50/blob/master/LICENSE",
-        "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/built-in/classification/SEResNet50",
-        "quickStartMarkdownUrl": null,
-        "quickStartReadmes": [
-            {
-                "language": "C++",
-                "content": "SEResnet50模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // SEResnet50模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::SEResnet50) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：头文件和动态库位于/samples/common (https://gitee.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译配置参考文件 (https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/classification/SEResnet50/src/CMakeLists.txt)",
-                "summary": "SEResnet50模型可以通过以下代码完成快速推理",
-                "summaryEn": "C++ quick-start notes for SE-ResNet50. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
-            }
-        ],
-        "detailParams": [
-            {
-                "name": "输入",
-                "value": "224x224"
-            },
-            {
-                "name": "参数量",
-                "value": "28.045M"
-            },
-            {
-                "name": "计算量",
-                "value": "8.263GFLOPs"
-            }
-        ],
-        "originModels": [
-            {
-                "name": "seresnet50.onnx",
-                "size": "107 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-se-resnet50/resolve/main/seresnet50.onnx",
-                "available": true,
-                "localFile": "seresnet50.onnx"
-            },
-            {
-                "name": "seresnet50.zip",
-                "size": "99.9 MB",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-se-resnet50/resolve/main/seresnet50.zip",
-                "available": true,
-                "localFile": "seresnet50.zip"
-            }
-        ],
-        "hfRepoId": "shadow-cann/hispark-modelzoo-se-resnet50",
-        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-se-resnet50",
-        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-se-resnet50/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-se-resnet50/resolve/main/seresnet50.onnx",
-        "primaryDownloadLabel": "seresnet50.onnx",
-        "downloads": [
-            {
-                "title": "seresnet50.onnx",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-se-resnet50/resolve/main/seresnet50.onnx",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "seresnet50.onnx"
-            },
-            {
-                "title": "seresnet50.zip",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-se-resnet50/resolve/main/seresnet50.zip",
-                "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
-                "group": "源模型",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "seresnet50.zip"
-            },
-            {
-                "title": "seresnet50.om",
-                "href": null,
-                "available": false,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
                 "engine": "Hi3403V100 SVP_NNN",
                 "quantization": "A8W8",
                 "note": "A8W8",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "12.88",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "77.65",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "133.486",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "143.195",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "seresnet50.om",
+                "title": "vgg16.om",
                 "href": null,
                 "available": false,
                 "source": "omOfflineModel",
@@ -6801,10 +12736,32 @@ const modelsData = [
                 "engine": "Hi3403V100 NNN",
                 "quantization": "FP16",
                 "note": "FP16",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "30.74",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "32.53",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "373.265",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "582.809",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -6814,6 +12771,30 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ ",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             }
         ]
     },
@@ -6822,7 +12803,7 @@ const modelsData = [
         "name": "InceptionV3",
         "description": "InceptionV3 是为图像分类任务设计的高效卷积神经网络，其核心创新是使用模块化的 Inception 结构（如分解卷积、辅助分类器）来在保持计算效率的同时提升特征提取能力，并在 ImageNet 等数据集上取得优异性能。",
         "descriptionZh": "InceptionV3 是为图像分类任务设计的高效卷积神经网络，其核心创新是使用模块化的 Inception 结构（如分解卷积、辅助分类器）来在保持计算效率的同时提升特征提取能力，并在 ImageNet 等数据集上取得优异性能。",
-        "descriptionEn": "InceptionV3 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "InceptionV3 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-11-14 18:09:00",
         "updatedAt": "2025-11-29 14:49:57",
         "badge": null,
@@ -6870,6 +12851,60 @@ const modelsData = [
                 "value": "11.511GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "5.15",
+                        "unit": "耗时（ms）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "194.26",
+                        "unit": "性能（fps）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "30.555",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "28.0",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "10.398",
+                        "unit": "耗时（ms）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "95.48",
+                        "unit": "性能（fps）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "131.305",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "153.855",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "InceptionV3.onnx",
@@ -6896,8 +12931,8 @@ const modelsData = [
                 "title": "InceptionV3.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-inceptionv3/resolve/main/InceptionV3.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -6908,8 +12943,8 @@ const modelsData = [
                 "title": "Inceptionv3.zip",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-inceptionv3/resolve/main/Inceptionv3.zip",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -6926,7 +12961,29 @@ const modelsData = [
                 "engine": "Hi3403V100 SVP_NNN",
                 "quantization": "A8W8",
                 "note": "A8W8",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "5.15",
+                        "unit": "耗时（ms）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "194.26",
+                        "unit": "性能（fps）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "30.555",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "28.0",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
                 "title": "InceptionV3.om",
@@ -6938,10 +12995,32 @@ const modelsData = [
                 "engine": "Hi3403V100 NNN",
                 "quantization": "FP16",
                 "note": "FP16",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "10.398",
+                        "unit": "耗时（ms）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "95.48",
+                        "unit": "性能（fps）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "131.305",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "153.855",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -6951,6 +13030,30 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ ",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             }
         ]
     },
@@ -6959,7 +13062,7 @@ const modelsData = [
         "name": "YOLOv7",
         "description": "YOLOv7在速度与精度方面均超越现有已知目标检测器：在5-160 FPS范围内表现最优，并在GPU V100上以30+ FPS实现56.8% AP的最高精度。其YOLOv7-E6模型在V100上达到56 FPS和55.9% AP，相比基于Transformer的SWIN-L Cascade-Mask R-CNN（A100 9.2 FPS，53.9% AP）速度提升509%且精度提高2%；相较基于卷积的ConvNeXt-XL Cascade-Mask R-CNN（A100 8.6 FPS，55.2% AP）速度提升551%且精度提高0.7%。此外，YOLOv7在速度与精度上均优于YOLOR、YOLOX、YOLOv5等主流检测器，且仅使用MS COCO数据集从头训练，未借助任何预训练权重。",
         "descriptionZh": "YOLOv7在速度与精度方面均超越现有已知目标检测器：在5-160 FPS范围内表现最优，并在GPU V100上以30+ FPS实现56.8% AP的最高精度。其YOLOv7-E6模型在V100上达到56 FPS和55.9% AP，相比基于Transformer的SWIN-L Cascade-Mask R-CNN（A100 9.2 FPS，53.9% AP）速度提升509%且精度提高2%；相较基于卷积的ConvNeXt-XL Cascade-Mask R-CNN（A100 8.6 FPS，55.2% AP）速度提升551%且精度提高0.7%。此外，YOLOv7在速度与精度上均优于YOLOR、YOLOX、YOLOv5等主流检测器，且仅使用MS COCO数据集从头训练，未借助任何预训练权重。",
-        "descriptionEn": "YOLOv7 is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv7 is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-11-14 10:24:41",
         "updatedAt": "2025-11-29 14:49:58",
         "badge": null,
@@ -7007,6 +13110,60 @@ const modelsData = [
                 "value": "110.553 GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "74.19",
+                        "unit": "耗时（ms）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "13.48",
+                        "unit": "性能（fps）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "454.059",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "79.949",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "130.79",
+                        "unit": "耗时（ms）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "7.65",
+                        "unit": "性能（fps）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "899.415",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "252.781",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "yolov7.pt",
@@ -7033,8 +13190,8 @@ const modelsData = [
                 "title": "yolov7.pt",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov7/resolve/main/yolov7.pt",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -7045,8 +13202,8 @@ const modelsData = [
                 "title": "yolov7.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov7/resolve/main/yolov7.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -7063,7 +13220,29 @@ const modelsData = [
                 "engine": "Hi3403V100 SVP_NNN",
                 "quantization": "A16W8",
                 "note": "A16W8",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "74.19",
+                        "unit": "耗时（ms）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "13.48",
+                        "unit": "性能（fps）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "454.059",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "79.949",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
                 "title": "yolov7.om",
@@ -7075,10 +13254,32 @@ const modelsData = [
                 "engine": "Hi3403V100 NNN",
                 "quantization": "FP16",
                 "note": "FP16",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "130.79",
+                        "unit": "耗时（ms）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "7.65",
+                        "unit": "性能（fps）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "899.415",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "252.781",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -7088,6 +13289,30 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ ",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             }
         ]
     },
@@ -7096,7 +13321,7 @@ const modelsData = [
         "name": "ResNet50",
         "description": "ResNet是残差网络(Residual Network)的缩写,该系列网络广泛用于目标分类等领域以及作为计算机视觉任务主干经典神经网络的一部分，典型的网络有ResNet50, ResNet101等。ResNet证明网络能够向更深（包含更多隐藏层）的方向发展。",
         "descriptionZh": "ResNet是残差网络(Residual Network)的缩写,该系列网络广泛用于目标分类等领域以及作为计算机视觉任务主干经典神经网络的一部分，典型的网络有ResNet50, ResNet101等。ResNet证明网络能够向更深（包含更多隐藏层）的方向发展。",
-        "descriptionEn": "ResNet50 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "ResNet50 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-09-22 20:40:35",
         "updatedAt": null,
         "badge": null,
@@ -7144,6 +13369,60 @@ const modelsData = [
                 "value": "8.235GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "2.99",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "334.22",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "27.342",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "26.582",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "7.513",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "133.1",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "111.543",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "145.398",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "resnet50-0676ba61.pth",
@@ -7163,27 +13442,15 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-resnet50",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet50",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet50/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet50/resolve/main/resnet50.om",
-        "primaryDownloadLabel": "resnet50.om",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet50/resolve/main/resnet50-0676ba61.pth",
+        "primaryDownloadLabel": "resnet50-0676ba61.pth",
         "downloads": [
-            {
-                "title": "resnet50.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet50/resolve/main/resnet50.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A8W8",
-                "note": "A8W8",
-                "localFile": "resnet50.om"
-            },
             {
                 "title": "resnet50-0676ba61.pth",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet50/resolve/main/resnet50-0676ba61.pth",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -7194,8 +13461,8 @@ const modelsData = [
                 "title": "resnet50.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet50/resolve/main/resnet50.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -7209,13 +13476,69 @@ const modelsData = [
                 "source": "omOfflineModel",
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "note": "A8W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "2.99",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "334.22",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "27.342",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "26.582",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "resnet50.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
                 "engine": "Hi3403V100 NNN",
                 "quantization": "FP16",
                 "note": "FP16",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "7.513",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "133.1",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "111.543",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "145.398",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -7225,6 +13548,30 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ ",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             }
         ]
     },
@@ -7233,7 +13580,7 @@ const modelsData = [
         "name": "ResNet18",
         "description": "ResNet是残差网络(Residual Network)的缩写,该系列网络广泛用于目标分类等领域以及作为计算机视觉任务主干经典神经网络的一部分，典型的网络有ResNet18, ResNet101等。ResNet证明网络能够向更深（包含更多隐藏层）的方向发展。",
         "descriptionZh": "ResNet是残差网络(Residual Network)的缩写,该系列网络广泛用于目标分类等领域以及作为计算机视觉任务主干经典神经网络的一部分，典型的网络有ResNet18, ResNet101等。ResNet证明网络能够向更深（包含更多隐藏层）的方向发展。",
-        "descriptionEn": "ResNet18 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "ResNet18 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-09-17 09:26:27",
         "updatedAt": null,
         "badge": null,
@@ -7280,6 +13627,34 @@ const modelsData = [
                 "value": "3.643GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "1.35",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "738.62",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "11.435",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "13.43",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "resnet18-f37072fd.pth",
@@ -7303,23 +13678,11 @@ const modelsData = [
         "primaryDownloadLabel": "resnet18.om",
         "downloads": [
             {
-                "title": "resnet18.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet18/resolve/main/resnet18.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A8W8",
-                "note": "A8W8",
-                "localFile": "resnet18.om"
-            },
-            {
                 "title": "resnet18-f37072fd.pth",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet18/resolve/main/resnet18-f37072fd.pth",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -7330,8 +13693,8 @@ const modelsData = [
                 "title": "resnet18.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet18/resolve/main/resnet18.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -7339,7 +13702,41 @@ const modelsData = [
                 "localFile": "resnet18.onnx"
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "resnet18.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet18/resolve/main/resnet18.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "note": "A8W8",
+                "localFile": "resnet18.om",
+                "performance": [
+                    {
+                        "value": "1.35",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "738.62",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "11.435",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "13.43",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -7349,6 +13746,30 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ ",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             }
         ]
     },
@@ -7357,7 +13778,7 @@ const modelsData = [
         "name": "YOLOv8l",
         "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv8l在之前的YOLO版本的基础上进行了改进，在继承了原有YOLO网络模型优点的基础上，引入了新的特效和优化，具有更高的检测精度。",
         "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv8l在之前的YOLO版本的基础上进行了改进，在继承了原有YOLO网络模型优点的基础上，引入了新的特效和优化，具有更高的检测精度。",
-        "descriptionEn": "YOLOv8l is a computer vision model for detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv8l is a computer vision model for detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-09-15 22:03:30",
         "updatedAt": null,
         "badge": null,
@@ -7404,6 +13825,34 @@ const modelsData = [
                 "value": "170.256GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "93.842",
+                        "unit": "耗时（ms）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "10.656",
+                        "unit": "性能（fps）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "480.774",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "90.754",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "yolov8l.pt",
@@ -7427,23 +13876,11 @@ const modelsData = [
         "primaryDownloadLabel": "yolov8l.om",
         "downloads": [
             {
-                "title": "yolov8l.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8l/resolve/main/yolov8l.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A16W8",
-                "note": "A16W8",
-                "localFile": "yolov8l.om"
-            },
-            {
                 "title": "yolov8l.pt",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8l/resolve/main/yolov8l.pt",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -7454,8 +13891,8 @@ const modelsData = [
                 "title": "yolov8l.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8l/resolve/main/yolov8l.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -7463,7 +13900,41 @@ const modelsData = [
                 "localFile": "yolov8l.onnx"
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "yolov8l.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolov8l/resolve/main/yolov8l.om",
+                "available": true,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "note": "A16W8",
+                "localFile": "yolov8l.om",
+                "performance": [
+                    {
+                        "value": "93.842",
+                        "unit": "耗时（ms）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "10.656",
+                        "unit": "性能（fps）",
+                        "desc": "性能工具。"
+                    },
+                    {
+                        "value": "480.774",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "90.754",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -7473,6 +13944,30 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ ",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             }
         ]
     },
@@ -7481,7 +13976,7 @@ const modelsData = [
         "name": "ResNet101",
         "description": "ResNet是ImageNet竞赛中分类问题效果较好的网络，它引入了残差学习的概念，通过增加直连通道来保护信息的完整性，解决信息丢失、梯度消失、梯度爆炸等问题，让很深的网络也得以训练。ResNet有不同的网络层数，常用的有18-layer、34-layer、50-layer、101-layer、152-layer。",
         "descriptionZh": "ResNet是ImageNet竞赛中分类问题效果较好的网络，它引入了残差学习的概念，通过增加直连通道来保护信息的完整性，解决信息丢失、梯度消失、梯度爆炸等问题，让很深的网络也得以训练。ResNet有不同的网络层数，常用的有18-layer、34-layer、50-layer、101-layer、152-layer。",
-        "descriptionEn": "ResNet101 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "ResNet101 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-09-13 18:06:31",
         "updatedAt": null,
         "badge": null,
@@ -7529,6 +14024,60 @@ const modelsData = [
                 "value": "15.686GFLOPs"
             }
         ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "metrics": [
+                    {
+                        "value": "4.76",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "210.03",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "45.933",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "46.348",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "12.033",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "83.102",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "172.169",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "220.055",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
         "originModels": [
             {
                 "name": "resnet101.onnx",
@@ -7548,27 +14097,15 @@ const modelsData = [
         "hfRepoId": "shadow-cann/hispark-modelzoo-resnet101",
         "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet101",
         "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet101/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet101/resolve/main/resnet101.om",
-        "primaryDownloadLabel": "resnet101.om",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet101/resolve/main/resnet101.onnx",
+        "primaryDownloadLabel": "resnet101.onnx",
         "downloads": [
-            {
-                "title": "resnet101.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet101/resolve/main/resnet101.om",
-                "available": true,
-                "source": "omOfflineModel",
-                "sourceLabel": "OM 元数据",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A8W8",
-                "note": "A8W8",
-                "localFile": "resnet101.om"
-            },
             {
                 "title": "resnet101.onnx",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet101/resolve/main/resnet101.onnx",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -7579,8 +14116,8 @@ const modelsData = [
                 "title": "resnet101-63fe2227.pth",
                 "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-resnet101/resolve/main/resnet101-63fe2227.pth",
                 "available": true,
-                "source": "source-model",
-                "sourceLabel": "源模型下载",
+                "source": "originModel",
+                "sourceLabel": "源模型元数据",
                 "group": "源模型",
                 "engine": "",
                 "quantization": "",
@@ -7594,13 +14131,69 @@ const modelsData = [
                 "source": "omOfflineModel",
                 "sourceLabel": "OM 元数据",
                 "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A8W8",
+                "note": "A8W8",
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "4.76",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "210.03",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "45.933",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "46.348",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "resnet101.om",
+                "href": null,
+                "available": false,
+                "source": "omOfflineModel",
+                "sourceLabel": "OM 元数据",
+                "group": "编译模型",
                 "engine": "Hi3403V100 NNN",
                 "quantization": "FP16",
                 "note": "FP16",
-                "localFile": null
+                "localFile": null,
+                "performance": [
+                    {
+                        "value": "12.033",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "83.102",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "172.169",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "220.055",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
             },
             {
-                "title": "SVP_NNN_PC_V1.0.6.0.tgz",
+                "title": "CANN工具",
                 "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
                 "available": true,
                 "source": "api-all",
@@ -7610,6 +14203,30 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+            },
+            {
+                "title": "编译工具链",
+                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
+            },
+            {
+                "title": "SDK",
+                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ ",
+                "available": true,
+                "source": "api-all",
+                "sourceLabel": "附加资源",
+                "group": "附加资源",
+                "engine": "",
+                "quantization": "",
+                "note": "",
+                "localFile": null
             }
         ]
     }

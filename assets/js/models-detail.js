@@ -1,6 +1,17 @@
 const detailPageUrl = new URL(window.location.href);
 const detailPageBaseUrl = new URL('./', detailPageUrl);
 
+// Several upstream records were republished with new IDs. Keep bookmarked
+// detail URLs working without duplicating the old records in the catalog.
+const legacyModelIdAliases = {
+    i9ivuh3hec00: 'kuerjmbgts00',
+    i9j3k8rpec00: 'ku5e0eekj400',
+    kmrpc00gts00: 'ku5ckc88j400',
+    knc6ud5cj400: 'ku4ntpbgj400',
+    hsd8o65p5c00: 'ku4m5qfcts00',
+    j8pfkrsgtk00: 'ktgi9vl8j400',
+};
+
 // Get model name from URL
 function getModelNameFromURL() {
     const params = new URLSearchParams(detailPageUrl.search);
@@ -124,6 +135,57 @@ function formatValueList(values) {
         .join(' / ');
 }
 
+function formatPerformance(metrics) {
+    const entries = (metrics || []).filter((metric) => metric && metric.value != null && metric.unit);
+    if (!entries.length) return '—';
+
+    const labels = [
+        {
+            match: /ttft/i,
+            key: 'detail.performanceTtft',
+            fallback: 'TTFT',
+            unit: 'ms',
+        },
+        {
+            match: /tps|token/i,
+            key: 'detail.performanceTps',
+            fallback: 'TPS',
+            unit: 'TPS',
+        },
+        {
+            match: /耗时|latency|time/i,
+            key: 'detail.performanceLatency',
+            fallback: '耗时',
+            unit: 'ms',
+        },
+        {
+            match: /性能|fps/i,
+            key: 'detail.performanceFps',
+            fallback: 'FPS',
+            unit: 'FPS',
+        },
+        {
+            match: /带宽|bandwidth/i,
+            key: 'detail.performanceBandwidth',
+            fallback: '带宽',
+            unit: 'MB',
+        },
+        {
+            match: /内存|memory/i,
+            key: 'detail.performanceMemory',
+            fallback: '内存',
+            unit: 'MB',
+        },
+    ];
+
+    return entries.map((metric) => {
+        const match = labels.find((item) => item.match.test(String(metric.unit)));
+        if (!match) return `${metric.value} ${metric.unit}`;
+        const label = i18n ? i18n.t(match.key) : match.fallback;
+        return `${label} ${metric.value} ${match.unit}`;
+    }).join(' / ');
+}
+
 function setSectionVisible(sectionId, visible) {
     const section = document.getElementById(sectionId);
     if (!section) return;
@@ -218,6 +280,48 @@ function renderDetailParams(items) {
         </tr>
     `).join('');
     setSectionVisible('detailParamsSection', true);
+}
+
+function renderPerformance(items) {
+    const container = document.getElementById('performanceTable');
+    if (!container) return;
+
+    const rows = (items || []).filter((item) => item && (item.engine || item.quantization || (item.metrics || []).length));
+    if (!rows.length) {
+        container.innerHTML = '';
+        setSectionVisible('performanceSection', false);
+        return;
+    }
+
+    const labels = {
+        engine: i18n ? i18n.t('detail.computeLabel') : '算力引擎',
+        variant: i18n ? i18n.t('detail.fileNote') : '规格',
+        metrics: i18n ? i18n.t('detail.performanceLabel') : '性能',
+    };
+
+    container.innerHTML = `
+        <div class="table-frame table-scroll">
+            <table class="data-table performance-table" aria-labelledby="performanceHeading">
+                <thead>
+                    <tr>
+                        <th scope="col">${escapeHtml(labels.engine)}</th>
+                        <th scope="col">${escapeHtml(labels.variant)}</th>
+                        <th scope="col">${escapeHtml(labels.metrics)}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${rows.map((item) => `
+                        <tr>
+                            <td><span class="mobile-cell-label" aria-hidden="true">${escapeHtml(labels.engine)}</span>${escapeHtml(item.engine || '—')}</td>
+                            <td><span class="mobile-cell-label" aria-hidden="true">${escapeHtml(labels.variant)}</span>${escapeHtml(item.quantization || '—')}</td>
+                            <td><span class="mobile-cell-label" aria-hidden="true">${escapeHtml(labels.metrics)}</span>${escapeHtml(formatPerformance(item.metrics))}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        </div>
+    `;
+    setSectionVisible('performanceSection', true);
 }
 
 function renderOriginModels(items) {
@@ -379,6 +483,7 @@ function renderDownloads(downloads) {
         file: i18n ? i18n.t('detail.modelFile') : '模型文件',
         engine: i18n ? i18n.t('detail.computeLabel') : '算力引擎',
         note: i18n ? i18n.t('detail.fileNote') : '规格',
+        performance: i18n ? i18n.t('detail.performanceLabel') : '性能',
         source: i18n ? i18n.t('detail.fileSource') : '来源',
         action: i18n ? i18n.t('detail.action') : '操作'
     };
@@ -395,6 +500,7 @@ function renderDownloads(downloads) {
                         <td class="download-file"><span class="mobile-cell-label" aria-hidden="true">${escapeHtml(labels.file)}</span>${escapeHtml(item.title || '—')}</td>
                         <td class="download-engine" data-empty="${engine === '—'}"><span class="mobile-cell-label" aria-hidden="true">${escapeHtml(labels.engine)}</span>${escapeHtml(engine)}</td>
                         <td class="download-spec"><span class="mobile-cell-label" aria-hidden="true">${escapeHtml(labels.note)}</span>${escapeHtml(item.quantization || item.note || '—')}</td>
+                        <td class="download-performance"><span class="mobile-cell-label" aria-hidden="true">${escapeHtml(labels.performance)}</span>${escapeHtml(formatPerformance(item.performance))}</td>
                         <td class="download-source"><span class="mobile-cell-label" aria-hidden="true">${escapeHtml(labels.source)}</span>${escapeHtml(i18n ? i18n.translateValue(item.sourceLabel || '—') : (item.sourceLabel || '—'))}</td>
                         <td class="download-action-cell"><span class="mobile-cell-label" aria-hidden="true">${escapeHtml(labels.action)}</span>
                             ${item.available
@@ -416,6 +522,7 @@ function renderDownloads(downloads) {
                         <th scope="col">${escapeHtml(labels.file)}</th>
                         <th scope="col">${escapeHtml(labels.engine)}</th>
                         <th scope="col">${escapeHtml(labels.note)}</th>
+                        <th scope="col">${escapeHtml(labels.performance)}</th>
                         <th scope="col">${escapeHtml(labels.source)}</th>
                         <th scope="col">${escapeHtml(labels.action)}</th>
                     </tr>
@@ -521,7 +628,8 @@ function renderModelDetail() {
         return;
     }
     
-    const model = modelsData.find(m => m.id === modelId) || modelsData.find(m => m.name === modelName);
+    const resolvedModelId = legacyModelIdAliases[modelId] || modelId;
+    const model = modelsData.find(m => m.id === resolvedModelId) || modelsData.find(m => m.name === modelName);
     if (!model) {
         document.getElementById('modelName').textContent = i18n ? i18n.t('detail.notFound') : '未找到模型';
         document.title = i18n ? i18n.t('page.modelNotFoundTitle') : '未找到模型 - ModelZoo镜像站';
@@ -571,6 +679,7 @@ function renderModelDetail() {
 
     renderDownloads(model.downloads || []);
     renderDetailParams(model.detailParams || []);
+    renderPerformance(model.performance || []);
     renderOriginModels(model.originModels || []);
     const readmeState = renderReadmes(model.quickStartReadmes || [], {
         quickStartUrl: model.quickStartUrl,

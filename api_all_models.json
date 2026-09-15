@@ -1,5 +1,281 @@
 [
   {
+    "id": "kuerjmbgts00",
+    "name": "YOLOv4",
+    "coverImageId": 1712131749773315,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1712131749773315%2Fyolov4.jpg",
+    "isBeta": 0,
+    "betaVersionDesc": "",
+    "createdBy": 139318985286440,
+    "creationDate": "2026-09-15 09:27:15",
+    "creationUserCN": "sloanqin",
+    "lastUpdateDate": "2026-09-15 15:27:11",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "YOLOv4 是一种高性能的 one-stage 目标检测模型。相比 YOLOv3，YOLOv4 采用了 CSPDarknet53 作为 backbone 进行特征提取，该网络结合了跨金字塔池化结构和路径聚合网络，在精度和速度上均有显著提升。",
+    "computerVersion": [
+      "目标检测"
+    ],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "OpenHarmony",
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3403V100 SVP_NNN",
+      "Hi3403V100 NNN"
+    ],
+    "isCollect": 0,
+    "downloadNum": 0,
+    "collectCount": 0
+  },
+  {
+    "id": "ku5e0eekj400",
+    "name": "YOLO11s-pose",
+    "coverImageId": 1712135222657026,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1712135222657026%2Fyolo11-pose-small.jpg",
+    "isBeta": 0,
+    "betaVersionDesc": "",
+    "createdBy": 139036723332644,
+    "creationDate": "2026-09-14 11:29:32",
+    "creationUserCN": "y-0089",
+    "lastUpdateDate": null,
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
+    "computerVersion": [
+      "姿态估计"
+    ],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "OpenHarmony",
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3403V100 SVP_NNN",
+      "Hi3403V100 NNN",
+      "Hi3516CV610"
+    ],
+    "isCollect": 0,
+    "downloadNum": 10,
+    "collectCount": 0
+  },
+  {
+    "id": "ku5ckc88j400",
+    "name": "YOLO26s",
+    "coverImageId": 1764112203841537,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1764112203841537%2Fyolo26.jpg",
+    "isBeta": 0,
+    "betaVersionDesc": "",
+    "createdBy": 139036723332644,
+    "creationDate": "2026-09-14 11:23:31",
+    "creationUserCN": "y-0089",
+    "lastUpdateDate": null,
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "YOLO26s 是 Ultralytics YOLO 系列中的小型目标检测模型，适合在边缘设备上进行实时目标检测。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
+    "computerVersion": [
+      "检测"
+    ],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "OpenHarmony",
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3403V100 SVP_NNN",
+      "Hi3403V100 NNN",
+      "Hi3516CV610"
+    ],
+    "isCollect": 0,
+    "downloadNum": 11,
+    "collectCount": 0
+  },
+  {
+    "id": "ku59qr0kts00",
+    "name": "XFeat",
+    "coverImageId": 1767208963342338,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1767208963342338%2Ftest_538332484_huge_vis_%E4%B8%8A%E6%9E%B6.jpg",
+    "isBeta": 0,
+    "betaVersionDesc": "",
+    "createdBy": 139761718403620,
+    "creationDate": "2026-09-14 11:11:18",
+    "creationUserCN": "bazinga",
+    "lastUpdateDate": "2026-09-15 15:27:11",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "XFeat是用于特征点检测与匹配的轻量级局部特征模型，可输出局部描述子、关键点分类图和可靠性热力图，支持基于HPatches数据集进行单应性估计评估。",
+    "computerVersion": [
+      "特征点检测"
+    ],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3516CV610"
+    ],
+    "isCollect": 0,
+    "downloadNum": 1,
+    "collectCount": 0
+  },
+  {
+    "id": "ku57c46cj400",
+    "name": "UFLDv2",
+    "coverImageId": 1767233107918850,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1767233107918850%2Ftest_2190265793_huge11_%E4%B8%8A%E6%9E%B6.jpg",
+    "isBeta": 0,
+    "betaVersionDesc": "",
+    "createdBy": 139761718403620,
+    "creationDate": "2026-09-14 11:00:33",
+    "creationUserCN": "bazinga",
+    "lastUpdateDate": "2026-09-15 15:27:10",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "UFLDv2（Ultra-Fast-Lane-Detection-v2）是一种基于混合锚点驱动有序分类方法的车道线检测模型。该模型采用 ResNet18 作为骨干网络，配合 ParsingNet 解析网络，在保持超高推理速度的同时实现了良好的车道线检测精度。",
+    "computerVersion": [
+      "车道线检测"
+    ],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3516CV610"
+    ],
+    "isCollect": 0,
+    "downloadNum": 1,
+    "collectCount": 0
+  },
+  {
+    "id": "ku4ntpbgj400",
+    "name": "FSMN-KWS",
+    "coverImageId": 1763392620658690,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1763392620658690%2F%E6%95%88%E6%9E%9C.JPG",
+    "isBeta": 0,
+    "betaVersionDesc": "",
+    "createdBy": 137441035408492,
+    "creationDate": "2026-09-14 09:53:03",
+    "creationUserCN": "0e900d99dee8461b8",
+    "lastUpdateDate": "2026-09-15 15:27:10",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "小云唤醒词检测模型基于CharCTC（Character-level Connectionist Temporal Classification）架构，用于检测语音中的特定唤醒词\"小云小云\"。模型提取音频的Fbank特征，通过LFR（Low Frame Rate）降采样和CMVN归一化后进行CTC解码，输出关键词检测结果。",
+    "computerVersion": [],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [
+      "关键字检测"
+    ],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3516CV610"
+    ],
+    "isCollect": 0,
+    "downloadNum": 0,
+    "collectCount": 0
+  },
+  {
+    "id": "ku4m5qfcts00",
+    "name": "SE-ResNet50",
+    "coverImageId": 1712179080462337,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1712179080462337%2FSEResNet50.png",
+    "isBeta": 0,
+    "betaVersionDesc": "",
+    "createdBy": 139036723332644,
+    "creationDate": "2026-09-14 09:45:25",
+    "creationUserCN": "y-0089",
+    "lastUpdateDate": "2026-09-15 15:27:11",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "SE-ResNet50是一种基于ResNet50架构的改进卷积神经网络，通过引入SE（Squeeze-and-Excitation）注意力模块，自适应校准通道特征响应，显著提升模型表达能力。",
+    "computerVersion": [
+      "分类"
+    ],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "OpenHarmony",
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3403V100 SVP_NNN",
+      "Hi3403V100 NNN"
+    ],
+    "isCollect": 0,
+    "downloadNum": 2,
+    "collectCount": 0
+  },
+  {
+    "id": "ktgi9vl8j400",
+    "name": "Depth-Anything-v2",
+    "coverImageId": 1700942867267585,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1700942867267585%2Fdepth.png",
+    "isBeta": 0,
+    "betaVersionDesc": "",
+    "createdBy": 137441035408492,
+    "creationDate": "2026-09-12 10:52:18",
+    "creationUserCN": "0e900d99dee8461b8",
+    "lastUpdateDate": "2026-09-15 15:27:10",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "Depth Anything V2在细节和鲁棒性方面显著优于 V1。与基于 SD 的模型相比，它具有更快的推理速度、更少的参数和更高的深度精度。本示例使用的是Depth-Anything-V2-Small。",
+    "computerVersion": [
+      "单目深度"
+    ],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "OpenHarmony",
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3403V100 SVP_NNN",
+      "Hi3403V100 NNN"
+    ],
+    "isCollect": 0,
+    "downloadNum": 0,
+    "collectCount": 0
+  },
+  {
     "id": "ko3ugg54j400",
     "name": "Swin-Transformer",
     "coverImageId": 1701485580845059,
@@ -31,7 +307,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 4,
+    "downloadNum": 53,
     "collectCount": 0
   },
   {
@@ -66,7 +342,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 7,
+    "downloadNum": 19,
     "collectCount": 0
   },
   {
@@ -101,7 +377,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 2,
+    "downloadNum": 13,
     "collectCount": 0
   },
   {
@@ -114,7 +390,7 @@
     "createdBy": 139036723332644,
     "creationDate": "2026-08-25 17:33:30",
     "creationUserCN": "y-0089",
-    "lastUpdateDate": "2026-09-01 16:13:06",
+    "lastUpdateDate": null,
     "currentHandler": "",
     "currentHandlerName": "",
     "description": "YOLOv10 引入了一种新的实时目标检测方法，解决了以前YOLO 版本在后处理和模型架构方面的不足。通过消除非最大抑制NMS和优化各种模型组件，YOLOv10 显著降低了计算开销。本示例基于YOLOv10s。",
@@ -136,75 +412,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 0,
-    "collectCount": 0
-  },
-  {
-    "id": "knc6ud5cj400",
-    "name": "FSMN-KWS",
-    "coverImageId": 1763392620658690,
-    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1763392620658690%2F%E6%95%88%E6%9E%9C.JPG",
-    "isBeta": 0,
-    "betaVersionDesc": "",
-    "createdBy": 137441035408492,
-    "creationDate": "2026-08-24 09:19:53",
-    "creationUserCN": "0e900d99dee8461b8",
-    "lastUpdateDate": "2026-09-01 16:13:07",
-    "currentHandler": "",
-    "currentHandlerName": "",
-    "description": "小云唤醒词检测模型基于CharCTC（Character-level Connectionist Temporal Classification）架构，用于检测语音中的特定唤醒词\"小云小云\"。模型提取音频的Fbank特征，通过LFR（Low Frame Rate）降采样和CMVN归一化后进行CTC解码，输出关键词检测结果。",
-    "computerVersion": [],
-    "naturalLanguageProcess": [],
-    "multimodal": [],
-    "video": [
-      "关键字检测"
-    ],
-    "framework": [
-      "PyTorch"
-    ],
-    "supportOs": [
-      "Linux"
-    ],
-    "computingPower": [
-      "Hi3516CV610"
-    ],
-    "isCollect": 0,
-    "downloadNum": 6,
-    "collectCount": 0
-  },
-  {
-    "id": "kmrpc00gts00",
-    "name": "YOLO26s",
-    "coverImageId": 1764112203841537,
-    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1764112203841537%2Fyolo26.jpg",
-    "isBeta": 0,
-    "betaVersionDesc": "",
-    "createdBy": 139036723332644,
-    "creationDate": "2026-08-22 19:03:36",
-    "creationUserCN": "y-0089",
-    "lastUpdateDate": "2026-09-01 16:13:07",
-    "currentHandler": "",
-    "currentHandlerName": "",
-    "description": "YOLO26s 是 Ultralytics YOLO 系列中的小型目标检测模型，适合在边缘设备上进行实时目标检测。",
-    "computerVersion": [
-      "检测"
-    ],
-    "naturalLanguageProcess": [],
-    "multimodal": [],
-    "video": [],
-    "framework": [
-      "PyTorch"
-    ],
-    "supportOs": [
-      "OpenHarmony",
-      "Linux"
-    ],
-    "computingPower": [
-      "Hi3403V100 SVP_NNN",
-      "Hi3403V100 NNN"
-    ],
-    "isCollect": 0,
-    "downloadNum": 2,
+    "downloadNum": 10,
     "collectCount": 0
   },
   {
@@ -239,7 +447,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 9,
+    "downloadNum": 22,
     "collectCount": 0
   },
   {
@@ -252,7 +460,7 @@
     "createdBy": 139036723332644,
     "creationDate": "2026-05-21 11:51:11",
     "creationUserCN": "y-0089",
-    "lastUpdateDate": "2026-06-26 21:38:44",
+    "lastUpdateDate": null,
     "currentHandler": "",
     "currentHandlerName": "",
     "description": "MiniCPM-4v-0.5B: 小参数, 大智慧——端侧多模态模型\n\n由面壁智能(OpenBMB)打造的MiniCPM-4v-0.5B, 以0.53B的精简参数量，在端侧设备上实现了卓越的图文理解与交互能力。专为边缘计算场景设计，让每一分算力都充分发挥价值。\n\n三大核心优势：\n    1. 创新架构，轻装上阵\n通过创新的稀疏感知训练和视觉压缩技术，实现 16:1 视觉特征压缩比，在保证高精度的同时，极大降低了推理算力消耗与内存占用。\n    2. 高能数据，以小博大\n依托高密度数据体系，数据准备成本下降90%。通过汇聚全球高质量语料进行精细化对齐，用优质的数据训练模型，实现越级性能表现。\n    3. 高效训练，成本锐减\n采用原创 WSD 调度策略与“模型风洞”技术，相比传统方案，搜索算力节省超99%，整体训练成本节省约60%，为端侧模型的持续迭代提供高效路径。\n\n海思平台技术支撑：\n现已适配 Hi3403V100 平台，持续生成速度达 21 tokens/s，为边缘侧设备提供流程、敏捷的智能视觉体验。",
@@ -272,7 +480,7 @@
       "Hi3403V100 SVP_NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 15,
+    "downloadNum": 21,
     "collectCount": 0
   },
   {
@@ -307,7 +515,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 75,
+    "downloadNum": 76,
     "collectCount": 1
   },
   {
@@ -342,7 +550,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 14,
+    "downloadNum": 22,
     "collectCount": 0
   },
   {
@@ -377,7 +585,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 30,
+    "downloadNum": 33,
     "collectCount": 0
   },
   {
@@ -412,7 +620,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 21,
+    "downloadNum": 27,
     "collectCount": 0
   },
   {
@@ -447,7 +655,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 28,
+    "downloadNum": 31,
     "collectCount": 0
   },
   {
@@ -482,7 +690,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 10,
+    "downloadNum": 12,
     "collectCount": 0
   },
   {
@@ -517,42 +725,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 8,
-    "collectCount": 0
-  },
-  {
-    "id": "j8pfkrsgtk00",
-    "name": "Depth-Anything-v2",
-    "coverImageId": 1700942867267585,
-    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1700942867267585%2Fdepth.png",
-    "isBeta": 1,
-    "betaVersionDesc": "Hi3403V100 NNN引擎上模型性能待进一步优化",
-    "createdBy": 137441035408492,
-    "creationDate": "2026-04-01 15:40:59",
-    "creationUserCN": "0e900d99dee8461b8",
-    "lastUpdateDate": "2026-04-08 16:07:07",
-    "currentHandler": "",
-    "currentHandlerName": "",
-    "description": "Depth Anything V2在细节和鲁棒性方面显著优于 V1。与基于 SD 的模型相比，它具有更快的推理速度、更少的参数和更高的深度精度。本示例使用的是Depth-Anything-V2-Small。",
-    "computerVersion": [
-      "单目深度"
-    ],
-    "naturalLanguageProcess": [],
-    "multimodal": [],
-    "video": [],
-    "framework": [
-      "PyTorch"
-    ],
-    "supportOs": [
-      "OpenHarmony",
-      "Linux"
-    ],
-    "computingPower": [
-      "Hi3403V100 SVP_NNN",
-      "Hi3403V100 NNN"
-    ],
-    "isCollect": 0,
-    "downloadNum": 24,
+    "downloadNum": 14,
     "collectCount": 0
   },
   {
@@ -587,7 +760,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 44,
+    "downloadNum": 54,
     "collectCount": 0
   },
   {
@@ -622,7 +795,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 99,
+    "downloadNum": 108,
     "collectCount": 0
   },
   {
@@ -657,7 +830,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 48,
+    "downloadNum": 59,
     "collectCount": 0
   },
   {
@@ -692,7 +865,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 30,
+    "downloadNum": 37,
     "collectCount": 0
   },
   {
@@ -727,7 +900,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 32,
+    "downloadNum": 45,
     "collectCount": 0
   },
   {
@@ -762,7 +935,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 30,
+    "downloadNum": 36,
     "collectCount": 0
   },
   {
@@ -797,7 +970,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 37,
+    "downloadNum": 45,
     "collectCount": 0
   },
   {
@@ -830,7 +1003,7 @@
       "Hi3591PV100"
     ],
     "isCollect": 0,
-    "downloadNum": 31,
+    "downloadNum": 35,
     "collectCount": 0
   },
   {
@@ -898,7 +1071,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 32,
+    "downloadNum": 41,
     "collectCount": 0
   },
   {
@@ -931,7 +1104,7 @@
       "Hi3591PV100"
     ],
     "isCollect": 0,
-    "downloadNum": 23,
+    "downloadNum": 30,
     "collectCount": 1
   },
   {
@@ -966,7 +1139,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 71,
+    "downloadNum": 80,
     "collectCount": 2
   },
   {
@@ -1001,7 +1174,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 55,
+    "downloadNum": 64,
     "collectCount": 1
   },
   {
@@ -1035,7 +1208,7 @@
       "Hi3403V100 SVP_NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 85,
+    "downloadNum": 92,
     "collectCount": 0
   },
   {
@@ -1070,7 +1243,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 38,
+    "downloadNum": 43,
     "collectCount": 0
   },
   {
@@ -1105,7 +1278,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 17,
+    "downloadNum": 26,
     "collectCount": 0
   },
   {
@@ -1140,7 +1313,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 63,
+    "downloadNum": 65,
     "collectCount": 0
   },
   {
@@ -1175,7 +1348,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 47,
+    "downloadNum": 51,
     "collectCount": 0
   },
   {
@@ -1210,7 +1383,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 17,
+    "downloadNum": 28,
     "collectCount": 0
   },
   {
@@ -1245,7 +1418,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 34,
+    "downloadNum": 41,
     "collectCount": 0
   },
   {
@@ -1280,42 +1453,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 18,
-    "collectCount": 0
-  },
-  {
-    "id": "i9j3k8rpec00",
-    "name": "YOLO11s-pose",
-    "coverImageId": 1712135222657026,
-    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1712135222657026%2Fyolo11-pose-small.jpg",
-    "isBeta": 0,
-    "betaVersionDesc": "",
-    "createdBy": 139318985286440,
-    "creationDate": "2025-12-25 17:17:58",
-    "creationUserCN": "sloanqin",
-    "lastUpdateDate": "2025-12-30 20:02:18",
-    "currentHandler": "",
-    "currentHandlerName": "",
-    "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。",
-    "computerVersion": [
-      "姿态估计"
-    ],
-    "naturalLanguageProcess": [],
-    "multimodal": [],
-    "video": [],
-    "framework": [
-      "PyTorch"
-    ],
-    "supportOs": [
-      "OpenHarmony",
-      "Linux"
-    ],
-    "computingPower": [
-      "Hi3403V100 SVP_NNN",
-      "Hi3403V100 NNN"
-    ],
-    "isCollect": 0,
-    "downloadNum": 31,
+    "downloadNum": 26,
     "collectCount": 0
   },
   {
@@ -1350,7 +1488,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 11,
+    "downloadNum": 16,
     "collectCount": 0
   },
   {
@@ -1363,7 +1501,7 @@
     "createdBy": 139318985286440,
     "creationDate": "2025-12-25 17:10:06",
     "creationUserCN": "sloanqin",
-    "lastUpdateDate": "2025-12-30 20:02:18",
+    "lastUpdateDate": null,
     "currentHandler": "",
     "currentHandlerName": "",
     "description": "PFLD全称A Practical Facial Landmark Detector是一个精度高，速度快，模型小的人脸关键点检测模型。",
@@ -1385,42 +1523,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 12,
-    "collectCount": 0
-  },
-  {
-    "id": "i9ivuh3hec00",
-    "name": "YOLOv4",
-    "coverImageId": 1712131749773315,
-    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1712131749773315%2Fyolov4.jpg",
-    "isBeta": 1,
-    "betaVersionDesc": "Hi3403V100 NNN引擎上模型性能待进一步优化",
-    "createdBy": 139318985286440,
-    "creationDate": "2025-12-25 17:01:53",
-    "creationUserCN": "sloanqin",
-    "lastUpdateDate": "2025-12-30 21:27:13",
-    "currentHandler": "",
-    "currentHandlerName": "",
-    "description": "YOLOv4 是一种高性能的 one-stage 目标检测模型。相比 YOLOv3，YOLOv4 采用了 CSPDarknet53 作为 backbone 进行特征提取，该网络结合了跨金字塔池化结构和路径聚合网络，在精度和速度上均有显著提升。",
-    "computerVersion": [
-      "目标检测"
-    ],
-    "naturalLanguageProcess": [],
-    "multimodal": [],
-    "video": [],
-    "framework": [
-      "PyTorch"
-    ],
-    "supportOs": [
-      "OpenHarmony",
-      "Linux"
-    ],
-    "computingPower": [
-      "Hi3403V100 SVP_NNN",
-      "Hi3403V100 NNN"
-    ],
-    "isCollect": 0,
-    "downloadNum": 9,
+    "downloadNum": 22,
     "collectCount": 0
   },
   {
@@ -1455,7 +1558,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 11,
+    "downloadNum": 13,
     "collectCount": 0
   },
   {
@@ -1490,7 +1593,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 13,
+    "downloadNum": 22,
     "collectCount": 0
   },
   {
@@ -1525,7 +1628,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 56,
+    "downloadNum": 61,
     "collectCount": 0
   },
   {
@@ -1560,42 +1663,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 11,
-    "collectCount": 0
-  },
-  {
-    "id": "hsd8o65p5c00",
-    "name": "SE-ResNet50",
-    "coverImageId": 1712179080462337,
-    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1712179080462337%2FSEResNet50.png",
-    "isBeta": 1,
-    "betaVersionDesc": "Hi3403V100 SVP_NNN引擎上模型性能待进一步优化",
-    "createdBy": 139036723332644,
-    "creationDate": "2025-11-14 18:20:28",
-    "creationUserCN": "y-0089",
-    "lastUpdateDate": "2025-11-29 14:49:58",
-    "currentHandler": "",
-    "currentHandlerName": null,
-    "description": "SE-ResNet50是一种基于ResNet50架构的改进卷积神经网络，通过引入SE（Squeeze-and-Excitation）注意力模块，自适应校准通道特征响应，显著提升模型表达能力。",
-    "computerVersion": [
-      "分类"
-    ],
-    "naturalLanguageProcess": [],
-    "multimodal": [],
-    "video": [],
-    "framework": [
-      "PyTorch"
-    ],
-    "supportOs": [
-      "OpenHarmony",
-      "Linux"
-    ],
-    "computingPower": [
-      "Hi3403V100 SVP_NNN",
-      "Hi3403V100 NNN"
-    ],
-    "isCollect": 0,
-    "downloadNum": 16,
+    "downloadNum": 14,
     "collectCount": 0
   },
   {
@@ -1630,7 +1698,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 26,
+    "downloadNum": 38,
     "collectCount": 0
   },
   {
@@ -1665,7 +1733,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 14,
+    "downloadNum": 22,
     "collectCount": 0
   },
   {
@@ -1700,7 +1768,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 136,
+    "downloadNum": 157,
     "collectCount": 0
   },
   {
@@ -1734,7 +1802,7 @@
       "Hi3403V100 SVP_NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 16,
+    "downloadNum": 26,
     "collectCount": 0
   },
   {
@@ -1768,7 +1836,7 @@
       "Hi3403V100 SVP_NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 12,
+    "downloadNum": 14,
     "collectCount": 0
   },
   {
@@ -1803,7 +1871,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 32,
+    "downloadNum": 46,
     "collectCount": 0
   }
 ]
