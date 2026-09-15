@@ -15,6 +15,25 @@
 - `modelzoo.html` - ModelZoo模型市场页面
 - `model-detail.html` - 模型详情与下载清单页面
 
+## 主题
+
+站点支持多主题，默认 **官方主题**（风格贴近海思 ModelZoo 门户：白色卡片、浅灰页面、单一红色强调色），可在页头切换到 **小黄鸭主题**。选择保存在浏览器 `localStorage`（键 `modelzoo.theme`），三个页面共享。
+
+实现方式：
+
+- `assets/css/style.css` 是共享基础层（即小黄鸭视觉，含全部响应式 / 折叠屏 / 安全区规则），**不做主题作用域**。
+- 每个非默认外观是一层覆盖样式，作用域为 `html[data-theme="<id>"]`，例如 `assets/css/theme-official.css`。官方主题主要通过重定义基础层的自定义属性（`--ink`、`--paper`、`--cream`、`--comic-shadow`、`--display-font`、`--compact-header-height`、`--compact-ticker-height` 等）实现，剩余硬编码的视觉（粗边框、偏移阴影、旋转、点阵背景）按选择器覆盖。
+- `assets/js/theme.js` 维护主题注册表 `THEMES`（id、文案键、图标、`theme-color`、favicon），负责持久化、生成页头切换控件（桌面为分段按钮，窄屏为单键循环）、更新 `<meta name="theme-color">` 与 `<link rel="icon">`，并在切换完成后触发 `site-theme-change` 事件（`detail.theme` / `detail.previous`）。切换时优先使用 View Transitions 交叉淡入；不支持的浏览器退回到 380ms 的属性过渡；`prefers-reduced-motion` 下直接切换。
+- 与主题绑定的文案（品牌名、页头日期标签、首页横幅、卡片编号、详情页面包屑等）放在 `assets/js/i18n.js` 的 `THEME_COPY`，`t()` 会先查主题覆盖，再查语言字典。
+- 默认主题写死在 `<html data-theme="official">`，三个 HTML 的静态文案、`<title>`、描述与 favicon 也都是官方主题版本；`<head>` 里的内联脚本只在 `localStorage` 存有不同选择时才改写，因此无 JS 也能正确显示、首屏不会闪烁。
+
+### 新增一个主题
+
+1. 在 `assets/js/theme.js` 的 `THEMES` 中追加一项：`{ id, labelKey, fallback, icon, themeColor, favicon }`。
+2. 新建 `assets/css/theme-<id>.css`，所有规则以 `html[data-theme="<id>"] body` 开头（比基础层的 `body[data-title-key] .x` 高一级特异性），并在三个 HTML 的 `style.css` 之后引入。先重定义 `:root` 变量，再按需覆盖选择器；响应式行为沿用基础层，只需在需要时改 `--compact-header-height` / `--compact-ticker-height`。
+3. 在 `assets/js/i18n.js` 增加 `theme.<id>` 的中英文标签；如需主题专属文案，在 `THEME_COPY.<id>` 下按语言给出键值。
+4. 用桌面与 375px 宽度分别检查三个页面（`index.html`、`modelzoo.html`、`model-detail.html`）。
+
 ## 部署
 
 本项目已部署到 GitHub Pages：

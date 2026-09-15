@@ -145,6 +145,13 @@
             'header.brandTitle': 'ModelZoo Duck Lab',
             'header.navModelZoo': 'ModelZoo',
             'header.dateLabel': 'LAB LOG · {{date}}',
+            'header.themeSwitcher': '主题切换',
+            'header.themeCycle': '当前主题：{{current}}，点按切换为{{next}}',
+            'theme.official': '官方',
+            'theme.duck': '小黄鸭',
+            'home.cardNumber': 'FIELD {{n}}',
+            'home.engineLabel': 'ENGINE',
+            'home.searchButton': 'GO',
             'header.languageSwitcher': '语言切换',
             'language.zh': '中文',
             'language.en': 'EN',
@@ -257,6 +264,13 @@
             'header.brandTitle': 'ModelZoo Duck Lab',
             'header.navModelZoo': 'ModelZoo',
             'header.dateLabel': 'LAB LOG · {{date}}',
+            'header.themeSwitcher': 'Theme',
+            'header.themeCycle': 'Theme: {{current}}. Tap to switch to {{next}}',
+            'theme.official': 'Official',
+            'theme.duck': 'Duck Lab',
+            'home.cardNumber': 'FIELD {{n}}',
+            'home.engineLabel': 'ENGINE',
+            'home.searchButton': 'GO',
             'header.languageSwitcher': 'Language switcher',
             'language.zh': '中文',
             'language.en': 'EN',
@@ -363,6 +377,53 @@
         }
     };
 
+    // Copy that belongs to a visual theme rather than to a language. Looked up before
+    // the language dictionaries; anything not listed here falls through unchanged.
+    const THEME_COPY = {
+        official: {
+            zh: {
+                'page.homeTitle': 'ModelZoo镜像站｜模型库',
+                'page.detailTitle': '模型详情｜ModelZoo镜像站',
+                'page.modelNotFoundTitle': '未找到模型｜ModelZoo镜像站',
+                'header.brandAria': 'ModelZoo 模型镜像站',
+                'header.brandTitle': 'ModelZoo镜像站',
+                'header.dateLabel': '数据更新 · {{date}}',
+                'home.heroEyebrow': 'HISILICON MODELZOO · 镜像站',
+                'home.heroTitleLine1': 'ModelZoo',
+                'home.heroTitleLine2': 'AI 视觉模型库 · 源模型与 OM 离线模型镜像',
+                'home.catalogEyebrow': '模型列表',
+                'home.catalogTitle': '浏览全部模型',
+                'home.cardNumber': 'No. {{n}}',
+                'home.engineLabel': '算力引擎',
+                'home.searchButton': '搜索',
+                'detail.labKicker': 'ModelZoo / 模型详情',
+            },
+            en: {
+                'page.homeTitle': 'ModelZoo Mirror | Model Library',
+                'page.detailTitle': 'Model Details | ModelZoo Mirror',
+                'page.modelNotFoundTitle': 'Model Not Found | ModelZoo Mirror',
+                'header.brandAria': 'ModelZoo model mirror',
+                'header.brandTitle': 'ModelZoo Mirror',
+                'header.dateLabel': 'Data updated · {{date}}',
+                'home.heroEyebrow': 'HISILICON MODELZOO · MIRROR',
+                'home.heroTitleLine1': 'ModelZoo',
+                'home.heroTitleLine2': 'AI vision model library · source and OM offline model mirror',
+                'home.catalogEyebrow': 'MODEL LIST',
+                'home.catalogTitle': 'Browse all models',
+                'home.cardNumber': 'No. {{n}}',
+                'home.engineLabel': 'Engine',
+                'home.searchButton': 'Search',
+                'detail.labKicker': 'ModelZoo / Model details',
+            },
+        },
+    };
+
+    function getThemeCopy() {
+        const theme = document.documentElement ? document.documentElement.getAttribute('data-theme') : '';
+        const themed = THEME_COPY[theme];
+        return themed ? (themed[getLanguage()] || themed.zh || {}) : {};
+    }
+
     function normalizeLanguage(language) {
         const shortLanguage = String(language || '').toLowerCase().slice(0, 2);
         return SUPPORTED_LANGUAGES.has(shortLanguage) ? shortLanguage : 'zh';
@@ -393,7 +454,8 @@
     function t(key, values) {
         const dictionary = getDictionary();
         const fallbackDictionary = DICTIONARY.zh;
-        const template = dictionary[key] || fallbackDictionary[key] || key;
+        const themeCopy = getThemeCopy();
+        const template = themeCopy[key] || dictionary[key] || fallbackDictionary[key] || key;
         return interpolate(template, values || {});
     }
 

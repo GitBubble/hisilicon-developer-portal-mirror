@@ -1,19 +1,32 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="official">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="ModelZoo Duck Lab 模型规格、OM 构建与算力引擎详情。">
-    <meta name="theme-color" content="#ffd438">
+    <script>
+        // Pre-paint theme override: the default lives on <html data-theme>; only a
+        // remembered different choice is applied here, before the stylesheets load.
+        (function () {
+            try {
+                var stored = window.localStorage.getItem('modelzoo.theme');
+                if (stored && /^[a-z0-9-]+$/.test(stored) && stored !== document.documentElement.getAttribute('data-theme')) {
+                    document.documentElement.setAttribute('data-theme', stored);
+                }
+            } catch (error) { /* storage unavailable */ }
+        })();
+    </script>
+    <meta name="description" content="ModelZoo镜像站：海思 ModelZoo 模型库镜像，提供源模型、OM 离线模型与算力引擎信息。">
+    <meta name="theme-color" content="#c7000b">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="ModelZoo Duck Lab">
-    <meta property="og:title" content="模型档案｜ModelZoo Duck Lab">
-    <meta property="og:description" content="查看模型参数、下载文件、OM 构建与对应算力引擎。">
+    <meta property="og:site_name" content="ModelZoo镜像站">
+    <meta property="og:title" content="ModelZoo镜像站｜模型库">
+    <meta property="og:description" content="海思 ModelZoo 模型库镜像：源模型、OM 离线模型与算力引擎一站检索。">
     <meta property="og:image" content="https://gitbubble.github.io/hisilicon-developer-portal-mirror/assets/images/modelzoo-duck-keeper.png">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="icon" href="assets/images/modelzoo-duck-keeper.png" type="image/png">
-    <title>模型详情 - ModelZoo镜像站</title>
+    <link rel="icon" id="siteFavicon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23c7000b%22%2F%3E%3Ctext%20x%3D%2232%22%20y%3D%2241%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2226%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EMZ%3C%2Ftext%3E%3C%2Fsvg%3E" type="image/svg+xml">
+    <title>模型详情｜ModelZoo镜像站</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/theme-official.css">
 </head>
 <body data-title-key="page.detailTitle">
     <div class="header">
@@ -32,6 +45,7 @@
                 <p class="quote-text" id="dailyQuoteText">技术的价值，在于让复杂的事情变得可控。</p>
                 <span class="quote-author" id="dailyQuoteAuthor">- 随机一言</span>
             </div>
+            <div class="theme-switcher" data-theme-switcher data-i18n-aria-label="header.themeSwitcher" aria-label="主题切换"></div>
             <div class="language-switcher" data-i18n-aria-label="header.languageSwitcher">
                 <button type="button" class="language-btn" data-lang-option="zh">中</button>
                 <button type="button" class="language-btn" data-lang-option="en">EN</button>
@@ -56,7 +70,7 @@
 
     <div class="main-container">
         <div class="detail-container">
-            <span class="detail-lab-kicker" data-i18n="detail.labKicker">DUCK LAB / MODEL SPECIMEN</span>
+            <span class="detail-lab-kicker" data-i18n="detail.labKicker">ModelZoo / 模型详情</span>
             <a href="index.html" class="back-btn" data-i18n="detail.backToMarket">← 返回模型市场</a>
 
             <header class="detail-header">
@@ -128,6 +142,7 @@
 
     <script src="assets/js/models.js"></script>
     <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/theme.js"></script>
     <script src="assets/js/models-detail.js"></script>
 </body>
 </html>

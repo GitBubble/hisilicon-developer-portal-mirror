@@ -1,19 +1,32 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="official">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="ModelZoo Duck Lab：面向开发者的模型镜像、OM 构建与算力引擎目录。">
-    <meta name="theme-color" content="#ffd438">
+    <script>
+        // Pre-paint theme override: the default lives on <html data-theme>; only a
+        // remembered different choice is applied here, before the stylesheets load.
+        (function () {
+            try {
+                var stored = window.localStorage.getItem('modelzoo.theme');
+                if (stored && /^[a-z0-9-]+$/.test(stored) && stored !== document.documentElement.getAttribute('data-theme')) {
+                    document.documentElement.setAttribute('data-theme', stored);
+                }
+            } catch (error) { /* storage unavailable */ }
+        })();
+    </script>
+    <meta name="description" content="ModelZoo镜像站：海思 ModelZoo 模型库镜像，提供源模型、OM 离线模型与算力引擎信息。">
+    <meta name="theme-color" content="#c7000b">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="ModelZoo Duck Lab">
-    <meta property="og:title" content="ModelZoo Duck Lab｜模型镜像站">
-    <meta property="og:description" content="从源模型到 OM 构建，一站检索任务、框架与算力引擎。">
+    <meta property="og:site_name" content="ModelZoo镜像站">
+    <meta property="og:title" content="ModelZoo镜像站｜模型库">
+    <meta property="og:description" content="海思 ModelZoo 模型库镜像：源模型、OM 离线模型与算力引擎一站检索。">
     <meta property="og:image" content="https://gitbubble.github.io/hisilicon-developer-portal-mirror/assets/images/modelzoo-duck-keeper.png">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="icon" href="assets/images/modelzoo-duck-keeper.png" type="image/png">
-    <title>ModelZoo镜像站</title>
+    <link rel="icon" id="siteFavicon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23c7000b%22%2F%3E%3Ctext%20x%3D%2232%22%20y%3D%2241%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2226%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EMZ%3C%2Ftext%3E%3C%2Fsvg%3E" type="image/svg+xml">
+    <title>ModelZoo镜像站｜模型库</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/theme-official.css">
 </head>
 <body data-title-key="page.homeTitle">
     <div class="header">
@@ -34,6 +47,7 @@
                 <p class="quote-text" id="dailyQuoteText">技术的价值，在于让复杂的事情变得可控。</p>
                 <span class="quote-author" id="dailyQuoteAuthor">- 随机一言</span>
             </div>
+            <div class="theme-switcher" data-theme-switcher data-i18n-aria-label="header.themeSwitcher" aria-label="主题切换"></div>
             <div class="language-switcher" data-i18n-aria-label="header.languageSwitcher">
                 <button type="button" class="language-btn" data-lang-option="zh">中</button>
                 <button type="button" class="language-btn" data-lang-option="en">EN</button>
@@ -122,10 +136,10 @@
         <div class="content-area">
             <section class="duck-hero" aria-labelledby="duckHeroTitle">
                 <div class="duck-hero-copy">
-                    <span class="duck-hero-eyebrow" data-i18n="home.heroEyebrow">MODELZOO × DUCK LAB / 01</span>
+                    <span class="duck-hero-eyebrow" data-i18n="home.heroEyebrow">HISILICON MODELZOO · 镜像站</span>
                     <h1 id="duckHeroTitle">
-                        <span data-i18n="home.heroTitleLine1">把好模型，</span>
-                        <mark data-i18n="home.heroTitleLine2">赶进同一座鸭舍。</mark>
+                        <span data-i18n="home.heroTitleLine1">ModelZoo</span>
+                        <mark data-i18n="home.heroTitleLine2">AI 视觉模型库 · 源模型与 OM 离线模型镜像</mark>
                     </h1>
                     <p data-i18n="home.heroBody">从源模型到 OM 构建，把任务、框架和算力引擎整理成一份真正好查的开发者目录。</p>
                     <dl class="duck-hero-stats">
@@ -145,8 +159,8 @@
 
             <div class="catalog-heading">
                 <div>
-                    <span class="catalog-eyebrow" data-i18n="home.catalogEyebrow">FIELD NOTES / 02</span>
-                    <h2 data-i18n="home.catalogTitle">挑一只模型，看看它会什么</h2>
+                    <span class="catalog-eyebrow" data-i18n="home.catalogEyebrow">模型列表</span>
+                    <h2 data-i18n="home.catalogTitle">浏览全部模型</h2>
                 </div>
                 <button class="mobile-filter-button" id="mobileFilterButton" type="button" aria-controls="modelFilters" aria-expanded="false">
                     <span class="mobile-filter-glyph" aria-hidden="true">FILTER</span>
@@ -157,7 +171,7 @@
             <div class="catalog-toolbar">
                 <div class="search-bar">
                     <input type="text" placeholder="搜索模型名称" class="search-input" data-i18n-placeholder="home.searchPlaceholder">
-                    <button class="search-btn" data-i18n-aria-label="home.searchAria">GO</button>
+                    <button class="search-btn" data-i18n="home.searchButton" data-i18n-aria-label="home.searchAria">搜索</button>
                 </div>
                 <div class="sort-bar">
                     <select class="sort-select">
@@ -199,6 +213,7 @@
 
     <script src="assets/js/models.js"></script>
     <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/theme.js"></script>
     <script src="assets/js/app.js"></script>
 </body>
 </html>

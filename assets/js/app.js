@@ -270,7 +270,7 @@ function renderModels(models) {
         return `
             <a href="model-detail.html?id=${encodeURIComponent(model.id)}" class="model-card model-card-tone-${tone}">
                 <div class="model-card-kicker">
-                    <span class="model-card-number">FIELD ${sequence}</span>
+                    <span class="model-card-number">${escapeHtml(i18n ? i18n.t('home.cardNumber', { n: sequence }) : `FIELD ${sequence}`)}</span>
                     <span class="model-card-category">${escapeHtml(category)}</span>
                 </div>
                 <div class="model-image">
@@ -289,7 +289,7 @@ function renderModels(models) {
                         ${(model.tags || []).map((tag) => `<span class="model-tag">${escapeHtml(i18n ? i18n.translateValue(tag) : tag)}</span>`).join('')}
                     </div>
                     <div class="model-engine-strip">
-                        <span>ENGINE</span>
+                        <span>${escapeHtml(i18n ? i18n.t('home.engineLabel') : 'ENGINE')}</span>
                         <strong>${escapeHtml(engine)}</strong>
                     </div>
                     <div class="model-meta">

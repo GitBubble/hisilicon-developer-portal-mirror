@@ -4323,3 +4323,122 @@ body[data-title-key="page.homeTitle"] ~ .site-footer span {
         padding-left: calc(24px + env(safe-area-inset-left));
     }
 }
+
+/* Theme switcher + theme switching ------------------------------------------ */
+/* The quote box used to keep its content width as flex-basis, so adding the theme
+   switcher pushed 中/EN onto a second row between 1024px and ~1180px. Give it a small
+   basis and let it grow into whatever is left; its text already ellipsises. */
+.header-left .daily-quote {
+    flex: 1 1 120px;
+}
+
+.theme-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding: 4px;
+    border: 2px solid rgba(255, 253, 245, 0.64);
+    border-radius: 0;
+    background: transparent;
+}
+
+.theme-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    min-width: 34px;
+    min-height: 30px;
+    padding: 5px 9px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: rgba(255, 253, 245, 0.72);
+    font: inherit;
+    font-family: var(--mono-font);
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.theme-btn.active {
+    background: var(--duck-yellow);
+    color: var(--ink);
+}
+
+.theme-btn:focus-visible {
+    outline: 2px solid var(--pond-cyan);
+    outline-offset: 2px;
+}
+
+.theme-btn-icon {
+    font-size: 13px;
+    line-height: 1;
+}
+
+/* Single-button variant for narrow headers: shows the current theme, tap cycles. */
+.theme-cycle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    min-height: 30px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: var(--duck-yellow);
+    color: var(--ink);
+    font: inherit;
+    font-size: 15px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.theme-cycle:focus-visible {
+    outline: 2px solid var(--pond-cyan);
+    outline-offset: 2px;
+}
+
+/* Property transitions for the no-View-Transitions fallback; the class is present for
+   one switch only, so hover states are not taxed the rest of the time. */
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+    transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, fill 0.35s ease !important;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.36s;
+}
+
+@media (max-width: 1023px) {
+    .theme-switcher {
+        margin-left: auto;
+    }
+
+    .language-switcher {
+        margin-left: 8px;
+    }
+
+    .theme-btn {
+        display: none;
+    }
+
+    .theme-cycle {
+        display: inline-flex;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html.theme-switching *,
+    html.theme-switching *::before,
+    html.theme-switching *::after {
+        transition: none !important;
+    }
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation: none;
+    }
+}
