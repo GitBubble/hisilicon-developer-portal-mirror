@@ -806,6 +806,103 @@ html[data-theme="official"] body .detail-footer span {
     font-size: 12px;
 }
 
+/* --- Toolchain downloads (工具链下载) ------------------------------------------ */
+html[data-theme="official"] body .toolchain-platform,
+html[data-theme="official"] body .detail-section .toolchain-platform:first-child {
+    border: 1px solid var(--o-border);
+    border-radius: var(--o-radius);
+    background: var(--o-surface);
+    box-shadow: var(--o-shadow);
+    overflow: hidden;
+}
+html[data-theme="official"] body .toolchain-platform + .toolchain-platform { margin-top: 16px; }
+html[data-theme="official"] body .toolchain-platform-head {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--o-border);
+    background: var(--o-surface-alt);
+}
+html[data-theme="official"] body .toolchain-platform-name {
+    color: var(--o-text);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+html[data-theme="official"] body .toolchain-chip {
+    border: 0;
+    border-radius: 4px;
+    background: var(--o-chip-bg);
+    color: var(--o-chip-text);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+}
+html[data-theme="official"] body .toolchain-chip-os {
+    background: var(--o-surface-alt);
+    color: var(--o-text-2);
+}
+html[data-theme="official"] body .toolchain-grid {
+    gap: 12px;
+    padding: 16px;
+}
+html[data-theme="official"] body .toolchain-card {
+    border: 1px solid var(--o-border);
+    border-radius: var(--o-radius);
+    background: var(--o-surface);
+    box-shadow: var(--o-shadow);
+    transition: box-shadow 0.16s ease;
+}
+html[data-theme="official"] body .toolchain-card:hover { box-shadow: var(--o-shadow-hover); }
+html[data-theme="official"] body .toolchain-icon,
+html[data-theme="official"] body .toolchain-icon[data-icon="tool"],
+html[data-theme="official"] body .toolchain-icon[data-icon="sdk"],
+html[data-theme="official"] body .toolchain-icon-letter {
+    border: 0;
+    border-radius: var(--o-radius-sm);
+    background: var(--o-red-tint);
+    color: var(--o-red);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+}
+html[data-theme="official"] body .toolchain-icon[data-icon="cann"] {
+    background: var(--o-chip-bg);
+    color: var(--o-chip-text);
+}
+html[data-theme="official"] body .toolchain-icon[data-icon="tool"] {
+    background: var(--o-surface-alt);
+    color: var(--o-text-2);
+}
+html[data-theme="official"] body .toolchain-name {
+    color: var(--o-text);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+}
+html[data-theme="official"] body .toolchain-card .toolchain-desc {
+    color: var(--o-text-2);
+    font-size: 13px;
+    line-height: 1.65;
+}
+html[data-theme="official"] body .toolchain-link {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--o-red);
+    box-shadow: none;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    transition: color 0.16s ease;
+}
+html[data-theme="official"] body .toolchain-link:hover {
+    background: transparent;
+    color: var(--o-red-hover);
+    box-shadow: none;
+    transform: none;
+    text-decoration: underline;
+}
+
 /* --- Responsive parity (mirrors the foundation's breakpoints) --------------- */
 @media (max-width: 1023px) {
     html[data-theme="official"] body .brand-badge { width: 36px; height: 36px; font-size: 12px; }
@@ -825,6 +922,8 @@ html[data-theme="official"] body .detail-footer span {
     html[data-theme="official"] body .duck-hero { min-height: 0; }
     html[data-theme="official"] body .duck-hero-copy { padding: 24px 20px 26px; }
     html[data-theme="official"] body .catalog-heading h2 { font-size: 20px; }
+    html[data-theme="official"] body .toolchain-grid { padding: 12px; }
+    html[data-theme="official"] body .toolchain-platform-head { padding: 9px 12px; }
 }
 @media (max-width: 520px) {
     html[data-theme="official"] body .duck-hero h1 { font-size: 26px; }

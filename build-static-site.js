@@ -403,9 +403,10 @@ function deltaToText(serializedDelta) {
 }
 
 // Upstream toolkit rows (SDK, CANN package, 编译工具链/库) reach us either tagged
-// `toolkit` by a fresh scrape or `api-all` from older hand-merged captures. Group and
-// label them by name so the table does not drift between models after each sync.
-const TOOLKIT_ROW_NAMES = new Set(['SDK', 'CANN工具', 'CANN配置', '编译工具链', '编译工具库']);
+// `toolkit` by a fresh scrape or `api-all` from older hand-merged captures. The name
+// set is the marker for captures without the tag: both keep toolkit rows out of the
+// download table, since buildToolchains renders them as upstream's 工具链下载 section.
+const TOOLKIT_ROW_NAMES = new Set(['SDK', 'CANN工具', 'CANN工具包', 'CANN配置', '编译工具链', '编译工具库']);
 
 function isToolkitRowName(name) {
     return TOOLKIT_ROW_NAMES.has(String(name || '').trim());
@@ -1121,9 +1122,13 @@ function buildDownloads(detailEntry, repoFiles, repoInfo, repoSizes = new Map())
     }
     for (const item of detailEntry.downloadUrls || []) {
         const title = item.name || (item.url ? fileNameFromUrl(item.url) : item.fileId) || '未命名文件';
+        // Upstream lists toolkit rows in a separate 工具链下载 section, not in 模型下载;
+        // they are rendered from `toolchains` (buildToolchains) so they must not also
+        // appear in the download table. The name set covers older hand-merged captures.
         const toolkitRow = isToolkitRowName(item.name);
-        const group = toolkitRow ? '工具链' : sourceGroup(item.source);
-        const expectedSize = toolkitRow ? 0 : expectedSizeFor(item, title, sizeIndex, served);
+        if (toolkitRow || item.source === 'toolkit') continue;
+        const group = sourceGroup(item.source);
+        const expectedSize = expectedSizeFor(item, title, sizeIndex, served);
         // A single unsuffixed filename can describe multiple engine-specific
         // binaries upstream. Only attach that mirror file when a captured URL
         // identifies which binary was actually downloaded, or when upstream's
@@ -1179,7 +1184,7 @@ function buildDownloads(detailEntry, repoFiles, repoInfo, repoSizes = new Map())
             href,
             available: Boolean(href),
             source: item.source || 'unknown',
-            sourceLabel: toolkitRow ? '工具链' : sourceLabel(item.source),
+            sourceLabel: sourceLabel(item.source),
             group,
             engine: item.computing || '',
             quantization: normalizeQuantization(item.quantify),
@@ -1191,6 +1196,53 @@ function buildDownloads(detailEntry, repoFiles, repoInfo, repoSizes = new Map())
     }
 
     return downloads;
+}
+
+// Mirrors the toolkit branch of buildDownloads() so moving these rows out of the
+// download table changes no link on the site: SDK packages go to the shared package,
+// other links keep upstream's target (Huawei Cloud and dead hosts are never emitted).
+function toolkitHref(name, url, repoInfo) {
+    const sdkName = sdkFileNameFrom(name) || sdkFileNameFrom(url);
+    let href = null;
+    if (sdkName || isSdkPackageUrl(url)) {
+        href = sdkUrlForFile(sdkName);
+    } else if (url && /^https?:\/\//.test(url)) {
+        href = rewriteExternalUrl(url, repoInfo);
+    }
+    if (isHuaweiCloudUrl(href)) {
+        href = rewriteExternalUrl(href, repoInfo);
+    }
+    if (isHuaweiCloudUrl(href)) {
+        href = repoInfo ? repoInfo.repoUrl : null;
+    }
+    if (isDeadExternalUrl(href)) {
+        href = null;
+    }
+    return normalizeGiteeUrl(href) || null;
+}
+
+// Upstream's 工具链下载 section: one block per platform (modelAdaptor), each row an
+// SDK / CANN / 编译工具链 entry. Rows without a URL are kept because their desc carries
+// the SDK/CANN version the FAE hands out, which is the only thing upstream shows for
+// them. API order, no dedupe across platforms: the same link legitimately repeats.
+function buildToolchains(detail, repoInfo) {
+    const toolchains = [];
+    for (const adaptor of (detail && detail.modelAdaptor) || []) {
+        const items = (adaptor.toolkit || []).map((item) => ({
+            name: item.name == null ? '' : String(item.name),
+            desc: item.desc == null ? '' : String(item.desc),
+            icon: item.imgId == null ? '' : String(item.imgId),
+            href: toolkitHref(item.name, item.url, repoInfo),
+        }));
+        if (!items.length) continue;
+        toolchains.push({
+            platform: adaptor.name,
+            quantizations: adaptor.supportNames || [],
+            os: adaptor.supportOs || [],
+            items,
+        });
+    }
+    return toolchains;
 }
 
 function buildManualDownloads(modelName, repoInfo) {
@@ -1345,6 +1397,7 @@ function buildModelRecord(model, detailEntry, imageFiles, manifestByName, hfRepo
         primaryDownloadUrl: primaryDownload ? primaryDownload.href : null,
         primaryDownloadLabel: primaryDownload ? primaryDownload.title : null,
         downloads,
+        toolchains: buildToolchains(detail, repoInfo),
     };
 }
 

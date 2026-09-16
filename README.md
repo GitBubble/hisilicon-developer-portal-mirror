@@ -80,7 +80,9 @@ node daily-sync.js --skip-build --skip-hf --skip-commit
 
 已知的上游特例：量化名为 `f16` 的 NNN 变体，其下载页只有用 `platform=FP16` 才会列出文件（`scrape.js` 已处理）；CodeFormer 的 OM 是 3 字节占位文件，按“无可下载文件”处理。
 
-代码仓库 / 快速开始链接原样来自上游，但 gitee 对“用 `/tree/` 指向文件”或“用 `/blob/` 指向目录”一律返回 404（GitHub、GitCode 会自动纠正），上游有 7 条这样的链接。`build-static-site.js` 的 `normalizeGiteeUrl` 只按目标末段是否带扩展名改写 tree/blob 并去掉多余的尾部斜杠，仓库、分支、路径不变；非 gitee 链接不做处理。
+代码仓库 / 快速开始链接原样来自上游，但 gitee 对“用 `/tree/` 指向文件”或“用 `/blob/` 指向目录”一律返回 404（GitHub、GitCode 会自动纠正），上游有 7 条这样的链接。`build-static-site.js` 的 `normalizeGiteeUrl` 只按目标末段是否带扩展名改写 tree/blob（模式本来就对的链接原样保留），仓库、分支、路径不变；非 gitee 链接不做处理。
+
+上游详情页的“模型工具”（侧栏锚点叫“工具链下载”）按平台（Hi3403V100 SVP_NNN / NNN、Hi3516CV610 …）列出 CANN工具 / 编译工具链 / SDK 及其说明文字——说明里往往就是要向 FAE 索取的 SDK/CANN 版本号，而且约一半条目没有链接。这些数据来自 `apiDetail.modelAdaptor[].toolkit[]`，构建时原样写入每个模型的 `toolchains`（平台、规格、系统、条目顺序都按 API 顺序，名称和说明逐字保留，不去重），详情页在“下载清单”之后以“模型工具”分组展示；有链接的条目按下载表同样的规则改写（SDK 包指向镜像、gitee tree/blob 纠正），无链接的只显示说明。下载清单里不再重复出现“工具链”行，`可用文件`计数因此只统计模型文件。
 
 ### 部署到 GitHub Pages
 

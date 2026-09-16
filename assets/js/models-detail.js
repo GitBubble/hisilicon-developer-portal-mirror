@@ -324,6 +324,78 @@ function renderPerformance(items) {
     setSectionVisible('performanceSection', true);
 }
 
+// Inline glyphs for the upstream toolkit imgId values. Upstream images are never
+// hotlinked; anything unknown falls back to a lettered badge built from the name.
+const TOOLCHAIN_ICONS = {
+    cann: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="0.5"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg>',
+    tool: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14.7 6.3a4.5 4.5 0 0 0 5.7 5.7l-1.2 1.2-3.4-.6-.6-3.4z"/><path d="M20.4 12a4.5 4.5 0 0 1-6.1 1.3L6.7 20.9a2 2 0 0 1-2.8-2.8l7.6-7.6A4.5 4.5 0 0 1 14.7 6.3"/></svg>',
+    sdk: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 2.5 20.5 7v10L12 21.5 3.5 17V7z"/><path d="M3.5 7 12 11.5 20.5 7M12 11.5v10"/></svg>',
+};
+
+function renderToolchainIcon(item, displayName) {
+    const icon = String(item.icon || '').trim().toLowerCase();
+    if (Object.prototype.hasOwnProperty.call(TOOLCHAIN_ICONS, icon)) {
+        return `<span class="toolchain-icon" data-icon="${escapeHtml(icon)}" aria-hidden="true">${TOOLCHAIN_ICONS[icon]}</span>`;
+    }
+    const letter = String(displayName || item.name || '').trim().charAt(0).toUpperCase() || '?';
+    return `<span class="toolchain-icon toolchain-icon-letter" aria-hidden="true">${escapeHtml(letter)}</span>`;
+}
+
+function renderToolchains(groups) {
+    const container = document.getElementById('toolchainGroups');
+    if (!container) return;
+
+    const platforms = (groups || []).filter((group) => group && (group.items || []).length);
+    if (!platforms.length) {
+        container.innerHTML = '';
+        setSectionVisible('toolchainSection', false);
+        return;
+    }
+
+    const openLabel = i18n ? i18n.t('detail.toolchainOpen') : '打开链接';
+
+    container.innerHTML = platforms.map((group, groupIndex) => {
+        const platformName = String(group.platform || '');
+        const headingId = `toolchainPlatform${groupIndex}`;
+        const chips = [
+            ...(group.quantizations || []).filter(Boolean).map((value) => ({ value, kind: 'quant' })),
+            ...(group.os || []).filter(Boolean).map((value) => ({ value, kind: 'os' })),
+        ].map((chip) => `<span class="toolchain-chip toolchain-chip-${chip.kind}">${escapeHtml(i18n ? i18n.translateValue(chip.value) : chip.value)}</span>`).join('');
+
+        const cards = group.items.map((item, itemIndex) => {
+            const nameId = `toolchainItem${groupIndex}-${itemIndex}`;
+            const desc = String(item.desc == null ? '' : item.desc);
+            // Upstream's own labels (CANN工具, 编译工具链, SDK …) are shown verbatim in
+            // both languages, like the file names in the download table.
+            const displayName = item.name;
+            return `
+                <article class="toolchain-card">
+                    <div class="toolchain-card-head">
+                        ${renderToolchainIcon(item, displayName)}
+                        <span id="${nameId}" class="toolchain-name">${escapeHtml(displayName || '—')}</span>
+                    </div>
+                    ${desc.trim() ? `<p class="toolchain-desc">${escapeHtml(desc)}</p>` : ''}
+                    ${isUsableResourceUrl(item.href)
+                        ? `<a class="toolchain-link" href="${escapeHtml(item.href)}" target="_blank" rel="noreferrer" aria-describedby="${nameId}">${escapeHtml(openLabel)}</a>`
+                        : ''}
+                </article>
+            `;
+        }).join('');
+
+        return `
+            <section class="toolchain-platform"${platformName ? ` aria-labelledby="${headingId}"` : ''}>
+                <div class="toolchain-platform-head">
+                    ${platformName ? `<h3 id="${headingId}" class="toolchain-platform-name">${escapeHtml(platformName)}</h3>` : ''}
+                    ${chips ? `<div class="toolchain-chips">${chips}</div>` : ''}
+                </div>
+                <div class="toolchain-grid">${cards}</div>
+            </section>
+        `;
+    }).join('');
+
+    setSectionVisible('toolchainSection', true);
+}
+
 function renderOriginModels(items) {
     const container = document.getElementById('originModelsTable');
     if (!container) return;
@@ -680,6 +752,7 @@ function renderModelDetail() {
     renderDownloads(model.downloads || []);
     renderDetailParams(model.detailParams || []);
     renderPerformance(model.performance || []);
+    renderToolchains(model.toolchains || []);
     renderOriginModels(model.originModels || []);
     const readmeState = renderReadmes(model.quickStartReadmes || [], {
         quickStartUrl: model.quickStartUrl,

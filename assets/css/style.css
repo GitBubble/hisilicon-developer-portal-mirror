@@ -2375,6 +2375,198 @@ body[data-title-key="page.detailTitle"] .detail-footer span {
     font-size: 10px;
 }
 
+/* Toolchain downloads (工具链下载): one framed block per platform, cards per tool.
+   Unscoped like the rest of the foundation; theme files re-skin these classes. */
+.toolchain-platform {
+    min-width: 0;
+    border: 3px solid var(--ink);
+    background: var(--paper);
+}
+
+.toolchain-platform:first-child {
+    border-top: 0;
+}
+
+.toolchain-platform + .toolchain-platform {
+    margin-top: 14px;
+}
+
+.toolchain-platform-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    min-width: 0;
+    padding: 10px 14px;
+    border-bottom: 3px solid var(--ink);
+    background: #f8f2e3;
+}
+
+.toolchain-platform-name {
+    margin: 0;
+    min-width: 0;
+    color: var(--ink);
+    font-family: var(--display-font);
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.toolchain-chips {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+}
+
+.toolchain-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 7px;
+    border: 2px solid var(--ink);
+    background: #fff1aa;
+    color: var(--ink);
+    font-family: var(--mono-font);
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.toolchain-chip-os {
+    background: var(--pond-cyan);
+}
+
+.toolchain-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    padding: 14px;
+}
+
+.toolchain-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+    padding: 14px;
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    box-shadow: 4px 4px 0 var(--duck-yellow);
+}
+
+.toolchain-card-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.toolchain-icon {
+    display: grid;
+    flex: 0 0 38px;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border: 2px solid var(--ink);
+    background: var(--pond-cyan);
+    color: var(--ink);
+}
+
+.toolchain-icon[data-icon="tool"] {
+    background: var(--duck-yellow);
+}
+
+.toolchain-icon[data-icon="sdk"] {
+    background: #ff9dca;
+}
+
+.toolchain-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.toolchain-icon-letter {
+    background: #e7dcff;
+    font-family: var(--display-font);
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.toolchain-name {
+    min-width: 0;
+    color: var(--ink);
+    font-family: var(--display-font);
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.toolchain-card .toolchain-desc {
+    margin: 0;
+    min-width: 0;
+    color: var(--ink-soft);
+    font-size: 13px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.toolchain-link {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    min-height: 30px;
+    margin-top: auto;
+    padding: 4px 10px;
+    border: 2px solid var(--ink);
+    background: var(--duck-yellow);
+    color: var(--ink);
+    box-shadow: 3px 3px 0 var(--ink);
+    font-family: var(--mono-font);
+    font-size: 11px;
+    font-weight: 900;
+    text-decoration: none;
+    transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+
+.toolchain-link:hover {
+    background: var(--pond-cyan);
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 var(--ink);
+}
+
+@media (max-width: 1023px) {
+    .toolchain-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .toolchain-platform-head {
+        padding: 9px 12px;
+    }
+}
+
+@media (max-width: 520px) {
+    .toolchain-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .toolchain-card {
+        padding: 12px;
+    }
+
+    .toolchain-link {
+        min-height: 40px;
+    }
+}
+
 @media (max-width: 1023px) {
     body[data-title-key="page.detailTitle"] .main-container {
         margin-top: 114px;
@@ -4268,6 +4460,12 @@ body[data-title-key="page.homeTitle"] ~ .site-footer span {
     body[data-title-key="page.detailTitle"] .back-btn:hover,
     body[data-title-key="page.detailTitle"] .btn:hover {
         transform: none;
+    }
+
+    .toolchain-link:hover {
+        background: var(--duck-yellow);
+        transform: none;
+        box-shadow: 3px 3px 0 var(--ink);
     }
 }
 

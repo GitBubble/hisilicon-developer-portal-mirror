@@ -251,8 +251,10 @@ async function authenticateOnLoginForm(page, options, waitUntilOnPortal) {
         USERNAME = process.env.HISILICON_USERNAME;
         PASSWORD = process.env.HISILICON_PASSWORD;
     } else if (options.headed) {
-        console.log('  请在打开的浏览器窗口中输入 Uniportal 用户名和密码并登录（最多等 5 分钟）...');
-        await waitUntilOnPortal(5 * 60 * 1000);
+        // The operator is usually not staring at the screen when the window opens
+        // (daily-sync launches it after a portal probe), so give them a real chance.
+        console.log('  请在打开的浏览器窗口中输入 Uniportal 用户名和密码并登录（最多等 20 分钟）...');
+        await waitUntilOnPortal(20 * 60 * 1000);
         return;
     } else {
         throw new Error(

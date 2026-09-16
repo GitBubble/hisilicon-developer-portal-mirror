@@ -106,6 +106,11 @@ function collectDataUrls(models, only) {
         for (const item of model.downloads || []) {
             push(item.href, model, `downloads/${item.group}/${item.title}`);
         }
+        for (const group of model.toolchains || []) {
+            for (const item of group.items || []) {
+                push(item.href, model, `toolchains/${group.platform}/${item.name}`);
+            }
+        }
     }
     return found;
 }

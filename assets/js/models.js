@@ -5,7 +5,7 @@ const modelsData = [
         "name": "YOLOv4",
         "description": "YOLOv4 是一种高性能的 one-stage 目标检测模型。相比 YOLOv3，YOLOv4 采用了 CSPDarknet53 作为 backbone 进行特征提取，该网络结合了跨金字塔池化结构和路径聚合网络，在精度和速度上均有显著提升。",
         "descriptionZh": "YOLOv4 是一种高性能的 one-stage 目标检测模型。相比 YOLOv3，YOLOv4 采用了 CSPDarknet53 作为 backbone 进行特征提取，该网络结合了跨金字塔池化结构和路径聚合网络，在精度和速度上均有显著提升。",
-        "descriptionEn": "YOLOv4 is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv4 is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-09-15 09:27:15",
         "updatedAt": "2026-09-15 15:27:11",
         "badge": null,
@@ -220,42 +220,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "yolov4.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A16W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitcode.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitcode.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具包",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -264,7 +289,7 @@ const modelsData = [
         "name": "YOLO11s-pose",
         "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
         "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
-        "descriptionEn": "YOLO11s-pose is a computer vision model for pose estimation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN, Hi3403V100 NNN, and Hi3516CV610. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLO11s-pose is a computer vision model for pose estimation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN, Hi3403V100 NNN, and Hi3516CV610. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-09-14 11:29:32",
         "updatedAt": null,
         "badge": null,
@@ -501,54 +526,96 @@ const modelsData = [
                         "desc": ""
                     }
                 ]
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A16W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具包",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             },
             {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3516CV610",
+                "quantizations": [
+                    "A16W8"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "6.10.t06spc020b023 (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "gcc-20250305-arm-v01c02-linux-musleabi (请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计;支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta"
+                    }
+                ]
             }
         ]
     },
@@ -557,7 +624,7 @@ const modelsData = [
         "name": "YOLO26s",
         "description": "YOLO26s 是 Ultralytics YOLO 系列中的小型目标检测模型，适合在边缘设备上进行实时目标检测。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
         "descriptionZh": "YOLO26s 是 Ultralytics YOLO 系列中的小型目标检测模型，适合在边缘设备上进行实时目标检测。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
-        "descriptionEn": "YOLO26s is a computer vision model for detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN, Hi3403V100 NNN, and Hi3516CV610. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLO26s is a computer vision model for detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN, Hi3403V100 NNN, and Hi3516CV610. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-09-14 11:23:31",
         "updatedAt": null,
         "badge": null,
@@ -794,54 +861,90 @@ const modelsData = [
                         "desc": ""
                     }
                 ]
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A16W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "AI异构计算架构，承上启下，提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://hf-mirror.com/shadow-cann/svp-nnn-pc/resolve/main/SVP_NNN_PC_V1.0.6.5.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.3/docs/zh-CN/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计，支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.3/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://hf-mirror.com/shadow-cann/svp-nnn-pc/resolve/main/SVP_NNN_PC_V1.0.6.5.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.5.tgz"
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t11.7.b140；(请联系FAE通过Hisupport单获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928V100R001C02SPC022；(请联系FAE获取SDK版本并升级单独获取的CANN版本)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             },
             {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.3/docs/zh-CN/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.3/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3516CV610",
+                "quantizations": [
+                    "A16W8"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "6.10.t06spc020b023 (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "Hi3516CV610R001C01SPC020 (请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "Hi3516CV610R001C01SPC020",
+                        "icon": "sdk",
+                        "href": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta"
+                    }
+                ]
             }
         ]
     },
@@ -850,7 +953,7 @@ const modelsData = [
         "name": "XFeat",
         "description": "XFeat是用于特征点检测与匹配的轻量级局部特征模型，可输出局部描述子、关键点分类图和可靠性热力图，支持基于HPatches数据集进行单应性估计评估。",
         "descriptionZh": "XFeat是用于特征点检测与匹配的轻量级局部特征模型，可输出局部描述子、关键点分类图和可靠性热力图，支持基于HPatches数据集进行单应性估计评估。",
-        "descriptionEn": "XFeat is a computer vision model for feature point detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: Linux. Compute targets: Hi3516CV610. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "XFeat is a computer vision model for feature point detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: Linux. Compute targets: Hi3516CV610. The mirror currently exposes 2 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-09-14 11:11:18",
         "updatedAt": "2026-09-15 15:27:11",
         "badge": null,
@@ -984,18 +1087,25 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "xfeat_sim.onnx"
-            },
+            }
+        ],
+        "toolchains": [
             {
-                "title": "SDK",
-                "href": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3516CV610",
+                "quantizations": [
+                    "A8W8"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计;支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta"
+                    }
+                ]
             }
         ]
     },
@@ -1004,7 +1114,7 @@ const modelsData = [
         "name": "UFLDv2",
         "description": "UFLDv2（Ultra-Fast-Lane-Detection-v2）是一种基于混合锚点驱动有序分类方法的车道线检测模型。该模型采用 ResNet18 作为骨干网络，配合 ParsingNet 解析网络，在保持超高推理速度的同时实现了良好的车道线检测精度。",
         "descriptionZh": "UFLDv2（Ultra-Fast-Lane-Detection-v2）是一种基于混合锚点驱动有序分类方法的车道线检测模型。该模型采用 ResNet18 作为骨干网络，配合 ParsingNet 解析网络，在保持超高推理速度的同时实现了良好的车道线检测精度。",
-        "descriptionEn": "UFLDv2 is a computer vision model for 车道线检测. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: Linux. Compute targets: Hi3516CV610. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "UFLDv2 is a computer vision model for 车道线检测. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: Linux. Compute targets: Hi3516CV610. The mirror currently exposes 2 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-09-14 11:00:33",
         "updatedAt": "2026-09-15 15:27:10",
         "badge": null,
@@ -1138,18 +1248,25 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "ufldv2.onnx"
-            },
+            }
+        ],
+        "toolchains": [
             {
-                "title": "SDK",
-                "href": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3516CV610",
+                "quantizations": [
+                    "A8W8"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计;支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta"
+                    }
+                ]
             }
         ]
     },
@@ -1158,7 +1275,7 @@ const modelsData = [
         "name": "FSMN-KWS",
         "description": "小云唤醒词检测模型基于CharCTC（Character-level Connectionist Temporal Classification）架构，用于检测语音中的特定唤醒词\"小云小云\"。模型提取音频的Fbank特征，通过LFR（Low Frame Rate）降采样和CMVN归一化后进行CTC解码，输出关键词检测结果。",
         "descriptionZh": "小云唤醒词检测模型基于CharCTC（Character-level Connectionist Temporal Classification）架构，用于检测语音中的特定唤醒词\"小云小云\"。模型提取音频的Fbank特征，通过LFR（Low Frame Rate）降采样和CMVN归一化后进行CTC解码，输出关键词检测结果。",
-        "descriptionEn": "FSMN-KWS is a video model for 关键字检测. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: Linux. Compute targets: Hi3516CV610. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "FSMN-KWS is a video model for 关键字检测. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: Linux. Compute targets: Hi3516CV610. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-09-14 09:53:03",
         "updatedAt": "2026-09-15 15:27:10",
         "badge": null,
@@ -1383,18 +1500,25 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "speech_charctc_kws_phone-xiaoyun_151.onnx"
-            },
+            }
+        ],
+        "toolchains": [
             {
-                "title": "SDK",
-                "href": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3516CV610",
+                "quantizations": [
+                    "A8W8"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计;支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta"
+                    }
+                ]
             }
         ]
     },
@@ -1403,7 +1527,7 @@ const modelsData = [
         "name": "SE-ResNet50",
         "description": "SE-ResNet50是一种基于ResNet50架构的改进卷积神经网络，通过引入SE（Squeeze-and-Excitation）注意力模块，自适应校准通道特征响应，显著提升模型表达能力。",
         "descriptionZh": "SE-ResNet50是一种基于ResNet50架构的改进卷积神经网络，通过引入SE（Squeeze-and-Excitation）注意力模块，自适应校准通道特征响应，显著提升模型表达能力。",
-        "descriptionEn": "SE-ResNet50 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "SE-ResNet50 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-09-14 09:45:25",
         "updatedAt": "2026-09-15 15:27:11",
         "badge": null,
@@ -1618,42 +1742,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "seresnet50.zip"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A8W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -1662,7 +1811,7 @@ const modelsData = [
         "name": "Depth-Anything-v2",
         "description": "Depth Anything V2在细节和鲁棒性方面显著优于 V1。与基于 SD 的模型相比，它具有更快的推理速度、更少的参数和更高的深度精度。本示例使用的是Depth-Anything-V2-Small。",
         "descriptionZh": "Depth Anything V2在细节和鲁棒性方面显著优于 V1。与基于 SD 的模型相比，它具有更快的推理速度、更少的参数和更高的深度精度。本示例使用的是Depth-Anything-V2-Small。",
-        "descriptionEn": "Depth-Anything-v2 is a computer vision model for monocular depth. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 8 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "Depth-Anything-v2 is a computer vision model for monocular depth. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-09-12 10:52:18",
         "updatedAt": "2026-09-15 15:27:10",
         "badge": null,
@@ -1896,42 +2045,61 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "depth_anything_v2_vits_nnn.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A16W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t16.7.b160；(请联系FAE通过Hisupport单获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928V100R001C02SPC022；(请联系FAE获取SDK版本并升级单独获取的CANN版本)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -1940,7 +2108,7 @@ const modelsData = [
         "name": "Swin-Transformer",
         "description": "Swin-Transformer是针对于图片处理设计的基于Transformer架构的神经网络。该网络针对原始Transformer迁移到图片端后计算量过大，复用困难的问题，提出了新的swin-block以代替原有的attention架构。模型以窗口的attention方式极大地减少了图像不同区域间的互相响应，同时也避免了部分冗余信息的产生。最终，模型在减少了大量计算量的同时，在不同的视觉传统任务上也有了效果的提升。",
         "descriptionZh": "Swin-Transformer是针对于图片处理设计的基于Transformer架构的神经网络。该网络针对原始Transformer迁移到图片端后计算量过大，复用困难的问题，提出了新的swin-block以代替原有的attention架构。模型以窗口的attention方式极大地减少了图像不同区域间的互相响应，同时也避免了部分冗余信息的产生。最终，模型在减少了大量计算量的同时，在不同的视觉传统任务上也有了效果的提升。",
-        "descriptionEn": "Swin-Transformer is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 8 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "Swin-Transformer is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-08-26 16:38:28",
         "updatedAt": "2026-09-01 16:13:06",
         "badge": null,
@@ -2174,42 +2342,68 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "swin_sim.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A8W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "A8W8",
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -2218,7 +2412,7 @@ const modelsData = [
         "name": "EfficientNetV2",
         "description": "EfficientNetV2是一系列图像分类模型，与现有技术相比，其实现了更好的参数效率和更快的训练速度。基于EfficientNetV1，Efficient NetV2模型使用神经架构搜索（NAS）来联合优化模型大小和训练速度，并以更快的训练和推理速度进行扩展。",
         "descriptionZh": "EfficientNetV2是一系列图像分类模型，与现有技术相比，其实现了更好的参数效率和更快的训练速度。基于EfficientNetV1，Efficient NetV2模型使用神经架构搜索（NAS）来联合优化模型大小和训练速度，并以更快的训练和推理速度进行扩展。",
-        "descriptionEn": "EfficientNetV2 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "EfficientNetV2 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-08-26 16:15:43",
         "updatedAt": "2026-09-01 16:13:06",
         "badge": null,
@@ -2433,42 +2627,61 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "efficientnetv2_t_agc-3620981a.pth"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A8W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -2477,7 +2690,7 @@ const modelsData = [
         "name": "TinySam",
         "description": "TinySAM 通过全阶段知识蒸馏、在线硬提示采样、量化等系列优化策略，构建轻量级 “万物分割” 模型，解决了原始 SAM 模型计算量大、部署困难的痛点，助力高效分割任务在资源受限场景下的应用。",
         "descriptionZh": "TinySAM 通过全阶段知识蒸馏、在线硬提示采样、量化等系列优化策略，构建轻量级 “万物分割” 模型，解决了原始 SAM 模型计算量大、部署困难的痛点，助力高效分割任务在资源受限场景下的应用。",
-        "descriptionEn": "TinySam is a computer vision model for segmentation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 10 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "TinySam is a computer vision model for segmentation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-08-26 16:13:05",
         "updatedAt": "2026-09-01 16:13:06",
         "badge": null,
@@ -2779,42 +2992,61 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "model_nnn_onnx.zip"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A8W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN配置",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具库",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN配置",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具库",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t11.7.b160；(请联系FAE通过Hisupport单获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928V100R001C02SPC022；(请联系FAE获取SDK版本并升级单独获取的CANN版本)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -2823,7 +3055,7 @@ const modelsData = [
         "name": "YOLOv10s",
         "description": "YOLOv10 引入了一种新的实时目标检测方法，解决了以前YOLO 版本在后处理和模型架构方面的不足。通过消除非最大抑制NMS和优化各种模型组件，YOLOv10 显著降低了计算开销。本示例基于YOLOv10s。",
         "descriptionZh": "YOLOv10 引入了一种新的实时目标检测方法，解决了以前YOLO 版本在后处理和模型架构方面的不足。通过消除非最大抑制NMS和优化各种模型组件，YOLOv10 显著降低了计算开销。本示例基于YOLOv10s。",
-        "descriptionEn": "YOLOv10s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv10s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-08-25 17:33:30",
         "updatedAt": null,
         "badge": null,
@@ -3038,42 +3270,61 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "yolov10s.pt"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A16W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t11.7.b140；(请联系FAE通过Hisupport单获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928V100R001C02SPC022; (请联系FAE获取SDK版本并升级单独获取的CANN版本)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -3082,7 +3333,7 @@ const modelsData = [
         "name": "FastSpeech2",
         "description": "FastSpeech2 是一种高效的端到端语音合成模型。相比 FastSpeech，FastSpeech2 引入了多尺度时长预测器和能量 / 基频预测分支，优化了时长预测模块并新增韵律特征建模，在合成速度和语音自然度上均有大幅提升。",
         "descriptionZh": "FastSpeech2 是一种高效的端到端语音合成模型。相比 FastSpeech，FastSpeech2 引入了多尺度时长预测器和能量 / 基频预测分支，优化了时长预测模块并新增韵律特征建模，在合成速度和语音自然度上均有大幅提升。",
-        "descriptionEn": "FastSpeech2 is a audio model for text-to-speech. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: Linux and OpenHarmony. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "FastSpeech2 is a audio model for text-to-speech. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: Linux and OpenHarmony. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-05-29 09:26:03",
         "updatedAt": "2026-09-01 16:13:07",
         "badge": null,
@@ -3297,30 +3548,61 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "fastspeech_hifigan_en_svp_nnn.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A16W8"
+                ],
+                "os": [
+                    "Linux",
+                    "OpenHarmony"
+                ],
+                "items": [
+                    {
+                        "name": "CANN配置",
+                        "desc": "6.10.t01spc030b660；(请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具库",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "编译工具库",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t11.7.b160；(请联系FAE通过Hisupport单获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928V100R001C02SPC022；(请联系FAE获取SDK版本并升级单独获取的CANN版本)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -3422,6 +3704,37 @@ const modelsData = [
                 "note": "",
                 "localFile": null
             }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A16W8"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "6.10.t01spc030b700 ； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具库",
+                        "desc": "aarch64-mix210-linux-gcc",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928V100V1.0.2.5 B060 ；  (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
+            }
         ]
     },
     {
@@ -3429,7 +3742,7 @@ const modelsData = [
         "name": "Yolov8s-World",
         "description": "Yolov8s-World 是 Ultralytics 推出的一种基于 YOLO-World 架构的轻量级目标检测模型，它通过视觉-语言预训练实现了无需针对特定类别进行训练即可识别任意物体的 “开放词汇” (Open-Vocabulary) 实时检测功能。",
         "descriptionZh": "Yolov8s-World 是 Ultralytics 推出的一种基于 YOLO-World 架构的轻量级目标检测模型，它通过视觉-语言预训练实现了无需针对特定类别进行训练即可识别任意物体的 “开放词汇” (Open-Vocabulary) 实时检测功能。",
-        "descriptionEn": "Yolov8s-World is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 8 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "Yolov8s-World is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-05-06 14:23:10",
         "updatedAt": "2026-05-12 19:06:21",
         "badge": null,
@@ -3682,30 +3995,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "text_feature.zip"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A8W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "6.10.t01spc030b700;(请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t14.7.b140；(请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928V100R001C02SPC022;(请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -3714,7 +4064,7 @@ const modelsData = [
         "name": "Vit-B-16",
         "description": "Vision Transformer（ViT）模型在计算机视觉领域中对CNN的依赖不是必需的，直接将其应用于图像块序列来进行图像分类时，也能得到和目前卷积网络相媲美的准确率。",
         "descriptionZh": "Vision Transformer（ViT）模型在计算机视觉领域中对CNN的依赖不是必需的，直接将其应用于图像块序列来进行图像分类时，也能得到和目前卷积网络相媲美的准确率。",
-        "descriptionEn": "Vit-B-16 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "Vit-B-16 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-04-14 16:32:53",
         "updatedAt": "2026-05-12 19:06:21",
         "badge": null,
@@ -3929,42 +4279,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "vit_base_patch16_224_bs1.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A16W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN配置",
+                        "desc": "Al异构计算架构 提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具库",
+                        "desc": "高效编译，精准适配 AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计 支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN配置",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具库",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具包",
+                        "desc": "5.30.t14.7.b140；(请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc  (请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928V100R001C02SPC022；(请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -3973,7 +4348,7 @@ const modelsData = [
         "name": "YOLOv9s",
         "description": "YOLOv9s 是 Ultralytics 推出的目标检测模型，采用了 GELAN 架构和 PGI 训练策略。相比于之前的版本，YOLOv9 在保持高效推理的同时，通过可编程梯度信息（PGI）进一步提升了检测精度。该模型在 COCO 数据集上进行了训练和验证。",
         "descriptionZh": "YOLOv9s 是 Ultralytics 推出的目标检测模型，采用了 GELAN 架构和 PGI 训练策略。相比于之前的版本，YOLOv9 在保持高效推理的同时，通过可编程梯度信息（PGI）进一步提升了检测精度。该模型在 COCO 数据集上进行了训练和验证。",
-        "descriptionEn": "YOLOv9s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv9s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-04-03 10:29:46",
         "updatedAt": "2026-04-08 16:07:07",
         "badge": null,
@@ -4188,42 +4563,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "yolov9s.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A16W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构;提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配;AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计;支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t11.7.b110 (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc (请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -4232,7 +4632,7 @@ const modelsData = [
         "name": "PaddleOCRv4-rec",
         "description": "PP-OCRv4识别模型在PP-OCRv3的基础上进一步升级。整体的框架保持了与PP-OCRv3识别模型相同的pipeline，分别进行了数据、网络结构、训练策略等方面的优化。",
         "descriptionZh": "PP-OCRv4识别模型在PP-OCRv3的基础上进一步升级。整体的框架保持了与PP-OCRv3识别模型相同的pipeline，分别进行了数据、网络结构、训练策略等方面的优化。",
-        "descriptionEn": "PaddleOCRv4-rec is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "PaddleOCRv4-rec is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-04-02 09:49:40",
         "updatedAt": "2026-04-08 16:07:07",
         "badge": "Beta",
@@ -4447,42 +4847,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "ch_ptocr_v4_rec_simplified.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A8W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t15.7.b150；(请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022；(请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -4491,7 +4916,7 @@ const modelsData = [
         "name": "YOLOv5s",
         "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv5网络模型在继承了原有YOLO网络模型优点的基础上，具有更优的检测精度和更快的推理速度。本示例使用YOLOv5s。",
         "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv5网络模型在继承了原有YOLO网络模型优点的基础上，具有更优的检测精度和更快的推理速度。本示例使用YOLOv5s。",
-        "descriptionEn": "YOLOv5s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv5s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-04-01 16:31:00",
         "updatedAt": "2026-04-08 16:07:07",
         "badge": null,
@@ -4706,42 +5131,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "yolov5s.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A8W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -4750,7 +5200,7 @@ const modelsData = [
         "name": "YOLOv3",
         "description": "YOLOv3是一种端到端的one-stage目标检测模型。相比YOLOv2，YOLOv3采用了一个新的backbone-Darknet-53来进行特征提取工作，这个新网络比Darknet-19更加强大，也比ResNet-101或者ResNet-152更加高效。",
         "descriptionZh": "YOLOv3是一种端到端的one-stage目标检测模型。相比YOLOv2，YOLOv3采用了一个新的backbone-Darknet-53来进行特征提取工作，这个新网络比Darknet-19更加强大，也比ResNet-101或者ResNet-152更加高效。",
-        "descriptionEn": "YOLOv3 is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 8 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv3 is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-04-01 16:02:45",
         "updatedAt": "2026-04-08 16:07:07",
         "badge": null,
@@ -4984,42 +5434,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "yolov3.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A8W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具包",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -5028,7 +5503,7 @@ const modelsData = [
         "name": "PaddleOCRv4-det",
         "description": "PP-OCRv4检测模型在PP-OCRv3检测模型的基础上，在网络结构，训练策略，蒸馏策略三个方面做了优化。首先，PP-OCRv4检测模型使用PP-LCNetV3替换MobileNetv3，并提出并行分支融合的PFhead结构；其次，训练时动态调整shrink ratio的比例；最后，PP-OCRv4对CML的蒸馏loss进行优化，进一步提升文字检测效果。",
         "descriptionZh": "PP-OCRv4检测模型在PP-OCRv3检测模型的基础上，在网络结构，训练策略，蒸馏策略三个方面做了优化。首先，PP-OCRv4检测模型使用PP-LCNetV3替换MobileNetv3，并提出并行分支融合的PFhead结构；其次，训练时动态调整shrink ratio的比例；最后，PP-OCRv4对CML的蒸馏loss进行优化，进一步提升文字检测效果。",
-        "descriptionEn": "PaddleOCRv4-det is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "PaddleOCRv4-det is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-04-01 15:56:01",
         "updatedAt": "2026-04-08 16:07:07",
         "badge": null,
@@ -5243,30 +5718,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "ch_ptocr_v4_det_simplified.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A8W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "6.10.t01spc030b700；(请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具包",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -5275,7 +5787,7 @@ const modelsData = [
         "name": "Chinese-CLIP",
         "description": "Chinese-CLIP 是 CLIP 模型的中文版本。CLIP 通过对比学习方式，同时学习图像和文本的表示，并能够理解两者之间的语义关联。Chinese-CLIP 使用约 2 亿规模的中文图文对进行训练，其核心目标是解决中文场景下的跨模态检索、图像表示生成等任务。",
         "descriptionZh": "Chinese-CLIP 是 CLIP 模型的中文版本。CLIP 通过对比学习方式，同时学习图像和文本的表示，并能够理解两者之间的语义关联。Chinese-CLIP 使用约 2 亿规模的中文图文对进行训练，其核心目标是解决中文场景下的跨模态检索、图像表示生成等任务。",
-        "descriptionEn": "Chinese-CLIP is a multimodal model for image-text matching. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 12 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "Chinese-CLIP is a multimodal model for image-text matching. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 9 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-31 21:34:55",
         "updatedAt": null,
         "badge": "Beta",
@@ -5615,42 +6127,68 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "clip_cn_vit-b-16.pt"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A16W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计\r\n支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "FP16"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t14.7.b140；(请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022；(请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -5659,7 +6197,7 @@ const modelsData = [
         "name": "DeepSort",
         "description": "DeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。",
         "descriptionZh": "DeepSort是一种多目标跟踪方法，简单有效。该方法将外观信息集成起来，提高了分拣性能，能够在较长遮挡时间下仍能进行有效的跟踪。该框架将大量的复杂计算放入离线预训练阶段，这个阶段在重识别数据集上学习一个深度关联度量。在线应用阶段，建立度量，在视觉外观空间中使用最近邻查询跟踪关联。本模型能够在较快帧率下实现较高精度的识别。",
-        "descriptionEn": "DeepSort is a computer vision model for multi-object tracking. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 9 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "DeepSort is a computer vision model for multi-object tracking. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-26 23:59:38",
         "updatedAt": "2026-03-27 19:43:15",
         "badge": null,
@@ -5912,42 +6450,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "reid_net.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A8W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "AI异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://hf-mirror.com/shadow-cann/svp-nnn-pc/resolve/main/SVP_NNN_PC_V1.0.6.5.tgz"
+                    },
+                    {
+                        "name": "编译工具库",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://hf-mirror.com/shadow-cann/svp-nnn-pc/resolve/main/SVP_NNN_PC_V1.0.6.5.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.5.tgz"
-            },
-            {
-                "title": "编译工具库",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t11.7.b140；(请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SPC022；(请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -5956,7 +6519,7 @@ const modelsData = [
         "name": "MobileNetV2",
         "description": "MobileNetV2是对MobileNetV1的改进，是一种轻量级的神经网络。MobileNetV2保留了V1版本的深度可分离卷积，增加了线性瓶颈（Linear Bottleneck）和倒残差（Inverted Residual）。",
         "descriptionZh": "MobileNetV2是对MobileNetV1的改进，是一种轻量级的神经网络。MobileNetV2保留了V1版本的深度可分离卷积，增加了线性瓶颈（Linear Bottleneck）和倒残差（Inverted Residual）。",
-        "descriptionEn": "MobileNetV2 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "MobileNetV2 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-24 16:23:20",
         "updatedAt": "2026-03-26 09:35:37",
         "badge": null,
@@ -6171,42 +6734,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "mobilenetV2.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A8W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -6215,7 +6803,7 @@ const modelsData = [
         "name": "SuperPoint",
         "description": "SuperPoint模型的全卷积神经网络架构对全尺寸图像进行操作，并在单次前向传递中产生伴随固定长度描述符的兴趣点检测。该模型有一个单一的共享编码器来处理和减少输入图像的维数。在编码器之后，该架构分成两个解码器“头”，它们学习任务特定权重——一个用于兴趣点检测，另一个用于感兴趣点描述。大多数网络参数在两个任务之间共享，这与传统系统不同，传统系统首先检测兴趣点，然后计算描述符，并且缺乏跨两个任务共享计算和表示的能力。",
         "descriptionZh": "SuperPoint模型的全卷积神经网络架构对全尺寸图像进行操作，并在单次前向传递中产生伴随固定长度描述符的兴趣点检测。该模型有一个单一的共享编码器来处理和减少输入图像的维数。在编码器之后，该架构分成两个解码器“头”，它们学习任务特定权重——一个用于兴趣点检测，另一个用于感兴趣点描述。大多数网络参数在两个任务之间共享，这与传统系统不同，传统系统首先检测兴趣点，然后计算描述符，并且缺乏跨两个任务共享计算和表示的能力。",
-        "descriptionEn": "SuperPoint is a computer vision model for feature point detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "SuperPoint is a computer vision model for feature point detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-16 21:11:02",
         "updatedAt": null,
         "badge": null,
@@ -6432,42 +7020,6 @@ const modelsData = [
                 "localFile": "SuperPointNet.pth"
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
                 "title": "link",
                 "href": null,
                 "available": false,
@@ -6479,6 +7031,67 @@ const modelsData = [
                 "note": "",
                 "localFile": null
             }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A8W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
+            },
+            {
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
+            }
         ]
     },
     {
@@ -6486,7 +7099,7 @@ const modelsData = [
         "name": "DenseNet121",
         "description": "DenseNet 针对 ResNet 的冗余结构提出了改进：让网络中的每一层和前面的所有层相连，同时把每一层设计的比较窄，使每一层学到的特征变少从而降低冗余。除了减少参数量之外，该结构还有减轻梯度消失问题、增强特征传播等优点。",
         "descriptionZh": "DenseNet 针对 ResNet 的冗余结构提出了改进：让网络中的每一层和前面的所有层相连，同时把每一层设计的比较窄，使每一层学到的特征变少从而降低冗余。除了减少参数量之外，该结构还有减轻梯度消失问题、增强特征传播等优点。",
-        "descriptionEn": "DenseNet121 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "DenseNet121 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-16 20:23:49",
         "updatedAt": "2026-03-26 09:35:38",
         "badge": null,
@@ -6701,42 +7314,68 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "densenet121-a639ec97.pth"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A8W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "A8W8",
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -6745,7 +7384,7 @@ const modelsData = [
         "name": "ShuffleNetV2",
         "description": "ShuffleNetV2是Shufflenet的升级版本，作为轻量级网络，通过遵循降低网络的碎片程度、减少element-wise等设计准则，在保证精度的前提下进一步追求高性能。",
         "descriptionZh": "ShuffleNetV2是Shufflenet的升级版本，作为轻量级网络，通过遵循降低网络的碎片程度、减少element-wise等设计准则，在保证精度的前提下进一步追求高性能。",
-        "descriptionEn": "ShuffleNetV2 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "ShuffleNetV2 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-16 20:19:07",
         "updatedAt": "2026-03-26 09:35:38",
         "badge": null,
@@ -6960,42 +7599,68 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "shufflenetv2_fix.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A8W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "A8W8",
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -7004,7 +7669,7 @@ const modelsData = [
         "name": "SqueezeNet1_1",
         "description": "Squeezenet的设计采用了卷积替换、减少卷积通道数和降采样操作后置等策略，旨在在不大幅降低模型精度的前提下，最大程度的提高运算速度。",
         "descriptionZh": "Squeezenet的设计采用了卷积替换、减少卷积通道数和降采样操作后置等策略，旨在在不大幅降低模型精度的前提下，最大程度的提高运算速度。",
-        "descriptionEn": "SqueezeNet1_1 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "SqueezeNet1_1 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-16 19:24:13",
         "updatedAt": "2026-03-26 09:35:38",
         "badge": null,
@@ -7219,42 +7884,68 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "squeezenet.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A8W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "A8W8",
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -7388,6 +8079,31 @@ const modelsData = [
                 "note": "",
                 "localFile": "pi0.onnx"
             }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3591PV100",
+                "quantizations": [
+                    "fp16"
+                ],
+                "os": [
+                    "OpenEuler"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "7.7.0.1.238-linux.aarch64-spc001；(请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "7.7.0.1.231-openEuler24.03.aarch64-rc-spc001；(请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
+            }
         ]
     },
     {
@@ -7395,7 +8111,7 @@ const modelsData = [
         "name": "ACT",
         "description": "ACT（Action Chunking with Transformers）是面向机器人学习场景的高性能端到端动作控制模型。相比传统模块化机器人控制模型，ACT采用轻量化Transformer架构作为核心骨干进行动作表征学习，结合多模态感知融合模块和时序动作优化网络，在控制精度和实时响应速度上均有显著提升。",
         "descriptionZh": "ACT（Action Chunking with Transformers）是面向机器人学习场景的高性能端到端动作控制模型。相比传统模块化机器人控制模型，ACT采用轻量化Transformer架构作为核心骨干进行动作表征学习，结合多模态感知融合模块和时序动作优化网络，在控制精度和实时响应速度上均有显著提升。",
-        "descriptionEn": "ACT is a multimodal model for embodied AI. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenEuler. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "ACT is a multimodal model for embodied AI. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenEuler. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 2 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-03-03 10:30:33",
         "updatedAt": "2026-03-04 16:06:22",
         "badge": null,
@@ -7519,42 +8235,37 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "ACT.zip"
-            },
+            }
+        ],
+        "toolchains": [
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具库",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a16w8"
+                ],
+                "os": [
+                    "OpenEuler"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "AI异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具库",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             }
         ]
     },
@@ -7563,7 +8274,7 @@ const modelsData = [
         "name": "CRNN",
         "description": "CRNN是卷积循环网络，本模型是一个基于其的中文 OCR 模型。",
         "descriptionZh": "CRNN是卷积循环网络，本模型是一个基于其的中文 OCR 模型。",
-        "descriptionEn": "CRNN is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "CRNN is a computer vision model for OCR. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2026-02-12 10:58:59",
         "updatedAt": null,
         "badge": "Beta",
@@ -7778,42 +8489,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "crnn.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a8w8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN配置",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具库",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN配置",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具库",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "fp16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -7947,6 +8683,31 @@ const modelsData = [
                 "note": "",
                 "localFile": "graspnet[该模型文件仅用于非商用].onnx"
             }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3591PV100",
+                "quantizations": [
+                    "fp16"
+                ],
+                "os": [
+                    "OpenEuler"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "7.7.0.1.238-linux.aarch64-spc001；(请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "7.7.0.1.231-openEuler24.03.aarch64-rc-spc001；(请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
+            }
         ]
     },
     {
@@ -7954,7 +8715,7 @@ const modelsData = [
         "name": "CodeFormer",
         "description": "CodeFormer 是一种基于码本查找 Transformer 的鲁棒盲人脸修复模型。相比传统方法，它通过生成对抗网络与量化编码技术，能有效处理模糊、噪声等多种退化问题，兼顾人脸修复质量与身份保真度，适用于盲人脸恢复场景。",
         "descriptionZh": "CodeFormer 是一种基于码本查找 Transformer 的鲁棒盲人脸修复模型。相比传统方法，它通过生成对抗网络与量化编码技术，能有效处理模糊、噪声等多种退化问题，兼顾人脸修复质量与身份保真度，适用于盲人脸恢复场景。",
-        "descriptionEn": "CodeFormer is a computer vision model for image enhancement. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "CodeFormer is a computer vision model for image enhancement. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 1 downloadable artifact, along with quick-start resources when available.",
         "date": "2025-12-30 17:56:29",
         "updatedAt": "2025-12-30 20:02:18",
         "badge": null,
@@ -8150,42 +8911,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "空文件，因为该模型仅用于非商用.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a16w8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN配置",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具库",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN配置",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具库",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "fp16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具包",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -8194,7 +8980,7 @@ const modelsData = [
         "name": "FaceNet",
         "description": "FaceNet 是一种基于深度卷积神经网络的端到端人脸识别与特征嵌入模型。相比传统基于手工特征或分阶段匹配的方法，它通过将人脸图像直接映射为固定维度的紧凑特征向量（Embedding），并采用三元组损失（Triplet Loss）优化特征相似度度量，能有效缩小类内差异、扩大类间距离，兼顾识别精度与推理效率，适用于身份验证、人脸检索、监控安防等大规模人脸识别场景。",
         "descriptionZh": "FaceNet 是一种基于深度卷积神经网络的端到端人脸识别与特征嵌入模型。相比传统基于手工特征或分阶段匹配的方法，它通过将人脸图像直接映射为固定维度的紧凑特征向量（Embedding），并采用三元组损失（Triplet Loss）优化特征相似度度量，能有效缩小类内差异、扩大类间距离，兼顾识别精度与推理效率，适用于身份验证、人脸检索、监控安防等大规模人脸识别场景。",
-        "descriptionEn": "FaceNet is a computer vision model for face recognition. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "FaceNet is a computer vision model for face recognition. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-29 10:37:55",
         "updatedAt": "2025-12-30 20:02:17",
         "badge": null,
@@ -8392,42 +9178,6 @@ const modelsData = [
                 "localFile": "facenet_vggface2_static.onnx"
             },
             {
-                "title": "CANN配置",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具库",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
                 "title": "lfw.tgz",
                 "href": null,
                 "available": false,
@@ -8439,6 +9189,67 @@ const modelsData = [
                 "note": "",
                 "localFile": null
             }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a16w8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN配置",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具库",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
+            },
+            {
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "f16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN配置",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具库",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
+            }
         ]
     },
     {
@@ -8446,7 +9257,7 @@ const modelsData = [
         "name": "LRStereo-B",
         "description": "LRStereo-B是一个轻量且鲁棒的双目立体匹配模型。它在开源模型(Raft-Stereo)的基础上做了大量的模型结构改进和重训。具体功能为输入标定好的左右目图像以及相关的相机参数，获得左目图像对应的深度图。",
         "descriptionZh": "LRStereo-B是一个轻量且鲁棒的双目立体匹配模型。它在开源模型(Raft-Stereo)的基础上做了大量的模型结构改进和重训。具体功能为输入标定好的左右目图像以及相关的相机参数，获得左目图像对应的深度图。",
-        "descriptionEn": "LRStereo-B is a computer vision model for stereo depth. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "LRStereo-B is a computer vision model for stereo depth. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 2 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 20:41:00",
         "updatedAt": "2025-12-30 20:02:17",
         "badge": null,
@@ -8581,42 +9392,38 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "LRStereo-B.zip"
-            },
+            }
+        ],
+        "toolchains": [
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a8w8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             }
         ]
     },
@@ -8625,7 +9432,7 @@ const modelsData = [
         "name": "YOLOv8s-OBB",
         "description": "YOLOv8s-OBB 是 Ultralytics 推出的基于 YOLOv8 的旋转目标检测（Oriented Bounding Box, OBB）模型。相比于水平框检测，OBB 能够更准确地检测倾斜或不规则排列的目标（如航拍图像中的车辆、船只等）。该模型在 DOTA 数据集上进行了训练和验证。",
         "descriptionZh": "YOLOv8s-OBB 是 Ultralytics 推出的基于 YOLOv8 的旋转目标检测（Oriented Bounding Box, OBB）模型。相比于水平框检测，OBB 能够更准确地检测倾斜或不规则排列的目标（如航拍图像中的车辆、船只等）。该模型在 DOTA 数据集上进行了训练和验证。",
-        "descriptionEn": "YOLOv8s-OBB is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv8s-OBB is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 16:22:36",
         "updatedAt": "2025-12-30 20:02:17",
         "badge": null,
@@ -8823,42 +9630,6 @@ const modelsData = [
                 "localFile": "yolov8s-obb.onnx"
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
                 "title": "DOTAv1.zip",
                 "href": "https://github.com/ultralytics/assets/releases/download/v0.0.0/DOTAv1.zip",
                 "available": true,
@@ -8870,6 +9641,67 @@ const modelsData = [
                 "note": "",
                 "localFile": null
             }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a16w8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
+            },
+            {
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "f16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    }
+                ]
+            }
         ]
     },
     {
@@ -8877,7 +9709,7 @@ const modelsData = [
         "name": "HRNet",
         "description": "HigherHRNet 是一种新型的自下而上人体姿态估计算法，它在训练阶段引入多分辨率监督机制，在推理阶段采用多分辨率聚合策略，不仅能有效应对自下而上多人姿态估计任务中的尺度变化难题，还可实现关键点的高精度定位，尤其在小尺寸人体目标的处理上表现突出。",
         "descriptionZh": "HigherHRNet 是一种新型的自下而上人体姿态估计算法，它在训练阶段引入多分辨率监督机制，在推理阶段采用多分辨率聚合策略，不仅能有效应对自下而上多人姿态估计任务中的尺度变化难题，还可实现关键点的高精度定位，尤其在小尺寸人体目标的处理上表现突出。",
-        "descriptionEn": "HRNet is a computer vision model for pose estimation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "HRNet is a computer vision model for pose estimation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 10:20:26",
         "updatedAt": null,
         "badge": null,
@@ -9092,42 +9924,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "hrnet_512_768.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a16w8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN配置",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具库",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN配置",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具库",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "fp16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -9136,7 +9993,7 @@ const modelsData = [
         "name": "YOLO11s",
         "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率",
         "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率",
-        "descriptionEn": "YOLO11s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLO11s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 09:54:03",
         "updatedAt": "2025-12-30 20:02:18",
         "badge": null,
@@ -9351,42 +10208,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "yolo11s.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a16w8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "fp16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -9395,7 +10277,7 @@ const modelsData = [
         "name": "YOLOv8s",
         "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv8在之前的YOLO版本的基础上进行了改进，在继承了原有YOLO网络模型优点的基础上，引入了新的特效和优化，具有更高的检测精度。",
         "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv8在之前的YOLO版本的基础上进行了改进，在继承了原有YOLO网络模型优点的基础上，引入了新的特效和优化，具有更高的检测精度。",
-        "descriptionEn": "YOLOv8s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv8s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-26 09:47:43",
         "updatedAt": "2025-12-30 20:02:17",
         "badge": null,
@@ -9610,42 +10492,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "yolov8s.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a16w8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "fp16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -9654,7 +10561,7 @@ const modelsData = [
         "name": "VDSR",
         "description": "VDSR（Very Deep Super-Resolution Network）是一种20层深度卷积神经网络，通过残差学习实现图像超分辨率重建。",
         "descriptionZh": "VDSR（Very Deep Super-Resolution Network）是一种20层深度卷积神经网络，通过残差学习实现图像超分辨率重建。",
-        "descriptionEn": "VDSR is a computer vision model for image super-resolution. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "VDSR is a computer vision model for image super-resolution. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 20:56:31",
         "updatedAt": "2025-12-30 20:02:18",
         "badge": null,
@@ -9850,42 +10757,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "vdsr.zip"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a8w8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN配置",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具库",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN配置",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具库",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "fp16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具包",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -9894,7 +10826,7 @@ const modelsData = [
         "name": "Siamese Network",
         "description": "Siamese Network(孪生神经网络)是一种通过共享权重的两个相同子网络来度量两个输入样本相似性的深度学习框架，广泛应用于人脸识别、签名验证等任务。",
         "descriptionZh": "Siamese Network(孪生神经网络)是一种通过共享权重的两个相同子网络来度量两个输入样本相似性的深度学习框架，广泛应用于人脸识别、签名验证等任务。",
-        "descriptionEn": "Siamese Network is a computer vision model for face recognition. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "Siamese Network is a computer vision model for face recognition. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 20:25:32",
         "updatedAt": null,
         "badge": "Beta",
@@ -10090,42 +11022,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "siamese_model_weights.pt"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a8w8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN配置",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具库",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN配置",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具库",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "fp16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具包",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -10134,7 +11091,7 @@ const modelsData = [
         "name": "YOLO11s-seg",
         "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-seg作为实例分割的模型，比检测模型更进一步，包括识别图像中的各个对象并将它们与图像的其余部分分割开来。",
         "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-seg作为实例分割的模型，比检测模型更进一步，包括识别图像中的各个对象并将它们与图像的其余部分分割开来。",
-        "descriptionEn": "YOLO11s-seg is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLO11s-seg is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 17:25:35",
         "updatedAt": "2025-12-30 20:02:18",
         "badge": null,
@@ -10349,42 +11306,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "yolo11s-seg.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a16w8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "f16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具包",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -10393,7 +11375,7 @@ const modelsData = [
         "name": "YOLOv6s",
         "description": "YOLOv6s 是一种轻量高效的 one-stage 目标检测模型。相比前代 YOLO 模型，YOLOv6s 采用了 EfficientRep 作为 backbone 和 Rep-PAN 作为颈部网络，兼顾了检测精度与推理速度，更适用于边缘计算场景。",
         "descriptionZh": "YOLOv6s 是一种轻量高效的 one-stage 目标检测模型。相比前代 YOLO 模型，YOLOv6s 采用了 EfficientRep 作为 backbone 和 Rep-PAN 作为颈部网络，兼顾了检测精度与推理速度，更适用于边缘计算场景。",
-        "descriptionEn": "YOLOv6s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv6s is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 17:13:48",
         "updatedAt": "2025-12-30 20:02:18",
         "badge": null,
@@ -10608,42 +11590,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "yolov6s_opset11.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a16w8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "f16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具包",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -10652,7 +11659,7 @@ const modelsData = [
         "name": "PFLD",
         "description": "PFLD全称A Practical Facial Landmark Detector是一个精度高，速度快，模型小的人脸关键点检测模型。",
         "descriptionZh": "PFLD全称A Practical Facial Landmark Detector是一个精度高，速度快，模型小的人脸关键点检测模型。",
-        "descriptionEn": "PFLD is a computer vision model for keypoint detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "PFLD is a computer vision model for keypoint detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 17:10:06",
         "updatedAt": null,
         "badge": null,
@@ -10848,42 +11855,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "pfld-sim.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a16w8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "f16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具包",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -10892,7 +11924,7 @@ const modelsData = [
         "name": "YOLOv8s-seg",
         "description": "YOLOv8s-seg 是一种轻量高效的 one-stage 实例分割模型。相比前代 YOLO 模型，YOLOv8s-seg 采用 C2f 作为 backbone 和 PAFPN 作为颈部网络，结合 “原型掩码 + 掩码系数” 的分割头设计，在保证实时推理速度的同时实现像素级实例分割，适用于轻量化边缘部署场景。",
         "descriptionZh": "YOLOv8s-seg 是一种轻量高效的 one-stage 实例分割模型。相比前代 YOLO 模型，YOLOv8s-seg 采用 C2f 作为 backbone 和 PAFPN 作为颈部网络，结合 “原型掩码 + 掩码系数” 的分割头设计，在保证实时推理速度的同时实现像素级实例分割，适用于轻量化边缘部署场景。",
-        "descriptionEn": "YOLOv8s-seg is a computer vision model for segmentation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv8s-seg is a computer vision model for segmentation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 15:45:54",
         "updatedAt": "2025-12-30 21:27:16",
         "badge": null,
@@ -11088,42 +12120,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "yolov8s-seg.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a16w8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN配置",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具库",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN配置",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具库",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "fp16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具包",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -11132,7 +12189,7 @@ const modelsData = [
         "name": "CrowdCount",
         "description": "CrowdCount是一种基于多尺度卷积神经网络（MSCNN）的高精度人群计数模型。相比传统多列 / 多网络方法，它通过单列网络中的多尺度特征块（MSB）与尺度自适应密度图回归技术，能有效应对透视畸变导致的人物尺度差异问题，兼顾计数精度与模型轻量化，适用于监控图像、公共场所等密集人群计数场景。",
         "descriptionZh": "CrowdCount是一种基于多尺度卷积神经网络（MSCNN）的高精度人群计数模型。相比传统多列 / 多网络方法，它通过单列网络中的多尺度特征块（MSB）与尺度自适应密度图回归技术，能有效应对透视畸变导致的人物尺度差异问题，兼顾计数精度与模型轻量化，适用于监控图像、公共场所等密集人群计数场景。",
-        "descriptionEn": "CrowdCount is a computer vision model for crowd counting. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "CrowdCount is a computer vision model for crowd counting. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-12-25 15:03:50",
         "updatedAt": "2025-12-30 21:27:21",
         "badge": null,
@@ -11328,42 +12385,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "mscnn_model.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a16w8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "f16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具包",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -11372,7 +12454,7 @@ const modelsData = [
         "name": "UNet",
         "description": "UNet是由FCN改进而来的图像分割模型，其网络结构像U型，分为特征提取部分和上采样特征融合部分。",
         "descriptionZh": "UNet是由FCN改进而来的图像分割模型，其网络结构像U型，分为特征提取部分和上采样特征融合部分。",
-        "descriptionEn": "UNet is a computer vision model for segmentation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 8 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "UNet is a computer vision model for segmentation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 5 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-11-29 15:01:53",
         "updatedAt": "2025-11-29 18:03:49",
         "badge": null,
@@ -11606,42 +12688,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "UNet_dynamic_sim.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a8w8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ "
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ ",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "f16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -11650,7 +12757,7 @@ const modelsData = [
         "name": "VGG16",
         "description": "VGGNet是牛津大学计算机视觉组（Visual Geometry Group）和Google DeepMind公司的研究员一起研发的深度卷积神经网络，它探索了卷积神经网络的深度与其性能之间的关系，通过反复堆叠3*3的小型卷积核和2*2的最大池化层，成功地构筑了16~19层深的卷积神经网络。VGGNet相比之前state-of-the-art的网络结构，错误率大幅下降，VGGNet论文中全部使用了3*3的小型卷积核和2*2的最大池化核，通过不断加深网络结构来提升性能。",
         "descriptionZh": "VGGNet是牛津大学计算机视觉组（Visual Geometry Group）和Google DeepMind公司的研究员一起研发的深度卷积神经网络，它探索了卷积神经网络的深度与其性能之间的关系，通过反复堆叠3*3的小型卷积核和2*2的最大池化层，成功地构筑了16~19层深的卷积神经网络。VGGNet相比之前state-of-the-art的网络结构，错误率大幅下降，VGGNet论文中全部使用了3*3的小型卷积核和2*2的最大池化核，通过不断加深网络结构来提升性能。",
-        "descriptionEn": "VGG16 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "VGG16 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-11-17 11:25:12",
         "updatedAt": null,
         "badge": null,
@@ -11865,42 +12972,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "vgg16-397923af.pth"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a8w8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ "
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ ",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "fp16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -11909,7 +13041,7 @@ const modelsData = [
         "name": "InceptionV3",
         "description": "InceptionV3 是为图像分类任务设计的高效卷积神经网络，其核心创新是使用模块化的 Inception 结构（如分解卷积、辅助分类器）来在保持计算效率的同时提升特征提取能力，并在 ImageNet 等数据集上取得优异性能。",
         "descriptionZh": "InceptionV3 是为图像分类任务设计的高效卷积神经网络，其核心创新是使用模块化的 Inception 结构（如分解卷积、辅助分类器）来在保持计算效率的同时提升特征提取能力，并在 ImageNet 等数据集上取得优异性能。",
-        "descriptionEn": "InceptionV3 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "InceptionV3 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-11-14 18:09:00",
         "updatedAt": "2025-11-29 14:49:57",
         "badge": null,
@@ -12124,42 +13256,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "Inceptionv3.zip"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a8w8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ "
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ ",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "fp16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -12168,7 +13325,7 @@ const modelsData = [
         "name": "YOLOv7",
         "description": "YOLOv7在速度与精度方面均超越现有已知目标检测器：在5-160 FPS范围内表现最优，并在GPU V100上以30+ FPS实现56.8% AP的最高精度。其YOLOv7-E6模型在V100上达到56 FPS和55.9% AP，相比基于Transformer的SWIN-L Cascade-Mask R-CNN（A100 9.2 FPS，53.9% AP）速度提升509%且精度提高2%；相较基于卷积的ConvNeXt-XL Cascade-Mask R-CNN（A100 8.6 FPS，55.2% AP）速度提升551%且精度提高0.7%。此外，YOLOv7在速度与精度上均优于YOLOR、YOLOX、YOLOv5等主流检测器，且仅使用MS COCO数据集从头训练，未借助任何预训练权重。",
         "descriptionZh": "YOLOv7在速度与精度方面均超越现有已知目标检测器：在5-160 FPS范围内表现最优，并在GPU V100上以30+ FPS实现56.8% AP的最高精度。其YOLOv7-E6模型在V100上达到56 FPS和55.9% AP，相比基于Transformer的SWIN-L Cascade-Mask R-CNN（A100 9.2 FPS，53.9% AP）速度提升509%且精度提高2%；相较基于卷积的ConvNeXt-XL Cascade-Mask R-CNN（A100 8.6 FPS，55.2% AP）速度提升551%且精度提高0.7%。此外，YOLOv7在速度与精度上均优于YOLOR、YOLOX、YOLOv5等主流检测器，且仅使用MS COCO数据集从头训练，未借助任何预训练权重。",
-        "descriptionEn": "YOLOv7 is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv7 is a computer vision model for object detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-11-14 10:24:41",
         "updatedAt": "2025-11-29 14:49:58",
         "badge": null,
@@ -12383,42 +13540,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "yolov7.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a16w8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ "
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ ",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "fp16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -12427,7 +13609,7 @@ const modelsData = [
         "name": "ResNet50",
         "description": "ResNet是残差网络(Residual Network)的缩写,该系列网络广泛用于目标分类等领域以及作为计算机视觉任务主干经典神经网络的一部分，典型的网络有ResNet50, ResNet101等。ResNet证明网络能够向更深（包含更多隐藏层）的方向发展。",
         "descriptionZh": "ResNet是残差网络(Residual Network)的缩写,该系列网络广泛用于目标分类等领域以及作为计算机视觉任务主干经典神经网络的一部分，典型的网络有ResNet50, ResNet101等。ResNet证明网络能够向更深（包含更多隐藏层）的方向发展。",
-        "descriptionEn": "ResNet50 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "ResNet50 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-09-22 20:40:35",
         "updatedAt": null,
         "badge": null,
@@ -12642,42 +13824,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "resnet50.onnx"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a8w8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ "
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ ",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "fp16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     },
@@ -12686,7 +13893,7 @@ const modelsData = [
         "name": "ResNet18",
         "description": "ResNet是残差网络(Residual Network)的缩写,该系列网络广泛用于目标分类等领域以及作为计算机视觉任务主干经典神经网络的一部分，典型的网络有ResNet18, ResNet101等。ResNet证明网络能够向更深（包含更多隐藏层）的方向发展。",
         "descriptionZh": "ResNet是残差网络(Residual Network)的缩写,该系列网络广泛用于目标分类等领域以及作为计算机视觉任务主干经典神经网络的一部分，典型的网络有ResNet18, ResNet101等。ResNet证明网络能够向更深（包含更多隐藏层）的方向发展。",
-        "descriptionEn": "ResNet18 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "ResNet18 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-09-17 09:26:27",
         "updatedAt": null,
         "badge": null,
@@ -12840,42 +14047,38 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "resnet18.onnx"
-            },
+            }
+        ],
+        "toolchains": [
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ ",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a8w8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构，承上启下\r\n提升计算效率的关键平台",
+                        "icon": "tool",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配\r\nAI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计\r\n支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ "
+                    }
+                ]
             }
         ]
     },
@@ -12884,7 +14087,7 @@ const modelsData = [
         "name": "YOLOv8l",
         "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv8l在之前的YOLO版本的基础上进行了改进，在继承了原有YOLO网络模型优点的基础上，引入了新的特效和优化，具有更高的检测精度。",
         "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLOv8l在之前的YOLO版本的基础上进行了改进，在继承了原有YOLO网络模型优点的基础上，引入了新的特效和优化，具有更高的检测精度。",
-        "descriptionEn": "YOLOv8l is a computer vision model for detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 6 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "YOLOv8l is a computer vision model for detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-09-15 22:03:30",
         "updatedAt": null,
         "badge": null,
@@ -13038,42 +14241,38 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "yolov8l.onnx"
-            },
+            }
+        ],
+        "toolchains": [
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ ",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a16w8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构，承上启下\r\n提升计算效率的关键平台",
+                        "icon": "tool",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配\r\nAI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计\r\n支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ "
+                    }
+                ]
             }
         ]
     },
@@ -13082,7 +14281,7 @@ const modelsData = [
         "name": "ResNet101",
         "description": "ResNet是ImageNet竞赛中分类问题效果较好的网络，它引入了残差学习的概念，通过增加直连通道来保护信息的完整性，解决信息丢失、梯度消失、梯度爆炸等问题，让很深的网络也得以训练。ResNet有不同的网络层数，常用的有18-layer、34-layer、50-layer、101-layer、152-layer。",
         "descriptionZh": "ResNet是ImageNet竞赛中分类问题效果较好的网络，它引入了残差学习的概念，通过增加直连通道来保护信息的完整性，解决信息丢失、梯度消失、梯度爆炸等问题，让很深的网络也得以训练。ResNet有不同的网络层数，常用的有18-layer、34-layer、50-layer、101-layer、152-layer。",
-        "descriptionEn": "ResNet101 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 7 downloadable artifacts, along with quick-start resources when available.",
+        "descriptionEn": "ResNet101 is a computer vision model for classification. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN and Hi3403V100 NNN. The mirror currently exposes 4 downloadable artifacts, along with quick-start resources when available.",
         "date": "2025-09-13 18:06:31",
         "updatedAt": null,
         "badge": null,
@@ -13297,42 +14496,67 @@ const modelsData = [
                 "quantization": "",
                 "note": "",
                 "localFile": "resnet101-63fe2227.pth"
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "a8w8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构，承上启下\r\n提升计算效率的关键平台",
+                        "icon": "tool",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配\r\nAI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计\r\n支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ "
+                    }
+                ]
             },
             {
-                "title": "CANN工具",
-                "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": "SVP_NNN_PC_V1.0.6.0.tgz"
-            },
-            {
-                "title": "编译工具链",
-                "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
-            },
-            {
-                "title": "SDK",
-                "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/ ",
-                "available": true,
-                "source": "toolkit",
-                "sourceLabel": "工具链",
-                "group": "工具链",
-                "engine": "",
-                "quantization": "",
-                "note": "",
-                "localFile": null
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "fp16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "SPC022 (请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc (请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SPC022 (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
             }
         ]
     }
