@@ -1,5 +1,930 @@
 [
   {
+    "id": "kuhsoe9kts00",
+    "name": "YOLO26s",
+    "listData": {
+      "id": "kuhsoe9kts00",
+      "name": "YOLO26s",
+      "coverImageId": 1764112203841537,
+      "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1764112203841537%2Fyolo26.jpg",
+      "isBeta": 0,
+      "betaVersionDesc": "",
+      "createdBy": 139036723332644,
+      "creationDate": "2026-09-15 16:31:42",
+      "creationUserCN": "y-0089",
+      "lastUpdateDate": "2026-09-16 11:36:31",
+      "currentHandler": "",
+      "currentHandlerName": "",
+      "description": "YOLO26s 是 Ultralytics YOLO 系列中的小型目标检测模型，适合在边缘设备上进行实时目标检测。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
+      "computerVersion": [
+        "检测"
+      ],
+      "naturalLanguageProcess": [],
+      "multimodal": [],
+      "video": [],
+      "framework": [
+        "PyTorch"
+      ],
+      "supportOs": [
+        "OpenHarmony",
+        "Linux"
+      ],
+      "computingPower": [
+        "Hi3403V100 SVP_NNN",
+        "Hi3403V100 NNN",
+        "Hi3516CV610"
+      ],
+      "isCollect": 0,
+      "downloadNum": 12,
+      "collectCount": 0
+    },
+    "apiDetail": {
+      "createdBy": 139036723332644,
+      "creationDate": "2026-09-15 16:31:42",
+      "creationUserCN": "y-0089",
+      "lastUpdatedBy": null,
+      "lastUpdateDate": "2026-09-16 11:36:31",
+      "lastUpdateUserCN": "y-0089",
+      "rowIdx": -1,
+      "id": "kuhsoe9kts00",
+      "name": "YOLO26s",
+      "isBeta": 0,
+      "betaVersionDesc": "",
+      "description": "YOLO26s 是 Ultralytics YOLO 系列中的小型目标检测模型，适合在边缘设备上进行实时目标检测。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
+      "parentId": "kmrpc00gts00",
+      "coverImageId": 1764112203841537,
+      "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1764112203841537%2Fyolo26.jpg",
+      "modelEffectId": null,
+      "modelEffectUrl": "",
+      "computerVersion": [
+        "检测"
+      ],
+      "naturalLanguageProcess": [],
+      "multimodal": [],
+      "video": [],
+      "framework": [
+        "PyTorch"
+      ],
+      "modelRepository": "https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s",
+      "originModel": [],
+      "originModelLink": "https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/README.md#%E6%A8%A1%E5%9E%8B%E8%BD%AC%E5%8C%96",
+      "dataSet": "https://cocodataset.org/#download",
+      "modelLicense": "https://github.com/ultralytics/ultralytics/blob/main/LICENSE",
+      "detailParams": [
+        {
+          "name": "计算量",
+          "value": "23.250GFLOPs"
+        },
+        {
+          "name": "输入",
+          "value": "640x640"
+        },
+        {
+          "name": "参数量",
+          "value": "9.538M"
+        }
+      ],
+      "quickStart": {
+        "url": "https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolo26s/doc/快速开始.md",
+        "markDownUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov10s/doc/快速开始.md",
+        "developLanguage": [
+          {
+            "language": "C++",
+            "context": "{\"ops\":[{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#3b3b3b\"},\"insert\":\"模型可以通过以下代码完成快速推理\"},{\"insert\":\"\\n\\n#include <memory>\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"#include \\\"model.h\\\"\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"#include \\\"log.h\\\"\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"#include \\\"utils.h\\\"\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"#include \\\"param.h\\\"\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"#include \\\"yolov26s_process.h\\\"\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"using namespace Infer;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"int main(int argc, char *argv[])\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"{\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  InferParam inferParam;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  if (!ParseParamFromCmd(argc, argv, inferParam)) {\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    return -1;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  }\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"  EnvInit(inferParam.aclConfigPath);\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  std::unique_ptr<Model> model = std::make_unique<Model>();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  if (model->Load(inferParam.omModelPath) != 0) {\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    EnvDeinit();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    return -1;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  }\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"  Yolov26sProcess processFunc;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  model->SetProcessFunc(processFunc);\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"  Yolov26sParam cfgParam;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  cfgParam.platformType = model->GetPlatformType();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  std::any param = cfgParam;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  int32_t ret = model->Infer(inferParam.imglistPath, JsonFile, std::ref(param));\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  if (ret != 0) {\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    model->Unload();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    EnvDeinit();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    return -1;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  }\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  if (model->Unload() != 0) {\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    EnvDeinit();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    return -1;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  }\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  EnvDeinit();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  return 0;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"}\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#3b3b3b\"},\"insert\":\"备注：上述C++代码依赖的动态库与头文件位于\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#3b3b3b\",\"link\":\"https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/common\"},\"insert\":\"[\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#a31515\",\"link\":\"https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/common\"},\"insert\":\"/samples/samples_GPL/common\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#3b3b3b\",\"link\":\"https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/common\"},\"insert\":\"]\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#3b3b3b\"},\"insert\":\"目录下，编译相关配置参考\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#3b3b3b\",\"link\":\"https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/src/CMakeLists.txt\"},\"insert\":\"[\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#a31515\",\"link\":\"https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/src/CMakeLists.txt\"},\"insert\":\"CMakeLists.txt\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#3b3b3b\",\"link\":\"https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/src/CMakeLists.txt\"},\"insert\":\"]\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#3b3b3b\"},\"insert\":\"。\"},{\"insert\":\"\\n\\n\\n\"}]}"
+          }
+        ]
+      },
+      "status": "released",
+      "currentHandler": "",
+      "currentHandlerName": "",
+      "jsonPath": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov10s/yolov10s.json",
+      "modelAdaptor": [
+        {
+          "createdBy": null,
+          "creationDate": null,
+          "creationUserCN": null,
+          "lastUpdatedBy": null,
+          "lastUpdateDate": null,
+          "lastUpdateUserCN": null,
+          "rowIdx": -1,
+          "id": "i8ttm5k1tc00",
+          "name": "Hi3403V100 SVP_NNN",
+          "modelId": "kuhsoe9kts00",
+          "modelName": "YOLO26s",
+          "supportNames": [
+            "A16W8"
+          ],
+          "toolkit": [
+            {
+              "name": "CANN工具",
+              "url": "https://hispark-obs.obs.cn-east-3.myhuaweicloud.com/SVP_NNN_PC_V1.0.6.5.tgz",
+              "desc": "AI异构计算架构，承上启下，提升计算效率的关键平台",
+              "imgId": "cann"
+            },
+            {
+              "name": "编译工具链",
+              "url": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.3/docs/zh-CN/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
+              "desc": "高效编译，精准适配AI性能优化，应用流畅运行",
+              "imgId": "tool"
+            },
+            {
+              "name": "SDK",
+              "url": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.3/",
+              "desc": "稳定、易用的设计，支撑客户快速产品量产",
+              "imgId": "sdk"
+            }
+          ],
+          "supportOs": [
+            "OpenHarmony",
+            "Linux"
+          ],
+          "supportQuantify": [
+            {
+              "createdBy": 139036723332644,
+              "creationDate": "2026-09-16 10:20:02",
+              "creationUserCN": "y-0089",
+              "lastUpdatedBy": 139036723332644,
+              "lastUpdateDate": "2026-09-16 10:20:02",
+              "lastUpdateUserCN": "y-0089",
+              "rowIdx": -1,
+              "id": "kuph92kkts00",
+              "name": "A16W8",
+              "computingId": "i8ttm5k1tc00",
+              "computingName": "Hi3403V100 SVP_NNN",
+              "omOfflineModelUrl": null,
+              "omOfflineModelId": null,
+              "omOfflineModelSize": null,
+              "omOfflineModelName": null,
+              "omOfflineModel": [
+                {
+                  "id": "1767429950799874",
+                  "name": "yolo26s_Hi3403_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                  "url": null,
+                  "size": "10541644"
+                }
+              ],
+              "omOfflineModelLink": "",
+              "releaseTime": "2026-09-14",
+              "boardOs": "Linux",
+              "modelLicense": "https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/LICENSE",
+              "modelPerformance": [
+                {
+                  "performanceValue": "20.965",
+                  "unit": "耗时（ms）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "47.630",
+                  "unit": "性能（fps）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "33.000",
+                  "unit": "内存（MB）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "123.379",
+                  "unit": "单帧内存带宽（MB）",
+                  "desc": ""
+                }
+              ],
+              "deleted": 0
+            }
+          ],
+          "deleted": 0
+        },
+        {
+          "createdBy": null,
+          "creationDate": null,
+          "creationUserCN": null,
+          "lastUpdatedBy": null,
+          "lastUpdateDate": null,
+          "lastUpdateUserCN": null,
+          "rowIdx": -1,
+          "id": "i8ttm5k1tc01",
+          "name": "Hi3403V100 NNN",
+          "modelId": "kuhsoe9kts00",
+          "modelName": "YOLO26s",
+          "supportNames": [
+            "FP16"
+          ],
+          "toolkit": [
+            {
+              "name": "CANN工具",
+              "url": "",
+              "desc": "5.30.t11.7.b140；(请联系FAE通过Hisupport单获取)",
+              "imgId": "cann"
+            },
+            {
+              "name": "SDK",
+              "url": "",
+              "desc": "SS928V100R001C02SPC022；(请联系FAE获取SDK版本并升级单独获取的CANN版本)",
+              "imgId": "sdk"
+            }
+          ],
+          "supportOs": [
+            "Linux"
+          ],
+          "supportQuantify": [
+            {
+              "createdBy": 139036723332644,
+              "creationDate": "2026-09-16 10:20:02",
+              "creationUserCN": "y-0089",
+              "lastUpdatedBy": 139036723332644,
+              "lastUpdateDate": "2026-09-16 10:20:02",
+              "lastUpdateUserCN": "y-0089",
+              "rowIdx": -1,
+              "id": "kuph92m8ts00",
+              "name": "FP16",
+              "computingId": "i8ttm5k1tc01",
+              "computingName": "Hi3403V100 NNN",
+              "omOfflineModelUrl": null,
+              "omOfflineModelId": null,
+              "omOfflineModelSize": null,
+              "omOfflineModelName": null,
+              "omOfflineModel": [
+                {
+                  "id": "1767429969608705",
+                  "name": "yolo26s_Hi3403_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                  "url": null,
+                  "size": "22128438"
+                }
+              ],
+              "omOfflineModelLink": "",
+              "releaseTime": "2026-08-22",
+              "boardOs": "Linux",
+              "modelLicense": "https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/LICENSE",
+              "modelPerformance": [
+                {
+                  "performanceValue": "46.217",
+                  "unit": "耗时（ms）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "8.060",
+                  "unit": "性能（fps）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "120.175",
+                  "unit": "内存（MB）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "282.906",
+                  "unit": "单帧内存带宽 (MB)",
+                  "desc": ""
+                }
+              ],
+              "deleted": 0
+            }
+          ],
+          "deleted": 0
+        },
+        {
+          "createdBy": null,
+          "creationDate": null,
+          "creationUserCN": null,
+          "lastUpdatedBy": null,
+          "lastUpdateDate": null,
+          "lastUpdateUserCN": null,
+          "rowIdx": -1,
+          "id": "jkjs2gdsi000",
+          "name": "Hi3516CV610",
+          "modelId": "kuhsoe9kts00",
+          "modelName": "YOLO26s",
+          "supportNames": [
+            "A16W8"
+          ],
+          "toolkit": [
+            {
+              "name": "SDK",
+              "url": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta",
+              "desc": "稳定、易用的设计;支撑客户快速产品量产",
+              "imgId": "sdk"
+            }
+          ],
+          "supportOs": [
+            "Linux"
+          ],
+          "supportQuantify": [
+            {
+              "createdBy": 139036723332644,
+              "creationDate": "2026-09-16 10:20:02",
+              "creationUserCN": "y-0089",
+              "lastUpdatedBy": 139036723332644,
+              "lastUpdateDate": "2026-09-16 10:20:02",
+              "lastUpdateUserCN": "y-0089",
+              "rowIdx": -1,
+              "id": "kuph92s0ts00",
+              "name": "A16W8",
+              "computingId": "jkjs2gdsi000",
+              "computingName": "Hi3516CV610",
+              "omOfflineModelUrl": null,
+              "omOfflineModelId": null,
+              "omOfflineModelSize": null,
+              "omOfflineModelName": null,
+              "omOfflineModel": [
+                {
+                  "id": "1767562887168003",
+                  "name": "yolo26s_610_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                  "url": null,
+                  "size": "11020971"
+                }
+              ],
+              "omOfflineModelLink": "",
+              "releaseTime": "2026-09-14",
+              "boardOs": "Linux",
+              "modelLicense": "https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/LICENSE",
+              "modelPerformance": [
+                {
+                  "performanceValue": "192.825",
+                  "unit": "耗时（ms）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "5.19",
+                  "unit": "性能（fps）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "35.756",
+                  "unit": "内存（MB）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "346.308",
+                  "unit": "单帧内存带宽（MB）",
+                  "desc": ""
+                }
+              ],
+              "deleted": 0
+            }
+          ],
+          "deleted": 0
+        }
+      ],
+      "saveType": null,
+      "deleteType": null,
+      "latest": "Y",
+      "deleted": 0,
+      "modelPhase": "released",
+      "remark": null,
+      "fileInfo": null,
+      "reviewType": null,
+      "owner": "y-0089",
+      "ownerBy": 139036723332644,
+      "optional": null,
+      "optionalList": [
+        "0e900d99dee8461b8"
+      ],
+      "optionalBy": null,
+      "downloadNum": 12,
+      "collectNum": null,
+      "isCollect": null
+    },
+    "downloadUrls": [
+      {
+        "name": "yolo26s_Hi3403_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1767429950799874/yolo26s_Hi3403_SVPNNN_%E6%AD%A4%E6%96%87%E4%BB%B6%E4%BB%85%E4%BE%9B%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%EF%BC%8C%E5%95%86%E7%94%A8%E9%9C%80%E8%81%94%E7%B3%BB%E5%8E%9F%E4%BD%9C%E8%80%85%E8%B4%AD%E4%B9%B0%E6%8E%88%E6%9D%83.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1789545143&Signature=fSDDehLkxp3e%2Balsb0gX5LhFkUE%3D",
+        "source": "om-A16W8",
+        "fileId": "1767429950799874",
+        "size": 10541644,
+        "declaredSize": 10541644,
+        "computing": "Hi3403V100 SVP_NNN",
+        "quantify": "A16W8"
+      },
+      {
+        "name": "yolo26s_Hi3403_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1767429969608705/yolo26s_Hi3403_NNN_%E6%AD%A4%E6%96%87%E4%BB%B6%E4%BB%85%E4%BE%9B%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%EF%BC%8C%E5%95%86%E7%94%A8%E9%9C%80%E8%81%94%E7%B3%BB%E5%8E%9F%E4%BD%9C%E8%80%85%E8%B4%AD%E4%B9%B0%E6%8E%88%E6%9D%83.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1789545155&Signature=1cTh9XMOLe9Rgrtu8EKxtckG5ug%3D",
+        "source": "om-FP16",
+        "fileId": "1767429969608705",
+        "size": 22128438,
+        "declaredSize": 22128438,
+        "computing": "Hi3403V100 NNN",
+        "quantify": "FP16"
+      },
+      {
+        "name": "yolo26s_610_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1767562887168003/yolo26s_610_SVPNNN_%E6%AD%A4%E6%96%87%E4%BB%B6%E4%BB%85%E4%BE%9B%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%EF%BC%8C%E5%95%86%E7%94%A8%E9%9C%80%E8%81%94%E7%B3%BB%E5%8E%9F%E4%BD%9C%E8%80%85%E8%B4%AD%E4%B9%B0%E6%8E%88%E6%9D%83.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1789545165&Signature=GVJI7BDV2cBXtkXx5B6FA21OweA%3D",
+        "source": "om-A16W8",
+        "fileId": "1767562887168003",
+        "size": 11020971,
+        "declaredSize": 11020971,
+        "computing": "Hi3516CV610",
+        "quantify": "A16W8"
+      },
+      {
+        "name": "yolo26s_Hi3403_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+        "fileId": "1767429950799874",
+        "size": "10541644",
+        "quantify": "A16W8",
+        "computing": "Hi3403V100 SVP_NNN",
+        "source": "omOfflineModel"
+      },
+      {
+        "name": "CANN工具",
+        "url": "https://hispark-obs.obs.cn-east-3.myhuaweicloud.com/SVP_NNN_PC_V1.0.6.5.tgz",
+        "source": "toolkit"
+      },
+      {
+        "name": "编译工具链",
+        "url": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.3/docs/zh-CN/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
+        "source": "toolkit"
+      },
+      {
+        "name": "SDK",
+        "url": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.3/",
+        "source": "toolkit"
+      },
+      {
+        "name": "yolo26s_Hi3403_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+        "fileId": "1767429969608705",
+        "size": "22128438",
+        "quantify": "FP16",
+        "computing": "Hi3403V100 NNN",
+        "source": "omOfflineModel"
+      },
+      {
+        "name": "yolo26s_610_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+        "fileId": "1767562887168003",
+        "size": "11020971",
+        "quantify": "A16W8",
+        "computing": "Hi3516CV610",
+        "source": "omOfflineModel"
+      },
+      {
+        "name": "SDK",
+        "url": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta",
+        "source": "toolkit"
+      }
+    ],
+    "downloadPageVisited": true,
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nYOLO26s\n检测\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nHi3516CV610\nPyTorch\nOpenHarmony\nLinux\ny-0089\n2026-09-15 16:31:42\n指导文档\n交流反馈\n12\n0\n模型详情\nYOLO26s 是 Ultralytics YOLO 系列中的小型目标检测模型，适合在边缘设备上进行实时目标检测。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。\n源模型下载数据集下载模型许可证 >\n计算量\n：\n23.250GFLOPs\n输入\n：\n640x640\n参数量\n：\n9.538M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\n\n\n\n#include <memory>\n#include \"model.h\"\n#include \"log.h\"\n#include \"utils.h\"\n#include \"param.h\"\n#include \"yolov26s_process.h\"\n\n\nusing namespace Infer;\n\n\nint main(int argc, char *argv[])\n{\n  InferParam inferParam;\n  if (!ParseParamFromCmd(argc, argv, inferParam)) {\n    return -1;\n  }\n\n\n  EnvInit(inferParam.aclConfigPath);\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(inferParam.omModelPath) != 0) {\n    EnvDeinit();\n    return -1;\n  }\n\n\n  Yolov26sProcess processFunc;\n  model->SetProcessFunc(processFunc);\n\n\n  Yolov26sParam cfgParam;\n  cfgParam.platformType = model->GetPlatformType();\n  std::any param = cfgParam;\n  int32_t ret = model->Infer(inferParam.imglistPath, JsonFile, std::ref(param));\n  if (ret != 0) {\n    model->Unload();\n    EnvDeinit();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    EnvDeinit();\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于[/samples/samples_GPL/common]目录下，编译相关配置参考[CMakeLists.txt]。\n\n\n\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n20.965\n耗时（ms）\n47.630\n性能（fps）\n33.000\n内存（MB）\n123.379\n单帧内存带宽（MB）\n*该数据基于Linux系统测试得出\n模型工具\nCANN工具\nAI异构计算架构，承上启下，提升计算效率的关键平台\n编译工具链\n高效编译，精准适配AI性能优化，应用流畅运行\nSDK\n稳定、易用的设计，支撑客户快速产品量产\n支持的操作系统"
+  },
+  {
+    "id": "kuhsidi0j400",
+    "name": "YOLO11s-pose",
+    "listData": {
+      "id": "kuhsidi0j400",
+      "name": "YOLO11s-pose",
+      "coverImageId": 1712135222657026,
+      "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1712135222657026%2Fyolo11-pose-small.jpg",
+      "isBeta": 0,
+      "betaVersionDesc": "",
+      "createdBy": 139036723332644,
+      "creationDate": "2026-09-15 16:30:53",
+      "creationUserCN": "y-0089",
+      "lastUpdateDate": "2026-09-16 11:36:31",
+      "currentHandler": "",
+      "currentHandlerName": "",
+      "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
+      "computerVersion": [
+        "姿态估计"
+      ],
+      "naturalLanguageProcess": [],
+      "multimodal": [],
+      "video": [],
+      "framework": [
+        "PyTorch"
+      ],
+      "supportOs": [
+        "OpenHarmony",
+        "Linux"
+      ],
+      "computingPower": [
+        "Hi3403V100 SVP_NNN",
+        "Hi3403V100 NNN",
+        "Hi3516CV610"
+      ],
+      "isCollect": 0,
+      "downloadNum": 9,
+      "collectCount": 0
+    },
+    "apiDetail": {
+      "createdBy": 139036723332644,
+      "creationDate": "2026-09-15 16:30:53",
+      "creationUserCN": "y-0089",
+      "lastUpdatedBy": null,
+      "lastUpdateDate": "2026-09-16 11:36:31",
+      "lastUpdateUserCN": "y-0089",
+      "rowIdx": -1,
+      "id": "kuhsidi0j400",
+      "name": "YOLO11s-pose",
+      "isBeta": 0,
+      "betaVersionDesc": "",
+      "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
+      "parentId": "i9j3k8rpec00",
+      "coverImageId": 1712135222657026,
+      "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1712135222657026%2Fyolo11-pose-small.jpg",
+      "modelEffectId": null,
+      "modelEffectUrl": "",
+      "computerVersion": [
+        "姿态估计"
+      ],
+      "naturalLanguageProcess": [],
+      "multimodal": [],
+      "video": [],
+      "framework": [
+        "PyTorch"
+      ],
+      "modelRepository": "https://gitcode.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolo11s-pose",
+      "originModel": [],
+      "originModelLink": "https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo11s-pose/README.md#%E6%A8%A1%E5%9E%8B%E8%BD%AC%E5%8C%96",
+      "dataSet": "https://cocodataset.org/#download",
+      "modelLicense": "https://github.com/ultralytics/ultralytics/blob/master/LICENSE",
+      "detailParams": [
+        {
+          "name": "输入",
+          "value": "640x640"
+        },
+        {
+          "name": "参数量",
+          "value": "9.970M"
+        },
+        {
+          "name": "计算量",
+          "value": "25.414GFLOPs"
+        }
+      ],
+      "quickStart": {
+        "url": "https://gitcode.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolo11s-pose",
+        "markDownUrl": "",
+        "developLanguage": [
+          {
+            "language": "C++",
+            "context": "{\"ops\":[{\"attributes\":{\"background\":\"#ffffff\",\"size\":\"13px\",\"color\":\"#080808\"},\"insert\":\"模型可以通过以下代码完成快速推理\"},{\"attributes\":{\"text-indent\":\"0px\"},\"insert\":\"\\n\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"#include \\\"model.h\\\"\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"#include \\\"log.h\\\"\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"using namespace Infer;\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"int main()\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"{\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    EnvInit();\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    std::string omModelPath = \\\"/path/to/model.om\\\"; // yolo11s-pose模型文件路径 \"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    std::string imagePath = \\\"/path/to/image.jpg\\\"; // 输入图片路径\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    std::unique_ptr<Model> model = std::make_unique<Model>();\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    if (model->Load(omModelPath, ModelType::Yolo11s-pose) != 0) {\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"        return -1;\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    }\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    if (ret.size() == 0) {\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"        model->Unload();\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"        return -1;\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    }\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    if (model->Unload() != 0) {\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"        return -1;\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    }\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    EnvDeinit();\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    return 0;\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"}\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"attributes\":{\"background\":\"#ffffff\",\"size\":\"13px\",\"color\":\"#080808\"},\"insert\":\"备注：上述C++代码依赖的动态库与头文件位于\"},{\"attributes\":{\"background\":\"#ffffff\",\"size\":\"13px\",\"color\":\"#315fbd\",\"link\":\"https://gitcode.com/HiSpark/modelzoo/tree/master/samples/common\"},\"insert\":\"/samples/common\"},{\"attributes\":{\"background\":\"#ffffff\",\"size\":\"13px\",\"color\":\"#080808\"},\"insert\":\"目录下，编译相关配置参考\"},{\"attributes\":{\"background\":\"#ffffff\",\"size\":\"13px\",\"color\":\"#315fbd\",\"link\":\"https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo11s-pose/src/CMakeLists.txt\"},\"insert\":\"CMakeLists.txt\"},{\"attributes\":{\"background\":\"#ffffff\",\"size\":\"13px\",\"color\":\"#080808\"},\"insert\":\"。\"},{\"attributes\":{\"text-indent\":\"0px\"},\"insert\":\"\\n\\n\"}]}"
+          }
+        ]
+      },
+      "status": "released",
+      "currentHandler": "",
+      "currentHandlerName": "",
+      "jsonPath": "https://gitee.com/HiSpark/modelzoo-dev/blob/master/samples/samples_GPL/built-in/yolo11s-pose/yolo11s-pose.json",
+      "modelAdaptor": [
+        {
+          "createdBy": null,
+          "creationDate": null,
+          "creationUserCN": null,
+          "lastUpdatedBy": null,
+          "lastUpdateDate": null,
+          "lastUpdateUserCN": null,
+          "rowIdx": -1,
+          "id": "i8ttm5k1tc00",
+          "name": "Hi3403V100 SVP_NNN",
+          "modelId": "kuhsidi0j400",
+          "modelName": "YOLO11s-pose",
+          "supportNames": [
+            "A16W8"
+          ],
+          "toolkit": [
+            {
+              "name": "CANN工具",
+              "url": "https://hispark-obs.obs.cn-east-3.myhuaweicloud.com/SVP_NNN_PC_V1.0.6.0.tgz",
+              "desc": "Al异构计算架构；提升计算效率的关键平台",
+              "imgId": "cann"
+            },
+            {
+              "name": "编译工具链",
+              "url": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+              "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+              "imgId": "tool"
+            },
+            {
+              "name": "SDK",
+              "url": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+              "desc": "稳定、易用的设计；支撑客户快速产品量产",
+              "imgId": "sdk"
+            }
+          ],
+          "supportOs": [
+            "OpenHarmony",
+            "Linux"
+          ],
+          "supportQuantify": [
+            {
+              "createdBy": 139036723332644,
+              "creationDate": "2026-09-16 10:20:13",
+              "creationUserCN": "y-0089",
+              "lastUpdatedBy": 139036723332644,
+              "lastUpdateDate": "2026-09-16 10:20:13",
+              "lastUpdateUserCN": "y-0089",
+              "rowIdx": -1,
+              "id": "kuphafu8ts00",
+              "name": "A16W8",
+              "computingId": "i8ttm5k1tc00",
+              "computingName": "Hi3403V100 SVP_NNN",
+              "omOfflineModelUrl": null,
+              "omOfflineModelId": 1712123763884034,
+              "omOfflineModelSize": "10946755",
+              "omOfflineModelName": "yolo11s-pose.om",
+              "omOfflineModel": [
+                {
+                  "id": "1767429850071041",
+                  "name": "yolo11s-pose_Hi3403_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                  "url": null,
+                  "size": "10946755"
+                }
+              ],
+              "omOfflineModelLink": null,
+              "releaseTime": "2025-11-14",
+              "boardOs": "Linux",
+              "modelLicense": "https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo11s-pose/LICENSE",
+              "modelPerformance": [
+                {
+                  "performanceValue": "25.09",
+                  "unit": "耗时（ms）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "39.85",
+                  "unit": "性能（fps）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "168.145",
+                  "unit": "单帧内存带宽（MB）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "36.895",
+                  "unit": "内存（MB）",
+                  "desc": ""
+                }
+              ],
+              "deleted": 0
+            }
+          ],
+          "deleted": 0
+        },
+        {
+          "createdBy": null,
+          "creationDate": null,
+          "creationUserCN": null,
+          "lastUpdatedBy": null,
+          "lastUpdateDate": null,
+          "lastUpdateUserCN": null,
+          "rowIdx": -1,
+          "id": "i8ttm5k1tc01",
+          "name": "Hi3403V100 NNN",
+          "modelId": "kuhsidi0j400",
+          "modelName": "YOLO11s-pose",
+          "supportNames": [
+            "FP16"
+          ],
+          "toolkit": [
+            {
+              "name": "CANN工具包",
+              "url": null,
+              "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+              "imgId": "cann"
+            },
+            {
+              "name": "编译工具链",
+              "url": "",
+              "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+              "imgId": "tool"
+            },
+            {
+              "name": "SDK",
+              "url": "",
+              "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+              "imgId": "sdk"
+            }
+          ],
+          "supportOs": [
+            "Linux"
+          ],
+          "supportQuantify": [
+            {
+              "createdBy": 139036723332644,
+              "creationDate": "2026-09-16 10:20:13",
+              "creationUserCN": "y-0089",
+              "lastUpdatedBy": 139036723332644,
+              "lastUpdateDate": "2026-09-16 10:20:13",
+              "lastUpdateUserCN": "y-0089",
+              "rowIdx": -1,
+              "id": "kuphafvots00",
+              "name": "FP16",
+              "computingId": "i8ttm5k1tc01",
+              "computingName": "Hi3403V100 NNN",
+              "omOfflineModelUrl": null,
+              "omOfflineModelId": 1719600448339970,
+              "omOfflineModelSize": "23026919",
+              "omOfflineModelName": "yolo11s-pose_dlite_fp16.om",
+              "omOfflineModel": [
+                {
+                  "id": "1767429873205250",
+                  "name": "yolo11s-pose_Hi3403_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                  "url": null,
+                  "size": "23026919"
+                }
+              ],
+              "omOfflineModelLink": null,
+              "releaseTime": "2025-12-31",
+              "boardOs": "Linux",
+              "modelLicense": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo11s-pose/LICENSE",
+              "modelPerformance": [
+                {
+                  "performanceValue": "45.41",
+                  "unit": "耗时（ms）",
+                  "desc": null
+                },
+                {
+                  "performanceValue": "22.02",
+                  "unit": "性能（fps）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "360.947",
+                  "unit": "单帧内存带宽（MB）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "125.070",
+                  "unit": "内存（MB）",
+                  "desc": ""
+                }
+              ],
+              "deleted": 0
+            }
+          ],
+          "deleted": 0
+        },
+        {
+          "createdBy": null,
+          "creationDate": null,
+          "creationUserCN": null,
+          "lastUpdatedBy": null,
+          "lastUpdateDate": null,
+          "lastUpdateUserCN": null,
+          "rowIdx": -1,
+          "id": "jkjs2gdsi000",
+          "name": "Hi3516CV610",
+          "modelId": "kuhsidi0j400",
+          "modelName": "YOLO11s-pose",
+          "supportNames": [
+            "A16W8"
+          ],
+          "toolkit": [
+            {
+              "name": "SDK",
+              "url": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta",
+              "desc": "稳定、易用的设计;支撑客户快速产品量产",
+              "imgId": "sdk"
+            }
+          ],
+          "supportOs": [
+            "Linux"
+          ],
+          "supportQuantify": [
+            {
+              "createdBy": 139036723332644,
+              "creationDate": "2026-09-16 10:20:13",
+              "creationUserCN": "y-0089",
+              "lastUpdatedBy": 139036723332644,
+              "lastUpdateDate": "2026-09-16 10:20:13",
+              "lastUpdateUserCN": "y-0089",
+              "rowIdx": -1,
+              "id": "kuphag1cts00",
+              "name": "A16W8",
+              "computingId": "jkjs2gdsi000",
+              "computingName": "Hi3516CV610",
+              "omOfflineModelUrl": null,
+              "omOfflineModelId": null,
+              "omOfflineModelSize": null,
+              "omOfflineModelName": null,
+              "omOfflineModel": [
+                {
+                  "id": "1767392627785731",
+                  "name": "yolo11s-pose_610_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                  "url": null,
+                  "size": "11417881"
+                }
+              ],
+              "omOfflineModelLink": "",
+              "releaseTime": "2026-09-14",
+              "boardOs": "Linux",
+              "modelLicense": "https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolo11s-pose/LICENSE",
+              "modelPerformance": [
+                {
+                  "performanceValue": "169.063",
+                  "unit": "耗时（ms）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "5.92",
+                  "unit": "性能（fps）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "35.199",
+                  "unit": "内存（MB）",
+                  "desc": ""
+                },
+                {
+                  "performanceValue": "337.639",
+                  "unit": "单帧内存带宽 (MB)",
+                  "desc": ""
+                }
+              ],
+              "deleted": 0
+            }
+          ],
+          "deleted": 0
+        }
+      ],
+      "saveType": null,
+      "deleteType": null,
+      "latest": "Y",
+      "deleted": 0,
+      "modelPhase": "released",
+      "remark": null,
+      "fileInfo": null,
+      "reviewType": null,
+      "owner": "y-0089",
+      "ownerBy": 139036723332644,
+      "optional": null,
+      "optionalList": [
+        "0e900d99dee8461b8"
+      ],
+      "optionalBy": null,
+      "downloadNum": 9,
+      "collectNum": null,
+      "isCollect": null
+    },
+    "downloadUrls": [
+      {
+        "name": "yolo11s-pose_Hi3403_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1767429850071041/yolo11s-pose_Hi3403_SVPNNN_%E6%AD%A4%E6%96%87%E4%BB%B6%E4%BB%85%E4%BE%9B%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%EF%BC%8C%E5%95%86%E7%94%A8%E9%9C%80%E8%81%94%E7%B3%BB%E5%8E%9F%E4%BD%9C%E8%80%85%E8%B4%AD%E4%B9%B0%E6%8E%88%E6%9D%83.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1789545195&Signature=fXhOEADQTs09v5tCVnvOYV2f4jA%3D",
+        "source": "om-A16W8",
+        "fileId": "1767429850071041",
+        "size": 10946755,
+        "declaredSize": 10946755,
+        "computing": "Hi3403V100 SVP_NNN",
+        "quantify": "A16W8"
+      },
+      {
+        "name": "yolo11s-pose_Hi3403_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+        "url": "https://hispark-model.obs.cn-east-3.myhuaweicloud.com/1767429873205250/yolo11s-pose_Hi3403_NNN_%E6%AD%A4%E6%96%87%E4%BB%B6%E4%BB%85%E4%BE%9B%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%EF%BC%8C%E5%95%86%E7%94%A8%E9%9C%80%E8%81%94%E7%B3%BB%E5%8E%9F%E4%BD%9C%E8%80%85%E8%B4%AD%E4%B9%B0%E6%8E%88%E6%9D%83.om?AccessKeyId=57DU3X6NM28ACLMM93E8&Expires=1789545206&Signature=exIwm57HR8V%2FbJogmKSCVbDkNiI%3D",
+        "source": "om-FP16",
+        "fileId": "1767429873205250",
+        "size": 23026919,
+        "declaredSize": 23026919,
+        "computing": "Hi3403V100 NNN",
+        "quantify": "FP16"
+      },
+      {
+        "name": "yolo11s-pose_610_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+        "source": "om-A16W8",
+        "fileId": "1767392627785731",
+        "size": 11417881,
+        "declaredSize": 11417881,
+        "computing": "Hi3516CV610",
+        "quantify": "A16W8"
+      },
+      {
+        "name": "yolo11s-pose_Hi3403_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+        "fileId": "1767429850071041",
+        "size": "10946755",
+        "quantify": "A16W8",
+        "computing": "Hi3403V100 SVP_NNN",
+        "source": "omOfflineModel"
+      },
+      {
+        "name": "CANN工具",
+        "url": "https://hispark-obs.obs.cn-east-3.myhuaweicloud.com/SVP_NNN_PC_V1.0.6.0.tgz",
+        "source": "toolkit"
+      },
+      {
+        "name": "编译工具链",
+        "url": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
+        "source": "toolkit"
+      },
+      {
+        "name": "SDK",
+        "url": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
+        "source": "toolkit"
+      },
+      {
+        "name": "yolo11s-pose_Hi3403_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+        "fileId": "1767429873205250",
+        "size": "23026919",
+        "quantify": "FP16",
+        "computing": "Hi3403V100 NNN",
+        "source": "omOfflineModel"
+      },
+      {
+        "name": "SDK",
+        "url": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta",
+        "source": "toolkit"
+      }
+    ],
+    "downloadPageVisited": true,
+    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nYOLO11s-pose\n姿态估计\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nHi3516CV610\nPyTorch\nOpenHarmony\nLinux\ny-0089\n2026-09-15 16:30:53\n指导文档\n交流反馈\n9\n0\n模型详情\nYOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。\n源模型下载数据集下载模型许可证 >\n输入\n：\n640x640\n参数量\n：\n9.970M\n计算量\n：\n25.414GFLOPs\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\n\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolo11s-pose模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::Yolo11s-pose) != 0) {\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n25.09\n耗时（ms）\n39.85\n性能（fps）\n168.145\n单帧内存带宽（MB）\n36.895\n内存（MB）\n*该数据基于Linux系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
+  },
+  {
     "id": "kuerjmbgts00",
     "name": "YOLOv4",
     "listData": {
@@ -365,906 +1290,6 @@
     ],
     "downloadPageVisited": true,
     "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nYOLOv4\n目标检测\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nPyTorch\nOpenHarmony\nLinux\nsloanqin\n2026-09-15 09:27:15\n指导文档\n交流反馈\n1\n0\n模型详情\nYOLOv4 是一种高性能的 one-stage 目标检测模型。相比 YOLOv3，YOLOv4 采用了 CSPDarknet53 作为 backbone 进行特征提取，该网络结合了跨金字塔池化结构和路径聚合网络，在精度和速度上均有显著提升。\n源模型下载数据集下载模型许可证 >\n输入\n：\n608x608\n参数量\n：\n64.330M\n计算量\n：\n157.842GFLOPs\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\n\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolov4模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::yolov4) != 0) {\n        LOG(ERROR) << \"fail to load model\";\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        LOG(ERROR) << \"fail to infer model\";\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        LOG(ERROR) << \"fail to unload model\";\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：头文件和动态库位于/samples/common目录下，编译配置参考文件\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n252.58\n耗时（ms）\n3.96\n性能（fps）\n488.841\n单帧内存带宽（MB）\n119.559\n内存（MB）\n*该数据基于OpenHarmony系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
-  },
-  {
-    "id": "ku5e0eekj400",
-    "name": "YOLO11s-pose",
-    "listData": {
-      "id": "ku5e0eekj400",
-      "name": "YOLO11s-pose",
-      "coverImageId": 1712135222657026,
-      "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1712135222657026%2Fyolo11-pose-small.jpg",
-      "isBeta": 0,
-      "betaVersionDesc": "",
-      "createdBy": 139036723332644,
-      "creationDate": "2026-09-14 11:29:32",
-      "creationUserCN": "y-0089",
-      "lastUpdateDate": null,
-      "currentHandler": "",
-      "currentHandlerName": "",
-      "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
-      "computerVersion": [
-        "姿态估计"
-      ],
-      "naturalLanguageProcess": [],
-      "multimodal": [],
-      "video": [],
-      "framework": [
-        "PyTorch"
-      ],
-      "supportOs": [
-        "OpenHarmony",
-        "Linux"
-      ],
-      "computingPower": [
-        "Hi3403V100 SVP_NNN",
-        "Hi3403V100 NNN",
-        "Hi3516CV610"
-      ],
-      "isCollect": 0,
-      "downloadNum": 12,
-      "collectCount": 0
-    },
-    "apiDetail": {
-      "createdBy": 139036723332644,
-      "creationDate": "2026-09-14 11:29:32",
-      "creationUserCN": "y-0089",
-      "lastUpdatedBy": null,
-      "lastUpdateDate": null,
-      "lastUpdateUserCN": "y-0089",
-      "rowIdx": -1,
-      "id": "ku5e0eekj400",
-      "name": "YOLO11s-pose",
-      "isBeta": 0,
-      "betaVersionDesc": "",
-      "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
-      "parentId": "i9j3k8rpec00",
-      "coverImageId": 1712135222657026,
-      "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1712135222657026%2Fyolo11-pose-small.jpg",
-      "modelEffectId": null,
-      "modelEffectUrl": "",
-      "computerVersion": [
-        "姿态估计"
-      ],
-      "naturalLanguageProcess": [],
-      "multimodal": [],
-      "video": [],
-      "framework": [
-        "PyTorch"
-      ],
-      "modelRepository": "https://gitcode.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolo11s-pose",
-      "originModel": [],
-      "originModelLink": "",
-      "dataSet": "https://cocodataset.org/#download",
-      "modelLicense": "https://github.com/ultralytics/ultralytics/blob/master/LICENSE",
-      "detailParams": [
-        {
-          "name": "输入",
-          "value": "640x640"
-        },
-        {
-          "name": "参数量",
-          "value": "9.970M"
-        },
-        {
-          "name": "计算量",
-          "value": "25.414GFLOPs"
-        }
-      ],
-      "quickStart": {
-        "url": "https://gitcode.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolo11s-pose",
-        "markDownUrl": "",
-        "developLanguage": [
-          {
-            "language": "C++",
-            "context": "{\"ops\":[{\"attributes\":{\"background\":\"#ffffff\",\"size\":\"13px\",\"color\":\"#080808\"},\"insert\":\"模型可以通过以下代码完成快速推理\"},{\"attributes\":{\"text-indent\":\"0px\"},\"insert\":\"\\n\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"#include \\\"model.h\\\"\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"#include \\\"log.h\\\"\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"using namespace Infer;\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"int main()\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"{\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    EnvInit();\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    std::string omModelPath = \\\"/path/to/model.om\\\"; // yolo11s-pose模型文件路径 \"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    std::string imagePath = \\\"/path/to/image.jpg\\\"; // 输入图片路径\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    std::unique_ptr<Model> model = std::make_unique<Model>();\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    if (model->Load(omModelPath, ModelType::Yolo11s-pose) != 0) {\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"        return -1;\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    }\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    if (ret.size() == 0) {\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"        model->Unload();\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"        return -1;\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    }\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    if (model->Unload() != 0) {\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"        return -1;\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    }\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    EnvDeinit();\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    return 0;\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"}\"},{\"attributes\":{\"text-indent\":\"0px\",\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"attributes\":{\"background\":\"#ffffff\",\"size\":\"13px\",\"color\":\"#080808\"},\"insert\":\"备注：上述C++代码依赖的动态库与头文件位于\"},{\"attributes\":{\"background\":\"#ffffff\",\"size\":\"13px\",\"color\":\"#315fbd\",\"link\":\"https://gitcode.com/HiSpark/modelzoo/tree/master/samples/common\"},\"insert\":\"/samples/common\"},{\"attributes\":{\"background\":\"#ffffff\",\"size\":\"13px\",\"color\":\"#080808\"},\"insert\":\"目录下，编译相关配置参考\"},{\"attributes\":{\"background\":\"#ffffff\",\"size\":\"13px\",\"color\":\"#315fbd\",\"link\":\"https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo11s-pose/src/CMakeLists.txt\"},\"insert\":\"CMakeLists.txt\"},{\"attributes\":{\"background\":\"#ffffff\",\"size\":\"13px\",\"color\":\"#080808\"},\"insert\":\"。\"},{\"attributes\":{\"text-indent\":\"0px\"},\"insert\":\"\\n\\n\"}]}"
-          }
-        ]
-      },
-      "status": "released",
-      "currentHandler": "",
-      "currentHandlerName": "",
-      "jsonPath": "https://gitee.com/HiSpark/modelzoo-dev/blob/master/samples/samples_GPL/built-in/yolo11s-pose/yolo11s-pose.json",
-      "modelAdaptor": [
-        {
-          "createdBy": null,
-          "creationDate": null,
-          "creationUserCN": null,
-          "lastUpdatedBy": null,
-          "lastUpdateDate": null,
-          "lastUpdateUserCN": null,
-          "rowIdx": -1,
-          "id": "i8ttm5k1tc00",
-          "name": "Hi3403V100 SVP_NNN",
-          "modelId": "ku5e0eekj400",
-          "modelName": "YOLO11s-pose",
-          "supportNames": [
-            "A16W8"
-          ],
-          "toolkit": [
-            {
-              "name": "CANN工具",
-              "url": "https://hispark-obs.obs.cn-east-3.myhuaweicloud.com/SVP_NNN_PC_V1.0.6.0.tgz",
-              "desc": "Al异构计算架构；提升计算效率的关键平台",
-              "imgId": "cann"
-            },
-            {
-              "name": "编译工具链",
-              "url": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-              "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
-              "imgId": "tool"
-            },
-            {
-              "name": "SDK",
-              "url": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-              "desc": "稳定、易用的设计；支撑客户快速产品量产",
-              "imgId": "sdk"
-            }
-          ],
-          "supportOs": [
-            "OpenHarmony",
-            "Linux"
-          ],
-          "supportQuantify": [
-            {
-              "createdBy": 139036723332644,
-              "creationDate": "2026-09-15 11:35:49",
-              "creationUserCN": "y-0089",
-              "lastUpdatedBy": 139036723332644,
-              "lastUpdateDate": "2026-09-15 11:35:49",
-              "lastUpdateUserCN": "y-0089",
-              "rowIdx": -1,
-              "id": "kufp19gkts00",
-              "name": "A16W8",
-              "computingId": "i8ttm5k1tc00",
-              "computingName": "Hi3403V100 SVP_NNN",
-              "omOfflineModelUrl": null,
-              "omOfflineModelId": 1712123763884034,
-              "omOfflineModelSize": "10946755",
-              "omOfflineModelName": "yolo11s-pose.om",
-              "omOfflineModel": [
-                {
-                  "id": "1767392585842689",
-                  "name": "yolo11s-pose_928_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-                  "url": null,
-                  "size": "10946755"
-                }
-              ],
-              "omOfflineModelLink": null,
-              "releaseTime": "2025-11-14",
-              "boardOs": "Linux",
-              "modelLicense": "https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo11s-pose/LICENSE",
-              "modelPerformance": [
-                {
-                  "performanceValue": "25.09",
-                  "unit": "耗时（ms）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "39.85",
-                  "unit": "性能（fps）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "168.145",
-                  "unit": "单帧内存带宽（MB）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "36.895",
-                  "unit": "内存（MB）",
-                  "desc": ""
-                }
-              ],
-              "deleted": 0
-            }
-          ],
-          "deleted": 0
-        },
-        {
-          "createdBy": null,
-          "creationDate": null,
-          "creationUserCN": null,
-          "lastUpdatedBy": null,
-          "lastUpdateDate": null,
-          "lastUpdateUserCN": null,
-          "rowIdx": -1,
-          "id": "i8ttm5k1tc01",
-          "name": "Hi3403V100 NNN",
-          "modelId": "ku5e0eekj400",
-          "modelName": "YOLO11s-pose",
-          "supportNames": [
-            "FP16"
-          ],
-          "toolkit": [
-            {
-              "name": "CANN工具包",
-              "url": null,
-              "desc": "5.30.t11.7.b110； (请联系FAE获取)",
-              "imgId": "cann"
-            },
-            {
-              "name": "编译工具链",
-              "url": "",
-              "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
-              "imgId": "tool"
-            },
-            {
-              "name": "SDK",
-              "url": "",
-              "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
-              "imgId": "sdk"
-            }
-          ],
-          "supportOs": [
-            "Linux"
-          ],
-          "supportQuantify": [
-            {
-              "createdBy": 139036723332644,
-              "creationDate": "2026-09-15 11:35:49",
-              "creationUserCN": "y-0089",
-              "lastUpdatedBy": 139036723332644,
-              "lastUpdateDate": "2026-09-15 11:35:49",
-              "lastUpdateUserCN": "y-0089",
-              "rowIdx": -1,
-              "id": "kufp19i4ts00",
-              "name": "FP16",
-              "computingId": "i8ttm5k1tc01",
-              "computingName": "Hi3403V100 NNN",
-              "omOfflineModelUrl": null,
-              "omOfflineModelId": 1719600448339970,
-              "omOfflineModelSize": "23026919",
-              "omOfflineModelName": "yolo11s-pose_dlite_fp16.om",
-              "omOfflineModel": [
-                {
-                  "id": "1767392604651521",
-                  "name": "yolo11s-pose_928_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-                  "url": null,
-                  "size": "23026919"
-                }
-              ],
-              "omOfflineModelLink": null,
-              "releaseTime": "2025-12-31",
-              "boardOs": "Linux",
-              "modelLicense": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo11s-pose/LICENSE",
-              "modelPerformance": [
-                {
-                  "performanceValue": "45.41",
-                  "unit": "耗时（ms）",
-                  "desc": null
-                },
-                {
-                  "performanceValue": "22.02",
-                  "unit": "性能（fps）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "360.947",
-                  "unit": "单帧内存带宽（MB）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "125.070",
-                  "unit": "内存（MB）",
-                  "desc": ""
-                }
-              ],
-              "deleted": 0
-            }
-          ],
-          "deleted": 0
-        },
-        {
-          "createdBy": null,
-          "creationDate": null,
-          "creationUserCN": null,
-          "lastUpdatedBy": null,
-          "lastUpdateDate": null,
-          "lastUpdateUserCN": null,
-          "rowIdx": -1,
-          "id": "jkjs2gdsi000",
-          "name": "Hi3516CV610",
-          "modelId": "ku5e0eekj400",
-          "modelName": "YOLO11s-pose",
-          "supportNames": [
-            "A16W8"
-          ],
-          "toolkit": [
-            {
-              "name": "CANN工具",
-              "url": "",
-              "desc": "6.10.t06spc020b023 (请联系FAE获取)",
-              "imgId": "cann"
-            },
-            {
-              "name": "编译工具链",
-              "url": "",
-              "desc": "gcc-20250305-arm-v01c02-linux-musleabi (请联系FAE获取)",
-              "imgId": "tool"
-            },
-            {
-              "name": "SDK",
-              "url": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta",
-              "desc": "稳定、易用的设计;支撑客户快速产品量产",
-              "imgId": "sdk"
-            }
-          ],
-          "supportOs": [
-            "Linux"
-          ],
-          "supportQuantify": [
-            {
-              "createdBy": 139036723332644,
-              "creationDate": "2026-09-15 11:35:49",
-              "creationUserCN": "y-0089",
-              "lastUpdatedBy": 139036723332644,
-              "lastUpdateDate": "2026-09-15 11:35:49",
-              "lastUpdateUserCN": "y-0089",
-              "rowIdx": -1,
-              "id": "kufp19jcts00",
-              "name": "A16W8",
-              "computingId": "jkjs2gdsi000",
-              "computingName": "Hi3516CV610",
-              "omOfflineModelUrl": null,
-              "omOfflineModelId": null,
-              "omOfflineModelSize": null,
-              "omOfflineModelName": null,
-              "omOfflineModel": [
-                {
-                  "id": "1767392627785731",
-                  "name": "yolo11s-pose_610_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-                  "url": null,
-                  "size": "11417881"
-                }
-              ],
-              "omOfflineModelLink": "",
-              "releaseTime": "2026-09-14",
-              "boardOs": "Linux",
-              "modelLicense": "https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolo11s-pose/LICENSE",
-              "modelPerformance": [
-                {
-                  "performanceValue": "169.063",
-                  "unit": "耗时（ms）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "5.92",
-                  "unit": "性能（fps）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "35.199",
-                  "unit": "内存（MB）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "337.639",
-                  "unit": "单帧内存带宽 (MB)",
-                  "desc": ""
-                }
-              ],
-              "deleted": 0
-            }
-          ],
-          "deleted": 0
-        }
-      ],
-      "saveType": null,
-      "deleteType": null,
-      "latest": "N",
-      "deleted": 0,
-      "modelPhase": "released",
-      "remark": null,
-      "fileInfo": null,
-      "reviewType": null,
-      "owner": "y-0089",
-      "ownerBy": 139036723332644,
-      "optional": null,
-      "optionalList": [
-        "0e900d99dee8461b8",
-        "hi_thy"
-      ],
-      "optionalBy": null,
-      "downloadNum": 12,
-      "collectNum": null,
-      "isCollect": null
-    },
-    "downloadUrls": [
-      {
-        "name": "yolo11s-pose_928_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-        "source": "om-A16W8",
-        "fileId": "1767392585842689",
-        "size": 10946755,
-        "computing": "Hi3403V100 SVP_NNN",
-        "quantify": "A16W8"
-      },
-      {
-        "name": "yolo11s-pose_928_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-        "source": "om-FP16",
-        "fileId": "1767392604651521",
-        "size": 23026919,
-        "computing": "Hi3403V100 NNN",
-        "quantify": "FP16"
-      },
-      {
-        "name": "yolo11s-pose_610_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-        "source": "om-A16W8",
-        "fileId": "1767392627785731",
-        "size": 11417881,
-        "computing": "Hi3516CV610",
-        "quantify": "A16W8"
-      },
-      {
-        "name": "CANN工具",
-        "url": "https://hispark-obs.obs.cn-east-3.myhuaweicloud.com/SVP_NNN_PC_V1.0.6.0.tgz",
-        "source": "toolkit"
-      },
-      {
-        "name": "编译工具链",
-        "url": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8",
-        "source": "toolkit"
-      },
-      {
-        "name": "SDK",
-        "url": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/",
-        "source": "toolkit"
-      },
-      {
-        "name": "SDK",
-        "url": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta",
-        "source": "toolkit"
-      }
-    ],
-    "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nYOLO11s-pose\n姿态估计\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nHi3516CV610\nPyTorch\nOpenHarmony\nLinux\ny-0089\n2026-09-14 11:29:32\n指导文档\n交流反馈\n12\n0\n模型详情\nYOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。\n源模型下载数据集下载模型许可证 >\n输入\n：\n640x640\n参数量\n：\n9.970M\n计算量\n：\n25.414GFLOPs\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\n\n\n#include \"model.h\"\n#include \"log.h\"\n\n\nusing namespace Infer;\n\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolo11s-pose模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::Yolo11s-pose) != 0) {\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于/samples/common目录下，编译相关配置参考CMakeLists.txt。\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n25.09\n耗时（ms）\n39.85\n性能（fps）\n168.145\n单帧内存带宽（MB）\n36.895\n内存（MB）\n*该数据基于Linux系统测试得出\n模型工具\nCANN工具\nAl异构计算架构\n提升计算效率的关键平台\n编译工具链\n高效编译，精准适配\nAI性能优化，应用流畅运行\nSDK\n稳定、易用的设计\n支撑客户快速产品量产\n支持的操作系统"
-  },
-  {
-    "id": "ku5ckc88j400",
-    "name": "YOLO26s",
-    "listData": {
-      "id": "ku5ckc88j400",
-      "name": "YOLO26s",
-      "coverImageId": 1764112203841537,
-      "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1764112203841537%2Fyolo26.jpg",
-      "isBeta": 0,
-      "betaVersionDesc": "",
-      "createdBy": 139036723332644,
-      "creationDate": "2026-09-14 11:23:31",
-      "creationUserCN": "y-0089",
-      "lastUpdateDate": null,
-      "currentHandler": "",
-      "currentHandlerName": "",
-      "description": "YOLO26s 是 Ultralytics YOLO 系列中的小型目标检测模型，适合在边缘设备上进行实时目标检测。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
-      "computerVersion": [
-        "检测"
-      ],
-      "naturalLanguageProcess": [],
-      "multimodal": [],
-      "video": [],
-      "framework": [
-        "PyTorch"
-      ],
-      "supportOs": [
-        "OpenHarmony",
-        "Linux"
-      ],
-      "computingPower": [
-        "Hi3403V100 SVP_NNN",
-        "Hi3403V100 NNN",
-        "Hi3516CV610"
-      ],
-      "isCollect": 0,
-      "downloadNum": 13,
-      "collectCount": 0
-    },
-    "apiDetail": {
-      "createdBy": 139036723332644,
-      "creationDate": "2026-09-14 11:23:31",
-      "creationUserCN": "y-0089",
-      "lastUpdatedBy": null,
-      "lastUpdateDate": null,
-      "lastUpdateUserCN": "y-0089",
-      "rowIdx": -1,
-      "id": "ku5ckc88j400",
-      "name": "YOLO26s",
-      "isBeta": 0,
-      "betaVersionDesc": "",
-      "description": "YOLO26s 是 Ultralytics YOLO 系列中的小型目标检测模型，适合在边缘设备上进行实时目标检测。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
-      "parentId": "kmrpc00gts00",
-      "coverImageId": 1764112203841537,
-      "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1764112203841537%2Fyolo26.jpg",
-      "modelEffectId": null,
-      "modelEffectUrl": "",
-      "computerVersion": [
-        "检测"
-      ],
-      "naturalLanguageProcess": [],
-      "multimodal": [],
-      "video": [],
-      "framework": [
-        "PyTorch"
-      ],
-      "modelRepository": "https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s",
-      "originModel": [],
-      "originModelLink": "",
-      "dataSet": "https://cocodataset.org/#download",
-      "modelLicense": "https://github.com/ultralytics/ultralytics/blob/main/LICENSE",
-      "detailParams": [
-        {
-          "name": "计算量",
-          "value": "23.250GFLOPs"
-        },
-        {
-          "name": "输入",
-          "value": "640x640"
-        },
-        {
-          "name": "参数量",
-          "value": "9.538M"
-        }
-      ],
-      "quickStart": {
-        "url": "https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolo26s/doc/快速开始.md",
-        "markDownUrl": "https://gitee.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolov10s/doc/快速开始.md",
-        "developLanguage": [
-          {
-            "language": "C++",
-            "context": "{\"ops\":[{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#3b3b3b\"},\"insert\":\"模型可以通过以下代码完成快速推理\"},{\"insert\":\"\\n\\n#include <memory>\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"#include \\\"model.h\\\"\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"#include \\\"log.h\\\"\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"#include \\\"utils.h\\\"\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"#include \\\"param.h\\\"\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"#include \\\"yolov26s_process.h\\\"\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"using namespace Infer;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"int main(int argc, char *argv[])\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"{\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  InferParam inferParam;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  if (!ParseParamFromCmd(argc, argv, inferParam)) {\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    return -1;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  }\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"  EnvInit(inferParam.aclConfigPath);\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  std::unique_ptr<Model> model = std::make_unique<Model>();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  if (model->Load(inferParam.omModelPath) != 0) {\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    EnvDeinit();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    return -1;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  }\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"  Yolov26sProcess processFunc;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  model->SetProcessFunc(processFunc);\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\\n\"},{\"insert\":\"  Yolov26sParam cfgParam;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  cfgParam.platformType = model->GetPlatformType();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  std::any param = cfgParam;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  int32_t ret = model->Infer(inferParam.imglistPath, JsonFile, std::ref(param));\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  if (ret != 0) {\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    model->Unload();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    EnvDeinit();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    return -1;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  }\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  if (model->Unload() != 0) {\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    EnvDeinit();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"    return -1;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  }\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  EnvDeinit();\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"  return 0;\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"insert\":\"}\"},{\"attributes\":{\"code-block\":\"plain\"},\"insert\":\"\\n\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#3b3b3b\"},\"insert\":\"备注：上述C++代码依赖的动态库与头文件位于\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#3b3b3b\",\"link\":\"https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/common\"},\"insert\":\"[\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#a31515\",\"link\":\"https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/common\"},\"insert\":\"/samples/samples_GPL/common\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#3b3b3b\",\"link\":\"https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/common\"},\"insert\":\"]\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#3b3b3b\"},\"insert\":\"目录下，编译相关配置参考\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#3b3b3b\",\"link\":\"https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/src/CMakeLists.txt\"},\"insert\":\"[\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#a31515\",\"link\":\"https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/src/CMakeLists.txt\"},\"insert\":\"CMakeLists.txt\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#3b3b3b\",\"link\":\"https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/src/CMakeLists.txt\"},\"insert\":\"]\"},{\"attributes\":{\"line-height\":\"19px\",\"size\":\"14px\",\"background\":\"#ffffff\",\"color\":\"#3b3b3b\"},\"insert\":\"。\"},{\"insert\":\"\\n\\n\\n\"}]}"
-          }
-        ]
-      },
-      "status": "released",
-      "currentHandler": "",
-      "currentHandlerName": "",
-      "jsonPath": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov10s/yolov10s.json",
-      "modelAdaptor": [
-        {
-          "createdBy": null,
-          "creationDate": null,
-          "creationUserCN": null,
-          "lastUpdatedBy": null,
-          "lastUpdateDate": null,
-          "lastUpdateUserCN": null,
-          "rowIdx": -1,
-          "id": "i8ttm5k1tc00",
-          "name": "Hi3403V100 SVP_NNN",
-          "modelId": "ku5ckc88j400",
-          "modelName": "YOLO26s",
-          "supportNames": [
-            "A16W8"
-          ],
-          "toolkit": [
-            {
-              "name": "CANN工具",
-              "url": "https://hispark-obs.obs.cn-east-3.myhuaweicloud.com/SVP_NNN_PC_V1.0.6.5.tgz",
-              "desc": "AI异构计算架构，承上启下，提升计算效率的关键平台",
-              "imgId": "cann"
-            },
-            {
-              "name": "编译工具链",
-              "url": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.3/docs/zh-CN/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
-              "desc": "高效编译，精准适配AI性能优化，应用流畅运行",
-              "imgId": "tool"
-            },
-            {
-              "name": "SDK",
-              "url": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.3/",
-              "desc": "稳定、易用的设计，支撑客户快速产品量产",
-              "imgId": "sdk"
-            }
-          ],
-          "supportOs": [
-            "OpenHarmony",
-            "Linux"
-          ],
-          "supportQuantify": [
-            {
-              "createdBy": 139036723332644,
-              "creationDate": "2026-09-15 11:35:58",
-              "creationUserCN": "y-0089",
-              "lastUpdatedBy": 139036723332644,
-              "lastUpdateDate": "2026-09-15 11:35:58",
-              "lastUpdateUserCN": "y-0089",
-              "rowIdx": -1,
-              "id": "kufp2djgj400",
-              "name": "A16W8",
-              "computingId": "i8ttm5k1tc00",
-              "computingName": "Hi3403V100 SVP_NNN",
-              "omOfflineModelUrl": null,
-              "omOfflineModelId": null,
-              "omOfflineModelSize": null,
-              "omOfflineModelName": null,
-              "omOfflineModel": [
-                {
-                  "id": "1767392004931587",
-                  "name": "yolo26s_928_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-                  "url": null,
-                  "size": "10541644"
-                }
-              ],
-              "omOfflineModelLink": "",
-              "releaseTime": "2026-09-14",
-              "boardOs": "Linux",
-              "modelLicense": "https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/LICENSE",
-              "modelPerformance": [
-                {
-                  "performanceValue": "20.965",
-                  "unit": "耗时（ms）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "47.630",
-                  "unit": "性能（fps）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "33.000",
-                  "unit": "内存（MB）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "123.379",
-                  "unit": "单帧内存带宽（MB）",
-                  "desc": ""
-                }
-              ],
-              "deleted": 0
-            }
-          ],
-          "deleted": 0
-        },
-        {
-          "createdBy": null,
-          "creationDate": null,
-          "creationUserCN": null,
-          "lastUpdatedBy": null,
-          "lastUpdateDate": null,
-          "lastUpdateUserCN": null,
-          "rowIdx": -1,
-          "id": "i8ttm5k1tc01",
-          "name": "Hi3403V100 NNN",
-          "modelId": "ku5ckc88j400",
-          "modelName": "YOLO26s",
-          "supportNames": [
-            "FP16"
-          ],
-          "toolkit": [
-            {
-              "name": "CANN工具",
-              "url": "",
-              "desc": "5.30.t11.7.b140；(请联系FAE通过Hisupport单获取)",
-              "imgId": "cann"
-            },
-            {
-              "name": "SDK",
-              "url": "",
-              "desc": "SS928V100R001C02SPC022；(请联系FAE获取SDK版本并升级单独获取的CANN版本)",
-              "imgId": "sdk"
-            }
-          ],
-          "supportOs": [
-            "Linux"
-          ],
-          "supportQuantify": [
-            {
-              "createdBy": 139036723332644,
-              "creationDate": "2026-09-15 11:35:58",
-              "creationUserCN": "y-0089",
-              "lastUpdatedBy": 139036723332644,
-              "lastUpdateDate": "2026-09-15 11:35:58",
-              "lastUpdateUserCN": "y-0089",
-              "rowIdx": -1,
-              "id": "kufp2dkkj400",
-              "name": "FP16",
-              "computingId": "i8ttm5k1tc01",
-              "computingName": "Hi3403V100 NNN",
-              "omOfflineModelUrl": null,
-              "omOfflineModelId": null,
-              "omOfflineModelSize": null,
-              "omOfflineModelName": null,
-              "omOfflineModel": [
-                {
-                  "id": "1767392038420483",
-                  "name": "yolo26s_928_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-                  "url": null,
-                  "size": "22128438"
-                }
-              ],
-              "omOfflineModelLink": "",
-              "releaseTime": "2026-08-22",
-              "boardOs": "Linux",
-              "modelLicense": "https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/LICENSE",
-              "modelPerformance": [
-                {
-                  "performanceValue": "46.217",
-                  "unit": "耗时（ms）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "8.060",
-                  "unit": "性能（fps）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "120.175",
-                  "unit": "内存（MB）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "282.906",
-                  "unit": "单帧内存带宽 (MB)",
-                  "desc": ""
-                }
-              ],
-              "deleted": 0
-            }
-          ],
-          "deleted": 0
-        },
-        {
-          "createdBy": null,
-          "creationDate": null,
-          "creationUserCN": null,
-          "lastUpdatedBy": null,
-          "lastUpdateDate": null,
-          "lastUpdateUserCN": null,
-          "rowIdx": -1,
-          "id": "jkjs2gdsi000",
-          "name": "Hi3516CV610",
-          "modelId": "ku5ckc88j400",
-          "modelName": "YOLO26s",
-          "supportNames": [
-            "A16W8"
-          ],
-          "toolkit": [
-            {
-              "name": "CANN工具",
-              "url": "",
-              "desc": "6.10.t06spc020b023 (请联系FAE获取)",
-              "imgId": "cann"
-            },
-            {
-              "name": "编译工具链",
-              "url": "",
-              "desc": "Hi3516CV610R001C01SPC020 (请联系FAE获取)",
-              "imgId": "tool"
-            },
-            {
-              "name": "SDK",
-              "url": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta",
-              "desc": "Hi3516CV610R001C01SPC020",
-              "imgId": "sdk"
-            }
-          ],
-          "supportOs": [
-            "Linux"
-          ],
-          "supportQuantify": [
-            {
-              "createdBy": 139036723332644,
-              "creationDate": "2026-09-15 11:35:58",
-              "creationUserCN": "y-0089",
-              "lastUpdatedBy": 139036723332644,
-              "lastUpdateDate": "2026-09-15 11:35:58",
-              "lastUpdateUserCN": "y-0089",
-              "rowIdx": -1,
-              "id": "kufp2dloj400",
-              "name": "A16W8",
-              "computingId": "jkjs2gdsi000",
-              "computingName": "Hi3516CV610",
-              "omOfflineModelUrl": null,
-              "omOfflineModelId": null,
-              "omOfflineModelSize": null,
-              "omOfflineModelName": null,
-              "omOfflineModel": [
-                {
-                  "id": "1767392059457539",
-                  "name": "yolo26s_610_SVPNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-                  "url": null,
-                  "size": "11020971"
-                }
-              ],
-              "omOfflineModelLink": "",
-              "releaseTime": "2026-09-14",
-              "boardOs": "Linux",
-              "modelLicense": "https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/LICENSE",
-              "modelPerformance": [
-                {
-                  "performanceValue": "192.825",
-                  "unit": "耗时（ms）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "5.19",
-                  "unit": "性能（fps）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "35.756",
-                  "unit": "内存（MB）",
-                  "desc": ""
-                },
-                {
-                  "performanceValue": "346.308",
-                  "unit": "单帧内存带宽（MB）",
-                  "desc": ""
-                }
-              ],
-              "deleted": 0
-            }
-          ],
-          "deleted": 0
-        }
-      ],
-      "saveType": null,
-      "deleteType": null,
-      "latest": "N",
-      "deleted": 0,
-      "modelPhase": "released",
-      "remark": null,
-      "fileInfo": null,
-      "reviewType": null,
-      "owner": "y-0089",
-      "ownerBy": 139036723332644,
-      "optional": null,
-      "optionalList": [
-        "0e900d99dee8461b8",
-        "hi_thy"
-      ],
-      "optionalBy": null,
-      "downloadNum": 13,
-      "collectNum": null,
-      "isCollect": null
-    },
-    "downloadUrls": [
-      {
-        "name": "yolo26s_928_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-        "source": "om-A16W8",
-        "fileId": "1767392004931587",
-        "size": 10541644,
-        "computing": "Hi3403V100 SVP_NNN",
-        "quantify": "A16W8"
-      },
-      {
-        "name": "yolo26s_928_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-        "source": "om-FP16",
-        "fileId": "1767392038420483",
-        "size": 22128438,
-        "computing": "Hi3403V100 NNN",
-        "quantify": "FP16"
-      },
-      {
-        "name": "yolo26s_610_SVPNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-        "source": "om-A16W8",
-        "fileId": "1767392059457539",
-        "size": 11020971,
-        "computing": "Hi3516CV610",
-        "quantify": "A16W8"
-      },
-      {
-        "name": "CANN工具",
-        "url": "https://hispark-obs.obs.cn-east-3.myhuaweicloud.com/SVP_NNN_PC_V1.0.6.5.tgz",
-        "source": "toolkit"
-      },
-      {
-        "name": "编译工具链",
-        "url": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.3/docs/zh-CN/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md",
-        "source": "toolkit"
-      },
-      {
-        "name": "SDK",
-        "url": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.3/",
-        "source": "toolkit"
-      },
-      {
-        "name": "SDK",
-        "url": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta",
-        "source": "toolkit"
-      }
-    ],
-    "downloadPageVisited": true,
-    "pageText": "简介\n模型介绍\n快速开始\n模型下载\n模型性能\n工具链下载\n操作系统支持\nModelZoo\n/\n全部模型库\n/\n模型详情\nYOLO26s\n检测\nHi3403V100 SVP_NNN\nHi3403V100 NNN\nHi3516CV610\nPyTorch\nOpenHarmony\nLinux\ny-0089\n2026-09-14 11:23:31\n指导文档\n交流反馈\n13\n0\n模型详情\nYOLO26s 是 Ultralytics YOLO 系列中的小型目标检测模型，适合在边缘设备上进行实时目标检测。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。\n源模型下载数据集下载模型许可证 >\n计算量\n：\n23.250GFLOPs\n输入\n：\n640x640\n参数量\n：\n9.538M\n模型详细参数\n快速开始\nC++\n\n模型可以通过以下代码完成快速推理\n\n\n\n\n#include <memory>\n#include \"model.h\"\n#include \"log.h\"\n#include \"utils.h\"\n#include \"param.h\"\n#include \"yolov26s_process.h\"\n\n\nusing namespace Infer;\n\n\nint main(int argc, char *argv[])\n{\n  InferParam inferParam;\n  if (!ParseParamFromCmd(argc, argv, inferParam)) {\n    return -1;\n  }\n\n\n  EnvInit(inferParam.aclConfigPath);\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(inferParam.omModelPath) != 0) {\n    EnvDeinit();\n    return -1;\n  }\n\n\n  Yolov26sProcess processFunc;\n  model->SetProcessFunc(processFunc);\n\n\n  Yolov26sParam cfgParam;\n  cfgParam.platformType = model->GetPlatformType();\n  std::any param = cfgParam;\n  int32_t ret = model->Infer(inferParam.imglistPath, JsonFile, std::ref(param));\n  if (ret != 0) {\n    model->Unload();\n    EnvDeinit();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    EnvDeinit();\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n\n备注：上述C++代码依赖的动态库与头文件位于[/samples/samples_GPL/common]目录下，编译相关配置参考[CMakeLists.txt]。\n\n\n\n\n\n\n\n查看更多\n模型适配\n算力引擎：\n量化类型：\nHi3403V100 SVP_NNN\nHi3403V100 SVP_NNN 能效AI引擎，具有5.6Tops的强大算力，支持INT8/INT16。最高支持四路sensor输入，支持最高4K60的ISP图像处理能力，支持3F WDR、多级降噪、六轴防抖、硬件拼接等多种图像增强和处理算法。可应用于智能控制、机器人开发等视觉智慧场景\n了解更多下载模型\n>\n模型性能\n20.965\n耗时（ms）\n47.630\n性能（fps）\n33.000\n内存（MB）\n123.379\n单帧内存带宽（MB）\n*该数据基于Linux系统测试得出\n模型工具\nCANN工具\nAI异构计算架构，承上启下，提升计算效率的关键平台\n编译工具链\n高效编译，精准适配AI性能优化，应用流畅运行\nSDK\n稳定、易用的设计，支撑客户快速产品量产\n支持的操作系统"
   },
   {
     "id": "ku59qr0kts00",

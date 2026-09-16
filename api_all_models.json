@@ -1,5 +1,77 @@
 [
   {
+    "id": "kuhsoe9kts00",
+    "name": "YOLO26s",
+    "coverImageId": 1764112203841537,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1764112203841537%2Fyolo26.jpg",
+    "isBeta": 0,
+    "betaVersionDesc": "",
+    "createdBy": 139036723332644,
+    "creationDate": "2026-09-15 16:31:42",
+    "creationUserCN": "y-0089",
+    "lastUpdateDate": "2026-09-16 11:36:31",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "YOLO26s 是 Ultralytics YOLO 系列中的小型目标检测模型，适合在边缘设备上进行实时目标检测。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
+    "computerVersion": [
+      "检测"
+    ],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "OpenHarmony",
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3403V100 SVP_NNN",
+      "Hi3403V100 NNN",
+      "Hi3516CV610"
+    ],
+    "isCollect": 0,
+    "downloadNum": 12,
+    "collectCount": 0
+  },
+  {
+    "id": "kuhsidi0j400",
+    "name": "YOLO11s-pose",
+    "coverImageId": 1712135222657026,
+    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1712135222657026%2Fyolo11-pose-small.jpg",
+    "isBeta": 0,
+    "betaVersionDesc": "",
+    "createdBy": 139036723332644,
+    "creationDate": "2026-09-15 16:30:53",
+    "creationUserCN": "y-0089",
+    "lastUpdateDate": "2026-09-16 11:36:31",
+    "currentHandler": "",
+    "currentHandlerName": "",
+    "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
+    "computerVersion": [
+      "姿态估计"
+    ],
+    "naturalLanguageProcess": [],
+    "multimodal": [],
+    "video": [],
+    "framework": [
+      "PyTorch"
+    ],
+    "supportOs": [
+      "OpenHarmony",
+      "Linux"
+    ],
+    "computingPower": [
+      "Hi3403V100 SVP_NNN",
+      "Hi3403V100 NNN",
+      "Hi3516CV610"
+    ],
+    "isCollect": 0,
+    "downloadNum": 9,
+    "collectCount": 0
+  },
+  {
     "id": "kuerjmbgts00",
     "name": "YOLOv4",
     "coverImageId": 1712131749773315,
@@ -31,79 +103,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 1,
-    "collectCount": 0
-  },
-  {
-    "id": "ku5e0eekj400",
-    "name": "YOLO11s-pose",
-    "coverImageId": 1712135222657026,
-    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1712135222657026%2Fyolo11-pose-small.jpg",
-    "isBeta": 0,
-    "betaVersionDesc": "",
-    "createdBy": 139036723332644,
-    "creationDate": "2026-09-14 11:29:32",
-    "creationUserCN": "y-0089",
-    "lastUpdateDate": null,
-    "currentHandler": "",
-    "currentHandlerName": "",
-    "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
-    "computerVersion": [
-      "姿态估计"
-    ],
-    "naturalLanguageProcess": [],
-    "multimodal": [],
-    "video": [],
-    "framework": [
-      "PyTorch"
-    ],
-    "supportOs": [
-      "OpenHarmony",
-      "Linux"
-    ],
-    "computingPower": [
-      "Hi3403V100 SVP_NNN",
-      "Hi3403V100 NNN",
-      "Hi3516CV610"
-    ],
-    "isCollect": 0,
-    "downloadNum": 12,
-    "collectCount": 0
-  },
-  {
-    "id": "ku5ckc88j400",
-    "name": "YOLO26s",
-    "coverImageId": 1764112203841537,
-    "coverImageUrl": "https://openxinhuo-board-image.obs.cn-east-3.myhuaweicloud.com/1764112203841537%2Fyolo26.jpg",
-    "isBeta": 0,
-    "betaVersionDesc": "",
-    "createdBy": 139036723332644,
-    "creationDate": "2026-09-14 11:23:31",
-    "creationUserCN": "y-0089",
-    "lastUpdateDate": null,
-    "currentHandler": "",
-    "currentHandlerName": "",
-    "description": "YOLO26s 是 Ultralytics YOLO 系列中的小型目标检测模型，适合在边缘设备上进行实时目标检测。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
-    "computerVersion": [
-      "检测"
-    ],
-    "naturalLanguageProcess": [],
-    "multimodal": [],
-    "video": [],
-    "framework": [
-      "PyTorch"
-    ],
-    "supportOs": [
-      "OpenHarmony",
-      "Linux"
-    ],
-    "computingPower": [
-      "Hi3403V100 SVP_NNN",
-      "Hi3403V100 NNN",
-      "Hi3516CV610"
-    ],
-    "isCollect": 0,
-    "downloadNum": 13,
+    "downloadNum": 2,
     "collectCount": 0
   },
   {
@@ -136,7 +136,7 @@
       "Hi3516CV610"
     ],
     "isCollect": 0,
-    "downloadNum": 3,
+    "downloadNum": 6,
     "collectCount": 0
   },
   {
@@ -169,7 +169,7 @@
       "Hi3516CV610"
     ],
     "isCollect": 0,
-    "downloadNum": 3,
+    "downloadNum": 6,
     "collectCount": 0
   },
   {
@@ -202,7 +202,7 @@
       "Hi3516CV610"
     ],
     "isCollect": 0,
-    "downloadNum": 1,
+    "downloadNum": 5,
     "collectCount": 0
   },
   {
@@ -237,7 +237,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 5,
+    "downloadNum": 6,
     "collectCount": 0
   },
   {
@@ -272,7 +272,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 3,
+    "downloadNum": 4,
     "collectCount": 0
   },
   {
@@ -307,7 +307,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 53,
+    "downloadNum": 54,
     "collectCount": 0
   },
   {
@@ -342,7 +342,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 19,
+    "downloadNum": 20,
     "collectCount": 0
   },
   {
@@ -377,7 +377,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 13,
+    "downloadNum": 14,
     "collectCount": 0
   },
   {
@@ -412,7 +412,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 10,
+    "downloadNum": 11,
     "collectCount": 0
   },
   {
@@ -447,7 +447,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 22,
+    "downloadNum": 23,
     "collectCount": 0
   },
   {
@@ -480,7 +480,7 @@
       "Hi3403V100 SVP_NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 21,
+    "downloadNum": 22,
     "collectCount": 0
   },
   {
@@ -515,7 +515,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 76,
+    "downloadNum": 77,
     "collectCount": 1
   },
   {
@@ -550,7 +550,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 22,
+    "downloadNum": 23,
     "collectCount": 0
   },
   {
@@ -585,7 +585,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 33,
+    "downloadNum": 34,
     "collectCount": 0
   },
   {
@@ -620,7 +620,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 27,
+    "downloadNum": 28,
     "collectCount": 0
   },
   {
@@ -655,7 +655,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 31,
+    "downloadNum": 32,
     "collectCount": 0
   },
   {
@@ -690,7 +690,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 12,
+    "downloadNum": 13,
     "collectCount": 0
   },
   {
@@ -725,7 +725,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 14,
+    "downloadNum": 15,
     "collectCount": 0
   },
   {
@@ -760,7 +760,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 54,
+    "downloadNum": 55,
     "collectCount": 0
   },
   {
@@ -795,7 +795,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 108,
+    "downloadNum": 109,
     "collectCount": 0
   },
   {
@@ -830,7 +830,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 59,
+    "downloadNum": 62,
     "collectCount": 0
   },
   {
@@ -865,7 +865,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 37,
+    "downloadNum": 38,
     "collectCount": 0
   },
   {
@@ -900,7 +900,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 45,
+    "downloadNum": 46,
     "collectCount": 0
   },
   {
@@ -935,7 +935,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 36,
+    "downloadNum": 38,
     "collectCount": 0
   },
   {
@@ -970,7 +970,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 45,
+    "downloadNum": 47,
     "collectCount": 0
   },
   {
@@ -1003,7 +1003,7 @@
       "Hi3591PV100"
     ],
     "isCollect": 0,
-    "downloadNum": 35,
+    "downloadNum": 36,
     "collectCount": 0
   },
   {
@@ -1036,7 +1036,7 @@
       "Hi3403V100 SVP_NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 30,
+    "downloadNum": 31,
     "collectCount": 0
   },
   {
@@ -1071,7 +1071,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 41,
+    "downloadNum": 42,
     "collectCount": 0
   },
   {
@@ -1104,7 +1104,7 @@
       "Hi3591PV100"
     ],
     "isCollect": 0,
-    "downloadNum": 30,
+    "downloadNum": 31,
     "collectCount": 1
   },
   {
@@ -1139,7 +1139,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 80,
+    "downloadNum": 81,
     "collectCount": 2
   },
   {
@@ -1174,7 +1174,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 64,
+    "downloadNum": 67,
     "collectCount": 1
   },
   {
@@ -1208,7 +1208,7 @@
       "Hi3403V100 SVP_NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 92,
+    "downloadNum": 93,
     "collectCount": 0
   },
   {
@@ -1243,7 +1243,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 43,
+    "downloadNum": 45,
     "collectCount": 0
   },
   {
@@ -1278,7 +1278,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 26,
+    "downloadNum": 27,
     "collectCount": 0
   },
   {
@@ -1313,7 +1313,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 65,
+    "downloadNum": 66,
     "collectCount": 0
   },
   {
@@ -1348,7 +1348,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 51,
+    "downloadNum": 52,
     "collectCount": 0
   },
   {
@@ -1383,7 +1383,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 28,
+    "downloadNum": 29,
     "collectCount": 0
   },
   {
@@ -1418,7 +1418,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 41,
+    "downloadNum": 42,
     "collectCount": 0
   },
   {
@@ -1453,7 +1453,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 26,
+    "downloadNum": 28,
     "collectCount": 0
   },
   {
@@ -1488,7 +1488,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 16,
+    "downloadNum": 18,
     "collectCount": 0
   },
   {
@@ -1523,7 +1523,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 22,
+    "downloadNum": 24,
     "collectCount": 0
   },
   {
@@ -1558,7 +1558,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 13,
+    "downloadNum": 14,
     "collectCount": 0
   },
   {
@@ -1593,7 +1593,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 22,
+    "downloadNum": 24,
     "collectCount": 0
   },
   {
@@ -1628,7 +1628,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 61,
+    "downloadNum": 63,
     "collectCount": 0
   },
   {
@@ -1663,7 +1663,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 14,
+    "downloadNum": 15,
     "collectCount": 0
   },
   {
@@ -1698,7 +1698,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 38,
+    "downloadNum": 39,
     "collectCount": 0
   },
   {
@@ -1733,7 +1733,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 22,
+    "downloadNum": 23,
     "collectCount": 0
   },
   {
@@ -1768,7 +1768,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 157,
+    "downloadNum": 158,
     "collectCount": 0
   },
   {
@@ -1802,7 +1802,7 @@
       "Hi3403V100 SVP_NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 26,
+    "downloadNum": 27,
     "collectCount": 0
   },
   {
@@ -1836,7 +1836,7 @@
       "Hi3403V100 SVP_NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 14,
+    "downloadNum": 15,
     "collectCount": 0
   },
   {
@@ -1871,7 +1871,7 @@
       "Hi3403V100 NNN"
     ],
     "isCollect": 0,
-    "downloadNum": 46,
+    "downloadNum": 47,
     "collectCount": 0
   }
 ]

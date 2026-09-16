@@ -1492,7 +1492,7 @@
   "shadow-cann/hispark-modelzoo-yolo11s-pose": [
     {
       "name": ".gitattributes",
-      "size": 2096
+      "size": 2359
     },
     {
       "name": "1712135222657026_yolo11-pose-small.jpg",
@@ -1500,11 +1500,11 @@
     },
     {
       "name": "model-card.json",
-      "size": 18647
+      "size": 17938
     },
     {
       "name": "README.md",
-      "size": 2292
+      "size": 2095
     },
     {
       "name": "SVP_NNN_PC_V1.0.6.0.tgz",
@@ -1525,6 +1525,14 @@
     {
       "name": "yolo11s-pose_dlite_fp16.om",
       "size": 23026919
+    },
+    {
+      "name": "yolo11s-pose_Hi3403_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+      "size": 23026919
+    },
+    {
+      "name": "yolo11s-pose_Hi3403_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+      "size": 10946755
     },
     {
       "name": "yolo11s-pose.om",
@@ -1580,7 +1588,7 @@
   "shadow-cann/hispark-modelzoo-yolo26s": [
     {
       "name": ".gitattributes",
-      "size": 1946
+      "size": 2324
     },
     {
       "name": "1764112203841537_yolo26.jpg",
@@ -1588,14 +1596,18 @@
     },
     {
       "name": "model-card.json",
-      "size": 19290
+      "size": 18876
     },
     {
       "name": "README.md",
-      "size": 1817
+      "size": 1737
     },
     {
       "name": "yolo26s_610_SVPNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+      "size": 11020971
+    },
+    {
+      "name": "yolo26s_610_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
       "size": 11020971
     },
     {
@@ -1608,6 +1620,14 @@
     },
     {
       "name": "yolo26s_dpiconew.om",
+      "size": 10541644
+    },
+    {
+      "name": "yolo26s_Hi3403_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+      "size": 22128438
+    },
+    {
+      "name": "yolo26s_Hi3403_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
       "size": 10541644
     },
     {

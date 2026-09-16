@@ -1,6 +1,646 @@
 // Generated from api_all_models.json and api_all_details.json
 const modelsData = [
     {
+        "id": "kuhsoe9kts00",
+        "name": "YOLO26s",
+        "description": "YOLO26s 是 Ultralytics YOLO 系列中的小型目标检测模型，适合在边缘设备上进行实时目标检测。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
+        "descriptionZh": "YOLO26s 是 Ultralytics YOLO 系列中的小型目标检测模型，适合在边缘设备上进行实时目标检测。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
+        "descriptionEn": "YOLO26s is a computer vision model for detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN, Hi3403V100 NNN, and Hi3516CV610. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
+        "date": "2026-09-15 16:31:42",
+        "updatedAt": "2026-09-16 11:36:31",
+        "badge": null,
+        "betaVersionDesc": "",
+        "category": "计算机视觉",
+        "tags": [
+            "检测"
+        ],
+        "image": "assets/images/1764112203841537_yolo26.jpg",
+        "coverImageUrl": "assets/images/1764112203841537_yolo26.jpg",
+        "framework": [
+            "PyTorch"
+        ],
+        "supportOs": [
+            "OpenHarmony",
+            "Linux"
+        ],
+        "computingPower": [
+            "Hi3403V100 SVP_NNN",
+            "Hi3403V100 NNN",
+            "Hi3516CV610"
+        ],
+        "repositoryUrl": "https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s",
+        "licenseUrl": "https://github.com/ultralytics/ultralytics/blob/main/LICENSE",
+        "quickStartUrl": "https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolo26s/doc/快速开始.md",
+        "quickStartMarkdownUrl": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov10s/doc/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.md",
+        "quickStartReadmes": [
+            {
+                "language": "C++",
+                "content": "模型可以通过以下代码完成快速推理\n\n#include <memory>\n#include \"model.h\"\n#include \"log.h\"\n#include \"utils.h\"\n#include \"param.h\"\n#include \"yolov26s_process.h\"\n\nusing namespace Infer;\n\nint main(int argc, char *argv[])\n{\n  InferParam inferParam;\n  if (!ParseParamFromCmd(argc, argv, inferParam)) {\n    return -1;\n  }\n\n  EnvInit(inferParam.aclConfigPath);\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(inferParam.omModelPath) != 0) {\n    EnvDeinit();\n    return -1;\n  }\n\n  Yolov26sProcess processFunc;\n  model->SetProcessFunc(processFunc);\n\n  Yolov26sParam cfgParam;\n  cfgParam.platformType = model->GetPlatformType();\n  std::any param = cfgParam;\n  int32_t ret = model->Infer(inferParam.imglistPath, JsonFile, std::ref(param));\n  if (ret != 0) {\n    model->Unload();\n    EnvDeinit();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    EnvDeinit();\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于[ (https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/common)/samples/samples_GPL/common (https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/common)] (https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/common)目录下，编译相关配置参考[ (https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/src/CMakeLists.txt)CMakeLists.txt (https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/src/CMakeLists.txt)] (https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/src/CMakeLists.txt)。",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for YOLO26s. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
+            }
+        ],
+        "detailParams": [
+            {
+                "name": "计算量",
+                "value": "23.250GFLOPs"
+            },
+            {
+                "name": "输入",
+                "value": "640x640"
+            },
+            {
+                "name": "参数量",
+                "value": "9.538M"
+            }
+        ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "20.965",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "47.630",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "33.000",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "123.379",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "46.217",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "8.060",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "120.175",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "282.906",
+                        "unit": "单帧内存带宽 (MB)",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3516CV610",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "192.825",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "5.19",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "35.756",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "346.308",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
+        "originModels": [],
+        "hfRepoId": "shadow-cann/hispark-modelzoo-yolo26s",
+        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s",
+        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s/blob/main/README.md",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s/resolve/main/yolo26s_Hi3403_SVPNNN_%E6%AD%A4%E6%96%87%E4%BB%B6%E4%BB%85%E4%BE%9B%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%EF%BC%8C%E5%95%86%E7%94%A8%E9%9C%80%E8%81%94%E7%B3%BB%E5%8E%9F%E4%BD%9C%E8%80%85%E8%B4%AD%E4%B9%B0%E6%8E%88%E6%9D%83.om",
+        "primaryDownloadLabel": "yolo26s_Hi3403_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+        "downloads": [
+            {
+                "title": "yolo26s_Hi3403_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s/resolve/main/yolo26s_Hi3403_SVPNNN_%E6%AD%A4%E6%96%87%E4%BB%B6%E4%BB%85%E4%BE%9B%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%EF%BC%8C%E5%95%86%E7%94%A8%E9%9C%80%E8%81%94%E7%B3%BB%E5%8E%9F%E4%BD%9C%E8%80%85%E8%B4%AD%E4%B9%B0%E6%8E%88%E6%9D%83.om",
+                "available": true,
+                "source": "om-A16W8",
+                "sourceLabel": "A16W8",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "note": "A16W8",
+                "localFile": "yolo26s_Hi3403_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                "performance": [
+                    {
+                        "value": "20.965",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "47.630",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "33.000",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "123.379",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "yolo26s_Hi3403_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s/resolve/main/yolo26s_Hi3403_NNN_%E6%AD%A4%E6%96%87%E4%BB%B6%E4%BB%85%E4%BE%9B%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%EF%BC%8C%E5%95%86%E7%94%A8%E9%9C%80%E8%81%94%E7%B3%BB%E5%8E%9F%E4%BD%9C%E8%80%85%E8%B4%AD%E4%B9%B0%E6%8E%88%E6%9D%83.om",
+                "available": true,
+                "source": "om-FP16",
+                "sourceLabel": "FP16",
+                "group": "编译模型",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "note": "FP16",
+                "localFile": "yolo26s_Hi3403_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                "performance": [
+                    {
+                        "value": "46.217",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "8.060",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "120.175",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "282.906",
+                        "unit": "单帧内存带宽 (MB)",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "yolo26s_610_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s/resolve/main/yolo26s_610_SVPNNN_%E6%AD%A4%E6%96%87%E4%BB%B6%E4%BB%85%E4%BE%9B%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%EF%BC%8C%E5%95%86%E7%94%A8%E9%9C%80%E8%81%94%E7%B3%BB%E5%8E%9F%E4%BD%9C%E8%80%85%E8%B4%AD%E4%B9%B0%E6%8E%88%E6%9D%83.om",
+                "available": true,
+                "source": "om-A16W8",
+                "sourceLabel": "A16W8",
+                "group": "编译模型",
+                "engine": "Hi3516CV610",
+                "quantization": "A16W8",
+                "note": "A16W8",
+                "localFile": "yolo26s_610_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                "performance": [
+                    {
+                        "value": "192.825",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "5.19",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "35.756",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "346.308",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A16W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "AI异构计算架构，承上启下，提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://hf-mirror.com/shadow-cann/svp-nnn-pc/resolve/main/SVP_NNN_PC_V1.0.6.5.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.3/docs/zh-CN/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计，支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.3/"
+                    }
+                ]
+            },
+            {
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "5.30.t11.7.b140；(请联系FAE通过Hisupport单获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928V100R001C02SPC022；(请联系FAE获取SDK版本并升级单独获取的CANN版本)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
+            },
+            {
+                "platform": "Hi3516CV610",
+                "quantizations": [
+                    "A16W8"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计;支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "kuhsidi0j400",
+        "name": "YOLO11s-pose",
+        "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
+        "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
+        "descriptionEn": "YOLO11s-pose is a computer vision model for pose estimation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN, Hi3403V100 NNN, and Hi3516CV610. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
+        "date": "2026-09-15 16:30:53",
+        "updatedAt": "2026-09-16 11:36:31",
+        "badge": null,
+        "betaVersionDesc": "",
+        "category": "计算机视觉",
+        "tags": [
+            "姿态估计"
+        ],
+        "image": "assets/images/1712135222657026_yolo11-pose-small.jpg",
+        "coverImageUrl": "assets/images/1712135222657026_yolo11-pose-small.jpg",
+        "framework": [
+            "PyTorch"
+        ],
+        "supportOs": [
+            "OpenHarmony",
+            "Linux"
+        ],
+        "computingPower": [
+            "Hi3403V100 SVP_NNN",
+            "Hi3403V100 NNN",
+            "Hi3516CV610"
+        ],
+        "repositoryUrl": "https://gitcode.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolo11s-pose",
+        "licenseUrl": "https://github.com/ultralytics/ultralytics/blob/master/LICENSE",
+        "quickStartUrl": "https://gitcode.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolo11s-pose",
+        "quickStartMarkdownUrl": null,
+        "quickStartReadmes": [
+            {
+                "language": "C++",
+                "content": "模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolo11s-pose模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::Yolo11s-pose) != 0) {\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitcode.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo11s-pose/src/CMakeLists.txt)。",
+                "summary": "模型可以通过以下代码完成快速推理",
+                "summaryEn": "C++ quick-start notes for YOLO11s-pose. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
+            }
+        ],
+        "detailParams": [
+            {
+                "name": "输入",
+                "value": "640x640"
+            },
+            {
+                "name": "参数量",
+                "value": "9.970M"
+            },
+            {
+                "name": "计算量",
+                "value": "25.414GFLOPs"
+            }
+        ],
+        "performance": [
+            {
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "25.09",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "39.85",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "168.145",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "36.895",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "metrics": [
+                    {
+                        "value": "45.41",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "22.02",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "360.947",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "125.070",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "engine": "Hi3516CV610",
+                "quantization": "A16W8",
+                "metrics": [
+                    {
+                        "value": "169.063",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "5.92",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "35.199",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "337.639",
+                        "unit": "单帧内存带宽 (MB)",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
+        "originModels": [],
+        "hfRepoId": "shadow-cann/hispark-modelzoo-yolo11s-pose",
+        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose",
+        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/blob/main/README.md",
+        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose_Hi3403_SVPNNN_%E6%AD%A4%E6%96%87%E4%BB%B6%E4%BB%85%E4%BE%9B%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%EF%BC%8C%E5%95%86%E7%94%A8%E9%9C%80%E8%81%94%E7%B3%BB%E5%8E%9F%E4%BD%9C%E8%80%85%E8%B4%AD%E4%B9%B0%E6%8E%88%E6%9D%83.om",
+        "primaryDownloadLabel": "yolo11s-pose_Hi3403_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+        "downloads": [
+            {
+                "title": "yolo11s-pose_Hi3403_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose_Hi3403_SVPNNN_%E6%AD%A4%E6%96%87%E4%BB%B6%E4%BB%85%E4%BE%9B%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%EF%BC%8C%E5%95%86%E7%94%A8%E9%9C%80%E8%81%94%E7%B3%BB%E5%8E%9F%E4%BD%9C%E8%80%85%E8%B4%AD%E4%B9%B0%E6%8E%88%E6%9D%83.om",
+                "available": true,
+                "source": "om-A16W8",
+                "sourceLabel": "A16W8",
+                "group": "编译模型",
+                "engine": "Hi3403V100 SVP_NNN",
+                "quantization": "A16W8",
+                "note": "A16W8",
+                "localFile": "yolo11s-pose_Hi3403_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                "performance": [
+                    {
+                        "value": "25.09",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "39.85",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "168.145",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "36.895",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "yolo11s-pose_Hi3403_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose_Hi3403_NNN_%E6%AD%A4%E6%96%87%E4%BB%B6%E4%BB%85%E4%BE%9B%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%EF%BC%8C%E5%95%86%E7%94%A8%E9%9C%80%E8%81%94%E7%B3%BB%E5%8E%9F%E4%BD%9C%E8%80%85%E8%B4%AD%E4%B9%B0%E6%8E%88%E6%9D%83.om",
+                "available": true,
+                "source": "om-FP16",
+                "sourceLabel": "FP16",
+                "group": "编译模型",
+                "engine": "Hi3403V100 NNN",
+                "quantization": "FP16",
+                "note": "FP16",
+                "localFile": "yolo11s-pose_Hi3403_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                "performance": [
+                    {
+                        "value": "45.41",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "22.02",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "360.947",
+                        "unit": "单帧内存带宽（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "125.070",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    }
+                ]
+            },
+            {
+                "title": "yolo11s-pose_610_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose_610_SVPNNN_%E6%AD%A4%E6%96%87%E4%BB%B6%E4%BB%85%E4%BE%9B%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%EF%BC%8C%E5%95%86%E7%94%A8%E9%9C%80%E8%81%94%E7%B3%BB%E5%8E%9F%E4%BD%9C%E8%80%85%E8%B4%AD%E4%B9%B0%E6%8E%88%E6%9D%83.om",
+                "available": true,
+                "source": "om-A16W8",
+                "sourceLabel": "A16W8",
+                "group": "编译模型",
+                "engine": "Hi3516CV610",
+                "quantization": "A16W8",
+                "note": "A16W8",
+                "localFile": "yolo11s-pose_610_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
+                "performance": [
+                    {
+                        "value": "169.063",
+                        "unit": "耗时（ms）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "5.92",
+                        "unit": "性能（fps）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "35.199",
+                        "unit": "内存（MB）",
+                        "desc": ""
+                    },
+                    {
+                        "value": "337.639",
+                        "unit": "单帧内存带宽 (MB)",
+                        "desc": ""
+                    }
+                ]
+            }
+        ],
+        "toolchains": [
+            {
+                "platform": "Hi3403V100 SVP_NNN",
+                "quantizations": [
+                    "A16W8"
+                ],
+                "os": [
+                    "OpenHarmony",
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具",
+                        "desc": "Al异构计算架构；提升计算效率的关键平台",
+                        "icon": "cann",
+                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
+                        "icon": "tool",
+                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
+                    }
+                ]
+            },
+            {
+                "platform": "Hi3403V100 NNN",
+                "quantizations": [
+                    "FP16"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "CANN工具包",
+                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
+                        "icon": "cann",
+                        "href": null
+                    },
+                    {
+                        "name": "编译工具链",
+                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
+                        "icon": "tool",
+                        "href": null
+                    },
+                    {
+                        "name": "SDK",
+                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
+                        "icon": "sdk",
+                        "href": null
+                    }
+                ]
+            },
+            {
+                "platform": "Hi3516CV610",
+                "quantizations": [
+                    "A16W8"
+                ],
+                "os": [
+                    "Linux"
+                ],
+                "items": [
+                    {
+                        "name": "SDK",
+                        "desc": "稳定、易用的设计;支撑客户快速产品量产",
+                        "icon": "sdk",
+                        "href": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta"
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "id": "kuerjmbgts00",
         "name": "YOLOv4",
         "description": "YOLOv4 是一种高性能的 one-stage 目标检测模型。相比 YOLOv3，YOLOv4 采用了 CSPDarknet53 作为 backbone 进行特征提取，该网络结合了跨金字塔池化结构和路径聚合网络，在精度和速度上均有显著提升。",
@@ -279,670 +919,6 @@ const modelsData = [
                         "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
                         "icon": "sdk",
                         "href": null
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "id": "ku5e0eekj400",
-        "name": "YOLO11s-pose",
-        "description": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
-        "descriptionZh": "YOLO系列网络模型是最为经典的one-stage算法，也是目前工业领域使用最多的目标检测网络，YOLO11网络模型是YOLO系列的最新版本，在继承了原有YOLO网络模型优点的基础上，在架构和训练方法上进行了重大改进，具有更高的检测精度、速度和效率。YOLO11s-pose作为YOLO11的姿态估计的模型，能检测出代表人体不同部位的17个关键点。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
-        "descriptionEn": "YOLO11s-pose is a computer vision model for pose estimation. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN, Hi3403V100 NNN, and Hi3516CV610. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
-        "date": "2026-09-14 11:29:32",
-        "updatedAt": null,
-        "badge": null,
-        "betaVersionDesc": "",
-        "category": "计算机视觉",
-        "tags": [
-            "姿态估计"
-        ],
-        "image": "assets/images/1712135222657026_yolo11-pose-small.jpg",
-        "coverImageUrl": "assets/images/1712135222657026_yolo11-pose-small.jpg",
-        "framework": [
-            "PyTorch"
-        ],
-        "supportOs": [
-            "OpenHarmony",
-            "Linux"
-        ],
-        "computingPower": [
-            "Hi3403V100 SVP_NNN",
-            "Hi3403V100 NNN",
-            "Hi3516CV610"
-        ],
-        "repositoryUrl": "https://gitcode.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolo11s-pose",
-        "licenseUrl": "https://github.com/ultralytics/ultralytics/blob/master/LICENSE",
-        "quickStartUrl": "https://gitcode.com/Hispark/modelzoo/tree/master/samples/samples_GPL/built-in/yolo11s-pose",
-        "quickStartMarkdownUrl": null,
-        "quickStartReadmes": [
-            {
-                "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理\n\n#include \"model.h\"\n#include \"log.h\"\n\nusing namespace Infer;\n\nint main()\n{\n    EnvInit();\n    std::string omModelPath = \"/path/to/model.om\"; // yolo11s-pose模型文件路径 \n    std::string imagePath = \"/path/to/image.jpg\"; // 输入图片路径\n    std::unique_ptr<Model> model = std::make_unique<Model>();\n    if (model->Load(omModelPath, ModelType::Yolo11s-pose) != 0) {\n        return -1;\n    }\n    auto ret = model->Infer(imagePath, FileType::SingelImageFile);\n    if (ret.size() == 0) {\n        model->Unload();\n        return -1;\n    }\n    if (model->Unload() != 0) {\n        return -1;\n    }\n    EnvDeinit();\n    return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于/samples/common (https://gitcode.com/HiSpark/modelzoo/tree/master/samples/common)目录下，编译相关配置参考CMakeLists.txt (https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo11s-pose/src/CMakeLists.txt)。",
-                "summary": "模型可以通过以下代码完成快速推理",
-                "summaryEn": "C++ quick-start notes for YOLO11s-pose. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
-            }
-        ],
-        "detailParams": [
-            {
-                "name": "输入",
-                "value": "640x640"
-            },
-            {
-                "name": "参数量",
-                "value": "9.970M"
-            },
-            {
-                "name": "计算量",
-                "value": "25.414GFLOPs"
-            }
-        ],
-        "performance": [
-            {
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A16W8",
-                "metrics": [
-                    {
-                        "value": "25.09",
-                        "unit": "耗时（ms）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "39.85",
-                        "unit": "性能（fps）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "168.145",
-                        "unit": "单帧内存带宽（MB）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "36.895",
-                        "unit": "内存（MB）",
-                        "desc": ""
-                    }
-                ]
-            },
-            {
-                "engine": "Hi3403V100 NNN",
-                "quantization": "FP16",
-                "metrics": [
-                    {
-                        "value": "45.41",
-                        "unit": "耗时（ms）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "22.02",
-                        "unit": "性能（fps）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "360.947",
-                        "unit": "单帧内存带宽（MB）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "125.070",
-                        "unit": "内存（MB）",
-                        "desc": ""
-                    }
-                ]
-            },
-            {
-                "engine": "Hi3516CV610",
-                "quantization": "A16W8",
-                "metrics": [
-                    {
-                        "value": "169.063",
-                        "unit": "耗时（ms）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "5.92",
-                        "unit": "性能（fps）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "35.199",
-                        "unit": "内存（MB）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "337.639",
-                        "unit": "单帧内存带宽 (MB)",
-                        "desc": ""
-                    }
-                ]
-            }
-        ],
-        "originModels": [],
-        "hfRepoId": "shadow-cann/hispark-modelzoo-yolo11s-pose",
-        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose",
-        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose_928_SVPNNN_%E6%AD%A4%E6%96%87%E4%BB%B6%E4%BB%85%E4%BE%9B%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%EF%BC%8C%E5%95%86%E7%94%A8%E9%9C%80%E8%81%94%E7%B3%BB%E5%8E%9F%E4%BD%9C%E8%80%85%E8%B4%AD%E4%B9%B0%E6%8E%88%E6%9D%83.om",
-        "primaryDownloadLabel": "yolo11s-pose_928_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-        "downloads": [
-            {
-                "title": "yolo11s-pose_928_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose_928_SVPNNN_%E6%AD%A4%E6%96%87%E4%BB%B6%E4%BB%85%E4%BE%9B%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%EF%BC%8C%E5%95%86%E7%94%A8%E9%9C%80%E8%81%94%E7%B3%BB%E5%8E%9F%E4%BD%9C%E8%80%85%E8%B4%AD%E4%B9%B0%E6%8E%88%E6%9D%83.om",
-                "available": true,
-                "source": "om-A16W8",
-                "sourceLabel": "A16W8",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A16W8",
-                "note": "A16W8",
-                "localFile": "yolo11s-pose_928_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-                "performance": [
-                    {
-                        "value": "25.09",
-                        "unit": "耗时（ms）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "39.85",
-                        "unit": "性能（fps）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "168.145",
-                        "unit": "单帧内存带宽（MB）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "36.895",
-                        "unit": "内存（MB）",
-                        "desc": ""
-                    }
-                ]
-            },
-            {
-                "title": "yolo11s-pose_928_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose_928_NNN_%E6%AD%A4%E6%96%87%E4%BB%B6%E4%BB%85%E4%BE%9B%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%EF%BC%8C%E5%95%86%E7%94%A8%E9%9C%80%E8%81%94%E7%B3%BB%E5%8E%9F%E4%BD%9C%E8%80%85%E8%B4%AD%E4%B9%B0%E6%8E%88%E6%9D%83.om",
-                "available": true,
-                "source": "om-FP16",
-                "sourceLabel": "FP16",
-                "group": "编译模型",
-                "engine": "Hi3403V100 NNN",
-                "quantization": "FP16",
-                "note": "FP16",
-                "localFile": "yolo11s-pose_928_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-                "performance": [
-                    {
-                        "value": "45.41",
-                        "unit": "耗时（ms）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "22.02",
-                        "unit": "性能（fps）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "360.947",
-                        "unit": "单帧内存带宽（MB）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "125.070",
-                        "unit": "内存（MB）",
-                        "desc": ""
-                    }
-                ]
-            },
-            {
-                "title": "yolo11s-pose_610_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo11s-pose/resolve/main/yolo11s-pose_610_SVPNNN_%E6%AD%A4%E6%96%87%E4%BB%B6%E4%BB%85%E4%BE%9B%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%EF%BC%8C%E5%95%86%E7%94%A8%E9%9C%80%E8%81%94%E7%B3%BB%E5%8E%9F%E4%BD%9C%E8%80%85%E8%B4%AD%E4%B9%B0%E6%8E%88%E6%9D%83.om",
-                "available": true,
-                "source": "om-A16W8",
-                "sourceLabel": "A16W8",
-                "group": "编译模型",
-                "engine": "Hi3516CV610",
-                "quantization": "A16W8",
-                "note": "A16W8",
-                "localFile": "yolo11s-pose_610_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-                "performance": [
-                    {
-                        "value": "169.063",
-                        "unit": "耗时（ms）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "5.92",
-                        "unit": "性能（fps）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "35.199",
-                        "unit": "内存（MB）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "337.639",
-                        "unit": "单帧内存带宽 (MB)",
-                        "desc": ""
-                    }
-                ]
-            }
-        ],
-        "toolchains": [
-            {
-                "platform": "Hi3403V100 SVP_NNN",
-                "quantizations": [
-                    "A16W8"
-                ],
-                "os": [
-                    "OpenHarmony",
-                    "Linux"
-                ],
-                "items": [
-                    {
-                        "name": "CANN工具",
-                        "desc": "Al异构计算架构；提升计算效率的关键平台",
-                        "icon": "cann",
-                        "href": "https://github.com/GitBubble/hisilicon-developer-portal-mirror/releases/download/svp-nnn-pc-v1.0.6.0/SVP_NNN_PC_V1.0.6.0.tgz"
-                    },
-                    {
-                        "name": "编译工具链",
-                        "desc": "高效编译，精准适配；AI性能优化，应用流畅运行",
-                        "icon": "tool",
-                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.1/docs/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md#241%E5%AE%89%E8%A3%85clang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%99%A8"
-                    },
-                    {
-                        "name": "SDK",
-                        "desc": "稳定、易用的设计；支撑客户快速产品量产",
-                        "icon": "sdk",
-                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.1/"
-                    }
-                ]
-            },
-            {
-                "platform": "Hi3403V100 NNN",
-                "quantizations": [
-                    "FP16"
-                ],
-                "os": [
-                    "Linux"
-                ],
-                "items": [
-                    {
-                        "name": "CANN工具包",
-                        "desc": "5.30.t11.7.b110； (请联系FAE获取)",
-                        "icon": "cann",
-                        "href": null
-                    },
-                    {
-                        "name": "编译工具链",
-                        "desc": "aarch64-mix210-linux-gcc；(请联系FAE获取)",
-                        "icon": "tool",
-                        "href": null
-                    },
-                    {
-                        "name": "SDK",
-                        "desc": "SS928 V100R001C02SPC022； (请联系FAE获取)",
-                        "icon": "sdk",
-                        "href": null
-                    }
-                ]
-            },
-            {
-                "platform": "Hi3516CV610",
-                "quantizations": [
-                    "A16W8"
-                ],
-                "os": [
-                    "Linux"
-                ],
-                "items": [
-                    {
-                        "name": "CANN工具",
-                        "desc": "6.10.t06spc020b023 (请联系FAE获取)",
-                        "icon": "cann",
-                        "href": null
-                    },
-                    {
-                        "name": "编译工具链",
-                        "desc": "gcc-20250305-arm-v01c02-linux-musleabi (请联系FAE获取)",
-                        "icon": "tool",
-                        "href": null
-                    },
-                    {
-                        "name": "SDK",
-                        "desc": "稳定、易用的设计;支撑客户快速产品量产",
-                        "icon": "sdk",
-                        "href": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta"
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "id": "ku5ckc88j400",
-        "name": "YOLO26s",
-        "description": "YOLO26s 是 Ultralytics YOLO 系列中的小型目标检测模型，适合在边缘设备上进行实时目标检测。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
-        "descriptionZh": "YOLO26s 是 Ultralytics YOLO 系列中的小型目标检测模型，适合在边缘设备上进行实时目标检测。该模型仅供学习使用，若集成到产品中，请联系原作者获取商用许可。",
-        "descriptionEn": "YOLO26s is a computer vision model for detection. The original upstream description is preserved in Chinese, and this mirror provides an English summary for bilingual browsing. Framework: PyTorch. OS: OpenHarmony and Linux. Compute targets: Hi3403V100 SVP_NNN, Hi3403V100 NNN, and Hi3516CV610. The mirror currently exposes 3 downloadable artifacts, along with quick-start resources when available.",
-        "date": "2026-09-14 11:23:31",
-        "updatedAt": null,
-        "badge": null,
-        "betaVersionDesc": "",
-        "category": "计算机视觉",
-        "tags": [
-            "检测"
-        ],
-        "image": "assets/images/1764112203841537_yolo26.jpg",
-        "coverImageUrl": "assets/images/1764112203841537_yolo26.jpg",
-        "framework": [
-            "PyTorch"
-        ],
-        "supportOs": [
-            "OpenHarmony",
-            "Linux"
-        ],
-        "computingPower": [
-            "Hi3403V100 SVP_NNN",
-            "Hi3403V100 NNN",
-            "Hi3516CV610"
-        ],
-        "repositoryUrl": "https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s",
-        "licenseUrl": "https://github.com/ultralytics/ultralytics/blob/main/LICENSE",
-        "quickStartUrl": "https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/built-in/yolo26s/doc/快速开始.md",
-        "quickStartMarkdownUrl": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolov10s/doc/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.md",
-        "quickStartReadmes": [
-            {
-                "language": "C++",
-                "content": "模型可以通过以下代码完成快速推理\n\n#include <memory>\n#include \"model.h\"\n#include \"log.h\"\n#include \"utils.h\"\n#include \"param.h\"\n#include \"yolov26s_process.h\"\n\nusing namespace Infer;\n\nint main(int argc, char *argv[])\n{\n  InferParam inferParam;\n  if (!ParseParamFromCmd(argc, argv, inferParam)) {\n    return -1;\n  }\n\n  EnvInit(inferParam.aclConfigPath);\n  std::unique_ptr<Model> model = std::make_unique<Model>();\n  if (model->Load(inferParam.omModelPath) != 0) {\n    EnvDeinit();\n    return -1;\n  }\n\n  Yolov26sProcess processFunc;\n  model->SetProcessFunc(processFunc);\n\n  Yolov26sParam cfgParam;\n  cfgParam.platformType = model->GetPlatformType();\n  std::any param = cfgParam;\n  int32_t ret = model->Infer(inferParam.imglistPath, JsonFile, std::ref(param));\n  if (ret != 0) {\n    model->Unload();\n    EnvDeinit();\n    return -1;\n  }\n  if (model->Unload() != 0) {\n    EnvDeinit();\n    return -1;\n  }\n  EnvDeinit();\n  return 0;\n}\n备注：上述C++代码依赖的动态库与头文件位于[ (https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/common)/samples/samples_GPL/common (https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/common)] (https://gitcode.com/HiSpark/modelzoo/tree/master/samples/samples_GPL/common)目录下，编译相关配置参考[ (https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/src/CMakeLists.txt)CMakeLists.txt (https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/src/CMakeLists.txt)] (https://gitcode.com/HiSpark/modelzoo/blob/master/samples/samples_GPL/built-in/yolo26s/src/CMakeLists.txt)。",
-                "summary": "模型可以通过以下代码完成快速推理",
-                "summaryEn": "C++ quick-start notes for YOLO26s. Covers runtime initialization, model loading, inference execution, configuration handling, build instructions, and references to shared runtime libraries."
-            }
-        ],
-        "detailParams": [
-            {
-                "name": "计算量",
-                "value": "23.250GFLOPs"
-            },
-            {
-                "name": "输入",
-                "value": "640x640"
-            },
-            {
-                "name": "参数量",
-                "value": "9.538M"
-            }
-        ],
-        "performance": [
-            {
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A16W8",
-                "metrics": [
-                    {
-                        "value": "20.965",
-                        "unit": "耗时（ms）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "47.630",
-                        "unit": "性能（fps）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "33.000",
-                        "unit": "内存（MB）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "123.379",
-                        "unit": "单帧内存带宽（MB）",
-                        "desc": ""
-                    }
-                ]
-            },
-            {
-                "engine": "Hi3403V100 NNN",
-                "quantization": "FP16",
-                "metrics": [
-                    {
-                        "value": "46.217",
-                        "unit": "耗时（ms）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "8.060",
-                        "unit": "性能（fps）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "120.175",
-                        "unit": "内存（MB）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "282.906",
-                        "unit": "单帧内存带宽 (MB)",
-                        "desc": ""
-                    }
-                ]
-            },
-            {
-                "engine": "Hi3516CV610",
-                "quantization": "A16W8",
-                "metrics": [
-                    {
-                        "value": "192.825",
-                        "unit": "耗时（ms）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "5.19",
-                        "unit": "性能（fps）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "35.756",
-                        "unit": "内存（MB）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "346.308",
-                        "unit": "单帧内存带宽（MB）",
-                        "desc": ""
-                    }
-                ]
-            }
-        ],
-        "originModels": [],
-        "hfRepoId": "shadow-cann/hispark-modelzoo-yolo26s",
-        "hfRepoUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s",
-        "hfReadmeUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s/blob/main/README.md",
-        "primaryDownloadUrl": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s/resolve/main/yolo26s_928_SVPNNN_%E6%AD%A4%E6%96%87%E4%BB%B6%E4%BB%85%E4%BE%9B%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%EF%BC%8C%E5%95%86%E7%94%A8%E9%9C%80%E8%81%94%E7%B3%BB%E5%8E%9F%E4%BD%9C%E8%80%85%E8%B4%AD%E4%B9%B0%E6%8E%88%E6%9D%83.om",
-        "primaryDownloadLabel": "yolo26s_928_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-        "downloads": [
-            {
-                "title": "yolo26s_928_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s/resolve/main/yolo26s_928_SVPNNN_%E6%AD%A4%E6%96%87%E4%BB%B6%E4%BB%85%E4%BE%9B%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%EF%BC%8C%E5%95%86%E7%94%A8%E9%9C%80%E8%81%94%E7%B3%BB%E5%8E%9F%E4%BD%9C%E8%80%85%E8%B4%AD%E4%B9%B0%E6%8E%88%E6%9D%83.om",
-                "available": true,
-                "source": "om-A16W8",
-                "sourceLabel": "A16W8",
-                "group": "编译模型",
-                "engine": "Hi3403V100 SVP_NNN",
-                "quantization": "A16W8",
-                "note": "A16W8",
-                "localFile": "yolo26s_928_SVPNNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-                "performance": [
-                    {
-                        "value": "20.965",
-                        "unit": "耗时（ms）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "47.630",
-                        "unit": "性能（fps）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "33.000",
-                        "unit": "内存（MB）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "123.379",
-                        "unit": "单帧内存带宽（MB）",
-                        "desc": ""
-                    }
-                ]
-            },
-            {
-                "title": "yolo26s_928_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s/resolve/main/yolo26s_928_NNN_%E6%AD%A4%E6%96%87%E4%BB%B6%E4%BB%85%E4%BE%9B%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%EF%BC%8C%E5%95%86%E7%94%A8%E9%9C%80%E8%81%94%E7%B3%BB%E5%8E%9F%E4%BD%9C%E8%80%85%E8%B4%AD%E4%B9%B0%E6%8E%88%E6%9D%83.om",
-                "available": true,
-                "source": "om-FP16",
-                "sourceLabel": "FP16",
-                "group": "编译模型",
-                "engine": "Hi3403V100 NNN",
-                "quantization": "FP16",
-                "note": "FP16",
-                "localFile": "yolo26s_928_NNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-                "performance": [
-                    {
-                        "value": "46.217",
-                        "unit": "耗时（ms）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "8.060",
-                        "unit": "性能（fps）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "120.175",
-                        "unit": "内存（MB）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "282.906",
-                        "unit": "单帧内存带宽 (MB)",
-                        "desc": ""
-                    }
-                ]
-            },
-            {
-                "title": "yolo26s_610_SVPNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-                "href": "https://hf-mirror.com/shadow-cann/hispark-modelzoo-yolo26s/resolve/main/yolo26s_610_SVPNN_%E6%AD%A4%E6%96%87%E4%BB%B6%E4%BB%85%E4%BE%9B%E5%AD%A6%E4%B9%A0%E8%AF%84%E4%BC%B0%EF%BC%8C%E5%95%86%E7%94%A8%E9%9C%80%E8%81%94%E7%B3%BB%E5%8E%9F%E4%BD%9C%E8%80%85%E8%B4%AD%E4%B9%B0%E6%8E%88%E6%9D%83.om",
-                "available": true,
-                "source": "om-A16W8",
-                "sourceLabel": "A16W8",
-                "group": "编译模型",
-                "engine": "Hi3516CV610",
-                "quantization": "A16W8",
-                "note": "A16W8",
-                "localFile": "yolo26s_610_SVPNN_此文件仅供学习评估，商用需联系原作者购买授权.om",
-                "performance": [
-                    {
-                        "value": "192.825",
-                        "unit": "耗时（ms）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "5.19",
-                        "unit": "性能（fps）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "35.756",
-                        "unit": "内存（MB）",
-                        "desc": ""
-                    },
-                    {
-                        "value": "346.308",
-                        "unit": "单帧内存带宽（MB）",
-                        "desc": ""
-                    }
-                ]
-            }
-        ],
-        "toolchains": [
-            {
-                "platform": "Hi3403V100 SVP_NNN",
-                "quantizations": [
-                    "A16W8"
-                ],
-                "os": [
-                    "OpenHarmony",
-                    "Linux"
-                ],
-                "items": [
-                    {
-                        "name": "CANN工具",
-                        "desc": "AI异构计算架构，承上启下，提升计算效率的关键平台",
-                        "icon": "cann",
-                        "href": "https://hf-mirror.com/shadow-cann/svp-nnn-pc/resolve/main/SVP_NNN_PC_V1.0.6.5.tgz"
-                    },
-                    {
-                        "name": "编译工具链",
-                        "desc": "高效编译，精准适配AI性能优化，应用流畅运行",
-                        "icon": "tool",
-                        "href": "https://gitee.com/HiSpark/pegasus/blob/Beta-v0.9.3/docs/zh-CN/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/Hi3403V100%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97.md"
-                    },
-                    {
-                        "name": "SDK",
-                        "desc": "稳定、易用的设计，支撑客户快速产品量产",
-                        "icon": "sdk",
-                        "href": "https://gitee.com/HiSpark/ss928v100_clang/tree/Beta-v0.9.3/"
-                    }
-                ]
-            },
-            {
-                "platform": "Hi3403V100 NNN",
-                "quantizations": [
-                    "FP16"
-                ],
-                "os": [
-                    "Linux"
-                ],
-                "items": [
-                    {
-                        "name": "CANN工具",
-                        "desc": "5.30.t11.7.b140；(请联系FAE通过Hisupport单获取)",
-                        "icon": "cann",
-                        "href": null
-                    },
-                    {
-                        "name": "SDK",
-                        "desc": "SS928V100R001C02SPC022；(请联系FAE获取SDK版本并升级单独获取的CANN版本)",
-                        "icon": "sdk",
-                        "href": null
-                    }
-                ]
-            },
-            {
-                "platform": "Hi3516CV610",
-                "quantizations": [
-                    "A16W8"
-                ],
-                "os": [
-                    "Linux"
-                ],
-                "items": [
-                    {
-                        "name": "CANN工具",
-                        "desc": "6.10.t06spc020b023 (请联系FAE获取)",
-                        "icon": "cann",
-                        "href": null
-                    },
-                    {
-                        "name": "编译工具链",
-                        "desc": "Hi3516CV610R001C01SPC020 (请联系FAE获取)",
-                        "icon": "tool",
-                        "href": null
-                    },
-                    {
-                        "name": "SDK",
-                        "desc": "Hi3516CV610R001C01SPC020",
-                        "icon": "sdk",
-                        "href": "https://gitcode.com/HiSpark/Hi3516CV610/tree/tag_V2.0.0_Beta"
                     }
                 ]
             }
