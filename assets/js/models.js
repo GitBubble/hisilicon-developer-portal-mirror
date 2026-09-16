@@ -3608,7 +3608,7 @@ const modelsData = [
             "Hi3403V100 SVP_NNN"
         ],
         "repositoryUrl": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/vlm/MiniCPM/README.md",
-        "licenseUrl": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B",
+        "licenseUrl": "https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/resolve/main/MiniCPM-V%200.5B%20%E6%A8%A1%E5%9E%8B%E5%BC%80%E6%BA%90%E5%8F%91%E5%B8%83%E6%8E%88%E6%9D%83%E5%8D%8F%E8%AE%AE-%E9%9D%A2%E5%A3%81%E6%99%BA%E8%83%BD%26%E6%B5%B7%E6%80%9D%EF%BC%88HiSpark%EF%BC%89.pdf",
         "quickStartUrl": "https://gitee.com/HiSpark/modelzoo/blob/master/samples/built-in/vlm/MiniCPM/README.md",
         "quickStartMarkdownUrl": null,
         "quickStartReadmes": [
@@ -3677,7 +3677,7 @@ const modelsData = [
                 "group": "附加资源",
                 "engine": "",
                 "quantization": "",
-                "note": "",
+                "note": "镜像为解包后的目录，内容已逐文件校验",
                 "localFile": null
             }
         ],
@@ -6996,7 +6996,7 @@ const modelsData = [
                 "localFile": "SuperPointNet.pth"
             },
             {
-                "title": "link",
+                "title": "hpatches-sequences-release.tar.gz",
                 "href": null,
                 "available": false,
                 "source": "api-all",
@@ -14538,10 +14538,23 @@ const modelsData = [
     }
 ];
 
+// Old portal ids (upstream re-publishes) -> current ids, from id-aliases.json
+const modelIdAliases = {
+    "i9ivuh3hec00": "kuerjmbgts00",
+    "i9j3k8rpec00": "kuhsidi0j400",
+    "kmrpc00gts00": "kuhsoe9kts00",
+    "knc6ud5cj400": "ku4ntpbgj400",
+    "hsd8o65p5c00": "ku4m5qfcts00",
+    "j8pfkrsgtk00": "ktgi9vl8j400",
+    "ku5e0eekj400": "kuhsidi0j400",
+    "ku5ckc88j400": "kuhsoe9kts00"
+};
+
 if (typeof window !== 'undefined') {
     window.modelsData = modelsData;
+    window.modelIdAliases = modelIdAliases;
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { modelsData };
+    module.exports = { modelsData, modelIdAliases };
 }

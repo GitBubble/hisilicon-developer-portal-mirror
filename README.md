@@ -84,6 +84,8 @@ node daily-sync.js --skip-build --skip-hf --skip-commit
 
 上游详情页的“模型工具”（侧栏锚点叫“工具链下载”）按平台（Hi3403V100 SVP_NNN / NNN、Hi3516CV610 …）列出 CANN工具 / 编译工具链 / SDK 及其说明文字——说明里往往就是要向 FAE 索取的 SDK/CANN 版本号，而且约一半条目没有链接。这些数据来自 `apiDetail.modelAdaptor[].toolkit[]`，构建时原样写入每个模型的 `toolchains`（平台、规格、系统、条目顺序都按 API 顺序，名称和说明逐字保留，不去重），详情页在“下载清单”之后以“模型工具”分组展示；有链接的条目按下载表同样的规则改写（SDK 包指向镜像、gitee tree/blob 纠正），无链接的只显示说明。下载清单里不再重复出现“工具链”行，`可用文件`计数因此只统计模型文件。
 
+上游会把模型换一个 ID 重新上架（2026-09-16 的 YOLO26s、YOLO11s-pose），旧 ID 随即失效；`daily-sync.js` 发现“同名、旧 ID 下架、新 ID 上架”时把 `旧 ID → 新 ID` 记进 `id-aliases.json`，构建时随 `models.js` 一起输出 `modelIdAliases`（多级别名折叠到当前 ID），详情页据此把旧链接解析到现在的模型。
+
 ### 部署到 GitHub Pages
 
 ```bash

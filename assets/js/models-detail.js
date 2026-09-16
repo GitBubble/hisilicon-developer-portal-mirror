@@ -3,14 +3,12 @@ const detailPageBaseUrl = new URL('./', detailPageUrl);
 
 // Several upstream records were republished with new IDs. Keep bookmarked
 // detail URLs working without duplicating the old records in the catalog.
-const legacyModelIdAliases = {
-    i9ivuh3hec00: 'kuerjmbgts00',
-    i9j3k8rpec00: 'ku5e0eekj400',
-    kmrpc00gts00: 'ku5ckc88j400',
-    knc6ud5cj400: 'ku4ntpbgj400',
-    hsd8o65p5c00: 'ku4m5qfcts00',
-    j8pfkrsgtk00: 'ktgi9vl8j400',
-};
+// Old portal ids (upstream re-publishes a model under a new id) resolve through the
+// map build-static-site.js emits from id-aliases.json alongside modelsData.
+function resolveModelId(modelId) {
+    const aliases = (typeof window !== 'undefined' && window.modelIdAliases) || {};
+    return (modelId && aliases[modelId]) || modelId;
+}
 
 // Get model name from URL
 function getModelNameFromURL() {
@@ -700,7 +698,7 @@ function renderModelDetail() {
         return;
     }
     
-    const resolvedModelId = legacyModelIdAliases[modelId] || modelId;
+    const resolvedModelId = resolveModelId(modelId);
     const model = modelsData.find(m => m.id === resolvedModelId) || modelsData.find(m => m.name === modelName);
     if (!model) {
         document.getElementById('modelName').textContent = i18n ? i18n.t('detail.notFound') : '未找到模型';

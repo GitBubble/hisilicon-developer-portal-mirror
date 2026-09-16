@@ -11,6 +11,8 @@ const SYNC_STAGE_TARGETS = [
     'api_all_details.json',
     // build-static-site.js resolves every download href against this listing.
     'hf-repo-files.json',
+    // old id -> current id hand-overs (build emits them into models.js)
+    'id-aliases.json',
     'assets/js/models.js',
     'assets/js/i18n.js',
     'assets/css/style.css',
@@ -291,6 +293,27 @@ function scrapeModeArgs(options) {
     return options.headed ? ['--headed'] : [];
 }
 
+// A model that disappears under one id and reappears under another (same name, reason
+// 'new id') keeps its old URLs alive: the hand-over goes into id-aliases.json and
+// build-static-site.js emits the map for the detail page.
+function recordIdHandovers(changedModels, removedModels, reasons) {
+    const newIdByName = new Map(changedModels
+        .filter((model) => reasons.get(modelIdOf(model)) === 'new id')
+        .map((model) => [model.name, modelIdOf(model)]));
+    const aliasPath = path.join(ROOT, 'id-aliases.json');
+    const aliases = readJson(aliasPath, {});
+    let added = 0;
+    for (const removed of removedModels) {
+        const oldId = modelIdOf(removed);
+        const newId = newIdByName.get(removed.name);
+        if (!oldId || !newId || aliases[oldId] === newId) continue;
+        aliases[oldId] = newId;
+        added += 1;
+        console.log(`  alias ${oldId} -> ${newId} (${removed.name})`);
+    }
+    if (added > 0) writeJson(aliasPath, aliases);
+}
+
 function scrapeDirectEnv() {
     const env = { ...process.env };
     for (const key of Object.keys(env)) {
@@ -457,6 +480,7 @@ async function main() {
                 for (const model of removedModels) {
                     console.log(`  ${model.name} (${modelIdOf(model)}): removed upstream`);
                 }
+                recordIdHandovers(changedModels, removedModels, catalogDiff.reasons);
                 writeJson(MODELS_JSON, upstreamModels);
 
                 let changedDetails = [];

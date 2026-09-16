@@ -131,6 +131,7 @@
         'Markdown 文档': 'Markdown Doc',
         'HF README': 'HF README',
         '未上传': 'Not published',
+        '镜像为解包后的目录，内容已逐文件校验': 'Unpacked into the repo directory; every file verified',
         '暂无链接': 'Unavailable',
         'HF Mirror': 'HF Mirror',
         '原始链接': 'Original Link'

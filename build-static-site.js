@@ -62,9 +62,39 @@ const MANUAL_REPO_OVERRIDES = new Map([
         repoId: 'shadow-cann/minicpm-v-0.5B',
         useMirrorForRemoteDownloads: true,
         preferRepoUrlForDownloads: true,
+        // Upstream publishes one 958 MB "OM 文件 2.zip"; the mirror holds its unpacked
+        // contents (names, sizes and CRCs checked against the zip's central directory),
+        // so the row opens the directory and says so instead of promising a zip.
         downloadTargetUrl: 'https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/tree/main',
+        downloadNote: '镜像为解包后的目录，内容已逐文件校验',
+        // Upstream's licence field holds that same zip URL (signed, expires); the
+        // licence PDF inside it is mirrored as a file, so 许可证 points at the PDF.
+        licenseUrl: 'https://hf-mirror.com/shadow-cann/minicpm-v-0.5B/resolve/main/'
+            + encodeRepoFile('MiniCPM-V 0.5B 模型开源发布授权协议-面壁智能&海思（HiSpark）.pdf'),
     }],
 ]);
+
+// Upstream re-publishes a model under a new id (YOLO26s ku5ckc88j400 -> kuhsoe9kts00 on
+// 2026-09-16) and the old id dies with it, but links people saved keep the old id.
+// daily-sync records every such hand-over in id-aliases.json; the detail page resolves
+// through the map emitted here. Chains (a -> b -> c) collapse to the current id.
+const ID_ALIASES_PATH = path.join(ROOT, 'id-aliases.json');
+
+function loadIdAliases(currentIds) {
+    if (!fs.existsSync(ID_ALIASES_PATH)) return {};
+    const raw = JSON.parse(fs.readFileSync(ID_ALIASES_PATH, 'utf8'));
+    const resolved = {};
+    for (const oldId of Object.keys(raw)) {
+        let target = raw[oldId];
+        const seen = new Set([oldId]);
+        while (raw[target] && !currentIds.has(target) && !seen.has(target)) {
+            seen.add(target);
+            target = raw[target];
+        }
+        if (currentIds.has(target) && target !== oldId) resolved[oldId] = target;
+    }
+    return resolved;
+}
 const MANUAL_MODEL_DATA = new Map([
     ['Pi0', {
         downloads: [
@@ -208,6 +238,13 @@ function encodeRepoFile(fileName) {
 // Upstream publishes several such links (e.g. .../tree/master/.../README.md), so choose the
 // mode from the target's last segment. Links whose mode is already right are left untouched
 // (trailing slash included) so the site stays byte-identical to upstream wherever upstream works.
+// Repo files that carry no extension but are files all the same (upstream's per-variant
+// licence links end in /LICENSE); without this they would be sent to /tree/ and 404.
+const EXTENSIONLESS_FILE_NAMES = new Set([
+    'LICENSE', 'LICENCE', 'COPYING', 'NOTICE', 'README', 'CHANGELOG', 'AUTHORS',
+    'CONTRIBUTING', 'Makefile', 'Dockerfile', 'VERSION',
+]);
+
 function normalizeGiteeUrl(url) {
     if (!url || typeof url !== 'string') return url;
     let parsed;
@@ -221,7 +258,8 @@ function normalizeGiteeUrl(url) {
     if (!match) return url;
     const [, repoPath, mode, refPath, target] = match;
     const lastSegment = decodeURIComponent(target.split('/').pop());
-    const wanted = /\.[A-Za-z0-9]{1,8}$/.test(lastSegment) ? 'blob' : 'tree';
+    const looksLikeFile = /\.[A-Za-z0-9]{1,8}$/.test(lastSegment) || EXTENSIONLESS_FILE_NAMES.has(lastSegment);
+    const wanted = looksLikeFile ? 'blob' : 'tree';
     if (wanted === mode) return url;
     parsed.pathname = `${repoPath}${wanted}${refPath}${target}`;
     return parsed.toString();
@@ -891,6 +929,8 @@ function makeRepoInfoFromId(repoId, options = {}) {
         useMirrorForRemoteDownloads: Boolean(options.useMirrorForRemoteDownloads),
         preferRepoUrlForDownloads: Boolean(options.preferRepoUrlForDownloads),
         downloadTargetUrl: options.downloadTargetUrl || null,
+        downloadNote: options.downloadNote || '',
+        licenseUrl: options.licenseUrl || null,
         slug: options.slug || null,
         repoFiles: options.repoFiles || [],
     };
@@ -1121,7 +1161,7 @@ function buildDownloads(detailEntry, repoFiles, repoInfo, repoSizes = new Map())
         LINK_NOTES.push(`${detailEntry.name}: file ${fileId} is served at ${entry.size} bytes while upstream metadata declares ${entry.declared}; mirror follows the served file`);
     }
     for (const item of detailEntry.downloadUrls || []) {
-        const title = item.name || (item.url ? fileNameFromUrl(item.url) : item.fileId) || '未命名文件';
+        const title = item.name || (item.url ? fileNameFromUrl(unwrapRedirectTarget(item.url)) : item.fileId) || '未命名文件';
         // Upstream lists toolkit rows in a separate 工具链下载 section, not in 模型下载;
         // they are rendered from `toolchains` (buildToolchains) so they must not also
         // appear in the download table. The name set covers older hand-merged captures.
@@ -1150,6 +1190,7 @@ function buildDownloads(detailEntry, repoFiles, repoInfo, repoSizes = new Map())
             localFile = verified;
         }
         let href = null;
+        let rowNote = '';
 
         const sdkName = sdkFileNameFrom(title) || sdkFileNameFrom(item.url);
         if (sdkName || isSdkPackageUrl(item.url)) {
@@ -1162,6 +1203,7 @@ function buildDownloads(detailEntry, repoFiles, repoInfo, repoSizes = new Map())
             href = null;
         } else if (repoInfo && repoInfo.preferRepoUrlForDownloads) {
             href = repoInfo.downloadTargetUrl || repoInfo.repoUrl;
+            rowNote = repoInfo.downloadNote || '';
         } else if (item.url && /^https?:\/\//.test(item.url)) {
             href = rewriteExternalUrl(item.url, repoInfo);
         }
@@ -1188,7 +1230,7 @@ function buildDownloads(detailEntry, repoFiles, repoInfo, repoSizes = new Map())
             group,
             engine: item.computing || '',
             quantization: normalizeQuantization(item.quantify),
-            note: normalizeQuantization(item.quantify),
+            note: rowNote || normalizeQuantization(item.quantify),
             localFile: localFile || sdkName || (isSdkPackageUrl(item.url) ? SHARED_SDK_FILE : null),
             lookupFileIds: [...downloadFileIds(item)],
             expectedSize,
@@ -1364,7 +1406,7 @@ function buildModelRecord(model, detailEntry, imageFiles, manifestByName, hfRepo
 
     // Prefer hosted local covers over Huawei OBS image URLs.
     const image = localImage || null;
-    const licenseUrl = rewriteExternalUrl(detail.modelLicense || null, repoInfo);
+    const licenseUrl = (repoInfo && repoInfo.licenseUrl) || rewriteExternalUrl(detail.modelLicense || null, repoInfo);
 
     return {
         id: model.id,
@@ -1483,7 +1525,8 @@ function main() {
     const hfRepoFiles = loadHfRepoFiles();
 
     const modelsData = allModels.map(model => buildModelRecord(model, detailByName.get(model.name), imageFiles, manifestByName, hfRepoFiles));
-    const content = `// Generated from api_all_models.json and api_all_details.json\nconst modelsData = ${JSON.stringify(modelsData, null, 4)};\n\nif (typeof window !== 'undefined') {\n    window.modelsData = modelsData;\n}\n\nif (typeof module !== 'undefined' && module.exports) {\n    module.exports = { modelsData };\n}\n`;
+    const modelIdAliases = loadIdAliases(new Set(modelsData.map((entry) => entry.id)));
+    const content = `// Generated from api_all_models.json and api_all_details.json\nconst modelsData = ${JSON.stringify(modelsData, null, 4)};\n\n// Old portal ids (upstream re-publishes) -> current ids, from id-aliases.json\nconst modelIdAliases = ${JSON.stringify(modelIdAliases, null, 4)};\n\nif (typeof window !== 'undefined') {\n    window.modelsData = modelsData;\n    window.modelIdAliases = modelIdAliases;\n}\n\nif (typeof module !== 'undefined' && module.exports) {\n    module.exports = { modelsData, modelIdAliases };\n}\n`;
     fs.writeFileSync(OUTPUT, content);
 
     const huaweiCount = (content.match(/huaweicloud/gi) || []).length;
