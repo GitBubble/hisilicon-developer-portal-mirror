@@ -715,7 +715,10 @@ html[data-theme="official"] body .table-frame {
     border: 1px solid var(--o-border);
     border-radius: 8px;
     background: var(--o-surface);
-    overflow: hidden;
+    /* Keep the foundation's horizontal scroll: wide tables (downloads, parameters)
+       must scroll inside the frame instead of being clipped on narrow screens. */
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 html[data-theme="official"] body .detail-section > h2 + .table-frame,
 html[data-theme="official"] body .detail-section > h2 + [id] > .table-frame { border-top: 1px solid var(--o-border); }
